@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0C68C9C1-8779-4945-ABFF-5B78104C4951}</ProjectGuid>
+    <ProjectGuid>{23FC0289-96C9-4F4E-891E-AE8FB3A30F30}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>LAN_Message</RootNamespace>
     <AssemblyName>LAN_Message</AssemblyName>
