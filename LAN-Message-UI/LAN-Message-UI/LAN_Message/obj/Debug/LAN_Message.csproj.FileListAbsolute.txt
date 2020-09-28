@@ -1,2 +1,0 @@
-C:\Users\datng\OneDrive\Desktop\LAN-Message-UI\LAN-Message-UI\LAN_Message\obj\Debug\LAN_Message.csprojAssemblyReference.cache
-C:\Users\datng\OneDrive\Desktop\LAN-Message-UI\LAN-Message-UI\LAN_Message\obj\Debug\LAN_Message.csproj.CoreCompileInputs.cache
