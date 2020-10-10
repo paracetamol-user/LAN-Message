@@ -1,25 +1,39 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Communication
 {
-    public class Server
+    public class SocketServer
     {
         IPAddress mIP;
         int mPort;
         TcpListener mListener;
         List<TcpClient> clients;
 
+        public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
+        public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
+        protected virtual void OnRaiseClientConnectedEvent(ClientConnectedEventArgs ccea)
+        {
+            EventHandler<ClientConnectedEventArgs> handler = RaiseClientConnectedEvent;
+            if (handler != null)
+                handler(this, ccea);
+        }
+        protected virtual void OnRaiseTextREceivedEvent(TextReceivedEventArgs trea)
+        {
+            EventHandler<TextReceivedEventArgs> handler = RaiseTextReceivedEvent;
+            if (handler != null)
+                handler(this, trea);
+        }
+
         private bool KeepRunning { get; set; }
 
-        public Server()
+        public SocketServer()
         {
             clients = new List<TcpClient>();
         }
@@ -49,6 +63,10 @@ namespace Communication
                     clients.Add(returnedByAccept);
                     System.Diagnostics.Debug.WriteLine("Client connected, count: {0}", clients.Count);
                     WorkWithClient(returnedByAccept);
+
+                    ClientConnectedEventArgs eaClientConnected;
+                    eaClientConnected = new ClientConnectedEventArgs(returnedByAccept.Client.ToString());
+                    OnRaiseClientConnectedEvent(eaClientConnected);
                 }
             }
             catch(Exception ex)
@@ -84,7 +102,12 @@ namespace Communication
                     }
 
                     string received = new string(buff);
-                    System.Diagnostics.Debug.WriteLine("Received message: ", received);
+                    System.Diagnostics.Debug.WriteLine("Received message: " + received);
+
+                    OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
+                        client.Client.RemoteEndPoint.ToString(), 
+                        received
+                    ));
 
                     Array.Clear(buff, 0, buff.Length);
                 }
@@ -118,6 +141,25 @@ namespace Communication
             catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public async void SendToAll(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+                return;
+
+            try
+            {
+                byte[] buffMessage = Encoding.ASCII.GetBytes(message);
+                foreach(TcpClient client in clients)
+                {
+                    await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
             }
         }
     }

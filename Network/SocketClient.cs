@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Communication
 {
-    public class Client
+    public class SocketClient
     {
         IPAddress mServerIPAddress;
         int mPort;
         TcpClient mClient;
 
-        public Client()
+        public SocketClient()
         {
             mClient = null;
             mPort = -1;
