@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    static class Program
+   static class Program
     {
         /// <summary>
         /// The main entry point for the application.

@@ -15,8 +15,14 @@ namespace UI
         public AddFriendForm()
         {
             InitializeComponent();
+            InitLoaction();
         }
-
-       
+        public void InitLoaction()
+        {
+            labelIp.Location = new Point( (panel1.Width / 2) - labelIp.Width , (panel1.Height / 2));
+            textBoxIp.Location = new Point((panel1.Width / 2) + 20 , (panel1.Height / 2));
+            
+        }
+        
     }
 }

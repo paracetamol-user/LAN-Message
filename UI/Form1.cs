@@ -12,11 +12,23 @@ namespace UI
 {
     public partial class Form1 : Form
     {
+        private Panel panelInfoFriend;
         public Form1()
         {
             InitializeComponent();
+            InitPanelInfoFriend();
             customizeDesign();
             LoadPanelListFriend();
+            
+        }
+        private void InitPanelInfoFriend()
+        {
+            panelInfoFriend = new Panel();
+            panelInfoFriend.Dock = DockStyle.Right;
+            panelInfoFriend.Visible = false ;
+            panelInfoFriend.BorderStyle = BorderStyle.FixedSingle;
+            panelInfoFriend.Size = new Size(180, 100);
+            panelRight.Controls.Add(panelInfoFriend);
         }
         private void closeActiveForm()
         {
@@ -27,6 +39,7 @@ namespace UI
             panelListFriend.Visible = false;
             panelInfo.Visible = false;
             panelChatBox.Visible = false;
+            panelInfoFriend.Visible = false;
         }
         private void hideSubMenu()
         {
@@ -113,6 +126,14 @@ namespace UI
             closeActiveForm();
             customizeDesign();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (!panelInfoFriend.Visible)
+                panelInfoFriend.Visible = true;
+            else panelInfoFriend.Visible = false;
+        }
+        
     }
 }
 
