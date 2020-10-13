@@ -18,16 +18,15 @@ namespace UI
             InitializeComponent();
             InitPanelInfoFriend();
             customizeDesign();
-            LoadPanelListFriend();
-            
+            LoadPanelListFriend();   
         }
         private void InitPanelInfoFriend()
         {
             panelInfoFriend = new Panel();
             panelInfoFriend.Dock = DockStyle.Right;
-            panelInfoFriend.Visible = false ;
+            panelInfoFriend.Visible = false;
             panelInfoFriend.BorderStyle = BorderStyle.FixedSingle;
-            panelInfoFriend.Size = new Size(180, 100);
+            panelInfoFriend.Size = new Size(panelRight.Size.Width / 3, 100);
             panelRight.Controls.Add(panelInfoFriend);
         }
         private void closeActiveForm()
@@ -133,7 +132,6 @@ namespace UI
                 panelInfoFriend.Visible = true;
             else panelInfoFriend.Visible = false;
         }
-        
     }
 }
 
