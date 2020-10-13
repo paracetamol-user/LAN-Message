@@ -29,57 +29,73 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.labelIp = new System.Windows.Forms.Label();
+            this.textBoxIp = new System.Windows.Forms.TextBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.buttonAdd);
+            this.panel1.Controls.Add(this.labelIp);
+            this.panel1.Controls.Add(this.textBoxIp);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(528, 488);
+            this.panel1.Size = new System.Drawing.Size(556, 488);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // labelIp
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(115, 230);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 25);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "IP Address";
+            this.labelIp.AutoSize = true;
+            this.labelIp.Font = new System.Drawing.Font("Microsoft JhengHei Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIp.Location = new System.Drawing.Point(115, 230);
+            this.labelIp.Name = "labelIp";
+            this.labelIp.Size = new System.Drawing.Size(67, 25);
+            this.labelIp.TabIndex = 4;
+            this.labelIp.Text = "Name";
             // 
-            // textBox1
+            // textBoxIp
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(228, 225);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 36);
-            this.textBox1.TabIndex = 3;
+            this.textBoxIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxIp.Location = new System.Drawing.Point(205, 219);
+            this.textBoxIp.Multiline = true;
+            this.textBoxIp.Name = "textBoxIp";
+            this.textBoxIp.Size = new System.Drawing.Size(185, 36);
+            this.textBoxIp.TabIndex = 3;
+            this.textBoxIp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxIp_KeyDown);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.Location = new System.Drawing.Point(228, 261);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(137, 42);
+            this.buttonAdd.TabIndex = 5;
+            this.buttonAdd.Text = "Kết Bạn";
+            this.buttonAdd.UseVisualStyleBackColor = true;
             // 
             // AddFriendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(528, 488);
+            this.ClientSize = new System.Drawing.Size(556, 488);
             this.Controls.Add(this.panel1);
             this.Name = "AddFriendForm";
             this.Text = "AddFriendForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+
         }
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label labelIp;
+        private System.Windows.Forms.TextBox textBoxIp;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }
