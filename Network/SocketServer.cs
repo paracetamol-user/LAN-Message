@@ -1,11 +1,14 @@
 ﻿using Network;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Communication
 {
@@ -15,7 +18,14 @@ namespace Communication
         int mPort;
         TcpListener mListener;
         List<TcpClient> clients;
-
+        
+        // Query SQL
+        string connString = @"Server=DESKTOP-H3QO5VN;Database=LANCHAT;User ID=sa;Password=123456;" ;
+        string queryLogin = "select * from datauser";
+        SqlConnection connection;
+        SqlCommand command;
+        SqlDataReader reader;
+        
         public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
         public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
         protected virtual void OnRaiseClientConnectedEvent(ClientConnectedEventArgs ccea)
@@ -74,7 +84,36 @@ namespace Communication
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-
+        private async Task RespondToClient(TcpClient client , string received)
+        {
+            string[] data = received.Split(' ');
+            if (data[0] == "login")
+            {
+                try
+                {
+                    connection = new SqlConnection(connString);
+                    connection.Open();
+                    command = new SqlCommand(queryLogin, connection);
+                    reader = command.ExecuteReader();
+                    while (reader.HasRows)
+                    {
+                        if (reader.Read() == false) break;
+                        if (data[1] == reader.GetString(0) && data[2] == reader.GetString(1))
+                        {
+                            byte[] buffMessage = Encoding.ASCII.GetBytes("login yes");
+                            await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            connection.Close();
+                            break;
+                        }
+                    }
+              
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                }
+            }
+        }
         private async void WorkWithClient(TcpClient client)
         {
             NetworkStream stream = null;
@@ -91,9 +130,7 @@ namespace Communication
                 {
                     System.Diagnostics.Debug.WriteLine("ready");
                     int nReturn = await reader.ReadAsync(buff, 0, buff.Length);
-
                     System.Diagnostics.Debug.WriteLine("Returned: ", nReturn);
-
                     if(nReturn == 0)
                     {
                         RemoveClient(client);
@@ -101,14 +138,15 @@ namespace Communication
                         break;
                     }
 
-                    string received = new string(buff);
-                    System.Diagnostics.Debug.WriteLine("Received message: " + received);
 
+                    string received = new string(buff).Trim('\0', '\r','\n');
+                    await RespondToClient(client, received);
+
+                    System.Diagnostics.Debug.WriteLine("Received message: " + received);
                     OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
                         client.Client.RemoteEndPoint.ToString(), 
                         received
                     ));
-
                     Array.Clear(buff, 0, buff.Length);
                 }
             }
