@@ -1,0 +1,6 @@
+D:\Nam\LAN-Message-master\Network\bin\Debug\Network.dll
+D:\Nam\LAN-Message-master\Network\bin\Debug\Network.pdb
+D:\Nam\LAN-Message-master\Network\obj\Debug\Communication.csprojAssemblyReference.cache
+D:\Nam\LAN-Message-master\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
+D:\Nam\LAN-Message-master\Network\obj\Debug\Network.dll
+D:\Nam\LAN-Message-master\Network\obj\Debug\Network.pdb

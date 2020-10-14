@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 
 namespace Communication
@@ -65,7 +66,7 @@ namespace Communication
             return true;
         }
 
-        public async Task ConnectToServer()
+        public async Task<TcpClient> ConnectToServer()
         {
             if (mClient == null)
                 mClient = new TcpClient();
@@ -75,13 +76,14 @@ namespace Communication
                 await mClient.ConnectAsync(mServerIPAddress, mPort);
                 System.Diagnostics.Debug.WriteLine(string.Format("Connect to server IP/Port: {0} - {1}",
                             mServerIPAddress, mPort));
-
-                await ReadDataAsync(mClient);
+                return mClient;
+                //await ReadDataAsync(mClient);
             }
             catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
+            return null;
         }
         public void CloseAndDisconnect()
         {
@@ -107,7 +109,7 @@ namespace Communication
                 }
             }
         }
-        private async Task ReadDataAsync(TcpClient mClient)
+        public async Task<string> ReadDataAsync(TcpClient mClient)
         {
             try
             {
@@ -125,8 +127,8 @@ namespace Communication
                         mClient.Close();
                         break;
                     }
-                    System.Diagnostics.Debug.WriteLine(string.Format("Received byte: {0} - Message: {1}",
-                                                            readByCount, new string(buff)));
+                    System.Diagnostics.Debug.WriteLine(string.Format("Received byte: {0} - Message: {1}",readByCount, new string(buff)));
+                    return new string(buff);
 
                     Array.Clear(buff, 0, buff.Length);
                 }
@@ -136,6 +138,7 @@ namespace Communication
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 throw;
             }
+            return null;
         }
     }
 }
