@@ -15,10 +15,14 @@ namespace UI
         private Panel panelInfoFriend;
         public Form1()
         {
+
+        }
+        public Form1(LoginForm loginform, string username)
+        {
             InitializeComponent();
             InitPanelInfoFriend();
             customizeDesign();
-            LoadPanelListFriend();   
+            LoadPanelListFriend();
         }
         private void InitPanelInfoFriend()
         {

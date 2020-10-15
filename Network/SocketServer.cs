@@ -18,14 +18,14 @@ namespace Communication
         int mPort;
         TcpListener mListener;
         List<TcpClient> clients;
-        
+        //Data Source = DESKTOP - TSN7OH7; Initial Catalog = LANCHAT; Integrated Security = True
         // Query SQL
-        string connString = @"Server=DESKTOP-H3QO5VN;Database=LANCHAT;User ID=sa;Password=123456;" ;
+        string connString = @"Server=DESKTOP-TSN7OH7;Database=LANCHAT;Integrated Security = True;";
         string queryLogin = "select * from datauser";
         SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
-        
+
         public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
         public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
         protected virtual void OnRaiseClientConnectedEvent(ClientConnectedEventArgs ccea)
@@ -79,12 +79,12 @@ namespace Communication
                     OnRaiseClientConnectedEvent(eaClientConnected);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-        private async Task RespondToClient(TcpClient client , string received)
+        private async Task RespondToClient(TcpClient client, string received)
         {
             string[] data = received.Split(' ');
             if (data[0] == "login")
@@ -106,7 +106,7 @@ namespace Communication
                             break;
                         }
                     }
-              
+
                 }
                 catch (Exception ex)
                 {
@@ -131,7 +131,7 @@ namespace Communication
                     System.Diagnostics.Debug.WriteLine("ready");
                     int nReturn = await reader.ReadAsync(buff, 0, buff.Length);
                     System.Diagnostics.Debug.WriteLine("Returned: ", nReturn);
-                    if(nReturn == 0)
+                    if (nReturn == 0)
                     {
                         RemoveClient(client);
                         System.Diagnostics.Debug.WriteLine("Socket disconnected");
@@ -139,18 +139,18 @@ namespace Communication
                     }
 
 
-                    string received = new string(buff).Trim('\0', '\r','\n');
+                    string received = new string(buff).Trim('\0', '\r', '\n');
                     await RespondToClient(client, received);
 
                     System.Diagnostics.Debug.WriteLine("Received message: " + received);
                     OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
-                        client.Client.RemoteEndPoint.ToString(), 
+                        client.Client.RemoteEndPoint.ToString(),
                         received
                     ));
                     Array.Clear(buff, 0, buff.Length);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
@@ -176,7 +176,7 @@ namespace Communication
                     client.Close();
                 clients.Clear();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
@@ -190,12 +190,12 @@ namespace Communication
             try
             {
                 byte[] buffMessage = Encoding.ASCII.GetBytes(message);
-                foreach(TcpClient client in clients)
+                foreach (TcpClient client in clients)
                 {
                     await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
             }

@@ -79,7 +79,7 @@ namespace Communication
                 return mClient;
                 //await ReadDataAsync(mClient);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
@@ -87,7 +87,7 @@ namespace Communication
         }
         public void CloseAndDisconnect()
         {
-            if(mClient != null)
+            if (mClient != null)
             {
                 if (mClient.Connected)
                     mClient.Close();
@@ -98,7 +98,7 @@ namespace Communication
             if (string.IsNullOrEmpty(message))
                 return;
 
-            if(mClient != null)
+            if (mClient != null)
             {
                 if (mClient.Connected)
                 {
@@ -121,19 +121,19 @@ namespace Communication
                 {
                     readByCount = await reader.ReadAsync(buff, 0, buff.Length);
 
-                    if(readByCount <= 0)
+                    if (readByCount <= 0)
                     {
                         System.Diagnostics.Debug.WriteLine("Disconnected");
                         mClient.Close();
                         break;
                     }
-                    System.Diagnostics.Debug.WriteLine(string.Format("Received byte: {0} - Message: {1}",readByCount, new string(buff)));
+                    System.Diagnostics.Debug.WriteLine(string.Format("Received byte: {0} - Message: {1}", readByCount, new string(buff)));
                     return new string(buff);
 
                     Array.Clear(buff, 0, buff.Length);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 throw;

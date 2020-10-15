@@ -4,3 +4,9 @@ D:\Nam\LAN-Message-master\Network\obj\Debug\Communication.csprojAssemblyReferenc
 D:\Nam\LAN-Message-master\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
 D:\Nam\LAN-Message-master\Network\obj\Debug\Network.dll
 D:\Nam\LAN-Message-master\Network\obj\Debug\Network.pdb
+Z:\LAN-Message\Network\bin\Debug\Network.dll
+Z:\LAN-Message\Network\bin\Debug\Network.pdb
+Z:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache
+Z:\LAN-Message\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
+Z:\LAN-Message\Network\obj\Debug\Network.dll
+Z:\LAN-Message\Network\obj\Debug\Network.pdb
