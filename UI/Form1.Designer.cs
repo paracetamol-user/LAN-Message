@@ -39,24 +39,24 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.panelChatBox = new System.Windows.Forms.Panel();
-            this.textBoxChat = new System.Windows.Forms.TextBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.labelFriendName = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panelChatBox = new System.Windows.Forms.Panel();
+            this.textBoxChat = new System.Windows.Forms.TextBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelPersonal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvata)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
-            this.panelChatBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panelChatBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -69,18 +69,19 @@
             this.panelMenu.Controls.Add(this.panelPersonal);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(206, 535);
+            this.panelMenu.Size = new System.Drawing.Size(155, 441);
             this.panelMenu.TabIndex = 1;
             // 
             // panelListFriend
             // 
             this.panelListFriend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(213)))));
             this.panelListFriend.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelListFriend.Location = new System.Drawing.Point(0, 262);
+            this.panelListFriend.Location = new System.Drawing.Point(0, 213);
+            this.panelListFriend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelListFriend.Name = "panelListFriend";
-            this.panelListFriend.Size = new System.Drawing.Size(204, 100);
+            this.panelListFriend.Size = new System.Drawing.Size(153, 81);
             this.panelListFriend.TabIndex = 3;
             // 
             // iconButtonFriend
@@ -96,11 +97,11 @@
             this.iconButtonFriend.IconColor = System.Drawing.Color.Black;
             this.iconButtonFriend.IconSize = 40;
             this.iconButtonFriend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonFriend.Location = new System.Drawing.Point(0, 220);
-            this.iconButtonFriend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconButtonFriend.Location = new System.Drawing.Point(0, 179);
+            this.iconButtonFriend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.iconButtonFriend.Name = "iconButtonFriend";
             this.iconButtonFriend.Rotation = 0D;
-            this.iconButtonFriend.Size = new System.Drawing.Size(204, 42);
+            this.iconButtonFriend.Size = new System.Drawing.Size(153, 34);
             this.iconButtonFriend.TabIndex = 2;
             this.iconButtonFriend.Text = "CHAT";
             this.iconButtonFriend.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -121,11 +122,11 @@
             this.iconButtonAddF.IconColor = System.Drawing.Color.Black;
             this.iconButtonAddF.IconSize = 40;
             this.iconButtonAddF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonAddF.Location = new System.Drawing.Point(0, 183);
-            this.iconButtonAddF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconButtonAddF.Location = new System.Drawing.Point(0, 149);
+            this.iconButtonAddF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.iconButtonAddF.Name = "iconButtonAddF";
             this.iconButtonAddF.Rotation = 0D;
-            this.iconButtonAddF.Size = new System.Drawing.Size(204, 37);
+            this.iconButtonAddF.Size = new System.Drawing.Size(153, 30);
             this.iconButtonAddF.TabIndex = 1;
             this.iconButtonAddF.Text = "ADD Friend";
             this.iconButtonAddF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -139,9 +140,9 @@
             this.panelPersonal.Controls.Add(this.panel1);
             this.panelPersonal.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelPersonal.Location = new System.Drawing.Point(0, 0);
-            this.panelPersonal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelPersonal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelPersonal.Name = "panelPersonal";
-            this.panelPersonal.Size = new System.Drawing.Size(204, 183);
+            this.panelPersonal.Size = new System.Drawing.Size(153, 149);
             this.panelPersonal.TabIndex = 0;
             // 
             // pictureBoxAvata
@@ -152,8 +153,9 @@
             this.pictureBoxAvata.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxAvata.Image")));
             this.pictureBoxAvata.InitialImage = null;
             this.pictureBoxAvata.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxAvata.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBoxAvata.Name = "pictureBoxAvata";
-            this.pictureBoxAvata.Size = new System.Drawing.Size(204, 148);
+            this.pictureBoxAvata.Size = new System.Drawing.Size(153, 120);
             this.pictureBoxAvata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxAvata.TabIndex = 1;
             this.pictureBoxAvata.TabStop = false;
@@ -166,9 +168,10 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 148);
+            this.panel1.Location = new System.Drawing.Point(0, 120);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 35);
+            this.panel1.Size = new System.Drawing.Size(153, 29);
             this.panel1.TabIndex = 0;
             // 
             // textBox1
@@ -177,9 +180,10 @@
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(158, 33);
+            this.textBox1.Size = new System.Drawing.Size(118, 27);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "|";
             // 
@@ -187,9 +191,10 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(158, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(118, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 33);
+            this.pictureBox1.Size = new System.Drawing.Size(33, 27);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -200,47 +205,11 @@
             this.panelRight.Controls.Add(this.panelInfo);
             this.panelRight.Controls.Add(this.panelChatBox);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(206, 0);
+            this.panelRight.Location = new System.Drawing.Point(155, 0);
+            this.panelRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(546, 535);
+            this.panelRight.Size = new System.Drawing.Size(411, 441);
             this.panelRight.TabIndex = 6;
-            // 
-            // panelChatBox
-            // 
-            this.panelChatBox.BackColor = System.Drawing.Color.White;
-            this.panelChatBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelChatBox.Controls.Add(this.textBoxChat);
-            this.panelChatBox.Controls.Add(this.pictureBox4);
-            this.panelChatBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelChatBox.Location = new System.Drawing.Point(0, 495);
-            this.panelChatBox.Name = "panelChatBox";
-            this.panelChatBox.Size = new System.Drawing.Size(546, 40);
-            this.panelChatBox.TabIndex = 6;
-            // 
-            // textBoxChat
-            // 
-            this.textBoxChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxChat.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBoxChat.Font = new System.Drawing.Font("Microsoft JhengHei Light", 14.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxChat.Location = new System.Drawing.Point(0, 0);
-            this.textBoxChat.Multiline = true;
-            this.textBoxChat.Name = "textBoxChat";
-            this.textBoxChat.Size = new System.Drawing.Size(482, 36);
-            this.textBoxChat.TabIndex = 15;
-            this.textBoxChat.Text = "Enter Chat";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.ErrorImage = null;
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.InitialImage = null;
-            this.pictureBox4.Location = new System.Drawing.Point(482, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(60, 36);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 14;
-            this.pictureBox4.TabStop = false;
             // 
             // panelInfo
             // 
@@ -251,8 +220,9 @@
             this.panelInfo.Controls.Add(this.pictureBox2);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(546, 50);
+            this.panelInfo.Size = new System.Drawing.Size(411, 41);
             this.panelInfo.TabIndex = 7;
             // 
             // labelFriendName
@@ -260,9 +230,10 @@
             this.labelFriendName.AutoSize = true;
             this.labelFriendName.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelFriendName.Font = new System.Drawing.Font("Yu Gothic UI", 20.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFriendName.Location = new System.Drawing.Point(59, 0);
+            this.labelFriendName.Location = new System.Drawing.Point(44, 0);
+            this.labelFriendName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFriendName.Name = "labelFriendName";
-            this.labelFriendName.Size = new System.Drawing.Size(109, 46);
+            this.labelFriendName.Size = new System.Drawing.Size(91, 38);
             this.labelFriendName.TabIndex = 4;
             this.labelFriendName.Text = "Name";
             // 
@@ -271,8 +242,9 @@
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(59, 48);
+            this.pictureBox3.Size = new System.Drawing.Size(44, 39);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
@@ -283,22 +255,64 @@
             this.pictureBox2.ErrorImage = null;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(485, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(365, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(59, 48);
+            this.pictureBox2.Size = new System.Drawing.Size(44, 39);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // panelChatBox
+            // 
+            this.panelChatBox.BackColor = System.Drawing.Color.White;
+            this.panelChatBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelChatBox.Controls.Add(this.textBoxChat);
+            this.panelChatBox.Controls.Add(this.pictureBox4);
+            this.panelChatBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelChatBox.Location = new System.Drawing.Point(0, 408);
+            this.panelChatBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelChatBox.Name = "panelChatBox";
+            this.panelChatBox.Size = new System.Drawing.Size(411, 33);
+            this.panelChatBox.TabIndex = 6;
+            // 
+            // textBoxChat
+            // 
+            this.textBoxChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxChat.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxChat.Font = new System.Drawing.Font("Microsoft JhengHei Light", 14.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxChat.Location = new System.Drawing.Point(0, 0);
+            this.textBoxChat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxChat.Multiline = true;
+            this.textBoxChat.Name = "textBoxChat";
+            this.textBoxChat.Size = new System.Drawing.Size(362, 29);
+            this.textBoxChat.TabIndex = 15;
+            this.textBoxChat.Text = "Enter Chat";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox4.ErrorImage = null;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.InitialImage = null;
+            this.pictureBox4.Location = new System.Drawing.Point(362, 0);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(45, 29);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 14;
+            this.pictureBox4.TabStop = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 535);
+            this.ClientSize = new System.Drawing.Size(566, 441);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelMenu);
-            this.MinimumSize = new System.Drawing.Size(770, 582);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(582, 480);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panelMenu.ResumeLayout(false);
@@ -308,13 +322,13 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);
-            this.panelChatBox.ResumeLayout(false);
-            this.panelChatBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panelChatBox.ResumeLayout(false);
+            this.panelChatBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
