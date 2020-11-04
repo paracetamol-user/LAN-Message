@@ -18,9 +18,12 @@ namespace Communication
         int mPort;
         TcpListener mListener;
         List<TcpClient> clients;
+        List<TcpClient> clientInvalid;
+        List<string> idInvalid;
         //Data Source = DESKTOP - TSN7OH7; Initial Catalog = LANCHAT; Integrated Security = True
+        //Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa
         // Query SQL
-        string connString = @"Server=DESKTOP-TSN7OH7;Database=LANCHAT;Integrated Security = True;";
+        string connString = @"Server=DESKTOP-TSN7OH7;Database=LANCHAT;Integrated Security = True;User ID=sa;Password=1";
         string queryLogin = "select * from datauser";
         SqlConnection connection;
         SqlCommand command;
@@ -46,6 +49,8 @@ namespace Communication
         public SocketServer()
         {
             clients = new List<TcpClient>();
+            clientInvalid = new List<TcpClient>();
+            idInvalid = new List<string>();
         }
 
         public async void StartForIncommingConnection(IPAddress addr = null, int port = 5000)
@@ -71,6 +76,8 @@ namespace Communication
                 {
                     TcpClient returnedByAccept = await mListener.AcceptTcpClientAsync();
                     clients.Add(returnedByAccept);
+                    string rrr = returnedByAccept.Client.LocalEndPoint.ToString();
+                    
                     System.Diagnostics.Debug.WriteLine("Client connected, count: {0}", clients.Count);
                     WorkWithClient(returnedByAccept);
 
@@ -87,7 +94,8 @@ namespace Communication
         private async Task RespondToClient(TcpClient client, string received)
         {
             string[] data = received.Split(' ');
-            if (data[0] == "login")
+            byte[] buffMessage;
+            if (data[0] == "LOGIN")
             {
                 try
                 {
@@ -98,19 +106,67 @@ namespace Communication
                     while (reader.HasRows)
                     {
                         if (reader.Read() == false) break;
-                        if (data[1] == reader.GetString(0) && data[2] == reader.GetString(1))
+                        if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
                         {
-                            byte[] buffMessage = Encoding.ASCII.GetBytes("login yes");
+                            buffMessage = Encoding.ASCII.GetBytes("LOGIN OKE");
                             await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            clientInvalid.Add(client);
+                            idInvalid.Add(reader.GetString(0));
                             connection.Close();
-                            break;
+                            return;
                         }
                     }
-
+                    buffMessage = Encoding.ASCII.GetBytes("LOGIN ERR");
+                    await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.ToString());
+                }
+            }
+            else
+            if (data[0] == "LOADUSERDATA")
+            {
+                try
+                {
+                    string arr = "";
+                    connection = new SqlConnection(connString);
+                    connection.Open();
+                    command = new SqlCommand(queryLogin, connection);
+                    reader = command.ExecuteReader();
+                    while (reader.HasRows)
+                    {
+                        if (reader.Read() == false) break;
+                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + "-";
+                    }
+                    buffMessage = Encoding.ASCII.GetBytes(arr);
+                    await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                }
+            } 
+            else 
+            if (data[0] == "SEND")
+            {
+                int i = 0;
+                foreach (var item in idInvalid)
+                {
+                    if (item.ToString() == data[2])
+                    {
+                        try
+                        {
+                            buffMessage = Encoding.ASCII.GetBytes(data[3] +" " + data[1]);
+                            await clientInvalid[i].GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.ToString());
+                        }
+                    }
+                    i++;
                 }
             }
         }

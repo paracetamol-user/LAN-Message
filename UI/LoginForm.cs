@@ -15,7 +15,7 @@ namespace UI
     public partial class LoginForm : Form
     {
         //Info Server
-        private string ipServer = "192.168.1.4";
+        private string ipServer = "192.168.1.3";
         private string portSever = "5000";
 
         SocketClient client;
@@ -42,11 +42,15 @@ namespace UI
         {
             await client.SendToServer(action + " " + account + " " + pass);
             string data = await (client.ReadDataAsync(server));
-            if (data.Trim('\0', '\r', '\n') == "login yes")
+            if (data.Trim('\0', '\r', '\n') == "LOGIN OKE")
             {
-                Form1 mainform = new Form1(this, account);
+                Form1 mainform = new Form1(this, account , client , server);
                 mainform.Show();
                 this.Hide();
+            }
+            else
+            {
+                label1.Text = "Tai khoan hoac mat khau khong chinh xac";
             }
         }
 
@@ -54,8 +58,13 @@ namespace UI
         {
             string account = textBoxAccount.Text;
             string password = textBoxPassword.Text;
-            string action = "login";
+            string action = "LOGIN";
             SendRequest(account, password, action);
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //this.Close();
         }
     }
 }
