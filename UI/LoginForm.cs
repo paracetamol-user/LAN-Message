@@ -1,4 +1,5 @@
 ﻿using Communication;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using User = UserManager.User;
 
 namespace UI
 {
@@ -40,11 +42,12 @@ namespace UI
         }
         public async void SendRequest(string account, string pass, string action)
         {
-            await client.SendToServer(action + " " + account + " " + pass);
-            string data = await (client.ReadDataAsync(server));
-            if (data.Trim('\0', '\r', '\n') == "LOGIN OKE")
+            await client.SendToServer(action + "%" + account + "%" + pass);
+            string[] data = (await (client.ReadDataAsync(server))).Split(' ');
+            if (data[0].Trim('\0', '\r', '\n') == "LOGINOKE")
             {
-                Form1 mainform = new Form1(this, account , client , server);
+                User user = new User(data[1].Trim('\0', '\r', '\n'), account);      
+                Form1 mainform = new Form1(this, user , client , server);
                 mainform.Show();
                 this.Hide();
             }

@@ -30,282 +30,282 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panelListFriend = new System.Windows.Forms.Panel();
-            this.iconButtonFriend = new FontAwesome.Sharp.IconButton();
-            this.iconButtonAddF = new FontAwesome.Sharp.IconButton();
-            this.panelPersonal = new System.Windows.Forms.Panel();
-            this.pictureBoxAvata = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
+            this.panelLISTUSER = new System.Windows.Forms.Panel();
+            this.panelOPTION = new System.Windows.Forms.Panel();
+            this.panelOPTIONNULL = new System.Windows.Forms.Panel();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.labelID = new System.Windows.Forms.Label();
+            this.labelUSERNAME = new System.Windows.Forms.Label();
+            this.panelPICTUREOPTION = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Avatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.panelSEARCH = new System.Windows.Forms.Panel();
+            this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.panelLANMESS = new System.Windows.Forms.Panel();
+            this.panelTEXTLANMESS = new System.Windows.Forms.Panel();
+            this.labelLANMESS = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
-            this.panelListFriend.SuspendLayout();
-            this.panelPersonal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvata)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
+            this.panelOPTION.SuspendLayout();
+            this.panelInfo.SuspendLayout();
+            this.panelPICTUREOPTION.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
+            this.panelSEARCH.SuspendLayout();
+            this.panelLANMESS.SuspendLayout();
+            this.panelTEXTLANMESS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMenu.Controls.Add(this.panelListFriend);
-            this.panelMenu.Controls.Add(this.iconButtonFriend);
-            this.panelMenu.Controls.Add(this.iconButtonAddF);
-            this.panelMenu.Controls.Add(this.panelPersonal);
+            this.panelMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelMenu.Controls.Add(this.panelLISTUSER);
+            this.panelMenu.Controls.Add(this.panelOPTION);
+            this.panelMenu.Controls.Add(this.panelSEARCH);
+            this.panelMenu.Controls.Add(this.panelLANMESS);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(155, 441);
+            this.panelMenu.Size = new System.Drawing.Size(233, 448);
             this.panelMenu.TabIndex = 1;
             // 
-            // panelListFriend
+            // panelLISTUSER
             // 
-            this.panelListFriend.AutoScroll = true;
-            this.panelListFriend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(213)))));
-            this.panelListFriend.Controls.Add(this.button3);
-            this.panelListFriend.Controls.Add(this.button1);
-            this.panelListFriend.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelListFriend.Location = new System.Drawing.Point(0, 213);
-            this.panelListFriend.Margin = new System.Windows.Forms.Padding(2);
-            this.panelListFriend.Name = "panelListFriend";
-            this.panelListFriend.Size = new System.Drawing.Size(153, 182);
-            this.panelListFriend.TabIndex = 3;
+            this.panelLISTUSER.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLISTUSER.Location = new System.Drawing.Point(0, 106);
+            this.panelLISTUSER.Name = "panelLISTUSER";
+            this.panelLISTUSER.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.panelLISTUSER.Size = new System.Drawing.Size(233, 279);
+            this.panelLISTUSER.TabIndex = 3;
             // 
-            // iconButtonFriend
+            // panelOPTION
             // 
-            this.iconButtonFriend.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.iconButtonFriend.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButtonFriend.FlatAppearance.BorderSize = 0;
-            this.iconButtonFriend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
-            this.iconButtonFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonFriend.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButtonFriend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButtonFriend.IconChar = FontAwesome.Sharp.IconChar.Twitch;
-            this.iconButtonFriend.IconColor = System.Drawing.Color.Black;
-            this.iconButtonFriend.IconSize = 40;
-            this.iconButtonFriend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonFriend.Location = new System.Drawing.Point(0, 179);
-            this.iconButtonFriend.Margin = new System.Windows.Forms.Padding(2);
-            this.iconButtonFriend.Name = "iconButtonFriend";
-            this.iconButtonFriend.Rotation = 0D;
-            this.iconButtonFriend.Size = new System.Drawing.Size(153, 34);
-            this.iconButtonFriend.TabIndex = 2;
-            this.iconButtonFriend.Text = "CHAT";
-            this.iconButtonFriend.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonFriend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButtonFriend.UseVisualStyleBackColor = false;
-            this.iconButtonFriend.Click += new System.EventHandler(this.iconButtonFriend_Click_1);
+            this.panelOPTION.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelOPTION.Controls.Add(this.panelOPTIONNULL);
+            this.panelOPTION.Controls.Add(this.panelInfo);
+            this.panelOPTION.Controls.Add(this.panelPICTUREOPTION);
+            this.panelOPTION.Controls.Add(this.Avatar);
+            this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelOPTION.Location = new System.Drawing.Point(0, 385);
+            this.panelOPTION.Name = "panelOPTION";
+            this.panelOPTION.Padding = new System.Windows.Forms.Padding(12, 7, 0, 7);
+            this.panelOPTION.Size = new System.Drawing.Size(233, 63);
+            this.panelOPTION.TabIndex = 2;
             // 
-            // iconButtonAddF
+            // panelOPTIONNULL
             // 
-            this.iconButtonAddF.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.iconButtonAddF.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButtonAddF.FlatAppearance.BorderSize = 0;
-            this.iconButtonAddF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
-            this.iconButtonAddF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonAddF.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButtonAddF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButtonAddF.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.iconButtonAddF.IconColor = System.Drawing.Color.Black;
-            this.iconButtonAddF.IconSize = 40;
-            this.iconButtonAddF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonAddF.Location = new System.Drawing.Point(0, 149);
-            this.iconButtonAddF.Margin = new System.Windows.Forms.Padding(2);
-            this.iconButtonAddF.Name = "iconButtonAddF";
-            this.iconButtonAddF.Rotation = 0D;
-            this.iconButtonAddF.Size = new System.Drawing.Size(153, 30);
-            this.iconButtonAddF.TabIndex = 1;
-            this.iconButtonAddF.Text = "ADD Friend";
-            this.iconButtonAddF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonAddF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButtonAddF.UseVisualStyleBackColor = false;
-            this.iconButtonAddF.Click += new System.EventHandler(this.iconButtonAddF_Click);
+            this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelOPTIONNULL.Location = new System.Drawing.Point(131, 7);
+            this.panelOPTIONNULL.Name = "panelOPTIONNULL";
+            this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(5);
+            this.panelOPTIONNULL.Size = new System.Drawing.Size(63, 49);
+            this.panelOPTIONNULL.TabIndex = 3;
             // 
-            // panelPersonal
+            // panelInfo
             // 
-            this.panelPersonal.Controls.Add(this.pictureBoxAvata);
-            this.panelPersonal.Controls.Add(this.panel1);
-            this.panelPersonal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelPersonal.Location = new System.Drawing.Point(0, 0);
-            this.panelPersonal.Margin = new System.Windows.Forms.Padding(2);
-            this.panelPersonal.Name = "panelPersonal";
-            this.panelPersonal.Size = new System.Drawing.Size(153, 149);
-            this.panelPersonal.TabIndex = 0;
+            this.panelInfo.Controls.Add(this.labelID);
+            this.panelInfo.Controls.Add(this.labelUSERNAME);
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelInfo.Location = new System.Drawing.Point(61, 7);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.panelInfo.Size = new System.Drawing.Size(70, 49);
+            this.panelInfo.TabIndex = 2;
             // 
-            // pictureBoxAvata
+            // labelID
             // 
-            this.pictureBoxAvata.BackColor = System.Drawing.Color.White;
-            this.pictureBoxAvata.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBoxAvata.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxAvata.Image")));
-            this.pictureBoxAvata.InitialImage = null;
-            this.pictureBoxAvata.Location = new System.Drawing.Point(20, 24);
-            this.pictureBoxAvata.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxAvata.Name = "pictureBoxAvata";
-            this.pictureBoxAvata.Size = new System.Drawing.Size(119, 66);
-            this.pictureBoxAvata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAvata.TabIndex = 1;
-            this.pictureBoxAvata.TabStop = false;
-            this.pictureBoxAvata.Click += new System.EventHandler(this.pictureBoxAvata_Click);
+            this.labelID.AutoSize = true;
+            this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelID.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelID.Location = new System.Drawing.Point(3, 19);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(39, 16);
+            this.labelID.TabIndex = 1;
+            this.labelID.Text = "#0040";
             // 
-            // panel1
+            // labelUSERNAME
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBoxSearch);
-            this.panel1.Controls.Add(this.pictureBoxSearch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 120);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(153, 29);
-            this.panel1.TabIndex = 0;
+            this.labelUSERNAME.AutoSize = true;
+            this.labelUSERNAME.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelUSERNAME.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUSERNAME.Location = new System.Drawing.Point(3, 3);
+            this.labelUSERNAME.Name = "labelUSERNAME";
+            this.labelUSERNAME.Size = new System.Drawing.Size(65, 16);
+            this.labelUSERNAME.TabIndex = 0;
+            this.labelUSERNAME.Text = "User Name";
+            // 
+            // panelPICTUREOPTION
+            // 
+            this.panelPICTUREOPTION.Controls.Add(this.pictureBox2);
+            this.panelPICTUREOPTION.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelPICTUREOPTION.Location = new System.Drawing.Point(194, 7);
+            this.panelPICTUREOPTION.Name = "panelPICTUREOPTION";
+            this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(5, 13, 5, 13);
+            this.panelPICTUREOPTION.Size = new System.Drawing.Size(39, 49);
+            this.panelPICTUREOPTION.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::UI.Properties.Resources.options;
+            this.pictureBox2.Location = new System.Drawing.Point(5, 13);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(29, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // Avatar
+            // 
+            this.Avatar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Avatar.Image = global::UI.Properties.Resources.avatar;
+            this.Avatar.Location = new System.Drawing.Point(12, 7);
+            this.Avatar.Name = "Avatar";
+            this.Avatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.Avatar.ShadowDecoration.Parent = this.Avatar;
+            this.Avatar.Size = new System.Drawing.Size(49, 49);
+            this.Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Avatar.TabIndex = 0;
+            this.Avatar.TabStop = false;
+            // 
+            // panelSEARCH
+            // 
+            this.panelSEARCH.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelSEARCH.Controls.Add(this.textBoxSearch);
+            this.panelSEARCH.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSEARCH.Location = new System.Drawing.Point(0, 63);
+            this.panelSEARCH.Name = "panelSEARCH";
+            this.panelSEARCH.Padding = new System.Windows.Forms.Padding(12, 5, 12, 5);
+            this.panelSEARCH.Size = new System.Drawing.Size(233, 43);
+            this.panelSEARCH.TabIndex = 1;
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxSearch.AutoRoundedCorners = true;
+            this.textBoxSearch.BorderRadius = 15;
+            this.textBoxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxSearch.DefaultText = "";
+            this.textBoxSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.textBoxSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textBoxSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxSearch.DisabledState.Parent = this.textBoxSearch;
+            this.textBoxSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxSearch.Font = new System.Drawing.Font("Microsoft YaHei Light", 14.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSearch.Location = new System.Drawing.Point(0, 0);
-            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxSearch.Multiline = true;
+            this.textBoxSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxSearch.FocusedState.Parent = this.textBoxSearch;
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxSearch.HoverState.Parent = this.textBoxSearch;
+            this.textBoxSearch.IconRight = global::UI.Properties.Resources.search;
+            this.textBoxSearch.IconRightOffset = new System.Drawing.Point(5, 0);
+            this.textBoxSearch.Location = new System.Drawing.Point(12, 5);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(118, 27);
-            this.textBoxSearch.TabIndex = 5;
-            this.textBoxSearch.Text = "|";
+            this.textBoxSearch.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.textBoxSearch.PasswordChar = '\0';
+            this.textBoxSearch.PlaceholderText = "Search";
+            this.textBoxSearch.SelectedText = "";
+            this.textBoxSearch.ShadowDecoration.Parent = this.textBoxSearch;
+            this.textBoxSearch.Size = new System.Drawing.Size(209, 33);
+            this.textBoxSearch.TabIndex = 0;
             // 
-            // pictureBoxSearch
+            // panelLANMESS
             // 
-            this.pictureBoxSearch.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBoxSearch.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSearch.Image")));
-            this.pictureBoxSearch.Location = new System.Drawing.Point(118, 0);
-            this.pictureBoxSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(33, 27);
-            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearch.TabIndex = 4;
-            this.pictureBoxSearch.TabStop = false;
+            this.panelLANMESS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelLANMESS.Controls.Add(this.panelTEXTLANMESS);
+            this.panelLANMESS.Controls.Add(this.pictureBox1);
+            this.panelLANMESS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLANMESS.Location = new System.Drawing.Point(0, 0);
+            this.panelLANMESS.Margin = new System.Windows.Forms.Padding(0);
+            this.panelLANMESS.Name = "panelLANMESS";
+            this.panelLANMESS.Padding = new System.Windows.Forms.Padding(10, 10, 0, 10);
+            this.panelLANMESS.Size = new System.Drawing.Size(233, 63);
+            this.panelLANMESS.TabIndex = 0;
+            // 
+            // panelTEXTLANMESS
+            // 
+            this.panelTEXTLANMESS.Controls.Add(this.labelLANMESS);
+            this.panelTEXTLANMESS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTEXTLANMESS.Location = new System.Drawing.Point(63, 10);
+            this.panelTEXTLANMESS.Name = "panelTEXTLANMESS";
+            this.panelTEXTLANMESS.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.panelTEXTLANMESS.Size = new System.Drawing.Size(170, 43);
+            this.panelTEXTLANMESS.TabIndex = 7;
+            // 
+            // labelLANMESS
+            // 
+            this.labelLANMESS.AutoSize = true;
+            this.labelLANMESS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelLANMESS.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLANMESS.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelLANMESS.Location = new System.Drawing.Point(0, 10);
+            this.labelLANMESS.Name = "labelLANMESS";
+            this.labelLANMESS.Size = new System.Drawing.Size(168, 27);
+            this.labelLANMESS.TabIndex = 8;
+            this.labelLANMESS.Text = "LAN MESSENGER";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(53, 43);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // panelRight
             // 
             this.panelRight.BackColor = System.Drawing.Color.White;
-            this.panelRight.Controls.Add(this.panel3);
-            this.panelRight.Controls.Add(this.listView1);
-            this.panelRight.Controls.Add(this.panel2);
-            this.panelRight.Location = new System.Drawing.Point(189, 27);
+            this.panelRight.Controls.Add(this.panel1);
+            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRight.Location = new System.Drawing.Point(233, 0);
             this.panelRight.Margin = new System.Windows.Forms.Padding(2);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(366, 342);
+            this.panelRight.Size = new System.Drawing.Size(419, 448);
             this.panelRight.TabIndex = 6;
             // 
-            // button1
+            // panel1
             // 
-            this.button1.Location = new System.Drawing.Point(30, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 48);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Location = new System.Drawing.Point(0, 260);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(351, 49);
-            this.panel2.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(31, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(260, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 122);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(176, 97);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(12, 16);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(339, 100);
-            this.panel3.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(30, 84);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 62);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.panel1.Location = new System.Drawing.Point(157, 184);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 0;
+            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 441);
+            this.ClientSize = new System.Drawing.Size(652, 448);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelMenu);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(582, 480);
+            this.MinimumSize = new System.Drawing.Size(668, 487);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.panelMenu.ResumeLayout(false);
-            this.panelListFriend.ResumeLayout(false);
-            this.panelPersonal.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvata)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
+            this.panelOPTION.ResumeLayout(false);
+            this.panelInfo.ResumeLayout(false);
+            this.panelInfo.PerformLayout();
+            this.panelPICTUREOPTION.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Avatar)).EndInit();
+            this.panelSEARCH.ResumeLayout(false);
+            this.panelLANMESS.ResumeLayout(false);
+            this.panelTEXTLANMESS.ResumeLayout(false);
+            this.panelTEXTLANMESS.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -313,23 +313,23 @@
         #endregion
 
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Panel panelListFriend;
-        private FontAwesome.Sharp.IconButton iconButtonFriend;
-        private FontAwesome.Sharp.IconButton iconButtonAddF;
-        private System.Windows.Forms.Panel panelPersonal;
-        private System.Windows.Forms.PictureBox pictureBoxAvata;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelRight;
-        private System.Windows.Forms.PictureBox pictureBoxSearch;
-        private System.Windows.Forms.TextBox textBoxSearch;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panelLANMESS;
+        private System.Windows.Forms.Panel panelSEARCH;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxSearch;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panelTEXTLANMESS;
+        private System.Windows.Forms.Label labelLANMESS;
+        private System.Windows.Forms.Panel panelLISTUSER;
+        private System.Windows.Forms.Panel panelOPTION;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox Avatar;
+        private System.Windows.Forms.Panel panelPICTUREOPTION;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.Label labelUSERNAME;
+        private System.Windows.Forms.Panel panelOPTIONNULL;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
