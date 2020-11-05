@@ -46,7 +46,7 @@
             this.labelLANMESS = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.ButtonUser = new Guna.UI2.WinForms.Guna2Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelOPTION.SuspendLayout();
             this.panelInfo.SuspendLayout();
@@ -264,7 +264,7 @@
             // panelRight
             // 
             this.panelRight.BackColor = System.Drawing.Color.White;
-            this.panelRight.Controls.Add(this.ButtonUser);
+            this.panelRight.Controls.Add(this.panel1);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRight.Location = new System.Drawing.Point(233, 0);
             this.panelRight.Margin = new System.Windows.Forms.Padding(2);
@@ -272,23 +272,14 @@
             this.panelRight.Size = new System.Drawing.Size(419, 448);
             this.panelRight.TabIndex = 6;
             // 
-            // ButtonUser
+            // panel1
             // 
-            this.ButtonUser.CheckedState.Parent = this.ButtonUser;
-            this.ButtonUser.CustomImages.Parent = this.ButtonUser;
-            this.ButtonUser.FillColor = System.Drawing.SystemColors.ButtonFace;
-            this.ButtonUser.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonUser.ForeColor = System.Drawing.Color.Black;
-            this.ButtonUser.HoverState.Parent = this.ButtonUser;
-            this.ButtonUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.ButtonUser.ImageSize = new System.Drawing.Size(30, 30);
-            this.ButtonUser.Location = new System.Drawing.Point(143, 45);
-            this.ButtonUser.Name = "ButtonUser";
-            this.ButtonUser.ShadowDecoration.Parent = this.ButtonUser;
-            this.ButtonUser.Size = new System.Drawing.Size(180, 45);
-            this.ButtonUser.TabIndex = 0;
-            this.ButtonUser.Text = "UNKNOW";
-            this.ButtonUser.Visible = false;
+            this.panel1.Location = new System.Drawing.Point(157, 184);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 0;
+            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // Form1
             // 
@@ -302,8 +293,6 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.panelMenu.ResumeLayout(false);
             this.panelOPTION.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
@@ -340,7 +329,7 @@
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelUSERNAME;
         private System.Windows.Forms.Panel panelOPTIONNULL;
-        private Guna.UI2.WinForms.Guna2Button ButtonUser;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

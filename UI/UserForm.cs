@@ -20,15 +20,15 @@ namespace UI
         private User user;
         SocketClient client;
         TcpClient server;
-        private string myid;
-        public UserForm(string myid ,UserManager.User user , SocketClient client , TcpClient  server)
+        private User tencuatao;
+        public UserForm(UserManager.User Tencuatao ,UserManager.User user , SocketClient client , TcpClient  server)
         {
             InitializeComponent();
             this.Visible = false;
             this.user = user;
             this.client = client;
             this.server = server;
-            this.myid = myid;
+            this.tencuatao = Tencuatao;
             InitUserForm();
             
         }
@@ -40,10 +40,12 @@ namespace UI
             this.pictureBoxSend.Click += PictureBoxSend_Click;
         }
 
-        private async void PictureBoxSend_Click(object sender, EventArgs e)
+        private void PictureBoxSend_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(user.Name.ToString());
-            await client.SendToServer("SEND " + this.myid +" " +user.Id + this.TextBoxEnterChat.Text);
+            string data = "SEND%" + tencuatao.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+            client.SendToServer(data);
+            listViewCHAT.Items.Add(tencuatao.Name + ": " + TextBoxEnterChat.Text);
+            TextBoxEnterChat.Text = "";
         }
 
         public UserForm()

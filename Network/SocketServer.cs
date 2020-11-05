@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Communication
@@ -53,7 +54,7 @@ namespace Communication
             idInvalid = new List<string>();
         }
 
-        public async void StartForIncommingConnection(IPAddress addr = null, int port = 5000)
+        public async Task StartForIncommingConnection(IPAddress addr = null, int port = 5000)
         {
             if (addr == null)
                 addr = IPAddress.Any;
@@ -76,11 +77,8 @@ namespace Communication
                 {
                     TcpClient returnedByAccept = await mListener.AcceptTcpClientAsync();
                     clients.Add(returnedByAccept);
-                    string rrr = returnedByAccept.Client.LocalEndPoint.ToString();
-                    
                     System.Diagnostics.Debug.WriteLine("Client connected, count: {0}", clients.Count);
                     WorkWithClient(returnedByAccept);
-
                     ClientConnectedEventArgs eaClientConnected;
                     eaClientConnected = new ClientConnectedEventArgs(returnedByAccept.Client.ToString());
                     OnRaiseClientConnectedEvent(eaClientConnected);
@@ -93,8 +91,9 @@ namespace Communication
         }
         private async Task RespondToClient(TcpClient client, string received)
         {
-            string[] data = received.Split(' ');
+            string[] data = received.Split('%');
             byte[] buffMessage;
+            bool check = true;
             if (data[0] == "LOGIN")
             {
                 try
@@ -108,16 +107,20 @@ namespace Communication
                         if (reader.Read() == false) break;
                         if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
                         {
-                            buffMessage = Encoding.ASCII.GetBytes("LOGIN OKE");
+                            buffMessage = Encoding.ASCII.GetBytes("LOGINOKE "+reader.GetString(0));
                             await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             clientInvalid.Add(client);
                             idInvalid.Add(reader.GetString(0));
                             connection.Close();
-                            return;
+                            check = false;
+                            break;
                         }
                     }
-                    buffMessage = Encoding.ASCII.GetBytes("LOGIN ERR");
-                    await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                    if (check != false)
+                    {
+                        buffMessage = Encoding.ASCII.GetBytes("LOGIN ERR");
+                        await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -137,7 +140,7 @@ namespace Communication
                     while (reader.HasRows)
                     {
                         if (reader.Read() == false) break;
-                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + "-";
+                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + "%";
                     }
                     buffMessage = Encoding.ASCII.GetBytes(arr);
                     await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
@@ -157,7 +160,7 @@ namespace Communication
                     {
                         try
                         {
-                            buffMessage = Encoding.ASCII.GetBytes(data[3] +" " + data[1]);
+                            buffMessage = Encoding.ASCII.GetBytes(data[3] +"%" + data[1]);
                             await clientInvalid[i].GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             return;
                         }
@@ -170,7 +173,7 @@ namespace Communication
                 }
             }
         }
-        private async void WorkWithClient(TcpClient client)
+        public async Task WorkWithClient(TcpClient client)
         {
             NetworkStream stream = null;
             StreamReader reader = null;
@@ -182,7 +185,7 @@ namespace Communication
 
                 char[] buff = new char[64];
 
-                while (KeepRunning)
+                while (true)
                 {
                     System.Diagnostics.Debug.WriteLine("ready");
                     int nReturn = await reader.ReadAsync(buff, 0, buff.Length);

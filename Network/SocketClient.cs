@@ -116,22 +116,15 @@ namespace Communication
                 StreamReader reader = new StreamReader(mClient.GetStream());
                 char[] buff = new char[64];
                 int readByCount = 0;
-
-                while (true)
-                {
                     readByCount = await reader.ReadAsync(buff, 0, buff.Length);
-
                     if (readByCount <= 0)
                     {
                         System.Diagnostics.Debug.WriteLine("Disconnected");
                         mClient.Close();
-                        break;
                     }
                     System.Diagnostics.Debug.WriteLine(string.Format("Received byte: {0} - Message: {1}", readByCount, new string(buff)));
                     return new string(buff);
-
                     Array.Clear(buff, 0, buff.Length);
-                }
             }
             catch (Exception ex)
             {

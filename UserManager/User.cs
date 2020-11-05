@@ -21,7 +21,7 @@ namespace UserManager
             this.name =name;
             this.id = "";
         }
-        public User(string name , string id)
+        public User(string id , string name)
         {
             this.name = name;
             this.id = id;
