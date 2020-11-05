@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using UserManager;
 namespace UI
 {
     public partial class Form1 : Form
@@ -17,13 +17,17 @@ namespace UI
         LoginForm loginForm;
         SocketClient client;
         TcpClient server;
-        string username;
-        string id;
-        List<Button> ListButtonUser= new List<Button>();
-        Button userFocus;
-        List<Panel> ListViewChatBoxs;
+        User user;
+        List<UserUI> UserUIs;
         public Form1()
         {
+            InitializeComponent();
+            
+            
+            UserUIs = new List<UserUI>();
+            UserUIs.Add(new UserUI("1","dat", "12", panelLISTUSER, panelRight , client, server));
+            UserUIs.Add(new UserUI("1","nam", "3",  panelLISTUSER,  panelRight , client , server));
+            UserUIs.Add(new UserUI("1","kiet", "10",  panelLISTUSER,  panelRight , client , server));
 
         }
         public Form1(LoginForm loginform, string username, SocketClient client , TcpClient server)
@@ -31,47 +35,36 @@ namespace UI
             this.loginForm = loginform;
             this.client = client;
             this.server = server;
-            this.username = username;
+            this.user = new User(username);
 
             InitializeComponent();
-            //InitPanelInfoFriend(); // Khởi tạo giao diện PanelInfoFriend
-            InitPanelListFriend();  // Khởi tạo giao diện PanelListFriend
-            LoadDataUser(); //Load Người dùng từ server đổ về
-
-            customizeDesign(); // Ẩn các giao diện
+            //LoadDataUser(); //Load Người dùng từ server đổ về
+            //customizeDesign(); // Ẩn các giao diện
         }
 
-        private async void LoadDataUser()
-        {
-            await client.SendToServer("LOADUSERDATA " + username);
-            string data = await client.ReadDataAsync(server);
-            string[] datauser = data.Split('-','\0');
-            // 3 dòng lấy dữ liệu
-            for (int i = 0; i < datauser.Length; i++)
-            {
-                if (datauser[i] == "") break;
-                
-                string[] arr = datauser[i].Split(' ');
-                if (arr[1] == username)
-                {
-                    id = arr[0];
-                    continue;
-                }
-                Button but = new Button();
-                settingButUser(ref but);
-                but.Text = arr[1];
-                but.Name = arr[0];
-                panelListFriend.Controls.Add(but);
-                ListButtonUser.Add(but);
-            }
-        }
-        //private void InitPanelInfoFriend()
+        //private async void LoadDataUser()
         //{
-        //    panelInfoFriend = new Panel();
-        //    panelInfoFriend.Dock = DockStyle.Right;
-        //    panelInfoFriend.Visible = false;
-        //    panelInfoFriend.BorderStyle = BorderStyle.FixedSingle;
-        //    panelInfoFriend.Size = new Size(panelRight.Size.Width / 3, 100);
+        //    await client.SendToServer("LOADUSERDATA " + username);
+        //    string data = await client.ReadDataAsync(server);
+        //    string[] datauser = data.Split('-','\0');
+        //    // 3 dòng lấy dữ liệu
+        //    for (int i = 0; i < datauser.Length; i++)
+        //    {
+        //        if (datauser[i] == "") break;
+                
+        //        string[] arr = datauser[i].Split(' ');
+        //        if (arr[1] == username)
+        //        {
+        //            id = arr[0];
+        //            continue;
+        //        }
+        //        Button but = new Button();
+        //        settingButUser(ref but);
+        //        but.Text = arr[1];
+        //        but.Name = arr[0];
+                
+        //        ListButtonUser.Add(but);
+        //    }
         //}
         private void closeActiveForm()
         {
@@ -79,34 +72,19 @@ namespace UI
         }
         private void customizeDesign()
         {
-            panelListFriend.Visible = false;
+            
             //panelInfoFriend.Visible = false;   
         }
         private void hideSubMenu()
         {
-            panelListFriend.Visible = false;
+            //panelListUser.Visible = false;
         }
         private void showSubMenu()
         {
-            panelListFriend.Visible = true;
+            //panelListUser.Visible = true;
         }
-        private void InitPanelListFriend()
-        {
-            panelListFriend.Visible = false;
-            panelListFriend.AutoScroll = true;
-            panelListFriend.AutoSize = false;
-            panelListFriend.Dock = DockStyle.Top;
-        }
-        private void settingButUser(ref Button but)
-        { 
-            but.BackColor = Color.White;
-            but.Dock = DockStyle.Top;
-            but.TextAlign = ContentAlignment.MiddleRight;
-            but.FlatStyle = FlatStyle.Flat;
-            but.Size = new Size(204, 50);
-            but.FlatAppearance.BorderSize = 0;
-            but.FlatAppearance.MouseOverBackColor = Color.LightBlue;
-        }
+       
+        
         private Form activeForm = null;
         private void openAddForm(Form AddForm)
         {
@@ -124,35 +102,39 @@ namespace UI
             AddForm.BringToFront();
             AddForm.Show();
         }
-        private void iconButtonFriend_Click_1(object sender, EventArgs e)
-        {
-            closeActiveForm();
-            if (panelListFriend.Visible == false)
-            {
-                showSubMenu();
-            }
-            else hideSubMenu();
-        }
-        private void iconButtonAddF_Click(object sender, EventArgs e)
-        {
-            Form addFriendForm = new AddFriendForm();
-            
-            customizeDesign();
-            openAddForm(addFriendForm);
-        }
-        private void pictureBoxAvata_Click(object sender, EventArgs e)
-        {
-            closeActiveForm();
-            customizeDesign();
-        }
+        //private void iconButtonFriend_Click_1(object sender, EventArgs e)
+        //{
+        //    closeActiveForm();
+        //    if (panelListFriend.Visible == false)
+        //    {
+        //        showSubMenu();
+        //    }
+        //    else hideSubMenu();
+        //}
+        //private void iconButtonAddF_Click(object sender, EventArgs e)
+        //{
+        //    Form addFriendForm = new AddFriendForm();
+
+        //    customizeDesign();
+        //    openAddForm(addFriendForm);
+        //}
+        //private void pictureBoxAvata_Click(object sender, EventArgs e)
+        //{
+        //    closeActiveForm();
+        //    customizeDesign();
+        //}
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             loginForm.Close();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            if (panelListFriend.AutoSize == true) panelListFriend.AutoSize = false;
-            else panelListFriend.AutoSize = true;
+
         }
     }
 }
