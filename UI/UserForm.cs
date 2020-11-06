@@ -18,17 +18,11 @@ namespace UI
     public partial class UserForm : Form
     {
         private User user;
-        SocketClient client;
-        TcpClient server;
-        private User tencuatao;
-        public UserForm(UserManager.User Tencuatao ,UserManager.User user , SocketClient client , TcpClient  server)
+        public UserForm(UserManager.User user)
         {
             InitializeComponent();
             this.Visible = false;
             this.user = user;
-            this.client = client;
-            this.server = server;
-            this.tencuatao = Tencuatao;
             InitUserForm();
             
         }
@@ -42,9 +36,9 @@ namespace UI
 
         private void PictureBoxSend_Click(object sender, EventArgs e)
         {
-            string data = "SEND%" + tencuatao.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-            client.SendToServer(data);
-            listViewCHAT.Items.Add(tencuatao.Name + ": " + TextBoxEnterChat.Text);
+            string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+            Form1.client.SendToServer(data);
+            listViewCHAT.Items.Add(Form1.me.Name + ": " + TextBoxEnterChat.Text);
             TextBoxEnterChat.Text = "";
         }
 

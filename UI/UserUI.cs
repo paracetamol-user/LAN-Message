@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -15,30 +16,27 @@ namespace UI
 {
     public partial class UserUI
     {
-        private Panel panelUser;
-        private UserForm userForm;
+        private Panel panelUser; // 
+        private UserForm userForm; // Khung Chat của user
         private User user;
-        private User tencuatao;
-        private string idFocus;
-        SocketClient client;
-        TcpClient server;
+
+        private Panel panelNameUser;
+        private Label labelname;
+        private Guna2CirclePictureBox avatarUser;
 
         public UserUI() { }
-        public UserUI(User tencuatao ,User user,  Panel listUser,  Panel panelRight, SocketClient client, TcpClient server)
+        public UserUI(User user,  Panel listUser,  Panel panelRight)
         {
             this.user = user;
-            this.client = client;
-            this.server = server;
-            this.tencuatao = tencuatao;
-            //this.idFocus = idFocus;
+
             InitButtonUser(user,listUser) ;
-            InitUserForm(tencuatao ,user , client , server);
+            InitUserForm(user);
             panelRight.Controls.Add(userForm);
         }
 
-        private void InitUserForm(User tencuatao ,User user ,SocketClient client , TcpClient server)
+        private void InitUserForm(User user)
         {
-            userForm = new UserForm(tencuatao ,user , client , server);
+            userForm = new UserForm(user);
             userForm.TopLevel = false;
             userForm.Dock = DockStyle.Fill;
 
@@ -47,68 +45,119 @@ namespace UI
         private void InitButtonUser(User user, Panel listUser)
         {
             
-            Guna2CirclePictureBox AvatarUser = new Guna2CirclePictureBox();
-            AvatarUser.Image = Image.FromFile("./images/avatarDefault.png");
-            AvatarUser.Size = new Size(36,36);
-            AvatarUser.Dock = DockStyle.Left;
-            AvatarUser.SizeMode = PictureBoxSizeMode.Zoom;
-         
+            avatarUser = new Guna2CirclePictureBox();
+            avatarUser.Image = Image.FromFile(@"..\..\images\avatarDefault2.png");
+            avatarUser.Size = new Size(36,36);
+            avatarUser.Dock = DockStyle.Left;
+            avatarUser.SizeMode = PictureBoxSizeMode.Zoom;
 
-            Label nameUser = new Label();
-            nameUser.Text = user.Name;
-            nameUser.ForeColor = Color.Black;
-            nameUser.Font = new Font("Consoloas", 12);
-            nameUser.Dock = DockStyle.Left;
-            nameUser.Visible = true;
 
-            Panel panelNameUser = new Panel();
-            panelNameUser.Controls.Add(nameUser);
+            labelname = new Label();
+            labelname.Text = user.Name;
+            labelname.ForeColor = Color.Black;
+            labelname.Font = new Font("Consoloas", 12);
+            labelname.Dock = DockStyle.Fill;
+            labelname.Visible = true;
+
+
+            panelNameUser = new Panel();
+            panelNameUser.Controls.Add(labelname);
 
             panelNameUser.TabIndex = 0;
             panelNameUser.BackColor = Color.WhiteSmoke;
             panelNameUser.Padding = new Padding(10, 9, 0, 9);
             panelNameUser.Dock = DockStyle.Fill;
-            
+
 
             panelUser = new Panel();
-            panelUser.Padding = new Padding(0, 7, 0, 7);
+            panelUser.Padding = new Padding(7, 7, 7, 7);
             panelUser.Visible = true;
             panelUser.BackColor = Color.WhiteSmoke;
             panelUser.Dock = DockStyle.Top;
-            listUser.Controls.Add(panelUser);
             panelUser.Height = 50;
-            panelUser.Controls.Add(panelNameUser);
-            panelUser.Controls.Add(AvatarUser);
 
+            
+            panelUser.Controls.Add(panelNameUser);
+            panelUser.Controls.Add(avatarUser);
+            listUser.Controls.Add(panelUser);
             panelNameUser.Click += PanelNameUser_Click;
             panelUser.Click += PanelUser_Click;
-            AvatarUser.Click += AvatarUser_Click;
-            nameUser.Click += NameUser_Click;
+            avatarUser.Click += AvatarUser_Click1;
+            labelname.Click += Labelname_Click;
         }
 
-        private void NameUser_Click(object sender, EventArgs e)
+        private void ChangeColorWhenClick()
+        {
+            panelUser.BackColor = Color.Gainsboro;
+            panelNameUser.BackColor = Color.Gainsboro;
+        }
+        private void ChangeColorWhenNonClick()
+        {
+            panelUser.BackColor = Color.WhiteSmoke;
+            panelNameUser.BackColor = Color.WhiteSmoke;
+        }
+        private void Labelname_Click(object sender, EventArgs e)
         {
             userForm.Show();
             userForm.BringToFront();
+            if ( Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.user.Id )
+            {
+                Form1.userUIForcus.ChangeColorWhenNonClick();
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }else if (Form1.userUIForcus == null)
+            {
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
         }
-
-        private void AvatarUser_Click(object sender, EventArgs e)
-        {
-            userForm.Show();
-            userForm.BringToFront();
-        }
-
         private void PanelUser_Click(object sender, EventArgs e)
         {
             userForm.Show();
             userForm.BringToFront();
-            
+            if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.user.Id)
+            {
+                Form1.userUIForcus.ChangeColorWhenNonClick();
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
+            else if (Form1.userUIForcus == null)
+            {
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
         }
-
         private void PanelNameUser_Click(object sender, EventArgs e)
         {
             userForm.Show();
             userForm.BringToFront();
+            if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.user.Id)
+            {
+                Form1.userUIForcus.ChangeColorWhenNonClick();
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
+            else if (Form1.userUIForcus == null)
+            {
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
+        }
+        private void AvatarUser_Click1(object sender, EventArgs e)
+        {
+            userForm.Show();
+            userForm.BringToFront();
+            if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.user.Id)
+            {
+                Form1.userUIForcus.ChangeColorWhenNonClick();
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
+            else if (Form1.userUIForcus == null)
+            {
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
         }
         public string GetId()
         {

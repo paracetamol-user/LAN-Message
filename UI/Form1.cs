@@ -15,34 +15,42 @@ namespace UI
 {
     public partial class Form1 : Form
     {
+                            /// <summary>
+                            ///QUY ĐỊNH NGƯỜI SỬ DỤNG CHƯƠNG TRÌNH CÓ BIẾN LÀ <ME>
+                            ///NGƯỜI SỬ DỤNG SERVER LÀ USER
+                            /// </summary>
+                           
         private LoginForm loginForm;
-        private SocketClient client;
-        private TcpClient server;
-        
-        private User user; // Đối tượng người dùng
-        private List<UserUI> UserUIs; // List giao diện của User
-        private string idFocus; //User đang được nhấn vào
+        private List<UserUI> UserUIs; // List form giao diện chat cho từng user
+
+
+        public static User me; // Nguoi su dung chuong trinh
+        public static string idFocus = "";
+        public static UserUI userUIForcus = null;
+        public static SocketClient client;
+        public static TcpClient server;
+        // Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
+        // ex: Form1.client
+
+
         public Form1()
         {
             InitializeComponent();           
-            
-            //UserUIs.Add(new UserUI("1","dat", "12", panelLISTUSER, panelRight , client, server , idFocus));
-            //UserUIs.Add(new UserUI("1","nam", "3",  panelLISTUSER,  panelRight , client , server, idFocus));
-            //UserUIs.Add(new UserUI("1","kiet", "10",  panelLISTUSER,  panelRight , client , server, idFocus));
-
         }
         public Form1(LoginForm loginform, User user, SocketClient client , TcpClient server)
         {
             UserUIs = new List<UserUI>();
             this.loginForm = loginform;
-            this.client = client;
-            this.server = server;
-            this.user = user;
+            Form1.client = client;
+            Form1.server = server;
+            Form1.me = user;
             InitializeComponent();
             LoadDataUser();
             AwaitReadData();
+            
         }
-        
+
+        // AwaitReadData chờ và nhận tin nhắn từ server
         private async Task AwaitReadData()
         {   
             while (true)
@@ -59,11 +67,13 @@ namespace UI
                     }
                 }
             }
-                
         }
+
+        //LoadDataUser gọi server trả về tất cả người dùng có trong server
+        // Hiện tại chưa có code gọi người dùng online trong server mà chỉ gọi tất cả về
         private async void LoadDataUser()
         {
-            client.SendToServer("LOADUSERDATA%" + user.Name);
+            client.SendToServer("LOADUSERDATA%" + me.Name);
             string data = await client.ReadDataAsync(server);
             string[] datauser = data.Split('%', '\0');
             // 3 dòng lấy dữ liệu
@@ -71,22 +81,13 @@ namespace UI
             {
                 if (datauser[i] == "") break;
                 string[] arr = datauser[i].Split(' ');
-                if (arr[1] == user.Name) { continue; }
-                UserUIs.Add(new UserUI(user, new User(arr[0], arr[1]), panelLISTUSER, panelRight , client , server));
+                if (arr[1] == me.Name) { continue; }
+                UserUIs.Add(new UserUI(new User(arr[0], arr[1]), panelLISTUSER, panelRight));
             }
         }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             loginForm.Close();
-        }
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-        }
-        private void panel1_MouseLeave(object sender, EventArgs e)
-        {
-            panel1.BorderStyle = BorderStyle.None;
         }
 
        
