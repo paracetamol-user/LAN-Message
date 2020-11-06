@@ -37,27 +37,25 @@
             this.labelID = new System.Windows.Forms.Label();
             this.labelUSERNAME = new System.Windows.Forms.Label();
             this.panelPICTUREOPTION = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.Avatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panelSEARCH = new System.Windows.Forms.Panel();
-            this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.panelLANMESS = new System.Windows.Forms.Panel();
             this.panelTEXTLANMESS = new System.Windows.Forms.Panel();
             this.labelLANMESS = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Avatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelOPTION.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.panelPICTUREOPTION.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
             this.panelSEARCH.SuspendLayout();
             this.panelLANMESS.SuspendLayout();
             this.panelTEXTLANMESS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -76,6 +74,7 @@
             // 
             // panelLISTUSER
             // 
+            this.panelLISTUSER.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelLISTUSER.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLISTUSER.Location = new System.Drawing.Point(0, 106);
             this.panelLISTUSER.Name = "panelLISTUSER";
@@ -85,7 +84,7 @@
             // 
             // panelOPTION
             // 
-            this.panelOPTION.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelOPTION.BackColor = System.Drawing.Color.White;
             this.panelOPTION.Controls.Add(this.panelOPTIONNULL);
             this.panelOPTION.Controls.Add(this.panelInfo);
             this.panelOPTION.Controls.Add(this.panelPICTUREOPTION);
@@ -149,31 +148,6 @@
             this.panelPICTUREOPTION.Size = new System.Drawing.Size(39, 49);
             this.panelPICTUREOPTION.TabIndex = 1;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::UI.Properties.Resources.options;
-            this.pictureBox2.Location = new System.Drawing.Point(5, 13);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(29, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // Avatar
-            // 
-            this.Avatar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Avatar.Image = global::UI.Properties.Resources.avatar;
-            this.Avatar.Location = new System.Drawing.Point(12, 7);
-            this.Avatar.Name = "Avatar";
-            this.Avatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.Avatar.ShadowDecoration.Parent = this.Avatar;
-            this.Avatar.Size = new System.Drawing.Size(49, 49);
-            this.Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Avatar.TabIndex = 0;
-            this.Avatar.TabStop = false;
-            // 
             // panelSEARCH
             // 
             this.panelSEARCH.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -184,35 +158,6 @@
             this.panelSEARCH.Padding = new System.Windows.Forms.Padding(12, 5, 12, 5);
             this.panelSEARCH.Size = new System.Drawing.Size(233, 43);
             this.panelSEARCH.TabIndex = 1;
-            // 
-            // textBoxSearch
-            // 
-            this.textBoxSearch.AutoRoundedCorners = true;
-            this.textBoxSearch.BorderRadius = 15;
-            this.textBoxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBoxSearch.DefaultText = "";
-            this.textBoxSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.textBoxSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.textBoxSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxSearch.DisabledState.Parent = this.textBoxSearch;
-            this.textBoxSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxSearch.FocusedState.Parent = this.textBoxSearch;
-            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxSearch.HoverState.Parent = this.textBoxSearch;
-            this.textBoxSearch.IconRight = global::UI.Properties.Resources.search;
-            this.textBoxSearch.IconRightOffset = new System.Drawing.Point(5, 0);
-            this.textBoxSearch.Location = new System.Drawing.Point(12, 5);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.textBoxSearch.PasswordChar = '\0';
-            this.textBoxSearch.PlaceholderText = "Search";
-            this.textBoxSearch.SelectedText = "";
-            this.textBoxSearch.ShadowDecoration.Parent = this.textBoxSearch;
-            this.textBoxSearch.Size = new System.Drawing.Size(209, 33);
-            this.textBoxSearch.TabIndex = 0;
             // 
             // panelLANMESS
             // 
@@ -249,6 +194,70 @@
             this.labelLANMESS.TabIndex = 8;
             this.labelLANMESS.Text = "LAN MESSENGER";
             // 
+            // panelRight
+            // 
+            this.panelRight.BackColor = System.Drawing.Color.White;
+            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRight.Location = new System.Drawing.Point(233, 0);
+            this.panelRight.Margin = new System.Windows.Forms.Padding(2);
+            this.panelRight.Name = "panelRight";
+            this.panelRight.Size = new System.Drawing.Size(419, 448);
+            this.panelRight.TabIndex = 6;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(5, 13);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(29, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // Avatar
+            // 
+            this.Avatar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Avatar.Image = ((System.Drawing.Image)(resources.GetObject("Avatar.Image")));
+            this.Avatar.Location = new System.Drawing.Point(12, 7);
+            this.Avatar.Name = "Avatar";
+            this.Avatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.Avatar.ShadowDecoration.Parent = this.Avatar;
+            this.Avatar.Size = new System.Drawing.Size(49, 49);
+            this.Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Avatar.TabIndex = 0;
+            this.Avatar.TabStop = false;
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.AutoRoundedCorners = true;
+            this.textBoxSearch.BorderRadius = 15;
+            this.textBoxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxSearch.DefaultText = "";
+            this.textBoxSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.textBoxSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textBoxSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxSearch.DisabledState.Parent = this.textBoxSearch;
+            this.textBoxSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxSearch.FocusedState.Parent = this.textBoxSearch;
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxSearch.HoverState.Parent = this.textBoxSearch;
+            this.textBoxSearch.IconRight = ((System.Drawing.Image)(resources.GetObject("textBoxSearch.IconRight")));
+            this.textBoxSearch.IconRightOffset = new System.Drawing.Point(5, 0);
+            this.textBoxSearch.Location = new System.Drawing.Point(12, 5);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.textBoxSearch.PasswordChar = '\0';
+            this.textBoxSearch.PlaceholderText = "Search";
+            this.textBoxSearch.SelectedText = "";
+            this.textBoxSearch.ShadowDecoration.Parent = this.textBoxSearch;
+            this.textBoxSearch.Size = new System.Drawing.Size(209, 33);
+            this.textBoxSearch.TabIndex = 0;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -260,26 +269,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            // 
-            // panelRight
-            // 
-            this.panelRight.BackColor = System.Drawing.Color.White;
-            this.panelRight.Controls.Add(this.panel1);
-            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(233, 0);
-            this.panelRight.Margin = new System.Windows.Forms.Padding(2);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(419, 448);
-            this.panelRight.TabIndex = 6;
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(157, 184);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 0;
-            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // Form1
             // 
@@ -298,14 +287,13 @@
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             this.panelPICTUREOPTION.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Avatar)).EndInit();
             this.panelSEARCH.ResumeLayout(false);
             this.panelLANMESS.ResumeLayout(false);
             this.panelTEXTLANMESS.ResumeLayout(false);
             this.panelTEXTLANMESS.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Avatar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,7 +317,6 @@
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelUSERNAME;
         private System.Windows.Forms.Panel panelOPTIONNULL;
-        private System.Windows.Forms.Panel panel1;
     }
 }
 

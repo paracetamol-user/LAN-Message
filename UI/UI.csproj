@@ -161,5 +161,23 @@
   <ItemGroup>
     <None Include="bin\Debug\images\avatarDefault.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\avatarDefault2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\menu %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\send.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
