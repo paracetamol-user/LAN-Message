@@ -48,6 +48,7 @@ namespace UI
             LoadDataUser();
             AwaitReadData();
             
+            
         }
 
         // AwaitReadData chờ và nhận tin nhắn từ server

@@ -35,42 +35,47 @@
             this.TextBoxEnterChat = new Guna.UI2.WinForms.Guna2TextBox();
             this.panelENTERCHATOPTION = new System.Windows.Forms.Panel();
             this.panelSEND = new System.Windows.Forms.Panel();
+            this.pictureBoxSend = new System.Windows.Forms.PictureBox();
             this.panelUSERINFO = new System.Windows.Forms.Panel();
             this.panelNULL2 = new System.Windows.Forms.Panel();
             this.panelOPTIONUSER = new System.Windows.Forms.Panel();
             this.panelSearch = new System.Windows.Forms.Panel();
+            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.pictureBoxMenu = new System.Windows.Forms.PictureBox();
             this.panelUSERCHATINFO = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelID = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.pictureBoxSend = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMenu = new System.Windows.Forms.PictureBox();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelENTERCHAT.SuspendLayout();
             this.panelCHATBOX.SuspendLayout();
+            this.panelENTERCHATOPTION.SuspendLayout();
             this.panelSEND.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).BeginInit();
             this.panelUSERINFO.SuspendLayout();
             this.panelOPTIONUSER.SuspendLayout();
             this.panelSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
             this.panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).BeginInit();
             this.panelUSERCHATINFO.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewCHAT
             // 
             this.listViewCHAT.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewCHAT.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewCHAT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewCHAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewCHAT.HideSelection = false;
             this.listViewCHAT.Location = new System.Drawing.Point(0, 50);
+            this.listViewCHAT.Margin = new System.Windows.Forms.Padding(20);
             this.listViewCHAT.Name = "listViewCHAT";
-            this.listViewCHAT.Size = new System.Drawing.Size(331, 342);
+            this.listViewCHAT.Size = new System.Drawing.Size(419, 342);
             this.listViewCHAT.TabIndex = 6;
             this.listViewCHAT.UseCompatibleStateImageBehavior = false;
             this.listViewCHAT.View = System.Windows.Forms.View.List;
@@ -91,10 +96,10 @@
             // 
             this.panelCHATBOX.Controls.Add(this.TextBoxEnterChat);
             this.panelCHATBOX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCHATBOX.Location = new System.Drawing.Point(69, 7);
+            this.panelCHATBOX.Location = new System.Drawing.Point(48, 7);
             this.panelCHATBOX.Name = "panelCHATBOX";
             this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(5);
-            this.panelCHATBOX.Size = new System.Drawing.Size(304, 42);
+            this.panelCHATBOX.Size = new System.Drawing.Size(325, 42);
             this.panelCHATBOX.TabIndex = 2;
             // 
             // TextBoxEnterChat
@@ -120,16 +125,17 @@
             this.TextBoxEnterChat.PlaceholderText = "";
             this.TextBoxEnterChat.SelectedText = "";
             this.TextBoxEnterChat.ShadowDecoration.Parent = this.TextBoxEnterChat;
-            this.TextBoxEnterChat.Size = new System.Drawing.Size(294, 32);
+            this.TextBoxEnterChat.Size = new System.Drawing.Size(315, 32);
             this.TextBoxEnterChat.TabIndex = 0;
             // 
             // panelENTERCHATOPTION
             // 
+            this.panelENTERCHATOPTION.Controls.Add(this.pictureBox1);
             this.panelENTERCHATOPTION.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelENTERCHATOPTION.Location = new System.Drawing.Point(7, 7);
             this.panelENTERCHATOPTION.Name = "panelENTERCHATOPTION";
-            this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(5);
-            this.panelENTERCHATOPTION.Size = new System.Drawing.Size(62, 42);
+            this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(7);
+            this.panelENTERCHATOPTION.Size = new System.Drawing.Size(41, 42);
             this.panelENTERCHATOPTION.TabIndex = 1;
             // 
             // panelSEND
@@ -141,6 +147,17 @@
             this.panelSEND.Padding = new System.Windows.Forms.Padding(5);
             this.panelSEND.Size = new System.Drawing.Size(39, 42);
             this.panelSEND.TabIndex = 0;
+            // 
+            // pictureBoxSend
+            // 
+            this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
+            this.pictureBoxSend.Location = new System.Drawing.Point(5, 5);
+            this.pictureBoxSend.Name = "pictureBoxSend";
+            this.pictureBoxSend.Size = new System.Drawing.Size(29, 32);
+            this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSend.TabIndex = 0;
+            this.pictureBoxSend.TabStop = false;
             // 
             // panelUSERINFO
             // 
@@ -170,7 +187,7 @@
             this.panelOPTIONUSER.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelOPTIONUSER.Location = new System.Drawing.Point(290, 0);
             this.panelOPTIONUSER.Name = "panelOPTIONUSER";
-            this.panelOPTIONUSER.Padding = new System.Windows.Forms.Padding(7, 10, 7, 10);
+            this.panelOPTIONUSER.Padding = new System.Windows.Forms.Padding(7, 10, 30, 10);
             this.panelOPTIONUSER.Size = new System.Drawing.Size(129, 50);
             this.panelOPTIONUSER.TabIndex = 1;
             // 
@@ -178,21 +195,43 @@
             // 
             this.panelSearch.Controls.Add(this.pictureBoxSearch);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelSearch.Location = new System.Drawing.Point(44, 10);
+            this.panelSearch.Location = new System.Drawing.Point(21, 10);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Padding = new System.Windows.Forms.Padding(7);
             this.panelSearch.Size = new System.Drawing.Size(39, 30);
             this.panelSearch.TabIndex = 1;
             // 
+            // pictureBoxSearch
+            // 
+            this.pictureBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSearch.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSearch.Image")));
+            this.pictureBoxSearch.Location = new System.Drawing.Point(7, 7);
+            this.pictureBoxSearch.Name = "pictureBoxSearch";
+            this.pictureBoxSearch.Size = new System.Drawing.Size(25, 16);
+            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSearch.TabIndex = 0;
+            this.pictureBoxSearch.TabStop = false;
+            // 
             // panelMenu
             // 
             this.panelMenu.Controls.Add(this.pictureBoxMenu);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelMenu.Location = new System.Drawing.Point(83, 10);
+            this.panelMenu.Location = new System.Drawing.Point(60, 10);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Padding = new System.Windows.Forms.Padding(7);
             this.panelMenu.Size = new System.Drawing.Size(39, 30);
             this.panelMenu.TabIndex = 0;
+            // 
+            // pictureBoxMenu
+            // 
+            this.pictureBoxMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxMenu.Image = global::UI.Properties.Resources.menu__1_1;
+            this.pictureBoxMenu.Location = new System.Drawing.Point(7, 7);
+            this.pictureBoxMenu.Name = "pictureBoxMenu";
+            this.pictureBoxMenu.Size = new System.Drawing.Size(25, 16);
+            this.pictureBoxMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxMenu.TabIndex = 0;
+            this.pictureBoxMenu.TabStop = false;
             // 
             // panelUSERCHATINFO
             // 
@@ -238,39 +277,6 @@
             this.labelName.TabIndex = 0;
             this.labelName.Text = "User Name";
             // 
-            // pictureBoxSend
-            // 
-            this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
-            this.pictureBoxSend.Location = new System.Drawing.Point(5, 5);
-            this.pictureBoxSend.Name = "pictureBoxSend";
-            this.pictureBoxSend.Size = new System.Drawing.Size(29, 32);
-            this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSend.TabIndex = 0;
-            this.pictureBoxSend.TabStop = false;
-            // 
-            // pictureBoxSearch
-            // 
-            this.pictureBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSearch.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSearch.Image")));
-            this.pictureBoxSearch.Location = new System.Drawing.Point(7, 7);
-            this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(25, 16);
-            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearch.TabIndex = 0;
-            this.pictureBoxSearch.TabStop = false;
-            // 
-            // pictureBoxMenu
-            // 
-            this.pictureBoxMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMenu.Image = global::UI.Properties.Resources.menu__1_1;
-            this.pictureBoxMenu.Location = new System.Drawing.Point(7, 7);
-            this.pictureBoxMenu.Name = "pictureBoxMenu";
-            this.pictureBoxMenu.Size = new System.Drawing.Size(25, 16);
-            this.pictureBoxMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMenu.TabIndex = 0;
-            this.pictureBoxMenu.TabStop = false;
-            // 
             // guna2CirclePictureBox1
             // 
             this.guna2CirclePictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -283,6 +289,17 @@
             this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2CirclePictureBox1.TabIndex = 0;
             this.guna2CirclePictureBox1.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(29, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // UserForm
             // 
@@ -299,18 +316,20 @@
             this.Text = "UserForm";
             this.panelENTERCHAT.ResumeLayout(false);
             this.panelCHATBOX.ResumeLayout(false);
+            this.panelENTERCHATOPTION.ResumeLayout(false);
             this.panelSEND.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).EndInit();
             this.panelUSERINFO.ResumeLayout(false);
             this.panelOPTIONUSER.ResumeLayout(false);
             this.panelSearch.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
             this.panelMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).EndInit();
             this.panelUSERCHATINFO.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -336,5 +355,6 @@
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelName;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

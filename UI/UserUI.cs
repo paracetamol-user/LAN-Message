@@ -70,7 +70,7 @@ namespace UI
 
 
             panelUser = new Panel();
-            panelUser.Padding = new Padding(7, 7, 7, 7);
+            panelUser.Padding = new Padding(12, 7, 7, 7);
             panelUser.Visible = true;
             panelUser.BackColor = Color.WhiteSmoke;
             panelUser.Dock = DockStyle.Top;
