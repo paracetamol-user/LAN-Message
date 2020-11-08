@@ -45,10 +45,19 @@ namespace UI
             Form1.server = server;
             Form1.me = user;
             InitializeComponent();
+            LoadMyData();
             LoadDataUser();
+            
             AwaitReadData();
             
             
+        }
+
+        private void LoadMyData()
+        {
+           
+            labelID.Text = me.Id;
+            labelUSERNAME.Text = me.Name;
         }
 
         // AwaitReadData chờ và nhận tin nhắn từ server

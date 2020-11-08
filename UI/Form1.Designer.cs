@@ -214,7 +214,7 @@
             // 
             // panelLANMESS
             // 
-            this.panelLANMESS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelLANMESS.BackColor = System.Drawing.Color.White;
             this.panelLANMESS.Controls.Add(this.panelTEXTLANMESS);
             this.panelLANMESS.Controls.Add(this.pictureBox1);
             this.panelLANMESS.Dock = System.Windows.Forms.DockStyle.Top;

@@ -34,6 +34,7 @@
             this.panelCHATBOX = new System.Windows.Forms.Panel();
             this.TextBoxEnterChat = new Guna.UI2.WinForms.Guna2TextBox();
             this.panelENTERCHATOPTION = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelSEND = new System.Windows.Forms.Panel();
             this.pictureBoxSend = new System.Windows.Forms.PictureBox();
             this.panelUSERINFO = new System.Windows.Forms.Panel();
@@ -48,10 +49,10 @@
             this.labelID = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelENTERCHAT.SuspendLayout();
             this.panelCHATBOX.SuspendLayout();
             this.panelENTERCHATOPTION.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSEND.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).BeginInit();
             this.panelUSERINFO.SuspendLayout();
@@ -63,14 +64,16 @@
             this.panelUSERCHATINFO.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewCHAT
             // 
+            this.listViewCHAT.AllowColumnReorder = true;
+            this.listViewCHAT.AllowDrop = true;
             this.listViewCHAT.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listViewCHAT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewCHAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewCHAT.GridLines = true;
             this.listViewCHAT.HideSelection = false;
             this.listViewCHAT.Location = new System.Drawing.Point(0, 50);
             this.listViewCHAT.Margin = new System.Windows.Forms.Padding(20);
@@ -78,7 +81,7 @@
             this.listViewCHAT.Size = new System.Drawing.Size(419, 342);
             this.listViewCHAT.TabIndex = 6;
             this.listViewCHAT.UseCompatibleStateImageBehavior = false;
-            this.listViewCHAT.View = System.Windows.Forms.View.List;
+            this.listViewCHAT.View = System.Windows.Forms.View.Tile;
             // 
             // panelENTERCHAT
             // 
@@ -127,6 +130,7 @@
             this.TextBoxEnterChat.ShadowDecoration.Parent = this.TextBoxEnterChat;
             this.TextBoxEnterChat.Size = new System.Drawing.Size(315, 32);
             this.TextBoxEnterChat.TabIndex = 0;
+            this.TextBoxEnterChat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxEnterChat_KeyPress);
             // 
             // panelENTERCHATOPTION
             // 
@@ -137,6 +141,17 @@
             this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(7);
             this.panelENTERCHATOPTION.Size = new System.Drawing.Size(41, 42);
             this.panelENTERCHATOPTION.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(29, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panelSEND
             // 
@@ -290,17 +305,6 @@
             this.guna2CirclePictureBox1.TabIndex = 0;
             this.guna2CirclePictureBox1.TabStop = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(5, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(29, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,6 +321,7 @@
             this.panelENTERCHAT.ResumeLayout(false);
             this.panelCHATBOX.ResumeLayout(false);
             this.panelENTERCHATOPTION.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelSEND.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).EndInit();
             this.panelUSERINFO.ResumeLayout(false);
@@ -329,7 +334,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

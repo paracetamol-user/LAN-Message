@@ -16,12 +16,13 @@ namespace UI
 {
     public partial class UserUI
     {
-        private Panel panelUser; // 
+      
         private UserForm userForm; // Khung Chat của user
         private User user;
-
+        private Panel panelUser; // 
         private Panel panelNameUser;
         private Label labelname;
+        private Label labelMessage;
         private Guna2CirclePictureBox avatarUser;
 
         public UserUI() { }
@@ -46,7 +47,7 @@ namespace UI
         {
             
             avatarUser = new Guna2CirclePictureBox();
-            avatarUser.Image = Image.FromFile(@"..\..\images\avatarDefault2.png");
+            avatarUser.Image = Image.FromFile(@"..\..\images\123.jfif");
             avatarUser.Size = new Size(36,36);
             avatarUser.Dock = DockStyle.Left;
             avatarUser.SizeMode = PictureBoxSizeMode.Zoom;
@@ -56,21 +57,27 @@ namespace UI
             labelname.Text = user.Name;
             labelname.ForeColor = Color.Black;
             labelname.Font = new Font("Consoloas", 12);
-            labelname.Dock = DockStyle.Fill;
+            labelname.Dock = DockStyle.Top;
             labelname.Visible = true;
 
+            labelMessage = new Label();
+            labelMessage.Text = "tin nhan";
+            labelMessage.Font = new Font("Consoloas", 7);
+            labelMessage.Dock = DockStyle.Fill;
+            labelMessage.Visible = true;
 
             panelNameUser = new Panel();
+            panelNameUser.Controls.Add(labelMessage);
             panelNameUser.Controls.Add(labelname);
-
+           
             panelNameUser.TabIndex = 0;
             panelNameUser.BackColor = Color.WhiteSmoke;
-            panelNameUser.Padding = new Padding(10, 9, 0, 9);
+            panelNameUser.Padding = new Padding(10, 2, 0, 0);
             panelNameUser.Dock = DockStyle.Fill;
 
 
             panelUser = new Panel();
-            panelUser.Padding = new Padding(12, 7, 7, 7);
+            panelUser.Padding = new Padding(12,7,7,7);
             panelUser.Visible = true;
             panelUser.BackColor = Color.WhiteSmoke;
             panelUser.Dock = DockStyle.Top;
@@ -84,6 +91,24 @@ namespace UI
             panelUser.Click += PanelUser_Click;
             avatarUser.Click += AvatarUser_Click1;
             labelname.Click += Labelname_Click;
+            labelMessage.Click += LabelMessage_Click;
+        }
+
+        private void LabelMessage_Click(object sender, EventArgs e)
+        {
+            userForm.Show();
+            userForm.BringToFront();
+            if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.user.Id)
+            {
+                Form1.userUIForcus.ChangeColorWhenNonClick();
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
+            else if (Form1.userUIForcus == null)
+            {
+                this.ChangeColorWhenClick();
+                Form1.userUIForcus = this;
+            }
         }
 
         private void ChangeColorWhenClick()

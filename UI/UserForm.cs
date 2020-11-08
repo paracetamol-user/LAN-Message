@@ -26,7 +26,13 @@ namespace UI
             InitUserForm();
             
         }
-
+        public void SendMessage()
+        {
+            string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+            Form1.client.SendToServer(data);
+            listViewCHAT.Items.Add(Form1.me.Name + ": " + TextBoxEnterChat.Text);
+            TextBoxEnterChat.Text = "";
+        }
         private void InitUserForm()
         {
             this.labelID.Text = "#"+user.Id;
@@ -36,10 +42,7 @@ namespace UI
 
         private void PictureBoxSend_Click(object sender, EventArgs e)
         {
-            string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-            Form1.client.SendToServer(data);
-            listViewCHAT.Items.Add(Form1.me.Name + ": " + TextBoxEnterChat.Text);
-            TextBoxEnterChat.Text = "";
+            SendMessage();
         }
 
         public UserForm()
@@ -62,6 +65,14 @@ namespace UI
         public void AddFrom(Panel panelRight)
         {
             panelRight.Controls.Add(this);
+        }
+
+        private void TextBoxEnterChat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                SendMessage();
+            }
         }
     }
 }
