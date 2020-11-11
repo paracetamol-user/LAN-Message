@@ -24,7 +24,6 @@ namespace UI
             this.Visible = false;
             this.user = user;
             InitUserForm();
-            
         }
         public void SendMessage()
         {
@@ -67,12 +66,15 @@ namespace UI
             panelRight.Controls.Add(this);
         }
 
-        private void TextBoxEnterChat_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 SendMessage();
+                e.SuppressKeyPress = true;
             }
         }
+
+       
     }
 }

@@ -21,14 +21,15 @@ namespace UI
                             /// </summary>
                            
         private LoginForm loginForm;
-        private List<UserUI> UserUIs; // List form giao diện chat cho từng user
 
-
+        public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
         public static User me; // Nguoi su dung chuong trinh
-        public static string idFocus = "";
+        public static UserUI userRightForcus = null;
         public static UserUI userUIForcus = null;
+        public static UserForm userFormFocus = null;
         public static SocketClient client;
         public static TcpClient server;
+        public AddFriendForm serverUsersForm;
         // Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
         // ex: Form1.client
 
@@ -45,12 +46,14 @@ namespace UI
             Form1.server = server;
             Form1.me = user;
             InitializeComponent();
+            this.Text = "LANMESSENGER";
+            serverUsersForm = new AddFriendForm();
+            serverUsersForm.TopLevel = false;
+            serverUsersForm.Dock = DockStyle.Fill;
+            panelRight.Controls.Add(serverUsersForm);
             LoadMyData();
             LoadDataUser();
-            
             AwaitReadData();
-            
-            
         }
 
         private void LoadMyData()
@@ -85,14 +88,14 @@ namespace UI
         {
             client.SendToServer("LOADUSERDATA%" + me.Name);
             string data = await client.ReadDataAsync(server);
-            string[] datauser = data.Split('%', '\0');
+            string[] datauser = data.Split('%','\0');
             // 3 dòng lấy dữ liệu
             for (int i = 0; i < datauser.Length; i++)
             {
                 if (datauser[i] == "") break;
                 string[] arr = datauser[i].Split(' ');
                 if (arr[1] == me.Name) { continue; }
-                UserUIs.Add(new UserUI(new User(arr[0], arr[1]), panelLISTUSER, panelRight));
+                UserUIs.Add(new UserUI(new User(arr[0], arr[1],bool.Parse(arr[2])), panelLISTUSER, panelRight));
             }
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -100,7 +103,17 @@ namespace UI
             loginForm.Close();
         }
 
-       
+        private void ButtonLanMessenger_Click(object sender, EventArgs e)
+        {
+            if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
+            if (Form1.userUIForcus != null)
+            {
+                Form1.userUIForcus.ChangeColorWhenNonClick();
+                Form1.userUIForcus = null;
+            }
+            serverUsersForm.Show();
+            serverUsersForm.BringToFront();
+        }
     }
 }
 

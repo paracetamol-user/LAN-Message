@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,23 +13,45 @@ namespace UI
 {
     public partial class AddFriendForm : Form
     {
+        public static Panel panelListUserRight;
         public AddFriendForm()
         {
             InitializeComponent();
-            InitLoaction();
-        }
-        public void InitLoaction()
-        {
-            labelIp.Location = new Point( (panel1.Width / 2) - labelIp.Width - 20 , (panel1.Height / 2));
-            textBoxIp.Location = new Point((panel1.Width / 2)  , (panel1.Height / 2));
-            buttonAdd.Location = new Point((panel1.Width / 2) , (panel1.Size.Height / 2 + 50));
+            panelListUserRight = new Panel();
+            this.Controls.Add(panelListUserRight);
+            this.InitPanelListUser();
         }
 
-        private void textBoxIp_KeyDown(object sender, KeyEventArgs e)
+
+        private void gunaButtonOnline_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) 
+            AddFriendForm.panelListUserRight.Controls.Clear();;
+            for (int i = 0; i < Form1.UserUIs.Count; i++)
             {
-                buttonAdd.Focus();
+                if (Form1.UserUIs[i].GetStatus() == true)
+                {
+                    Form1.UserUIs[i].AddInfoUserIntoPanel();
+                }
+            }
+            
+        }
+
+        private void InitPanelListUser()
+        {
+            AddFriendForm.panelListUserRight.Dock = DockStyle.Fill;
+            AddFriendForm.panelListUserRight.BackColor = Color.White;
+            AddFriendForm.panelListUserRight.Padding = new Padding(30, 20, 0, 0);
+            AddFriendForm.panelListUserRight.BringToFront();
+        }
+
+        private void gunaButtonAll_Click(object sender, EventArgs e)
+        {
+            AddFriendForm.panelListUserRight.Controls.Clear();
+
+            for (int i = 0; i < Form1.UserUIs.Count; i++)
+            {
+                 Form1.UserUIs[i].AddInfoUserIntoPanel();
+            
             }
         }
     }
