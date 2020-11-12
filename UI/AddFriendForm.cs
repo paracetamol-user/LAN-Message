@@ -11,47 +11,70 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class AddFriendForm : Form
+    public partial class ServerForm : Form
     {
-        public static Panel panelListUserRight;
-        public AddFriendForm()
+        public static Panel panelAllUser;
+        public static Panel panelOnlineUser;
+        private bool CheckLoadAllUser;
+        private bool CheckLoadOnlineUser;
+        public ServerForm()
         {
             InitializeComponent();
-            panelListUserRight = new Panel();
-            this.Controls.Add(panelListUserRight);
-            this.InitPanelListUser();
+            panelAllUser = new Panel();
+            panelOnlineUser = new Panel();
+            this.Controls.Add(panelAllUser);
+            this.Controls.Add(panelOnlineUser);
+            this.InitPanelAllUser();
+            this.InitPanelOnlineUser();
+            CheckLoadAllUser = false;
+            CheckLoadOnlineUser = false;
         }
 
 
         private void gunaButtonOnline_Click(object sender, EventArgs e)
         {
-            AddFriendForm.panelListUserRight.Controls.Clear();;
+            ServerForm.panelOnlineUser.Controls.Clear();
+            panelOnlineUser.Show();
+            panelOnlineUser.BringToFront();
             for (int i = 0; i < Form1.UserUIs.Count; i++)
             {
                 if (Form1.UserUIs[i].GetStatus() == true)
                 {
-                    Form1.UserUIs[i].AddInfoUserIntoPanel();
+                    Form1.UserUIs[i].AddInfoUserIntoPanelOnlineUser();
                 }
             }
-            
         }
-
-        private void InitPanelListUser()
+        private void LoadListAllUser()
         {
-            AddFriendForm.panelListUserRight.Dock = DockStyle.Fill;
-            AddFriendForm.panelListUserRight.BackColor = Color.White;
-            AddFriendForm.panelListUserRight.Padding = new Padding(30, 20, 0, 0);
-            AddFriendForm.panelListUserRight.BringToFront();
+            for (int i = 0; i < Form1.UserUIs.Count; i++)
+            {
+                Form1.UserUIs[i].AddInfoUserIntoPanelAllUser();
+            }
+        }
+        private void InitPanelAllUser()
+        {
+            ServerForm.panelAllUser.Dock = DockStyle.Fill;
+            ServerForm.panelAllUser.BackColor = Color.White;
+            ServerForm.panelAllUser.Padding = new Padding(30, 20, 0, 0);
+            ServerForm.panelAllUser.BringToFront();
+        }
+        private void InitPanelOnlineUser()
+        {
+            ServerForm.panelOnlineUser.Dock = DockStyle.Fill;
+            ServerForm.panelOnlineUser.BackColor = Color.White;
+            ServerForm.panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
+            ServerForm.panelOnlineUser.BringToFront();
         }
 
         private void gunaButtonAll_Click(object sender, EventArgs e)
         {
-            AddFriendForm.panelListUserRight.Controls.Clear();
-
-            for (int i = 0; i < Form1.UserUIs.Count; i++)
+            //ServerForm.panelAllUser.Controls.Clear();
+            panelAllUser.Show();
+            panelAllUser.BringToFront();
+            if (!CheckLoadAllUser)
             {
-                 Form1.UserUIs[i].AddInfoUserIntoPanel();
-            
+                LoadListAllUser();
+                CheckLoadAllUser = true;
             }
         }
     }

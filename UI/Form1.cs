@@ -29,7 +29,7 @@ namespace UI
         public static UserForm userFormFocus = null;
         public static SocketClient client;
         public static TcpClient server;
-        public AddFriendForm serverUsersForm;
+        public ServerForm serverUsersForm;
         // Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
         // ex: Form1.client
 
@@ -45,20 +45,25 @@ namespace UI
             Form1.client = client;
             Form1.server = server;
             Form1.me = user;
+
             InitializeComponent();
-            this.Text = "LANMESSENGER";
-            serverUsersForm = new AddFriendForm();
-            serverUsersForm.TopLevel = false;
-            serverUsersForm.Dock = DockStyle.Fill;
-            panelRight.Controls.Add(serverUsersForm);
             LoadMyData();
             LoadDataUser();
-            AwaitReadData();
+            InitServerUsersForm();
+            AwaitReadData(); 
+        }
+
+        private void InitServerUsersForm()
+        {
+            this.Text = "LM";
+            serverUsersForm = new ServerForm();
+            serverUsersForm.TopLevel = false;
+            serverUsersForm.Dock = DockStyle.Fill;
+            panelRIGHT.Controls.Add(serverUsersForm);
         }
 
         private void LoadMyData()
         {
-           
             labelID.Text = me.Id;
             labelUSERNAME.Text = me.Name;
         }
@@ -95,7 +100,7 @@ namespace UI
                 if (datauser[i] == "") break;
                 string[] arr = datauser[i].Split(' ');
                 if (arr[1] == me.Name) { continue; }
-                UserUIs.Add(new UserUI(new User(arr[0], arr[1],bool.Parse(arr[2])), panelLISTUSER, panelRight));
+                UserUIs.Add(new UserUI(new User(arr[0], arr[1],bool.Parse(arr[2])), panelINTERACTED, panelRIGHT));
             }
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

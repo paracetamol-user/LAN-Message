@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panelLISTUSER = new System.Windows.Forms.Panel();
+            this.panelINTERACTED = new System.Windows.Forms.Panel();
             this.panelOPTION = new System.Windows.Forms.Panel();
             this.panelOPTIONNULL = new System.Windows.Forms.Panel();
             this.panelInfo = new System.Windows.Forms.Panel();
@@ -43,7 +43,7 @@
             this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.panelLANMESS = new System.Windows.Forms.Panel();
             this.ButtonLanMessenger = new Guna.UI2.WinForms.Guna2Button();
-            this.panelRight = new System.Windows.Forms.Panel();
+            this.panelRIGHT = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelOPTION.SuspendLayout();
             this.panelInfo.SuspendLayout();
@@ -57,7 +57,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelMenu.Controls.Add(this.panelLISTUSER);
+            this.panelMenu.Controls.Add(this.panelINTERACTED);
             this.panelMenu.Controls.Add(this.panelOPTION);
             this.panelMenu.Controls.Add(this.panelSEARCH);
             this.panelMenu.Controls.Add(this.panelLANMESS);
@@ -68,16 +68,16 @@
             this.panelMenu.Size = new System.Drawing.Size(362, 665);
             this.panelMenu.TabIndex = 1;
             // 
-            // panelLISTUSER
+            // panelINTERACTED
             // 
-            this.panelLISTUSER.AutoScroll = true;
-            this.panelLISTUSER.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
-            this.panelLISTUSER.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLISTUSER.Location = new System.Drawing.Point(0, 135);
-            this.panelLISTUSER.Margin = new System.Windows.Forms.Padding(4);
-            this.panelLISTUSER.Name = "panelLISTUSER";
-            this.panelLISTUSER.Size = new System.Drawing.Size(362, 437);
-            this.panelLISTUSER.TabIndex = 3;
+            this.panelINTERACTED.AutoScroll = true;
+            this.panelINTERACTED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
+            this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelINTERACTED.Location = new System.Drawing.Point(0, 135);
+            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
+            this.panelINTERACTED.Name = "panelINTERACTED";
+            this.panelINTERACTED.Size = new System.Drawing.Size(362, 437);
+            this.panelINTERACTED.TabIndex = 3;
             // 
             // panelOPTION
             // 
@@ -234,13 +234,12 @@
             // 
             // ButtonLanMessenger
             // 
-            this.ButtonLanMessenger.Animated = true;
             this.ButtonLanMessenger.BackColor = System.Drawing.Color.Black;
             this.ButtonLanMessenger.CheckedState.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.CustomImages.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLanMessenger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
-            this.ButtonLanMessenger.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonLanMessenger.Font = new System.Drawing.Font("Corbel", 16.2F);
             this.ButtonLanMessenger.ForeColor = System.Drawing.Color.DodgerBlue;
             this.ButtonLanMessenger.HoverState.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Image = ((System.Drawing.Image)(resources.GetObject("ButtonLanMessenger.Image")));
@@ -254,22 +253,22 @@
             this.ButtonLanMessenger.Text = "Lan Messenger";
             this.ButtonLanMessenger.Click += new System.EventHandler(this.ButtonLanMessenger_Click);
             // 
-            // panelRight
+            // panelRIGHT
             // 
-            this.panelRight.BackColor = System.Drawing.Color.White;
-            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(362, 0);
-            this.panelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(656, 665);
-            this.panelRight.TabIndex = 9;
+            this.panelRIGHT.BackColor = System.Drawing.Color.White;
+            this.panelRIGHT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRIGHT.Location = new System.Drawing.Point(362, 0);
+            this.panelRIGHT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelRIGHT.Name = "panelRIGHT";
+            this.panelRIGHT.Size = new System.Drawing.Size(656, 665);
+            this.panelRIGHT.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 665);
-            this.Controls.Add(this.panelRight);
+            this.Controls.Add(this.panelRIGHT);
             this.Controls.Add(this.panelMenu);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(885, 587);
@@ -295,7 +294,7 @@
         private System.Windows.Forms.Panel panelLANMESS;
         private System.Windows.Forms.Panel panelSEARCH;
         private Guna.UI2.WinForms.Guna2TextBox textBoxSearch;
-        private System.Windows.Forms.Panel panelLISTUSER;
+        private System.Windows.Forms.Panel panelINTERACTED;
         private System.Windows.Forms.Panel panelOPTION;
         private System.Windows.Forms.Panel panelPICTUREOPTION;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -303,7 +302,7 @@
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelUSERNAME;
         private System.Windows.Forms.Panel panelOPTIONNULL;
-        private System.Windows.Forms.Panel panelRight;
+        private System.Windows.Forms.Panel panelRIGHT;
         private Guna.UI2.WinForms.Guna2CirclePictureBox gunaButtonAvatar1;
         private Guna.UI2.WinForms.Guna2Button ButtonLanMessenger;
     }

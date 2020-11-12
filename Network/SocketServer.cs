@@ -224,7 +224,7 @@ namespace Communication
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-                clientInvalid.Remove(client);
+      
 
 
             }
