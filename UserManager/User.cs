@@ -11,20 +11,24 @@ namespace UserManager
     {
         private string name;
         private string id;
+        private bool status;
         public User()
         {
             this.name = "";
             this.id = "";
+            this.status = false;
         }
         public User(string name)
         {
             this.name =name;
             this.id = "";
+            this.status = false;
         }
-        public User(string id , string name)
+        public User(string id , string name, bool status)
         {
             this.name = name;
             this.id = id;
+            this.status = status ;
         }
         public string Name
         {
@@ -46,6 +50,17 @@ namespace UserManager
             set
             {
                 this.id = value;
+            }
+        }
+        public bool Status
+        {
+            get
+            {
+                return this.status;
+            }
+            set
+            {
+                this.status = value;
             }
         }
     }

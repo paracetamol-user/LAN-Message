@@ -114,7 +114,7 @@ namespace Communication
             try
             {
                 StreamReader reader = new StreamReader(mClient.GetStream());
-                char[] buff = new char[64];
+                char[] buff = new char[1000];
                 int readByCount = 0;
                     readByCount = await reader.ReadAsync(buff, 0, buff.Length);
                     if (readByCount <= 0)

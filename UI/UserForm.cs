@@ -24,9 +24,14 @@ namespace UI
             this.Visible = false;
             this.user = user;
             InitUserForm();
-            
         }
-
+        public void SendMessage()
+        {
+            string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+            Form1.client.SendToServer(data);
+            listViewCHAT.Items.Add(Form1.me.Name + ": " + TextBoxEnterChat.Text);
+            TextBoxEnterChat.Text = "";
+        }
         private void InitUserForm()
         {
             this.labelID.Text = "#"+user.Id;
@@ -36,10 +41,7 @@ namespace UI
 
         private void PictureBoxSend_Click(object sender, EventArgs e)
         {
-            string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-            Form1.client.SendToServer(data);
-            listViewCHAT.Items.Add(Form1.me.Name + ": " + TextBoxEnterChat.Text);
-            TextBoxEnterChat.Text = "";
+            SendMessage();
         }
 
         public UserForm()
@@ -63,5 +65,16 @@ namespace UI
         {
             panelRight.Controls.Add(this);
         }
+
+        private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendMessage();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+       
     }
 }
