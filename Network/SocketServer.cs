@@ -19,16 +19,17 @@ namespace Communication
         IPAddress mIP;
         int mPort;
         TcpListener mListener;
-        List<TcpClient> clients;
-        List<TcpClient> clientInvalid;
-        List<string> idInvalid;
+        List<UserClient> clients;
+        List<UserClient> clientInvalid;
+        //List<string> idInvalid;
         
         //Data Source = DESKTOP - TSN7OH7; Initial Catalog = LANCHAT; Integrated Security = True
         //Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;
         // Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True
-        string connString = @"Server=DESKTOP-BM0V9BJ;Database=LANCHAT;Integrated Security=True;";
+        string connString = @"Server=DESKTOP-TSN7OH7;Database=LANCHAT;Integrated Security=True;User ID=sa;Password=1";
         string queryLogin = "select * from USERS";
-        string queryStatus = "UPDATE USERS SET TRANGTHAI = '1' WHERE ID = ";
+        string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
+        string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
         SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
@@ -52,9 +53,9 @@ namespace Communication
 
         public SocketServer()
         {
-            clients = new List<TcpClient>();
-            clientInvalid = new List<TcpClient>();
-            idInvalid = new List<string>();
+            clients = new List<UserClient>();
+            clientInvalid = new List<UserClient>();
+            //idInvalid = new List<string>();
         }
 
         public async Task StartForIncommingConnection(IPAddress addr = null, int port = 5000)
@@ -78,12 +79,13 @@ namespace Communication
 
                 while (KeepRunning)
                 {
-                    TcpClient returnedByAccept = await mListener.AcceptTcpClientAsync();
+                    UserClient returnedByAccept = new UserClient();
+                    returnedByAccept.client_ = await mListener.AcceptTcpClientAsync();
                     clients.Add(returnedByAccept);
                     System.Diagnostics.Debug.WriteLine("Client connected, count: {0}", clients.Count);
                     WorkWithClient(returnedByAccept);
                     ClientConnectedEventArgs eaClientConnected;
-                    eaClientConnected = new ClientConnectedEventArgs(returnedByAccept.Client.ToString());
+                    eaClientConnected = new ClientConnectedEventArgs(returnedByAccept.client_.Client.ToString());
                     OnRaiseClientConnectedEvent(eaClientConnected);
                 }
             }
@@ -92,12 +94,12 @@ namespace Communication
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-        private async Task RespondToClient(TcpClient client, string received)
+        private async Task RespondToClient(UserClient client, string received)
         {
             string[] data = received.Split('%');
             byte[] buffMessage;
             bool check = true;
-            string idfocus;
+
             
             if (data[0] == "LOGIN")
             {
@@ -114,16 +116,19 @@ namespace Communication
                         if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
                         {
                             buffMessage = Encoding.ASCII.GetBytes("LOGINOKE "+reader.GetString(0));
-                            await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            client.id_ = reader.GetString(0);
                             clientInvalid.Add(client);
-                            idInvalid.Add(reader.GetString(0));
-                            idfocus = reader.GetString(0);
-
-                            string temp = queryStatus + reader.GetString(0);
-                            SqlCommand commandstatus = new SqlCommand(temp, connection);
-
-                            //SendToAll("ONLINE " + reader.GetString(0));
+                            SendToAll(client, "ONLINE%" + client.id_.ToString());
+                            //string temp = queryStatusOnline + client.id_.ToString();
                             connection.Close();
+                            connection = new SqlConnection(connString);
+                            connection.Open();
+                            SqlCommand commandstatus = new SqlCommand(queryStatusOnline, connection);
+                            commandstatus.Parameters.AddWithValue("@id", client.id_);
+                            commandstatus.ExecuteNonQuery();
+                            connection.Close();
+                            
                             check = false;
                             break;
                         }
@@ -131,8 +136,9 @@ namespace Communication
                     if (check != false)
                     {
                         buffMessage = Encoding.ASCII.GetBytes("LOGIN ERR");
-                        await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                        await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                     }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -155,7 +161,7 @@ namespace Communication
                         arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " +reader.GetBoolean(7).ToString()+ "%";
                     }
                     buffMessage = Encoding.ASCII.GetBytes(arr);
-                    await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                    await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                 }
                 catch (Exception ex)
                 {
@@ -163,17 +169,18 @@ namespace Communication
                 }
             } 
             else 
-            if (data[0] == "SEND")
+            if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+                // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
             {
                 int i = 0;
-                foreach (var item in idInvalid)
+                foreach (var item in clientInvalid)
                 {
-                    if (item.ToString() == data[2])
+                    if (item.id_.ToString() == data[2])
                     {
                         try
                         {
-                            buffMessage = Encoding.ASCII.GetBytes(data[3] +"%" + data[1]);
-                            await clientInvalid[i].GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            buffMessage = Encoding.ASCII.GetBytes("MESSAGE"+"%"+data[3] +"%" + data[1]);
+                            await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             return;
                         }
                         catch (Exception ex)
@@ -185,17 +192,17 @@ namespace Communication
                 }
             }
         }
-        public async Task WorkWithClient(TcpClient client)
+        public async Task WorkWithClient(UserClient client)
         {
             NetworkStream stream = null;
             StreamReader reader = null;
 
             try
             {
-                stream = client.GetStream();
+                stream = client.client_.GetStream();
                 reader = new StreamReader(stream);
 
-                char[] buff = new char[1000];
+                char[] buff = new char[200];
 
                 while (true)
                 {
@@ -208,14 +215,12 @@ namespace Communication
                         System.Diagnostics.Debug.WriteLine("Socket disconnected");
                         break;
                     }
-
-
                     string received = new string(buff).Trim('\0', '\r', '\n');
                     await RespondToClient(client, received);
 
                     System.Diagnostics.Debug.WriteLine("Received message: " + received);
                     OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
-                        client.Client.RemoteEndPoint.ToString(),
+                        client.client_.Client.RemoteEndPoint.ToString(),
                         received
                     ));
                     Array.Clear(buff, 0, buff.Length);
@@ -224,13 +229,18 @@ namespace Communication
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-      
-
-
+                string getId = client.id_;
+                SendToAll(client, "OFFLINE%" + getId);
+                clientInvalid.Remove(client);
+                connection = new SqlConnection(connString);
+                connection.Open();
+                SqlCommand commandstatus = new SqlCommand(queryStatusOffline, connection);
+                commandstatus.Parameters.AddWithValue("@id", getId);
+                commandstatus.ExecuteNonQuery();
             }
         }
 
-        private void RemoveClient(TcpClient client)
+        private void RemoveClient(UserClient client)
         {
             if (clients.Contains(client))
             {
@@ -246,8 +256,8 @@ namespace Communication
                 if (mListener != null)
                     mListener.Stop();
 
-                foreach (TcpClient client in clients)
-                    client.Close();
+                foreach (UserClient client in clients)
+                    client.client_.Close();
                 clients.Clear();
             }
             catch (Exception ex)
@@ -256,17 +266,17 @@ namespace Communication
             }
         }
 
-        public async void SendToAll(string message)
+        public async void SendToAll(UserClient clientFocus,string message)
         {
             if (string.IsNullOrEmpty(message))
                 return;
-
             try
             {
                 byte[] buffMessage = Encoding.ASCII.GetBytes(message);
-                foreach (TcpClient client in clientInvalid)
+                foreach (UserClient client in clientInvalid)
                 {
-                    await client.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                    if (client != clientFocus)
+                    await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                 }
             }
             catch (Exception ex)

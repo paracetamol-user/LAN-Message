@@ -60,6 +60,18 @@ namespace UI
             this.panelRIGHT.Controls.Add(userForm);
             //this.panelINTERACTED.Controls.Add(panelUserLeft);
         }
+        public void ChangeStatusOnline()
+        {
+            labelStatusAll.Text = "Online";
+            labelStatusLeft.Text = "Online";
+            labelStatusOnline.Text = "Online";
+        }
+        public void ChangeStatusOffline()
+        {
+            labelStatusAll.Text = "Offline";
+            labelStatusLeft.Text = "Offline";
+            labelStatusOnline.Text = "Offline";
+        }
         private void InitpanelUserAll()
         {
             panelUserAll = new Panel();
@@ -175,7 +187,8 @@ namespace UI
             labelNameLeft.Visible = true;
 
             labelStatusLeft = new Label();
-            labelStatusLeft.Text = "Offline";
+            if (user.Status == false) labelStatusLeft.Text = "Offline";
+            else labelStatusLeft.Text = "Online";
             labelStatusLeft.ForeColor = Color.Black;
             labelStatusLeft.Font = new Font("Century", 8);
             labelStatusLeft.Dock = DockStyle.Fill;

@@ -74,14 +74,46 @@ namespace UI
             while (true)
             {
                 string[] data = (await client.ReadDataAsync(server)).Split('%');
-                string mess = data[0];
-                string id = data[1].Trim('\0');
-                for (int i = 0; i < UserUIs.Count; i++)
+                for (int i = 0; i < data.Length; i++)
                 {
-                    if (UserUIs[i].GetId() == id)
+                    data[i] = data[i].Trim('\0');
+                }
+                string action = data[0];
+ 
+                if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
+                {
+                    for (int i = 0; i < UserUIs.Count; i++)
                     {
-                        UserUIs[i].AddMessage(mess);
-                        break;
+                        if (UserUIs[i].GetId() == data[2])
+                        {
+                            UserUIs[i].AddMessage(data[1]);
+                            break;
+                        }
+                    }
+                }
+                else
+                if (action == "ONLINE")
+                {
+                    for (int i = 0; i < UserUIs.Count; i++)
+                    {
+                        if (UserUIs[i].GetId() == data[1])
+                        {
+                            UserUIs[i].SetStatus(true);
+                            UserUIs[i].ChangeStatusOnline();
+                            break;
+                        }
+                    }
+                }
+                if (action == "OFFLINE")
+                {
+                    for (int i = 0; i < UserUIs.Count; i++)
+                    {
+                        if (UserUIs[i].GetId() == data[1])
+                        {
+                            UserUIs[i].SetStatus(false);
+                            UserUIs[i].ChangeStatusOffline();
+                            break;
+                        }
                     }
                 }
             }
@@ -119,6 +151,8 @@ namespace UI
             serverUsersForm.Show();
             serverUsersForm.BringToFront();
         }
+
+      
     }
 }
 
