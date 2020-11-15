@@ -25,8 +25,8 @@ namespace Server
 
         private void btnSendToAll_Click(object sender, EventArgs e)
         {
-            mServer.SendToAll(txtBoxMessage.Text);
-            txtBoxMessage.Text = string.Empty;
+            //mServer.SendToAll(txtBoxMessage.Text);
+            //txtBoxMessage.Text = string.Empty;
         }
 
         private void btnStop_Click(object sender, EventArgs e)

@@ -17,7 +17,7 @@ namespace UI
     public partial class LoginForm : Form
     {
         //Info Server
-        private string ipServer = "172.17.25.117";
+        private string ipServer = "192.168.1.3";
         private string portSever = "5000";
 
         SocketClient client;
@@ -53,7 +53,7 @@ namespace UI
             }
             else
             {
-                label1.Text = "Tai khoan hoac mat khau khong chinh xac";
+                label2.Text = "Tai khoan hoac mat khau khong chinh xac";
             }
         }
 

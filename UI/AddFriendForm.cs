@@ -17,22 +17,26 @@ namespace UI
         public static Panel panelOnlineUser;
         private bool CheckLoadAllUser;
         private bool CheckLoadOnlineUser;
+        private int countUserAll = 0 ;
+        private int countUserOnline = 0;
         public ServerForm()
         {
             InitializeComponent();
-            panelAllUser = new Panel();
-            panelOnlineUser = new Panel();
+            panelAllUser = new Panel(); panelAllUser.AutoScroll = true;
+            panelOnlineUser = new Panel(); panelOnlineUser.AutoScroll = true;
             this.Controls.Add(panelAllUser);
             this.Controls.Add(panelOnlineUser);
             this.InitPanelAllUser();
             this.InitPanelOnlineUser();
             CheckLoadAllUser = false;
             CheckLoadOnlineUser = false;
+            labelCOUNT.Text = "";
         }
 
 
         private void gunaButtonOnline_Click(object sender, EventArgs e)
         {
+            countUserOnline = 0;
             ServerForm.panelOnlineUser.Controls.Clear();
             panelOnlineUser.Show();
             panelOnlineUser.BringToFront();
@@ -41,8 +45,10 @@ namespace UI
                 if (Form1.UserUIs[i].GetStatus() == true)
                 {
                     Form1.UserUIs[i].AddInfoUserIntoPanelOnlineUser();
+                    countUserOnline++;
                 }
             }
+            labelCOUNT.Text = "Online - " + countUserOnline.ToString();
         }
         private void LoadListAllUser()
         {
@@ -50,6 +56,7 @@ namespace UI
             {
                 Form1.UserUIs[i].AddInfoUserIntoPanelAllUser();
             }
+            countUserAll = Form1.UserUIs.Count;
         }
         private void InitPanelAllUser()
         {
@@ -76,6 +83,7 @@ namespace UI
                 LoadListAllUser();
                 CheckLoadAllUser = true;
             }
+            labelCOUNT.Text = "All - " +  countUserAll.ToString();
         }
     }
 }
