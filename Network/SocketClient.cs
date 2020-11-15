@@ -133,5 +133,31 @@ namespace Communication
             }
             return null;
         }
+
+        // FTP
+        int bufferSize = 1024;
+        public async Task SendFileToServer(string path)
+        {
+            byte[] data = File.ReadAllBytes(path);
+
+            // Build package
+            byte[] dataLength = BitConverter.GetBytes(data.Length);
+            byte[] package = new byte[4 + data.Length];
+            dataLength.CopyTo(package, 0);
+            data.CopyTo(package, 4);
+
+            // Send to server
+            int byteSent = 0;
+            int byteLeft = package.Length;
+
+            while (byteLeft > 0)
+            {
+                int nextPackageSize = byteLeft > bufferSize ? bufferSize : byteLeft;
+                mClient.GetStream().Write(package, byteSent, nextPackageSize);
+                byteSent += nextPackageSize;
+                byteLeft -= nextPackageSize;
+            }
+
+        }
     }
 }
