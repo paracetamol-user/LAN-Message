@@ -284,5 +284,45 @@ namespace Communication
                 Debug.WriteLine(ex.ToString());
             }
         }
+
+        // FTP 
+        int bufferSize = 1024;
+        private async void ReceiveData(TcpClient paramClient)
+        {
+            NetworkStream stream = paramClient.GetStream();
+
+            try
+            {
+
+                int byteRead;
+                int allByteRead = 0;
+                // Read length
+                byte[] length = new byte[16];
+                byteRead = stream.Read(length, 0, 16);
+                int dataLength = BitConverter.ToInt32(length, 0);
+
+                // Read data
+                int byteLeft = dataLength;
+                byte[] data = new byte[dataLength];
+
+                while (byteLeft > 0)
+                {
+                    int nextPackageSize = byteLeft > bufferSize ? bufferSize : byteLeft;
+                    byteRead = stream.Read(data, allByteRead, nextPackageSize);
+                    allByteRead += byteRead;
+                    byteLeft -= byteRead;
+                }
+
+                // Save image
+                File.WriteAllBytes(@"C:\Users\admin\Desktop\Server_Folder\movie.mkv", data);
+
+                // Report
+                System.Diagnostics.Debug.WriteLine("File received");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
     }
 }
