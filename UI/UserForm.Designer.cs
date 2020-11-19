@@ -50,7 +50,8 @@
             this.labelName = new System.Windows.Forms.Label();
             this.gunaButtonAvatar2 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelListFile = new System.Windows.Forms.Panel();
+            this.panelListChat = new System.Windows.Forms.Panel();
             this.panelENTERCHAT.SuspendLayout();
             this.panelCHATBOX.SuspendLayout();
             this.panelENTERCHATOPTION.SuspendLayout();
@@ -138,6 +139,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panelSEND
             // 
@@ -312,14 +314,25 @@
             this.panel3.Size = new System.Drawing.Size(419, 1);
             this.panel3.TabIndex = 3;
             // 
-            // panel2
+            // panelListFile
             // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 59);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(419, 333);
-            this.panel2.TabIndex = 6;
+            this.panelListFile.AutoScroll = true;
+            this.panelListFile.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelListFile.Location = new System.Drawing.Point(0, 326);
+            this.panelListFile.Name = "panelListFile";
+            this.panelListFile.Padding = new System.Windows.Forms.Padding(20, 5, 0, 10);
+            this.panelListFile.Size = new System.Drawing.Size(419, 66);
+            this.panelListFile.TabIndex = 6;
+            this.panelListFile.Visible = false;
+            // 
+            // panelListChat
+            // 
+            this.panelListChat.AutoScroll = true;
+            this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelListChat.Location = new System.Drawing.Point(0, 59);
+            this.panelListChat.Name = "panelListChat";
+            this.panelListChat.Size = new System.Drawing.Size(419, 267);
+            this.panelListChat.TabIndex = 7;
             // 
             // UserForm
             // 
@@ -327,7 +340,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(419, 448);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelListChat);
+            this.Controls.Add(this.panelListFile);
             this.Controls.Add(this.panelENTERCHAT);
             this.Controls.Add(this.panelUSERINFO);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -364,7 +378,6 @@
         private System.Windows.Forms.PictureBox pictureBoxSend;
         private System.Windows.Forms.Panel panelUSERINFO;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelAll;
         private System.Windows.Forms.Panel panelOPTIONUSER;
@@ -378,5 +391,7 @@
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelName;
         private Guna.UI2.WinForms.Guna2CirclePictureBox gunaButtonAvatar2;
+        private System.Windows.Forms.Panel panelListFile;
+        private System.Windows.Forms.Panel panelListChat;
     }
 }
