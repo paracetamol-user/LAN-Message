@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using UserManager;
 using User = UserManager.User;
 using Guna.UI2.WinForms;
+using System.IO;
+
 namespace UI
 {
     public partial class UserForm : Form
@@ -21,6 +23,7 @@ namespace UI
         private List<Panel> BoxChats;
         private int id;
         private int locationControl = 0;
+        private List<FileInfo> files;
         public UserForm(UserManager.User user)
         {
             InitializeComponent();
@@ -28,7 +31,8 @@ namespace UI
             this.user = user;
             this.id = 0;
             BoxChats = new List<Panel>();
-            InitUserForm();
+            files = new List<FileInfo>();
+        InitUserForm();
         }
         private Panel GetNewPanelBoxChat(User userfocus , string tinnhan)
         {
@@ -114,7 +118,7 @@ namespace UI
             return tempPanel;
         }
 
-        public void SendMessage()
+        public async void SendMessage()
         {
             // Gửi tin nhắn qua server
             string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
@@ -124,10 +128,22 @@ namespace UI
             tempPanel.AutoSize = true;
             tempPanel = GetNewPanelBoxChat(Form1.me, this.TextBoxEnterChat.Text);
             //tempPanel.Dock = DockStyle.Top;
-            this.panel2.Controls.Add(tempPanel);
+            this.panelListChat.Controls.Add(tempPanel);
             this.BoxChats.Add(tempPanel);
             //clear textbox nhập chat
             TextBoxEnterChat.Text = "";
+        }
+        public async void SendFile()
+        {
+            if (this.panelListFile.Controls.Count > 0)
+            {
+                foreach (var item in files)
+                {
+                    //Gửi
+                    string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+                    await Form1.client.SendToServer(data);
+                }
+            }
         }
         private void InitUserForm()
         {
@@ -136,10 +152,13 @@ namespace UI
             this.pictureBoxSend.Click += PictureBoxSend_Click;
         }
 
-        private void PictureBoxSend_Click(object sender, EventArgs e)
+        private async void PictureBoxSend_Click(object sender, EventArgs e)
         {
+            //SendFile();
             SendMessage();
         }
+
+        
 
         public UserForm()
         {
@@ -158,7 +177,7 @@ namespace UI
         {
             Panel tempPanel = new Panel();
             tempPanel = GetNewPanelBoxChat(user, str);
-            this.panel2.Controls.Add(tempPanel);
+            this.panelListChat.Controls.Add(tempPanel);
             this.BoxChats.Add(tempPanel);
         }
         public void AddFrom(Panel panelRight)
@@ -175,6 +194,38 @@ namespace UI
             }
         }
 
-       
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter =
+                "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
+                "All files (*.*)|*.*";
+
+            openFileDialog.Multiselect = true;
+            //openFileDialog.Title = "Select Photos";
+            
+            DialogResult dr = openFileDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                foreach (string item in openFileDialog.FileNames)
+                {
+                    try
+                    {
+                        FileInfo temp = new FileInfo(item);
+                        files.Add(temp);
+                        PanelFile x = new PanelFile(panelListFile,files, temp);
+                        this.panelListFile.Controls.Add(x);
+                        x.Dock = DockStyle.Left;
+                        x._FileName = temp.Name;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                panelListFile.Visible = true;
+            }
+
+        }
     }
 }
