@@ -15,6 +15,7 @@ namespace UI
         private Panel panelListFile;
         private List<FileInfo> files;
         private FileInfo fileInfo;
+        private string fileId;
         public PanelFile()
         {
             InitializeComponent();
@@ -37,7 +38,6 @@ namespace UI
                 this.labelFileName.Text = value;
             }
         }
-
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             if (panelListFile.Contains(this))
@@ -45,6 +45,7 @@ namespace UI
                 panelListFile.Controls.Remove(this);
             }
             this.files.Remove(fileInfo);
+            if (this.panelListFile.Controls.Count < 1) this.panelListFile.Visible = false;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Communication
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
+        string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
         SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
@@ -94,13 +95,13 @@ namespace Communication
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-        private async Task RespondToClient(UserClient client, string received)
+        private async Task<bool> RespondToClient(UserClient client, string received, byte[] buff, InfoByte infoByte, int nReturn)
         {
             string[] data = received.Split('%');
             byte[] buffMessage;
             bool check = true;
 
-            
+
             if (data[0] == "LOGIN")
             {
                 try
@@ -108,14 +109,14 @@ namespace Communication
                     connection = new SqlConnection(connString);
                     connection.Open();
                     command = new SqlCommand(queryLogin, connection);
-                   
+
                     reader = command.ExecuteReader();
                     while (reader.HasRows)
                     {
                         if (reader.Read() == false) break;
                         if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
                         {
-                            buffMessage = Encoding.ASCII.GetBytes("LOGINOKE "+reader.GetString(0));
+                            buffMessage = Encoding.ASCII.GetBytes("LOGINOKE " + reader.GetString(0));
                             await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             client.id_ = reader.GetString(0);
                             clientInvalid.Add(client);
@@ -128,7 +129,7 @@ namespace Communication
                             commandstatus.Parameters.AddWithValue("@id", client.id_);
                             commandstatus.ExecuteNonQuery();
                             connection.Close();
-                            
+
                             check = false;
                             break;
                         }
@@ -138,12 +139,13 @@ namespace Communication
                         buffMessage = Encoding.ASCII.GetBytes("LOGIN ERR");
                         await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.ToString());
                 }
+                return true;
             }
             else
             if (data[0] == "LOADUSERDATA")
@@ -158,7 +160,7 @@ namespace Communication
                     while (reader.HasRows)
                     {
                         if (reader.Read() == false) break;
-                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " +reader.GetBoolean(7).ToString()+ "%";
+                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(7).ToString() + "%";
                     }
                     buffMessage = Encoding.ASCII.GetBytes(arr);
                     await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
@@ -167,10 +169,11 @@ namespace Communication
                 {
                     Debug.WriteLine(ex.ToString());
                 }
-            } 
-            else 
+                return true;
+            }
+            else
             if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-                // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
+                                   // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
             {
                 int i = 0;
                 foreach (var item in clientInvalid)
@@ -179,9 +182,9 @@ namespace Communication
                     {
                         try
                         {
-                            buffMessage = Encoding.ASCII.GetBytes("MESSAGE"+"%"+data[3] +"%" + data[1]);
+                            buffMessage = Encoding.ASCII.GetBytes("MESSAGE" + "%" + data[3] + "%" + data[1]);
                             await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
-                            return;
+                            return true;
                         }
                         catch (Exception ex)
                         {
@@ -189,25 +192,80 @@ namespace Communication
                         }
                     }
                     i++;
+                    return true;
                 }
+            }else
+            if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
+            {
+                string queryFINDSOURCE = "SELECT * FROM TINNHAN";
+                string FILEID = data[1];
+                string FILENAME = data[2];
+                string ID = data[3];
+                string path = "";
+                string IDNGUOIGUI= "";
+                connection = new SqlConnection(this.connString);
+                connection.Open();
+                command = new SqlCommand(queryFINDSOURCE, connection);
+                //command.Parameters.AddWithValue("@MATINNHAN", FILEID.ToString());
+                reader = command.ExecuteReader();
+                while (reader.HasRows)
+                {
+                    if (reader.Read() == false) break;
+                    if (reader.GetString(0) == FILEID)
+                    {
+                        path = reader.GetString(3).ToString();
+                        IDNGUOIGUI = reader.GetString(2).ToString();
+                        break;
+                    }
+                }
+                connection.Close();
+                FileInfo fileInfo = new FileInfo(path);
+                byte[] fileData = File.ReadAllBytes(fileInfo.FullName);
+                
+                buffMessage = Encoding.ASCII.GetBytes("FILE" + "%" + FILEID + "%" + FILENAME + "%"+ fileData.Length.ToString()+"%" + fileInfo.Extension.ToString()+"%" + IDNGUOIGUI);
+                await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+               
+                byte[] package = new byte[fileData.Length];
+                fileData.CopyTo(package, 0);
+                SendFileToClient(package, client);
+                return true;
+            }
+            return false;
+        }
+
+        private async Task SendFileToClient(byte[] package , UserClient client)
+        {
+            int byteSent = 0;
+            int byteLeft = package.Length;
+            int nextPackageSize = 0;
+            while (byteLeft>0)
+            {
+                if (byteLeft > 1024) nextPackageSize = 1024;
+                else nextPackageSize = byteLeft;
+                client.client_.GetStream().WriteAsync(package, byteSent, nextPackageSize);
+                byteSent += nextPackageSize;
+                byteLeft-=nextPackageSize;
             }
         }
+
         public async Task WorkWithClient(UserClient client)
         {
             NetworkStream stream = null;
             StreamReader reader = null;
-
+            InfoByte infoByte = new InfoByte();
+            byte[] dataFile = null;
             try
             {
                 stream = client.client_.GetStream();
                 reader = new StreamReader(stream);
 
-                char[] buff = new char[200];
+                //byte[] buff = new byte[1024];
 
                 while (true)
                 {
+                    byte[] buff = new byte[1024];
                     System.Diagnostics.Debug.WriteLine("ready");
-                    int nReturn = await reader.ReadAsync(buff, 0, buff.Length);
+                    int nReturn = await stream.ReadAsync(buff, 0, buff.Length);
                     System.Diagnostics.Debug.WriteLine("Returned: ", nReturn);
                     if (nReturn == 0)
                     {
@@ -215,9 +273,79 @@ namespace Communication
                         System.Diagnostics.Debug.WriteLine("Socket disconnected");
                         break;
                     }
-                    string received = new string(buff).Trim('\0', '\r', '\n');
-                    await RespondToClient(client, received);
-
+                    string received = System.Text.Encoding.UTF8.GetString(buff, 0, nReturn).Trim('\0','\t','\r','\n');
+                    bool temp = await RespondToClient(client, received, buff, infoByte, nReturn);
+                    if (temp == false)
+                    {
+                        string[] data = received.Split('%');
+                        if (data[0] == "STARTFILE")
+                        {
+                            infoByte = new InfoByte();
+                            infoByte.Name = data[1];
+                            infoByte.ByteLeft = int.Parse(data[2]);
+                            infoByte.Extension = data[3];
+                            infoByte.ID = data[4];   
+                            dataFile = new byte[infoByte.ByteLeft];
+       
+                        }
+                        else
+                        {
+                            Array.Resize(ref buff, nReturn);
+                            if (dataFile.Length < infoByte.AllByteRead + nReturn)
+                            {
+                                Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
+                            }
+                            buff.CopyTo(dataFile, infoByte.AllByteRead);
+                            
+                            infoByte.AllByteRead = infoByte.AllByteRead + nReturn;
+                            if (infoByte.AllByteRead == infoByte.ByteLeft)
+                            {
+                                // tạo id
+                                Guid Createid = Guid.NewGuid();
+                                
+                                File.WriteAllBytes(@"Z:\LAN-Message\Server\filedata\" +Createid.ToString()  + infoByte.Extension, dataFile);
+                                
+                                // them du lieu vao data base
+                                this.connection = new SqlConnection(this.connString);
+                                this.connection.Open();
+                                //cmd.Parameters.Add(new SqlParameter("@MaSP", txtMaSP.Text));
+                                //cmd.Parameters.Add(new SqlParameter("@TenSP", txtTenSP.Text));
+                                //cmd.Parameters.Add(new SqlParameter("@NgaySX", dtpNgaySX.Value.Date));
+                                //cmd.Parameters.Add(new SqlParameter("@NgayHH", dtpNgayHH.Value.Date));
+                                //cmd.Parameters.Add(new SqlParameter("@DonVi", txtDonVi.Text));
+                                //cmd.Parameters.Add(new SqlParameter("@DonGia", txtDonGia.Text));
+                                //cmd.Parameters.Add(new SqlParameter("@GhiChu", txtGhiChu.Text));
+                                this.command = new SqlCommand(queryMessage, connection);
+                                //this.command.CommandType = System.Data.CommandType.StoredProcedure;
+                                this.command.Parameters.Add(new SqlParameter("@id",Createid.ToString()));
+                                this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
+                                this.command.Parameters.Add(new SqlParameter("@idnguoinhan", infoByte.ID));
+                                this.command.Parameters.Add(new SqlParameter("@tinnhan", @"Z:\LAN-Message\Server\filedata\" + Createid.ToString() + infoByte.Extension.ToString())); 
+                                this.command.Parameters.Add(new SqlParameter("@loai", 1));
+                                this.command.ExecuteNonQuery();
+                                this.connection.Close();
+                                int i = 0;
+                                foreach (var item in clientInvalid)
+                                {
+                                    if (item.id_.ToString() == infoByte.ID)
+                                    {
+                                        try
+                                        {
+                                            byte[] bufferSendToClintReceive = System.Text.Encoding.ASCII.GetBytes("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
+                                            await item.client_.GetStream().WriteAsync(bufferSendToClintReceive, 0, bufferSendToClintReceive.Length);
+                                            break;
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Debug.WriteLine(ex.ToString());
+                                        }
+                                    }
+                                    i++;
+                                }
+                                
+                            }
+                        }
+                    }
                     System.Diagnostics.Debug.WriteLine("Received message: " + received);
                     OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
                         client.client_.Client.RemoteEndPoint.ToString(),
@@ -287,20 +415,22 @@ namespace Communication
 
         // FTP 
         int bufferSize = 1024;
-        private async void ReceiveData(TcpClient paramClient)
+        private async Task ReceiveData(UserClient paramClient)
         {
-            NetworkStream stream = paramClient.GetStream();
+            NetworkStream stream = paramClient.client_.GetStream();
 
             try
             {
-
                 int byteRead;
                 int allByteRead = 0;
                 // Read length
-                byte[] length = new byte[16];
-                byteRead = stream.Read(length, 0, 16);
-                int dataLength = BitConverter.ToInt32(length, 0);
+                byte[] length = new byte[4];
+                //byte[] extension = new byte[4];
 
+                byteRead = stream.Read(length, 0, 4);
+                //byteRead = stream.Read(extension, 0, 4);
+                int dataLength = BitConverter.ToInt32(length, 0);
+                //string ex = BitConverter.ToString(extension, 0);
                 // Read data
                 int byteLeft = dataLength;
                 byte[] data = new byte[dataLength];
@@ -314,7 +444,7 @@ namespace Communication
                 }
 
                 // Save image
-                File.WriteAllBytes(@"C:\Users\admin\Desktop\Server_Folder\movie.mkv", data);
+                File.WriteAllBytes(@"C:\Users\datng\OneDrive\computer.png", data);
 
                 // Report
                 System.Diagnostics.Debug.WriteLine("File received");

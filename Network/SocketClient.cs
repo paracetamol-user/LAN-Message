@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Communication
@@ -114,7 +115,7 @@ namespace Communication
             try
             {
                 StreamReader reader = new StreamReader(mClient.GetStream());
-                char[] buff = new char[1000];
+                char[] buff = new char[1024];
                 int readByCount = 0;
                     readByCount = await reader.ReadAsync(buff, 0, buff.Length);
                     if (readByCount <= 0)
@@ -136,20 +137,11 @@ namespace Communication
 
         // FTP
         int bufferSize = 1024;
-        public async Task SendFileToServer(string path)
+        public async Task SendFileToServer(byte[] package)
         {
-            byte[] data = File.ReadAllBytes(path);
-
-            // Build package
-            byte[] dataLength = BitConverter.GetBytes(data.Length);
-            byte[] package = new byte[4 + data.Length];
-            dataLength.CopyTo(package, 0);
-            data.CopyTo(package, 4);
-
             // Send to server
             int byteSent = 0;
             int byteLeft = package.Length;
-
             while (byteLeft > 0)
             {
                 int nextPackageSize = byteLeft > bufferSize ? bufferSize : byteLeft;
@@ -157,7 +149,6 @@ namespace Communication
                 byteSent += nextPackageSize;
                 byteLeft -= nextPackageSize;
             }
-
         }
     }
 }
