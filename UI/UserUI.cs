@@ -60,6 +60,10 @@ namespace UI
             this.panelRIGHT.Controls.Add(userForm);
             //this.panelINTERACTED.Controls.Add(panelUserLeft);
         }
+        public void AddPanelFile(string tempId, string tempName)
+        {
+            this.userForm.AddFileToListChat(tempId , tempName);
+        }
         public void ChangeStatusOnline()
         {
             labelStatusAll.Text = "Online";

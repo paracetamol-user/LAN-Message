@@ -34,6 +34,17 @@ namespace UI
             files = new List<FileInfo>();
         InitUserForm();
         }
+        public void AddFileToListChat(string tempId, string tempName)
+        {
+            PanelFileDownLoad panelFileDownLoad = new PanelFileDownLoad();
+            panelFileDownLoad._FileName = tempName;
+            panelFileDownLoad._FileId = tempId;
+            panelFileDownLoad.PanelListChat = this.panelListChat;
+            panelFileDownLoad.User = this.user;
+            panelFileDownLoad.Dock = DockStyle.Top;
+            panelFileDownLoad.Init();
+            this.panelListChat.Controls.Add(panelFileDownLoad);
+        }
         private Panel GetNewPanelBoxChat(User userfocus , string tinnhan)
         {
             Panel tempPanel = new Panel();
@@ -117,7 +128,6 @@ namespace UI
             //tempPanel.AutoSize = true;
             return tempPanel;
         }
-
         public async void SendMessage()
         {
             // Gửi tin nhắn qua server
@@ -139,10 +149,24 @@ namespace UI
             {
                 foreach (var item in files)
                 {
+                    PanelFileDownLoad panelFileDownLoad = new PanelFileDownLoad();
+                    panelFileDownLoad.Dock = DockStyle.Top;
+                    panelFileDownLoad.User = user;
+                    panelFileDownLoad._FileName = item.Name;
+                    panelFileDownLoad.FileInfo = item;
+                    this.panelListChat.Controls.Add(panelFileDownLoad);
                     //Gửi
-                    string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-                    await Form1.client.SendToServer(data);
+                    byte[] data = File.ReadAllBytes(item.FullName);
+         
+                    byte[] package = new byte[data.Length];
+                    data.CopyTo(package, 0);
+                    
+                    string str = "STARTFILE%" + item.Name+ "%" +data.Length.ToString()+"%"+ item.Extension + "%" +user.Id;      
+                    await Form1.client.SendToServer(str);
+           
+                    await Form1.client.SendFileToServer(package);
                 }
+                
             }
         }
         private void InitUserForm()
@@ -154,11 +178,9 @@ namespace UI
 
         private async void PictureBoxSend_Click(object sender, EventArgs e)
         {
-            //SendFile();
-            SendMessage();
+            SendFile();
+           //SendMessage();
         }
-
-        
 
         public UserForm()
         {
