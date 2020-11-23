@@ -26,7 +26,7 @@ namespace Communication
         //Data Source = DESKTOP - TSN7OH7; Initial Catalog = LANCHAT; Integrated Security = True
         //Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;
         // Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True
-        string connString = @"Server=DESKTOP-TSN7OH7;Database=LANCHAT;Integrated Security=True;User ID=sa;Password=1";
+        string connString = @"Server=DESKTOP-BM0V9BJ;Database=LANCHAT;Integrated Security=True;";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -291,19 +291,18 @@ namespace Communication
                         else
                         {
                             Array.Resize(ref buff, nReturn);
-                            if (dataFile.Length < infoByte.AllByteRead + nReturn)
-                            {
-                                Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
-                            }
+                            //if (dataFile.Length < infoByte.AllByteRead + nReturn)
+                            //{
+                            //    Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
+                            //}
                             buff.CopyTo(dataFile, infoByte.AllByteRead);
-                            
                             infoByte.AllByteRead = infoByte.AllByteRead + nReturn;
                             if (infoByte.AllByteRead == infoByte.ByteLeft)
                             {
                                 // tạo id
                                 Guid Createid = Guid.NewGuid();
                                 
-                                File.WriteAllBytes(@"Z:\LAN-Message\Server\filedata\" +Createid.ToString()  + infoByte.Extension, dataFile);
+                                File.WriteAllBytes(@"..\..\filedata\" +Createid.ToString()  + infoByte.Extension, dataFile);
                                 
                                 // them du lieu vao data base
                                 this.connection = new SqlConnection(this.connString);
@@ -320,7 +319,7 @@ namespace Communication
                                 this.command.Parameters.Add(new SqlParameter("@id",Createid.ToString()));
                                 this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
                                 this.command.Parameters.Add(new SqlParameter("@idnguoinhan", infoByte.ID));
-                                this.command.Parameters.Add(new SqlParameter("@tinnhan", @"Z:\LAN-Message\Server\filedata\" + Createid.ToString() + infoByte.Extension.ToString())); 
+                                this.command.Parameters.Add(new SqlParameter("@tinnhan", @"..\..\filedata\" + Createid.ToString() + infoByte.Extension.ToString())); 
                                 this.command.Parameters.Add(new SqlParameter("@loai", 1));
                                 this.command.ExecuteNonQuery();
                                 this.connection.Close();

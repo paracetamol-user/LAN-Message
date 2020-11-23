@@ -163,10 +163,10 @@ namespace UI
 				else
 				{
 					Array.Resize(ref buff, nReturn);
-					if (dataFile.Length < infoByte.AllByteRead + nReturn)
-					{
-						Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
-					}
+					//if (dataFile.Length < infoByte.AllByteRead + nReturn)
+					//{
+					//	Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
+					//}
 					buff.CopyTo(dataFile, infoByte.AllByteRead);
 					infoByte.AllByteRead = infoByte.AllByteRead + nReturn;
 					if (infoByte.AllByteRead == infoByte.ByteLeft)
