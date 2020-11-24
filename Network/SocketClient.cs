@@ -144,7 +144,8 @@ namespace Communication
             int byteLeft = package.Length;
             while (byteLeft > 0)
             {
-                int nextPackageSize = byteLeft > bufferSize ? bufferSize : byteLeft;
+                //int nextPackageSize = byteLeft > bufferSize ? bufferSize : byteLeft;
+                int nextPackageSize = bufferSize;
                 mClient.GetStream().Write(package, byteSent, nextPackageSize);
                 byteSent += nextPackageSize;
                 byteLeft -= nextPackageSize;

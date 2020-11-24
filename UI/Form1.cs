@@ -162,13 +162,17 @@ namespace UI
 				}
 				else
 				{
-					Array.Resize(ref buff, nReturn);
+					//Array.Resize(ref buff, nReturn);
 					//if (dataFile.Length < infoByte.AllByteRead + nReturn)
 					//{
 					//	Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
 					//}
+					if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)
+                    {
+						Array.Resize(ref buff, 1024 - (buff.Length + infoByte.AllByteRead - infoByte.ByteLeft));
+                    }
 					buff.CopyTo(dataFile, infoByte.AllByteRead);
-					infoByte.AllByteRead = infoByte.AllByteRead + nReturn;
+					infoByte.AllByteRead = infoByte.AllByteRead + buff.Length;
 					if (infoByte.AllByteRead == infoByte.ByteLeft)
 					{
 						File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);

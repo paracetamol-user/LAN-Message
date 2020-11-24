@@ -98,10 +98,8 @@ namespace Communication
         private async Task<bool> RespondToClient(UserClient client, string received, byte[] buff, InfoByte infoByte, int nReturn)
         {
             string[] data = received.Split('%');
-            byte[] buffMessage;
+            byte[] buffMessage = new byte[1024];
             bool check = true;
-
-
             if (data[0] == "LOGIN")
             {
                 try
@@ -182,7 +180,10 @@ namespace Communication
                     {
                         try
                         {
-                            buffMessage = Encoding.ASCII.GetBytes("MESSAGE" + "%" + data[3] + "%" + data[1]);
+                            byte[] tempbuff;
+                            buffMessage = new byte[1024];
+                            tempbuff = Encoding.ASCII.GetBytes("MESSAGE" + "%" + data[3] + "%" + data[1]);
+                            tempbuff.CopyTo(buffMessage, 0);
                             await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             return true;
                         }
@@ -221,11 +222,14 @@ namespace Communication
                 connection.Close();
                 FileInfo fileInfo = new FileInfo(path);
                 byte[] fileData = File.ReadAllBytes(fileInfo.FullName);
-                
-                buffMessage = Encoding.ASCII.GetBytes("FILE" + "%" + FILEID + "%" + FILENAME + "%"+ fileData.Length.ToString()+"%" + fileInfo.Extension.ToString()+"%" + IDNGUOIGUI);
+
+                byte[] tempbuff;
+                tempbuff = Encoding.ASCII.GetBytes("FILE" + "%" + FILEID + "%" + FILENAME + "%"+ fileData.Length.ToString()+"%" + fileInfo.Extension.ToString()+"%" + IDNGUOIGUI);
+                tempbuff.CopyTo(buffMessage, 0);
                 await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
-               
-                byte[] package = new byte[fileData.Length];
+
+                int temp = 1024 - (fileData.Length % 1024);
+                byte[] package = new byte[fileData.Length + temp];
                 fileData.CopyTo(package, 0);
                 SendFileToClient(package, client);
                 return true;
@@ -237,11 +241,11 @@ namespace Communication
         {
             int byteSent = 0;
             int byteLeft = package.Length;
-            int nextPackageSize = 0;
+            int nextPackageSize = 1024;
             while (byteLeft>0)
             {
-                if (byteLeft > 1024) nextPackageSize = 1024;
-                else nextPackageSize = byteLeft;
+                //if (byteLeft > 1024) nextPackageSize = 1024;
+                //else nextPackageSize = byteLeft;
                 client.client_.GetStream().WriteAsync(package, byteSent, nextPackageSize);
                 byteSent += nextPackageSize;
                 byteLeft-=nextPackageSize;
@@ -290,13 +294,12 @@ namespace Communication
                         }
                         else
                         {
-                            Array.Resize(ref buff, nReturn);
-                            //if (dataFile.Length < infoByte.AllByteRead + nReturn)
-                            //{
-                            //    Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
-                            //}
+                            if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)
+                            {
+                                Array.Resize(ref buff,1024 - (buff.Length + infoByte.AllByteRead - infoByte.ByteLeft));
+                            }
                             buff.CopyTo(dataFile, infoByte.AllByteRead);
-                            infoByte.AllByteRead = infoByte.AllByteRead + nReturn;
+                            infoByte.AllByteRead = infoByte.AllByteRead + buff.Length;
                             if (infoByte.AllByteRead == infoByte.ByteLeft)
                             {
                                 // tạo id
@@ -307,15 +310,7 @@ namespace Communication
                                 // them du lieu vao data base
                                 this.connection = new SqlConnection(this.connString);
                                 this.connection.Open();
-                                //cmd.Parameters.Add(new SqlParameter("@MaSP", txtMaSP.Text));
-                                //cmd.Parameters.Add(new SqlParameter("@TenSP", txtTenSP.Text));
-                                //cmd.Parameters.Add(new SqlParameter("@NgaySX", dtpNgaySX.Value.Date));
-                                //cmd.Parameters.Add(new SqlParameter("@NgayHH", dtpNgayHH.Value.Date));
-                                //cmd.Parameters.Add(new SqlParameter("@DonVi", txtDonVi.Text));
-                                //cmd.Parameters.Add(new SqlParameter("@DonGia", txtDonGia.Text));
-                                //cmd.Parameters.Add(new SqlParameter("@GhiChu", txtGhiChu.Text));
                                 this.command = new SqlCommand(queryMessage, connection);
-                                //this.command.CommandType = System.Data.CommandType.StoredProcedure;
                                 this.command.Parameters.Add(new SqlParameter("@id",Createid.ToString()));
                                 this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
                                 this.command.Parameters.Add(new SqlParameter("@idnguoinhan", infoByte.ID));
@@ -330,8 +325,10 @@ namespace Communication
                                     {
                                         try
                                         {
+                                            byte[] buffMessage = new byte[1024];
                                             byte[] bufferSendToClintReceive = System.Text.Encoding.ASCII.GetBytes("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
-                                            await item.client_.GetStream().WriteAsync(bufferSendToClintReceive, 0, bufferSendToClintReceive.Length);
+                                            bufferSendToClintReceive.CopyTo(buffMessage, 0);
+                                            await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                                             break;
                                         }
                                         catch (Exception ex)
@@ -341,7 +338,6 @@ namespace Communication
                                     }
                                     i++;
                                 }
-                                
                             }
                         }
                     }
@@ -399,7 +395,10 @@ namespace Communication
                 return;
             try
             {
-                byte[] buffMessage = Encoding.ASCII.GetBytes(message);
+                byte[] buffMessage = new byte[1024];
+                byte[] temp;
+                temp = Encoding.ASCII.GetBytes(message);
+                temp.CopyTo(buffMessage, 0); 
                 foreach (UserClient client in clientInvalid)
                 {
                     if (client != clientFocus)

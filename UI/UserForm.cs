@@ -131,8 +131,11 @@ namespace UI
         public async void SendMessage()
         {
             // Gửi tin nhắn qua server
-            string data = "SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-            Form1.client.SendToServer(data);
+            byte[] buff = new byte[1024];
+            byte[] tempbuff;
+            tempbuff = System.Text.Encoding.ASCII.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
+            tempbuff.CopyTo(buff, 0);
+            Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
             // tạo một panel chat 
             Panel tempPanel = new Panel();
             tempPanel.AutoSize = true;
@@ -157,13 +160,14 @@ namespace UI
                     this.panelListChat.Controls.Add(panelFileDownLoad);
                     //Gửi
                     byte[] data = File.ReadAllBytes(item.FullName);
-         
-                    byte[] package = new byte[data.Length];
+                    int temp = 1024 - (data.Length % 1024);
+                    byte[] package = new byte[data.Length + temp];
                     data.CopyTo(package, 0);
-                    
-                    string str = "STARTFILE%" + item.Name+ "%" +data.Length.ToString()+"%"+ item.Extension + "%" +user.Id;      
-                    await Form1.client.SendToServer(str);
-           
+                    byte[] buff = new byte[1024];
+                    byte[] tempbuff;
+                    tempbuff = System.Text.Encoding.ASCII.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + user.Id);
+                    tempbuff.CopyTo(buff, 0);
+                    await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
                     await Form1.client.SendFileToServer(package);
                 }
                 
