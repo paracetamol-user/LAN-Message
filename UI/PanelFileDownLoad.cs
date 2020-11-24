@@ -94,8 +94,11 @@ namespace UI
 
         private async void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            string str = "SENDFILE%" + this.fileId + "%" + this.fileName + "%" + user.Id;
-            await Form1.client.SendToServer(str);
+            byte[] buff = new byte[1024];
+            byte[] tempbuff;
+            tempbuff = System.Text.Encoding.ASCII.GetBytes("SENDFILE%" + this.fileId + "%" + this.fileName + "%" + user.Id);
+            tempbuff.CopyTo(buff, 0);
+            await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
         }
     }
 }
