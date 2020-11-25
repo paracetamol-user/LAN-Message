@@ -24,26 +24,44 @@ namespace UI
         private int id;
         private int locationControl = 0;
         private List<FileInfo> files;
+        private short LastInteracted;
         public UserForm(UserManager.User user)
         {
             InitializeComponent();
             this.Visible = false;
             this.user = user;
             this.id = 0;
+            LastInteracted = 0;
             BoxChats = new List<Panel>();
             files = new List<FileInfo>();
-        InitUserForm();
+            InitUserForm();
         }
-        public void AddFileToListChat(string tempId, string tempName)
+        public void AddFileToListChat(User _user,string tempId, string tempName , short tempInteracted)
         {
-            PanelFileDownLoad panelFileDownLoad = new PanelFileDownLoad();
-            panelFileDownLoad._FileName = tempName;
-            panelFileDownLoad._FileId = tempId;
-            panelFileDownLoad.PanelListChat = this.panelListChat;
-            panelFileDownLoad.User = this.user;
-            panelFileDownLoad.Dock = DockStyle.Top;
-            panelFileDownLoad.Init();
-            this.panelListChat.Controls.Add(panelFileDownLoad);
+            Panel tempPanel = new Panel();
+            tempPanel.AutoSize = true;
+            tempPanel.Dock = DockStyle.Top;
+            //if (LastInteracted != tempInteracted || LastInteracted == 0)
+            //{
+                ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
+                ucFileShow fileshow = new ucFileShow(user, tempId, tempName);
+                
+                fileshow.Dock = DockStyle.Top;
+                UserInChatBox.Dock = DockStyle.Top;
+                
+                UserInChatBox._AddFileControl(fileshow);
+                tempPanel.Controls.Add(UserInChatBox);
+                this.panelListChat.Controls.Add(tempPanel);
+                LastInteracted = tempInteracted;
+            //}
+            //else
+            //{
+            //    ucFileShow fileshow = new ucFileShow(user, tempId, tempName);
+            //    fileshow.Dock = DockStyle.Top;
+            //    tempPanel.Controls.Add(fileshow);
+            //    tempPanel.Padding = new Padding(60, 0, 0, 0);
+            //    this.panelListChat.Controls.Add(tempPanel);;
+            //}
         }
         private Panel GetNewPanelBoxChat(User userfocus , string tinnhan)
         {
@@ -128,36 +146,31 @@ namespace UI
             //tempPanel.AutoSize = true;
             return tempPanel;
         }
-        public async void SendMessage()
+        public async Task SendMessage()
         {
-            // Gửi tin nhắn qua server
-            byte[] buff = new byte[1024];
-            byte[] tempbuff;
-            tempbuff = System.Text.Encoding.ASCII.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
-            tempbuff.CopyTo(buff, 0);
-            Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
-            // tạo một panel chat 
-            Panel tempPanel = new Panel();
-            tempPanel.AutoSize = true;
-            tempPanel = GetNewPanelBoxChat(Form1.me, this.TextBoxEnterChat.Text);
-            //tempPanel.Dock = DockStyle.Top;
-            this.panelListChat.Controls.Add(tempPanel);
-            this.BoxChats.Add(tempPanel);
-            //clear textbox nhập chat
-            TextBoxEnterChat.Text = "";
+            if (TextBoxEnterChat.Text != "")
+            {
+                // Gửi tin nhắn qua server
+                byte[] buff = new byte[1024];
+                byte[] tempbuff;
+                tempbuff = System.Text.Encoding.ASCII.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
+                tempbuff.CopyTo(buff, 0);
+                Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+
+                // tạo một panel chat 
+                this.AddItemInToListChat(Form1.me, this.TextBoxEnterChat.Text, 1);
+
+                //clear textbox nhập chat
+                TextBoxEnterChat.Text = "";
+            }
         }
-        public async void SendFile()
+        public async Task SendFile()
         {
             if (this.panelListFile.Controls.Count > 0)
             {
                 foreach (var item in files)
                 {
-                    PanelFileDownLoad panelFileDownLoad = new PanelFileDownLoad();
-                    panelFileDownLoad.Dock = DockStyle.Top;
-                    panelFileDownLoad.User = user;
-                    panelFileDownLoad._FileName = item.Name;
-                    panelFileDownLoad.FileInfo = item;
-                    this.panelListChat.Controls.Add(panelFileDownLoad);
+                    AddFileToListChat(this.user, "-1", item.Name, 1);
                     //Gửi
                     byte[] data = File.ReadAllBytes(item.FullName);
                     int temp = 1024 - (data.Length % 1024);
@@ -170,7 +183,9 @@ namespace UI
                     await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
                     await Form1.client.SendFileToServer(package);
                 }
-                
+                this.files.Clear();
+                this.panelListFile.Controls.Clear();
+                this.panelListFile.Visible = false;
             }
         }
         private void InitUserForm()
@@ -182,8 +197,8 @@ namespace UI
 
         private async void PictureBoxSend_Click(object sender, EventArgs e)
         {
-            SendFile();
-           //SendMessage();
+            await SendFile();
+            await SendMessage();
         }
 
         public UserForm()
@@ -199,12 +214,33 @@ namespace UI
         {
             this.Visible = true;
         }
-        public void AddItemInToListChat(string username , string str)
+        public void AddItemInToListChat(User user,string str , short tempInteracted)
         {
             Panel tempPanel = new Panel();
-            tempPanel = GetNewPanelBoxChat(user, str);
+            tempPanel.Dock = DockStyle.Top;
+            tempPanel.AutoSize = true;
+           // tempPanel.BorderStyle = BorderStyle.FixedSingle;
+            //if (LastInteracted != tempInteracted || LastInteracted == 0)
+            //{
+                ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
+                ucMessShow messShow = new ucMessShow(str);
+                messShow.Dock = DockStyle.Top;
+                UserInChatBox.Dock = DockStyle.Top;
+                UserInChatBox._AddMessControl(messShow);
+                tempPanel.Controls.Add(UserInChatBox);
+                this.panelListChat.Controls.Add(tempPanel);
+                LastInteracted = tempInteracted;
+            //}
+            //else if (LastInteracted == tempInteracted)
+            //{
+            //    ucMessShow messShow = new ucMessShow(str);
+            //    messShow.Dock = DockStyle.Top;
+            //    tempPanel.Controls.Add(messShow);
+            //    tempPanel.Padding = new Padding(60, 0, 0, 0);
+            //    this.panelListChat.Controls.Add(tempPanel); ;
+            //}
+            
             this.panelListChat.Controls.Add(tempPanel);
-            this.BoxChats.Add(tempPanel);
         }
         public void AddFrom(Panel panelRight)
         {
@@ -239,7 +275,7 @@ namespace UI
                     {
                         FileInfo temp = new FileInfo(item);
                         files.Add(temp);
-                        PanelFile x = new PanelFile(panelListFile,files, temp);
+                        usFileTemp x = new usFileTemp(panelListFile,files, temp);
                         this.panelListFile.Controls.Add(x);
                         x.Dock = DockStyle.Left;
                         x._FileName = temp.Name;

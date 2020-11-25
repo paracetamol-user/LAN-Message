@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class PanelFile
+    partial class usFileTemp
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelFile));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(usFileTemp));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFileName = new System.Windows.Forms.Label();
@@ -48,21 +48,22 @@
             this.panelForm.Controls.Add(this.pictureBoxClose);
             this.panelForm.Controls.Add(this.pictureBoxPictureFile);
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelForm.Location = new System.Drawing.Point(3, 3);
+            this.panelForm.Location = new System.Drawing.Point(4, 4);
             this.panelForm.Margin = new System.Windows.Forms.Padding(0);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Padding = new System.Windows.Forms.Padding(3);
-            this.panelForm.Size = new System.Drawing.Size(129, 27);
+            this.panelForm.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelForm.Size = new System.Drawing.Size(172, 33);
             this.panelForm.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.labelFileName);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(25, 3);
+            this.panel2.Location = new System.Drawing.Point(27, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 2, 2, 0);
-            this.panel2.Size = new System.Drawing.Size(89, 19);
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 2, 3, 0);
+            this.panel2.Size = new System.Drawing.Size(126, 23);
             this.panel2.TabIndex = 9;
             // 
             // labelFileName
@@ -70,9 +71,10 @@
             this.labelFileName.AutoEllipsis = true;
             this.labelFileName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelFileName.Location = new System.Drawing.Point(0, 2);
+            this.labelFileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFileName.Name = "labelFileName";
-            this.labelFileName.Padding = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this.labelFileName.Size = new System.Drawing.Size(87, 17);
+            this.labelFileName.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
+            this.labelFileName.Size = new System.Drawing.Size(123, 21);
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             this.labelFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,9 +83,10 @@
             // 
             this.pictureBoxClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(114, 3);
+            this.pictureBoxClose.Location = new System.Drawing.Point(153, 4);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(10, 19);
+            this.pictureBoxClose.Size = new System.Drawing.Size(13, 23);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxClose.TabIndex = 8;
             this.pictureBoxClose.TabStop = false;
@@ -93,23 +96,24 @@
             // 
             this.pictureBoxPictureFile.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBoxPictureFile.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPictureFile.Image")));
-            this.pictureBoxPictureFile.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxPictureFile.Location = new System.Drawing.Point(4, 4);
+            this.pictureBoxPictureFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxPictureFile.Name = "pictureBoxPictureFile";
-            this.pictureBoxPictureFile.Padding = new System.Windows.Forms.Padding(5);
-            this.pictureBoxPictureFile.Size = new System.Drawing.Size(22, 19);
+            this.pictureBoxPictureFile.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.pictureBoxPictureFile.Size = new System.Drawing.Size(23, 23);
             this.pictureBoxPictureFile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPictureFile.TabIndex = 3;
             this.pictureBoxPictureFile.TabStop = false;
             // 
-            // PanelFile
+            // usFileTemp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelForm);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "PanelFile";
-            this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(135, 33);
+            this.Name = "usFileTemp";
+            this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Size = new System.Drawing.Size(180, 41);
             this.panelForm.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();

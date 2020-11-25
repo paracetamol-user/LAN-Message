@@ -193,9 +193,11 @@ namespace Communication
                         }
                     }
                     i++;
-                    return true;
+                   
                 }
-            }else
+                return true;
+            }
+            else
             if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
             {
                 string queryFINDSOURCE = "SELECT * FROM TINNHAN";

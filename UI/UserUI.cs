@@ -62,7 +62,7 @@ namespace UI
         }
         public void AddPanelFile(string tempId, string tempName)
         {
-            this.userForm.AddFileToListChat(tempId , tempName);
+            this.userForm.AddFileToListChat(this.user,tempId , tempName ,2);
         }
         public void ChangeStatusOnline()
         {
@@ -103,8 +103,8 @@ namespace UI
             labelStatusAll.ForeColor = Color.DimGray;
             labelNameLeftAll.Dock = DockStyle.Top;
             labelStatusAll.Dock = DockStyle.Fill;
-            labelNameLeftAll.Font = new Font("Century", 11);
-            labelStatusAll.Font = new Font("Century", 9);
+            labelNameLeftAll.Font = new Font("Cambria", 11);
+            labelStatusAll.Font = new Font("Cambria", 9);
             panelInfoAll.Controls.Add(labelStatusAll);
             panelInfoAll.Controls.Add(labelNameLeftAll);
 
@@ -186,7 +186,7 @@ namespace UI
             labelNameLeft = new Label();
             labelNameLeft.Text = user.Name;
             labelNameLeft.ForeColor = Color.Black;
-            labelNameLeft.Font = new Font("Century", 14);
+            labelNameLeft.Font = new Font("Cambria", 14);
             labelNameLeft.Dock = DockStyle.Top;
             labelNameLeft.Visible = true;
 
@@ -194,7 +194,7 @@ namespace UI
             if (user.Status == false) labelStatusLeft.Text = "Offline";
             else labelStatusLeft.Text = "Online";
             labelStatusLeft.ForeColor = Color.Black;
-            labelStatusLeft.Font = new Font("Century", 8);
+            labelStatusLeft.Font = new Font("Cambria", 8);
             labelStatusLeft.Dock = DockStyle.Fill;
             labelStatusLeft.Visible = true;
 
@@ -264,8 +264,8 @@ namespace UI
             labelStatusOnline.ForeColor = Color.DimGray;
             labelNameLeftOnline.Dock = DockStyle.Top;
             labelStatusOnline.Dock = DockStyle.Fill;
-            labelNameLeftOnline.Font = new Font("Century", 11);
-            labelStatusOnline.Font = new Font("Century", 9);
+            labelNameLeftOnline.Font = new Font("Cambria", 11);
+            labelStatusOnline.Font = new Font("Cambria", 9);
             panelInfoOnline.Controls.Add(labelStatusOnline);
             panelInfoOnline.Controls.Add(labelNameLeftOnline);
 
@@ -406,7 +406,7 @@ namespace UI
         }
         public async void AddMessage(string mess)
         {
-            userForm.AddItemInToListChat(user.Name, mess);
+            userForm.AddItemInToListChat(user,mess,2);
         }
         public bool GetStatus()
         {

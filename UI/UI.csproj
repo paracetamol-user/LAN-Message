@@ -70,17 +70,29 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelFile.cs">
+    <Compile Include="ucMessShow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PanelFile.Designer.cs">
-      <DependentUpon>PanelFile.cs</DependentUpon>
+    <Compile Include="ucMessShow.Designer.cs">
+      <DependentUpon>ucMessShow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelFileDownLoad.cs">
+    <Compile Include="ucUserINChatBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PanelFileDownLoad.Designer.cs">
-      <DependentUpon>PanelFileDownLoad.cs</DependentUpon>
+    <Compile Include="ucUserINChatBox.Designer.cs">
+      <DependentUpon>ucUserINChatBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="usFileTemp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="usFileTemp.Designer.cs">
+      <DependentUpon>usFileTemp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucFileShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucFileShow.Designer.cs">
+      <DependentUpon>ucFileShow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,11 +117,17 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelFile.resx">
-      <DependentUpon>PanelFile.cs</DependentUpon>
+    <EmbeddedResource Include="ucMessShow.resx">
+      <DependentUpon>ucMessShow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelFileDownLoad.resx">
-      <DependentUpon>PanelFileDownLoad.cs</DependentUpon>
+    <EmbeddedResource Include="ucUserINChatBox.resx">
+      <DependentUpon>ucUserINChatBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="usFileTemp.resx">
+      <DependentUpon>usFileTemp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucFileShow.resx">
+      <DependentUpon>ucFileShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -193,6 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\download.png" />
+    <Content Include="images\file %281%29.png" />
+    <Content Include="images\file_3.png" />
+    <Content Include="images\plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
