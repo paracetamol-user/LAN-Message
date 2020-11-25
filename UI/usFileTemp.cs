@@ -10,17 +10,17 @@ using System.Windows.Forms;
 using System.IO; 
 namespace UI
 {
-    public partial class PanelFile : UserControl
+    public partial class usFileTemp : UserControl
     {
         private Panel panelListFile;
         private List<FileInfo> files;
         private FileInfo fileInfo;
         private string fileId;
-        public PanelFile()
+        public usFileTemp()
         {
             InitializeComponent();
         }
-        public PanelFile(Panel panelListFile , List<FileInfo> files, FileInfo fileInfo)
+        public usFileTemp(Panel panelListFile , List<FileInfo> files, FileInfo fileInfo)
         {
             InitializeComponent();
             this.panelListFile = panelListFile;
