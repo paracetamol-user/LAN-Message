@@ -98,6 +98,18 @@ namespace UI
 					data[i] = data[i].Trim('\0');
 				}
 				string action = data[0];
+				if (action == "LOADUSERDATA")
+                {
+					for (int i = 1; i < data.Length; i++)
+					{
+						if (data[i] == "") break;
+						string[] arr = data[i].Split(' ');
+						if (arr[1] != me.Name)
+						{
+							UserUIs.Add(new UserUI(new User(arr[0], arr[1], bool.Parse(arr[2])), panelINTERACTED, panelRIGHT));
+						}
+					}
+				}else
 				if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
 				{
 					for (int i = 0; i < UserUIs.Count; i++)
@@ -108,6 +120,10 @@ namespace UI
 							break;
 						}
 					}
+				}
+				else if (action == "ADDUSER")
+                {
+					UserUIs.Add(new UserUI(new User(data[1], data[2], false), panelINTERACTED, panelRIGHT));
 				}
 				else
 				if (action == "ONLINE")
@@ -187,17 +203,10 @@ namespace UI
 		// Hiện tại chưa có code gọi người dùng online trong server mà chỉ gọi tất cả về
 		private async void LoadDataUser()
 		{
-			client.SendToServer("LOADUSERDATA%" + me.Name);
-			string data = await client.ReadDataAsync(server);
-			string[] datauser = data.Split('%','\0');
-			// 3 dòng lấy dữ liệu
-			for (int i = 0; i < datauser.Length; i++)
-			{
-				if (datauser[i] == "") break;
-				string[] arr = datauser[i].Split(' ');
-				if (arr[1] == me.Name) { continue; }
-				UserUIs.Add(new UserUI(new User(arr[0], arr[1],bool.Parse(arr[2])), panelINTERACTED, panelRIGHT));
-			}
+            byte[] buff = new byte[1024];
+			byte[] tembuff = Encoding.ASCII.GetBytes("LOADUSERDATA%" + me.Name);
+			tembuff.CopyTo(buff, 0);
+			server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
