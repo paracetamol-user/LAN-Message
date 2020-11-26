@@ -33,6 +33,8 @@ namespace UI
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDiscard = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
@@ -60,14 +62,13 @@ namespace UI
             this.panel13 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.btnChangeAvatar = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnChangeAvatar = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,6 +118,7 @@ namespace UI
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDiscard);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnLogout);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -126,10 +128,33 @@ namespace UI
             this.panel1.Size = new System.Drawing.Size(982, 84);
             this.panel1.TabIndex = 2;
             // 
+            // btnDiscard
+            // 
+            this.btnDiscard.Enabled = false;
+            this.btnDiscard.Location = new System.Drawing.Point(493, 20);
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(140, 44);
+            this.btnDiscard.TabIndex = 3;
+            this.btnDiscard.Text = "Discard changes";
+            this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(673, 20);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(140, 44);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "Save changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.Red;
             this.btnLogout.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.Location = new System.Drawing.Point(862, 20);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(110, 44);
@@ -424,6 +449,16 @@ namespace UI
             this.panel8.Size = new System.Drawing.Size(932, 100);
             this.panel8.TabIndex = 0;
             // 
+            // btnChangeAvatar
+            // 
+            this.btnChangeAvatar.Location = new System.Drawing.Point(148, 33);
+            this.btnChangeAvatar.Name = "btnChangeAvatar";
+            this.btnChangeAvatar.Size = new System.Drawing.Size(46, 38);
+            this.btnChangeAvatar.TabIndex = 1;
+            this.btnChangeAvatar.Text = "Edit";
+            this.btnChangeAvatar.UseVisualStyleBackColor = true;
+            this.btnChangeAvatar.Click += new System.EventHandler(this.btnChangeAvatar_Click);
+            // 
             // panel12
             // 
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
@@ -447,17 +482,17 @@ namespace UI
             // 
             this.panel5.Controls.Add(this.pictureBoxClose);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(831, 10);
+            this.panel5.Location = new System.Drawing.Point(925, 10);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(0, 10, 10, 10);
-            this.panel5.Size = new System.Drawing.Size(181, 51);
+            this.panel5.Size = new System.Drawing.Size(87, 51);
             this.panel5.TabIndex = 1;
             // 
             // pictureBoxClose
             // 
             this.pictureBoxClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(137, 10);
+            this.pictureBoxClose.Location = new System.Drawing.Point(43, 10);
             this.pictureBoxClose.Name = "pictureBoxClose";
             this.pictureBoxClose.Size = new System.Drawing.Size(34, 31);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -485,25 +520,6 @@ namespace UI
             this.label1.Size = new System.Drawing.Size(165, 33);
             this.label1.TabIndex = 2;
             this.label1.Text = "MY ACCOUNT";
-            // 
-            // btnChangeAvatar
-            // 
-            this.btnChangeAvatar.Location = new System.Drawing.Point(148, 33);
-            this.btnChangeAvatar.Name = "btnChangeAvatar";
-            this.btnChangeAvatar.Size = new System.Drawing.Size(46, 38);
-            this.btnChangeAvatar.TabIndex = 1;
-            this.btnChangeAvatar.Text = "Edit";
-            this.btnChangeAvatar.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(688, 20);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(140, 44);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "Save changes";
-            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // SettingForm
             // 
@@ -588,5 +604,6 @@ namespace UI
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnChangeAvatar;
+        private System.Windows.Forms.Button btnDiscard;
     }
 }

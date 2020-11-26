@@ -218,7 +218,7 @@ namespace UI
 
         private void pictureBoxSetting_Click(object sender, EventArgs e)
         {
-			SettingForm form = new SettingForm(me);
+			SettingForm form = new SettingForm(me, this);
 			form.Show();
 		}
     }
