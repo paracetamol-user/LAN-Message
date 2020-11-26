@@ -37,7 +37,7 @@
             this.labelID = new System.Windows.Forms.Label();
             this.labelUSERNAME = new System.Windows.Forms.Label();
             this.panelPICTUREOPTION = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSetting = new System.Windows.Forms.PictureBox();
             this.gunaButtonAvatar1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panelSEARCH = new System.Windows.Forms.Panel();
             this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -48,7 +48,7 @@
             this.panelOPTION.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.panelPICTUREOPTION.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gunaButtonAvatar1)).BeginInit();
             this.panelSEARCH.SuspendLayout();
             this.panelLANMESS.SuspendLayout();
@@ -74,7 +74,7 @@
             this.panelINTERACTED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelINTERACTED.Location = new System.Drawing.Point(0, 135);
-            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
             this.panelINTERACTED.Name = "panelINTERACTED";
             this.panelINTERACTED.Size = new System.Drawing.Size(363, 436);
             this.panelINTERACTED.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.panelOPTION.Controls.Add(this.gunaButtonAvatar1);
             this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelOPTION.Location = new System.Drawing.Point(0, 571);
-            this.panelOPTION.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTION.Name = "panelOPTION";
             this.panelOPTION.Padding = new System.Windows.Forms.Padding(16, 7, 0, 7);
             this.panelOPTION.Size = new System.Drawing.Size(363, 94);
@@ -98,7 +98,7 @@
             // 
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOPTIONNULL.Location = new System.Drawing.Point(305, 7);
-            this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
             this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelOPTIONNULL.Size = new System.Drawing.Size(0, 80);
@@ -110,7 +110,7 @@
             this.panelInfo.Controls.Add(this.labelUSERNAME);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInfo.Location = new System.Drawing.Point(101, 7);
-            this.panelInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Padding = new System.Windows.Forms.Padding(4, 4, 0, 0);
             this.panelInfo.Size = new System.Drawing.Size(204, 80);
@@ -142,26 +142,27 @@
             // 
             // panelPICTUREOPTION
             // 
-            this.panelPICTUREOPTION.Controls.Add(this.pictureBox2);
+            this.panelPICTUREOPTION.Controls.Add(this.pictureBoxSetting);
             this.panelPICTUREOPTION.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelPICTUREOPTION.Location = new System.Drawing.Point(298, 7);
-            this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelPICTUREOPTION.Name = "panelPICTUREOPTION";
             this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(7, 20, 7, 20);
             this.panelPICTUREOPTION.Size = new System.Drawing.Size(65, 80);
             this.panelPICTUREOPTION.TabIndex = 1;
             // 
-            // pictureBox2
+            // pictureBoxSetting
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(7, 20);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 40);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.pictureBoxSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSetting.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSetting.Image")));
+            this.pictureBoxSetting.Location = new System.Drawing.Point(7, 20);
+            this.pictureBoxSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxSetting.Name = "pictureBoxSetting";
+            this.pictureBoxSetting.Size = new System.Drawing.Size(51, 40);
+            this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSetting.TabIndex = 2;
+            this.pictureBoxSetting.TabStop = false;
+            this.pictureBoxSetting.Click += new System.EventHandler(this.pictureBoxSetting_Click);
             // 
             // gunaButtonAvatar1
             // 
@@ -169,7 +170,7 @@
             this.gunaButtonAvatar1.Dock = System.Windows.Forms.DockStyle.Left;
             this.gunaButtonAvatar1.Image = ((System.Drawing.Image)(resources.GetObject("gunaButtonAvatar1.Image")));
             this.gunaButtonAvatar1.Location = new System.Drawing.Point(16, 7);
-            this.gunaButtonAvatar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gunaButtonAvatar1.Margin = new System.Windows.Forms.Padding(4);
             this.gunaButtonAvatar1.Name = "gunaButtonAvatar1";
             this.gunaButtonAvatar1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.gunaButtonAvatar1.ShadowDecoration.Parent = this.gunaButtonAvatar1;
@@ -185,7 +186,7 @@
             this.panelSEARCH.Controls.Add(this.textBoxSearch);
             this.panelSEARCH.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSEARCH.Location = new System.Drawing.Point(0, 69);
-            this.panelSEARCH.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSEARCH.Margin = new System.Windows.Forms.Padding(4);
             this.panelSEARCH.Name = "panelSEARCH";
             this.panelSEARCH.Padding = new System.Windows.Forms.Padding(16, 6, 11, 6);
             this.panelSEARCH.Size = new System.Drawing.Size(363, 66);
@@ -211,7 +212,7 @@
             this.textBoxSearch.IconRight = ((System.Drawing.Image)(resources.GetObject("textBoxSearch.IconRight")));
             this.textBoxSearch.IconRightOffset = new System.Drawing.Point(5, 0);
             this.textBoxSearch.Location = new System.Drawing.Point(16, 6);
-            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.textBoxSearch.PasswordChar = '\0';
@@ -246,7 +247,7 @@
             this.ButtonLanMessenger.Image = ((System.Drawing.Image)(resources.GetObject("ButtonLanMessenger.Image")));
             this.ButtonLanMessenger.ImageSize = new System.Drawing.Size(50, 50);
             this.ButtonLanMessenger.Location = new System.Drawing.Point(10, 10);
-            this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonLanMessenger.Name = "ButtonLanMessenger";
             this.ButtonLanMessenger.ShadowDecoration.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Size = new System.Drawing.Size(343, 49);
@@ -281,7 +282,7 @@
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             this.panelPICTUREOPTION.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gunaButtonAvatar1)).EndInit();
             this.panelSEARCH.ResumeLayout(false);
             this.panelLANMESS.ResumeLayout(false);
@@ -298,7 +299,7 @@
         private System.Windows.Forms.Panel panelINTERACTED;
         private System.Windows.Forms.Panel panelOPTION;
         private System.Windows.Forms.Panel panelPICTUREOPTION;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBoxSetting;
         private System.Windows.Forms.Panel panelInfo;
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelUSERNAME;
