@@ -45,7 +45,7 @@ namespace UI
             //{
                 ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
                 ucFileShow fileshow = new ucFileShow(user, tempId, tempName);
-                
+                if (_user == Form1.me) fileshow._DisableButDownLoad();
                 fileshow.Dock = DockStyle.Top;
                 UserInChatBox.Dock = DockStyle.Top;
                 
@@ -170,7 +170,7 @@ namespace UI
             {
                 foreach (var item in files)
                 {
-                    AddFileToListChat(this.user, "-1", item.Name, 1);
+                    AddFileToListChat(Form1.me, "-1", item.Name, 1);
                     //Gửi
                     byte[] data = File.ReadAllBytes(item.FullName);
                     int temp = 1024 - (data.Length % 1024);
