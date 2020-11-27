@@ -73,9 +73,7 @@
             this.panelINTERACTED.AutoScroll = true;
             this.panelINTERACTED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
-
             this.panelINTERACTED.Location = new System.Drawing.Point(0, 87);
-
             this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
             this.panelINTERACTED.Name = "panelINTERACTED";
             this.panelINTERACTED.Size = new System.Drawing.Size(303, 508);
@@ -89,9 +87,7 @@
             this.panelOPTION.Controls.Add(this.panelPICTUREOPTION);
             this.panelOPTION.Controls.Add(this.gunaButtonAvatar1);
             this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
-
             this.panelOPTION.Location = new System.Drawing.Point(0, 595);
-
             this.panelOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTION.Name = "panelOPTION";
             this.panelOPTION.Padding = new System.Windows.Forms.Padding(16, 7, 0, 7);
@@ -101,10 +97,7 @@
             // panelOPTIONNULL
             // 
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
-
             this.panelOPTIONNULL.Location = new System.Drawing.Point(227, 7);
-
-
             this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
             this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -116,10 +109,7 @@
             this.panelInfo.Controls.Add(this.labelID);
             this.panelInfo.Controls.Add(this.labelUSERNAME);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
-
             this.panelInfo.Location = new System.Drawing.Point(72, 7);
-
-
             this.panelInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -155,9 +145,7 @@
             // 
             this.panelPICTUREOPTION.Controls.Add(this.pictureBoxSetting);
             this.panelPICTUREOPTION.Dock = System.Windows.Forms.DockStyle.Right;
-
             this.panelPICTUREOPTION.Location = new System.Drawing.Point(238, 7);
-
             this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelPICTUREOPTION.Name = "panelPICTUREOPTION";
             this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(7, 12, 7, 12);
@@ -168,10 +156,10 @@
             // 
             this.pictureBoxSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSetting.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSetting.Image")));
-            this.pictureBoxSetting.Location = new System.Drawing.Point(7, 20);
+            this.pictureBoxSetting.Location = new System.Drawing.Point(7, 12);
             this.pictureBoxSetting.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxSetting.Name = "pictureBoxSetting";
-            this.pictureBoxSetting.Size = new System.Drawing.Size(51, 40);
+            this.pictureBoxSetting.Size = new System.Drawing.Size(51, 32);
             this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSetting.TabIndex = 2;
             this.pictureBoxSetting.TabStop = false;
@@ -198,9 +186,7 @@
             this.panelSEARCH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.panelSEARCH.Controls.Add(this.textBoxSearch);
             this.panelSEARCH.Dock = System.Windows.Forms.DockStyle.Top;
-
             this.panelSEARCH.Location = new System.Drawing.Point(0, 44);
-
             this.panelSEARCH.Margin = new System.Windows.Forms.Padding(4);
             this.panelSEARCH.Name = "panelSEARCH";
             this.panelSEARCH.Padding = new System.Windows.Forms.Padding(16, 6, 11, 6);
