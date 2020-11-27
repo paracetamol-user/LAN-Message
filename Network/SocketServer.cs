@@ -58,7 +58,7 @@ namespace Communication
             clientInvalid = new List<UserClient>();
             //idInvalid = new List<string>();
         }
-
+        public int idfocus = 0;
         public async Task StartForIncommingConnection(IPAddress addr = null, int port = 5000)
         {
             if (addr == null)
@@ -100,6 +100,57 @@ namespace Communication
             string[] data = received.Split('%');
             byte[] buffMessage = new byte[1024];
             bool check = true;
+   
+            if (data[0] == "SIGNUP")
+            {
+                try
+                {
+                    string idEnd = "";
+                   
+                    connection = new SqlConnection(connString);
+                    connection.Open();
+                    command = new SqlCommand(queryLogin,connection);
+                    reader = command.ExecuteReader();
+                    while (reader.HasRows)
+                    {
+                        if (reader.Read() == false) break;
+                        if (data[1] == reader.GetString(1))
+                        {
+                            byte[] tempBuff = Encoding.UTF8.GetBytes("SIGNUPNO");
+                            tempBuff.CopyTo(buffMessage, 0);
+                            await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                            return true;
+                        }
+                        idEnd = reader.GetString(0);
+                    }
+                    int.TryParse(idEnd,out idfocus);
+                    idfocus++;
+                    connection.Close();
+                    connection = new SqlConnection(connString);
+                    connection.Open();
+                    command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang)", connection);
+                    command.Parameters.AddWithValue("@id", idfocus.ToString());
+                    command.Parameters.AddWithValue("@tendangnhap", data[1]);
+                    command.Parameters.AddWithValue("@matkhau", data[2]);
+                    command.Parameters.AddWithValue("@hoten", data[3]);
+                    command.Parameters.AddWithValue("@sdt", data[4]);
+                    command.Parameters.AddWithValue("@gioitinh", data[5] == "True" ? 0 : 1   );
+                    command.Parameters.AddWithValue("@tinhtrang", 0);
+                    command.ExecuteNonQuery();
+                    byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
+                    tempBuffer.CopyTo(buffMessage, 0);
+                    client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+                    SendToAll(client, "ADDUSER%" + idfocus.ToString() +"%"+ data[1]);
+                    return true;
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    return true;
+                }
+                return true;
+            }
+            else
             if (data[0] == "LOGIN")
             {
                 try
@@ -114,7 +165,8 @@ namespace Communication
                         if (reader.Read() == false) break;
                         if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
                         {
-                            buffMessage = Encoding.ASCII.GetBytes("LOGINOKE " + reader.GetString(0));
+                            byte[] tempBuff = Encoding.UTF8.GetBytes("LOGINOKE " + reader.GetString(0));
+                            tempBuff.CopyTo(buffMessage, 0);
                             await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             client.id_ = reader.GetString(0);
                             clientInvalid.Add(client);
@@ -134,7 +186,7 @@ namespace Communication
                     }
                     if (check != false)
                     {
-                        buffMessage = Encoding.ASCII.GetBytes("LOGIN ERR");
+                        buffMessage = Encoding.UTF8.GetBytes("LOGIN ERR");
                         await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                     }
 
@@ -142,6 +194,7 @@ namespace Communication
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.ToString());
+                    return true;
                 }
                 return true;
             }
@@ -150,7 +203,7 @@ namespace Communication
             {
                 try
                 {
-                    string arr = "";
+                    string arr = "LOADUSERDATA%";
                     connection = new SqlConnection(connString);
                     connection.Open();
                     command = new SqlCommand(queryLogin, connection);
@@ -158,9 +211,9 @@ namespace Communication
                     while (reader.HasRows)
                     {
                         if (reader.Read() == false) break;
-                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(7).ToString() + "%";
+                        arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(6).ToString() + "%";
                     }
-                    buffMessage = Encoding.ASCII.GetBytes(arr);
+                    buffMessage = Encoding.UTF8.GetBytes(arr);
                     await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                 }
                 catch (Exception ex)
@@ -182,7 +235,7 @@ namespace Communication
                         {
                             byte[] tempbuff;
                             buffMessage = new byte[1024];
-                            tempbuff = Encoding.ASCII.GetBytes("MESSAGE" + "%" + data[3] + "%" + data[1]);
+                            tempbuff = Encoding.UTF8.GetBytes("MESSAGE" + "%" + data[3] + "%" + data[1]);
                             tempbuff.CopyTo(buffMessage, 0);
                             await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                             return true;
@@ -226,7 +279,7 @@ namespace Communication
                 byte[] fileData = File.ReadAllBytes(fileInfo.FullName);
 
                 byte[] tempbuff;
-                tempbuff = Encoding.ASCII.GetBytes("FILE" + "%" + FILEID + "%" + FILENAME + "%"+ fileData.Length.ToString()+"%" + fileInfo.Extension.ToString()+"%" + IDNGUOIGUI);
+                tempbuff = Encoding.UTF8.GetBytes("FILE" + "%" + FILEID + "%" + FILENAME + "%"+ fileData.Length.ToString()+"%" + fileInfo.Extension.ToString()+"%" + IDNGUOIGUI);
                 tempbuff.CopyTo(buffMessage, 0);
                 await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 
@@ -328,7 +381,7 @@ namespace Communication
                                         try
                                         {
                                             byte[] buffMessage = new byte[1024];
-                                            byte[] bufferSendToClintReceive = System.Text.Encoding.ASCII.GetBytes("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
+                                            byte[] bufferSendToClintReceive = System.Text.Encoding.UTF8.GetBytes("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
                                             bufferSendToClintReceive.CopyTo(buffMessage, 0);
                                             await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
                                             break;
@@ -391,7 +444,7 @@ namespace Communication
             }
         }
 
-        public async void SendToAll(UserClient clientFocus,string message)
+        public async Task SendToAll(UserClient clientFocus,string message)
         {
             if (string.IsNullOrEmpty(message))
                 return;
@@ -399,7 +452,7 @@ namespace Communication
             {
                 byte[] buffMessage = new byte[1024];
                 byte[] temp;
-                temp = Encoding.ASCII.GetBytes(message);
+                temp = Encoding.UTF8.GetBytes(message);
                 temp.CopyTo(buffMessage, 0); 
                 foreach (UserClient client in clientInvalid)
                 {
@@ -412,7 +465,6 @@ namespace Communication
                 Debug.WriteLine(ex.ToString());
             }
         }
-
         // FTP 
         int bufferSize = 1024;
         private async Task ReceiveData(UserClient paramClient)

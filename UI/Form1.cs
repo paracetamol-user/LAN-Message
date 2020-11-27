@@ -29,14 +29,12 @@ namespace UI
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
-
 		public static SocketClient client;
 		public static TcpClient server;
+		public static List<string> listFile;
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
-		// ex: Form1.client
-
 
 		public Form1()
 		{
@@ -68,7 +66,7 @@ namespace UI
 
 		private void LoadMyData()
 		{
-			labelID.Text = me.Id;
+			labelID.Text = "#"+me.Id;
 			labelUSERNAME.Text = me.Name;
 		}
 
@@ -87,17 +85,24 @@ namespace UI
 			{
 				buff = new byte[1024];
 				int nReturn = await stream.ReadAsync(buff, 0, buff.Length);
-				if (nReturn == 0)
-				{
-					MessageBox.Show("SERVER DISCONNECT!");
-					break;
-				}
-				string[] data = (System.Text.Encoding.ASCII.GetString(buff,0,nReturn).Trim('\0', '\t', '\r', '\n')).Split('%');
+				string[] data = (System.Text.Encoding.UTF8.GetString(buff,0,nReturn).Trim('\0', '\t', '\r', '\n')).Split('%');
 				for (int i = 0; i < data.Length; i++)
 				{
 					data[i] = data[i].Trim('\0');
 				}
 				string action = data[0];
+				if (action == "LOADUSERDATA")
+                {
+					for (int i = 1; i < data.Length; i++)
+					{
+						if (data[i] == "") break;
+						string[] arr = data[i].Split(' ');
+						if (arr[1] != me.Name)
+						{
+							UserUIs.Add(new UserUI(new User(arr[0], arr[1], bool.Parse(arr[2])), panelINTERACTED, panelRIGHT));
+						}
+					}
+				}else
 				if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
 				{
 					for (int i = 0; i < UserUIs.Count; i++)
@@ -105,9 +110,14 @@ namespace UI
 						if (UserUIs[i].GetId() == data[2])
 						{
 							UserUIs[i].AddMessage(data[1]);
+							UserUIs[i].BringToTop();
 							break;
 						}
 					}
+				}
+				else if (action == "ADDUSER")
+                {
+					UserUIs.Add(new UserUI(new User(data[1], data[2], false), panelINTERACTED, panelRIGHT));
 				}
 				else
 				if (action == "ONLINE")
@@ -162,11 +172,6 @@ namespace UI
 				}
 				else
 				{
-					//Array.Resize(ref buff, nReturn);
-					//if (dataFile.Length < infoByte.AllByteRead + nReturn)
-					//{
-					//	Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
-					//}
 					if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)
                     {
 						Array.Resize(ref buff, 1024 - (buff.Length + infoByte.AllByteRead - infoByte.ByteLeft));
@@ -175,8 +180,10 @@ namespace UI
 					infoByte.AllByteRead = infoByte.AllByteRead + buff.Length;
 					if (infoByte.AllByteRead == infoByte.ByteLeft)
 					{
-						File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);
-						FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
+						_FileDialog fd = new _FileDialog();
+						fd.SaveFile(dataFile, FILENAME + infoByte.Extension);
+						//File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);
+						//FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
 					}
 				}
 
@@ -187,17 +194,10 @@ namespace UI
 		// Hiện tại chưa có code gọi người dùng online trong server mà chỉ gọi tất cả về
 		private async void LoadDataUser()
 		{
-			client.SendToServer("LOADUSERDATA%" + me.Name);
-			string data = await client.ReadDataAsync(server);
-			string[] datauser = data.Split('%','\0');
-			// 3 dòng lấy dữ liệu
-			for (int i = 0; i < datauser.Length; i++)
-			{
-				if (datauser[i] == "") break;
-				string[] arr = datauser[i].Split(' ');
-				if (arr[1] == me.Name) { continue; }
-				UserUIs.Add(new UserUI(new User(arr[0], arr[1],bool.Parse(arr[2])), panelINTERACTED, panelRIGHT));
-			}
+            byte[] buff = new byte[1024];
+			byte[] tembuff = Encoding.UTF8.GetBytes("LOADUSERDATA%" + me.Name);
+			tembuff.CopyTo(buff, 0);
+			server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -215,13 +215,16 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
+	}
 
-        private void pictureBoxSetting_Click(object sender, EventArgs e)
-        {
+
+    private void pictureBoxSetting_Click(object sender, EventArgs e)
+    {
 			SettingForm form = new SettingForm(me, this);
 			form.Show();
 		}
 
     }
+
 }
 

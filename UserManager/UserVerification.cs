@@ -3,17 +3,17 @@ using System.Text;
 
 namespace UserManager
 {
-    public class UserVerification
+    public partial class UserVerification
     {
         private static string sqlQuery = "";
 
-        private static byte[] GetSHA256(byte[] text)
+        public byte[] GetSHA256(byte[] text)
         {
             SHA256Managed managed = new SHA256Managed();
             return managed.ComputeHash(text);
         }
 
-        private static string GetSHA256(string text)
+        public string GetSHA256(string text)
         {
             if (text == null)
                 return string.Empty;
@@ -29,27 +29,6 @@ namespace UserManager
 
             return hashString;
         }
-
-        public bool CheckExistedUser(string username)
-        {
-            return false;
-        }
-
-        public bool CheckValidUser(string username, string passwordSHA256)
-        {
-            return false;
-        }
-
-        public void AddUser(string username, string passwordSHA256)
-        {
-
-        }
-
-        public void DeleteUser(string username)
-        {
-
-        }
-
         public void ChangePassword(string username, string password)
         {
 

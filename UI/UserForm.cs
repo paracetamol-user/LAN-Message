@@ -45,7 +45,7 @@ namespace UI
             //{
                 ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
                 ucFileShow fileshow = new ucFileShow(user, tempId, tempName);
-                
+                if (_user == Form1.me) fileshow._DisableButDownLoad();
                 fileshow.Dock = DockStyle.Top;
                 UserInChatBox.Dock = DockStyle.Top;
                 
@@ -153,7 +153,7 @@ namespace UI
                 // Gửi tin nhắn qua server
                 byte[] buff = new byte[1024];
                 byte[] tempbuff;
-                tempbuff = System.Text.Encoding.ASCII.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
+                tempbuff = System.Text.Encoding.UTF8.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
                 tempbuff.CopyTo(buff, 0);
                 Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 
@@ -170,7 +170,7 @@ namespace UI
             {
                 foreach (var item in files)
                 {
-                    AddFileToListChat(this.user, "-1", item.Name, 1);
+                    AddFileToListChat(Form1.me, "-1", item.Name, 1);
                     //Gửi
                     byte[] data = File.ReadAllBytes(item.FullName);
                     int temp = 1024 - (data.Length % 1024);
@@ -178,7 +178,7 @@ namespace UI
                     data.CopyTo(package, 0);
                     byte[] buff = new byte[1024];
                     byte[] tempbuff;
-                    tempbuff = System.Text.Encoding.ASCII.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + user.Id);
+                    tempbuff = System.Text.Encoding.UTF8.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + user.Id);
                     tempbuff.CopyTo(buff, 0);
                     await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
                     await Form1.client.SendFileToServer(package);

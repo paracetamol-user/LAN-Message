@@ -326,8 +326,19 @@ namespace UI
             menuOnline.MouseLeave += MenuOnline_MouseLeave;
             panelAllRight.MouseLeave += PanelAllRight_MouseLeave1;
         }
-
-        
+        public void BringToTop()
+        {
+            if (this.panelINTERACTED.Contains(panelUserLeft))
+            {
+                this.panelINTERACTED.Controls.Remove(panelUserLeft);
+            }
+            this.AddUserInteracted();
+            //BoldUser();
+        }
+        public void BoldUser()
+        {
+            panelUserLeft.BackColor = Color.FromArgb(178, 190, 195);
+        }
         /// <summary>
         /// Khỏi tạo giao diện các Panel Control.
         /// </summary>
@@ -393,7 +404,11 @@ namespace UI
         }
         public void AddUserInteracted()
         {
-            if (panelUserLeft.Visible == false)
+            if (this.panelINTERACTED.Contains(panelUserLeft))
+            {
+                panelUserLeft.Visible = true;
+                panelUserLeft.Dock = DockStyle.Top;
+            }else
             {
                 panelUserLeft.Visible = true;
                 panelUserLeft.Dock = DockStyle.Top;

@@ -17,11 +17,11 @@ namespace UI
     public partial class LoginForm : Form
     {
         //Info Server
-        private string ipServer = "172.17.31.231";
+        private string ipServer = "10.10.22.213";
         private string portSever = "5000";
 
-        SocketClient client;
-        TcpClient server;
+        static public SocketClient client;
+        static public TcpClient server;
 
         public LoginForm()
         {
@@ -42,6 +42,8 @@ namespace UI
         }
         public async void SendRequest(string account, string pass, string action)
         {
+            UserManager.UserVerification userVerification= new UserManager.UserVerification();
+            pass = userVerification.GetSHA256(pass);
             await client.SendToServer(action + "%" + account + "%" + pass);
             string[] data = (await (client.ReadDataAsync(server))).Split(' ');
             if (data[0].Trim('\0', '\r', '\n') == "LOGINOKE")
@@ -50,10 +52,12 @@ namespace UI
                 Form1 mainform = new Form1(this, user , client , server);
                 mainform.Show();
                 this.Hide();
+                label2.Visible = false;
             }
             else
             {
                 label2.Text = "Tai khoan hoac mat khau khong chinh xac";
+                label2.Visible = true;
             }
         }
 
@@ -80,6 +84,13 @@ namespace UI
                 SendRequest(account, password, action);
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Sign_up tam = new Sign_up(this);
+            tam.Show();
+            this.Hide();
         }
     }
 }

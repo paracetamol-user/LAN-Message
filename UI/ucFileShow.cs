@@ -70,12 +70,18 @@ namespace UI
 		{
 			byte[] buff = new byte[1024];
 			byte[] tempbuff;
-			tempbuff = System.Text.Encoding.ASCII.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text + "%" + user.Id);
+			tempbuff = System.Text.Encoding.UTF8.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text + "%" + user.Id);
 			tempbuff.CopyTo(buff, 0);
 			await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 			PictureBox temp = sender as PictureBox;
 			temp.Image = Image.FromFile(@"..\..\images\check.png");
 			temp.Enabled = false;
+		}
+
+		
+		public void _DisableButDownLoad()
+		{
+			this.pictureBoxDownLoad.Visible = false;
 		}
 	}
 }
