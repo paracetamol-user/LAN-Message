@@ -73,6 +73,7 @@
             this.panelINTERACTED.AutoScroll = true;
             this.panelINTERACTED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
+
             this.panelINTERACTED.Location = new System.Drawing.Point(0, 87);
 
             this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
@@ -90,6 +91,7 @@
             this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
 
             this.panelOPTION.Location = new System.Drawing.Point(0, 595);
+
             this.panelOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTION.Name = "panelOPTION";
             this.panelOPTION.Padding = new System.Windows.Forms.Padding(16, 7, 0, 7);
@@ -101,6 +103,7 @@
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
 
             this.panelOPTIONNULL.Location = new System.Drawing.Point(227, 7);
+
 
             this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
@@ -115,6 +118,7 @@
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
 
             this.panelInfo.Location = new System.Drawing.Point(72, 7);
+
 
             this.panelInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelInfo.Name = "panelInfo";
