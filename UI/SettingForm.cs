@@ -13,8 +13,8 @@ namespace UI
 {
     public partial class SettingForm : Form
     {
-        string oldUsername;
-        string oldPath;
+        private string oldUsername;
+        private string oldPath;
         Form1 parentForm;
         public SettingForm()
         {
@@ -25,24 +25,21 @@ namespace UI
         {
             lblUsername.Text = me.Name;
             lblPassword.Text = "*****";
-            lblPath.Text = @"C:\Users\admin\Downloads\LAN_Message\";
+            lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             oldUsername = me.Name;
-            oldPath = @"C:\Users\admin\Downloads\LAN_Message\";
             this.parentForm = parent;
-        }
-
-        private void guna2ImageButton1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
+
+            Form1.me.Name = oldUsername;
             this.Close();
         }
 
         private void btnEditUsername_Click(object sender, EventArgs e)
         {
+
             // Enable discard and save button for click
             this.btnDiscard.Enabled = true;
             this.btnSave.Enabled = true;
@@ -61,6 +58,8 @@ namespace UI
             DialogResult result = browser.ShowDialog();
             if (result == DialogResult.OK)
                 lblPath.Text = browser.SelectedPath;
+
+
             // Enable discard and save button for click
             this.btnDiscard.Enabled = true;
             this.btnSave.Enabled = true;
@@ -68,6 +67,7 @@ namespace UI
 
         private void btnEditPassword_Click(object sender, EventArgs e)
         {
+
             // Enable discard and save button for click
             this.btnDiscard.Enabled = true;
             this.btnSave.Enabled = true;
@@ -92,9 +92,21 @@ namespace UI
 
         private void btnChangeAvatar_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter =
+                "Image (*.BMP, *.JPG, *PNG)|*.BMP, *.JPG, *.PNG";
+
+            openFileDialog.Multiselect = false;
+            
             // Enable discard and save button for click
             this.btnDiscard.Enabled = false;
             this.btnSave.Enabled = false;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            parentForm.loginForm.Show();
         }
     }
 }

@@ -37,14 +37,6 @@ namespace UI
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.btnEditDownloadPath = new System.Windows.Forms.Button();
-            this.panel22 = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.lblPath = new System.Windows.Forms.Label();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnEditPassword = new System.Windows.Forms.Button();
@@ -69,15 +61,18 @@ namespace UI
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.lblPath = new System.Windows.Forms.Label();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.btnEditDownloadPath = new System.Windows.Forms.Button();
+            this.panel20 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel20.SuspendLayout();
-            this.panel21.SuspendLayout();
-            this.panel22.SuspendLayout();
-            this.panel23.SuspendLayout();
-            this.panel24.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -93,6 +88,11 @@ namespace UI
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.panel4.SuspendLayout();
+            this.panel22.SuspendLayout();
+            this.panel24.SuspendLayout();
+            this.panel23.SuspendLayout();
+            this.panel21.SuspendLayout();
+            this.panel20.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -161,6 +161,7 @@ namespace UI
             this.btnLogout.TabIndex = 0;
             this.btnLogout.Text = "Log out";
             this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // panel7
             // 
@@ -175,93 +176,6 @@ namespace UI
             this.panel7.Padding = new System.Windows.Forms.Padding(25);
             this.panel7.Size = new System.Drawing.Size(982, 467);
             this.panel7.TabIndex = 0;
-            // 
-            // panel20
-            // 
-            this.panel20.BackColor = System.Drawing.Color.LightGray;
-            this.panel20.Controls.Add(this.panel21);
-            this.panel20.Controls.Add(this.panel22);
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel20.Location = new System.Drawing.Point(25, 338);
-            this.panel20.Name = "panel20";
-            this.panel20.Padding = new System.Windows.Forms.Padding(10);
-            this.panel20.Size = new System.Drawing.Size(932, 109);
-            this.panel20.TabIndex = 3;
-            // 
-            // panel21
-            // 
-            this.panel21.Controls.Add(this.btnEditDownloadPath);
-            this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel21.Location = new System.Drawing.Point(799, 10);
-            this.panel21.Name = "panel21";
-            this.panel21.Padding = new System.Windows.Forms.Padding(0, 20, 10, 20);
-            this.panel21.Size = new System.Drawing.Size(123, 89);
-            this.panel21.TabIndex = 1;
-            // 
-            // btnEditDownloadPath
-            // 
-            this.btnEditDownloadPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnEditDownloadPath.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEditDownloadPath.Location = new System.Drawing.Point(38, 20);
-            this.btnEditDownloadPath.Name = "btnEditDownloadPath";
-            this.btnEditDownloadPath.Size = new System.Drawing.Size(75, 49);
-            this.btnEditDownloadPath.TabIndex = 0;
-            this.btnEditDownloadPath.Text = "EDIT";
-            this.btnEditDownloadPath.UseVisualStyleBackColor = false;
-            this.btnEditDownloadPath.Click += new System.EventHandler(this.btnEditDownloadPath_Click);
-            // 
-            // panel22
-            // 
-            this.panel22.Controls.Add(this.panel23);
-            this.panel22.Controls.Add(this.panel24);
-            this.panel22.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel22.Location = new System.Drawing.Point(10, 10);
-            this.panel22.Name = "panel22";
-            this.panel22.Padding = new System.Windows.Forms.Padding(5, 5, 30, 5);
-            this.panel22.Size = new System.Drawing.Size(328, 89);
-            this.panel22.TabIndex = 0;
-            // 
-            // panel23
-            // 
-            this.panel23.Controls.Add(this.lblPath);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(5, 39);
-            this.panel23.Name = "panel23";
-            this.panel23.Padding = new System.Windows.Forms.Padding(3);
-            this.panel23.Size = new System.Drawing.Size(293, 34);
-            this.panel23.TabIndex = 1;
-            // 
-            // lblPath
-            // 
-            this.lblPath.AutoSize = true;
-            this.lblPath.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblPath.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPath.Location = new System.Drawing.Point(3, 3);
-            this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(56, 17);
-            this.lblPath.TabIndex = 1;
-            this.lblPath.Text = "label6";
-            // 
-            // panel24
-            // 
-            this.panel24.Controls.Add(this.label7);
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel24.Location = new System.Drawing.Point(5, 5);
-            this.panel24.Name = "panel24";
-            this.panel24.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.panel24.Size = new System.Drawing.Size(293, 34);
-            this.panel24.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label7.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 5);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 18);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "DOWNLOAD SAVE";
             // 
             // panel15
             // 
@@ -521,6 +435,92 @@ namespace UI
             this.label1.TabIndex = 2;
             this.label1.Text = "MY ACCOUNT";
             // 
+            // panel22
+            // 
+            this.panel22.Controls.Add(this.panel23);
+            this.panel22.Controls.Add(this.panel24);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel22.Location = new System.Drawing.Point(10, 10);
+            this.panel22.Name = "panel22";
+            this.panel22.Padding = new System.Windows.Forms.Padding(5, 5, 30, 5);
+            this.panel22.Size = new System.Drawing.Size(328, 89);
+            this.panel22.TabIndex = 0;
+            // 
+            // panel24
+            // 
+            this.panel24.Controls.Add(this.label7);
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel24.Location = new System.Drawing.Point(5, 5);
+            this.panel24.Name = "panel24";
+            this.panel24.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.panel24.Size = new System.Drawing.Size(293, 34);
+            this.panel24.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label7.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 18);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "DOWNLOAD SAVE";
+            // 
+            // panel23
+            // 
+            this.panel23.Controls.Add(this.lblPath);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(5, 39);
+            this.panel23.Name = "panel23";
+            this.panel23.Padding = new System.Windows.Forms.Padding(3);
+            this.panel23.Size = new System.Drawing.Size(293, 34);
+            this.panel23.TabIndex = 1;
+            // 
+            // lblPath
+            // 
+            this.lblPath.AutoSize = true;
+            this.lblPath.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblPath.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPath.Location = new System.Drawing.Point(3, 3);
+            this.lblPath.Name = "lblPath";
+            this.lblPath.Size = new System.Drawing.Size(56, 17);
+            this.lblPath.TabIndex = 1;
+            this.lblPath.Text = "label6";
+            // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.btnEditDownloadPath);
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel21.Location = new System.Drawing.Point(799, 10);
+            this.panel21.Name = "panel21";
+            this.panel21.Padding = new System.Windows.Forms.Padding(0, 20, 10, 20);
+            this.panel21.Size = new System.Drawing.Size(123, 89);
+            this.panel21.TabIndex = 1;
+            // 
+            // btnEditDownloadPath
+            // 
+            this.btnEditDownloadPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnEditDownloadPath.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnEditDownloadPath.Location = new System.Drawing.Point(38, 20);
+            this.btnEditDownloadPath.Name = "btnEditDownloadPath";
+            this.btnEditDownloadPath.Size = new System.Drawing.Size(75, 49);
+            this.btnEditDownloadPath.TabIndex = 0;
+            this.btnEditDownloadPath.Text = "EDIT";
+            this.btnEditDownloadPath.UseVisualStyleBackColor = false;
+            // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.LightGray;
+            this.panel20.Controls.Add(this.panel21);
+            this.panel20.Controls.Add(this.panel22);
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel20.Location = new System.Drawing.Point(25, 338);
+            this.panel20.Name = "panel20";
+            this.panel20.Padding = new System.Windows.Forms.Padding(10);
+            this.panel20.Size = new System.Drawing.Size(932, 109);
+            this.panel20.TabIndex = 3;
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -534,13 +534,6 @@ namespace UI
             this.panel6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel20.ResumeLayout(false);
-            this.panel21.ResumeLayout(false);
-            this.panel22.ResumeLayout(false);
-            this.panel23.ResumeLayout(false);
-            this.panel23.PerformLayout();
-            this.panel24.ResumeLayout(false);
-            this.panel24.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
@@ -561,6 +554,13 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel22.ResumeLayout(false);
+            this.panel24.ResumeLayout(false);
+            this.panel24.PerformLayout();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
+            this.panel21.ResumeLayout(false);
+            this.panel20.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -584,14 +584,6 @@ namespace UI
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.Button btnEditDownloadPath;
-        private System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.Label lblPath;
-        private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Button btnEditPassword;
@@ -605,5 +597,13 @@ namespace UI
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnChangeAvatar;
         private System.Windows.Forms.Button btnDiscard;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Button btnEditDownloadPath;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.Label lblPath;
+        private System.Windows.Forms.Panel panel24;
+        private System.Windows.Forms.Label label7;
     }
 }
