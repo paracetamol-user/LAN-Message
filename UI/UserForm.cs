@@ -153,7 +153,7 @@ namespace UI
                 // Gửi tin nhắn qua server
                 byte[] buff = new byte[1024];
                 byte[] tempbuff;
-                tempbuff = System.Text.Encoding.ASCII.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
+                tempbuff = System.Text.Encoding.UTF8.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
                 tempbuff.CopyTo(buff, 0);
                 Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 
@@ -178,7 +178,7 @@ namespace UI
                     data.CopyTo(package, 0);
                     byte[] buff = new byte[1024];
                     byte[] tempbuff;
-                    tempbuff = System.Text.Encoding.ASCII.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + user.Id);
+                    tempbuff = System.Text.Encoding.UTF8.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + user.Id);
                     tempbuff.CopyTo(buff, 0);
                     await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
                     await Form1.client.SendFileToServer(package);
@@ -289,5 +289,6 @@ namespace UI
             }
 
         }
+
     }
 }

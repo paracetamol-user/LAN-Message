@@ -22,21 +22,19 @@ namespace UI
 							///NGƯỜI SỬ DỤNG SERVER LÀ USER
 							/// </summary>
 						   
-		private LoginForm loginForm;
+		public LoginForm loginForm;
 
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public static User me; // Nguoi su dung chuong trinh
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
-
 		public static SocketClient client;
 		public static TcpClient server;
+		public static List<string> listFile;
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
-		// ex: Form1.client
-
 
 		public Form1()
 		{
@@ -68,7 +66,7 @@ namespace UI
 
 		private void LoadMyData()
 		{
-			labelID.Text = me.Id;
+			labelID.Text = "#"+me.Id;
 			labelUSERNAME.Text = me.Name;
 		}
 
@@ -87,12 +85,7 @@ namespace UI
 			{
 				buff = new byte[1024];
 				int nReturn = await stream.ReadAsync(buff, 0, buff.Length);
-				if (nReturn == 0)
-				{
-					MessageBox.Show("SERVER DISCONNECT!");
-					break;
-				}
-				string[] data = (System.Text.Encoding.ASCII.GetString(buff,0,nReturn).Trim('\0', '\t', '\r', '\n')).Split('%');
+				string[] data = (System.Text.Encoding.UTF8.GetString(buff,0,nReturn).Trim('\0', '\t', '\r', '\n')).Split('%');
 				for (int i = 0; i < data.Length; i++)
 				{
 					data[i] = data[i].Trim('\0');
@@ -117,6 +110,7 @@ namespace UI
 						if (UserUIs[i].GetId() == data[2])
 						{
 							UserUIs[i].AddMessage(data[1]);
+							UserUIs[i].BringToTop();
 							break;
 						}
 					}
@@ -178,11 +172,6 @@ namespace UI
 				}
 				else
 				{
-					//Array.Resize(ref buff, nReturn);
-					//if (dataFile.Length < infoByte.AllByteRead + nReturn)
-					//{
-					//	Array.Resize(ref dataFile, infoByte.AllByteRead + nReturn);
-					//}
 					if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)
                     {
 						Array.Resize(ref buff, 1024 - (buff.Length + infoByte.AllByteRead - infoByte.ByteLeft));
@@ -191,8 +180,10 @@ namespace UI
 					infoByte.AllByteRead = infoByte.AllByteRead + buff.Length;
 					if (infoByte.AllByteRead == infoByte.ByteLeft)
 					{
-						File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);
-						FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
+						_FileDialog fd = new _FileDialog();
+						fd.SaveFile(dataFile, FILENAME + infoByte.Extension);
+						//File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);
+						//FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
 					}
 				}
 
@@ -204,7 +195,7 @@ namespace UI
 		private async void LoadDataUser()
 		{
             byte[] buff = new byte[1024];
-			byte[] tembuff = Encoding.ASCII.GetBytes("LOADUSERDATA%" + me.Name);
+			byte[] tembuff = Encoding.UTF8.GetBytes("LOADUSERDATA%" + me.Name);
 			tembuff.CopyTo(buff, 0);
 			server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
@@ -224,8 +215,16 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
-
-	  
 	}
+
+
+    private void pictureBoxSetting_Click(object sender, EventArgs e)
+    {
+			SettingForm form = new SettingForm(me, this);
+			form.Show();
+		}
+
+    }
+
 }
 
