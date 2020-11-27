@@ -33,6 +33,8 @@ namespace UI
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panelButton = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.panel25 = new System.Windows.Forms.Panel();
             this.btnDiscard = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -74,11 +76,10 @@ namespace UI
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panelButton.SuspendLayout();
+            this.panel25.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -103,7 +104,6 @@ namespace UI
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.panel4.SuspendLayout();
-            this.panel25.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -139,6 +139,28 @@ namespace UI
             this.panelButton.Padding = new System.Windows.Forms.Padding(40, 10, 50, 60);
             this.panelButton.Size = new System.Drawing.Size(982, 135);
             this.panelButton.TabIndex = 2;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLogout.BackColor = System.Drawing.Color.Red;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(794, 17);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(135, 55);
+            this.btnLogout.TabIndex = 1;
+            this.btnLogout.Text = "Log out";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.btnDiscard);
+            this.panel25.Controls.Add(this.btnSave);
+            this.panel25.Location = new System.Drawing.Point(35, 23);
+            this.panel25.Name = "panel25";
+            this.panel25.Padding = new System.Windows.Forms.Padding(10, 0, 10, 6);
+            this.panel25.Size = new System.Drawing.Size(365, 48);
+            this.panel25.TabIndex = 4;
             // 
             // btnDiscard
             // 
@@ -588,28 +610,6 @@ namespace UI
             this.label1.TabIndex = 2;
             this.label1.Text = "MY ACCOUNT";
             // 
-            // panel25
-            // 
-            this.panel25.Controls.Add(this.btnDiscard);
-            this.panel25.Controls.Add(this.btnSave);
-            this.panel25.Location = new System.Drawing.Point(35, 23);
-            this.panel25.Name = "panel25";
-            this.panel25.Padding = new System.Windows.Forms.Padding(10, 0, 10, 6);
-            this.panel25.Size = new System.Drawing.Size(365, 48);
-            this.panel25.TabIndex = 4;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnLogout.BackColor = System.Drawing.Color.Red;
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(794, 17);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(135, 55);
-            this.btnLogout.TabIndex = 1;
-            this.btnLogout.Text = "Log out";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -624,6 +624,7 @@ namespace UI
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panelButton.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel20.ResumeLayout(false);
@@ -658,7 +659,6 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel25.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
