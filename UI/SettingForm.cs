@@ -23,7 +23,8 @@ namespace UI
         
         public SettingForm(User me, Form1 parent)
         {
-            lblUsername.Text = me.Name;
+            InitializeComponent();
+            lblUsername.Text = Form1.me.Name;
             lblPassword.Text = "*****";
             lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             oldUsername = me.Name;

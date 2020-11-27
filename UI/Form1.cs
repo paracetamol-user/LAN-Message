@@ -215,16 +215,15 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
-	}
 
-
-    private void pictureBoxSetting_Click(object sender, EventArgs e)
-    {
+        private void pictureBoxSetting_Click(object sender, EventArgs e)
+        {
 			SettingForm form = new SettingForm(me, this);
 			form.Show();
+			form.BringToFront();
+			form.TopLevel = false;
+			form.Dock = DockStyle.Fill;
+			this.panelRIGHT.Controls.Add(form);
 		}
-
     }
-
 }
-
