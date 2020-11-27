@@ -349,6 +349,7 @@
             // panelListChat
             // 
             this.panelListChat.AutoScroll = true;
+            this.panelListChat.BackColor = System.Drawing.Color.White;
             this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelListChat.Location = new System.Drawing.Point(0, 73);
             this.panelListChat.Margin = new System.Windows.Forms.Padding(4);

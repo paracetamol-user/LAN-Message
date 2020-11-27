@@ -17,7 +17,7 @@ namespace UI
     public partial class LoginForm : Form
     {
         //Info Server
-        private string ipServer = "172.17.26.97";
+        private string ipServer = "10.10.22.213";
         private string portSever = "5000";
 
         static public SocketClient client;
@@ -52,10 +52,12 @@ namespace UI
                 Form1 mainform = new Form1(this, user , client , server);
                 mainform.Show();
                 this.Hide();
+                label2.Visible = false;
             }
             else
             {
                 label2.Text = "Tai khoan hoac mat khau khong chinh xac";
+                label2.Visible = true;
             }
         }
 
