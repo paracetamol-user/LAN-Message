@@ -20,17 +20,13 @@ namespace Server
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            txtBoxConsole.AppendText("Server started");
             mServer.StartForIncommingConnection();
-        }
-
-        private void btnSendToAll_Click(object sender, EventArgs e)
-        {
-            //mServer.SendToAll(txtBoxMessage.Text);
-            //txtBoxMessage.Text = string.Empty;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            txtBoxConsole.AppendText("Server stopped");
             mServer.StopServer();
         }
 
