@@ -77,6 +77,8 @@ namespace UI
 			temp.Image = Image.FromFile(@"..\..\images\check.png");
 			temp.Enabled = false;
 		}
+
+		
 		public void _DisableButDownLoad()
 		{
 			this.pictureBoxDownLoad.Visible = false;

@@ -29,9 +29,9 @@ namespace UI
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
-
 		public static SocketClient client;
 		public static TcpClient server;
+		public static List<string> listFile;
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
@@ -66,7 +66,7 @@ namespace UI
 
 		private void LoadMyData()
 		{
-			labelID.Text = me.Id;
+			labelID.Text = "#"+me.Id;
 			labelUSERNAME.Text = me.Name;
 		}
 
@@ -180,8 +180,10 @@ namespace UI
 					infoByte.AllByteRead = infoByte.AllByteRead + buff.Length;
 					if (infoByte.AllByteRead == infoByte.ByteLeft)
 					{
-						File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);
-						FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
+						_FileDialog fd = new _FileDialog();
+						fd.SaveFile(dataFile, FILENAME + infoByte.Extension);
+						//File.WriteAllBytes(@"..\..\cache\file\" + FILEID + infoByte.Extension, dataFile);
+						//FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
 					}
 				}
 

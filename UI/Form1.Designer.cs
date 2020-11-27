@@ -65,7 +65,7 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(363, 665);
+            this.panelMenu.Size = new System.Drawing.Size(303, 665);
             this.panelMenu.TabIndex = 1;
             // 
             // panelINTERACTED
@@ -73,10 +73,10 @@
             this.panelINTERACTED.AutoScroll = true;
             this.panelINTERACTED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelINTERACTED.Location = new System.Drawing.Point(0, 135);
+            this.panelINTERACTED.Location = new System.Drawing.Point(0, 87);
             this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
             this.panelINTERACTED.Name = "panelINTERACTED";
-            this.panelINTERACTED.Size = new System.Drawing.Size(363, 436);
+            this.panelINTERACTED.Size = new System.Drawing.Size(303, 508);
             this.panelINTERACTED.TabIndex = 3;
             // 
             // panelOPTION
@@ -87,21 +87,21 @@
             this.panelOPTION.Controls.Add(this.panelPICTUREOPTION);
             this.panelOPTION.Controls.Add(this.gunaButtonAvatar1);
             this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOPTION.Location = new System.Drawing.Point(0, 571);
+            this.panelOPTION.Location = new System.Drawing.Point(0, 595);
             this.panelOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTION.Name = "panelOPTION";
             this.panelOPTION.Padding = new System.Windows.Forms.Padding(16, 7, 0, 7);
-            this.panelOPTION.Size = new System.Drawing.Size(363, 94);
+            this.panelOPTION.Size = new System.Drawing.Size(303, 70);
             this.panelOPTION.TabIndex = 2;
             // 
             // panelOPTIONNULL
             // 
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOPTIONNULL.Location = new System.Drawing.Point(305, 7);
+            this.panelOPTIONNULL.Location = new System.Drawing.Point(227, 7);
             this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
             this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panelOPTIONNULL.Size = new System.Drawing.Size(0, 80);
+            this.panelOPTIONNULL.Size = new System.Drawing.Size(11, 56);
             this.panelOPTIONNULL.TabIndex = 3;
             // 
             // panelInfo
@@ -109,11 +109,11 @@
             this.panelInfo.Controls.Add(this.labelID);
             this.panelInfo.Controls.Add(this.labelUSERNAME);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelInfo.Location = new System.Drawing.Point(101, 7);
+            this.panelInfo.Location = new System.Drawing.Point(72, 7);
             this.panelInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Padding = new System.Windows.Forms.Padding(4, 4, 0, 0);
-            this.panelInfo.Size = new System.Drawing.Size(204, 80);
+            this.panelInfo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.panelInfo.Size = new System.Drawing.Size(155, 56);
             this.panelInfo.TabIndex = 2;
             // 
             // labelID
@@ -121,7 +121,7 @@
             this.labelID.AutoSize = true;
             this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelID.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelID.Location = new System.Drawing.Point(4, 39);
+            this.labelID.Location = new System.Drawing.Point(8, 22);
             this.labelID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelID.Name = "labelID";
             this.labelID.Size = new System.Drawing.Size(64, 24);
@@ -130,13 +130,14 @@
             // 
             // labelUSERNAME
             // 
+            this.labelUSERNAME.AutoEllipsis = true;
             this.labelUSERNAME.AutoSize = true;
             this.labelUSERNAME.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelUSERNAME.Font = new System.Drawing.Font("Comic Sans MS", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSERNAME.Location = new System.Drawing.Point(4, 4);
+            this.labelUSERNAME.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUSERNAME.Location = new System.Drawing.Point(8, 0);
             this.labelUSERNAME.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUSERNAME.Name = "labelUSERNAME";
-            this.labelUSERNAME.Size = new System.Drawing.Size(145, 35);
+            this.labelUSERNAME.Size = new System.Drawing.Size(105, 22);
             this.labelUSERNAME.TabIndex = 0;
             this.labelUSERNAME.Text = "User Name";
             // 
@@ -144,21 +145,21 @@
             // 
             this.panelPICTUREOPTION.Controls.Add(this.pictureBox2);
             this.panelPICTUREOPTION.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelPICTUREOPTION.Location = new System.Drawing.Point(298, 7);
+            this.panelPICTUREOPTION.Location = new System.Drawing.Point(238, 7);
             this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelPICTUREOPTION.Name = "panelPICTUREOPTION";
-            this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(7, 20, 7, 20);
-            this.panelPICTUREOPTION.Size = new System.Drawing.Size(65, 80);
+            this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(7, 12, 7, 12);
+            this.panelPICTUREOPTION.Size = new System.Drawing.Size(65, 56);
             this.panelPICTUREOPTION.TabIndex = 1;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(7, 20);
+            this.pictureBox2.Location = new System.Drawing.Point(7, 12);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 40);
+            this.pictureBox2.Size = new System.Drawing.Size(51, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -173,7 +174,7 @@
             this.gunaButtonAvatar1.Name = "gunaButtonAvatar1";
             this.gunaButtonAvatar1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.gunaButtonAvatar1.ShadowDecoration.Parent = this.gunaButtonAvatar1;
-            this.gunaButtonAvatar1.Size = new System.Drawing.Size(85, 80);
+            this.gunaButtonAvatar1.Size = new System.Drawing.Size(56, 56);
             this.gunaButtonAvatar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaButtonAvatar1.TabIndex = 0;
             this.gunaButtonAvatar1.TabStop = false;
@@ -184,17 +185,17 @@
             this.panelSEARCH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.panelSEARCH.Controls.Add(this.textBoxSearch);
             this.panelSEARCH.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSEARCH.Location = new System.Drawing.Point(0, 69);
+            this.panelSEARCH.Location = new System.Drawing.Point(0, 44);
             this.panelSEARCH.Margin = new System.Windows.Forms.Padding(4);
             this.panelSEARCH.Name = "panelSEARCH";
             this.panelSEARCH.Padding = new System.Windows.Forms.Padding(16, 6, 11, 6);
-            this.panelSEARCH.Size = new System.Drawing.Size(363, 66);
+            this.panelSEARCH.Size = new System.Drawing.Size(303, 43);
             this.panelSEARCH.TabIndex = 1;
             // 
             // textBoxSearch
             // 
             this.textBoxSearch.AutoRoundedCorners = true;
-            this.textBoxSearch.BorderRadius = 26;
+            this.textBoxSearch.BorderRadius = 14;
             this.textBoxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxSearch.DefaultText = "";
             this.textBoxSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -218,7 +219,7 @@
             this.textBoxSearch.PlaceholderText = "Search";
             this.textBoxSearch.SelectedText = "";
             this.textBoxSearch.ShadowDecoration.Parent = this.textBoxSearch;
-            this.textBoxSearch.Size = new System.Drawing.Size(336, 54);
+            this.textBoxSearch.Size = new System.Drawing.Size(276, 31);
             this.textBoxSearch.TabIndex = 0;
             // 
             // panelLANMESS
@@ -230,7 +231,7 @@
             this.panelLANMESS.Margin = new System.Windows.Forms.Padding(0);
             this.panelLANMESS.Name = "panelLANMESS";
             this.panelLANMESS.Padding = new System.Windows.Forms.Padding(10);
-            this.panelLANMESS.Size = new System.Drawing.Size(363, 69);
+            this.panelLANMESS.Size = new System.Drawing.Size(303, 44);
             this.panelLANMESS.TabIndex = 0;
             // 
             // ButtonLanMessenger
@@ -244,12 +245,12 @@
             this.ButtonLanMessenger.ForeColor = System.Drawing.Color.DodgerBlue;
             this.ButtonLanMessenger.HoverState.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Image = ((System.Drawing.Image)(resources.GetObject("ButtonLanMessenger.Image")));
-            this.ButtonLanMessenger.ImageSize = new System.Drawing.Size(50, 50);
+            this.ButtonLanMessenger.ImageSize = new System.Drawing.Size(30, 30);
             this.ButtonLanMessenger.Location = new System.Drawing.Point(10, 10);
             this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonLanMessenger.Name = "ButtonLanMessenger";
             this.ButtonLanMessenger.ShadowDecoration.Parent = this.ButtonLanMessenger;
-            this.ButtonLanMessenger.Size = new System.Drawing.Size(343, 49);
+            this.ButtonLanMessenger.Size = new System.Drawing.Size(283, 24);
             this.ButtonLanMessenger.TabIndex = 0;
             this.ButtonLanMessenger.Text = "Lan Messenger";
             this.ButtonLanMessenger.Click += new System.EventHandler(this.ButtonLanMessenger_Click);
@@ -258,10 +259,10 @@
             // 
             this.panelRIGHT.BackColor = System.Drawing.Color.White;
             this.panelRIGHT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRIGHT.Location = new System.Drawing.Point(363, 0);
+            this.panelRIGHT.Location = new System.Drawing.Point(303, 0);
             this.panelRIGHT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRIGHT.Name = "panelRIGHT";
-            this.panelRIGHT.Size = new System.Drawing.Size(656, 665);
+            this.panelRIGHT.Size = new System.Drawing.Size(716, 665);
             this.panelRIGHT.TabIndex = 9;
             // 
             // Form1
