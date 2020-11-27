@@ -67,10 +67,16 @@ namespace UI
 
         private void btnEditPassword_Click(object sender, EventArgs e)
         {
-
-            // Enable discard and save button for click
-            this.btnDiscard.Enabled = true;
-            this.btnSave.Enabled = true;
+            if (this.panelChangePassword.Visible == false)
+            {
+                this.btnEditPassword.Text = "CANCEL";
+                this.panelChangePassword.Visible = true;
+            }
+            else
+            {
+                this.btnEditPassword.Text = "EDIT";
+                this.panelChangePassword.Visible = false;
+            }
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -85,6 +91,8 @@ namespace UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // Upload to server and update to all users
+
             // Enable discard and save button for click
             this.btnDiscard.Enabled = false;
             this.btnSave.Enabled = false;
@@ -97,7 +105,16 @@ namespace UI
                 "Image (*.BMP, *.JPG, *PNG)|*.BMP, *.JPG, *.PNG";
 
             openFileDialog.Multiselect = false;
-            
+
+            DialogResult result = openFileDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                Image avatar = Image.FromFile(openFileDialog.FileName);
+                this.circlePictureBox.Image = avatar;
+
+                // Upload to database and update to all users.
+            }
+
             // Enable discard and save button for click
             this.btnDiscard.Enabled = false;
             this.btnSave.Enabled = false;
