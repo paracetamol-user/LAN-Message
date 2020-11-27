@@ -22,11 +22,16 @@ namespace Communication
         List<UserClient> clients;
         List<UserClient> clientInvalid;
         //List<string> idInvalid;
-        
+
+        // Server of DAT
         //Data Source = DESKTOP - TSN7OH7; Initial Catalog = LANCHAT; Integrated Security = True
         //Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;
         // Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True
-        string connString = @"Server=DESKTOP-BM0V9BJ;Database=LANCHAT;Integrated Security=True;";
+
+        // Server of K
+        // Data Source = Paracetamol; Initial Catalog = LANCHAT; Persist Security Info=True;User ID = sa
+
+        string connString = @"Data Source = Paracetamol; Initial Catalog = LANCHAT; Persist Security Info=True;User ID = sa";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";

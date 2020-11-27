@@ -24,7 +24,7 @@ namespace UI
         public SettingForm(User me, Form1 parent)
         {
             InitializeComponent();
-            lblUsername.Text = Form1.me.Name;
+            lblUsername.Text = me.Name;
             lblPassword.Text = "*****";
             lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             oldUsername = me.Name;
@@ -72,6 +72,7 @@ namespace UI
             {
                 this.btnEditPassword.Text = "CANCEL";
                 this.panelChangePassword.Visible = true;
+                
             }
             else
             {
@@ -126,5 +127,6 @@ namespace UI
             this.Close();
             parentForm.loginForm.Show();
         }
+
     }
 }
