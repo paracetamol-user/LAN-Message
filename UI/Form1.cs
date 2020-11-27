@@ -22,7 +22,7 @@ namespace UI
 							///NGƯỜI SỬ DỤNG SERVER LÀ USER
 							/// </summary>
 						   
-		private LoginForm loginForm;
+		public LoginForm loginForm;
 
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public static User me; // Nguoi su dung chuong trinh
@@ -216,5 +216,15 @@ namespace UI
 			serverUsersForm.BringToFront();
 		}
 	}
+
+
+    private void pictureBoxSetting_Click(object sender, EventArgs e)
+    {
+			SettingForm form = new SettingForm(me, this);
+			form.Show();
+		}
+
+    }
+
 }
 
