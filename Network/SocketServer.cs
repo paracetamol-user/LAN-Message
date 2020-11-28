@@ -29,9 +29,9 @@ namespace Communication
         // Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True
 
         // Server of K
-        // Data Source = Paracetamol; Initial Catalog = LANCHAT; Persist Security Info=True;User ID = sa
+        // Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
-        string connString = @"Data Source = Paracetamol; Initial Catalog = LANCHAT; Persist Security Info=True;User ID = sa";
+        string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";

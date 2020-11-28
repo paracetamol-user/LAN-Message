@@ -16,6 +16,7 @@ namespace UI
         private string oldUsername;
         private string oldPath;
         Form1 parentForm;
+
         public SettingForm()
         {
             InitializeComponent();
@@ -66,6 +67,9 @@ namespace UI
             this.btnSave.Enabled = true;
         }
 
+        // Edit password
+        // Verify user and set new password
+        // Dont't change status of DISCARD and SAVE button
         private void btnEditPassword_Click(object sender, EventArgs e)
         {
             if (this.panelChangePassword.Visible == false)
@@ -81,6 +85,8 @@ namespace UI
             }
         }
 
+        // Discard changes and revert old version
+        // Change status of DISCARD and SAVE button
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             // Reset information
@@ -91,6 +97,8 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
+        // Save changes and send to server
+        // Change status of DISCARD and SAVE button
         private void btnSave_Click(object sender, EventArgs e)
         {
             // Upload to server and update to all users
@@ -100,6 +108,7 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
+        // Edit avatar function
         private void btnChangeAvatar_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -122,10 +131,12 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
+        // Log out function
+        // Close with parent form and login form
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            parentForm.loginForm.Show();
+            parentForm.Close();
         }
 
     }

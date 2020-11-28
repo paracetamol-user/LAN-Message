@@ -151,6 +151,7 @@ namespace UI
             this.btnLogout.TabIndex = 1;
             this.btnLogout.Text = "Log out";
             this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // panel25
             // 
