@@ -16,15 +16,16 @@ namespace UI
         private string oldUsername;
         private string oldPath;
         Form1 parentForm;
+
         public SettingForm()
         {
             InitializeComponent();
         }
-        
+
         public SettingForm(User me, Form1 parent)
         {
             InitializeComponent();
-            lblUsername.Text = Form1.me.Name;
+            lblUsername.Text = me.Name;
             lblPassword.Text = "*****";
             lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             oldUsername = me.Name;
@@ -40,6 +41,10 @@ namespace UI
 
         private void btnEditUsername_Click(object sender, EventArgs e)
         {
+            // Hide labels
+            this.lblUsername.Visible = false;
+            // Create the textbox for typing username
+
 
             // Enable discard and save button for click
             this.btnDiscard.Enabled = true;
@@ -66,20 +71,28 @@ namespace UI
             this.btnSave.Enabled = true;
         }
 
+        // Edit password
+        // Verify user and set new password
+        // Dont't change status of DISCARD and SAVE button
         private void btnEditPassword_Click(object sender, EventArgs e)
         {
             if (this.panelChangePassword.Visible == false)
             {
                 this.btnEditPassword.Text = "CANCEL";
                 this.panelChangePassword.Visible = true;
+                this.btnSavePassword.Visible = true;
+
             }
             else
             {
                 this.btnEditPassword.Text = "EDIT";
                 this.panelChangePassword.Visible = false;
+                this.btnSavePassword.Visible = false;
             }
         }
 
+        // Discard changes and revert old version
+        // Change status of DISCARD and SAVE button
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             // Reset information
@@ -90,6 +103,8 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
+        // Save changes and send to server
+        // Change status of DISCARD and SAVE button
         private void btnSave_Click(object sender, EventArgs e)
         {
             // Upload to server and update to all users
@@ -99,6 +114,7 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
+        // Edit avatar function
         private void btnChangeAvatar_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -108,7 +124,7 @@ namespace UI
             openFileDialog.Multiselect = false;
 
             DialogResult result = openFileDialog.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 Image avatar = Image.FromFile(openFileDialog.FileName);
                 this.circlePictureBox.Image = avatar;
@@ -121,10 +137,13 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
+        // Log out function
+        // Close with parent form and login form
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            parentForm.loginForm.Show();
+            parentForm.Close();
         }
+
     }
 }
