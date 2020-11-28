@@ -35,7 +35,7 @@ namespace UI
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
-
+		//242,243,245
 		public Form1()
 		{
 			InitializeComponent();           
@@ -225,6 +225,6 @@ namespace UI
 			form.BringToFront();
 		}
 
-    
+
     }
 }

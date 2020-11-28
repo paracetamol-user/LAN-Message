@@ -85,7 +85,7 @@
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
             this.lbId.Location = new System.Drawing.Point(5, 3);
             this.lbId.Name = "lbId";
-            this.lbId.Size = new System.Drawing.Size(53, 20);
+            this.lbId.Size = new System.Drawing.Size(68, 25);
             this.lbId.TabIndex = 0;
             this.lbId.Text = "label2";
             this.lbId.Click += new System.EventHandler(this.lbId_Click);
@@ -112,7 +112,7 @@
             this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(5, 3);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(74, 26);
+            this.lbName.Size = new System.Drawing.Size(87, 32);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
             this.lbName.Click += new System.EventHandler(this.lbName_Click);

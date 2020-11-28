@@ -83,6 +83,12 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroup.Designer.cs">
+      <DependentUpon>ucGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucInterac.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroup.resx">
+      <DependentUpon>ucGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucInterac.resx">
       <DependentUpon>ucInterac.cs</DependentUpon>

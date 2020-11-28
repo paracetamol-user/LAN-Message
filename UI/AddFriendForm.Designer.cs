@@ -30,16 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelPending = new System.Windows.Forms.Panel();
+            this.btnPending = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnGroup = new System.Windows.Forms.Button();
             this.panelAll = new System.Windows.Forms.Panel();
-            this.gunaButtonAll = new Guna.UI2.WinForms.Guna2Button();
+            this.btnPeople = new System.Windows.Forms.Button();
             this.panelOnline = new System.Windows.Forms.Panel();
-            this.gunaButtonOnline = new Guna.UI2.WinForms.Guna2Button();
+            this.btnOnline = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelCOUNT = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panelPending.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panelAll.SuspendLayout();
             this.panelOnline.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -49,6 +55,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panelPending);
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panelAll);
             this.panel1.Controls.Add(this.panelOnline);
             this.panel1.Controls.Add(this.panel2);
@@ -56,68 +64,114 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(693, 57);
+            this.panel1.Size = new System.Drawing.Size(693, 53);
             this.panel1.TabIndex = 0;
+            // 
+            // panelPending
+            // 
+            this.panelPending.Controls.Add(this.btnPending);
+            this.panelPending.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelPending.Location = new System.Drawing.Point(502, 0);
+            this.panelPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelPending.Name = "panelPending";
+            this.panelPending.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.panelPending.Size = new System.Drawing.Size(131, 53);
+            this.panelPending.TabIndex = 4;
+            // 
+            // btnPending
+            // 
+            this.btnPending.BackColor = System.Drawing.Color.White;
+            this.btnPending.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPending.FlatAppearance.BorderSize = 0;
+            this.btnPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPending.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPending.ForeColor = System.Drawing.Color.DimGray;
+            this.btnPending.Location = new System.Drawing.Point(20, 10);
+            this.btnPending.Name = "btnPending";
+            this.btnPending.Size = new System.Drawing.Size(91, 33);
+            this.btnPending.TabIndex = 0;
+            this.btnPending.Text = "Pending";
+            this.btnPending.UseVisualStyleBackColor = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnGroup);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(371, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.panel5.Size = new System.Drawing.Size(131, 53);
+            this.panel5.TabIndex = 3;
+            // 
+            // btnGroup
+            // 
+            this.btnGroup.BackColor = System.Drawing.Color.White;
+            this.btnGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGroup.FlatAppearance.BorderSize = 0;
+            this.btnGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGroup.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGroup.ForeColor = System.Drawing.Color.DimGray;
+            this.btnGroup.Location = new System.Drawing.Point(20, 10);
+            this.btnGroup.Name = "btnGroup";
+            this.btnGroup.Size = new System.Drawing.Size(91, 33);
+            this.btnGroup.TabIndex = 1;
+            this.btnGroup.Text = "Group";
+            this.btnGroup.UseVisualStyleBackColor = false;
             // 
             // panelAll
             // 
-            this.panelAll.Controls.Add(this.gunaButtonAll);
+            this.panelAll.Controls.Add(this.btnPeople);
             this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelAll.Location = new System.Drawing.Point(238, 0);
             this.panelAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelAll.Name = "panelAll";
             this.panelAll.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-            this.panelAll.Size = new System.Drawing.Size(95, 57);
+            this.panelAll.Size = new System.Drawing.Size(133, 53);
             this.panelAll.TabIndex = 2;
             // 
-            // gunaButtonAll
+            // btnPeople
             // 
-            this.gunaButtonAll.CheckedState.Parent = this.gunaButtonAll;
-            this.gunaButtonAll.CustomImages.Parent = this.gunaButtonAll;
-            this.gunaButtonAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaButtonAll.FillColor = System.Drawing.Color.White;
-            this.gunaButtonAll.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold);
-            this.gunaButtonAll.ForeColor = System.Drawing.Color.DimGray;
-            this.gunaButtonAll.HoverState.Parent = this.gunaButtonAll;
-            this.gunaButtonAll.IndicateFocus = true;
-            this.gunaButtonAll.Location = new System.Drawing.Point(20, 10);
-            this.gunaButtonAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gunaButtonAll.Name = "gunaButtonAll";
-            this.gunaButtonAll.ShadowDecoration.Parent = this.gunaButtonAll;
-            this.gunaButtonAll.Size = new System.Drawing.Size(55, 37);
-            this.gunaButtonAll.TabIndex = 1;
-            this.gunaButtonAll.Text = "All";
-            this.gunaButtonAll.Click += new System.EventHandler(this.gunaButtonAll_Click);
+            this.btnPeople.BackColor = System.Drawing.Color.White;
+            this.btnPeople.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPeople.FlatAppearance.BorderSize = 0;
+            this.btnPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPeople.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeople.ForeColor = System.Drawing.Color.DimGray;
+            this.btnPeople.Location = new System.Drawing.Point(20, 10);
+            this.btnPeople.Name = "btnPeople";
+            this.btnPeople.Size = new System.Drawing.Size(93, 33);
+            this.btnPeople.TabIndex = 1;
+            this.btnPeople.Text = "People";
+            this.btnPeople.UseVisualStyleBackColor = false;
+            this.btnPeople.Click += new System.EventHandler(this.btnPeople_Click);
             // 
             // panelOnline
             // 
-            this.panelOnline.Controls.Add(this.gunaButtonOnline);
+            this.panelOnline.Controls.Add(this.btnOnline);
             this.panelOnline.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelOnline.Location = new System.Drawing.Point(109, 0);
             this.panelOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelOnline.Name = "panelOnline";
             this.panelOnline.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-            this.panelOnline.Size = new System.Drawing.Size(129, 57);
+            this.panelOnline.Size = new System.Drawing.Size(129, 53);
             this.panelOnline.TabIndex = 1;
             // 
-            // gunaButtonOnline
+            // btnOnline
             // 
-            this.gunaButtonOnline.CheckedState.Parent = this.gunaButtonOnline;
-            this.gunaButtonOnline.CustomImages.Parent = this.gunaButtonOnline;
-            this.gunaButtonOnline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaButtonOnline.FillColor = System.Drawing.Color.White;
-            this.gunaButtonOnline.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaButtonOnline.ForeColor = System.Drawing.Color.DimGray;
-            this.gunaButtonOnline.HoverState.Parent = this.gunaButtonOnline;
-            this.gunaButtonOnline.IndicateFocus = true;
-            this.gunaButtonOnline.Location = new System.Drawing.Point(20, 10);
-            this.gunaButtonOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gunaButtonOnline.Name = "gunaButtonOnline";
-            this.gunaButtonOnline.ShadowDecoration.Parent = this.gunaButtonOnline;
-            this.gunaButtonOnline.Size = new System.Drawing.Size(89, 37);
-            this.gunaButtonOnline.TabIndex = 0;
-            this.gunaButtonOnline.Text = "Online";
-            this.gunaButtonOnline.Click += new System.EventHandler(this.gunaButtonOnline_Click);
+            this.btnOnline.BackColor = System.Drawing.Color.White;
+            this.btnOnline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOnline.FlatAppearance.BorderSize = 0;
+            this.btnOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOnline.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOnline.ForeColor = System.Drawing.Color.DimGray;
+            this.btnOnline.Location = new System.Drawing.Point(20, 10);
+            this.btnOnline.Name = "btnOnline";
+            this.btnOnline.Size = new System.Drawing.Size(89, 33);
+            this.btnOnline.TabIndex = 1;
+            this.btnOnline.Text = "Online";
+            this.btnOnline.UseVisualStyleBackColor = false;
+            this.btnOnline.Click += new System.EventHandler(this.btnOnline_Click);
             // 
             // panel2
             // 
@@ -127,7 +181,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(20, 2, 20, 2);
-            this.panel2.Size = new System.Drawing.Size(109, 57);
+            this.panel2.Size = new System.Drawing.Size(109, 53);
             this.panel2.TabIndex = 0;
             // 
             // pictureBox1
@@ -137,16 +191,16 @@
             this.pictureBox1.Location = new System.Drawing.Point(20, 2);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(69, 53);
+            this.pictureBox1.Size = new System.Drawing.Size(69, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.BackColor = System.Drawing.Color.LightGray;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 57);
+            this.panel4.Location = new System.Drawing.Point(0, 53);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(693, 1);
@@ -156,11 +210,11 @@
             // 
             this.panel3.Controls.Add(this.labelCOUNT);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 58);
+            this.panel3.Location = new System.Drawing.Point(0, 54);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(40, 1, 0, 0);
-            this.panel3.Size = new System.Drawing.Size(693, 23);
+            this.panel3.Padding = new System.Windows.Forms.Padding(40, 3, 0, 0);
+            this.panel3.Size = new System.Drawing.Size(693, 25);
             this.panel3.TabIndex = 3;
             // 
             // labelCOUNT
@@ -168,7 +222,7 @@
             this.labelCOUNT.AutoSize = true;
             this.labelCOUNT.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelCOUNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCOUNT.Location = new System.Drawing.Point(40, 1);
+            this.labelCOUNT.Location = new System.Drawing.Point(40, 3);
             this.labelCOUNT.Name = "labelCOUNT";
             this.labelCOUNT.Size = new System.Drawing.Size(46, 18);
             this.labelCOUNT.TabIndex = 0;
@@ -188,6 +242,8 @@
             this.Name = "ServerForm";
             this.Text = "AddFriendForm";
             this.panel1.ResumeLayout(false);
+            this.panelPending.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.panelAll.ResumeLayout(false);
             this.panelOnline.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -202,12 +258,16 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelAll;
         private System.Windows.Forms.Panel panelOnline;
-        private Guna.UI2.WinForms.Guna2Button gunaButtonOnline;
         private System.Windows.Forms.Panel panel2;
-        private Guna.UI2.WinForms.Guna2Button gunaButtonAll;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labelCOUNT;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panelPending;
+        private System.Windows.Forms.Button btnPending;
+        private System.Windows.Forms.Button btnGroup;
+        private System.Windows.Forms.Button btnPeople;
+        private System.Windows.Forms.Button btnOnline;
     }
 }

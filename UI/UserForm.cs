@@ -43,8 +43,8 @@ namespace UI
             tempPanel.Dock = DockStyle.Top;
             //if (LastInteracted != tempInteracted || LastInteracted == 0)
             //{
-                ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
-                ucFileShow fileshow = new ucFileShow(user, tempId, tempName);
+                ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user);
+                ucFileShow fileshow = new ucFileShow(_user, tempId, tempName);
                 if (_user == Form1.me) fileshow._DisableButDownLoad();
                 fileshow.Dock = DockStyle.Top;
                 UserInChatBox.Dock = DockStyle.Top;
