@@ -30,9 +30,10 @@ namespace UI
             Size s = lblTextSize();
             while (true)
             {
-                if (label1.Height < s.Height)
+                if (label1.Width < s.Width)
                 {
-                    label1.Height = label1.Height + 2 * (int)label1.Font.Size;
+                    label1.Height = label1.Height +  (int)label1.Font.Size;
+                    s.Width = s.Width - label1.Width;
                 }
                 else break;
             }

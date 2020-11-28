@@ -15,9 +15,10 @@ namespace UI
     {
         public  Panel panelAllUser;
         public  Panel panelOnlineUser;
+        public Button btnFocus;
         private bool CheckLoadAllUser;
-        private bool CheckLoadOnlineUser;
-        private int countUserAll = 0 ;
+
+        private int countUserAll = 0;
         private int countUserOnline = 0;
         public ServerForm()
         {
@@ -29,26 +30,8 @@ namespace UI
             this.InitPanelAllUser();
             this.InitPanelOnlineUser();
             CheckLoadAllUser = false;
-            CheckLoadOnlineUser = false;
             labelCOUNT.Text = "";
-        }
-
-
-        private void gunaButtonOnline_Click(object sender, EventArgs e)
-        {
-            countUserOnline = 0;
-            panelOnlineUser.Controls.Clear();
-            panelOnlineUser.Show();
-            panelOnlineUser.BringToFront();
-            for (int i = 0; i < Form1.UserUIs.Count; i++)
-            {
-                if (Form1.UserUIs[i].GetStatus() == true)
-                {
-                    Form1.UserUIs[i].AddUserIntoPanelOnline(panelOnlineUser);
-                    countUserOnline++;
-                }
-            }
-            labelCOUNT.Text = "Online - " + countUserOnline.ToString();
+            btnFocus = null;
         }
         private void LoadListAllUser()
         {
@@ -62,7 +45,7 @@ namespace UI
         {
             panelAllUser.Dock = DockStyle.Fill;
             panelAllUser.BackColor = Color.White;
-           panelAllUser.Padding = new Padding(30, 20, 0, 0);
+            panelAllUser.Padding = new Padding(30, 20, 0, 0);
             panelAllUser.BringToFront();
         }
         private void InitPanelOnlineUser()
@@ -72,10 +55,30 @@ namespace UI
             panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
             panelOnlineUser.BringToFront();
         }
-
-        private void gunaButtonAll_Click(object sender, EventArgs e)
+        private void btnOnline_Click(object sender, EventArgs e)
         {
-            //ServerForm.panelAllUser.Controls.Clear();
+            if (btnFocus != null) btnFocus.BackColor = Color.White;
+            (sender as Button).BackColor = Color.DarkGray;
+            countUserOnline = 0;
+            panelOnlineUser.Controls.Clear();
+            panelOnlineUser.Show();
+            panelOnlineUser.BringToFront();
+            for (int i = 0; i < Form1.UserUIs.Count; i++)
+            {
+                if (Form1.UserUIs[i].GetStatus() == true)
+                {
+                    Form1.UserUIs[i].AddUserIntoPanelOnline(panelOnlineUser);
+                    countUserOnline++;
+                }
+            }
+            labelCOUNT.Text = "Online - " + countUserOnline.ToString(); 
+            btnFocus = sender as Button;
+        }
+
+        private void btnPeople_Click(object sender, EventArgs e)
+        {
+            if (btnFocus != null) btnFocus.BackColor = Color.White;
+            (sender as Button).BackColor = Color.DarkGray;
             panelAllUser.Show();
             panelAllUser.BringToFront();
             if (!CheckLoadAllUser)
@@ -83,7 +86,8 @@ namespace UI
                 LoadListAllUser();
                 CheckLoadAllUser = true;
             }
-            labelCOUNT.Text = "All - " +  countUserAll.ToString();
+            labelCOUNT.Text = "All - " + countUserAll.ToString();
+            btnFocus = sender as Button;
         }
     }
 }
