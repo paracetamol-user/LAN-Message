@@ -191,7 +191,6 @@ namespace UI
 		}
 
 		//LoadDataUser gọi server trả về tất cả người dùng có trong server
-		// Hiện tại chưa có code gọi người dùng online trong server mà chỉ gọi tất cả về
 		private async void LoadDataUser()
 		{
             byte[] buff = new byte[1024];
@@ -209,7 +208,7 @@ namespace UI
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			if (Form1.userUIForcus != null)
 			{
-				Form1.userUIForcus.ChangeColorWhenNonClick();
+				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
 				Form1.userUIForcus = null;
 			}
 			serverUsersForm.Show();
@@ -219,11 +218,13 @@ namespace UI
         private void pictureBoxSetting_Click(object sender, EventArgs e)
         {
 			SettingForm form = new SettingForm(me, this);
-			form.Show();
-			form.BringToFront();
 			form.TopLevel = false;
 			form.Dock = DockStyle.Fill;
 			this.panelRIGHT.Controls.Add(form);
+			form.Show();
+			form.BringToFront();
 		}
+
+    
     }
 }

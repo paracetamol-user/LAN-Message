@@ -63,6 +63,7 @@ namespace UI
             this.btnEditUsername = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -74,7 +75,6 @@ namespace UI
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblUsername = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -465,6 +465,17 @@ namespace UI
             this.panel14.Size = new System.Drawing.Size(293, 34);
             this.panel14.TabIndex = 1;
             // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblUsername.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(3, 3);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(56, 17);
+            this.lblUsername.TabIndex = 2;
+            this.lblUsername.Text = "label3";
+            // 
             // panel13
             // 
             this.panel13.Controls.Add(this.label2);
@@ -584,17 +595,6 @@ namespace UI
             this.label1.Size = new System.Drawing.Size(165, 33);
             this.label1.TabIndex = 2;
             this.label1.Text = "MY ACCOUNT";
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblUsername.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(3, 3);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(56, 17);
-            this.lblUsername.TabIndex = 2;
-            this.lblUsername.Text = "label3";
             // 
             // SettingForm
             // 

@@ -13,8 +13,8 @@ namespace UI
 {
     public partial class ServerForm : Form
     {
-        public static Panel panelAllUser;
-        public static Panel panelOnlineUser;
+        public  Panel panelAllUser;
+        public  Panel panelOnlineUser;
         private bool CheckLoadAllUser;
         private bool CheckLoadOnlineUser;
         private int countUserAll = 0 ;
@@ -37,14 +37,14 @@ namespace UI
         private void gunaButtonOnline_Click(object sender, EventArgs e)
         {
             countUserOnline = 0;
-            ServerForm.panelOnlineUser.Controls.Clear();
+            panelOnlineUser.Controls.Clear();
             panelOnlineUser.Show();
             panelOnlineUser.BringToFront();
             for (int i = 0; i < Form1.UserUIs.Count; i++)
             {
                 if (Form1.UserUIs[i].GetStatus() == true)
                 {
-                    Form1.UserUIs[i].AddInfoUserIntoPanelOnlineUser();
+                    Form1.UserUIs[i].AddUserIntoPanelOnline(panelOnlineUser);
                     countUserOnline++;
                 }
             }
@@ -54,23 +54,23 @@ namespace UI
         {
             for (int i = 0; i < Form1.UserUIs.Count; i++)
             {
-                Form1.UserUIs[i].AddInfoUserIntoPanelAllUser();
+                Form1.UserUIs[i].AddUserIntoPanelAll(panelAllUser);
             }
             countUserAll = Form1.UserUIs.Count;
         }
         private void InitPanelAllUser()
         {
-            ServerForm.panelAllUser.Dock = DockStyle.Fill;
-            ServerForm.panelAllUser.BackColor = Color.White;
-            ServerForm.panelAllUser.Padding = new Padding(30, 20, 0, 0);
-            ServerForm.panelAllUser.BringToFront();
+            panelAllUser.Dock = DockStyle.Fill;
+            panelAllUser.BackColor = Color.White;
+           panelAllUser.Padding = new Padding(30, 20, 0, 0);
+            panelAllUser.BringToFront();
         }
         private void InitPanelOnlineUser()
         {
-            ServerForm.panelOnlineUser.Dock = DockStyle.Fill;
-            ServerForm.panelOnlineUser.BackColor = Color.White;
-            ServerForm.panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
-            ServerForm.panelOnlineUser.BringToFront();
+            panelOnlineUser.Dock = DockStyle.Fill;
+            panelOnlineUser.BackColor = Color.White;
+            panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
+            panelOnlineUser.BringToFront();
         }
 
         private void gunaButtonAll_Click(object sender, EventArgs e)

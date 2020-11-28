@@ -231,7 +231,6 @@
             this.panelLANMESS.Location = new System.Drawing.Point(0, 0);
             this.panelLANMESS.Margin = new System.Windows.Forms.Padding(0);
             this.panelLANMESS.Name = "panelLANMESS";
-            this.panelLANMESS.Padding = new System.Windows.Forms.Padding(10);
             this.panelLANMESS.Size = new System.Drawing.Size(303, 44);
             this.panelLANMESS.TabIndex = 0;
             // 
@@ -242,18 +241,18 @@
             this.ButtonLanMessenger.CustomImages.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLanMessenger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
-            this.ButtonLanMessenger.Font = new System.Drawing.Font("Corbel", 16.2F);
+            this.ButtonLanMessenger.Font = new System.Drawing.Font("Dubai", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonLanMessenger.ForeColor = System.Drawing.Color.DodgerBlue;
             this.ButtonLanMessenger.HoverState.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Image = ((System.Drawing.Image)(resources.GetObject("ButtonLanMessenger.Image")));
             this.ButtonLanMessenger.ImageSize = new System.Drawing.Size(30, 30);
-            this.ButtonLanMessenger.Location = new System.Drawing.Point(10, 10);
+            this.ButtonLanMessenger.Location = new System.Drawing.Point(0, 0);
             this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonLanMessenger.Name = "ButtonLanMessenger";
             this.ButtonLanMessenger.ShadowDecoration.Parent = this.ButtonLanMessenger;
-            this.ButtonLanMessenger.Size = new System.Drawing.Size(283, 24);
+            this.ButtonLanMessenger.Size = new System.Drawing.Size(303, 44);
             this.ButtonLanMessenger.TabIndex = 0;
-            this.ButtonLanMessenger.Text = "Lan Messenger";
+            this.ButtonLanMessenger.Text = "Global";
             this.ButtonLanMessenger.Click += new System.EventHandler(this.ButtonLanMessenger_Click);
             // 
             // panelRIGHT
