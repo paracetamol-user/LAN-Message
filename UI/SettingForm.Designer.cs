@@ -32,10 +32,11 @@ namespace UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelButton = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.panel25 = new System.Windows.Forms.Panel();
             this.btnDiscard = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
@@ -57,16 +58,19 @@ namespace UI
             this.panel19 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.btnSavePassword = new System.Windows.Forms.Button();
             this.btnEditPassword = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.btnEditUsername = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
+            this.panelUsername = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lblSDT = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.btnChangeAvatar = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.circlePictureBox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -77,7 +81,8 @@ namespace UI
             this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelButton.SuspendLayout();
+            this.panel25.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -93,7 +98,7 @@ namespace UI
             this.panel9.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel14.SuspendLayout();
+            this.panelUsername.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -117,7 +122,7 @@ namespace UI
             // panel6
             // 
             this.panel6.AutoSize = true;
-            this.panel6.Controls.Add(this.panel1);
+            this.panel6.Controls.Add(this.panelButton);
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 68);
@@ -126,25 +131,49 @@ namespace UI
             this.panel6.Size = new System.Drawing.Size(1042, 738);
             this.panel6.TabIndex = 1;
             // 
-            // panel1
+            // panelButton
             // 
-            this.panel1.Controls.Add(this.btnDiscard);
-            this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Controls.Add(this.btnLogout);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(30, 578);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(0, 20, 10, 20);
-            this.panel1.Size = new System.Drawing.Size(982, 130);
-            this.panel1.TabIndex = 2;
+            this.panelButton.AutoSize = true;
+            this.panelButton.Controls.Add(this.btnLogout);
+            this.panelButton.Controls.Add(this.panel25);
+            this.panelButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelButton.Location = new System.Drawing.Point(30, 578);
+            this.panelButton.Name = "panelButton";
+            this.panelButton.Padding = new System.Windows.Forms.Padding(40, 10, 50, 60);
+            this.panelButton.Size = new System.Drawing.Size(982, 135);
+            this.panelButton.TabIndex = 2;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLogout.BackColor = System.Drawing.Color.Red;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(794, 17);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(135, 55);
+            this.btnLogout.TabIndex = 1;
+            this.btnLogout.Text = "Log out";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.btnDiscard);
+            this.panel25.Controls.Add(this.btnSave);
+            this.panel25.Location = new System.Drawing.Point(35, 23);
+            this.panel25.Name = "panel25";
+            this.panel25.Padding = new System.Windows.Forms.Padding(10, 0, 10, 6);
+            this.panel25.Size = new System.Drawing.Size(365, 48);
+            this.panel25.TabIndex = 4;
             // 
             // btnDiscard
             // 
-            this.btnDiscard.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnDiscard.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnDiscard.Enabled = false;
-            this.btnDiscard.Location = new System.Drawing.Point(485, 6);
+            this.btnDiscard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiscard.Location = new System.Drawing.Point(10, 0);
             this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(140, 44);
+            this.btnDiscard.Size = new System.Drawing.Size(175, 42);
             this.btnDiscard.TabIndex = 3;
             this.btnDiscard.Text = "Discard changes";
             this.btnDiscard.UseVisualStyleBackColor = true;
@@ -152,27 +181,16 @@ namespace UI
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(669, 6);
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(202, 0);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(140, 44);
+            this.btnSave.Size = new System.Drawing.Size(153, 42);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save changes";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Red;
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(862, 6);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(110, 47);
-            this.btnLogout.TabIndex = 0;
-            this.btnLogout.Text = "Log out";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // panel7
             // 
@@ -207,7 +225,7 @@ namespace UI
             this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel21.Location = new System.Drawing.Point(799, 10);
             this.panel21.Name = "panel21";
-            this.panel21.Padding = new System.Windows.Forms.Padding(0, 20, 10, 20);
+            this.panel21.Padding = new System.Windows.Forms.Padding(0, 20, 10, 24);
             this.panel21.Size = new System.Drawing.Size(123, 89);
             this.panel21.TabIndex = 1;
             // 
@@ -215,11 +233,11 @@ namespace UI
             // 
             this.btnEditDownloadPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnEditDownloadPath.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEditDownloadPath.Location = new System.Drawing.Point(28, 20);
+            this.btnEditDownloadPath.Location = new System.Drawing.Point(25, 20);
             this.btnEditDownloadPath.Name = "btnEditDownloadPath";
-            this.btnEditDownloadPath.Size = new System.Drawing.Size(85, 49);
+            this.btnEditDownloadPath.Size = new System.Drawing.Size(88, 45);
             this.btnEditDownloadPath.TabIndex = 0;
-            this.btnEditDownloadPath.Text = "EDIT";
+            this.btnEditDownloadPath.Text = "CHANGE";
             this.btnEditDownloadPath.UseVisualStyleBackColor = false;
             // 
             // panel22
@@ -390,23 +408,37 @@ namespace UI
             // 
             // panel16
             // 
+            this.panel16.Controls.Add(this.btnSavePassword);
             this.panel16.Controls.Add(this.btnEditPassword);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel16.Location = new System.Drawing.Point(799, 10);
             this.panel16.Name = "panel16";
-            this.panel16.Padding = new System.Windows.Forms.Padding(29, 20, 10, 20);
+            this.panel16.Padding = new System.Windows.Forms.Padding(25, 20, 10, 20);
             this.panel16.Size = new System.Drawing.Size(123, 165);
             this.panel16.TabIndex = 1;
+            // 
+            // btnSavePassword
+            // 
+            this.btnSavePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnSavePassword.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSavePassword.Location = new System.Drawing.Point(25, 64);
+            this.btnSavePassword.Name = "btnSavePassword";
+            this.btnSavePassword.Size = new System.Drawing.Size(88, 44);
+            this.btnSavePassword.TabIndex = 1;
+            this.btnSavePassword.Text = "CHANGE";
+            this.btnSavePassword.UseVisualStyleBackColor = false;
+            this.btnSavePassword.Visible = false;
+            this.btnSavePassword.Click += new System.EventHandler(this.btnSavePassword_Click);
             // 
             // btnEditPassword
             // 
             this.btnEditPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnEditPassword.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEditPassword.Location = new System.Drawing.Point(29, 20);
+            this.btnEditPassword.Location = new System.Drawing.Point(25, 20);
             this.btnEditPassword.Name = "btnEditPassword";
-            this.btnEditPassword.Size = new System.Drawing.Size(84, 49);
+            this.btnEditPassword.Size = new System.Drawing.Size(88, 44);
             this.btnEditPassword.TabIndex = 0;
-            this.btnEditPassword.Text = "EDIT";
+            this.btnEditPassword.Text = "CHANGE";
             this.btnEditPassword.UseVisualStyleBackColor = false;
             this.btnEditPassword.Click += new System.EventHandler(this.btnEditPassword_Click);
             // 
@@ -436,17 +468,17 @@ namespace UI
             // 
             this.btnEditUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnEditUsername.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEditUsername.Location = new System.Drawing.Point(28, 20);
+            this.btnEditUsername.Location = new System.Drawing.Point(25, 20);
             this.btnEditUsername.Name = "btnEditUsername";
-            this.btnEditUsername.Size = new System.Drawing.Size(85, 44);
+            this.btnEditUsername.Size = new System.Drawing.Size(88, 44);
             this.btnEditUsername.TabIndex = 0;
-            this.btnEditUsername.Text = "EDIT";
+            this.btnEditUsername.Text = "CHANGE";
             this.btnEditUsername.UseVisualStyleBackColor = false;
             this.btnEditUsername.Click += new System.EventHandler(this.btnEditUsername_Click);
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.panel14);
+            this.panel10.Controls.Add(this.panelUsername);
             this.panel10.Controls.Add(this.panel13);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel10.Location = new System.Drawing.Point(10, 10);
@@ -455,26 +487,25 @@ namespace UI
             this.panel10.Size = new System.Drawing.Size(328, 84);
             this.panel10.TabIndex = 0;
             // 
-            // panel14
+            // panelUsername
             // 
-            this.panel14.Controls.Add(this.lblUsername);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(5, 39);
-            this.panel14.Name = "panel14";
-            this.panel14.Padding = new System.Windows.Forms.Padding(3);
-            this.panel14.Size = new System.Drawing.Size(293, 34);
-            this.panel14.TabIndex = 1;
+            this.panelUsername.Controls.Add(this.lblUsername);
+            this.panelUsername.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUsername.Location = new System.Drawing.Point(5, 39);
+            this.panelUsername.Name = "panelUsername";
+            this.panelUsername.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.panelUsername.Size = new System.Drawing.Size(293, 34);
+            this.panelUsername.TabIndex = 1;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblUsername.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(3, 3);
+            this.lblUsername.Location = new System.Drawing.Point(10, 3);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(56, 17);
+            this.lblUsername.Size = new System.Drawing.Size(0, 17);
             this.lblUsername.TabIndex = 2;
-            this.lblUsername.Text = "label3";
             // 
             // panel13
             // 
@@ -499,6 +530,8 @@ namespace UI
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.lblSDT);
+            this.panel8.Controls.Add(this.lblName);
             this.panel8.Controls.Add(this.btnChangeAvatar);
             this.panel8.Controls.Add(this.panel12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
@@ -509,15 +542,35 @@ namespace UI
             this.panel8.Size = new System.Drawing.Size(932, 100);
             this.panel8.TabIndex = 0;
             // 
+            // lblSDT
+            // 
+            this.lblSDT.AutoSize = true;
+            this.lblSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSDT.Location = new System.Drawing.Point(149, 59);
+            this.lblSDT.Name = "lblSDT";
+            this.lblSDT.Size = new System.Drawing.Size(58, 20);
+            this.lblSDT.TabIndex = 3;
+            this.lblSDT.Text = "SDT //";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(149, 30);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(73, 20);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Name // ";
+            // 
             // btnChangeAvatar
             // 
-            this.btnChangeAvatar.Location = new System.Drawing.Point(136, 33);
+            this.btnChangeAvatar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeAvatar.Location = new System.Drawing.Point(325, 43);
             this.btnChangeAvatar.Name = "btnChangeAvatar";
-            this.btnChangeAvatar.Size = new System.Drawing.Size(46, 38);
+            this.btnChangeAvatar.Size = new System.Drawing.Size(77, 30);
             this.btnChangeAvatar.TabIndex = 1;
-            this.btnChangeAvatar.Text = "Edit";
+            this.btnChangeAvatar.Text = "Change";
             this.btnChangeAvatar.UseVisualStyleBackColor = true;
-            this.btnChangeAvatar.Click += new System.EventHandler(this.btnChangeAvatar_Click);
             // 
             // panel12
             // 
@@ -525,7 +578,7 @@ namespace UI
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(10, 10);
             this.panel12.Name = "panel12";
-            this.panel12.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.panel12.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.panel12.Size = new System.Drawing.Size(120, 80);
             this.panel12.TabIndex = 0;
             // 
@@ -534,13 +587,15 @@ namespace UI
             this.circlePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.circlePictureBox.Enabled = false;
             this.circlePictureBox.FillColor = System.Drawing.Color.White;
-            this.circlePictureBox.Location = new System.Drawing.Point(20, 0);
+            this.circlePictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("circlePictureBox.InitialImage")));
+            this.circlePictureBox.Location = new System.Drawing.Point(10, 0);
             this.circlePictureBox.Name = "circlePictureBox";
             this.circlePictureBox.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.circlePictureBox.ShadowDecoration.Parent = this.circlePictureBox;
-            this.circlePictureBox.Size = new System.Drawing.Size(80, 80);
+            this.circlePictureBox.Size = new System.Drawing.Size(90, 80);
             this.circlePictureBox.TabIndex = 0;
             this.circlePictureBox.TabStop = false;
+            this.circlePictureBox.Click += new System.EventHandler(this.circlePictureBox_Click);
             // 
             // panel3
             // 
@@ -609,7 +664,8 @@ namespace UI
             this.panel2.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.panelButton.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel20.ResumeLayout(false);
@@ -632,11 +688,12 @@ namespace UI
             this.panel9.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
+            this.panelUsername.ResumeLayout(false);
+            this.panelUsername.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.circlePictureBox)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -663,14 +720,13 @@ namespace UI
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEditUsername;
-        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panelUsername;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Button btnEditPassword;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Panel panelButton;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnChangeAvatar;
         private System.Windows.Forms.Button btnDiscard;
@@ -694,5 +750,10 @@ namespace UI
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Panel panel25;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnSavePassword;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblSDT;
     }
 }

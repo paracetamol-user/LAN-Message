@@ -13,38 +13,85 @@ namespace UI
 {
     public partial class SettingForm : Form
     {
-        private string oldUsername;
-        private string oldPath;
         Form1 parentForm;
+
         public SettingForm()
         {
             InitializeComponent();
         }
-        
+
         public SettingForm(User me, Form1 parent)
         {
             InitializeComponent();
-            lblUsername.Text = Form1.me.Name;
-            lblPassword.Text = "*****";
+            lblUsername.Text = me.Name;
+            lblPassword.Text = "*********";
             lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            oldUsername = me.Name;
+            lblUsername.Text = me.Name;
             this.parentForm = parent;
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
 
-            Form1.me.Name = oldUsername;
+            if (Form1.me.Name != lblName.Text)
+                Form1.me.Name = lblName.Text;
             this.Close();
         }
 
+        private bool isChangingUsername = false;
+        private TextBox txtUsername = null;
+
+
         private void btnEditUsername_Click(object sender, EventArgs e)
         {
-
-            // Enable discard and save button for click
-            this.btnDiscard.Enabled = true;
-            this.btnSave.Enabled = true;
+            if (!isChangingUsername)
+            {
+                isChangingUsername = true;
+                // Hide label
+                this.lblUsername.Visible = false;
+                // Create the textbox for typing username
+                txtUsername = new TextBox();
+                this.panelUsername.Controls.Add(txtUsername);
+                txtUsername.Text = lblUsername.Text;
+                txtUsername.Dock = DockStyle.Left;
+                txtUsername.Width = 180;
+                txtUsername.Height = 22;
+                txtUsername.TextChanged += (s, ev) =>
+                {
+                    this.btnDiscard.Enabled = true;
+                    this.btnSave.Enabled = true;
+                };
+            }
+            //// Enable discard and save button for click
+            //this.btnDiscard.Enabled = true;
+            //this.btnSave.Enabled = true;
         }
+        // Check new username is valid and not equal to old username
+        private bool CheckUsername()
+        {
+            // Check empty
+            if (txtUsername.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Username invalid!");
+                txtUsername.Text = lblUsername.Text;
+                return false;
+            }
+
+            txtUsername.Text = txtUsername.Text.Trim();
+            return true;
+        }
+        // Release changes in username
+        private void ReleaseUsernameChange()
+        {
+            // Remove textbox for change username
+            this.panelUsername.Controls.Remove(txtUsername);
+            txtUsername.Visible = false;
+            txtUsername = null;
+
+            // Show label username
+            this.lblUsername.Visible = true;
+        }
+
 
         private void btnEditDownloadPath_Click(object sender, EventArgs e)
         {
@@ -66,40 +113,74 @@ namespace UI
             this.btnSave.Enabled = true;
         }
 
+        // Edit password
+        // Verify user and set new password
+        // Dont't change status of DISCARD and SAVE button
         private void btnEditPassword_Click(object sender, EventArgs e)
         {
             if (this.panelChangePassword.Visible == false)
             {
                 this.btnEditPassword.Text = "CANCEL";
                 this.panelChangePassword.Visible = true;
+                this.btnSavePassword.Visible = true;
+
             }
             else
             {
-                this.btnEditPassword.Text = "EDIT";
+                this.btnEditPassword.Text = "CHANGE";
                 this.panelChangePassword.Visible = false;
+                this.btnSavePassword.Visible = false;
             }
         }
 
+        // Discard changes and revert old version
+        // Change status of DISCARD and SAVE button
         private void btnDiscard_Click(object sender, EventArgs e)
         {
-            // Reset information
-            lblUsername.Text = oldUsername;
-            lblPath.Text = oldPath;
+            // Release changes in username field
+            ReleaseUsernameChange();
+            isChangingUsername = false;
+            
+            // Release changes in path
+
+
             // Enable discard and save button for click
             this.btnDiscard.Enabled = false;
             this.btnSave.Enabled = false;
         }
 
+        // Save changes and send to server
+        // Change status of DISCARD and SAVE button
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Upload to server and update to all users
+            // Check valid username
+            if (CheckUsername())
+            {
+                // Update to server
 
-            // Enable discard and save button for click
-            this.btnDiscard.Enabled = false;
-            this.btnSave.Enabled = false;
+                // Change label status and release change in username
+                this.lblUsername.Text = txtUsername.Text;
+                ReleaseUsernameChange();
+                this.lblUsername.Visible = true;
+                // Enable discard and save button for click
+                this.btnDiscard.Enabled = false;
+                this.btnSave.Enabled = false;
+            }
+            else return;
+
+            // Check path is valid
         }
 
-        private void btnChangeAvatar_Click(object sender, EventArgs e)
+
+        // Log out function
+        // Close with parent form and login form
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            parentForm.Close();
+        }
+
+        private void circlePictureBox_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter =
@@ -108,7 +189,7 @@ namespace UI
             openFileDialog.Multiselect = false;
 
             DialogResult result = openFileDialog.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 Image avatar = Image.FromFile(openFileDialog.FileName);
                 this.circlePictureBox.Image = avatar;
@@ -121,10 +202,12 @@ namespace UI
             this.btnSave.Enabled = false;
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void btnSavePassword_Click(object sender, EventArgs e)
         {
-            this.Close();
-            parentForm.loginForm.Show();
+            // Check from database
+
+            // if true update to database
+            // else MessageBox.Show("Wrong password")
         }
     }
 }
