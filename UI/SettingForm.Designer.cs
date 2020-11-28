@@ -64,11 +64,13 @@ namespace UI
             this.panel11 = new System.Windows.Forms.Panel();
             this.btnEditUsername = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
+            this.panelUsername = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lblSDT = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.btnChangeAvatar = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.circlePictureBox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -96,7 +98,7 @@ namespace UI
             this.panel9.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel14.SuspendLayout();
+            this.panelUsername.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -235,7 +237,7 @@ namespace UI
             this.btnEditDownloadPath.Name = "btnEditDownloadPath";
             this.btnEditDownloadPath.Size = new System.Drawing.Size(88, 45);
             this.btnEditDownloadPath.TabIndex = 0;
-            this.btnEditDownloadPath.Text = "EDIT";
+            this.btnEditDownloadPath.Text = "CHANGE";
             this.btnEditDownloadPath.UseVisualStyleBackColor = false;
             // 
             // panel22
@@ -423,9 +425,10 @@ namespace UI
             this.btnSavePassword.Name = "btnSavePassword";
             this.btnSavePassword.Size = new System.Drawing.Size(88, 44);
             this.btnSavePassword.TabIndex = 1;
-            this.btnSavePassword.Text = "SAVE";
+            this.btnSavePassword.Text = "CHANGE";
             this.btnSavePassword.UseVisualStyleBackColor = false;
             this.btnSavePassword.Visible = false;
+            this.btnSavePassword.Click += new System.EventHandler(this.btnSavePassword_Click);
             // 
             // btnEditPassword
             // 
@@ -435,7 +438,7 @@ namespace UI
             this.btnEditPassword.Name = "btnEditPassword";
             this.btnEditPassword.Size = new System.Drawing.Size(88, 44);
             this.btnEditPassword.TabIndex = 0;
-            this.btnEditPassword.Text = "EDIT";
+            this.btnEditPassword.Text = "CHANGE";
             this.btnEditPassword.UseVisualStyleBackColor = false;
             this.btnEditPassword.Click += new System.EventHandler(this.btnEditPassword_Click);
             // 
@@ -469,13 +472,13 @@ namespace UI
             this.btnEditUsername.Name = "btnEditUsername";
             this.btnEditUsername.Size = new System.Drawing.Size(88, 44);
             this.btnEditUsername.TabIndex = 0;
-            this.btnEditUsername.Text = "EDIT";
+            this.btnEditUsername.Text = "CHANGE";
             this.btnEditUsername.UseVisualStyleBackColor = false;
             this.btnEditUsername.Click += new System.EventHandler(this.btnEditUsername_Click);
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.panel14);
+            this.panel10.Controls.Add(this.panelUsername);
             this.panel10.Controls.Add(this.panel13);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel10.Location = new System.Drawing.Point(10, 10);
@@ -484,22 +487,22 @@ namespace UI
             this.panel10.Size = new System.Drawing.Size(328, 84);
             this.panel10.TabIndex = 0;
             // 
-            // panel14
+            // panelUsername
             // 
-            this.panel14.Controls.Add(this.lblUsername);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(5, 39);
-            this.panel14.Name = "panel14";
-            this.panel14.Padding = new System.Windows.Forms.Padding(3);
-            this.panel14.Size = new System.Drawing.Size(293, 34);
-            this.panel14.TabIndex = 1;
+            this.panelUsername.Controls.Add(this.lblUsername);
+            this.panelUsername.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUsername.Location = new System.Drawing.Point(5, 39);
+            this.panelUsername.Name = "panelUsername";
+            this.panelUsername.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.panelUsername.Size = new System.Drawing.Size(293, 34);
+            this.panelUsername.TabIndex = 1;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblUsername.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(3, 3);
+            this.lblUsername.Location = new System.Drawing.Point(10, 3);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(0, 17);
             this.lblUsername.TabIndex = 2;
@@ -527,6 +530,8 @@ namespace UI
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.lblSDT);
+            this.panel8.Controls.Add(this.lblName);
             this.panel8.Controls.Add(this.btnChangeAvatar);
             this.panel8.Controls.Add(this.panel12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
@@ -537,15 +542,35 @@ namespace UI
             this.panel8.Size = new System.Drawing.Size(932, 100);
             this.panel8.TabIndex = 0;
             // 
+            // lblSDT
+            // 
+            this.lblSDT.AutoSize = true;
+            this.lblSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSDT.Location = new System.Drawing.Point(149, 59);
+            this.lblSDT.Name = "lblSDT";
+            this.lblSDT.Size = new System.Drawing.Size(58, 20);
+            this.lblSDT.TabIndex = 3;
+            this.lblSDT.Text = "SDT //";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(149, 30);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(73, 20);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Name // ";
+            // 
             // btnChangeAvatar
             // 
-            this.btnChangeAvatar.Location = new System.Drawing.Point(139, 34);
+            this.btnChangeAvatar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeAvatar.Location = new System.Drawing.Point(325, 43);
             this.btnChangeAvatar.Name = "btnChangeAvatar";
-            this.btnChangeAvatar.Size = new System.Drawing.Size(46, 38);
+            this.btnChangeAvatar.Size = new System.Drawing.Size(77, 30);
             this.btnChangeAvatar.TabIndex = 1;
-            this.btnChangeAvatar.Text = "Edit";
+            this.btnChangeAvatar.Text = "Change";
             this.btnChangeAvatar.UseVisualStyleBackColor = true;
-            this.btnChangeAvatar.Click += new System.EventHandler(this.btnChangeAvatar_Click);
             // 
             // panel12
             // 
@@ -570,6 +595,7 @@ namespace UI
             this.circlePictureBox.Size = new System.Drawing.Size(90, 80);
             this.circlePictureBox.TabIndex = 0;
             this.circlePictureBox.TabStop = false;
+            this.circlePictureBox.Click += new System.EventHandler(this.circlePictureBox_Click);
             // 
             // panel3
             // 
@@ -662,11 +688,12 @@ namespace UI
             this.panel9.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
+            this.panelUsername.ResumeLayout(false);
+            this.panelUsername.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.circlePictureBox)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -693,7 +720,7 @@ namespace UI
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEditUsername;
-        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panelUsername;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel15;
@@ -726,5 +753,7 @@ namespace UI
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSavePassword;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblSDT;
     }
 }
