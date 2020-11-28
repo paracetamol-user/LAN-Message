@@ -70,7 +70,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ngay.cs"/>
+    <Compile Include="Ngay.cs" />
     <Compile Include="Sign up.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,18 +83,35 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
-
+    <Compile Include="ucInterac.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInterac.Designer.cs">
+      <DependentUpon>ucInterac.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucMessShow.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucMessShow.Designer.cs">
       <DependentUpon>ucMessShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucUserAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUserAll.Designer.cs">
+      <DependentUpon>ucUserAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucUserINChatBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucUserINChatBox.Designer.cs">
       <DependentUpon>ucUserINChatBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucUserOnline.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUserOnline.Designer.cs">
+      <DependentUpon>ucUserOnline.cs</DependentUpon>
     </Compile>
     <Compile Include="usFileTemp.cs">
       <SubType>UserControl</SubType>
@@ -137,11 +154,20 @@
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucInterac.resx">
+      <DependentUpon>ucInterac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucMessShow.resx">
       <DependentUpon>ucMessShow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucUserAll.resx">
+      <DependentUpon>ucUserAll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucUserINChatBox.resx">
       <DependentUpon>ucUserINChatBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUserOnline.resx">
+      <DependentUpon>ucUserOnline.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="usFileTemp.resx">
       <DependentUpon>usFileTemp.cs</DependentUpon>

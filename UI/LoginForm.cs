@@ -60,7 +60,6 @@ namespace UI
                 label2.Visible = true;
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string account = textBoxAccount.Text;
