@@ -178,6 +178,13 @@ namespace UI
 					else
 						settingForm.RespondToChangePasswordMessage(false);
                 }
+				else if (action == "CHANGENAME")
+                {
+					if (data[1] == "YES")
+						settingForm.RespondToChangeUsernameMessage(true);
+					else
+						settingForm.RespondToChangeUsernameMessage(false);
+                }
 				else
 				{
 					if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)

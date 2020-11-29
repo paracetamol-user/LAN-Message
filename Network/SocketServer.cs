@@ -37,6 +37,7 @@ namespace Communication
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
         string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
         string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
+        string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
 
         SqlConnection connection;
         SqlCommand command;
@@ -328,6 +329,47 @@ namespace Communication
                     connection.Close();
                 }
 
+
+                buffMessage = Encoding.UTF8.GetBytes(messageToClient);
+                await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+
+                return true;
+            }
+            else if(data[0] == "CHANGENAME")
+            {
+                string messageToClient = "CHANGENAME%NO";
+                connection = new SqlConnection(connString);
+                connection.Open();
+                command = new SqlCommand(queryChangeUsername, connection);
+                command.Parameters.AddWithValue("@id", data[1]);
+                command.Parameters.AddWithValue("@name", data[2]);
+
+                reader = command.ExecuteReader();
+
+                bool isExist = false;
+                while (reader.HasRows)
+                {
+                    if (reader.Read() == false) break;
+                    if (reader.GetString(1) == data[2])
+                    {
+                        isExist = true;
+                        break;
+                    }
+                }
+
+                connection.Close();
+                if (!isExist)
+                {
+                    string cmdChange = "update USERS set TENTK = @name where ID = @id";
+                    connection.Open();
+                    command = new SqlCommand(cmdChange, connection);
+                    command.Parameters.AddWithValue("@id", data[1]);
+                    command.Parameters.AddWithValue("@name", data[2]);
+
+                    command.ExecuteNonQuery();
+                    messageToClient = "CHANGENAME%YES";
+                    connection.Close();
+                }
 
                 buffMessage = Encoding.UTF8.GetBytes(messageToClient);
                 await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);

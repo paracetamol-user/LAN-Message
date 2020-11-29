@@ -13,6 +13,7 @@ namespace UI
 {
     public partial class SettingForm : Form
     {
+        string oldUsername;
         Form1 parentForm;
 
         public SettingForm()
@@ -25,10 +26,10 @@ namespace UI
             InitializeComponent();
             lblUsername.Text = me.Name;
             lblName.Text = me.Name;
+            oldUsername = me.Name;
             lblID.Text = string.Format("#{0}", me.Id);
             lblPassword.Text = "*********";
             lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            lblUsername.Text = me.Name;
             this.parentForm = parent;
         }
 
@@ -36,7 +37,10 @@ namespace UI
         {
 
             if (Form1.me.Name != lblName.Text)
+            {
                 Form1.me.Name = lblName.Text;
+                
+            }
             Form1.settingForm = null;
             this.Close();
         }
@@ -69,20 +73,7 @@ namespace UI
             //this.btnDiscard.Enabled = true;
             //this.btnSave.Enabled = true;
         }
-        // Check new username is valid and not equal to old username
-        private bool CheckUsername()
-        {
-            // Check empty
-            if (txtUsername.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Username invalid!");
-                txtUsername.Text = lblUsername.Text;
-                return false;
-            }
-
-            txtUsername.Text = txtUsername.Text.Trim();
-            return true;
-        }
+        
         // Release changes in username
         private void ReleaseUsernameChange()
         {
@@ -140,7 +131,7 @@ namespace UI
         {
             if(txtOldPassword.Text.Trim() == string.Empty || txtNewPassword.Text.Trim() == string.Empty)
             {
-                lblError.Text = "Thiếu thông tin";
+                lblErrorINPassword.Text = "Thiếu thông tin";
                 return;
             }
 
@@ -158,22 +149,8 @@ namespace UI
         
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            // Check valid username
-            if (CheckUsername())
-            {
-                // Update to server
-                CheckUsernameFromServer();
-                // Change label status and release change in username
-                this.lblUsername.Text = txtUsername.Text;
-                ReleaseUsernameChange();
-                this.lblUsername.Visible = true;
-                // Enable discard and save button for click
-                this.btnDiscard.Enabled = false;
-                this.btnSave.Enabled = false;
-            }
-            else return;
-
-            // Check path is valid
+            // Update to server
+            ChangeUsernameInServer(txtUsername.Text);
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -211,6 +188,7 @@ namespace UI
             }
         }
 
+        // Change password
         private void CheckPasswordFromServer()
         {
             UserVerification verification = new UserVerification();
@@ -218,13 +196,6 @@ namespace UI
             byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}", Form1.me.Id,
                                                                                             verification.GetSHA256(txtOldPassword.Text),
                                                                                             verification.GetSHA256(txtNewPassword.Text)));
-            tempBuff.CopyTo(buff, 0);
-            Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
-        }
-        private void ChangeUsernameInServer(string newPassword)
-        {
-            byte[] buff = new byte[1024];
-            byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKNAME%{0}%{1}", Form1.me.Id, newPassword));
             tempBuff.CopyTo(buff, 0);
             Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
         }
@@ -236,11 +207,40 @@ namespace UI
                 this.btnEditPassword.Text = "CHANGE";
                 this.panelChangePassword.Visible = false;
                 this.btnSavePassword.Visible = false;
-                lblError.Visible = false;
+                lblErrorINPassword.Visible = false;
             }
             else
             {
-                lblError.Visible = true;
+                lblErrorINPassword.Visible = true;
+            }
+        }
+        // Change username
+        private void ChangeUsernameInServer(string newUsername)
+        {
+            byte[] buff = new byte[1024];
+            byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHANGENAME%{0}%{1}", Form1.me.Id, newUsername));
+
+            tempBuff.CopyTo(buff, 0);
+            Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+        }
+        public void RespondToChangeUsernameMessage(bool isSuccess) 
+        {
+            if (isSuccess)
+            {
+                lblErrorINUsername.Visible = false;
+                lblNoticeINUsername.Visible = true;
+                lblName.Text = txtUsername.Text;
+                lblUsername.Text = txtUsername.Text;
+                ReleaseUsernameChange();
+
+                // Change status
+                this.btnDiscard.Enabled = false;
+                this.btnSave.Enabled = true;
+                isChangingUsername = false;
+            }
+            else
+            {
+                lblErrorINUsername.Visible = true;
             }
         }
     }

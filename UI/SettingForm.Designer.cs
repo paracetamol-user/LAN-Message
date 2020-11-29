@@ -51,7 +51,7 @@ namespace UI
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panelChangePassword = new System.Windows.Forms.Panel();
-            this.lblError = new System.Windows.Forms.Label();
+            this.lblErrorINPassword = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSavePassword = new System.Windows.Forms.Button();
             this.txtNewPassword = new System.Windows.Forms.TextBox();
@@ -70,10 +70,12 @@ namespace UI
             this.panelUsername = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.lblErrorINUsername = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.btnEditUsername = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lblNoticeINUsername = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.pnContainPic = new System.Windows.Forms.Panel();
@@ -83,7 +85,6 @@ namespace UI
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblNoticeINUsername = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panelButton.SuspendLayout();
@@ -361,7 +362,7 @@ namespace UI
             // 
             // panelChangePassword
             // 
-            this.panelChangePassword.Controls.Add(this.lblError);
+            this.panelChangePassword.Controls.Add(this.lblErrorINPassword);
             this.panelChangePassword.Controls.Add(this.label6);
             this.panelChangePassword.Controls.Add(this.btnSavePassword);
             this.panelChangePassword.Controls.Add(this.txtNewPassword);
@@ -375,17 +376,17 @@ namespace UI
             this.panelChangePassword.TabIndex = 2;
             this.panelChangePassword.Visible = false;
             // 
-            // lblError
+            // lblErrorINPassword
             // 
-            this.lblError.AutoSize = true;
-            this.lblError.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(228, 84);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(94, 19);
-            this.lblError.TabIndex = 12;
-            this.lblError.Text = "Sai mật khẩu";
-            this.lblError.Visible = false;
+            this.lblErrorINPassword.AutoSize = true;
+            this.lblErrorINPassword.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorINPassword.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorINPassword.Location = new System.Drawing.Point(228, 84);
+            this.lblErrorINPassword.Name = "lblErrorINPassword";
+            this.lblErrorINPassword.Size = new System.Drawing.Size(94, 19);
+            this.lblErrorINPassword.TabIndex = 12;
+            this.lblErrorINPassword.Text = "Sai mật khẩu";
+            this.lblErrorINPassword.Visible = false;
             // 
             // label6
             // 
@@ -485,7 +486,7 @@ namespace UI
             this.lblNoticeINPassword.AutoSize = true;
             this.lblNoticeINPassword.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoticeINPassword.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNoticeINPassword.Location = new System.Drawing.Point(109, 7);
+            this.lblNoticeINPassword.Location = new System.Drawing.Point(104, 2);
             this.lblNoticeINPassword.Name = "lblNoticeINPassword";
             this.lblNoticeINPassword.Size = new System.Drawing.Size(145, 19);
             this.lblNoticeINPassword.TabIndex = 13;
@@ -573,6 +574,7 @@ namespace UI
             // 
             // panel13
             // 
+            this.panel13.Controls.Add(this.lblErrorINUsername);
             this.panel13.Controls.Add(this.label2);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel13.Location = new System.Drawing.Point(5, 5);
@@ -580,6 +582,18 @@ namespace UI
             this.panel13.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.panel13.Size = new System.Drawing.Size(759, 34);
             this.panel13.TabIndex = 0;
+            // 
+            // lblErrorINUsername
+            // 
+            this.lblErrorINUsername.AutoSize = true;
+            this.lblErrorINUsername.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorINUsername.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorINUsername.Location = new System.Drawing.Point(128, 6);
+            this.lblErrorINUsername.Name = "lblErrorINUsername";
+            this.lblErrorINUsername.Size = new System.Drawing.Size(145, 19);
+            this.lblErrorINUsername.TabIndex = 13;
+            this.lblErrorINUsername.Text = "Username đã tồn tại";
+            this.lblErrorINUsername.Visible = false;
             // 
             // label2
             // 
@@ -630,6 +644,18 @@ namespace UI
             this.panel8.Padding = new System.Windows.Forms.Padding(10);
             this.panel8.Size = new System.Drawing.Size(928, 87);
             this.panel8.TabIndex = 0;
+            // 
+            // lblNoticeINUsername
+            // 
+            this.lblNoticeINUsername.AutoSize = true;
+            this.lblNoticeINUsername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoticeINUsername.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblNoticeINUsername.Location = new System.Drawing.Point(273, 36);
+            this.lblNoticeINUsername.Name = "lblNoticeINUsername";
+            this.lblNoticeINUsername.Size = new System.Drawing.Size(168, 22);
+            this.lblNoticeINUsername.TabIndex = 14;
+            this.lblNoticeINUsername.Text = "Thay đổi thành công";
+            this.lblNoticeINUsername.Visible = false;
             // 
             // lblID
             // 
@@ -732,18 +758,6 @@ namespace UI
             this.label1.TabIndex = 2;
             this.label1.Text = "MY ACCOUNT";
             // 
-            // lblNoticeINUsername
-            // 
-            this.lblNoticeINUsername.AutoSize = true;
-            this.lblNoticeINUsername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoticeINUsername.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNoticeINUsername.Location = new System.Drawing.Point(388, 33);
-            this.lblNoticeINUsername.Name = "lblNoticeINUsername";
-            this.lblNoticeINUsername.Size = new System.Drawing.Size(168, 22);
-            this.lblNoticeINUsername.TabIndex = 14;
-            this.lblNoticeINUsername.Text = "Thay đổi thành công";
-            this.lblNoticeINUsername.Visible = false;
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -830,7 +844,7 @@ namespace UI
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panelChangePassword;
-        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblErrorINPassword;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSavePassword;
         private System.Windows.Forms.TextBox txtNewPassword;
@@ -855,5 +869,6 @@ namespace UI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNoticeINPassword;
         private System.Windows.Forms.Label lblNoticeINUsername;
+        private System.Windows.Forms.Label lblErrorINUsername;
     }
 }
