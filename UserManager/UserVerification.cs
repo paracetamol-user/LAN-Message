@@ -5,7 +5,6 @@ namespace UserManager
 {
     public partial class UserVerification
     {
-        private static string sqlQuery = "";
 
         public byte[] GetSHA256(byte[] text)
         {
@@ -28,10 +27,6 @@ namespace UserManager
             }
 
             return hashString;
-        }
-        public void ChangePassword(string username, string password)
-        {
-
         }
     }
 }
