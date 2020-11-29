@@ -17,7 +17,7 @@ namespace UI
 	public partial class UserUI
 	{
 
-		private UserForm userForm; // Khung Chat của user
+		public UserForm userForm; // Khung Chat của user
 		public User user;
 
 		public Panel panelINTERACTED;
@@ -38,7 +38,16 @@ namespace UI
 			ucInterac = new ucInterac(this);
 			this.panelRIGHT.Controls.Add(userForm);
 		}
-		public void ChangeStatusOnline()
+        public void SetAvatar(string path)
+        {
+			this.user.AvatarPath = path;
+			this.userForm.SetAvatar(path);
+			this.ucInterac.SetAvatar(path);
+			this.ucUserAll.SetAvatar(path);
+			this.ucUserOnline.SetAvatar(path);
+        }
+
+        public void ChangeStatusOnline()
         {
 			ucInterac.Online();
         }

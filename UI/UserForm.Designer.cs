@@ -88,7 +88,7 @@
             this.panelCHATBOX.Location = new System.Drawing.Point(62, 11);
             this.panelCHATBOX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelCHATBOX.Name = "panelCHATBOX";
-            this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(8);
             this.panelCHATBOX.Size = new System.Drawing.Size(499, 64);
             this.panelCHATBOX.TabIndex = 2;
             // 
@@ -151,7 +151,7 @@
             this.panelSEND.Location = new System.Drawing.Point(561, 11);
             this.panelSEND.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSEND.Name = "panelSEND";
-            this.panelSEND.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelSEND.Padding = new System.Windows.Forms.Padding(8);
             this.panelSEND.Size = new System.Drawing.Size(58, 64);
             this.panelSEND.TabIndex = 0;
             // 

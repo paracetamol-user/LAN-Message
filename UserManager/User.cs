@@ -12,6 +12,7 @@ namespace UserManager
         private string name;
         private string id;
         private bool status;
+        private string avatarPath;
         public User()
         {
             this.name = "";
@@ -29,6 +30,25 @@ namespace UserManager
             this.name = name;
             this.id = id;
             this.status = status ;
+            this.avatarPath = "";
+        }
+        public User(string id, string name, bool status, string path)
+        {
+            this.name = name;
+            this.id = id;
+            this.status = status;
+            this.avatarPath = path;
+        }
+        public string AvatarPath
+        {
+            get
+            {
+                return this.avatarPath;
+            }
+            set
+            {
+                this.avatarPath = value;
+            }
         }
         public string Name
         {
