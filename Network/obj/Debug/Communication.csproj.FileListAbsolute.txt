@@ -12,7 +12,6 @@ Z:\LAN-Message\Network\obj\Debug\Network.dll
 Z:\LAN-Message\Network\obj\Debug\Network.pdb
 D:\LAN-Message\Network\bin\Debug\Network.dll
 D:\LAN-Message\Network\bin\Debug\Network.pdb
-D:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache
 D:\LAN-Message\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
 D:\LAN-Message\Network\obj\Debug\Network.dll
 D:\LAN-Message\Network\obj\Debug\Network.pdb
@@ -28,3 +27,4 @@ C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Communication.cspr
 C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Communication.csproj.CopyComplete
 C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Network.dll
 C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Network.pdb
+D:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache

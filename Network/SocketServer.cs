@@ -31,7 +31,7 @@ namespace Communication
         // Database of K
         // Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
-        string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
+        string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -349,10 +349,10 @@ namespace Communication
                             infoByte.ByteLeft = int.Parse(data[2]);
                             infoByte.Extension = data[3];
                             infoByte.ID = data[4];   
-                            dataFile = new byte[infoByte.ByteLeft];
+                            dataFile = new byte[infoByte.ByteLeft]; // không gian lưu cái file chuẩn bị gửi lên
        
                         }
-                        else
+                        else // khong phải hành động -> gói tin
                         {
                             if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)
                             {
@@ -360,7 +360,7 @@ namespace Communication
                             }
                             buff.CopyTo(dataFile, infoByte.AllByteRead);
                             infoByte.AllByteRead = infoByte.AllByteRead + buff.Length;
-                            if (infoByte.AllByteRead == infoByte.ByteLeft)
+                            if (infoByte.AllByteRead == infoByte.ByteLeft) // khi nhan du du lieu -> file
                             {
                                 // tạo id
                                 Guid Createid = Guid.NewGuid();
