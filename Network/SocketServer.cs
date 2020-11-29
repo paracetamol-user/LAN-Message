@@ -32,7 +32,7 @@ namespace Communication
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
 
-        string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
+        string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -524,8 +524,17 @@ namespace Communication
                                 else if (isAvatar)
                                 {
 									isAvatar = false;
-									File.WriteAllBytes(@"..\..\avatar\" + infoByte.ID + infoByte.Extension, dataFile);
+									string path = @"..\..\avatar\" + infoByte.ID + infoByte.Extension;
+									File.WriteAllBytes(path, dataFile);
 									// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
+									string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
+									connection = new SqlConnection(connString);
+									connection.Open();
+									command = new SqlCommand(query, connection);
+									command.Parameters.AddWithValue("@SOURCE", path);
+									command.Parameters.AddWithValue("@ID", infoByte.ID);
+									command.ExecuteNonQuery();
+									connection.Close();
 								}
 							}
 						}

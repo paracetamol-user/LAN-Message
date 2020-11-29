@@ -449,7 +449,7 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="gunaButtonAvatar1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Avatar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAA1FJREFUeF7t
         mD1vE0EQhuMKEBI00IP4En8AQWd8d4737kLB3eKEEERFR4HERwdCgJQSClpaGj4EokQK8AeAQIToaQgF

@@ -56,6 +56,12 @@ namespace UI
 			InitServerUsersForm();
 			AwaitReadData(); 
 		}
+		public void LoadUser()
+        {
+			this.Avatar.Image = Image.FromFile(me.AvatarPath);
+			this.labelUSERNAME.Text = me.Name;
+			this.labelID.Text = me.Id;
+        }
 		private void InitServerUsersForm()
 		{
 			this.Text = "LM";
@@ -230,6 +236,7 @@ namespace UI
 								if (fileData.Name == me.Id)
 								{
 									this.SetAvatar(path);
+									this.LoadUser();          
 									break;
 								}
 							}
