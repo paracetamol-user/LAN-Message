@@ -36,6 +36,10 @@ namespace UI
             files = new List<FileInfo>();
             InitUserForm();
         }
+        public void SetAvatar(string path)
+        {
+            
+        }
         public void AddFileToListChat(User _user,string tempId, string tempName , short tempInteracted)
         {
             Panel tempPanel = new Panel();
