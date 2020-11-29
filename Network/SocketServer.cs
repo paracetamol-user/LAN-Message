@@ -31,11 +31,13 @@ namespace Communication
         // Database of K
         // Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
-        string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True";
+        string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
         string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
+        string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
+
         SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
@@ -139,7 +141,7 @@ namespace Communication
                     command.Parameters.AddWithValue("@matkhau", data[2]);
                     command.Parameters.AddWithValue("@hoten", data[3]);
                     command.Parameters.AddWithValue("@sdt", data[4]);
-                    command.Parameters.AddWithValue("@gioitinh", data[5] == "True" ? 0 : 1   );
+                    command.Parameters.AddWithValue("@gioitinh", data[5] == "True" ? 0 : 1);
                     command.Parameters.AddWithValue("@tinhtrang", 0);
                     command.ExecuteNonQuery();
                     byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
@@ -155,8 +157,7 @@ namespace Communication
                 }
                 return true;
             }
-            else
-            if (data[0] == "LOGIN")
+            else if (data[0] == "LOGIN")
             {
                 try
                 {
@@ -203,8 +204,7 @@ namespace Communication
                 }
                 return true;
             }
-            else
-            if (data[0] == "LOADUSERDATA")
+            else if (data[0] == "LOADUSERDATA")
             {
                 try
                 {
@@ -227,8 +227,7 @@ namespace Communication
                 }
                 return true;
             }
-            else
-            if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+            else if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
                                    // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
             {
                 int i = 0;
@@ -255,8 +254,7 @@ namespace Communication
                 }
                 return true;
             }
-            else
-            if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
+            else if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
             {
                 string queryFINDSOURCE = "SELECT * FROM TINNHAN";
                 string FILEID = data[1];
@@ -292,6 +290,48 @@ namespace Communication
                 byte[] package = new byte[fileData.Length + temp];
                 fileData.CopyTo(package, 0);
                 SendFileToClient(package, client);
+                return true;
+            }
+            else if (data[0] == "CHECKPASS")
+            {
+                string messageToClient = "CHECKPASS%NO";
+                connection = new SqlConnection(connString);
+                connection.Open();
+                command = new SqlCommand(queryChangePassword, connection);
+                command.Parameters.AddWithValue("@id", data[1]);
+
+
+                reader = command.ExecuteReader();
+                bool isFound = false;
+                while (reader.HasRows) {
+
+                    if (reader.Read() == false) break;
+
+                    if (reader.GetString(1) == data[2])
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                connection.Close();
+                if (isFound)
+                {
+                    string cmdChange = "update USERS set MATKHAU = @mk where ID = @id";
+                    connection.Open();
+                    command = new SqlCommand(cmdChange, connection);
+                    command.Parameters.AddWithValue("@mk", data[3]);
+                    command.Parameters.AddWithValue("@id", data[1]);
+
+                    command.ExecuteNonQuery();
+                    messageToClient = "CHECKPASS%YES";
+                    connection.Close();
+                }
+
+
+                buffMessage = Encoding.UTF8.GetBytes(messageToClient);
+                await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+
                 return true;
             }
             return false;
@@ -470,6 +510,7 @@ namespace Communication
                 Debug.WriteLine(ex.ToString());
             }
         }
+
         // FTP 
         int bufferSize = 1024;
         private async Task ReceiveData(UserClient paramClient)

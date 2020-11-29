@@ -31,9 +31,12 @@ namespace UI
 		public static UserForm userFormFocus = null;
 		public static SocketClient client;
 		public static TcpClient server;
+		public static SettingForm settingForm;
 		public static List<string> listFile;
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
+
+
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
 		//242,243,245
 		public Form1()
@@ -102,8 +105,8 @@ namespace UI
 							UserUIs.Add(new UserUI(new User(arr[0], arr[1], bool.Parse(arr[2])), panelINTERACTED, panelRIGHT));
 						}
 					}
-				}else
-				if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
+				}
+				else if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
 				{
 					for (int i = 0; i < UserUIs.Count; i++)
 					{
@@ -119,8 +122,7 @@ namespace UI
                 {
 					UserUIs.Add(new UserUI(new User(data[1], data[2], false), panelINTERACTED, panelRIGHT));
 				}
-				else
-				if (action == "ONLINE")
+				else if (action == "ONLINE")
 				{
 					for (int i = 0; i < UserUIs.Count; i++)
 					{
@@ -131,8 +133,8 @@ namespace UI
 							break;
 						}
 					}
-				}else
-				if (action == "OFFLINE")
+				}
+				else if (action == "OFFLINE")
 				{
 					for (int i = 0; i < UserUIs.Count; i++)
 					{
@@ -143,8 +145,8 @@ namespace UI
 							break;
 						}
 					}
-				}else
-				if (action == "FILE") //FILE - FILEID - FILENAME - FILELENGHT - ID THẰNG GỬI CÁI FILE NÀY
+				}
+				else if (action == "FILE") //FILE - FILEID - FILENAME - FILELENGHT - ID THẰNG GỬI CÁI FILE NÀY
 				{
 					FILEID = data[1];
 					FILENAME = data[2];
@@ -155,8 +157,7 @@ namespace UI
 					infoByte.Extension = data[4];
 					dataFile = new byte[infoByte.ByteLeft];
 				}
-				else
-				if (action == "TEMPFILE") //("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
+				else if (action == "TEMPFILE") //("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
 				{
 					string tempFileId = data[1];
 					string tempidNguoiGui = data[2];
@@ -170,6 +171,13 @@ namespace UI
 						}
 					}
 				}
+				else if (action == "CHECKPASS")
+                {
+					if (data[1] == "YES")
+						settingForm.RespondToChangePasswordMessage(true);
+					else
+						settingForm.RespondToChangePasswordMessage(false);
+                }
 				else
 				{
 					if (buff.Length + infoByte.AllByteRead > infoByte.ByteLeft)
@@ -186,7 +194,6 @@ namespace UI
 						//FileInfo fi = new FileInfo((@"..\..\cache\file\" + FILEID + infoByte.Extension));
 					}
 				}
-
 			}
 		}
 
@@ -217,14 +224,12 @@ namespace UI
 
         private void pictureBoxSetting_Click(object sender, EventArgs e)
         {
-			SettingForm form = new SettingForm(me, this);
-			form.TopLevel = false;
-			form.Dock = DockStyle.Fill;
-			this.panelRIGHT.Controls.Add(form);
-			form.Show();
-			form.BringToFront();
+			settingForm = new SettingForm(me, this);
+			settingForm.TopLevel = false;
+			settingForm.Dock = DockStyle.Fill;
+			this.panelRIGHT.Controls.Add(settingForm);
+			settingForm.Show();
+			settingForm.BringToFront();
 		}
-
-
     }
 }

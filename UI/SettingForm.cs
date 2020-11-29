@@ -24,6 +24,8 @@ namespace UI
         {
             InitializeComponent();
             lblUsername.Text = me.Name;
+            lblName.Text = me.Name;
+            lblID.Text = string.Format("#{0}", me.Id);
             lblPassword.Text = "*********";
             lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             lblUsername.Text = me.Name;
@@ -35,12 +37,13 @@ namespace UI
 
             if (Form1.me.Name != lblName.Text)
                 Form1.me.Name = lblName.Text;
+            Form1.settingForm = null;
             this.Close();
         }
 
+
         private bool isChangingUsername = false;
         private TextBox txtUsername = null;
-
 
         private void btnEditUsername_Click(object sender, EventArgs e)
         {
@@ -92,10 +95,6 @@ namespace UI
             this.lblUsername.Visible = true;
         }
 
-        // Edit password
-        // Verify user and set new password
-        // Dont't change status of DISCARD and SAVE button
-
         private void circlePictureBox_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -139,27 +138,31 @@ namespace UI
 
         private void btnSavePassword_Click_1(object sender, EventArgs e)
         {
-            // Check from database
+            if(txtOldPassword.Text.Trim() == string.Empty || txtNewPassword.Text.Trim() == string.Empty)
+            {
+                lblError.Text = "Thiếu thông tin";
+                return;
+            }
 
-            // if true update to database
-            // else MessageBox.Show("Wrong password")
+            CheckPasswordFromServer();
         }
+
+
         // Log out function
         // Close with parent form and login form
-
         private void btnLogout_Click_1(object sender, EventArgs e)
         {
             this.Close();
             parentForm.Close();
         }
-
+        
         private void btnSave_Click_1(object sender, EventArgs e)
         {
             // Check valid username
             if (CheckUsername())
             {
                 // Update to server
-
+                CheckUsernameFromServer();
                 // Change label status and release change in username
                 this.lblUsername.Text = txtUsername.Text;
                 ReleaseUsernameChange();
@@ -194,6 +197,7 @@ namespace UI
         {
             if (this.panelChangePassword.Visible == false)
             {
+                this.lblNoticeINPassword.Visible = false;
                 this.btnEditPassword.Text = "CANCEL";
                 this.panelChangePassword.Visible = true;
                 this.btnSavePassword.Visible = true;
@@ -206,6 +210,38 @@ namespace UI
                 this.btnSavePassword.Visible = false;
             }
         }
-      
+
+        private void CheckPasswordFromServer()
+        {
+            UserVerification verification = new UserVerification();
+            byte[] buff = new byte[1024];
+            byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}", Form1.me.Id,
+                                                                                            verification.GetSHA256(txtOldPassword.Text),
+                                                                                            verification.GetSHA256(txtNewPassword.Text)));
+            tempBuff.CopyTo(buff, 0);
+            Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+        }
+        private void ChangeUsernameInServer(string newPassword)
+        {
+            byte[] buff = new byte[1024];
+            byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKNAME%{0}%{1}", Form1.me.Id, newPassword));
+            tempBuff.CopyTo(buff, 0);
+            Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+        }
+        public void RespondToChangePasswordMessage(bool isSuccess)
+        {
+            if (isSuccess)
+            {
+                this.lblNoticeINPassword.Visible = true;
+                this.btnEditPassword.Text = "CHANGE";
+                this.panelChangePassword.Visible = false;
+                this.btnSavePassword.Visible = false;
+                lblError.Visible = false;
+            }
+            else
+            {
+                lblError.Visible = true;
+            }
+        }
     }
 }
