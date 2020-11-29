@@ -24,6 +24,10 @@ namespace UI
 			this.lbName.Text = parent.user.Name;
 			this.lbStatus.Text = parent.user.Status == false ? "Offline" : "Online";
 		}
+		public void SetAvatar(string path)
+        {
+			this.gunaPic.Image = Image.FromFile(path);
+        }
 		public void Online()
 		{
 			this.lbStatus.Text = "Online";

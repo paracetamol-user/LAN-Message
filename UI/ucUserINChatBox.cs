@@ -25,9 +25,9 @@ namespace UI
             this.labelName.Text = user.Name;
             if (this.user == Form1.me)
             {
-                pictureBox1.Image = Image.FromFile(@"..\..\images\dog.png");
+                pictureBox1.Image = Image.FromFile(Form1.me.AvatarPath);
             }
-            else pictureBox1.Image = Image.FromFile(@"..\..\images\laptop-screen.png");
+            else pictureBox1.Image = Image.FromFile(user.AvatarPath);
         }
         public User _User
         {

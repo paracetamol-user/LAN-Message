@@ -48,7 +48,7 @@ namespace UI
             string[] data = (await (client.ReadDataAsync(server))).Split(' ');
             if (data[0].Trim('\0', '\r', '\n') == "LOGINOKE")
             {
-                User user = new User(data[1].Trim('\0', '\r', '\n'), account, true);      
+                User user = new User(data[1].Trim('\0', '\r', '\n'), account, true, @"..\..\avatarDefault");      
                 Form1 mainform = new Form1(this, user , client , server);
                 mainform.Show();
                 this.Hide();

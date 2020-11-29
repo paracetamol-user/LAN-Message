@@ -25,7 +25,7 @@ namespace UI
 			this.lbName.Text = Parent.user.Name;
 			this.lbId.Text = "#"+Parent.user.Id;
 		}
-		public void ChangeImage(string path)
+		public void SetAvatar(string path)
         {
 			this.gunaPic.Image = Image.FromFile(path);
         }

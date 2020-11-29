@@ -99,8 +99,13 @@
             this.panelOPTIONNULL.Location = new System.Drawing.Point(227, 7);
             this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
+<<<<<<< HEAD
             this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelOPTIONNULL.Size = new System.Drawing.Size(11, 56);
+=======
+            this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(8);
+            this.panelOPTIONNULL.Size = new System.Drawing.Size(13, 70);
+>>>>>>> UPDATE-1.3
             this.panelOPTIONNULL.TabIndex = 3;
             // 
             // panelInfo

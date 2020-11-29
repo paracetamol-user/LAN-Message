@@ -9,29 +9,29 @@ namespace Communication
     public class InfoByte
     {
         private int byteRead;
-        private int byteLeft;
+        private int length;
         private int allByteRead;
         private int nextPackageSize;
-        string idReceive;
+        string fileID;
         string name;
         string extension;
         byte[] dataFile;
         public InfoByte()
         {
             byteRead = 0;
-            byteLeft = 0;
+            length = 0;
             this.allByteRead = 0;
             this.nextPackageSize = 0;
-            this.idReceive = "";
+
             this.dataFile = null;
             extension = "";
         }
-        public InfoByte(int byteLeft)
+        public InfoByte(int length)
         {
             this.byteRead = 0;
             this.allByteRead = 0;
             this.nextPackageSize = 0;
-            this.byteLeft = byteLeft;
+            this.length = length;
             extension = "";
         }
         public string Extension
@@ -56,15 +56,15 @@ namespace Communication
                 this.byteRead = value;
             }
         }
-        public int ByteLeft
+        public int Length
         {
             get
             {
-                return this.byteLeft;
+                return this.length;
             }
             set
             {
-                this.byteLeft = value;
+                this.length = value;
             }
         }
         public int AllByteRead
@@ -93,11 +93,11 @@ namespace Communication
         {
             get
             {
-                return this.idReceive;
+                return this.fileID;
             }
             set
             {
-                this.idReceive = value;
+                this.fileID = value;
             }
         }
         public string Name
