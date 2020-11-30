@@ -127,7 +127,8 @@ namespace UI
 				}
 				else if (action == "ADDUSER")
 				{
-					UserUIs.Add(new UserUI(new User(data[1], data[2], false), panelINTERACTED, panelRIGHT));
+					string path = @"..\..\avatarDefault.png";
+					UserUIs.Add(new UserUI(new User(data[1], data[2], false,path), panelINTERACTED, panelRIGHT));
 				}
 				else if (action == "ONLINE")
 				{
@@ -174,6 +175,7 @@ namespace UI
 						if (UserUIs[i].GetId() == tempidNguoiGui)
 						{
 							UserUIs[i].AddPanelFile(tempFileId, tempFileName);
+							UserUIs[i].BringToTop();
 							break;
 						}
 					}
