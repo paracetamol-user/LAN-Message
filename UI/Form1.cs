@@ -226,8 +226,7 @@ namespace UI
 						{
 							isAvatar = false;
 							string path = @"..\..\cache\avatar\" + fileData.Name + fileData.Extension;
-							if (!File.Exists(path)) //File.Delete(path);
-								File.WriteAllBytes(path, dataFile);
+							File.WriteAllBytes(path, dataFile);
 							foreach (var item in UserUIs)
 							{
 								if (item.user.Id == fileData.Name)
