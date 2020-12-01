@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class ServerForm
+    partial class FrmFriend
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFriend));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pnPending = new System.Windows.Forms.Panel();
-            this.btnPending = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnDanhBa = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnGroup = new System.Windows.Forms.Button();
             this.panelAll = new System.Windows.Forms.Panel();
-            this.btnPeople = new System.Windows.Forms.Button();
+            this.btnAll = new System.Windows.Forms.Button();
             this.panelOnline = new System.Windows.Forms.Panel();
             this.btnOnline = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pnContainCount = new System.Windows.Forms.Panel();
-            this.labelCOUNT = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.pnPending.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panelAll.SuspendLayout();
             this.panelOnline.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnContainCount.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pnPending);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panelAll);
             this.panel1.Controls.Add(this.panelOnline);
             this.panel1.Controls.Add(this.panel2);
@@ -60,39 +61,64 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(856, 53);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(800, 53);
+            this.panel1.TabIndex = 1;
             // 
-            // pnPending
+            // panel3
             // 
-            this.pnPending.Controls.Add(this.btnPending);
-            this.pnPending.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnPending.Location = new System.Drawing.Point(371, 0);
-            this.pnPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnPending.Name = "pnPending";
-            this.pnPending.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-            this.pnPending.Size = new System.Drawing.Size(131, 53);
-            this.pnPending.TabIndex = 4;
+            this.panel3.Controls.Add(this.btnDanhBa);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(502, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.panel3.Size = new System.Drawing.Size(131, 53);
+            this.panel3.TabIndex = 4;
             // 
-            // btnPending
+            // btnDanhBa
             // 
-            this.btnPending.BackColor = System.Drawing.Color.White;
-            this.btnPending.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPending.FlatAppearance.BorderSize = 0;
-            this.btnPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPending.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPending.ForeColor = System.Drawing.Color.DimGray;
-            this.btnPending.Location = new System.Drawing.Point(20, 10);
-            this.btnPending.Name = "btnPending";
-            this.btnPending.Size = new System.Drawing.Size(91, 33);
-            this.btnPending.TabIndex = 0;
-            this.btnPending.Text = "Pending";
-            this.btnPending.UseVisualStyleBackColor = false;
-            this.btnPending.Click += new System.EventHandler(this.btnPending_Click);
+            this.btnDanhBa.BackColor = System.Drawing.Color.White;
+            this.btnDanhBa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDanhBa.FlatAppearance.BorderSize = 0;
+            this.btnDanhBa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDanhBa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDanhBa.ForeColor = System.Drawing.Color.DimGray;
+            this.btnDanhBa.Location = new System.Drawing.Point(20, 10);
+            this.btnDanhBa.Name = "btnDanhBa";
+            this.btnDanhBa.Size = new System.Drawing.Size(91, 33);
+            this.btnDanhBa.TabIndex = 1;
+            this.btnDanhBa.Text = "Danh Ba";
+            this.btnDanhBa.UseVisualStyleBackColor = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnGroup);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(371, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.panel5.Size = new System.Drawing.Size(131, 53);
+            this.panel5.TabIndex = 3;
+            // 
+            // btnGroup
+            // 
+            this.btnGroup.BackColor = System.Drawing.Color.White;
+            this.btnGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGroup.FlatAppearance.BorderSize = 0;
+            this.btnGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGroup.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGroup.ForeColor = System.Drawing.Color.DimGray;
+            this.btnGroup.Location = new System.Drawing.Point(20, 10);
+            this.btnGroup.Name = "btnGroup";
+            this.btnGroup.Size = new System.Drawing.Size(91, 33);
+            this.btnGroup.TabIndex = 1;
+            this.btnGroup.Text = "Group";
+            this.btnGroup.UseVisualStyleBackColor = false;
             // 
             // panelAll
             // 
-            this.panelAll.Controls.Add(this.btnPeople);
+            this.panelAll.Controls.Add(this.btnAll);
             this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelAll.Location = new System.Drawing.Point(238, 0);
             this.panelAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -101,21 +127,21 @@
             this.panelAll.Size = new System.Drawing.Size(133, 53);
             this.panelAll.TabIndex = 2;
             // 
-            // btnPeople
+            // btnAll
             // 
-            this.btnPeople.BackColor = System.Drawing.Color.White;
-            this.btnPeople.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPeople.FlatAppearance.BorderSize = 0;
-            this.btnPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPeople.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPeople.ForeColor = System.Drawing.Color.DimGray;
-            this.btnPeople.Location = new System.Drawing.Point(20, 10);
-            this.btnPeople.Name = "btnPeople";
-            this.btnPeople.Size = new System.Drawing.Size(93, 33);
-            this.btnPeople.TabIndex = 1;
-            this.btnPeople.Text = "People";
-            this.btnPeople.UseVisualStyleBackColor = false;
-            this.btnPeople.Click += new System.EventHandler(this.btnPeople_Click);
+            this.btnAll.BackColor = System.Drawing.Color.White;
+            this.btnAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAll.FlatAppearance.BorderSize = 0;
+            this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAll.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAll.ForeColor = System.Drawing.Color.DimGray;
+            this.btnAll.Location = new System.Drawing.Point(20, 10);
+            this.btnAll.Name = "btnAll";
+            this.btnAll.Size = new System.Drawing.Size(93, 33);
+            this.btnAll.TabIndex = 1;
+            this.btnAll.Text = "All";
+            this.btnAll.UseVisualStyleBackColor = false;
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // panelOnline
             // 
@@ -142,7 +168,6 @@
             this.btnOnline.TabIndex = 1;
             this.btnOnline.Text = "Online";
             this.btnOnline.UseVisualStyleBackColor = false;
-            this.btnOnline.Click += new System.EventHandler(this.btnOnline_Click);
             // 
             // panel2
             // 
@@ -174,69 +199,45 @@
             this.panel4.Location = new System.Drawing.Point(0, 53);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(856, 1);
-            this.panel4.TabIndex = 2;
+            this.panel4.Size = new System.Drawing.Size(800, 1);
+            this.panel4.TabIndex = 3;
             // 
-            // pnContainCount
-            // 
-            this.pnContainCount.Controls.Add(this.labelCOUNT);
-            this.pnContainCount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContainCount.Location = new System.Drawing.Point(0, 54);
-            this.pnContainCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnContainCount.Name = "pnContainCount";
-            this.pnContainCount.Padding = new System.Windows.Forms.Padding(40, 3, 0, 0);
-            this.pnContainCount.Size = new System.Drawing.Size(856, 25);
-            this.pnContainCount.TabIndex = 3;
-            // 
-            // labelCOUNT
-            // 
-            this.labelCOUNT.AutoSize = true;
-            this.labelCOUNT.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelCOUNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCOUNT.Location = new System.Drawing.Point(40, 3);
-            this.labelCOUNT.Name = "labelCOUNT";
-            this.labelCOUNT.Size = new System.Drawing.Size(46, 18);
-            this.labelCOUNT.TabIndex = 0;
-            this.labelCOUNT.Text = "label1";
-            // 
-            // ServerForm
+            // FrmFriend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(856, 480);
-            this.Controls.Add(this.pnContainCount);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ServerForm";
-            this.Text = "AddFriendForm";
+            this.Name = "FrmFriend";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.Text = "FrmFriend";
             this.panel1.ResumeLayout(false);
-            this.pnPending.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.panelAll.ResumeLayout(false);
             this.panelOnline.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnContainCount.ResumeLayout(false);
-            this.pnContainCount.PerformLayout();
             this.ResumeLayout(false);
 
         }
+
         #endregion
 
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnGroup;
         private System.Windows.Forms.Panel panelAll;
+        private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.Panel panelOnline;
+        private System.Windows.Forms.Button btnOnline;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnDanhBa;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel pnContainCount;
-        private System.Windows.Forms.Label labelCOUNT;
-       
-        private System.Windows.Forms.Button btnPending;
-        private System.Windows.Forms.Button btnPeople;
-        private System.Windows.Forms.Button btnOnline;
-        private System.Windows.Forms.Panel pnPending;
     }
 }
