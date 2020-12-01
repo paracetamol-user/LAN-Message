@@ -422,30 +422,37 @@ namespace Communication
 			}
 			else if (data[0] == "ACCEPTFRIEND")
             {
-				connection = new SqlConnection(connString);
-				connection.Open();
-				command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
-				command.Parameters.AddWithValue("@id", data[1]);
-				command.Parameters.AddWithValue("@idfriend", data[2]);
-				command.ExecuteNonQuery();
-				connection.Close();
-				connection = new SqlConnection(connString);
-				connection.Open();
-				command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
-				command.Parameters.AddWithValue("@id", data[2]);
-				command.Parameters.AddWithValue("@idfriend", data[1]);
-				command.ExecuteNonQuery();
-				connection.Close();
-				foreach (var item in clientInvalid)
+				try
                 {
-					if (item.id_ == data[2])
-                    {
-						byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + data[1]);
-						buffMessage = new byte[1024];
-						tempbuff.CopyTo(buffMessage, 0);
-						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
-						break;
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
+					command.Parameters.AddWithValue("@id", data[1]);
+					command.Parameters.AddWithValue("@idfriend", data[2]);
+					command.ExecuteNonQuery();
+					connection.Close();
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
+					command.Parameters.AddWithValue("@id", data[2]);
+					command.Parameters.AddWithValue("@idfriend", data[1]);
+					command.ExecuteNonQuery();
+					connection.Close();
+					foreach (var item in clientInvalid)
+					{
+						if (item.id_ == data[2])
+						{
+							byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + data[1]);
+							buffMessage = new byte[1024];
+							tempbuff.CopyTo(buffMessage, 0);
+							await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+							break;
+						}
 					}
+				}
+				catch (Exception ex)
+                {
+
                 }
 				return true;
             }
@@ -458,6 +465,26 @@ namespace Communication
 				command.Parameters.AddWithValue("@idfriend", data[2]);
 				command.ExecuteNonQuery();
 				connection.Close();
+
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand("DELETE FROM FRIEND WHERE ID = @id AND IDFRIEND = @idfriend", connection);
+				command.Parameters.AddWithValue("@id", data[2]);
+				command.Parameters.AddWithValue("@idfriend", data[1]);
+				command.ExecuteNonQuery();
+				connection.Close();
+				foreach (var item in clientInvalid)
+				{
+					if (item.id_ == data[2])
+					{
+						byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + data[1]);
+						buffMessage = new byte[1024];
+						tempbuff.CopyTo(buffMessage, 0);
+						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+						break;
+					}
+				}
+				
 				return true;
 			}
 			else if (data[0] == "PENDING")

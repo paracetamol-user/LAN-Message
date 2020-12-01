@@ -47,9 +47,10 @@ namespace UI
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-			Form1.frmFriend.AddFriend(uiParent);
+			Form1.frmFriend.AddUserIntoFrmFriend(uiParent);
 			uiParent.DisableADD();
 			uiParent.EnableRemove();
+			uiParent.user.IsFriend = true;
 			SendAcceptFriendToServer();
 			pnParent.Controls.Remove(this);
 		}
