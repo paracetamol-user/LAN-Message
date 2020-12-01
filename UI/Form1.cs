@@ -22,7 +22,6 @@ namespace UI
 		///NGƯỜI SỬ DỤNG SERVER LÀ USER
 		/// </summary> 
 		public LoginForm loginForm;
-
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public static User me; // Nguoi su dung chuong trinh
 		public static UserUI userRightForcus = null;
@@ -31,10 +30,10 @@ namespace UI
 		public static SocketClient client;
 		public static TcpClient server;
 		public static SettingForm settingForm;
+		public static FrmFriend frmFriend;
 		public static List<string> listFile;
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
-
 
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
 		//242,243,245
@@ -54,9 +53,17 @@ namespace UI
 			LoadMyData();
 			LoadDataUser();
 			InitServerUsersForm();
+			InitFrmFriend();
 			AwaitReadData(); 
 		}
-		public void LoadUser()
+        private void InitFrmFriend()
+        {
+			Form1.frmFriend = new FrmFriend();
+			Form1.frmFriend.TopLevel = false;
+			Form1.frmFriend.Dock = DockStyle.Fill;
+			panelRIGHT.Controls.Add(Form1.frmFriend);
+		}
+        public  void LoadUser()
         {
 			this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
@@ -91,7 +98,7 @@ namespace UI
 				/// Nhận Gói Tin
 				buff = new byte[1024];
 				int nReturn = await stream.ReadAsync(buff, 0, buff.Length);
-				string[] data = (System.Text.Encoding.UTF8.GetString(buff,0,nReturn).Trim('\0', '\t', '\r', '\n')).Split('%');
+				string[] data = (System.Text.Encoding.UTF8.GetString(buff, 0, nReturn).Trim('\0', '\t', '\r', '\n')).Split('%');
 				/// Xử lí gói tin
 				for (int i = 0; i < data.Length; i++)
 				{
@@ -128,7 +135,7 @@ namespace UI
 				else if (action == "ADDUSER")
 				{
 					string path = @"..\..\avatarDefault.png";
-					UserUIs.Add(new UserUI(new User(data[1], data[2], false,path), panelINTERACTED, panelRIGHT));
+					UserUIs.Add(new UserUI(new User(data[1], data[2], false, path), panelINTERACTED, panelRIGHT));
 				}
 				else if (action == "ONLINE")
 				{
@@ -203,6 +210,46 @@ namespace UI
 					fileData.Extension = data[3];
 					dataFile = new byte[fileData.Length];
 				}
+				else if (action == "PENDING")
+                {
+                    foreach (var item in UserUIs)
+                    {
+						if (item.user.Id == data[1])
+                        {
+							serverUsersForm.AddPending(item);
+							break;
+						}
+                    }
+                }
+				else if (action == "FRIEND")
+                {
+					for (int i = 1; i < data.Length; i++)
+					{
+						if (data[i] == "") break;
+                        foreach (var item in UserUIs)
+                        {
+							if (item.user.Id == data[i])
+                            {
+								Form1.frmFriend.AddFriend(item);
+								item.EnableRemove();
+								item.DisableADD();
+							}
+                        }
+					}
+				}
+				else if (action == "ACCEPTFRIEND")
+                {
+                    foreach (var item in UserUIs)
+                    {
+						if (item.user.Id == data[1])
+                        {
+							AddUserIntoFrmFriend(item);
+							item.DisableADD();
+							item.EnableRemove();
+							break;
+                        }
+                    }
+                }
 				else
 				{
 					/// Nén gói tin bị thừa lại để vừa đủ số byte của file.
@@ -237,7 +284,7 @@ namespace UI
 								if (fileData.Name == me.Id)
 								{
 									this.SetAvatar(path);
-									this.LoadUser();          
+									this.LoadUser();
 									break;
 								}
 							}
@@ -259,11 +306,14 @@ namespace UI
 			tembuff.CopyTo(buff, 0);
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
+		public static void AddUserIntoFrmFriend(UserUI userUI)
+        {
+			frmFriend.AddFriend(userUI);
+        }
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			loginForm.Close();
 		}
-
 		private void ButtonLanMessenger_Click(object sender, EventArgs e)
 		{
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
@@ -275,7 +325,6 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
-
         private void pictureBoxSetting_Click(object sender, EventArgs e)
         {
 			settingForm = new SettingForm(me, this);
@@ -284,6 +333,16 @@ namespace UI
 			this.panelRIGHT.Controls.Add(settingForm);
 			settingForm.Show();
 			settingForm.BringToFront();
+		}
+        private void btnFriend_Click(object sender, EventArgs e)
+        {
+			if (Form1.userUIForcus != null)
+			{
+				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.userUIForcus = null;
+			}
+			frmFriend.Show();
+			frmFriend.BringToFront();
 		}
     }
 }

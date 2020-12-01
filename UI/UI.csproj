@@ -64,6 +64,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmFriend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFriend.Designer.cs">
+      <DependentUpon>FrmFriend.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,12 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucFriend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucFriend.Designer.cs">
+      <DependentUpon>ucFriend.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucGroup.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,6 +112,12 @@
     </Compile>
     <Compile Include="ucMessShow.Designer.cs">
       <DependentUpon>ucMessShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPending.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPending.Designer.cs">
+      <DependentUpon>ucPending.cs</DependentUpon>
     </Compile>
     <Compile Include="ucUserAll.cs">
       <SubType>UserControl</SubType>
@@ -151,6 +169,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmFriend.resx">
+      <DependentUpon>FrmFriend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +181,9 @@
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucFriend.resx">
+      <DependentUpon>ucFriend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucGroup.resx">
       <DependentUpon>ucGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucMessShow.resx">
       <DependentUpon>ucMessShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucPending.resx">
+      <DependentUpon>ucPending.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserAll.resx">
       <DependentUpon>ucUserAll.cs</DependentUpon>

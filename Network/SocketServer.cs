@@ -32,7 +32,7 @@ namespace Communication
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
 
-        string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
+        string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -159,8 +159,7 @@ namespace Communication
 				}
 				return true;
 			}
-			else
-			if (data[0] == "LOGIN")
+			else if (data[0] == "LOGIN")
 			{
 				try
 				{
@@ -204,8 +203,7 @@ namespace Communication
 				}
 				return true;
 			}
-			else
-			if (data[0] == "LOADUSERDATA")
+			else if (data[0] == "LOADUSERDATA")
 			{
 				try
 				{
@@ -221,6 +219,23 @@ namespace Communication
 					{
 						if (reader.Read() == false) break;
 						arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(6).ToString() + "%";
+					}
+					connection.Close();
+					buffMessage = new byte[1024];
+					tempbuff = Encoding.UTF8.GetBytes(arr);
+					tempbuff.CopyTo(buffMessage, 0);
+					await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+					/// Gửi Ai là bạn về cho client 
+					arr = "FRIEND%";
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("SELECT * FROM FRIEND WHERE ID = @id", connection);
+					command.Parameters.AddWithValue("@id", client.id_);
+					reader = command.ExecuteReader();
+					while (reader.HasRows)
+					{
+						if (reader.Read() == false) break;
+						arr = arr + reader.GetString(1) + "%"; 
 					}
 					connection.Close();
 					buffMessage = new byte[1024];
@@ -257,8 +272,7 @@ namespace Communication
 				}
 				return true;
 			}
-			else
-			if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
+			else if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
 								   // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
 			{
 				int i = 0;
@@ -285,8 +299,7 @@ namespace Communication
 				}
 				return true;
 			}
-			else
-			if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
+			else if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
 			{
 				string queryFINDSOURCE = "SELECT * FROM TINNHAN";
 				string FILEID = data[1];
@@ -407,6 +420,61 @@ namespace Communication
 
 				return true;
 			}
+			else if (data[0] == "ACCEPTFRIEND")
+            {
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
+				command.Parameters.AddWithValue("@id", data[1]);
+				command.Parameters.AddWithValue("@idfriend", data[2]);
+				command.ExecuteNonQuery();
+				connection.Close();
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
+				command.Parameters.AddWithValue("@id", data[2]);
+				command.Parameters.AddWithValue("@idfriend", data[1]);
+				command.ExecuteNonQuery();
+				connection.Close();
+				foreach (var item in clientInvalid)
+                {
+					if (item.id_ == data[2])
+                    {
+						byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + data[1]);
+						buffMessage = new byte[1024];
+						tempbuff.CopyTo(buffMessage, 0);
+						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+						break;
+					}
+                }
+				return true;
+            }
+			else if (data[0] == "REMOVEFRIEND")
+            {
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand("DELETE FROM FRIEND WHERE ID = @id AND IDFRIEND = @idfriend", connection);
+				command.Parameters.AddWithValue("@id", data[1]);
+				command.Parameters.AddWithValue("@idfriend", data[2]);
+				command.ExecuteNonQuery();
+				connection.Close();
+				return true;
+			}
+			else if (data[0] == "PENDING")
+            {
+				byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + data[1]);
+				buffMessage = new byte[1024];
+				tempbuff.CopyTo(buffMessage, 0);
+                foreach (var item in clientInvalid)
+                {
+					if (item.id_ == data[2])
+                    {
+						await item.client_.GetStream().WriteAsync(buffMessage,0,buffMessage.Length);
+						break;
+					}
+                }
+				return true;
+            }
 			return false;
 		}
 		private async Task SendFileToClient(byte[] package , UserClient client)

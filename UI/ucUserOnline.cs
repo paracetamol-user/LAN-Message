@@ -13,18 +13,24 @@ namespace UI
 	public partial class ucUserOnline : UserControl
 	{
 		public UserUI Parent;
+		public bool isPlus;
 		public ucUserOnline()
 		{
 			InitializeComponent();
 		}
 		public ucUserOnline(UserUI Parent)
 		{
+			isPlus = true;
 			InitializeComponent();
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
 			this.lbName.Text = Parent.user.Name;
 			this.lbId.Text = "#"+Parent.user.Id;
 		}
+		public void EnableAddFriend()
+        {
+			this.picChat.Visible = false;
+        }
 		public void SetAvatar(string path)
         {
 			this.gunaPic.Image = Image.FromFile(path);
@@ -172,5 +178,45 @@ namespace UI
         {
 			this.BackColor = Color.White;
 		}
-    }
+
+        private void pnContainId_Click_1(object sender, EventArgs e)
+        {
+			this.Parent.ShowChatForm();
+			this.Parent.AddUserInteracted();
+			if (Form1.userUIForcus != null)
+			{
+				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+			}
+			this.Parent.ucInterac.ChangeColorWhenClick();
+			Form1.userUIForcus = this.Parent;
+		}
+
+        private void panel2_MouseMove(object sender, MouseEventArgs e)
+        {
+			this.ChangeColorWhenFocus();
+		}
+
+        private void panel2_MouseLeave(object sender, EventArgs e)
+        {
+			this.BackColor = Color.White;
+		}
+
+        private void picChat_Click(object sender, EventArgs e)
+        {
+			this.Parent.ShowChatForm();
+			this.Parent.AddUserInteracted();
+			if (Form1.userUIForcus != null)
+			{
+				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+			}
+			this.Parent.ucInterac.ChangeColorWhenClick();
+			Form1.userUIForcus = this.Parent;
+		}
+
+        private async void picAdd_Click(object sender, EventArgs e)
+        {
+			Parent.cmns.Show(MousePosition);
+		}
+
+	}
 }
