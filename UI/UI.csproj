@@ -101,6 +101,12 @@
     <Compile Include="ucGroup.Designer.cs">
       <DependentUpon>ucGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucGroupInteract.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupInteract.Designer.cs">
+      <DependentUpon>ucGroupInteract.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucInterac.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucGroup.resx">
       <DependentUpon>ucGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupInteract.resx">
+      <DependentUpon>ucGroupInteract.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucInterac.resx">
       <DependentUpon>ucInterac.cs</DependentUpon>
