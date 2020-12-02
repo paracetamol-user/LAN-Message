@@ -68,7 +68,7 @@
             this.panelMenu.Controls.Add(this.panelLANMESS);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(227, 551);
             this.panelMenu.TabIndex = 1;
@@ -88,7 +88,7 @@
             this.panel1.Controls.Add(this.btnFriend);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 44);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(227, 28);
             this.panel1.TabIndex = 6;
@@ -101,7 +101,7 @@
             this.btnFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFriend.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFriend.Location = new System.Drawing.Point(0, 0);
-            this.btnFriend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFriend.Margin = new System.Windows.Forms.Padding(2);
             this.btnFriend.Name = "btnFriend";
             this.btnFriend.Size = new System.Drawing.Size(227, 28);
             this.btnFriend.TabIndex = 5;
@@ -128,7 +128,7 @@
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOPTIONNULL.Location = new System.Drawing.Point(170, 6);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
-            this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(6);
             this.panelOPTIONNULL.Size = new System.Drawing.Size(8, 45);
             this.panelOPTIONNULL.TabIndex = 3;
             // 
@@ -231,7 +231,7 @@
             this.picNotification.Dock = System.Windows.Forms.DockStyle.Right;
             this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
             this.picNotification.Location = new System.Drawing.Point(209, 0);
-            this.picNotification.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picNotification.Margin = new System.Windows.Forms.Padding(2);
             this.picNotification.Name = "picNotification";
             this.picNotification.Size = new System.Drawing.Size(18, 43);
             this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -264,7 +264,7 @@
             this.pnLine2.BackColor = System.Drawing.Color.LightGray;
             this.pnLine2.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLine2.Location = new System.Drawing.Point(227, 0);
-            this.pnLine2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnLine2.Margin = new System.Windows.Forms.Padding(2);
             this.pnLine2.Name = "pnLine2";
             this.pnLine2.Size = new System.Drawing.Size(1, 551);
             this.pnLine2.TabIndex = 2;
@@ -274,7 +274,7 @@
             this.panelRIGHT.BackColor = System.Drawing.Color.White;
             this.panelRIGHT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRIGHT.Location = new System.Drawing.Point(228, 0);
-            this.panelRIGHT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRIGHT.Margin = new System.Windows.Forms.Padding(2);
             this.panelRIGHT.Name = "panelRIGHT";
             this.panelRIGHT.Size = new System.Drawing.Size(495, 551);
             this.panelRIGHT.TabIndex = 10;
@@ -287,7 +287,7 @@
             this.Controls.Add(this.panelRIGHT);
             this.Controls.Add(this.pnLine2);
             this.Controls.Add(this.panelMenu);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(737, 584);
             this.Name = "Form1";
             this.Text = "Form1";

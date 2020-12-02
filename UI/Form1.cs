@@ -44,6 +44,7 @@ namespace UI
 		public Form1(LoginForm loginform, User user, SocketClient client , TcpClient server)
 		{
 			UserUIs = new List<UserUI>();
+			listUser = new List<User>();
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
