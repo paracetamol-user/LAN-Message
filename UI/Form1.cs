@@ -34,7 +34,7 @@ namespace UI
 		public static List<string> listFile;
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
-
+		public static List<User> listUser;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
 		//242,243,245
 		public Form1()
@@ -44,6 +44,7 @@ namespace UI
 		public Form1(LoginForm loginform, User user, SocketClient client , TcpClient server)
 		{
 			UserUIs = new List<UserUI>();
+			listUser = new List<User>();
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
@@ -117,7 +118,8 @@ namespace UI
 						string path = @"..\..\avatarDefault.png";
 						if (arr[1] != me.Name)
 						{
-							UserUIs.Add(new UserUI(new User(arr[0], arr[1], bool.Parse(arr[2]), path), panelINTERACTED, panelRIGHT));
+							listUser.Add(new User(arr[0], arr[1], bool.Parse(arr[2]), path));
+							UserUIs.Add(new UserUI(listUser[listUser.Count-1], panelINTERACTED, panelRIGHT));
 						}
 					}
 				}
