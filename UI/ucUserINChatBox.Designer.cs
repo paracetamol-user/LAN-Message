@@ -44,19 +44,17 @@
             // 
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(11, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Location = new System.Drawing.Point(10, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(64, 99);
+            this.panel1.Size = new System.Drawing.Size(57, 79);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 71);
+            this.pictureBox1.Size = new System.Drawing.Size(57, 57);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -67,32 +65,29 @@
             this.panel2.Controls.Add(this.panelAddMessage);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(75, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Location = new System.Drawing.Point(67, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(330, 44);
+            this.panel2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(293, 35);
             this.panel2.TabIndex = 1;
             // 
             // panelAddMessage
             // 
             this.panelAddMessage.AutoSize = true;
             this.panelAddMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAddMessage.Location = new System.Drawing.Point(6, 44);
-            this.panelAddMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelAddMessage.Location = new System.Drawing.Point(5, 35);
             this.panelAddMessage.Name = "panelAddMessage";
-            this.panelAddMessage.Size = new System.Drawing.Size(324, 0);
+            this.panelAddMessage.Size = new System.Drawing.Size(288, 0);
             this.panelAddMessage.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.labelName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(6, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel3.Location = new System.Drawing.Point(5, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(6, 6, 0, 6);
-            this.panel3.Size = new System.Drawing.Size(324, 44);
+            this.panel3.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.panel3.Size = new System.Drawing.Size(288, 35);
             this.panel3.TabIndex = 0;
             // 
             // labelName
@@ -100,23 +95,22 @@
             this.labelName.AutoSize = true;
             this.labelName.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelName.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(6, 6);
+            this.labelName.Location = new System.Drawing.Point(5, 5);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(97, 33);
+            this.labelName.Size = new System.Drawing.Size(80, 28);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "label1";
             // 
             // ucUserINChatBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucUserINChatBox";
-            this.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.Size = new System.Drawing.Size(405, 99);
+            this.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.Size = new System.Drawing.Size(360, 79);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);

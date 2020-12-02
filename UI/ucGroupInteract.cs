@@ -38,10 +38,9 @@ namespace UI
 		{
 			ChangeColorWhenClick();
 		}
-
 		private void ucGroupInteract_MouseLeave(object sender, EventArgs e)
 		{
 
 		}
-	}
+    }
 }

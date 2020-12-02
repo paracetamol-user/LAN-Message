@@ -58,6 +58,12 @@
     <Compile Include="AddFriendForm.Designer.cs">
       <DependentUpon>AddFriendForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddUserToGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUserToGroup.Designer.cs">
+      <DependentUpon>AddUserToGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,11 +107,29 @@
     <Compile Include="ucGroup.Designer.cs">
       <DependentUpon>ucGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucGroupAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupAll.Designer.cs">
+      <DependentUpon>ucGroupAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucGroupInteract.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucGroupInteract.Designer.cs">
       <DependentUpon>ucGroupInteract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroupPending.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupPending.Designer.cs">
+      <DependentUpon>ucGroupPending.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroupToAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupToAdd.Designer.cs">
+      <DependentUpon>ucGroupToAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="ucInterac.cs">
       <SubType>UserControl</SubType>
@@ -172,6 +196,9 @@
     <EmbeddedResource Include="AddFriendForm.resx">
       <DependentUpon>AddFriendForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddUserToGroup.resx">
+      <DependentUpon>AddUserToGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,8 +220,17 @@
     <EmbeddedResource Include="ucGroup.resx">
       <DependentUpon>ucGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupAll.resx">
+      <DependentUpon>ucGroupAll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucGroupInteract.resx">
       <DependentUpon>ucGroupInteract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupPending.resx">
+      <DependentUpon>ucGroupPending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupToAdd.resx">
+      <DependentUpon>ucGroupToAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucInterac.resx">
       <DependentUpon>ucInterac.cs</DependentUpon>

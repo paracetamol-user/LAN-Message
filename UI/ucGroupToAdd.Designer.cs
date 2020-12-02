@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-    partial class ucGroupInteract
+    partial class ucGroupToAdd
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,8 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucGroupInteract));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucGroupToAdd));
+            this.pnContainPicture = new System.Windows.Forms.Panel();
             this.gunaPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pnContain = new System.Windows.Forms.Panel();
             this.pnContainStatus = new System.Windows.Forms.Panel();
@@ -37,18 +38,25 @@ namespace UI
             this.pnContrainName = new System.Windows.Forms.Panel();
             this.lbName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picClose = new System.Windows.Forms.PictureBox();
-            this.pnContainPicture = new System.Windows.Forms.Panel();
+            this.pnContainPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).BeginInit();
             this.pnContain.SuspendLayout();
             this.pnContainStatus.SuspendLayout();
             this.pnContrainName.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
-            this.pnContainPicture.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // pnContainPicture
+            // 
+            this.pnContainPicture.Controls.Add(this.gunaPic);
+            this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnContainPicture.Location = new System.Drawing.Point(0, 0);
+            this.pnContainPicture.Name = "pnContainPicture";
+            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
+            this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
+            this.pnContainPicture.TabIndex = 0;
             // 
             // gunaPic
             // 
@@ -72,7 +80,7 @@ namespace UI
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(20, 7);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Size = new System.Drawing.Size(415, 54);
+            this.pnContain.Size = new System.Drawing.Size(380, 54);
             this.pnContain.TabIndex = 6;
             // 
             // pnContainStatus
@@ -82,7 +90,7 @@ namespace UI
             this.pnContainStatus.Location = new System.Drawing.Point(59, 30);
             this.pnContainStatus.Name = "pnContainStatus";
             this.pnContainStatus.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainStatus.Size = new System.Drawing.Size(337, 24);
+            this.pnContainStatus.Size = new System.Drawing.Size(302, 24);
             this.pnContainStatus.TabIndex = 3;
             // 
             // lbStatus
@@ -105,7 +113,7 @@ namespace UI
             this.pnContrainName.Location = new System.Drawing.Point(59, 0);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 1, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(337, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(302, 30);
             this.pnContrainName.TabIndex = 2;
             // 
             // lbName
@@ -121,28 +129,17 @@ namespace UI
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.picClose);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(396, 0);
+            this.panel2.Location = new System.Drawing.Point(361, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(19, 54);
             this.panel2.TabIndex = 1;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(19, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // picClose
             // 
             this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picClose.Image = ((System.Drawing.Image)(resources.GetObject("picClose.Image")));
             this.picClose.Location = new System.Drawing.Point(0, 0);
             this.picClose.Name = "picClose";
             this.picClose.Size = new System.Drawing.Size(19, 54);
@@ -150,27 +147,15 @@ namespace UI
             this.picClose.TabIndex = 0;
             this.picClose.TabStop = false;
             // 
-            // pnContainPicture
-            // 
-            this.pnContainPicture.Controls.Add(this.gunaPic);
-            this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnContainPicture.Location = new System.Drawing.Point(0, 0);
-            this.pnContainPicture.Name = "pnContainPicture";
-            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
-            this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
-            this.pnContainPicture.TabIndex = 0;
-            // 
-            // ucGroupInteract
+            // ucGroupToAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.Controls.Add(this.pnContain);
-            this.Name = "ucGroupInteract";
+            this.Name = "ucGroupToAdd";
             this.Padding = new System.Windows.Forms.Padding(20, 7, 20, 7);
-            this.Size = new System.Drawing.Size(455, 68);
-            this.MouseLeave += new System.EventHandler(this.ucGroupInteract_MouseLeave);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucGroupInteract_MouseMove);
+            this.Size = new System.Drawing.Size(420, 68);
+            this.pnContainPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.pnContain.ResumeLayout(false);
             this.pnContainStatus.ResumeLayout(false);
@@ -178,15 +163,14 @@ namespace UI
             this.pnContrainName.ResumeLayout(false);
             this.pnContrainName.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
-            this.pnContainPicture.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel pnContainPicture;
         private Guna.UI2.WinForms.Guna2CirclePictureBox gunaPic;
         private System.Windows.Forms.Panel pnContain;
         private System.Windows.Forms.Panel pnContainStatus;
@@ -195,7 +179,5 @@ namespace UI
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox picClose;
-        private System.Windows.Forms.Panel pnContainPicture;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

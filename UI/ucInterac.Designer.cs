@@ -54,21 +54,19 @@
             this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.pnContainPicture);
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContain.Location = new System.Drawing.Point(22, 9);
-            this.pnContain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnContain.Location = new System.Drawing.Point(20, 7);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Size = new System.Drawing.Size(468, 67);
+            this.pnContain.Size = new System.Drawing.Size(415, 54);
             this.pnContain.TabIndex = 5;
             // 
             // pnContainStatus
             // 
             this.pnContainStatus.Controls.Add(this.lbStatus);
             this.pnContainStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContainStatus.Location = new System.Drawing.Point(66, 38);
-            this.pnContainStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnContainStatus.Location = new System.Drawing.Point(59, 30);
             this.pnContainStatus.Name = "pnContainStatus";
-            this.pnContainStatus.Padding = new System.Windows.Forms.Padding(6, 2, 0, 0);
-            this.pnContainStatus.Size = new System.Drawing.Size(381, 29);
+            this.pnContainStatus.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
+            this.pnContainStatus.Size = new System.Drawing.Size(337, 24);
             this.pnContainStatus.TabIndex = 3;
             this.pnContainStatus.Click += new System.EventHandler(this.pnContainStatus_Click);
             this.pnContainStatus.MouseLeave += new System.EventHandler(this.pnContainStatus_MouseLeave);
@@ -80,10 +78,10 @@
             this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbStatus.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStatus.ForeColor = System.Drawing.Color.DimGray;
-            this.lbStatus.Location = new System.Drawing.Point(6, 2);
+            this.lbStatus.Location = new System.Drawing.Point(5, 2);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lbStatus.Size = new System.Drawing.Size(68, 26);
+            this.lbStatus.Size = new System.Drawing.Size(53, 21);
             this.lbStatus.TabIndex = 0;
             this.lbStatus.Text = "label2";
             this.lbStatus.Click += new System.EventHandler(this.lbStatus_Click);
@@ -94,11 +92,10 @@
             // 
             this.pnContrainName.Controls.Add(this.lbName);
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContrainName.Location = new System.Drawing.Point(66, 0);
-            this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnContrainName.Location = new System.Drawing.Point(59, 0);
             this.pnContrainName.Name = "pnContrainName";
-            this.pnContrainName.Padding = new System.Windows.Forms.Padding(6, 1, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(381, 38);
+            this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 1, 0, 0);
+            this.pnContrainName.Size = new System.Drawing.Size(337, 30);
             this.pnContrainName.TabIndex = 2;
             this.pnContrainName.Click += new System.EventHandler(this.pnContrainName_Click);
             this.pnContrainName.MouseLeave += new System.EventHandler(this.pnContrainName_MouseLeave);
@@ -109,9 +106,9 @@
             this.lbName.AutoSize = true;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(6, 1);
+            this.lbName.Location = new System.Drawing.Point(5, 1);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(87, 32);
+            this.lbName.Size = new System.Drawing.Size(74, 26);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
             this.lbName.Click += new System.EventHandler(this.lbName_Click);
@@ -122,10 +119,9 @@
             // 
             this.panel2.Controls.Add(this.picClose);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(447, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Location = new System.Drawing.Point(396, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(21, 67);
+            this.panel2.Size = new System.Drawing.Size(19, 54);
             this.panel2.TabIndex = 1;
             // 
             // picClose
@@ -133,9 +129,8 @@
             this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picClose.Image = ((System.Drawing.Image)(resources.GetObject("picClose.Image")));
             this.picClose.Location = new System.Drawing.Point(0, 0);
-            this.picClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.picClose.Name = "picClose";
-            this.picClose.Size = new System.Drawing.Size(21, 67);
+            this.picClose.Size = new System.Drawing.Size(19, 54);
             this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picClose.TabIndex = 0;
             this.picClose.TabStop = false;
@@ -148,22 +143,20 @@
             this.pnContainPicture.Controls.Add(this.gunaPic);
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(0, 0);
-            this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContainPicture.Name = "pnContainPicture";
-            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pnContainPicture.Size = new System.Drawing.Size(66, 67);
+            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
+            this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
             this.pnContainPicture.TabIndex = 0;
             // 
             // gunaPic
             // 
             this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
-            this.gunaPic.Location = new System.Drawing.Point(3, 4);
-            this.gunaPic.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gunaPic.Location = new System.Drawing.Point(3, 3);
             this.gunaPic.Name = "gunaPic";
             this.gunaPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.gunaPic.ShadowDecoration.Parent = this.gunaPic;
-            this.gunaPic.Size = new System.Drawing.Size(60, 59);
+            this.gunaPic.Size = new System.Drawing.Size(53, 48);
             this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPic.TabIndex = 0;
             this.gunaPic.TabStop = false;
@@ -173,14 +166,13 @@
             // 
             // ucInterac
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.Controls.Add(this.pnContain);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucInterac";
-            this.Padding = new System.Windows.Forms.Padding(22, 9, 22, 9);
-            this.Size = new System.Drawing.Size(512, 85);
+            this.Padding = new System.Windows.Forms.Padding(20, 7, 20, 7);
+            this.Size = new System.Drawing.Size(455, 68);
             this.Click += new System.EventHandler(this.ucInterac_Click);
             this.MouseLeave += new System.EventHandler(this.ucInterac_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucInterac_MouseMove);
