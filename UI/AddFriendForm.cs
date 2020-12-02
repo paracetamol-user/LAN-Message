@@ -22,9 +22,11 @@ namespace UI
 		public int countUserAll = 0;
 		public int countUserOnline = 0;
 		public int countPending = 0;
-		public ServerForm()
+		private Form1 mainForm;
+		public ServerForm(Form1 mainForm)
 		{
 			InitializeComponent();
+			this.mainForm = mainForm;
 			panelAllUser = new Panel(); panelAllUser.AutoScroll = true;
 			panelOnlineUser = new Panel(); panelOnlineUser.AutoScroll = true;
 			panelPending = new Panel(); panelPending.AutoScroll = true;
@@ -37,6 +39,7 @@ namespace UI
 			CheckLoadAllUser = false;
 			labelCOUNT.Text = "";
 			btnFocus = null;
+			picPoint.Visible = false;
 		}
 
 		private void InitPanelPending()
@@ -44,7 +47,10 @@ namespace UI
 			panelPending.Dock = DockStyle.Fill;
 			panelPending.Padding = new Padding(30, 20, 20, 0);
 		}
-
+		public void EnablePointPending()
+        {
+			picPoint.Visible = true;
+        }
 		private void LoadListAllUser()
 		{
 			for (int i = 0; i < Form1.UserUIs.Count; i++)
@@ -101,16 +107,6 @@ namespace UI
 			labelCOUNT.Text = "All - " + countUserAll.ToString();
 			btnFocus = sender as Button;
 		}
-
-		private void btnPending_Click(object sender, EventArgs e)
-		{
-			if (btnFocus != null) btnFocus.BackColor = Color.White;
-			(sender as Button).BackColor = Color.DarkGray;
-			btnFocus = sender as Button;
-			panelPending.Show();
-			panelPending.BringToFront();
-			labelCOUNT.Text = "Pending - " + countPending.ToString();
-		}
 		public void AddPending(UserUI userUI)
         {
 			userUI.AddUserIntoPanelPending(panelPending);
@@ -119,5 +115,16 @@ namespace UI
         {
 
         }
-	}
+        private void btnPending_Click_1(object sender, EventArgs e)
+        {
+			if (btnFocus != null) btnFocus.BackColor = Color.White;
+			(sender as Button).BackColor = Color.DarkGray;
+			btnFocus = sender as Button;
+			panelPending.Show();
+			panelPending.BringToFront();
+			labelCOUNT.Text = "Pending - " + countPending.ToString();
+			picPoint.Visible = false;
+			mainForm.DisableNotification();
+		}
+    }
 }

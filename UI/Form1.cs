@@ -55,6 +55,7 @@ namespace UI
 			InitServerUsersForm();
 			InitFrmFriend();
 			AwaitReadData(); 
+			
 		}
         private void InitFrmFriend()
         {
@@ -72,7 +73,7 @@ namespace UI
 		private void InitServerUsersForm()
 		{
 			this.Text = "LM";
-			serverUsersForm = new ServerForm();
+			serverUsersForm = new ServerForm(this);
 			serverUsersForm.TopLevel = false;
 			serverUsersForm.Dock = DockStyle.Fill;
 			panelRIGHT.Controls.Add(serverUsersForm);
@@ -217,6 +218,8 @@ namespace UI
 						if (item.user.Id == data[1])
                         {
 							serverUsersForm.AddPending(item);
+							serverUsersForm.EnablePointPending();
+							picNotification.Visible = true;
 							break;
 						}
                     }
@@ -230,7 +233,7 @@ namespace UI
                         {
 							if (item.user.Id == data[i])
                             {
-								Form1.frmFriend.AddFriend(item);
+								item.user.IsFriend = true;
 								item.EnableRemove();
 								item.DisableADD();
 							}
@@ -244,12 +247,27 @@ namespace UI
 						if (item.user.Id == data[1])
                         {
 							AddUserIntoFrmFriend(item);
+							item.user.IsFriend = true;
 							item.DisableADD();
 							item.EnableRemove();
 							break;
                         }
                     }
                 }
+				else if (action == "REMOVEFRIEND")
+                {
+					foreach (var item in UserUIs)
+					{
+						if (item.user.Id == data[1])
+						{
+							frmFriend.RemoveFriend(item);
+							item.user.IsFriend = false;
+							item.EnableADD();
+							item.DisableRemove();
+							break;
+						}
+					}
+				}
 				else
 				{
 					/// Nén gói tin bị thừa lại để vừa đủ số byte của file.
@@ -308,7 +326,7 @@ namespace UI
 		}
 		public static void AddUserIntoFrmFriend(UserUI userUI)
         {
-			frmFriend.AddFriend(userUI);
+			frmFriend.AddUserIntoFrmFriend(userUI);
         }
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -316,6 +334,7 @@ namespace UI
 		}
 		private void ButtonLanMessenger_Click(object sender, EventArgs e)
 		{
+			picNotification.Visible = false;
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			if (Form1.userUIForcus != null)
 			{
@@ -343,6 +362,11 @@ namespace UI
 			}
 			frmFriend.Show();
 			frmFriend.BringToFront();
+			frmFriend.Reset();
 		}
+		public void DisableNotification()
+        {
+			picNotification.Visible = false;
+        }
     }
 }

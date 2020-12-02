@@ -28,7 +28,8 @@ namespace UI
 		public ucInterac ucInterac;
 		public ucPending ucPending;
 		public ucFriend ucFriend;
-		
+		public ucFriend ucFriendOnline;
+
 		public ContextMenuStrip cmns;
 		public UserUI() { }
 		public UserUI(User user, Panel PANELINTERACTED, Panel PANELRIGHT)
@@ -42,7 +43,20 @@ namespace UI
 			ucInterac = new ucInterac(this);
 			this.panelRIGHT.Controls.Add(userForm);
 			ucFriend = new ucFriend(this);
+			ucFriendOnline = new ucFriend(this);
 		}
+		/// <summary>
+		/// Get các thuộc tính
+		/// </summary>
+		public ucFriend UcFriend { get; set; }
+		public ucInterac UcInterac { get; set; }
+		public ucPending UcPending { get; set; }
+		public ucUserAll UcUserAll { get; set; }
+		public ucUserOnline UcUserOnline { get; set; }
+		public User User { get; set; }
+		/// <summary>
+		/// Các hàm chức năng
+		/// </summary>
 		private void InitUserForm()
 		{
 			userForm = new UserForm(user);
@@ -72,63 +86,65 @@ namespace UI
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
 			this.SendRemoveFriendToServer();
-			if (Form1.frmFriend.Contains(ucFriend)) Form1.frmFriend.Controls.Remove(ucFriend);
+			Form1.frmFriend.RemoveFriend(this);
 			DisableRemove();
+			EnableADD();
+			this.user.IsFriend = false;
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			throw new NotImplementedException();
+			
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{
 			this.SendAddFriendToServer();
 		}
 		public void EnableRemove()
-        {
+		{
 			cmns.Items[3].Visible = true;
-        }
+		}
 		public void DisableRemove()
 		{
 			cmns.Items[3].Visible = false;
 		}
 		public void EnableADD()
 		{
-			cmns.Items[3].Visible = true;
+			cmns.Items[0].Visible = true;
 		}
 		public void DisableADD()
 		{
-			cmns.Items[3].Visible = false;
+			cmns.Items[0].Visible = false;
 		}
 		public async void SendAddFriendToServer()
-        {
+		{
 			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + Form1.me.Id + "%" + user.Id);
 			byte[] buff = new byte[1024];
 			tempbuff.CopyTo(buff, 0);
 			await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
 		public async void SendRemoveFriendToServer()
-        {
+		{
 			var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
-			if (temp == DialogResult.OK)
+			if (temp == DialogResult.Yes)
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + Form1.me + "%" + user.Id);
+				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + Form1.me.Id + "%" + user.Id);
 				byte[] buff = new byte[1024];
 				tempbuff.CopyTo(buff, 0);
 				await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 			}
 		}
 		public void SetAvatar(string path)
-        {
+		{
 			this.user.AvatarPath = path;
 			this.userForm.SetAvatar(path);
 			this.ucInterac.SetAvatar(path);
 			this.ucUserAll.SetAvatar(path);
 			this.ucUserOnline.SetAvatar(path);
-        }
+		}
 		public void ChangeStatusOnline()
-        {
+		{
 			ucInterac.Online();
-        }
+		}
 		public void ChangeStatusOffline()
 		{
 			ucInterac.Offline();
@@ -137,7 +153,7 @@ namespace UI
 		{
 			this.userForm.AddFileToListChat(this.user, tempId, tempName, 2);
 		}
-        public void BringToTop()
+		public void BringToTop()
 		{
 			if (this.panelINTERACTED.Contains(ucInterac))
 			{
@@ -150,14 +166,14 @@ namespace UI
 			panelAll.Controls.Add(ucUserAll);
 		}
 		public void AddUserIntoPanelPending(Panel panelPending)
-        {
+		{
 			ucPending = new ucPending(this, panelPending);
 			panelPending.Controls.Add(ucPending);
-        }
+		}
 		public void AddUserIntoPanelFriend(Panel pnFriend)
-        {
+		{
 			pnFriend.Controls.Add(ucFriend);
-        }
+		}
 		public void AddUserIntoPanelOnline(Panel panelOnline)
 		{
 			panelOnline.Controls.Add(ucUserOnline);

@@ -46,6 +46,7 @@
             this.ButtonLanMessenger = new Guna.UI2.WinForms.Guna2Button();
             this.pnLine2 = new System.Windows.Forms.Panel();
             this.panelRIGHT = new System.Windows.Forms.Panel();
+            this.picNotification = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelOPTION.SuspendLayout();
@@ -54,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
             this.panelLANMESS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNotification)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -66,9 +68,8 @@
             this.panelMenu.Controls.Add(this.panelLANMESS);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(303, 672);
+            this.panelMenu.Size = new System.Drawing.Size(340, 848);
             this.panelMenu.TabIndex = 1;
             // 
             // panelINTERACTED
@@ -76,19 +77,19 @@
             this.panelINTERACTED.AutoScroll = true;
             this.panelINTERACTED.BackColor = System.Drawing.Color.White;
             this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelINTERACTED.Location = new System.Drawing.Point(0, 89);
-            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
+            this.panelINTERACTED.Location = new System.Drawing.Point(0, 111);
+            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelINTERACTED.Name = "panelINTERACTED";
-            this.panelINTERACTED.Size = new System.Drawing.Size(303, 513);
+            this.panelINTERACTED.Size = new System.Drawing.Size(340, 649);
             this.panelINTERACTED.TabIndex = 7;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnFriend);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 54);
+            this.panel1.Location = new System.Drawing.Point(0, 68);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(303, 35);
+            this.panel1.Size = new System.Drawing.Size(340, 43);
             this.panel1.TabIndex = 6;
             // 
             // btnFriend
@@ -100,7 +101,7 @@
             this.btnFriend.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFriend.Location = new System.Drawing.Point(0, 0);
             this.btnFriend.Name = "btnFriend";
-            this.btnFriend.Size = new System.Drawing.Size(303, 35);
+            this.btnFriend.Size = new System.Drawing.Size(340, 43);
             this.btnFriend.TabIndex = 5;
             this.btnFriend.Text = "FRIEND";
             this.btnFriend.UseVisualStyleBackColor = true;
@@ -114,21 +115,21 @@
             this.panelOPTION.Controls.Add(this.panelPICTUREOPTION);
             this.panelOPTION.Controls.Add(this.Avatar);
             this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOPTION.Location = new System.Drawing.Point(0, 602);
-            this.panelOPTION.Margin = new System.Windows.Forms.Padding(4);
+            this.panelOPTION.Location = new System.Drawing.Point(0, 760);
+            this.panelOPTION.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelOPTION.Name = "panelOPTION";
-            this.panelOPTION.Padding = new System.Windows.Forms.Padding(16, 7, 0, 7);
-            this.panelOPTION.Size = new System.Drawing.Size(303, 70);
+            this.panelOPTION.Padding = new System.Windows.Forms.Padding(18, 9, 0, 9);
+            this.panelOPTION.Size = new System.Drawing.Size(340, 88);
             this.panelOPTION.TabIndex = 2;
             // 
             // panelOPTIONNULL
             // 
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOPTIONNULL.Location = new System.Drawing.Point(227, 7);
-            this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
+            this.panelOPTIONNULL.Location = new System.Drawing.Point(255, 9);
+            this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
-            this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(8);
-            this.panelOPTIONNULL.Size = new System.Drawing.Size(11, 56);
+            this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(9);
+            this.panelOPTIONNULL.Size = new System.Drawing.Size(11, 70);
             this.panelOPTIONNULL.TabIndex = 3;
             // 
             // panelInfo
@@ -136,11 +137,11 @@
             this.panelInfo.Controls.Add(this.labelID);
             this.panelInfo.Controls.Add(this.labelUSERNAME);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelInfo.Location = new System.Drawing.Point(72, 7);
-            this.panelInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.panelInfo.Location = new System.Drawing.Point(81, 9);
+            this.panelInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.panelInfo.Size = new System.Drawing.Size(155, 56);
+            this.panelInfo.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.panelInfo.Size = new System.Drawing.Size(174, 70);
             this.panelInfo.TabIndex = 2;
             // 
             // labelID
@@ -148,10 +149,10 @@
             this.labelID.AutoSize = true;
             this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelID.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelID.Location = new System.Drawing.Point(8, 22);
+            this.labelID.Location = new System.Drawing.Point(9, 26);
             this.labelID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(64, 24);
+            this.labelID.Size = new System.Drawing.Size(83, 29);
             this.labelID.TabIndex = 1;
             this.labelID.Text = "#0040";
             // 
@@ -161,10 +162,10 @@
             this.labelUSERNAME.AutoSize = true;
             this.labelUSERNAME.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelUSERNAME.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSERNAME.Location = new System.Drawing.Point(8, 0);
+            this.labelUSERNAME.Location = new System.Drawing.Point(9, 0);
             this.labelUSERNAME.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUSERNAME.Name = "labelUSERNAME";
-            this.labelUSERNAME.Size = new System.Drawing.Size(105, 22);
+            this.labelUSERNAME.Size = new System.Drawing.Size(123, 26);
             this.labelUSERNAME.TabIndex = 0;
             this.labelUSERNAME.Text = "User Name";
             // 
@@ -172,21 +173,21 @@
             // 
             this.panelPICTUREOPTION.Controls.Add(this.pictureBoxSetting);
             this.panelPICTUREOPTION.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelPICTUREOPTION.Location = new System.Drawing.Point(238, 7);
-            this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4);
+            this.panelPICTUREOPTION.Location = new System.Drawing.Point(266, 9);
+            this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelPICTUREOPTION.Name = "panelPICTUREOPTION";
-            this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(7, 12, 7, 12);
-            this.panelPICTUREOPTION.Size = new System.Drawing.Size(65, 56);
+            this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(8, 15, 8, 15);
+            this.panelPICTUREOPTION.Size = new System.Drawing.Size(74, 70);
             this.panelPICTUREOPTION.TabIndex = 1;
             // 
             // pictureBoxSetting
             // 
             this.pictureBoxSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSetting.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSetting.Image")));
-            this.pictureBoxSetting.Location = new System.Drawing.Point(7, 12);
+            this.pictureBoxSetting.Location = new System.Drawing.Point(8, 15);
             this.pictureBoxSetting.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxSetting.Name = "pictureBoxSetting";
-            this.pictureBoxSetting.Size = new System.Drawing.Size(51, 32);
+            this.pictureBoxSetting.Size = new System.Drawing.Size(58, 40);
             this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSetting.TabIndex = 2;
             this.pictureBoxSetting.TabStop = false;
@@ -197,12 +198,12 @@
             this.Avatar.BackColor = System.Drawing.Color.White;
             this.Avatar.Dock = System.Windows.Forms.DockStyle.Left;
             this.Avatar.Image = ((System.Drawing.Image)(resources.GetObject("Avatar.Image")));
-            this.Avatar.Location = new System.Drawing.Point(16, 7);
-            this.Avatar.Margin = new System.Windows.Forms.Padding(4);
+            this.Avatar.Location = new System.Drawing.Point(18, 9);
+            this.Avatar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Avatar.Name = "Avatar";
             this.Avatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.Avatar.ShadowDecoration.Parent = this.Avatar;
-            this.Avatar.Size = new System.Drawing.Size(56, 56);
+            this.Avatar.Size = new System.Drawing.Size(63, 70);
             this.Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Avatar.TabIndex = 0;
             this.Avatar.TabStop = false;
@@ -212,22 +213,23 @@
             // 
             this.pnLine.BackColor = System.Drawing.Color.LightGray;
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnLine.Location = new System.Drawing.Point(0, 53);
-            this.pnLine.Margin = new System.Windows.Forms.Padding(4);
+            this.pnLine.Location = new System.Drawing.Point(0, 66);
+            this.pnLine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnLine.Name = "pnLine";
-            this.pnLine.Padding = new System.Windows.Forms.Padding(16, 6, 11, 6);
-            this.pnLine.Size = new System.Drawing.Size(303, 1);
+            this.pnLine.Padding = new System.Windows.Forms.Padding(18, 8, 12, 8);
+            this.pnLine.Size = new System.Drawing.Size(340, 2);
             this.pnLine.TabIndex = 1;
             // 
             // panelLANMESS
             // 
-            this.panelLANMESS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
+            this.panelLANMESS.BackColor = System.Drawing.Color.White;
+            this.panelLANMESS.Controls.Add(this.picNotification);
             this.panelLANMESS.Controls.Add(this.ButtonLanMessenger);
             this.panelLANMESS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLANMESS.Location = new System.Drawing.Point(0, 0);
             this.panelLANMESS.Margin = new System.Windows.Forms.Padding(0);
             this.panelLANMESS.Name = "panelLANMESS";
-            this.panelLANMESS.Size = new System.Drawing.Size(303, 53);
+            this.panelLANMESS.Size = new System.Drawing.Size(340, 66);
             this.panelLANMESS.TabIndex = 0;
             // 
             // ButtonLanMessenger
@@ -243,10 +245,10 @@
             this.ButtonLanMessenger.HoverState.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.ImageSize = new System.Drawing.Size(30, 30);
             this.ButtonLanMessenger.Location = new System.Drawing.Point(0, 0);
-            this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonLanMessenger.Name = "ButtonLanMessenger";
             this.ButtonLanMessenger.ShadowDecoration.Parent = this.ButtonLanMessenger;
-            this.ButtonLanMessenger.Size = new System.Drawing.Size(303, 53);
+            this.ButtonLanMessenger.Size = new System.Drawing.Size(340, 66);
             this.ButtonLanMessenger.TabIndex = 0;
             this.ButtonLanMessenger.Text = "SERVER";
             this.ButtonLanMessenger.Click += new System.EventHandler(this.ButtonLanMessenger_Click);
@@ -255,31 +257,41 @@
             // 
             this.pnLine2.BackColor = System.Drawing.Color.LightGray;
             this.pnLine2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnLine2.Location = new System.Drawing.Point(303, 0);
+            this.pnLine2.Location = new System.Drawing.Point(340, 0);
             this.pnLine2.Name = "pnLine2";
-            this.pnLine2.Size = new System.Drawing.Size(1, 672);
+            this.pnLine2.Size = new System.Drawing.Size(2, 848);
             this.pnLine2.TabIndex = 2;
             // 
             // panelRIGHT
             // 
             this.panelRIGHT.BackColor = System.Drawing.Color.White;
             this.panelRIGHT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRIGHT.Location = new System.Drawing.Point(304, 0);
-            this.panelRIGHT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelRIGHT.Location = new System.Drawing.Point(342, 0);
             this.panelRIGHT.Name = "panelRIGHT";
-            this.panelRIGHT.Size = new System.Drawing.Size(658, 672);
+            this.panelRIGHT.Size = new System.Drawing.Size(742, 848);
             this.panelRIGHT.TabIndex = 10;
+            // 
+            // picNotification
+            // 
+            this.picNotification.Dock = System.Windows.Forms.DockStyle.Right;
+            this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
+            this.picNotification.Location = new System.Drawing.Point(313, 0);
+            this.picNotification.Name = "picNotification";
+            this.picNotification.Size = new System.Drawing.Size(27, 66);
+            this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picNotification.TabIndex = 1;
+            this.picNotification.TabStop = false;
+            this.picNotification.Visible = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 672);
+            this.ClientSize = new System.Drawing.Size(1084, 848);
             this.Controls.Add(this.panelRIGHT);
             this.Controls.Add(this.pnLine2);
             this.Controls.Add(this.panelMenu);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(980, 717);
+            this.MinimumSize = new System.Drawing.Size(1098, 878);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -292,6 +304,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar)).EndInit();
             this.panelLANMESS.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picNotification)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,6 +328,7 @@
         private System.Windows.Forms.Panel panelINTERACTED;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnFriend;
+        private System.Windows.Forms.PictureBox picNotification;
     }
 }
 
