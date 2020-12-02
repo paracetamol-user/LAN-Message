@@ -20,7 +20,7 @@ namespace UI
 		public UserForm userForm; // Khung Chat của user
 		public User user;
 
-		public Panel panelINTERACTED;
+		public Panel panelINTERACTED; 
 		public Panel panelRIGHT;
 
 		public ucUserAll ucUserAll;
@@ -151,7 +151,7 @@ namespace UI
 		}
 		public void AddPanelFile(string tempId, string tempName)
 		{
-			this.userForm.AddFileToListChat(this.user, tempId, tempName, 2);
+			this.userForm.AddFileToListChat(this.user, tempId, tempName);
 		}
 		public void BringToTop()
 		{
@@ -205,7 +205,7 @@ namespace UI
 		}
 		public async void AddMessage(string mess)
 		{
-			userForm.AddItemInToListChat(user, mess, 2);
+			userForm.AddItemInToListChat(user, mess);
 		}
 		public bool GetStatus()
 		{
