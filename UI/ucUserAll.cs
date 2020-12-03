@@ -79,7 +79,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
 		private void pnContainId_Click_1(object sender, EventArgs e)
 		{
 			this.Parent.ShowChatForm();
@@ -91,7 +90,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
 		private void pnContrainName_Click_1(object sender, EventArgs e)
 		{
 			this.Parent.ShowChatForm();
@@ -103,7 +101,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
 		private void lbName_Click_1(object sender, EventArgs e)
 		{
 			this.Parent.ShowChatForm();
@@ -126,77 +123,62 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
         private void pnContainId_MouseMove_1(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void pnContainId_MouseLeave_1(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void pnContrainName_MouseMove_1(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void pnContrainName_MouseLeave_1(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void panel1_MouseLeave(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void panel2_MouseMove(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void panel2_MouseLeave(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void lbName_MouseMove_1(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void lbName_MouseLeave(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void lbId_MouseMove_1(object sender, MouseEventArgs e)
         {
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
         private void lbId_MouseLeave(object sender, EventArgs e)
         {
 			this.BackColor = Color.White;
 		}
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
@@ -208,7 +190,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
 		private async void picMenu_Click(object sender, EventArgs e)
 		{
 			Parent.cmns.Show(MousePosition);

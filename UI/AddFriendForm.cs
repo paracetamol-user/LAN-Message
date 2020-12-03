@@ -16,7 +16,9 @@ namespace UI
 		public Panel panelAllUser;
 		public Panel panelOnlineUser;
 		public Panel panelPending;
+		public Panel panelListSearch;
 		public Button btnFocus;
+		public ucSearch ucSearch;
 		public bool CheckLoadAllUser;
 
 		public int countUserAll = 0;
@@ -26,31 +28,44 @@ namespace UI
 		public ServerForm(Form1 mainForm)
 		{
 			InitializeComponent();
+			InitControls();
 			this.mainForm = mainForm;
+			
+		}
+        private void InitControls()
+        {
 			panelAllUser = new Panel(); panelAllUser.AutoScroll = true;
 			panelOnlineUser = new Panel(); panelOnlineUser.AutoScroll = true;
 			panelPending = new Panel(); panelPending.AutoScroll = true;
+			panelListSearch = new Panel(); panelListSearch.AutoScroll = true;
+			ucSearch = new ucSearch(Form1.UserUIs, pnContainListSearch, false, false);
+			this.pnContainSearch.Controls.Add(ucSearch);
 			this.Controls.Add(panelAllUser);
 			this.Controls.Add(panelOnlineUser);
 			this.Controls.Add(panelPending);
 			this.InitPanelAllUser();
 			this.InitPanelOnlineUser();
 			this.InitPanelPending();
+			this.InitPanelListSearch();
 			CheckLoadAllUser = false;
 			labelCOUNT.Text = "";
 			btnFocus = null;
 			picPoint.Visible = false;
 		}
 
+        private void InitPanelListSearch()
+		{
+			panelListSearch.Visible = false;
+		}
 		private void InitPanelPending()
 		{
 			panelPending.Dock = DockStyle.Fill;
 			panelPending.Padding = new Padding(30, 20, 20, 0);
 		}
 		public void EnablePointPending()
-        {
+		{
 			picPoint.Visible = true;
-        }
+		}
 		private void LoadListAllUser()
 		{
 			for (int i = 0; i < Form1.UserUIs.Count; i++)
@@ -62,19 +77,20 @@ namespace UI
 		private void InitPanelAllUser()
 		{
 			panelAllUser.Dock = DockStyle.Fill;
-			panelAllUser.BackColor = Color.White;
 			panelAllUser.Padding = new Padding(30, 20, 0, 0);
 			panelAllUser.BringToFront();
 		}
 		private void InitPanelOnlineUser()
 		{
 			panelOnlineUser.Dock = DockStyle.Fill;
-			panelOnlineUser.BackColor = Color.White;
 			panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
 			panelOnlineUser.BringToFront();
 		}
 		private void btnOnline_Click(object sender, EventArgs e)
 		{
+			this.pnContainSearch.Visible = true;
+			this.ucSearch.IsFriend = true;
+			this.ucSearch.IsOnline = true;
 			if (btnFocus != null) btnFocus.BackColor = Color.White;
 			(sender as Button).BackColor = Color.DarkGray;
 			countUserOnline = 0;
@@ -92,9 +108,11 @@ namespace UI
 			labelCOUNT.Text = "Online - " + countUserOnline.ToString(); 
 			btnFocus = sender as Button;
 		}
-
 		private void btnPeople_Click(object sender, EventArgs e)
 		{
+			this.pnContainSearch.Visible = true;
+			this.ucSearch.IsFriend = false;
+			this.ucSearch.IsOnline = false;
 			if (btnFocus != null) btnFocus.BackColor = Color.White;
 			(sender as Button).BackColor = Color.DarkGray;
 			panelAllUser.Show();
@@ -108,15 +126,16 @@ namespace UI
 			btnFocus = sender as Button;
 		}
 		public void AddPending(UserUI userUI)
-        {
+		{
 			userUI.AddUserIntoPanelPending(panelPending);
-        }
+		}
 		public void RemovePending()
-        {
+		{
 
-        }
-        private void btnPending_Click_1(object sender, EventArgs e)
-        {
+		}
+		private void btnPending_Click_1(object sender, EventArgs e)
+		{
+			this.pnContainSearch.Visible = false;
 			if (btnFocus != null) btnFocus.BackColor = Color.White;
 			(sender as Button).BackColor = Color.DarkGray;
 			btnFocus = sender as Button;
