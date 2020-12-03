@@ -119,6 +119,12 @@
     <Compile Include="ucPending.Designer.cs">
       <DependentUpon>ucPending.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucSearch.Designer.cs">
+      <DependentUpon>ucSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucUserAll.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -195,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucPending.resx">
       <DependentUpon>ucPending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucSearch.resx">
+      <DependentUpon>ucSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserAll.resx">
       <DependentUpon>ucUserAll.cs</DependentUpon>

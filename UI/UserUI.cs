@@ -29,6 +29,7 @@ namespace UI
 		public ucPending ucPending;
 		public ucFriend ucFriend;
 		public ucFriend ucFriendOnline;
+		public ucUserAll ucSearch;
 
 		public ContextMenuStrip cmns;
 		public UserUI() { }
@@ -44,6 +45,7 @@ namespace UI
 			this.panelRIGHT.Controls.Add(userForm);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
+			ucSearch = new ucUserAll(this);
 		}
 		/// <summary>
 		/// Get các thuộc tính
@@ -140,6 +142,7 @@ namespace UI
 			this.ucInterac.SetAvatar(path);
 			this.ucUserAll.SetAvatar(path);
 			this.ucUserOnline.SetAvatar(path);
+			this.ucSearch.SetAvatar(path);
 		}
 		public void ChangeStatusOnline()
 		{
@@ -161,6 +164,10 @@ namespace UI
 			}
 			this.AddUserInteracted();
 		}
+		/// <summary>
+		///  Các Hàm ADD vào các Panel
+		/// </summary>
+		/// <param name="panelAll"></param>
 		public void AddUserIntoPanelAll(Panel panelAll)
 		{
 			panelAll.Controls.Add(ucUserAll);
@@ -177,6 +184,10 @@ namespace UI
 		public void AddUserIntoPanelOnline(Panel panelOnline)
 		{
 			panelOnline.Controls.Add(ucUserOnline);
+		}
+		public void AddUserIntoPanelListSearch(Panel panelListSearch)
+        {
+			panelListSearch.Controls.Add(ucSearch);
 		}
 		public void ShowChatForm()
 		{
