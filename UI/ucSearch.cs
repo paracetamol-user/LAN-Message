@@ -13,9 +13,11 @@ namespace UI
 	public partial class ucSearch : UserControl
 	{
 		private List<UserUI> UserUIs;
+		//private List<GrUI> GrUis;
 		private Panel pnContain;
 		private bool isOnline;
 		private bool isFriend;
+		private bool isGr;
 		public ucSearch()
 		{
 			InitializeComponent();
@@ -28,8 +30,20 @@ namespace UI
 			this.Dock = DockStyle.Fill;
 			this.isOnline = isOnline;
 			this.isFriend = isFriend;
+			this.isGr = false;
 		}
-		public bool IsFriend
+        /// <summary>
+        /// Contructor Search dành cho Group
+        /// </summary>
+		//public ucSearch(List<GrUI> GrUIs, Panel pnContain, isGroup)
+		//{
+		//	InitializeComponent();
+		//	this.GrUIs = GrUIs;
+		//	this.pnContain = pnContain;
+		//	this.Dock = DockStyle.Fill;
+		//	this.isGr = isGr;
+		//}
+        public bool IsFriend
 		{
 			set
 			{
@@ -63,23 +77,42 @@ namespace UI
 		}
 		private void EnableUser(string text)
 		{
-			foreach (var item in UserUIs)
-			{
-				if (item.user.Name.Contains(text))
+			if (isGr)// này là dành cho search gr
+            {
+				//foreach (var item in GrUIs)
+				//{
+				//	if (item.user.Name.Contains(text))
+				//	{
+				//		if (!pnContain.Contains(item.ucSearch))
+				//		{
+				//			item.AddGroupIntoPanelListSearch(pnContain); // viết lại cái hàm này
+				//		}
+				//		item.ucSearch.Visible = true;
+				//	}
+				//	else item.ucSearch.Visible = false;
+				//}
+			}
+            else
+            {
+				foreach (var item in UserUIs)
 				{
-					if (!pnContain.Contains(item.ucSearch))
+					if (item.user.Name.Contains(text))
 					{
-						item.AddUserIntoPanelListSearch(pnContain);
+						if (!pnContain.Contains(item.ucSearch))
+						{
+							item.AddUserIntoPanelListSearch(pnContain);
+						}
+						if (isOnline && isFriend && item.user.Status)
+							item.ucSearch.Visible = true;
+						else item.ucSearch.Visible = false;
+						if (!isOnline && !isFriend)
+							item.ucSearch.Visible = true;
+						else item.ucSearch.Visible = false;
 					}
-					if (isOnline && isFriend && item.user.Status)
-						item.ucSearch.Visible = true;
-					else item.ucSearch.Visible = false;
-					if (!isOnline && !isFriend)
-						item.ucSearch.Visible = true;
 					else item.ucSearch.Visible = false;
 				}
-				else item.ucSearch.Visible = false;
-			}
+			} // Cái này là search người trong server
+			
 
 		}
 		public static string RemoveUnicode(string text)
