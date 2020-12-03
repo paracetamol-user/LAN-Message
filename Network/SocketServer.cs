@@ -136,7 +136,7 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang,@source)", connection);
+					command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang,@source,@theme)", connection);
 					command.Parameters.AddWithValue("@id", idfocus.ToString());
 					command.Parameters.AddWithValue("@tendangnhap", data[1]);
 					command.Parameters.AddWithValue("@matkhau", data[2]);
@@ -145,6 +145,7 @@ namespace Communication
 					command.Parameters.AddWithValue("@gioitinh", data[5] == "True" ? 0 : 1   );
 					command.Parameters.AddWithValue("@tinhtrang", 0);
 					command.Parameters.AddWithValue("@source", "Default");
+					command.Parameters.AddWithValue("@theme", "White");
 					command.ExecuteNonQuery();
 					byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
 					tempBuffer.CopyTo(buffMessage, 0);

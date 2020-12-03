@@ -23,6 +23,7 @@ namespace UI
         private string pictureCmn;
         private string pictureCancel;
         private string pictureClose;
+        private string pictureCheck;
         private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -186,6 +187,17 @@ namespace UI
                 this.pictureClose = value;
             }
         }
+        public string PictureCheck
+        {
+            get
+            {
+                return this.pictureCheck;
+            }
+            set
+            {
+                this.pictureCheck = value;
+            }
+        }
         public bool IsWhite
         {
             get
@@ -214,6 +226,7 @@ namespace UI
             pictureCmn = @"..\..\images\cmn-black.png";
             pictureCancel = @"..\..\images\cancel-black.png";
             pictureClose = @"..\..\images\close-black.png";
+            pictureCheck = @"..\..\images\check-black.png";
         }
         public void Black()
         {
@@ -232,6 +245,7 @@ namespace UI
             pictureCmn = @"..\..\images\cmn-white.png";
             pictureCancel = @"..\..\images\cancel-white.png";
             pictureClose = @"..\..\images\close-white.png";
+            pictureCheck = @"..\..\images\check-white.png";
         }
 	}
 }

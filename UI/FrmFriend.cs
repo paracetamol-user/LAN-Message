@@ -40,6 +40,23 @@ namespace UI
         {
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureMessage);
         }
+		//public void ChangeColorControl()
+  //      {
+		//	foreach (var item in pnAllFriend.Controls)
+		//	{
+		//		if (item.GetType() == typeof(ucUserAll))
+		//		{
+		//			(item as ucUserAll).ResetTheme();
+		//		}
+		//	}
+		//	foreach (var item in pnOnlineFriend.Controls)
+		//	{
+		//		if (item.GetType() == typeof(ucUserOnline))
+		//		{
+		//			(item as ucUserOnline).ResetTheme();
+		//		}
+		//	}
+		//}
 		public void ChangeColorLine()
         {
 			this.panelLine.BackColor = Form1.theme.LineColor;

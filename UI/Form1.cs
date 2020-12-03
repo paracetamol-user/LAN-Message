@@ -85,21 +85,20 @@ namespace UI
 			settingForm.ChangeColorPanelControl();
 			settingForm.ChangeColorAllLabelControl(settingForm);
 			serverUsersForm.ChangeColorControl();
+			//frmFriend.ChangeColorControl();
 		}
 
         private void ChangeColorFocus()
         {
 			if (userUIForcus != null ) userUIForcus.ucInterac.ChangeColorWhenClick();
         }
-
         private void ChangeColorUserUIs()
         {
             foreach (var item in UserUIs)
             {
-				item.ResetColor();
+				item.ResetTheme();
             }
         }
-
         private void ChangePicture()
         {
 			this.pictureBoxSetting.Image = Image.FromFile(theme.PictureOption);

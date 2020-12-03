@@ -34,7 +34,21 @@ namespace UI
 		public void ChangeColorControl()
         {
 			this.ucSearch.ResetTheme();
-        }
+            foreach (var item in panelAllUser.Controls)
+            {
+				if (item.GetType() == typeof(ucUserAll))
+                {
+					(item as ucUserAll).ResetTheme();
+                }
+            }
+			foreach (var item in panelOnlineUser.Controls)
+			{
+				if (item.GetType() == typeof(ucUserOnline))
+				{
+					(item as ucUserOnline).ResetTheme();
+				}
+			}
+		}
 		public void ResetPicture()
         {
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureGroup);

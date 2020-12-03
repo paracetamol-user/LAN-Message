@@ -48,7 +48,7 @@ namespace UI
 			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
 		}
-		public void ResetColor()
+		public void ResetTheme()
         {
 			this.userForm.BackColor = Form1.theme.BackColor;
             foreach (var item in userForm.Controls)
@@ -66,6 +66,10 @@ namespace UI
 					(item as ucFileShow).InitColor();
 				}
 			}
+			ucUserAll.ResetTheme();
+			ucUserOnline.ResetTheme();
+			ucFriend.ResetTheme();
+			if (ucPending!= null)ucPending.ResetTheme();
         }
 		public void ResetPicture()
         {
