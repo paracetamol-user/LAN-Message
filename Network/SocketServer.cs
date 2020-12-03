@@ -32,17 +32,17 @@ namespace Communication
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
 
-        string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
-        string queryLogin = "select * from USERS";
-        string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
-        string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
-        string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
-        string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
-        string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
+		string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
+		string queryLogin = "select * from USERS";
+		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
+		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
+		string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
+		string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
+		string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
 
-        SqlConnection connection;
-        SqlCommand command;
-        SqlDataReader reader;
+		SqlConnection connection;
+		SqlCommand command;
+		SqlDataReader reader;
 
 		public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
 		public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
@@ -299,6 +299,10 @@ namespace Communication
 				}
 				return true;
 			}
+			else if (data[0] == "GSEND")
+            {
+
+            }
 			else if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
 			{
 				string queryFINDSOURCE = "SELECT * FROM TINNHAN";
@@ -421,9 +425,9 @@ namespace Communication
 				return true;
 			}
 			else if (data[0] == "ACCEPTFRIEND")
-            {
+			{
 				try
-                {
+				{
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
@@ -451,13 +455,13 @@ namespace Communication
 					}
 				}
 				catch (Exception ex)
-                {
+				{
 
-                }
+				}
 				return true;
-            }
+			}
 			else if (data[0] == "REMOVEFRIEND")
-            {
+			{
 				connection = new SqlConnection(connString);
 				connection.Open();
 				command = new SqlCommand("DELETE FROM FRIEND WHERE ID = @id AND IDFRIEND = @idfriend", connection);
@@ -488,19 +492,23 @@ namespace Communication
 				return true;
 			}
 			else if (data[0] == "PENDING")
-            {
+			{
 				byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + data[1]);
 				buffMessage = new byte[1024];
 				tempbuff.CopyTo(buffMessage, 0);
-                foreach (var item in clientInvalid)
-                {
+				foreach (var item in clientInvalid)
+				{
 					if (item.id_ == data[2])
-                    {
+					{
 						await item.client_.GetStream().WriteAsync(buffMessage,0,buffMessage.Length);
 						break;
 					}
-                }
+				}
 				return true;
+			}
+			else if (data[0] == "GPENDING")
+            {
+
             }
 			return false;
 		}
@@ -578,7 +586,7 @@ namespace Communication
 							if (infoByte.AllByteRead == infoByte.Length) // khi nhan du du lieu -> file
 							{
 								if (isFile)
-                                {
+								{
 									isFile = false;
 									// tạo id
 									Guid Createid = Guid.NewGuid();
@@ -617,8 +625,8 @@ namespace Communication
 										i++;
 									}
 								}
-                                else if (isAvatar)
-                                {
+								else if (isAvatar)
+								{
 									isAvatar = false;
 									string path = @"..\..\avatar\" + infoByte.ID + infoByte.Extension;
 									File.WriteAllBytes(path, dataFile);

@@ -13,20 +13,20 @@ namespace UI
     public partial class ucGroupPending : UserControl
     {
         Panel pnParent;
-        UserUI uiParent;
+        GroupUI uiParent;
         public ucGroupPending()
         {
             InitializeComponent();
         }
-        public ucGroupPending(UserUI userUI, Panel pnPending)
+        public ucGroupPending(GroupUI groupUI, Panel pnPending)
         {
             InitializeComponent();
             this.Dock = DockStyle.Top;
             this.pnParent = pnPending;
-            this.uiParent = userUI;
-            this.gunaPic.Image = Image.FromFile(uiParent.user.AvatarPath);
-            this.lbName.Text = uiParent.user.Name;
-            this.lbId.Text = uiParent.user.Id;
+            this.uiParent = groupUI;
+            this.gunaPic.Image = Image.FromFile(uiParent.group.AvatarPath);
+            this.lbName.Text = uiParent.group.Name;
+            this.lbId.Text = uiParent.group.Id;
         }
         private void pnContain_MouseMove(object sender, MouseEventArgs e)
         {
