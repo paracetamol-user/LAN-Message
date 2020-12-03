@@ -32,6 +32,11 @@ namespace UI
 		public UserForm(UserManager.User user)
 		{
 			InitializeComponent();
+			this.panelLine.BackColor = Form1.theme.FocusColor;
+			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
+		
+			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+	
 			this.Visible = false;
 			this.user = user;
 			this.id = 0;
@@ -39,6 +44,21 @@ namespace UI
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
 			InitUserForm();
+		}
+		public void ResetPicture()
+		{
+			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
+			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+		}
+		public void ChangeColorLine()
+		{
+			this.panelLine.BackColor = Form1.theme.LineColor;
+		}
+		public void InitColor()
+		{
+			this.labelName.ForeColor = Form1.theme.TextColor;
+			this.labelID.ForeColor = Form1.theme.TextMenuColor;
+			this.BackColor = Form1.theme.BackColor;
 		}
 		public void SetAvatar(string path)
 		{
@@ -57,6 +77,8 @@ namespace UI
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
 			this.panelListChat.Controls.Add(tempPanel);
+			UserInChatBox.InitColor();
+			messShow.InitColor();
 		}
 		public void AddFileToListChat(User _user,string tempId, string tempName)
 		{
@@ -64,15 +86,19 @@ namespace UI
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
-				ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user);
-				ucFileShow fileshow = new ucFileShow(_user, tempId, tempName);
-				if (_user == Form1.me) fileshow._DisableButDownLoad();
-				fileshow.Dock = DockStyle.Top;
-				UserInChatBox.Dock = DockStyle.Top;
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user);
+			
+			ucFileShow fileshow = new ucFileShow(_user, tempId, tempName);
+			
+			if (_user == Form1.me) fileshow._DisableButDownLoad();
+			fileshow.Dock = DockStyle.Top;
+			UserInChatBox.Dock = DockStyle.Top;
 				
-				UserInChatBox._AddFileControl(fileshow);
-				tempPanel.Controls.Add(UserInChatBox);
-				this.panelListChat.Controls.Add(tempPanel);
+			UserInChatBox._AddFileControl(fileshow);
+			tempPanel.Controls.Add(UserInChatBox);
+			this.panelListChat.Controls.Add(tempPanel);
+			UserInChatBox.InitColor();
+			fileshow.InitColor();
 		}
 		public async Task SendMessage()
 		{

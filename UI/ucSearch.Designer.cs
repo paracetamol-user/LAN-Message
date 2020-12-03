@@ -41,7 +41,7 @@ namespace UI
             // 
             // pnSearch
             // 
-            this.pnSearch.BackColor = System.Drawing.Color.White;
+            this.pnSearch.BackColor = System.Drawing.Color.Transparent;
             this.pnSearch.Controls.Add(this.textBox1);
             this.pnSearch.Controls.Add(this.panel3);
             this.pnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -53,6 +53,7 @@ namespace UI
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.Gainsboro;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.DimGray;
@@ -74,6 +75,7 @@ namespace UI
             // 
             // picSearch
             // 
+            this.picSearch.BackColor = System.Drawing.Color.Transparent;
             this.picSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picSearch.Image = ((System.Drawing.Image)(resources.GetObject("picSearch.Image")));
             this.picSearch.Location = new System.Drawing.Point(5, 0);
@@ -88,6 +90,7 @@ namespace UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnSearch);
             this.Name = "ucSearch";
             this.Padding = new System.Windows.Forms.Padding(5);

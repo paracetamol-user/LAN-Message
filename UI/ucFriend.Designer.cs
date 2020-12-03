@@ -53,6 +53,7 @@
             // 
             // pnContain
             // 
+            this.pnContain.BackColor = System.Drawing.Color.Transparent;
             this.pnContain.Controls.Add(this.pnContainId);
             this.pnContain.Controls.Add(this.pnContrainName);
             this.pnContain.Controls.Add(this.panel2);
@@ -71,6 +72,7 @@
             // 
             // pnContainId
             // 
+            this.pnContainId.BackColor = System.Drawing.Color.Transparent;
             this.pnContainId.Controls.Add(this.lbId);
             this.pnContainId.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContainId.Location = new System.Drawing.Point(52, 30);
@@ -86,6 +88,7 @@
             // lbId
             // 
             this.lbId.AutoSize = true;
+            this.lbId.BackColor = System.Drawing.Color.Transparent;
             this.lbId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbId.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
@@ -101,6 +104,7 @@
             // 
             // pnContrainName
             // 
+            this.pnContrainName.BackColor = System.Drawing.Color.Transparent;
             this.pnContrainName.Controls.Add(this.lbName);
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContrainName.Location = new System.Drawing.Point(52, 6);
@@ -116,6 +120,7 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
+            this.lbName.BackColor = System.Drawing.Color.Transparent;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(4, 2);
@@ -130,6 +135,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.picmess);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(204, 6);
@@ -143,6 +149,7 @@
             // 
             // picmess
             // 
+            this.picmess.BackColor = System.Drawing.Color.Transparent;
             this.picmess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picmess.Image = ((System.Drawing.Image)(resources.GetObject("picmess.Image")));
             this.picmess.Location = new System.Drawing.Point(0, 4);
@@ -158,6 +165,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.picRemove);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(234, 6);
@@ -171,6 +179,7 @@
             // 
             // picRemove
             // 
+            this.picRemove.BackColor = System.Drawing.Color.Transparent;
             this.picRemove.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picRemove.Image = ((System.Drawing.Image)(resources.GetObject("picRemove.Image")));
             this.picRemove.Location = new System.Drawing.Point(8, 4);
@@ -186,6 +195,7 @@
             // 
             // pnContainPicture
             // 
+            this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
             this.pnContainPicture.Controls.Add(this.gunaPic);
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(8, 6);
@@ -200,6 +210,7 @@
             // 
             // gunaPic
             // 
+            this.gunaPic.BackColor = System.Drawing.Color.Transparent;
             this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
             this.gunaPic.Location = new System.Drawing.Point(2, 2);

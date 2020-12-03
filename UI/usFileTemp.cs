@@ -23,9 +23,16 @@ namespace UI
         public usFileTemp(Panel panelListFile , List<FileInfo> files, FileInfo fileInfo)
         {
             InitializeComponent();
+            InitColor();
             this.panelListFile = panelListFile;
             this.files = files;
             this.fileInfo = fileInfo;
+        }
+        public void InitColor()
+        {
+            this.labelFileName.ForeColor = Form1.theme.TextColor;
+            //this.BackColor = Form1.theme.BackColor;
+            this.BackColor = Color.Transparent;
         }
         public string _FileName
         {

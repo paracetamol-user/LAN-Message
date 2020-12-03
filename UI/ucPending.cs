@@ -22,6 +22,7 @@ namespace UI
 		public ucPending(UserUI userUI, Panel pnPending)
 		{
 			InitializeComponent();
+		
 			this.Dock = DockStyle.Top;
 			this.pnParent = pnPending;
 			this.uiParent = userUI;
@@ -29,7 +30,13 @@ namespace UI
 			this.lbName.Text = uiParent.user.Name;
 			this.lbId.Text = uiParent.user.Id;
 		}
-
+		public void InitColor()
+		{
+			this.lbName.ForeColor = Form1.theme.TextColor;
+			this.lbId.ForeColor = Form1.theme.TextMenuColor;
+			//this.BackColor = Form1.theme.BackColor;
+			this.BackColor = Color.Transparent;
+		}
 		private void pnContain_MouseMove(object sender, MouseEventArgs e)
 		{
 			this.BackColor = Color.FromArgb(242, 243, 245);

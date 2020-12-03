@@ -25,12 +25,21 @@ namespace UI
 		public ucFileShow(User user , string fileId , string fileName)
 		{
 			InitializeComponent();
+		
 			this.user = user;
 			this.fileId = fileId;
 			this.fileName = fileName;
 			this._FileName = fileName;
+
 		}
-		public Panel _panelParent
+		public void InitColor()
+        {
+			this.label1.ForeColor = Form1.theme.TextColor;
+			//this.BackColor = Form1.theme.BackColor;
+			this.BackColor = Color.Transparent;
+		}
+
+        public Panel _panelParent
 		{
 			set
 			{

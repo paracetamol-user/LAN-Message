@@ -53,6 +53,7 @@
             // 
             // pnContain
             // 
+            this.pnContain.BackColor = System.Drawing.Color.Transparent;
             this.pnContain.Controls.Add(this.pnContainId);
             this.pnContain.Controls.Add(this.pnContrainName);
             this.pnContain.Controls.Add(this.panel2);
@@ -60,7 +61,7 @@
             this.pnContain.Controls.Add(this.pnContainPicture);
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(0, 0);
-            this.pnContain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnContain.Margin = new System.Windows.Forms.Padding(2);
             this.pnContain.Name = "pnContain";
             this.pnContain.Padding = new System.Windows.Forms.Padding(8, 6, 15, 6);
             this.pnContain.Size = new System.Drawing.Size(321, 54);
@@ -70,10 +71,11 @@
             // 
             // pnContainId
             // 
+            this.pnContainId.BackColor = System.Drawing.Color.Transparent;
             this.pnContainId.Controls.Add(this.lbId);
             this.pnContainId.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContainId.Location = new System.Drawing.Point(52, 30);
-            this.pnContainId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnContainId.Margin = new System.Windows.Forms.Padding(2);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(4, 2, 0, 0);
             this.pnContainId.Size = new System.Drawing.Size(194, 20);
@@ -84,6 +86,7 @@
             // lbId
             // 
             this.lbId.AutoSize = true;
+            this.lbId.BackColor = System.Drawing.Color.Transparent;
             this.lbId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbId.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
@@ -98,10 +101,11 @@
             // 
             // pnContrainName
             // 
+            this.pnContrainName.BackColor = System.Drawing.Color.Transparent;
             this.pnContrainName.Controls.Add(this.lbName);
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContrainName.Location = new System.Drawing.Point(52, 6);
-            this.pnContrainName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnContrainName.Margin = new System.Windows.Forms.Padding(2);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(4, 2, 0, 0);
             this.pnContrainName.Size = new System.Drawing.Size(194, 24);
@@ -112,6 +116,7 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
+            this.lbName.BackColor = System.Drawing.Color.Transparent;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(4, 2);
@@ -125,10 +130,11 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.picCheck);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(246, 6);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 4, 8, 4);
             this.panel2.Size = new System.Drawing.Size(30, 42);
@@ -138,10 +144,11 @@
             // 
             // picCheck
             // 
+            this.picCheck.BackColor = System.Drawing.Color.Transparent;
             this.picCheck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picCheck.Image = ((System.Drawing.Image)(resources.GetObject("picCheck.Image")));
             this.picCheck.Location = new System.Drawing.Point(0, 4);
-            this.picCheck.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picCheck.Margin = new System.Windows.Forms.Padding(2);
             this.picCheck.Name = "picCheck";
             this.picCheck.Size = new System.Drawing.Size(22, 34);
             this.picCheck.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -153,10 +160,11 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.picMenu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(276, 6);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 4, 0, 4);
             this.panel1.Size = new System.Drawing.Size(30, 42);
@@ -166,10 +174,11 @@
             // 
             // picMenu
             // 
+            this.picMenu.BackColor = System.Drawing.Color.Transparent;
             this.picMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picMenu.Image = ((System.Drawing.Image)(resources.GetObject("picMenu.Image")));
             this.picMenu.Location = new System.Drawing.Point(8, 4);
-            this.picMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picMenu.Margin = new System.Windows.Forms.Padding(2);
             this.picMenu.Name = "picMenu";
             this.picMenu.Size = new System.Drawing.Size(22, 34);
             this.picMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -181,12 +190,13 @@
             // 
             // pnContainPicture
             // 
+            this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
             this.pnContainPicture.Controls.Add(this.gunaPic);
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(8, 6);
-            this.pnContainPicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnContainPicture.Margin = new System.Windows.Forms.Padding(2);
             this.pnContainPicture.Name = "pnContainPicture";
-            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(2);
             this.pnContainPicture.Size = new System.Drawing.Size(44, 42);
             this.pnContainPicture.TabIndex = 0;
             this.pnContainPicture.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
@@ -194,10 +204,11 @@
             // 
             // gunaPic
             // 
+            this.gunaPic.BackColor = System.Drawing.Color.Transparent;
             this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
             this.gunaPic.Location = new System.Drawing.Point(2, 2);
-            this.gunaPic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gunaPic.Margin = new System.Windows.Forms.Padding(2);
             this.gunaPic.Name = "gunaPic";
             this.gunaPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.gunaPic.ShadowDecoration.Parent = this.gunaPic;
@@ -214,7 +225,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnContain);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucPending";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 8, 0);
             this.Size = new System.Drawing.Size(329, 54);

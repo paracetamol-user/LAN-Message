@@ -89,6 +89,7 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Theme.cs" />
     <Compile Include="ucFriend.cs">
       <SubType>UserControl</SubType>
     </Compile>

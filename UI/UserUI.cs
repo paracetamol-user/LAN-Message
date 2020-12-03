@@ -39,14 +39,39 @@ namespace UI
 			this.panelINTERACTED = PANELINTERACTED;
 			this.panelRIGHT = PANELRIGHT;
 			InitUserForm();
+			this.panelRIGHT.Controls.Add(userForm);
+			userForm.InitColor();
 			ucUserAll = new ucUserAll(this);
 			ucUserOnline = new ucUserOnline(this);
 			ucInterac = new ucInterac(this);
-			this.panelRIGHT.Controls.Add(userForm);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
 		}
+		public void ResetColor()
+        {
+			this.userForm.BackColor = Form1.theme.BackColor;
+            foreach (var item in userForm.Controls)
+            {
+				if (item.GetType() == typeof(ucUserINChatBox))
+                {
+					(item as ucUserINChatBox).InitColor();
+                }
+				else if (item.GetType() == typeof(ucMessShow))
+                {
+					(item as ucMessShow).InitColor();
+				}
+				else if (item.GetType() == typeof(ucFileShow))
+                {
+					(item as ucFileShow).InitColor();
+				}
+			}
+        }
+		public void ResetPicture()
+        {
+			this.userForm.ResetPicture();
+			this.ucInterac.ResetPicture();
+        }
 		/// <summary>
 		/// Get các thuộc tính
 		/// </summary>
@@ -171,23 +196,28 @@ namespace UI
 		public void AddUserIntoPanelAll(Panel panelAll)
 		{
 			panelAll.Controls.Add(ucUserAll);
+			ucUserAll.InitColor();
 		}
 		public void AddUserIntoPanelPending(Panel panelPending)
 		{
 			ucPending = new ucPending(this, panelPending);
 			panelPending.Controls.Add(ucPending);
+			ucPending.InitColor();
 		}
 		public void AddUserIntoPanelFriend(Panel pnFriend)
 		{
 			pnFriend.Controls.Add(ucFriend);
+			ucFriend.InitColor();
 		}
 		public void AddUserIntoPanelOnline(Panel panelOnline)
 		{
 			panelOnline.Controls.Add(ucUserOnline);
+			ucUserOnline.InitColor();
 		}
 		public void AddUserIntoPanelListSearch(Panel panelListSearch)
-        {
+		{
 			panelListSearch.Controls.Add(ucSearch);
+			ucSearch.InitColor();
 		}
 		public void ShowChatForm()
 		{
@@ -209,6 +239,7 @@ namespace UI
 				ucInterac.Dock = DockStyle.Top;
 				this.panelINTERACTED.Controls.Add(ucInterac);
 			}
+			ucInterac.InitColor();
 		}
 		public string GetId()
 		{

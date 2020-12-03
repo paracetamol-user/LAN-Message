@@ -21,8 +21,15 @@ namespace UI
         public ucMessShow(string mess)
         {
             InitializeComponent();
+           
             this.label1.Text = mess;
             this.ScaleLabel();
+        }
+        public void InitColor()
+        {
+            this.label1.ForeColor = Form1.theme.TextColor;
+            //this.BackColor = Form1.theme.BackColor;
+            this.BackColor = Color.Transparent;
         }
         public void ScaleLabel()
         {

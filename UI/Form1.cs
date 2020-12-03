@@ -35,6 +35,8 @@ namespace UI
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		public static List<User> listUser;
+		public static Theme theme;
+		
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
 		//242,243,245
 		public Form1()
@@ -49,28 +51,113 @@ namespace UI
 			Form1.client = client;
 			Form1.server = server;
 			Form1.me = user;
+			theme = new Theme();
+			theme.White();
 			me.AvatarPath = @"../../avatarDefault.png";
 			InitializeComponent();
 			LoadMyData();
 			LoadDataUser();
 			InitServerUsersForm();
 			InitFrmFriend();
+			InitSettingForm();
+			ChangeTheme();
 			AwaitReadData(); 
-			
 		}
-        private void InitFrmFriend()
+        private void InitSettingForm()
         {
+			settingForm = new SettingForm(me, this);
+			settingForm.TopLevel = false;
+			settingForm.Dock = DockStyle.Fill;
+			this.Controls.Add(settingForm);
+			settingForm.BackColor = theme.BackColor;	
+		}
+        public void ChangeTheme()
+		{
+			this.BackColor = theme.BackColor;
+			serverUsersForm.BackColor = theme.BackColor;
+			frmFriend.BackColor = theme.BackColor;
+			settingForm.BackColor = theme.BackColor;
+			ChangeColorAllLabelControls(this);
+			ChangeColorLine();
+			ChangePicture();
+			ChangeColorUserUIs();
+			ChangeColorFocus();
+			settingForm.ChangeColorPanelControl();
+			settingForm.ChangeColorAllLabelControl(settingForm);
+			serverUsersForm.ChangeColorControl();
+		}
+
+        private void ChangeColorFocus()
+        {
+			if (userUIForcus != null ) userUIForcus.ucInterac.ChangeColorWhenClick();
+        }
+
+        private void ChangeColorUserUIs()
+        {
+            foreach (var item in UserUIs)
+            {
+				item.ResetColor();
+            }
+        }
+
+        private void ChangePicture()
+        {
+			this.pictureBoxSetting.Image = Image.FromFile(theme.PictureOption);
+            foreach (var item in UserUIs)
+            {
+				item.ResetPicture();
+            }
+			serverUsersForm.ResetPicture();
+			frmFriend.ResetPicture();
+			settingForm.ResetPicture();
+		}
+        private void ChangeColorLine()
+		{
+            this.pnLine.BackColor = theme.LineColor;
+			this.pnLine2.BackColor = theme.LineColor;
+			serverUsersForm.ChangeColorLine();
+			frmFriend.ChangeColorLine();
+			settingForm.ChangeColorLine();
+            foreach (var item in UserUIs)
+            {
+				item.userForm.ChangeColorLine();
+            }
+		}
+		private void ChangeColorAllLabelControls(Control x)
+		{
+			foreach (var item in x.Controls)
+			{
+				if (item.GetType() == typeof(Label))
+				{
+					(item as Label).ForeColor = theme.TextColor;
+					
+				}
+				else
+				if (item.GetType() == typeof(Button))
+				{
+					(item as Button).ForeColor = theme.TextColor;
+				}
+				else if (item.GetType() == typeof(Guna.UI2.WinForms.Guna2Button))
+				{
+					(item as Guna.UI2.WinForms.Guna2Button).ForeColor = theme.TextColor;
+				}
+
+				ChangeColorAllLabelControls(item as Control);
+			}
+		}
+		private void InitFrmFriend()
+		{
 			Form1.frmFriend = new FrmFriend();
 			Form1.frmFriend.TopLevel = false;
 			Form1.frmFriend.Dock = DockStyle.Fill;
 			panelRIGHT.Controls.Add(Form1.frmFriend);
 		}
-        public  void LoadUser()
-        {
+		public  void LoadUser()
+		{
 			this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
 			this.labelID.Text = me.Id;
-        }
+		}
 		private void InitServerUsersForm()
 		{
 			this.Text = "LM";
@@ -84,7 +171,6 @@ namespace UI
 			labelID.Text = "#"+me.Id;
 			labelUSERNAME.Text = me.Name;
 		}
-		// AwaitReadData chờ và nhận tin nhắn từ server
 		private async Task AwaitReadData()
 		{
 			bool isFile = false;
@@ -214,50 +300,50 @@ namespace UI
 					dataFile = new byte[fileData.Length];
 				}
 				else if (action == "PENDING")
-                {
-                    foreach (var item in UserUIs)
-                    {
+				{
+					foreach (var item in UserUIs)
+					{
 						if (item.user.Id == data[1])
-                        {
+						{
 							serverUsersForm.AddPending(item);
 							serverUsersForm.EnablePointPending();
 							picNotification.Visible = true;
 							break;
 						}
-                    }
-                }
+					}
+				}
 				else if (action == "FRIEND")
-                {
+				{
 					for (int i = 1; i < data.Length; i++)
 					{
 						if (data[i] == "") break;
-                        foreach (var item in UserUIs)
-                        {
+						foreach (var item in UserUIs)
+						{
 							if (item.user.Id == data[i])
-                            {
+							{
 								item.user.IsFriend = true;
 								item.EnableRemove();
 								item.DisableADD();
 							}
-                        }
+						}
 					}
 				}
 				else if (action == "ACCEPTFRIEND")
-                {
-                    foreach (var item in UserUIs)
-                    {
+				{
+					foreach (var item in UserUIs)
+					{
 						if (item.user.Id == data[1])
-                        {
+						{
 							AddUserIntoFrmFriend(item);
 							item.user.IsFriend = true;
 							item.DisableADD();
 							item.EnableRemove();
 							break;
-                        }
-                    }
-                }
+						}
+					}
+				}
 				else if (action == "REMOVEFRIEND")
-                {
+				{
 					foreach (var item in UserUIs)
 					{
 						if (item.user.Id == data[1])
@@ -315,26 +401,58 @@ namespace UI
 			}
 		}
 		public void SetAvatar(string path)
-        {
+		{
 			me.AvatarPath = path;
-        }
-		//LoadDataUser gọi server trả về tất cả người dùng có trong server
+		}
 		private async void LoadDataUser()
 		{
-            byte[] buff = new byte[1024];
+			byte[] buff = new byte[1024];
 			byte[] tembuff = Encoding.UTF8.GetBytes("LOADUSERDATA%" + me.Name);
 			tembuff.CopyTo(buff, 0);
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
 		public static void AddUserIntoFrmFriend(UserUI userUI)
-        {
+		{
 			frmFriend.AddUserIntoFrmFriend(userUI);
-        }
+		}
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			loginForm.Close();
 		}
-		private void ButtonLanMessenger_Click(object sender, EventArgs e)
+		public void DisableNotification()
+		{
+			picNotification.Visible = false;
+		}
+		/// <summary>
+		/// Event Click
+		/// </summary>
+		private void pictureBoxSetting_Click(object sender, EventArgs e)
+		{
+			
+			settingForm.Show();
+			settingForm.BringToFront();
+		}
+		private void btnFriend_Click(object sender, EventArgs e)
+		{
+			if (Form1.userUIForcus != null)
+			{
+				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.userUIForcus = null;
+			}
+			
+			frmFriend.Show();
+			frmFriend.BringToFront();
+			frmFriend.Reset();
+		}
+		private void btnFriend_MouseMove(object sender, MouseEventArgs e)
+		{
+			(sender as Button).BackColor = theme.FocusColor;
+		}
+		private void btnFriend_MouseLeave(object sender, EventArgs e)
+		{
+			(sender as Button).BackColor = Color.Transparent;
+		}
+		private void btnServer_Click(object sender, EventArgs e)
 		{
 			picNotification.Visible = false;
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
@@ -346,29 +464,5 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
-        private void pictureBoxSetting_Click(object sender, EventArgs e)
-        {
-			settingForm = new SettingForm(me, this);
-			settingForm.TopLevel = false;
-			settingForm.Dock = DockStyle.Fill;
-			this.panelRIGHT.Controls.Add(settingForm);
-			settingForm.Show();
-			settingForm.BringToFront();
-		}
-        private void btnFriend_Click(object sender, EventArgs e)
-        {
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				Form1.userUIForcus = null;
-			}
-			frmFriend.Show();
-			frmFriend.BringToFront();
-			frmFriend.Reset();
-		}
-		public void DisableNotification()
-        {
-			picNotification.Visible = false;
-        }
-    }
+	}
 }

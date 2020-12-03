@@ -21,19 +21,28 @@ namespace UI
 		public ucFriend(UserUI userUI)
 		{
 			InitializeComponent();
+			this.picmess.Image = Image.FromFile(Form1.theme.PictureMessage);
+			this.picRemove.Image = Image.FromFile(Form1.theme.PictureCmn);
 			this.Dock = DockStyle.Top;
 			this.Parent = userUI;
 			this.lbName.Text = userUI.user.Name;
 			this.lbId.Text = userUI.user.Id;
 		}
+		public void InitColor()
+		{
+			this.lbName.ForeColor = Form1.theme.TextColor;
+			this.lbId.ForeColor = Form1.theme.TextColor;
+			//this.BackColor = Form1.theme.BackColor;
+			this.BackColor = Color.Transparent;
+		}
 		private void pnContain_MouseMove(object sender, MouseEventArgs e)
 		{
-			this.BackColor = Color.FromArgb(242, 243, 245);
+			this.BackColor = Form1.theme.FocusColor ;
 		}
 
 		private void pnContain_MouseLeave(object sender, EventArgs e)
 		{
-			this.BackColor = Color.White;
+			this.BackColor = Color.Transparent;
 		}
 		private void picMenu_Click(object sender, EventArgs e)
 		{

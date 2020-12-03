@@ -29,6 +29,12 @@ namespace UI
             }
             else pictureBox1.Image = Image.FromFile(user.AvatarPath);
         }
+        public void InitColor()
+        {
+            this.labelName.ForeColor = Form1.theme.TextColor;
+            //this.BackColor = Form1.theme.BackColor;
+            this.BackColor = Color.Transparent;
+        }
         public User _User
         {
             set

@@ -20,6 +20,7 @@ namespace UI
 		public FrmFriend()
 		{
 			InitializeComponent();
+			this.BackColor = Form1.theme.BackColor;
 			InitPnAllFriend();
 			InitPnOnlineFriend();
 			isload = false;
@@ -35,6 +36,14 @@ namespace UI
 			//pnOnlineFriend.BringToFront();
 			isload = false;
         }
+		public void ResetPicture()
+        {
+			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureMessage);
+        }
+		public void ChangeColorLine()
+        {
+			this.panelLine.BackColor = Form1.theme.LineColor;
+        }
 		public void LoadPnAllFriend()
 		{
 			foreach (var item in Form1.UserUIs)
@@ -42,6 +51,7 @@ namespace UI
 				if (item.user.IsFriend)
 				{
 					pnAllFriend.Controls.Add(item.ucFriend);
+					item.ucFriend.InitColor();
 				}
 			}
 		}
@@ -67,16 +77,18 @@ namespace UI
 		{
 			if (!pnAllFriend.Contains(userUI.ucFriend))
 				pnAllFriend.Controls.Add(userUI.ucFriend);
+			userUI.ucFriend.InitColor();
 		}
 		public void RemoveFriend(UserUI userUI)
 		{
 			if (pnAllFriend.Contains(userUI.ucFriend))
 				pnAllFriend.Controls.Remove(userUI.ucFriend);
+			userUI.ucFriend.InitColor();
 		}
 		private void btnAll_Click(object sender, EventArgs e)
 		{
-			if (btnFocus != null) btnFocus.BackColor = Color.White;
-			(sender as Button).BackColor = Color.DarkGray;
+			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
+			(sender as Button).BackColor = Form1.theme.FocusColor;
 			btnFocus = sender as Button;
 			if (!isload) LoadPnAllFriend();
 			isload = true;
@@ -86,8 +98,8 @@ namespace UI
 		}
 		private void btnOnline_Click(object sender, EventArgs e)
 		{
-			if (btnFocus != null) btnFocus.BackColor = Color.White;
-			(sender as Button).BackColor = Color.DarkGray;
+			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
+			(sender as Button).BackColor = Form1.theme.FocusColor;
 			btnFocus = sender as Button;
 			pnOnlineFriend.Controls.Clear();
 			pnOnlineFriend.Show();
@@ -98,8 +110,17 @@ namespace UI
 				if (item.user.Status == true && item.user.IsFriend == true)
 				{
 					pnOnlineFriend.Controls.Add(item.ucFriendOnline);
+					item.ucFriend.InitColor();
 				}
 			}
 		}
-	}
+        private void btnAll_MouseMove(object sender, MouseEventArgs e)
+        {
+			(sender as Button).BackColor = Form1.theme.FocusColor;
+		}
+        private void btnAll_MouseLeave(object sender, EventArgs e)
+        {
+			(sender as Button).BackColor = Color.Transparent;
+		}
+    }
 }
