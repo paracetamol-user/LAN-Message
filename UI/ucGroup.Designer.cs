@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.pnContain = new System.Windows.Forms.Panel();
-            this.pnMenu = new System.Windows.Forms.Panel();
             this.pnContainAll = new System.Windows.Forms.Panel();
+            this.pnMenu = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.pnContain.SuspendLayout();
@@ -45,8 +45,17 @@
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(10, 20);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Size = new System.Drawing.Size(784, 378);
+            this.pnContain.Size = new System.Drawing.Size(779, 378);
             this.pnContain.TabIndex = 0;
+            // 
+            // pnContainAll
+            // 
+            this.pnContainAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnContainAll.Location = new System.Drawing.Point(0, 56);
+            this.pnContainAll.Name = "pnContainAll";
+            this.pnContainAll.Padding = new System.Windows.Forms.Padding(20, 10, 30, 0);
+            this.pnContainAll.Size = new System.Drawing.Size(779, 322);
+            this.pnContainAll.TabIndex = 1;
             // 
             // pnMenu
             // 
@@ -55,23 +64,14 @@
             this.pnMenu.Location = new System.Drawing.Point(0, 0);
             this.pnMenu.Name = "pnMenu";
             this.pnMenu.Padding = new System.Windows.Forms.Padding(40, 0, 80, 0);
-            this.pnMenu.Size = new System.Drawing.Size(784, 56);
+            this.pnMenu.Size = new System.Drawing.Size(779, 56);
             this.pnMenu.TabIndex = 0;
-            // 
-            // pnContainAll
-            // 
-            this.pnContainAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContainAll.Location = new System.Drawing.Point(0, 56);
-            this.pnContainAll.Name = "pnContainAll";
-            this.pnContainAll.Padding = new System.Windows.Forms.Padding(20, 10, 30, 0);
-            this.pnContainAll.Size = new System.Drawing.Size(784, 322);
-            this.pnContainAll.TabIndex = 1;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnCreate);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(515, 0);
+            this.panel1.Location = new System.Drawing.Point(510, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.panel1.Size = new System.Drawing.Size(189, 56);
@@ -100,7 +100,7 @@
             this.Controls.Add(this.pnContain);
             this.Name = "ucGroup";
             this.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.Size = new System.Drawing.Size(804, 408);
+            this.Size = new System.Drawing.Size(799, 408);
             this.pnContain.ResumeLayout(false);
             this.pnMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

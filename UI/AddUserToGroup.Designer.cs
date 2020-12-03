@@ -31,18 +31,18 @@ namespace UI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserToGroup));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.picBoxCancel = new System.Windows.Forms.PictureBox();
-            this.picBoxAdd = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.picBoxAdd = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.picBoxCancel = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxAdd)).BeginInit();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxAdd)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxCancel)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -55,50 +55,6 @@ namespace UI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(479, 38);
             this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.picBoxCancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(432, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(47, 38);
-            this.panel2.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.picBoxAdd);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(391, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(41, 38);
-            this.panel3.TabIndex = 2;
-            // 
-            // picBoxCancel
-            // 
-            this.picBoxCancel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picBoxCancel.ErrorImage = null;
-            this.picBoxCancel.Image = ((System.Drawing.Image)(resources.GetObject("picBoxCancel.Image")));
-            this.picBoxCancel.InitialImage = null;
-            this.picBoxCancel.Location = new System.Drawing.Point(9, 0);
-            this.picBoxCancel.Name = "picBoxCancel";
-            this.picBoxCancel.Size = new System.Drawing.Size(38, 38);
-            this.picBoxCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBoxCancel.TabIndex = 0;
-            this.picBoxCancel.TabStop = false;
-            this.picBoxCancel.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // picBoxAdd
-            // 
-            this.picBoxAdd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picBoxAdd.Image = ((System.Drawing.Image)(resources.GetObject("picBoxAdd.Image")));
-            this.picBoxAdd.Location = new System.Drawing.Point(3, 0);
-            this.picBoxAdd.Name = "picBoxAdd";
-            this.picBoxAdd.Size = new System.Drawing.Size(38, 38);
-            this.picBoxAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBoxAdd.TabIndex = 1;
-            this.picBoxAdd.TabStop = false;
-            this.picBoxAdd.Click += new System.EventHandler(this.picBoxAdd_Click);
             // 
             // panel4
             // 
@@ -121,6 +77,50 @@ namespace UI
             this.label1.TabIndex = 0;
             this.label1.Text = "ADD TO GROUP";
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.picBoxAdd);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(391, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(41, 38);
+            this.panel3.TabIndex = 2;
+            // 
+            // picBoxAdd
+            // 
+            this.picBoxAdd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.picBoxAdd.Image = ((System.Drawing.Image)(resources.GetObject("picBoxAdd.Image")));
+            this.picBoxAdd.Location = new System.Drawing.Point(3, 0);
+            this.picBoxAdd.Name = "picBoxAdd";
+            this.picBoxAdd.Size = new System.Drawing.Size(38, 38);
+            this.picBoxAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoxAdd.TabIndex = 1;
+            this.picBoxAdd.TabStop = false;
+            this.picBoxAdd.Click += new System.EventHandler(this.picBoxAdd_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.picBoxCancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(432, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(47, 38);
+            this.panel2.TabIndex = 1;
+            // 
+            // picBoxCancel
+            // 
+            this.picBoxCancel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.picBoxCancel.ErrorImage = null;
+            this.picBoxCancel.Image = ((System.Drawing.Image)(resources.GetObject("picBoxCancel.Image")));
+            this.picBoxCancel.InitialImage = null;
+            this.picBoxCancel.Location = new System.Drawing.Point(9, 0);
+            this.picBoxCancel.Name = "picBoxCancel";
+            this.picBoxCancel.Size = new System.Drawing.Size(38, 38);
+            this.picBoxCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoxCancel.TabIndex = 0;
+            this.picBoxCancel.TabStop = false;
+            this.picBoxCancel.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // AddUserToGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -132,12 +132,12 @@ namespace UI
             this.Name = "AddUserToGroup";
             this.Text = "AddUserToGroup";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxAdd)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxAdd)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxCancel)).EndInit();
             this.ResumeLayout(false);
 
         }

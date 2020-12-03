@@ -13,16 +13,17 @@ namespace UI
 	public partial class FrmFriend : Form
 	{
 		Panel pnAllFriend;
+		Panel pnAllGroup;
 		Panel pnOnlineFriend;
 		Panel pnDanhba;
 		Button btnFocus;
-		bool isload;
+		bool isLoad;
 		public FrmFriend()
 		{
 			InitializeComponent();
 			InitPnAllFriend();
 			InitPnOnlineFriend();
-			isload = false;
+			isLoad = false;
 			btnFocus = null;
 		}
 		public void Reset()
@@ -33,7 +34,7 @@ namespace UI
 			//pnOnlineFriend.Visible = true;
 			//pnOnlineFriend.Show();
 			//pnOnlineFriend.BringToFront();
-			isload = false;
+			isLoad = false;
         }
 		public void LoadPnAllFriend()
 		{
@@ -78,8 +79,8 @@ namespace UI
 			if (btnFocus != null) btnFocus.BackColor = Color.White;
 			(sender as Button).BackColor = Color.DarkGray;
 			btnFocus = sender as Button;
-			if (!isload) LoadPnAllFriend();
-			isload = true;
+			if (!isLoad) LoadPnAllFriend();
+			isLoad = true;
 			this.pnAllFriend.Visible = true;
 			pnAllFriend.Show();
 			pnAllFriend.BringToFront();
@@ -101,5 +102,14 @@ namespace UI
 				}
 			}
 		}
-	}
+
+        private void btnGroup_Click(object sender, EventArgs e)
+        {
+			if (btnFocus != null) btnFocus.BackColor = Color.White;
+			(sender as Button).BackColor = Color.DarkGray;
+			btnFocus = sender as Button;
+			// if (!isLoad) 
+			isLoad = true;
+        }
+    }
 }

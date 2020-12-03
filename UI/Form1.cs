@@ -35,7 +35,8 @@ namespace UI
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		public static List<User> listUser;
-		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
+		public static List<Group> listGroup;
+		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mỗi class.
 		//242,243,245
 		public Form1()
 		{
@@ -45,6 +46,7 @@ namespace UI
 		{
 			UserUIs = new List<UserUI>();
 			listUser = new List<User>();
+			listGroup = new List<Group>();
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
