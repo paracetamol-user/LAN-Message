@@ -37,7 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.picCheck = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.picMenu = new System.Windows.Forms.PictureBox();
+            this.picClose = new System.Windows.Forms.PictureBox();
             this.pnContainPicture = new System.Windows.Forms.Panel();
             this.gunaPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pnContain.SuspendLayout();
@@ -46,7 +46,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCheck)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             this.pnContainPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).BeginInit();
             this.SuspendLayout();
@@ -161,7 +161,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.picMenu);
+            this.panel1.Controls.Add(this.picClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(276, 6);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -172,21 +172,21 @@
             this.panel1.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
-            // picMenu
+            // picClose
             // 
-            this.picMenu.BackColor = System.Drawing.Color.Transparent;
-            this.picMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picMenu.Image = ((System.Drawing.Image)(resources.GetObject("picMenu.Image")));
-            this.picMenu.Location = new System.Drawing.Point(8, 4);
-            this.picMenu.Margin = new System.Windows.Forms.Padding(2);
-            this.picMenu.Name = "picMenu";
-            this.picMenu.Size = new System.Drawing.Size(22, 34);
-            this.picMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picMenu.TabIndex = 0;
-            this.picMenu.TabStop = false;
-            this.picMenu.Click += new System.EventHandler(this.picMenu_Click);
-            this.picMenu.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.picMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
+            this.picClose.BackColor = System.Drawing.Color.Transparent;
+            this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picClose.Image = ((System.Drawing.Image)(resources.GetObject("picClose.Image")));
+            this.picClose.Location = new System.Drawing.Point(8, 4);
+            this.picClose.Margin = new System.Windows.Forms.Padding(2);
+            this.picClose.Name = "picClose";
+            this.picClose.Size = new System.Drawing.Size(22, 34);
+            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picClose.TabIndex = 0;
+            this.picClose.TabStop = false;
+            this.picClose.Click += new System.EventHandler(this.picMenu_Click);
+            this.picClose.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
+            this.picClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContainPicture
             // 
@@ -237,7 +237,7 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picCheck)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
             this.pnContainPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.ResumeLayout(false);
@@ -254,7 +254,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox picCheck;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox picMenu;
+        private System.Windows.Forms.PictureBox picClose;
         private System.Windows.Forms.Panel pnContainPicture;
         private Guna.UI2.WinForms.Guna2CirclePictureBox gunaPic;
     }

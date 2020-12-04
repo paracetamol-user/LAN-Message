@@ -32,7 +32,7 @@ namespace Communication
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
 
-        string connString = @"Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;";
+        string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True;";
         string queryLogin = "select * from USERS";
         string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
         string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -136,7 +136,7 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang,@source)", connection);
+					command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang,@source,@theme)", connection);
 					command.Parameters.AddWithValue("@id", idfocus.ToString());
 					command.Parameters.AddWithValue("@tendangnhap", data[1]);
 					command.Parameters.AddWithValue("@matkhau", data[2]);
@@ -145,6 +145,7 @@ namespace Communication
 					command.Parameters.AddWithValue("@gioitinh", data[5] == "True" ? 0 : 1   );
 					command.Parameters.AddWithValue("@tinhtrang", 0);
 					command.Parameters.AddWithValue("@source", "Default");
+					command.Parameters.AddWithValue("@theme", "White");
 					command.ExecuteNonQuery();
 					byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
 					tempBuffer.CopyTo(buffMessage, 0);
@@ -172,7 +173,7 @@ namespace Communication
 						if (reader.Read() == false) break;
 						if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
 						{
-							byte[] tempBuff = Encoding.UTF8.GetBytes("LOGINOKE " + reader.GetString(0));
+							byte[] tempBuff = Encoding.UTF8.GetBytes("LOGINOKE " + reader.GetString(0) + " " +reader.GetString(8));
 							tempBuff.CopyTo(buffMessage, 0);
 							await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 							client.id_ = reader.GetString(0);
@@ -502,6 +503,16 @@ namespace Communication
                 }
 				return true;
             }
+			else if (data[0] == "THEME")
+            {
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand("UPDATE USERS SET THEME = @THEME WHERE ID = @ID", connection);
+				command.Parameters.AddWithValue("@THEME", data[1]);
+				command.Parameters.AddWithValue("@ID", client.id_);
+				command.ExecuteNonQuery();
+				connection.Close();
+			}
 			return false;
 		}
 		private async Task SendFileToClient(byte[] package , UserClient client)

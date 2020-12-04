@@ -35,6 +35,7 @@ namespace UI
 		public void InitColor()
         {
 			this.label1.ForeColor = Form1.theme.TextColor;
+			this.BackColor = Form1.theme.FocusColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
 		}

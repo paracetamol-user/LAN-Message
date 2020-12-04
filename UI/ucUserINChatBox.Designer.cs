@@ -45,10 +45,10 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(7, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel1.Location = new System.Drawing.Point(9, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(43, 64);
+            this.panel1.Size = new System.Drawing.Size(57, 79);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -56,9 +56,9 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(43, 46);
+            this.pictureBox1.Size = new System.Drawing.Size(57, 57);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -70,11 +70,11 @@
             this.panel2.Controls.Add(this.panelAddMessage);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(50, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel2.Location = new System.Drawing.Point(66, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(220, 29);
+            this.panel2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(294, 36);
             this.panel2.TabIndex = 1;
             // 
             // panelAddMessage
@@ -82,10 +82,10 @@
             this.panelAddMessage.AutoSize = true;
             this.panelAddMessage.BackColor = System.Drawing.Color.Transparent;
             this.panelAddMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAddMessage.Location = new System.Drawing.Point(4, 29);
-            this.panelAddMessage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelAddMessage.Location = new System.Drawing.Point(5, 36);
+            this.panelAddMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelAddMessage.Name = "panelAddMessage";
-            this.panelAddMessage.Size = new System.Drawing.Size(216, 0);
+            this.panelAddMessage.Size = new System.Drawing.Size(289, 0);
             this.panelAddMessage.TabIndex = 1;
             // 
             // panel3
@@ -93,11 +93,11 @@
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.labelName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(4, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel3.Location = new System.Drawing.Point(5, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(4, 4, 0, 4);
-            this.panel3.Size = new System.Drawing.Size(216, 29);
+            this.panel3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
+            this.panel3.Size = new System.Drawing.Size(289, 36);
             this.panel3.TabIndex = 0;
             // 
             // labelName
@@ -105,25 +105,24 @@
             this.labelName.AutoSize = true;
             this.labelName.BackColor = System.Drawing.Color.Transparent;
             this.labelName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelName.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(4, 4);
-            this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelName.Font = new System.Drawing.Font("Tahoma", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(5, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(64, 22);
+            this.labelName.Size = new System.Drawing.Size(101, 34);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "label1";
             // 
             // ucUserINChatBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucUserINChatBox";
-            this.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.Size = new System.Drawing.Size(270, 64);
+            this.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.Size = new System.Drawing.Size(360, 79);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);

@@ -147,10 +147,11 @@ namespace UI
             this.pnMenu.Controls.Add(this.btnMyAccount);
             this.pnMenu.Controls.Add(this.pn1);
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnMenu.Location = new System.Drawing.Point(0, 30);
+            this.pnMenu.Location = new System.Drawing.Point(0, 37);
+            this.pnMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Padding = new System.Windows.Forms.Padding(10, 0, 10, 50);
-            this.pnMenu.Size = new System.Drawing.Size(227, 692);
+            this.pnMenu.Padding = new System.Windows.Forms.Padding(13, 0, 13, 62);
+            this.pnMenu.Size = new System.Drawing.Size(303, 852);
             this.pnMenu.TabIndex = 5;
             // 
             // btnTheme
@@ -161,9 +162,10 @@ namespace UI
             this.btnTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTheme.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTheme.ForeColor = System.Drawing.Color.DimGray;
-            this.btnTheme.Location = new System.Drawing.Point(10, 97);
+            this.btnTheme.Location = new System.Drawing.Point(13, 120);
+            this.btnTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTheme.Name = "btnTheme";
-            this.btnTheme.Size = new System.Drawing.Size(207, 37);
+            this.btnTheme.Size = new System.Drawing.Size(277, 46);
             this.btnTheme.TabIndex = 14;
             this.btnTheme.Text = "Theme";
             this.btnTheme.UseVisualStyleBackColor = false;
@@ -175,10 +177,10 @@ namespace UI
             // 
             this.pnLine2.BackColor = System.Drawing.Color.LightGray;
             this.pnLine2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnLine2.Location = new System.Drawing.Point(10, 604);
-            this.pnLine2.Margin = new System.Windows.Forms.Padding(2);
+            this.pnLine2.Location = new System.Drawing.Point(13, 743);
+            this.pnLine2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLine2.Name = "pnLine2";
-            this.pnLine2.Size = new System.Drawing.Size(207, 1);
+            this.pnLine2.Size = new System.Drawing.Size(277, 1);
             this.pnLine2.TabIndex = 13;
             // 
             // btnLog
@@ -189,9 +191,10 @@ namespace UI
             this.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLog.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLog.ForeColor = System.Drawing.Color.Maroon;
-            this.btnLog.Location = new System.Drawing.Point(10, 605);
+            this.btnLog.Location = new System.Drawing.Point(13, 744);
+            this.btnLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(207, 37);
+            this.btnLog.Size = new System.Drawing.Size(277, 46);
             this.btnLog.TabIndex = 4;
             this.btnLog.Text = "Log out";
             this.btnLog.UseVisualStyleBackColor = false;
@@ -207,9 +210,10 @@ namespace UI
             this.btnNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNotification.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNotification.ForeColor = System.Drawing.Color.DimGray;
-            this.btnNotification.Location = new System.Drawing.Point(10, 60);
+            this.btnNotification.Location = new System.Drawing.Point(13, 74);
+            this.btnNotification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNotification.Name = "btnNotification";
-            this.btnNotification.Size = new System.Drawing.Size(207, 37);
+            this.btnNotification.Size = new System.Drawing.Size(277, 46);
             this.btnNotification.TabIndex = 3;
             this.btnNotification.Text = "Notification";
             this.btnNotification.UseVisualStyleBackColor = false;
@@ -224,9 +228,10 @@ namespace UI
             this.btnMyAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMyAccount.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMyAccount.ForeColor = System.Drawing.Color.DimGray;
-            this.btnMyAccount.Location = new System.Drawing.Point(10, 24);
+            this.btnMyAccount.Location = new System.Drawing.Point(13, 30);
+            this.btnMyAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMyAccount.Name = "btnMyAccount";
-            this.btnMyAccount.Size = new System.Drawing.Size(207, 36);
+            this.btnMyAccount.Size = new System.Drawing.Size(277, 44);
             this.btnMyAccount.TabIndex = 2;
             this.btnMyAccount.Text = "My Account";
             this.btnMyAccount.UseVisualStyleBackColor = false;
@@ -239,10 +244,11 @@ namespace UI
             this.pn1.BackColor = System.Drawing.Color.Transparent;
             this.pn1.Controls.Add(this.label8);
             this.pn1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn1.Location = new System.Drawing.Point(10, 0);
+            this.pn1.Location = new System.Drawing.Point(13, 0);
+            this.pn1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn1.Name = "pn1";
-            this.pn1.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
-            this.pn1.Size = new System.Drawing.Size(207, 24);
+            this.pn1.Padding = new System.Windows.Forms.Padding(63, 0, 0, 0);
+            this.pn1.Size = new System.Drawing.Size(277, 30);
             this.pn1.TabIndex = 0;
             // 
             // label8
@@ -250,9 +256,10 @@ namespace UI
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Top;
             this.label8.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(47, 0);
+            this.label8.Location = new System.Drawing.Point(63, 0);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 18);
+            this.label8.Size = new System.Drawing.Size(106, 23);
             this.label8.TabIndex = 0;
             this.label8.Text = "User Setting";
             // 
@@ -261,19 +268,21 @@ namespace UI
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1171, 30);
+            this.panel1.Location = new System.Drawing.Point(1562, 37);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(0, 3, 40, 3);
-            this.panel1.Size = new System.Drawing.Size(88, 692);
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 4, 53, 4);
+            this.panel1.Size = new System.Drawing.Size(117, 852);
             this.panel1.TabIndex = 6;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(0, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(48, 29);
+            this.pictureBox2.Size = new System.Drawing.Size(64, 36);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -284,9 +293,10 @@ namespace UI
             this.pnTheme.BackColor = System.Drawing.Color.Transparent;
             this.pnTheme.Controls.Add(this.panel12);
             this.pnTheme.Controls.Add(this.panel9);
-            this.pnTheme.Location = new System.Drawing.Point(254, 19);
+            this.pnTheme.Location = new System.Drawing.Point(339, 23);
+            this.pnTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnTheme.Name = "pnTheme";
-            this.pnTheme.Size = new System.Drawing.Size(225, 108);
+            this.pnTheme.Size = new System.Drawing.Size(300, 133);
             this.pnTheme.TabIndex = 9;
             this.pnTheme.Visible = false;
             // 
@@ -294,9 +304,10 @@ namespace UI
             // 
             this.panel12.Controls.Add(this.panel14);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 33);
+            this.panel12.Location = new System.Drawing.Point(0, 41);
+            this.panel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(225, 41);
+            this.panel12.Size = new System.Drawing.Size(300, 50);
             this.panel12.TabIndex = 2;
             // 
             // panel14
@@ -305,17 +316,19 @@ namespace UI
             this.panel14.Controls.Add(this.radioButton1);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(188, 41);
+            this.panel14.Size = new System.Drawing.Size(251, 50);
             this.panel14.TabIndex = 1;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(113, 12);
+            this.radioButton2.Location = new System.Drawing.Point(151, 15);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(55, 19);
+            this.radioButton2.Size = new System.Drawing.Size(66, 21);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Dark";
@@ -326,9 +339,10 @@ namespace UI
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(34, 12);
+            this.radioButton1.Location = new System.Drawing.Point(45, 15);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(61, 19);
+            this.radioButton1.Size = new System.Drawing.Size(73, 21);
             this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "White";
@@ -340,9 +354,10 @@ namespace UI
             this.panel9.Controls.Add(this.label9);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.panel9.Size = new System.Drawing.Size(225, 33);
+            this.panel9.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.panel9.Size = new System.Drawing.Size(300, 41);
             this.panel9.TabIndex = 1;
             // 
             // label9
@@ -350,10 +365,9 @@ namespace UI
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Left;
             this.label9.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(30, 0);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(40, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 26);
+            this.label9.Size = new System.Drawing.Size(90, 33);
             this.label9.TabIndex = 3;
             this.label9.Text = "THEME";
             // 
@@ -362,10 +376,10 @@ namespace UI
             this.pnMyAccount.BackColor = System.Drawing.Color.Transparent;
             this.pnMyAccount.Controls.Add(this.panel6);
             this.pnMyAccount.Controls.Add(this.panel3);
-            this.pnMyAccount.Location = new System.Drawing.Point(254, 133);
-            this.pnMyAccount.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnMyAccount.Location = new System.Drawing.Point(339, 164);
+            this.pnMyAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnMyAccount.Name = "pnMyAccount";
-            this.pnMyAccount.Size = new System.Drawing.Size(476, 581);
+            this.pnMyAccount.Size = new System.Drawing.Size(635, 715);
             this.pnMyAccount.TabIndex = 8;
             this.pnMyAccount.Visible = false;
             // 
@@ -377,11 +391,11 @@ namespace UI
             this.panel6.Controls.Add(this.panelButton);
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 29);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel6.Location = new System.Drawing.Point(0, 36);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(23, 3, 23, 25);
-            this.panel6.Size = new System.Drawing.Size(476, 552);
+            this.panel6.Padding = new System.Windows.Forms.Padding(31, 4, 31, 31);
+            this.panel6.Size = new System.Drawing.Size(635, 679);
             this.panel6.TabIndex = 1;
             // 
             // panelButton
@@ -390,32 +404,32 @@ namespace UI
             this.panelButton.Controls.Add(this.pnContainSaveChange);
             this.panelButton.Controls.Add(this.pnContainDiscard);
             this.panelButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelButton.Location = new System.Drawing.Point(23, 432);
-            this.panelButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelButton.Location = new System.Drawing.Point(31, 531);
+            this.panelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelButton.Name = "panelButton";
-            this.panelButton.Padding = new System.Windows.Forms.Padding(20, 6, 19, 6);
-            this.panelButton.Size = new System.Drawing.Size(430, 53);
+            this.panelButton.Padding = new System.Windows.Forms.Padding(27, 7, 25, 7);
+            this.panelButton.Size = new System.Drawing.Size(573, 65);
             this.panelButton.TabIndex = 2;
             // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(314, 6);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.panel2.Location = new System.Drawing.Point(419, 7);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.panel2.Size = new System.Drawing.Size(97, 41);
+            this.panel2.Size = new System.Drawing.Size(129, 51);
             this.panel2.TabIndex = 6;
             // 
             // pnContainSaveChange
             // 
             this.pnContainSaveChange.Controls.Add(this.btnSave);
             this.pnContainSaveChange.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnContainSaveChange.Location = new System.Drawing.Point(177, 6);
-            this.pnContainSaveChange.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnContainSaveChange.Location = new System.Drawing.Point(236, 7);
+            this.pnContainSaveChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContainSaveChange.Name = "pnContainSaveChange";
-            this.pnContainSaveChange.Padding = new System.Windows.Forms.Padding(7, 3, 7, 3);
-            this.pnContainSaveChange.Size = new System.Drawing.Size(137, 41);
+            this.pnContainSaveChange.Padding = new System.Windows.Forms.Padding(9, 4, 9, 4);
+            this.pnContainSaveChange.Size = new System.Drawing.Size(183, 51);
             this.pnContainSaveChange.TabIndex = 5;
             // 
             // btnSave
@@ -425,10 +439,10 @@ namespace UI
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Century", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(7, 3);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSave.Location = new System.Drawing.Point(9, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 35);
+            this.btnSave.Size = new System.Drawing.Size(165, 43);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save change";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -437,11 +451,11 @@ namespace UI
             // 
             this.pnContainDiscard.Controls.Add(this.btnDiscard);
             this.pnContainDiscard.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnContainDiscard.Location = new System.Drawing.Point(20, 6);
-            this.pnContainDiscard.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnContainDiscard.Location = new System.Drawing.Point(27, 7);
+            this.pnContainDiscard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContainDiscard.Name = "pnContainDiscard";
-            this.pnContainDiscard.Padding = new System.Windows.Forms.Padding(7, 3, 7, 3);
-            this.pnContainDiscard.Size = new System.Drawing.Size(157, 41);
+            this.pnContainDiscard.Padding = new System.Windows.Forms.Padding(9, 4, 9, 4);
+            this.pnContainDiscard.Size = new System.Drawing.Size(209, 51);
             this.pnContainDiscard.TabIndex = 4;
             // 
             // btnDiscard
@@ -451,10 +465,10 @@ namespace UI
             this.btnDiscard.FlatAppearance.BorderSize = 0;
             this.btnDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDiscard.Font = new System.Drawing.Font("Century", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscard.Location = new System.Drawing.Point(7, 3);
-            this.btnDiscard.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDiscard.Location = new System.Drawing.Point(9, 4);
+            this.btnDiscard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(143, 35);
+            this.btnDiscard.Size = new System.Drawing.Size(191, 43);
             this.btnDiscard.TabIndex = 3;
             this.btnDiscard.Text = "Discard change";
             this.btnDiscard.UseVisualStyleBackColor = true;
@@ -468,11 +482,11 @@ namespace UI
             this.panel7.Controls.Add(this.pnUserName);
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(23, 3);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel7.Location = new System.Drawing.Point(31, 4);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(20, 3, 20, 6);
-            this.panel7.Size = new System.Drawing.Size(430, 429);
+            this.panel7.Padding = new System.Windows.Forms.Padding(27, 4, 27, 7);
+            this.panel7.Size = new System.Drawing.Size(573, 527);
             this.panel7.TabIndex = 0;
             // 
             // pnDownLoad
@@ -481,11 +495,11 @@ namespace UI
             this.pnDownLoad.Controls.Add(this.panel22);
             this.pnDownLoad.Controls.Add(this.panel21);
             this.pnDownLoad.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnDownLoad.Location = new System.Drawing.Point(20, 335);
-            this.pnDownLoad.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnDownLoad.Location = new System.Drawing.Point(27, 412);
+            this.pnDownLoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnDownLoad.Name = "pnDownLoad";
-            this.pnDownLoad.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.pnDownLoad.Size = new System.Drawing.Size(390, 88);
+            this.pnDownLoad.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.pnDownLoad.Size = new System.Drawing.Size(519, 108);
             this.pnDownLoad.TabIndex = 3;
             // 
             // panel22
@@ -494,11 +508,11 @@ namespace UI
             this.panel22.Controls.Add(this.panel23);
             this.panel22.Controls.Add(this.panel24);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel22.Location = new System.Drawing.Point(7, 8);
-            this.panel22.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel22.Location = new System.Drawing.Point(9, 10);
+            this.panel22.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel22.Name = "panel22";
-            this.panel22.Padding = new System.Windows.Forms.Padding(4, 4, 23, 4);
-            this.panel22.Size = new System.Drawing.Size(292, 72);
+            this.panel22.Padding = new System.Windows.Forms.Padding(5, 5, 31, 5);
+            this.panel22.Size = new System.Drawing.Size(389, 88);
             this.panel22.TabIndex = 2;
             // 
             // panel23
@@ -506,11 +520,11 @@ namespace UI
             this.panel23.BackColor = System.Drawing.Color.Transparent;
             this.panel23.Controls.Add(this.lblPath);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(4, 31);
-            this.panel23.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel23.Location = new System.Drawing.Point(5, 38);
+            this.panel23.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel23.Name = "panel23";
-            this.panel23.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel23.Size = new System.Drawing.Size(265, 27);
+            this.panel23.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel23.Size = new System.Drawing.Size(353, 33);
             this.panel23.TabIndex = 1;
             // 
             // lblPath
@@ -518,10 +532,9 @@ namespace UI
             this.lblPath.AutoSize = true;
             this.lblPath.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblPath.Font = new System.Drawing.Font("Candara Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPath.Location = new System.Drawing.Point(2, 3);
-            this.lblPath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPath.Location = new System.Drawing.Point(3, 4);
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(37, 14);
+            this.lblPath.Size = new System.Drawing.Size(46, 18);
             this.lblPath.TabIndex = 1;
             this.lblPath.Text = "label6";
             // 
@@ -530,11 +543,11 @@ namespace UI
             this.panel24.BackColor = System.Drawing.Color.Transparent;
             this.panel24.Controls.Add(this.label7);
             this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel24.Location = new System.Drawing.Point(4, 4);
-            this.panel24.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel24.Location = new System.Drawing.Point(5, 5);
+            this.panel24.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel24.Name = "panel24";
-            this.panel24.Padding = new System.Windows.Forms.Padding(2, 4, 2, 3);
-            this.panel24.Size = new System.Drawing.Size(265, 27);
+            this.panel24.Padding = new System.Windows.Forms.Padding(3, 5, 3, 4);
+            this.panel24.Size = new System.Drawing.Size(353, 33);
             this.panel24.TabIndex = 0;
             // 
             // label7
@@ -542,10 +555,9 @@ namespace UI
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(2, 4);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(3, 5);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 17);
+            this.label7.Size = new System.Drawing.Size(126, 20);
             this.label7.TabIndex = 0;
             this.label7.Text = "DOWNLOAD SAVE";
             // 
@@ -554,11 +566,11 @@ namespace UI
             this.panel21.BackColor = System.Drawing.Color.Transparent;
             this.panel21.Controls.Add(this.btnEditDownloadPath);
             this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel21.Location = new System.Drawing.Point(299, 8);
-            this.panel21.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel21.Location = new System.Drawing.Point(398, 10);
+            this.panel21.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel21.Name = "panel21";
-            this.panel21.Padding = new System.Windows.Forms.Padding(7, 16, 7, 0);
-            this.panel21.Size = new System.Drawing.Size(84, 72);
+            this.panel21.Padding = new System.Windows.Forms.Padding(9, 20, 9, 0);
+            this.panel21.Size = new System.Drawing.Size(112, 88);
             this.panel21.TabIndex = 1;
             // 
             // btnEditDownloadPath
@@ -568,10 +580,10 @@ namespace UI
             this.btnEditDownloadPath.FlatAppearance.BorderSize = 0;
             this.btnEditDownloadPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditDownloadPath.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDownloadPath.Location = new System.Drawing.Point(7, 16);
-            this.btnEditDownloadPath.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnEditDownloadPath.Location = new System.Drawing.Point(9, 20);
+            this.btnEditDownloadPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditDownloadPath.Name = "btnEditDownloadPath";
-            this.btnEditDownloadPath.Size = new System.Drawing.Size(70, 38);
+            this.btnEditDownloadPath.Size = new System.Drawing.Size(94, 47);
             this.btnEditDownloadPath.TabIndex = 0;
             this.btnEditDownloadPath.Text = "CHANGE";
             this.btnEditDownloadPath.UseVisualStyleBackColor = false;
@@ -583,11 +595,11 @@ namespace UI
             this.pnPassword.Controls.Add(this.panel17);
             this.pnPassword.Controls.Add(this.panel16);
             this.pnPassword.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnPassword.Location = new System.Drawing.Point(20, 158);
-            this.pnPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnPassword.Location = new System.Drawing.Point(27, 194);
+            this.pnPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnPassword.Name = "pnPassword";
-            this.pnPassword.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.pnPassword.Size = new System.Drawing.Size(390, 177);
+            this.pnPassword.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.pnPassword.Size = new System.Drawing.Size(519, 218);
             this.pnPassword.TabIndex = 2;
             // 
             // panel17
@@ -598,11 +610,11 @@ namespace UI
             this.panel17.Controls.Add(this.panel18);
             this.panel17.Controls.Add(this.panel19);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(7, 8);
-            this.panel17.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel17.Location = new System.Drawing.Point(9, 10);
+            this.panel17.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel17.Name = "panel17";
-            this.panel17.Padding = new System.Windows.Forms.Padding(4, 4, 23, 4);
-            this.panel17.Size = new System.Drawing.Size(291, 161);
+            this.panel17.Padding = new System.Windows.Forms.Padding(5, 5, 31, 5);
+            this.panel17.Size = new System.Drawing.Size(388, 198);
             this.panel17.TabIndex = 4;
             // 
             // panelChangePassword
@@ -616,10 +628,10 @@ namespace UI
             this.panelChangePassword.Controls.Add(this.label4);
             this.panelChangePassword.Controls.Add(this.label3);
             this.panelChangePassword.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelChangePassword.Location = new System.Drawing.Point(4, 58);
-            this.panelChangePassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelChangePassword.Location = new System.Drawing.Point(5, 71);
+            this.panelChangePassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelChangePassword.Name = "panelChangePassword";
-            this.panelChangePassword.Size = new System.Drawing.Size(264, 99);
+            this.panelChangePassword.Size = new System.Drawing.Size(352, 122);
             this.panelChangePassword.TabIndex = 2;
             this.panelChangePassword.Visible = false;
             // 
@@ -628,10 +640,9 @@ namespace UI
             this.lblErrorINPassword.AutoSize = true;
             this.lblErrorINPassword.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorINPassword.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorINPassword.Location = new System.Drawing.Point(171, 68);
-            this.lblErrorINPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblErrorINPassword.Location = new System.Drawing.Point(228, 84);
             this.lblErrorINPassword.Name = "lblErrorINPassword";
-            this.lblErrorINPassword.Size = new System.Drawing.Size(81, 16);
+            this.lblErrorINPassword.Size = new System.Drawing.Size(94, 19);
             this.lblErrorINPassword.TabIndex = 12;
             this.lblErrorINPassword.Text = "Sai mật khẩu";
             this.lblErrorINPassword.Visible = false;
@@ -641,10 +652,9 @@ namespace UI
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(255, 6);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(340, 7);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 20);
+            this.label6.Size = new System.Drawing.Size(20, 25);
             this.label6.TabIndex = 11;
             this.label6.Text = "*";
             // 
@@ -653,10 +663,10 @@ namespace UI
             this.btnSavePassword.BackColor = System.Drawing.Color.White;
             this.btnSavePassword.FlatAppearance.BorderSize = 0;
             this.btnSavePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSavePassword.Location = new System.Drawing.Point(89, 64);
-            this.btnSavePassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSavePassword.Location = new System.Drawing.Point(119, 79);
+            this.btnSavePassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSavePassword.Name = "btnSavePassword";
-            this.btnSavePassword.Size = new System.Drawing.Size(64, 25);
+            this.btnSavePassword.Size = new System.Drawing.Size(85, 31);
             this.btnSavePassword.TabIndex = 10;
             this.btnSavePassword.Text = "SAVE";
             this.btnSavePassword.UseVisualStyleBackColor = false;
@@ -665,29 +675,28 @@ namespace UI
             // txtNewPassword
             // 
             this.txtNewPassword.Font = new System.Drawing.Font("Candara Light", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewPassword.Location = new System.Drawing.Point(89, 42);
-            this.txtNewPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtNewPassword.Location = new System.Drawing.Point(119, 52);
+            this.txtNewPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.Size = new System.Drawing.Size(162, 21);
+            this.txtNewPassword.Size = new System.Drawing.Size(215, 24);
             this.txtNewPassword.TabIndex = 9;
             // 
             // txtOldPassword
             // 
             this.txtOldPassword.Font = new System.Drawing.Font("Candara Light", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOldPassword.Location = new System.Drawing.Point(89, 6);
-            this.txtOldPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtOldPassword.Location = new System.Drawing.Point(119, 7);
+            this.txtOldPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtOldPassword.Name = "txtOldPassword";
-            this.txtOldPassword.Size = new System.Drawing.Size(162, 21);
+            this.txtOldPassword.Size = new System.Drawing.Size(215, 24);
             this.txtOldPassword.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Candara Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 45);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(3, 55);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 14);
+            this.label4.Size = new System.Drawing.Size(103, 18);
             this.label4.TabIndex = 7;
             this.label4.Text = "New password:";
             // 
@@ -695,10 +704,9 @@ namespace UI
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Candara Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 9);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(7, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 14);
+            this.label3.Size = new System.Drawing.Size(95, 18);
             this.label3.TabIndex = 6;
             this.label3.Text = "Old password:";
             // 
@@ -707,11 +715,11 @@ namespace UI
             this.panel18.BackColor = System.Drawing.Color.Transparent;
             this.panel18.Controls.Add(this.lblPassword);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel18.Location = new System.Drawing.Point(4, 31);
-            this.panel18.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel18.Location = new System.Drawing.Point(5, 38);
+            this.panel18.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel18.Name = "panel18";
-            this.panel18.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel18.Size = new System.Drawing.Size(264, 27);
+            this.panel18.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel18.Size = new System.Drawing.Size(352, 33);
             this.panel18.TabIndex = 1;
             // 
             // lblPassword
@@ -719,10 +727,9 @@ namespace UI
             this.lblPassword.AutoSize = true;
             this.lblPassword.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblPassword.Font = new System.Drawing.Font("Candara Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(2, 3);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPassword.Location = new System.Drawing.Point(3, 4);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(36, 14);
+            this.lblPassword.Size = new System.Drawing.Size(45, 18);
             this.lblPassword.TabIndex = 1;
             this.lblPassword.Text = "label4";
             // 
@@ -732,11 +739,11 @@ namespace UI
             this.panel19.Controls.Add(this.lblNoticeINPassword);
             this.panel19.Controls.Add(this.label5);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel19.Location = new System.Drawing.Point(4, 4);
-            this.panel19.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel19.Location = new System.Drawing.Point(5, 5);
+            this.panel19.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel19.Name = "panel19";
-            this.panel19.Padding = new System.Windows.Forms.Padding(2, 4, 2, 3);
-            this.panel19.Size = new System.Drawing.Size(264, 27);
+            this.panel19.Padding = new System.Windows.Forms.Padding(3, 5, 3, 4);
+            this.panel19.Size = new System.Drawing.Size(352, 33);
             this.panel19.TabIndex = 0;
             // 
             // lblNoticeINPassword
@@ -744,10 +751,9 @@ namespace UI
             this.lblNoticeINPassword.AutoSize = true;
             this.lblNoticeINPassword.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoticeINPassword.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNoticeINPassword.Location = new System.Drawing.Point(78, 1);
-            this.lblNoticeINPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNoticeINPassword.Location = new System.Drawing.Point(104, 1);
             this.lblNoticeINPassword.Name = "lblNoticeINPassword";
-            this.lblNoticeINPassword.Size = new System.Drawing.Size(125, 16);
+            this.lblNoticeINPassword.Size = new System.Drawing.Size(145, 19);
             this.lblNoticeINPassword.TabIndex = 13;
             this.lblNoticeINPassword.Text = "Thay đổi thành công";
             this.lblNoticeINPassword.Visible = false;
@@ -757,10 +763,9 @@ namespace UI
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
             this.label5.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(2, 4);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(3, 5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 17);
+            this.label5.Size = new System.Drawing.Size(81, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "PASSWORD";
             // 
@@ -769,11 +774,11 @@ namespace UI
             this.panel16.BackColor = System.Drawing.Color.Transparent;
             this.panel16.Controls.Add(this.btnEditPassword);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel16.Location = new System.Drawing.Point(298, 8);
-            this.panel16.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel16.Location = new System.Drawing.Point(397, 10);
+            this.panel16.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel16.Name = "panel16";
-            this.panel16.Padding = new System.Windows.Forms.Padding(7, 16, 7, 0);
-            this.panel16.Size = new System.Drawing.Size(85, 161);
+            this.panel16.Padding = new System.Windows.Forms.Padding(9, 20, 9, 0);
+            this.panel16.Size = new System.Drawing.Size(113, 198);
             this.panel16.TabIndex = 3;
             // 
             // btnEditPassword
@@ -783,10 +788,10 @@ namespace UI
             this.btnEditPassword.FlatAppearance.BorderSize = 0;
             this.btnEditPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditPassword.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditPassword.Location = new System.Drawing.Point(7, 16);
-            this.btnEditPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnEditPassword.Location = new System.Drawing.Point(9, 20);
+            this.btnEditPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditPassword.Name = "btnEditPassword";
-            this.btnEditPassword.Size = new System.Drawing.Size(71, 36);
+            this.btnEditPassword.Size = new System.Drawing.Size(95, 44);
             this.btnEditPassword.TabIndex = 0;
             this.btnEditPassword.Text = "CHANGE";
             this.btnEditPassword.UseVisualStyleBackColor = false;
@@ -797,11 +802,11 @@ namespace UI
             this.pnUserName.Controls.Add(this.panel10);
             this.pnUserName.Controls.Add(this.panel11);
             this.pnUserName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnUserName.Location = new System.Drawing.Point(20, 74);
-            this.pnUserName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnUserName.Location = new System.Drawing.Point(27, 91);
+            this.pnUserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnUserName.Name = "pnUserName";
-            this.pnUserName.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.pnUserName.Size = new System.Drawing.Size(390, 84);
+            this.pnUserName.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.pnUserName.Size = new System.Drawing.Size(519, 103);
             this.pnUserName.TabIndex = 1;
             // 
             // panel10
@@ -810,22 +815,22 @@ namespace UI
             this.panel10.Controls.Add(this.panelUsername);
             this.panel10.Controls.Add(this.panel13);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(7, 8);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel10.Location = new System.Drawing.Point(9, 10);
+            this.panel10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(4, 4, 23, 4);
-            this.panel10.Size = new System.Drawing.Size(291, 68);
+            this.panel10.Padding = new System.Windows.Forms.Padding(5, 5, 31, 5);
+            this.panel10.Size = new System.Drawing.Size(388, 83);
             this.panel10.TabIndex = 2;
             // 
             // panelUsername
             // 
             this.panelUsername.Controls.Add(this.lblUsername);
             this.panelUsername.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUsername.Location = new System.Drawing.Point(4, 31);
-            this.panelUsername.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelUsername.Location = new System.Drawing.Point(5, 38);
+            this.panelUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelUsername.Name = "panelUsername";
-            this.panelUsername.Padding = new System.Windows.Forms.Padding(7, 3, 2, 3);
-            this.panelUsername.Size = new System.Drawing.Size(264, 27);
+            this.panelUsername.Padding = new System.Windows.Forms.Padding(9, 4, 3, 4);
+            this.panelUsername.Size = new System.Drawing.Size(352, 33);
             this.panelUsername.TabIndex = 1;
             // 
             // lblUsername
@@ -833,10 +838,9 @@ namespace UI
             this.lblUsername.AutoSize = true;
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblUsername.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(7, 3);
-            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsername.Location = new System.Drawing.Point(9, 4);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(0, 13);
+            this.lblUsername.Size = new System.Drawing.Size(0, 17);
             this.lblUsername.TabIndex = 2;
             // 
             // panel13
@@ -844,11 +848,11 @@ namespace UI
             this.panel13.Controls.Add(this.lblErrorINUsername);
             this.panel13.Controls.Add(this.label2);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(4, 4);
-            this.panel13.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel13.Location = new System.Drawing.Point(5, 5);
+            this.panel13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel13.Name = "panel13";
-            this.panel13.Padding = new System.Windows.Forms.Padding(2, 4, 2, 3);
-            this.panel13.Size = new System.Drawing.Size(264, 27);
+            this.panel13.Padding = new System.Windows.Forms.Padding(3, 5, 3, 4);
+            this.panel13.Size = new System.Drawing.Size(352, 33);
             this.panel13.TabIndex = 0;
             // 
             // lblErrorINUsername
@@ -856,10 +860,9 @@ namespace UI
             this.lblErrorINUsername.AutoSize = true;
             this.lblErrorINUsername.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorINUsername.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorINUsername.Location = new System.Drawing.Point(96, 5);
-            this.lblErrorINUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblErrorINUsername.Location = new System.Drawing.Point(128, 6);
             this.lblErrorINUsername.Name = "lblErrorINUsername";
-            this.lblErrorINUsername.Size = new System.Drawing.Size(120, 16);
+            this.lblErrorINUsername.Size = new System.Drawing.Size(145, 19);
             this.lblErrorINUsername.TabIndex = 13;
             this.lblErrorINUsername.Text = "Username đã tồn tại";
             this.lblErrorINUsername.Visible = false;
@@ -869,10 +872,9 @@ namespace UI
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(2, 4);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(3, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 16);
+            this.label2.Size = new System.Drawing.Size(101, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "USER NAME";
             // 
@@ -881,11 +883,11 @@ namespace UI
             this.panel11.BackColor = System.Drawing.Color.Transparent;
             this.panel11.Controls.Add(this.btnEditUsername);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel11.Location = new System.Drawing.Point(298, 8);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel11.Location = new System.Drawing.Point(397, 10);
+            this.panel11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel11.Name = "panel11";
-            this.panel11.Padding = new System.Windows.Forms.Padding(7, 16, 7, 0);
-            this.panel11.Size = new System.Drawing.Size(85, 68);
+            this.panel11.Padding = new System.Windows.Forms.Padding(9, 20, 9, 0);
+            this.panel11.Size = new System.Drawing.Size(113, 83);
             this.panel11.TabIndex = 1;
             // 
             // btnEditUsername
@@ -895,10 +897,10 @@ namespace UI
             this.btnEditUsername.FlatAppearance.BorderSize = 0;
             this.btnEditUsername.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditUsername.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditUsername.Location = new System.Drawing.Point(7, 16);
-            this.btnEditUsername.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnEditUsername.Location = new System.Drawing.Point(9, 20);
+            this.btnEditUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditUsername.Name = "btnEditUsername";
-            this.btnEditUsername.Size = new System.Drawing.Size(71, 36);
+            this.btnEditUsername.Size = new System.Drawing.Size(95, 44);
             this.btnEditUsername.TabIndex = 0;
             this.btnEditUsername.Text = "CHANGE";
             this.btnEditUsername.UseVisualStyleBackColor = false;
@@ -910,11 +912,11 @@ namespace UI
             this.panel8.Controls.Add(this.lblName);
             this.panel8.Controls.Add(this.pnContainPic);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(20, 3);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 8);
+            this.panel8.Location = new System.Drawing.Point(27, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 10);
             this.panel8.Name = "panel8";
-            this.panel8.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.panel8.Size = new System.Drawing.Size(390, 71);
+            this.panel8.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.panel8.Size = new System.Drawing.Size(519, 87);
             this.panel8.TabIndex = 0;
             // 
             // lblNoticeINUsername
@@ -922,10 +924,9 @@ namespace UI
             this.lblNoticeINUsername.AutoSize = true;
             this.lblNoticeINUsername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoticeINUsername.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNoticeINUsername.Location = new System.Drawing.Point(205, 29);
-            this.lblNoticeINUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNoticeINUsername.Location = new System.Drawing.Point(273, 36);
             this.lblNoticeINUsername.Name = "lblNoticeINUsername";
-            this.lblNoticeINUsername.Size = new System.Drawing.Size(131, 19);
+            this.lblNoticeINUsername.Size = new System.Drawing.Size(168, 22);
             this.lblNoticeINUsername.TabIndex = 14;
             this.lblNoticeINUsername.Text = "Thay đổi thành công";
             this.lblNoticeINUsername.Visible = false;
@@ -934,10 +935,9 @@ namespace UI
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(99, 40);
-            this.lblID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblID.Location = new System.Drawing.Point(132, 49);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(57, 19);
+            this.lblID.Size = new System.Drawing.Size(69, 23);
             this.lblID.TabIndex = 3;
             this.lblID.Text = "SDT //";
             // 
@@ -945,10 +945,9 @@ namespace UI
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(98, 14);
-            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Location = new System.Drawing.Point(131, 17);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(83, 22);
+            this.lblName.Size = new System.Drawing.Size(106, 28);
             this.lblName.TabIndex = 2;
             this.lblName.Text = "Name // ";
             // 
@@ -956,19 +955,19 @@ namespace UI
             // 
             this.pnContainPic.Controls.Add(this.pictureBox1);
             this.pnContainPic.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnContainPic.Location = new System.Drawing.Point(7, 8);
-            this.pnContainPic.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnContainPic.Location = new System.Drawing.Point(9, 10);
+            this.pnContainPic.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContainPic.Name = "pnContainPic";
-            this.pnContainPic.Size = new System.Drawing.Size(67, 55);
+            this.pnContainPic.Size = new System.Drawing.Size(89, 67);
             this.pnContainPic.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 55);
+            this.pictureBox1.Size = new System.Drawing.Size(89, 67);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -979,21 +978,21 @@ namespace UI
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(23, 0, 23, 6);
-            this.panel3.Size = new System.Drawing.Size(476, 29);
+            this.panel3.Padding = new System.Windows.Forms.Padding(31, 0, 31, 7);
+            this.panel3.Size = new System.Drawing.Size(635, 36);
             this.panel3.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(23, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel4.Location = new System.Drawing.Point(31, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(7, 0, 7, 8);
-            this.panel4.Size = new System.Drawing.Size(165, 23);
+            this.panel4.Padding = new System.Windows.Forms.Padding(9, 0, 9, 10);
+            this.panel4.Size = new System.Drawing.Size(220, 29);
             this.panel4.TabIndex = 0;
             // 
             // label1
@@ -1001,10 +1000,9 @@ namespace UI
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(9, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 26);
+            this.label1.Size = new System.Drawing.Size(165, 33);
             this.label1.TabIndex = 2;
             this.label1.Text = "MY ACCOUNT";
             // 
@@ -1012,27 +1010,27 @@ namespace UI
             // 
             this.panelLine1.BackColor = System.Drawing.Color.LightGray;
             this.panelLine1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLine1.Location = new System.Drawing.Point(227, 30);
-            this.panelLine1.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLine1.Location = new System.Drawing.Point(303, 37);
+            this.panelLine1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelLine1.Name = "panelLine1";
-            this.panelLine1.Size = new System.Drawing.Size(1, 692);
+            this.panelLine1.Size = new System.Drawing.Size(1, 852);
             this.panelLine1.TabIndex = 13;
             // 
             // SettingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1259, 722);
+            this.ClientSize = new System.Drawing.Size(1679, 889);
             this.Controls.Add(this.panelLine1);
             this.Controls.Add(this.pnTheme);
             this.Controls.Add(this.pnMyAccount);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SettingForm";
-            this.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.Padding = new System.Windows.Forms.Padding(0, 37, 0, 0);
             this.Text = "SettingForm";
             this.pnMenu.ResumeLayout(false);
             this.pn1.ResumeLayout(false);

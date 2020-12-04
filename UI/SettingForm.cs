@@ -35,6 +35,7 @@ namespace UI
 		}
 		public void ChangeColorPanelControl()
         {
+			this.pnMenu.BackColor = Form1.theme.Menu;
 			this.pnUserName.BackColor = Form1.theme.FocusColor;
 			this.pnPassword.BackColor = Form1.theme.FocusColor;
 			this.pnDownLoad.BackColor = Form1.theme.FocusColor;

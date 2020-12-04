@@ -30,6 +30,11 @@ namespace UI
 			this.lbName.Text = uiParent.user.Name;
 			this.lbId.Text = uiParent.user.Id;
 		}
+		public void ResetTheme()
+        {
+			this.picCheck.Image = Image.FromFile(Form1.theme.PictureCheck);
+			this.picClose.Image = Image.FromFile(Form1.theme.PictureClose);
+		}
 		public void InitColor()
 		{
 			this.lbName.ForeColor = Form1.theme.TextColor;

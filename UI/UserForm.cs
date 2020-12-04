@@ -59,6 +59,8 @@ namespace UI
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.labelID.ForeColor = Form1.theme.TextMenuColor;
 			this.BackColor = Form1.theme.BackColor;
+			this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
+			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
 		}
 		public void SetAvatar(string path)
 		{
@@ -70,7 +72,7 @@ namespace UI
 			tempPanel.Dock = DockStyle.Top;
 			tempPanel.AutoSize = true;
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
-			ucMessShow messShow = new ucMessShow(str);
+			ucMessShow messShow = new ucMessShow(str,user);
 			messShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
 			UserInChatBox._AddMessControl(messShow);
@@ -78,7 +80,7 @@ namespace UI
 			this.panelListChat.Controls.Add(tempPanel);
 			this.panelListChat.Controls.Add(tempPanel);
 			UserInChatBox.InitColor();
-			messShow.InitColor();
+			messShow.ChangeTheme();
 		}
 		public void AddFileToListChat(User _user,string tempId, string tempName)
 		{
