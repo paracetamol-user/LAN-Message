@@ -26,7 +26,7 @@ namespace UI
             this.uiParent = groupUI;
             this.gunaPic.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = uiParent.group.Name;
-            this.lbId.Text = uiParent.group.Id;
+            this.lbId.Text = uiParent.group.ID;
         }
         private void pnContain_MouseMove(object sender, MouseEventArgs e)
         {

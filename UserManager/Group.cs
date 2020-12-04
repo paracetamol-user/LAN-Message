@@ -95,6 +95,5 @@ namespace UserManager
         public void AddMember(User member) => memberList.Add(member);
         // Kick member
         public void DeleteMember(User member) => memberList.Remove(member);
-
     }
 }

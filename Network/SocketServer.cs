@@ -508,7 +508,18 @@ namespace Communication
 			}
 			else if (data[0] == "GPENDING")
             {
-
+				byte[] tempBuff = Encoding.UTF8.GetBytes("GPENDING%" + data[1]);
+				buffMessage = new byte[1024];
+				tempBuff.CopyTo(buffMessage, 0);
+				foreach(var item in clientInvalid)
+                {
+					if(item.id_ == data[2])
+                    {
+						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+						break;
+                    }
+					return true;
+                }
             }
 			return false;
 		}

@@ -89,6 +89,7 @@ namespace UI
             // picBoxAdd
             // 
             this.picBoxAdd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.picBoxAdd.Enabled = false;
             this.picBoxAdd.Image = ((System.Drawing.Image)(resources.GetObject("picBoxAdd.Image")));
             this.picBoxAdd.Location = new System.Drawing.Point(3, 0);
             this.picBoxAdd.Name = "picBoxAdd";

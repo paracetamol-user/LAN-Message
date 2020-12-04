@@ -132,7 +132,7 @@ namespace UI
 			// Update to server
 			if( txtUsername != null && txtUsername.Text != Form1.me.Name )
 			ChangeUsernameInServer(txtUsername.Text);
-			ChangeAvatar();
+			// ChangeAvatar();
 		}
 
 		private void btnDiscard_Click(object sender, EventArgs e)
@@ -140,7 +140,6 @@ namespace UI
 			// Release changes in username field
 			ReleaseUsernameChange();
 			isChangingUsername = false;
-
 			// Release changes in path
 
 

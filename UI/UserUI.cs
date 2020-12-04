@@ -30,6 +30,8 @@ namespace UI
 		public ucFriend ucFriend;
 		public ucFriend ucFriendOnline;
 
+		public AddUserToGroup addToGroup;
+
 		public ContextMenuStrip cmns;
 		public UserUI() { }
 		public UserUI(User user, Panel PANELINTERACTED, Panel PANELRIGHT)
@@ -44,6 +46,7 @@ namespace UI
 			this.panelRIGHT.Controls.Add(userForm);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
+			addToGroup = new AddUserToGroup();
 		}
 		/// <summary>
 		/// Get các thuộc tính
@@ -93,7 +96,8 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			
+			addToGroup = new AddUserToGroup(user);
+			addToGroup.Show();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{

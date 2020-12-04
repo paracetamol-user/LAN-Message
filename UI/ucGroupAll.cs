@@ -21,7 +21,7 @@ namespace UI
         {
 
         }
-        public void SetAvatar(string paths)
+        public void SetAvatar(string path)
         {
             gunaPic.Image = Image.FromFile(path);
         }

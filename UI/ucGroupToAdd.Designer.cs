@@ -37,15 +37,11 @@ namespace UI
             this.lbStatus = new System.Windows.Forms.Label();
             this.pnContrainName = new System.Windows.Forms.Panel();
             this.lbName = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.picClose = new System.Windows.Forms.PictureBox();
             this.pnContainPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).BeginInit();
             this.pnContain.SuspendLayout();
             this.pnContainStatus.SuspendLayout();
             this.pnContrainName.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             this.SuspendLayout();
             // 
             // pnContainPicture
@@ -75,12 +71,11 @@ namespace UI
             // 
             this.pnContain.Controls.Add(this.pnContainStatus);
             this.pnContain.Controls.Add(this.pnContrainName);
-            this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.pnContainPicture);
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(20, 7);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Size = new System.Drawing.Size(380, 54);
+            this.pnContain.Size = new System.Drawing.Size(337, 54);
             this.pnContain.TabIndex = 6;
             // 
             // pnContainStatus
@@ -90,7 +85,7 @@ namespace UI
             this.pnContainStatus.Location = new System.Drawing.Point(59, 30);
             this.pnContainStatus.Name = "pnContainStatus";
             this.pnContainStatus.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainStatus.Size = new System.Drawing.Size(302, 24);
+            this.pnContainStatus.Size = new System.Drawing.Size(278, 24);
             this.pnContainStatus.TabIndex = 3;
             // 
             // lbStatus
@@ -113,7 +108,7 @@ namespace UI
             this.pnContrainName.Location = new System.Drawing.Point(59, 0);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 1, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(302, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(278, 30);
             this.pnContrainName.TabIndex = 2;
             // 
             // lbName
@@ -127,26 +122,6 @@ namespace UI
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.picClose);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(361, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(19, 54);
-            this.panel2.TabIndex = 1;
-            // 
-            // picClose
-            // 
-            this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picClose.Image = ((System.Drawing.Image)(resources.GetObject("picClose.Image")));
-            this.picClose.Location = new System.Drawing.Point(0, 0);
-            this.picClose.Name = "picClose";
-            this.picClose.Size = new System.Drawing.Size(19, 54);
-            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picClose.TabIndex = 0;
-            this.picClose.TabStop = false;
-            // 
             // ucGroupToAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -154,7 +129,7 @@ namespace UI
             this.Controls.Add(this.pnContain);
             this.Name = "ucGroupToAdd";
             this.Padding = new System.Windows.Forms.Padding(20, 7, 20, 7);
-            this.Size = new System.Drawing.Size(420, 68);
+            this.Size = new System.Drawing.Size(377, 68);
             this.pnContainPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.pnContain.ResumeLayout(false);
@@ -162,8 +137,6 @@ namespace UI
             this.pnContainStatus.PerformLayout();
             this.pnContrainName.ResumeLayout(false);
             this.pnContrainName.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,7 +150,5 @@ namespace UI
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.Panel pnContrainName;
         private System.Windows.Forms.Label lbName;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox picClose;
     }
 }

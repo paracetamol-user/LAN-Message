@@ -92,7 +92,6 @@ namespace UI
 			labelCOUNT.Text = "Online - " + countUserOnline.ToString(); 
 			btnFocus = sender as Button;
 		}
-
 		private void btnPeople_Click(object sender, EventArgs e)
 		{
 			if (btnFocus != null) btnFocus.BackColor = Color.White;
@@ -110,6 +109,10 @@ namespace UI
 		public void AddPending(UserUI userUI)
         {
 			userUI.AddUserIntoPanelPending(panelPending);
+        }
+		public void AddGroupPending(GroupUI groupUI)
+        {
+			groupUI.AddGroupIntoPanelGroupPending(panelPending);
         }
 		public void RemovePending()
         {

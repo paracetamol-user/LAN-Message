@@ -79,7 +79,7 @@
             this.panelINTERACTED.BackColor = System.Drawing.Color.White;
             this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelINTERACTED.Location = new System.Drawing.Point(0, 88);
-            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
             this.panelINTERACTED.Name = "panelINTERACTED";
             this.panelINTERACTED.Size = new System.Drawing.Size(303, 520);
             this.panelINTERACTED.TabIndex = 7;
@@ -119,7 +119,7 @@
             this.panelOPTION.Controls.Add(this.Avatar);
             this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelOPTION.Location = new System.Drawing.Point(0, 608);
-            this.panelOPTION.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTION.Name = "panelOPTION";
             this.panelOPTION.Padding = new System.Windows.Forms.Padding(16, 7, 0, 7);
             this.panelOPTION.Size = new System.Drawing.Size(303, 70);
@@ -129,7 +129,7 @@
             // 
             this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOPTIONNULL.Location = new System.Drawing.Point(227, 7);
-            this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelOPTIONNULL.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONNULL.Name = "panelOPTIONNULL";
             this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.panelOPTIONNULL.Size = new System.Drawing.Size(11, 56);
@@ -141,7 +141,7 @@
             this.panelInfo.Controls.Add(this.labelUSERNAME);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInfo.Location = new System.Drawing.Point(72, 7);
-            this.panelInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panelInfo.Size = new System.Drawing.Size(155, 56);
@@ -177,7 +177,7 @@
             this.panelPICTUREOPTION.Controls.Add(this.pictureBoxSetting);
             this.panelPICTUREOPTION.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelPICTUREOPTION.Location = new System.Drawing.Point(238, 7);
-            this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelPICTUREOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelPICTUREOPTION.Name = "panelPICTUREOPTION";
             this.panelPICTUREOPTION.Padding = new System.Windows.Forms.Padding(7, 12, 7, 12);
             this.panelPICTUREOPTION.Size = new System.Drawing.Size(65, 56);
@@ -202,7 +202,7 @@
             this.Avatar.Dock = System.Windows.Forms.DockStyle.Left;
             this.Avatar.Image = ((System.Drawing.Image)(resources.GetObject("Avatar.Image")));
             this.Avatar.Location = new System.Drawing.Point(16, 7);
-            this.Avatar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Avatar.Margin = new System.Windows.Forms.Padding(4);
             this.Avatar.Name = "Avatar";
             this.Avatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.Avatar.ShadowDecoration.Parent = this.Avatar;
@@ -217,7 +217,7 @@
             this.pnLine.BackColor = System.Drawing.Color.LightGray;
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine.Location = new System.Drawing.Point(0, 53);
-            this.pnLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnLine.Margin = new System.Windows.Forms.Padding(4);
             this.pnLine.Name = "pnLine";
             this.pnLine.Padding = new System.Windows.Forms.Padding(16, 6, 11, 6);
             this.pnLine.Size = new System.Drawing.Size(303, 1);
@@ -261,7 +261,7 @@
             this.ButtonLanMessenger.HoverState.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.ImageSize = new System.Drawing.Size(30, 30);
             this.ButtonLanMessenger.Location = new System.Drawing.Point(0, 0);
-            this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonLanMessenger.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonLanMessenger.Name = "ButtonLanMessenger";
             this.ButtonLanMessenger.ShadowDecoration.Parent = this.ButtonLanMessenger;
             this.ButtonLanMessenger.Size = new System.Drawing.Size(303, 53);

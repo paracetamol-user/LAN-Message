@@ -78,7 +78,6 @@ namespace UI
             groupForm.BringToFront();
             // Form1.groupFormFocus = this.groupForm;
         }
-
         public void AddGroupInteracted()
         {
             if (this.panelINTERACTED.Contains(ucGroupInteract))

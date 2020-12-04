@@ -50,7 +50,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
         private void pnContainPicture_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
