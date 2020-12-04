@@ -26,3 +26,4 @@ D:\LAN-Message\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
 D:\LAN-Message\Network\obj\Debug\Communication.csproj.CopyComplete
 D:\LAN-Message\Network\obj\Debug\Network.dll
 D:\LAN-Message\Network\obj\Debug\Network.pdb
+D:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache

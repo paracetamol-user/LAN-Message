@@ -36,10 +36,15 @@ namespace UI
 			this.isFriend = isFriend;
 			this.isGr = false;
 		}
-		public void ResetTheme()
-        {
-			this.textBox1.BackColor = Form1.theme.FocusColor;
-			this.textBox1.ForeColor = Form1.theme.TextColor;
+        //public void ChangeColorText()
+        //{
+        //    this.textBox1.BackColor = Form1.theme.TxtBackColor;
+        //    this.textBox1.ForeColor = Form1.theme.TxtForeColor;
+        //}
+        public void ResetTheme()
+		{
+			this.textBox1.BackColor = Form1.theme.TxtBackColor;
+			this.textBox1.ForeColor = Form1.theme.TxtForeColor;
 			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
 		}
 		public void InitColor()
@@ -93,7 +98,7 @@ namespace UI
 		private void EnableUser(string text)
 		{
 			if (isGr)// này là dành cho search gr
-            {
+			{
 				//foreach (var item in GrUIs)
 				//{
 				//	if (item.user.Name.Contains(text))
@@ -107,8 +112,8 @@ namespace UI
 				//	else item.ucSearch.Visible = false;
 				//}
 			}
-            else
-            {
+			else
+			{
 				foreach (var item in UserUIs)
 				{
 					if (item.user.Name.Contains(text))

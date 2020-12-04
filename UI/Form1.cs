@@ -43,7 +43,7 @@ namespace UI
 		{
 			InitializeComponent();           
 		}
-		public Form1(LoginForm loginform, User user, SocketClient client , TcpClient server)
+		public Form1(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
 			UserUIs = new List<UserUI>();
 			listUser = new List<User>();
@@ -52,7 +52,11 @@ namespace UI
 			Form1.server = server;
 			Form1.me = user;
 			theme = new Theme();
-			theme.White();
+			if (Theme == "White")
+			{
+					theme.White();
+			}
+			else theme.Black();
 			me.AvatarPath = @"../../avatarDefault.png";
 			InitializeComponent();
 			LoadMyData();
@@ -74,6 +78,7 @@ namespace UI
         public void ChangeTheme()
 		{
 			this.BackColor = theme.BackColor;
+			this.panelMenu.BackColor = theme.Menu;
 			serverUsersForm.BackColor = theme.BackColor;
 			frmFriend.BackColor = theme.BackColor;
 			settingForm.BackColor = theme.BackColor;
@@ -414,8 +419,12 @@ namespace UI
 		{
 			frmFriend.AddUserIntoFrmFriend(userUI);
 		}
-		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			byte[] buff = new byte[1024];
+			byte[] tembuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White":"Black"));
+			tembuff.CopyTo(buff, 0);
+			await server.GetStream().WriteAsync(buff, 0, buff.Length);
 			loginForm.Close();
 		}
 		public void DisableNotification()

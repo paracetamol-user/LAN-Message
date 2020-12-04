@@ -51,6 +51,7 @@ namespace UI
 		public void ResetTheme()
         {
 			this.userForm.BackColor = Form1.theme.BackColor;
+			this.userForm.InitColor();
             foreach (var item in userForm.Controls)
             {
 				if (item.GetType() == typeof(ucUserINChatBox))
@@ -59,7 +60,7 @@ namespace UI
                 }
 				else if (item.GetType() == typeof(ucMessShow))
                 {
-					(item as ucMessShow).InitColor();
+					(item as ucMessShow).ChangeTheme();
 				}
 				else if (item.GetType() == typeof(ucFileShow))
                 {
