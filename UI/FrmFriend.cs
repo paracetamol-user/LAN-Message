@@ -76,12 +76,21 @@ namespace UI
         }
 		private void LoadPnGroup()
         {
+			foreach(var item in Form1.GroupUIs)
+            {
+				pnGroup.Controls.Add(item.ucGroupAll);
+            }
         }
 		public void AddUserIntoFrmFriend(UserUI userUI)
 		{
 			if (!pnAllFriend.Contains(userUI.ucFriend))
 				pnAllFriend.Controls.Add(userUI.ucFriend);
 		}
+		public void AddGroupIntoGroupForm(GroupUI groupUI)
+        {
+			if (!pnGroup.Contains(groupUI.ucGroupAll))
+				pnGroup.Controls.Add(groupUI.ucGroupAll);
+        }
 		public void RemoveFriend(UserUI userUI)
 		{
 			if (pnAllFriend.Contains(userUI.ucFriend))
@@ -124,7 +133,7 @@ namespace UI
 			pnGroup.Show();
 			pnGroup.BringToFront();
 			pnGroup.Visible = true;
-
+			LoadPnGroup();
         }
     }
 }

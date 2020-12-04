@@ -301,6 +301,16 @@ namespace UI
                         }
                     }
                 }
+                else if (action == "GROUPACCEPT")
+                {
+                    foreach(var item in GroupUIs)
+                    {
+                        if(item.GetID() == data[1])
+                        {
+                            
+                        }
+                    }
+                }
                 else
                 {
                     /// Nén gói tin bị thừa lại để vừa đủ số byte của file.
@@ -360,6 +370,10 @@ namespace UI
         public static void AddUserIntoFrmFriend(UserUI userUI)
         {
             frmFriend.AddUserIntoFrmFriend(userUI);
+        }
+        public static void AddUserToGroup(GroupUI groupUI)
+        {
+
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

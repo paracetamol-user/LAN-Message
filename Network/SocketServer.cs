@@ -521,6 +521,18 @@ namespace Communication
 					return true;
                 }
             }
+			else if (data[0] == "GROUPACCEPT")
+			{
+                try
+                {
+					// SQL command
+                }
+				catch(Exception ex)
+                {
+
+                }
+            }
+
 			return false;
 		}
 		private async Task SendFileToClient(byte[] package , UserClient client)

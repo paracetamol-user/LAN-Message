@@ -47,7 +47,7 @@ namespace UI
         }
         private async void SendAcceptGroupInviteToServer()
         {
-            byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTGROUP%" + Form1.me.Id + "%" );
+            byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + Form1.me.Id + "%" + uiParent.GetID());
             byte[] buff = new byte[1024];
             tempbuff.CopyTo(buff, 0);
             await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);

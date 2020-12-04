@@ -59,7 +59,7 @@ namespace UI
             }
             this.AddGroupInteracted();
         }
-        public void AddGroupIntoPanelAll(Panel panelGroupAll)
+        public void AddGroupIntoPanelGroup(Panel panelGroupAll)
         {
             panelGroupAll.Controls.Add(ucGroupAll);
         }
@@ -67,10 +67,6 @@ namespace UI
         {
             ucGroupPending = new ucGroupPending(this, panelGPending);
             panelGPending.Controls.Add(ucGroupPending);
-        }
-        public void AddGroupIntoPanelAddedGroup(Panel pnGroup)
-        {
-            //
         }
         public void ShowChatForm()
         {
