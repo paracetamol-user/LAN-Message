@@ -376,7 +376,7 @@ namespace UI
 						{
 							isFile = false;
 							_FileDialog fd = new _FileDialog();
-							fd.SaveFile(dataFile, fileData.Name + fileData.Extension);
+							fd.SaveFile(dataFile, fileData.Name);
 							/// AddIDIntoFile();
 						}
 						else if (isAvatar == true) // nếu file là Avatar
@@ -454,11 +454,26 @@ namespace UI
 		}
 		private void btnFriend_MouseMove(object sender, MouseEventArgs e)
 		{
-			(sender as Button).BackColor = theme.FocusColor;
+            try
+            {
+				(sender as Button).BackColor = theme.FocusColor;
+			}
+            catch
+            {
+
+            }
 		}
 		private void btnFriend_MouseLeave(object sender, EventArgs e)
 		{
-			(sender as Button).BackColor = Color.Transparent;
+			
+			try
+			{
+				(sender as Button).BackColor = Color.Transparent;
+			}
+			catch
+			{
+
+			}
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{

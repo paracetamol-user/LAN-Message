@@ -127,7 +127,7 @@ namespace UI
 				if (item.user.Status == true && item.user.IsFriend == true)
 				{
 					pnOnlineFriend.Controls.Add(item.ucFriendOnline);
-					item.ucFriend.InitColor();
+					item.ucFriendOnline.InitColor();
 				}
 			}
 		}
