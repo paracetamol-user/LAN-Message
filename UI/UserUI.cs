@@ -32,6 +32,7 @@ namespace UI
 		public ucUserAll ucSearch;
 
 		public ContextMenuStrip cmns;
+		public ContextMenuStrip cmnsMess;
 		public UserUI() { }
 		public UserUI(User user, Panel PANELINTERACTED, Panel PANELRIGHT)
 		{
@@ -49,21 +50,21 @@ namespace UI
 			ucSearch = new ucUserAll(this);
 		}
 		public void ResetTheme()
-        {
+		{
 			this.userForm.BackColor = Form1.theme.BackColor;
 			this.userForm.InitColor();
-            foreach (var item in userForm.Controls)
-            {
+			foreach (var item in userForm.Controls)
+			{
 				if (item.GetType() == typeof(ucUserINChatBox))
-                {
+				{
 					(item as ucUserINChatBox).InitColor();
-                }
+				}
 				else if (item.GetType() == typeof(ucMessShow))
-                {
+				{
 					(item as ucMessShow).ChangeTheme();
 				}
 				else if (item.GetType() == typeof(ucFileShow))
-                {
+				{
 					(item as ucFileShow).InitColor();
 				}
 			}
@@ -71,12 +72,12 @@ namespace UI
 			ucUserOnline.ResetTheme();
 			ucFriend.ResetTheme();
 			if (ucPending!= null)ucPending.ResetTheme();
-        }
+		}
 		public void ResetPicture()
-        {
+		{
 			this.userForm.ResetPicture();
 			this.ucInterac.ResetPicture();
-        }
+		}
 		/// <summary>
 		/// Get các thuộc tính
 		/// </summary>
@@ -94,12 +95,12 @@ namespace UI
 			userForm = new UserForm(user);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
+
 			cmns = new ContextMenuStrip();
 			cmns.Width = 100;
 			cmns.RenderMode = ToolStripRenderMode.System;
 			cmns.BackColor = Color.White;
 			cmns.ShowImageMargin = false;
-
 			ToolStripButton tsAddFriend = new ToolStripButton("ADD Friend");
 			tsAddFriend.Click += TsAddFriend_Click;
 			ToolStripButton tsAddGroup = new ToolStripButton("ADD Group");
@@ -108,12 +109,20 @@ namespace UI
 			tsRemoveFriend.Click += TsRemoveFriend_Click;
 			tsRemoveFriend.ForeColor = Color.Red;
 			ToolStripSeparator tsLine = new ToolStripSeparator();
-
 			cmns.Items.Add(tsAddFriend);
 			cmns.Items.Add(tsAddGroup);
 			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
+
+			//ToolStripButton tsbEdit = new ToolStripButton("Edit Message");
+			//ToolStripButton tsbDelete = new ToolStripButton("Delete Message");
+			//ToolStripButton tsbPin = new ToolStripButton("Pin Message");
+
+			//cmnsMess.Items.Add(tsAddFriend);
+			//cmnsMess.Items.Add(tsAddGroup);
+			//cmnsMess.Items.Add(tsLine);
+			//cmnsMess.Items.Add(tsRemoveFriend);
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
@@ -262,5 +271,9 @@ namespace UI
 		{
 			this.user.Status = status;
 		}
+		public void EditMessage(string oldMess , string newMess)
+        {
+			this.userForm.EditMessage(oldMess, newMess);
+        }
 	}
 }

@@ -45,6 +45,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(342, 27);
             this.panel1.TabIndex = 0;
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // label1
             // 
@@ -57,6 +58,7 @@
             this.label1.Size = new System.Drawing.Size(342, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "label 1";
+            this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // ucMessShow
             // 
@@ -68,6 +70,7 @@
             this.Name = "ucMessShow";
             this.Padding = new System.Windows.Forms.Padding(11, 0, 20, 5);
             this.Size = new System.Drawing.Size(373, 32);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

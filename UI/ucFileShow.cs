@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using UserManager;
+using System.Threading;
 
 namespace UI
 {
 	public partial class ucFileShow : UserControl
 	{
-		private Panel panelParent;
+		private ucUserINChatBox ucparent;
 		private string fileId;
 		private string fileName;
 		public User user;
@@ -22,29 +23,28 @@ namespace UI
 		{
 			InitializeComponent();
 		}
-		public ucFileShow(User user , string fileId , string fileName)
+		public ucFileShow(User user , string fileId , string fileName, ucUserINChatBox ucUserINChatBox)
 		{
 			InitializeComponent();
-		
+			this.ucparent = ucUserINChatBox;
 			this.user = user;
 			this.fileId = fileId;
 			this.fileName = fileName;
 			this._FileName = fileName;
-
 		}
 		public void InitColor()
-        {
+		{
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.BackColor = Form1.theme.FocusColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
 		}
 
-        public Panel _panelParent
+		public ucUserINChatBox _panelParent
 		{
 			set
 			{
-				this.panelParent = value;
+				this.ucparent = value;
 			}
 		}
 		public string _FileId
@@ -87,11 +87,18 @@ namespace UI
 			temp.Image = Image.FromFile(@"..\..\images\check.png");
 			temp.Enabled = false;
 		}
-
-		
 		public void _DisableButDownLoad()
 		{
 			this.pictureBoxDownLoad.Visible = false;
 		}
-	}
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+			this.ucparent.BackColor = Form1.theme.Menu;
+        }
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+			this.ucparent.BackColor = Color.Transparent;
+        }
+    }
 }

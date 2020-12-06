@@ -67,15 +67,15 @@ namespace UI
 			ChangeTheme();
 			AwaitReadData(); 
 		}
-        private void InitSettingForm()
-        {
+		private void InitSettingForm()
+		{
 			settingForm = new SettingForm(me, this);
 			settingForm.TopLevel = false;
 			settingForm.Dock = DockStyle.Fill;
 			this.Controls.Add(settingForm);
 			settingForm.BackColor = theme.BackColor;	
 		}
-        public void ChangeTheme()
+		public void ChangeTheme()
 		{
 			this.BackColor = theme.BackColor;
 			this.panelMenu.BackColor = theme.Menu;
@@ -93,39 +93,39 @@ namespace UI
 			//frmFriend.ChangeColorControl();
 		}
 
-        private void ChangeColorFocus()
-        {
+		private void ChangeColorFocus()
+		{
 			if (userUIForcus != null ) userUIForcus.ucInterac.ChangeColorWhenClick();
-        }
-        private void ChangeColorUserUIs()
-        {
-            foreach (var item in UserUIs)
-            {
+		}
+		private void ChangeColorUserUIs()
+		{
+			foreach (var item in UserUIs)
+			{
 				item.ResetTheme();
-            }
-        }
-        private void ChangePicture()
-        {
+			}
+		}
+		private void ChangePicture()
+		{
 			this.pictureBoxSetting.Image = Image.FromFile(theme.PictureOption);
-            foreach (var item in UserUIs)
-            {
+			foreach (var item in UserUIs)
+			{
 				item.ResetPicture();
-            }
+			}
 			serverUsersForm.ResetPicture();
 			frmFriend.ResetPicture();
 			settingForm.ResetPicture();
 		}
-        private void ChangeColorLine()
+		private void ChangeColorLine()
 		{
-            this.pnLine.BackColor = theme.LineColor;
+			this.pnLine.BackColor = theme.LineColor;
 			this.pnLine2.BackColor = theme.LineColor;
 			serverUsersForm.ChangeColorLine();
 			frmFriend.ChangeColorLine();
 			settingForm.ChangeColorLine();
-            foreach (var item in UserUIs)
-            {
+			foreach (var item in UserUIs)
+			{
 				item.userForm.ChangeColorLine();
-            }
+			}
 		}
 		private void ChangeColorAllLabelControls(Control x)
 		{
@@ -360,6 +360,17 @@ namespace UI
 						}
 					}
 				}
+				else if (action == "EDITMESSAGE")
+				{
+                    foreach (var item in UserUIs)
+                    {
+						if (item.user.Id == data[1])
+                        {
+							item.EditMessage(data[2], data[3]);
+							break;
+                        }
+                    }
+				}
 				else
 				{
 					/// Nén gói tin bị thừa lại để vừa đủ số byte của file.
@@ -454,14 +465,14 @@ namespace UI
 		}
 		private void btnFriend_MouseMove(object sender, MouseEventArgs e)
 		{
-            try
-            {
+			try
+			{
 				(sender as Button).BackColor = theme.FocusColor;
 			}
-            catch
-            {
+			catch
+			{
 
-            }
+			}
 		}
 		private void btnFriend_MouseLeave(object sender, EventArgs e)
 		{

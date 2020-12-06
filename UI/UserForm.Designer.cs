@@ -254,6 +254,7 @@
             // pictureBoxMenu
             // 
             this.pictureBoxMenu.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxMenu.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMenu.Image")));
             this.pictureBoxMenu.Location = new System.Drawing.Point(9, 9);

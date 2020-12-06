@@ -19,11 +19,12 @@ namespace UI
 {
 	public partial class UserForm : Form
 	{
-		private User user;
+		public User user;
 		private List<Panel> BoxChats;
 		private int id;
 		private List<FileInfo> files;
 		private short LastInteracted;
+		public ucUserINChatBox messageFocus;
 		public UserForm()
 		{
 			InitializeComponent();
@@ -71,8 +72,8 @@ namespace UI
 			Panel tempPanel = new Panel();
 			tempPanel.Dock = DockStyle.Top;
 			tempPanel.AutoSize = true;
-			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
-			ucMessShow messShow = new ucMessShow(str,user);
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user,this);
+			ucMessShow messShow = new ucMessShow(str,user,UserInChatBox);
 			messShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
 			UserInChatBox._AddMessControl(messShow);
@@ -88,10 +89,8 @@ namespace UI
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
-			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user);
-			
-			ucFileShow fileshow = new ucFileShow(_user, tempId, tempName);
-			
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user,this);
+			ucFileShow fileshow = new ucFileShow(_user, tempId, tempName,UserInChatBox);
 			if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
@@ -102,6 +101,20 @@ namespace UI
 			UserInChatBox.InitColor();
 			fileshow.InitColor();
 		}
+		public void EditMessage(string oldMess, string newMess)
+        {
+            foreach (var item in this.panelListChat.Controls)
+            {
+				if (item.GetType() == typeof(Panel))
+                {
+					foreach (var item2 in (item as Panel).Controls)
+                    {
+						if ((item2 as ucUserINChatBox).EditMess(oldMess, newMess)) break;
+					}
+						
+                }
+            }
+        }
 		public async Task SendMessage()
 		{
 			if (TextBoxEnterChat.Text != "")

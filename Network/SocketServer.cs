@@ -513,6 +513,21 @@ namespace Communication
 				command.ExecuteNonQuery();
 				connection.Close();
 			}
+			else if (data[0] == "EDITMESSAGE")
+            {
+				byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+data[1]+ "%" + data[3] + "%" + data[4]);
+				buffMessage = new byte[1024];
+				tempbuff.CopyTo(buffMessage, 0);
+				foreach (var item in clientInvalid)
+				{
+					if (item.id_ == data[2])
+					{
+						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+						break;
+					}
+				}
+				return true;
+			}
 			return false;
 		}
 		private async Task SendFileToClient(byte[] package , UserClient client)

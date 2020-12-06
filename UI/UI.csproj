@@ -90,6 +90,12 @@
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Theme.cs" />
+    <Compile Include="ucEditMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucEditMessage.Designer.cs">
+      <DependentUpon>ucEditMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucFriend.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucEditMessage.resx">
+      <DependentUpon>ucEditMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucFriend.resx">
       <DependentUpon>ucFriend.cs</DependentUpon>
