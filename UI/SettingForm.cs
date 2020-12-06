@@ -34,7 +34,7 @@ namespace UI
 			
 		}
 		public void ChangeColorPanelControl()
-        {
+		{
 			this.pnMenu.BackColor = Form1.theme.Menu;
 			this.pnUserName.BackColor = Form1.theme.FocusColor;
 			this.pnPassword.BackColor = Form1.theme.FocusColor;
@@ -46,7 +46,7 @@ namespace UI
 			this.btnSave.BackColor = Form1.theme.FocusColor;
 		}
 		public void ChangeColorAllLabelControl(Control x)
-        {
+		{
 			foreach (var item in x.Controls)
 			{
 				if (item.GetType() == typeof(Label))
@@ -64,23 +64,23 @@ namespace UI
 					(item as Guna.UI2.WinForms.Guna2Button).ForeColor = Form1.theme.TextColor;
 				}
 				else if (item.GetType() == typeof(RadioButton))
-                {
+				{
 					(item as RadioButton).ForeColor = Form1.theme.TextColor;
 				}
 				ChangeColorAllLabelControl(item as Control);
 			}
 		}
 		public void ChangeColorLine()
-        {
+		{
 			this.pnLine2.BackColor = Form1.theme.LineColor;
 			this.panelLine1.BackColor = Form1.theme.LineColor;
-        }
+		}
 		public void ResetPicture()
-        {
+		{
 			this.pictureBox2.Image = Image.FromFile(Form1.theme.PictureCancel);
-        }
-        private void InitStartForm()
-        {
+		}
+		private void InitStartForm()
+		{
 			this.pnMyAccount.Show();
 			this.pnMyAccount.BringToFront();
 			this.pnMyAccount.Dock = DockStyle.Fill;
@@ -99,10 +99,8 @@ namespace UI
 			this.parentForm = parent;
 			this.pictureBox1.Image = Image.FromFile(me.AvatarPath);
 		}
-
 		private bool isChangingUsername = false;
 		private TextBox txtUsername = null;
-
 		private void ReleaseUsernameChange()
 		{
 			// Remove textbox for change username
@@ -186,30 +184,116 @@ namespace UI
 				lblErrorINUsername.Visible = true;
 			}
 		}
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter =
-				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF";
-
-			openFileDialog.Multiselect = false;
-
-			DialogResult result = openFileDialog.ShowDialog();
-			if (result == DialogResult.OK)
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if (this.btnFocus != null) this.btnFocus.BackColor = Color.Transparent;
+			this.pnMyAccount.Show();
+			this.pnMyAccount.BringToFront();
+			this.pnMyAccount.Dock = DockStyle.Fill;
+			this.pnMyAccount.Visible = true;
+			this.btnMyAccount.BackColor = Form1.theme.FocusColor;
+			this.btnFocus = this.btnMyAccount;
+		}
+		private void button4_Click(object sender, EventArgs e)
+		{
+			if (this.btnFocus != null) this.btnFocus.BackColor = Color.Transparent;
+			this.pnTheme.Show();
+			this.pnTheme.BringToFront();
+			this.pnTheme.Dock = DockStyle.Fill;
+			this.pnTheme.Visible = true;
+			this.btnTheme.BackColor = Form1.theme.FocusColor;
+			this.btnFocus = this.btnTheme;
+			if (Form1.theme.IsWhite) this.radioButton1.Checked = true;
+			else this.radioButton2.Checked = true;
+		}
+		private void btnLog_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+		}
+		private void pictureBox2_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+		}
+		private void btnMyAccount_MouseMove(object sender, MouseEventArgs e)
+		{
+			(sender as Button).BackColor = Form1.theme.FocusColor;
+		}
+		private void btnTheme_MouseLeave(object sender, EventArgs e)
+		{
+			(sender as Button).BackColor = Color.Transparent;
+		}
+		private void radioButton1_CheckedChanged(object sender, EventArgs e)
+		{
+			Form1.theme.White();
+			parentForm.ChangeTheme();
+		}
+		private void radioButton2_CheckedChanged(object sender, EventArgs e)
+		{
+			Form1.theme.Black();
+			parentForm.ChangeTheme();
+		}
+		private void btnEditUsername_Click(object sender, EventArgs e)
+		{
+			if (!isChangingUsername)
 			{
-				Image avatar = Image.FromFile(openFileDialog.FileName);
-				this.pictureBox1.Image = avatar;
-
-				// Upload to database and update to all users.
-				fi = new FileInfo(openFileDialog.FileName);
+				isChangingUsername = true;
+				// Hide label
+				this.lblUsername.Visible = false;
+				// Create the textbox for typing username
+				txtUsername = new TextBox();
+				this.panelUsername.Controls.Add(txtUsername);
+				txtUsername.Text = lblUsername.Text;
+				txtUsername.Dock = DockStyle.Left;
+				txtUsername.Width = 180;
+				txtUsername.Height = 22;
+				txtUsername.TextChanged += (s, ev) =>
+				{
+					this.btnDiscard.Enabled = true;
+					this.btnSave.Enabled = true;
+				};
 			}
+			//// Enable discard and save button for click
+			//this.btnDiscard.Enabled = true;
+			//this.btnSave.Enabled = true;
+		}
+        private void btnEditDownloadPath_Click(object sender, EventArgs e)
+        {
+			FolderBrowserDialog browser = new FolderBrowserDialog();
+			// Description for browser
+			browser.Description = "Select downloads save path";
+			// Allow create new folders in file explorer
+			browser.ShowNewFolderButton = true;
+			// Default to the My documents folder
+			browser.RootFolder = Environment.SpecialFolder.MyDocuments;
+			// Show the browser dialog and return path string
+			DialogResult result = browser.ShowDialog();
+			if (result == DialogResult.OK)
+				lblPath.Text = browser.SelectedPath;
+
 
 			// Enable discard and save button for click
-			this.btnDiscard.Enabled = false;
+			this.btnDiscard.Enabled = true;
 			this.btnSave.Enabled = true;
 		}
-        private void btnEditPassword_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
+			// Update to server
+			if (txtUsername != null && txtUsername.Text != Form1.me.Name)
+				ChangeUsernameInServer(txtUsername.Text);
+			ChangeAvatar();
+		}
+        private void btnSavePassword_Click(object sender, EventArgs e)
+        {
+			if (txtOldPassword.Text.Trim() == string.Empty || txtNewPassword.Text.Trim() == string.Empty)
+			{
+				lblErrorINPassword.Text = "Thiếu thông tin";
+				return;
+			}
+
+			CheckPasswordFromServer();
+		}
+		private void btnEditPassword_Click(object sender, EventArgs e)
+		{
 			if (this.panelChangePassword.Visible == false)
 			{
 				this.lblNoticeINPassword.Visible = false;
@@ -238,136 +322,33 @@ namespace UI
 			this.btnDiscard.Enabled = false;
 			this.btnSave.Enabled = false;
 		}
-        private void btnSave_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-			// Update to server
-			if (txtUsername != null && txtUsername.Text != Form1.me.Name)
-				ChangeUsernameInServer(txtUsername.Text);
-			ChangeAvatar();
-		}
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-			this.Close();
-			parentForm.Close();
-		}
-        private void btnSavePassword_Click(object sender, EventArgs e)
-        {
-			if (txtOldPassword.Text.Trim() == string.Empty || txtNewPassword.Text.Trim() == string.Empty)
-			{
-				lblErrorINPassword.Text = "Thiếu thông tin";
-				return;
-			}
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter =
+				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF";
 
-			CheckPasswordFromServer();
-		}
-        private void btnEditDownloadPath_Click(object sender, EventArgs e)
-        {
-			FolderBrowserDialog browser = new FolderBrowserDialog();
-			// Description for browser
-			browser.Description = "Select downloads save path";
-			// Allow create new folders in file explorer
-			browser.ShowNewFolderButton = true;
-			// Default to the My documents folder
-			browser.RootFolder = Environment.SpecialFolder.MyDocuments;
-			// Show the browser dialog and return path string
-			DialogResult result = browser.ShowDialog();
+			openFileDialog.Multiselect = false;
+
+			DialogResult result = openFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
-				lblPath.Text = browser.SelectedPath;
+			{
+				Image avatar = Image.FromFile(openFileDialog.FileName);
+				this.pictureBox1.Image = avatar;
 
+				// Upload to database and update to all users.
+				fi = new FileInfo(openFileDialog.FileName);
+			}
 
 			// Enable discard and save button for click
-			this.btnDiscard.Enabled = true;
+			this.btnDiscard.Enabled = false;
 			this.btnSave.Enabled = true;
 		}
-        private void btnEditUsername_Click(object sender, EventArgs e)
-        {
-			if (!isChangingUsername)
-			{
-				isChangingUsername = true;
-				// Hide label
-				this.lblUsername.Visible = false;
-				// Create the textbox for typing username
-				txtUsername = new TextBox();
-				this.panelUsername.Controls.Add(txtUsername);
-				txtUsername.Text = lblUsername.Text;
-				txtUsername.Dock = DockStyle.Left;
-				txtUsername.Width = 180;
-				txtUsername.Height = 22;
-				txtUsername.TextChanged += (s, ev) =>
-				{
-					this.btnDiscard.Enabled = true;
-					this.btnSave.Enabled = true;
-				};
-			}
-			//// Enable discard and save button for click
-			//this.btnDiscard.Enabled = true;
-			//this.btnSave.Enabled = true;
-		}
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-			if (this.btnFocus != null) this.btnFocus.BackColor = Color.Transparent;
-			this.pnMyAccount.Show();
-			this.pnMyAccount.BringToFront();
-			this.pnMyAccount.Dock = DockStyle.Fill;
-			this.pnMyAccount.Visible = true;
-			this.btnMyAccount.BackColor = Form1.theme.FocusColor;
-			this.btnFocus = this.btnMyAccount;
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-			if (this.btnFocus != null) this.btnFocus.BackColor = Color.Transparent;
-			this.pnTheme.Show();
-			this.pnTheme.BringToFront();
-			this.pnTheme.Dock = DockStyle.Fill;
-			this.pnTheme.Visible = true;
-			this.btnTheme.BackColor = Form1.theme.FocusColor;
-			this.btnFocus = this.btnTheme;
-			if (Form1.theme.IsWhite) this.radioButton1.Checked = true;
-			else this.radioButton2.Checked = true;
-		}
-
-        private void btnLog_Click(object sender, EventArgs e)
-        {
-			this.Hide();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-			this.Hide();
-        }
-     
-
-        private void btnMyAccount_MouseMove(object sender, MouseEventArgs e)
-        {
-			(sender as Button).BackColor = Form1.theme.FocusColor;
-		}
-
-        private void btnTheme_MouseLeave(object sender, EventArgs e)
-        {
-			(sender as Button).BackColor = Color.Transparent;
-		}
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-			Form1.theme.White();
-			parentForm.ChangeTheme();
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-			Form1.theme.Black();
-			parentForm.ChangeTheme();
-		}
-
-
         //if (Form1.me.Name != lblName.Text)
         //	{
         //		Form1.me.Name = lblName.Text;
         //	}
         //	Form1.settingForm = null;
         //	this.Close();
-
-
     }
 }

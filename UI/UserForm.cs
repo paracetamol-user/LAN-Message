@@ -67,7 +67,7 @@ namespace UI
 		{
 			
 		}
-		public void AddItemInToListChat(User user, string str)
+		public void AddItemInToListChat(User user,string IDMess, string str)
 		{
 			Panel tempPanel = new Panel();
 			tempPanel.Dock = DockStyle.Top;
@@ -82,15 +82,18 @@ namespace UI
 			this.panelListChat.Controls.Add(tempPanel);
 			UserInChatBox.InitColor();
 			messShow.ChangeTheme();
+
+			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
+			else UserInChatBox.ID = IDMess;
 		}
-		public void AddFileToListChat(User _user,string tempId, string tempName)
+		public void AddFileToListChat(User _user,string tempID, string tempName)
 		{
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user,this);
-			ucFileShow fileshow = new ucFileShow(_user, tempId, tempName,UserInChatBox);
+			ucFileShow fileshow = new ucFileShow(_user, tempID, tempName,UserInChatBox);
 			if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
@@ -100,8 +103,11 @@ namespace UI
 			this.panelListChat.Controls.Add(tempPanel);
 			UserInChatBox.InitColor();
 			fileshow.InitColor();
+
+			if (tempID == "-1") Form1.listFileAwaitID.Add(UserInChatBox);// Thêm vào hàng đợi ID file từ server gửi xuống
+			else UserInChatBox.ID = tempID;
 		}
-		public void EditMessage(string oldMess, string newMess)
+		public void EditMessage(string IDMess, string newMess)
         {
             foreach (var item in this.panelListChat.Controls)
             {
@@ -109,12 +115,32 @@ namespace UI
                 {
 					foreach (var item2 in (item as Panel).Controls)
                     {
-						if ((item2 as ucUserINChatBox).EditMess(oldMess, newMess)) break;
+						if ((item2 as ucUserINChatBox).ID == IDMess)
+                        {
+							(item2 as ucUserINChatBox).EditMessage(newMess);
+							return;
+						}
 					}
-						
                 }
             }
         }
+		public void DeleteMessage(string IDMess)
+        {
+			foreach (var item in this.panelListChat.Controls)
+			{
+				if (item.GetType() == typeof(Panel))
+				{
+					foreach (var item2 in (item as Panel).Controls)
+					{
+						if ((item2 as ucUserINChatBox).ID == IDMess)
+						{
+							(item2 as ucUserINChatBox).DeleteMessage(IDMess);
+							return;
+						}
+					}
+				}
+			}
+		}
 		public async Task SendMessage()
 		{
 			if (TextBoxEnterChat.Text != "")
@@ -127,7 +153,7 @@ namespace UI
 				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 
 				// tạo một panel chat 
-				this.AddItemInToListChat(Form1.me, this.TextBoxEnterChat.Text);
+				this.AddItemInToListChat(Form1.me,"-1", this.TextBoxEnterChat.Text);
 
 				//clear textbox nhập chat
 				TextBoxEnterChat.Text = "";

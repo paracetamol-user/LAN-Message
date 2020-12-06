@@ -40,7 +40,7 @@ namespace UI
 
 		private void lbSave_Click(object sender, EventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+ Form1.me.Id+"%"+pnparent.parent.user.Id+ "%" + ucmessshow.GetText() + "%" + textBox1.Text);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+ pnparent.ID+"%"+pnparent.parent.user.Id + "%" + textBox1.Text);
 			byte[] buff = new byte[1024];
 			tempbuff.CopyTo(buff, 0);
 			Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);

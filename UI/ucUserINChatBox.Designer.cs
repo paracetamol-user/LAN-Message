@@ -35,24 +35,24 @@
             this.panelAddMessage = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pnMenu = new System.Windows.Forms.Panel();
+            this.pnEdit = new System.Windows.Forms.Panel();
+            this.picEdit = new System.Windows.Forms.PictureBox();
             this.pnPin = new System.Windows.Forms.Panel();
             this.picPin = new System.Windows.Forms.PictureBox();
             this.pnDelete = new System.Windows.Forms.Panel();
             this.picDelete = new System.Windows.Forms.PictureBox();
-            this.pnEdit = new System.Windows.Forms.Panel();
-            this.picEdit = new System.Windows.Forms.PictureBox();
             this.labelName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnMenu.SuspendLayout();
+            this.pnEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             this.pnPin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPin)).BeginInit();
             this.pnDelete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDelete)).BeginInit();
-            this.pnEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -123,71 +123,27 @@
             // 
             // pnMenu
             // 
+            this.pnMenu.Controls.Add(this.pnEdit);
             this.pnMenu.Controls.Add(this.pnPin);
             this.pnMenu.Controls.Add(this.pnDelete);
-            this.pnMenu.Controls.Add(this.pnEdit);
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnMenu.Location = new System.Drawing.Point(784, 3);
+            this.pnMenu.Location = new System.Drawing.Point(775, 3);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(143, 33);
+            this.pnMenu.Padding = new System.Windows.Forms.Padding(5);
+            this.pnMenu.Size = new System.Drawing.Size(152, 33);
             this.pnMenu.TabIndex = 1;
             this.pnMenu.Visible = false;
             this.pnMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
-            // pnPin
-            // 
-            this.pnPin.Controls.Add(this.picPin);
-            this.pnPin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnPin.Location = new System.Drawing.Point(47, 0);
-            this.pnPin.Margin = new System.Windows.Forms.Padding(10);
-            this.pnPin.Name = "pnPin";
-            this.pnPin.Size = new System.Drawing.Size(49, 33);
-            this.pnPin.TabIndex = 3;
-            this.pnPin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            // 
-            // picPin
-            // 
-            this.picPin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picPin.Location = new System.Drawing.Point(0, 0);
-            this.picPin.Name = "picPin";
-            this.picPin.Size = new System.Drawing.Size(49, 33);
-            this.picPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPin.TabIndex = 1;
-            this.picPin.TabStop = false;
-            this.picPin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            // 
-            // pnDelete
-            // 
-            this.pnDelete.Controls.Add(this.picDelete);
-            this.pnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnDelete.Location = new System.Drawing.Point(96, 0);
-            this.pnDelete.Margin = new System.Windows.Forms.Padding(10);
-            this.pnDelete.Name = "pnDelete";
-            this.pnDelete.Size = new System.Drawing.Size(47, 33);
-            this.pnDelete.TabIndex = 2;
-            this.pnDelete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            // 
-            // picDelete
-            // 
-            this.picDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picDelete.Location = new System.Drawing.Point(0, 0);
-            this.picDelete.Name = "picDelete";
-            this.picDelete.Size = new System.Drawing.Size(47, 33);
-            this.picDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picDelete.TabIndex = 1;
-            this.picDelete.TabStop = false;
-            this.picDelete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            // 
             // pnEdit
             // 
             this.pnEdit.Controls.Add(this.picEdit);
-            this.pnEdit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnEdit.Location = new System.Drawing.Point(0, 0);
+            this.pnEdit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnEdit.Location = new System.Drawing.Point(6, 5);
             this.pnEdit.Margin = new System.Windows.Forms.Padding(10);
             this.pnEdit.Name = "pnEdit";
-            this.pnEdit.Size = new System.Drawing.Size(47, 33);
-            this.pnEdit.TabIndex = 0;
-            this.pnEdit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            this.pnEdit.Size = new System.Drawing.Size(47, 23);
+            this.pnEdit.TabIndex = 4;
             // 
             // picEdit
             // 
@@ -196,12 +152,60 @@
             this.picEdit.Image = ((System.Drawing.Image)(resources.GetObject("picEdit.Image")));
             this.picEdit.Location = new System.Drawing.Point(0, 0);
             this.picEdit.Name = "picEdit";
-            this.picEdit.Size = new System.Drawing.Size(47, 33);
+            this.picEdit.Size = new System.Drawing.Size(47, 23);
             this.picEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picEdit.TabIndex = 0;
             this.picEdit.TabStop = false;
             this.picEdit.Click += new System.EventHandler(this.picEdit_Click);
-            this.picEdit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // pnPin
+            // 
+            this.pnPin.Controls.Add(this.picPin);
+            this.pnPin.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnPin.Location = new System.Drawing.Point(53, 5);
+            this.pnPin.Margin = new System.Windows.Forms.Padding(10);
+            this.pnPin.Name = "pnPin";
+            this.pnPin.Size = new System.Drawing.Size(47, 23);
+            this.pnPin.TabIndex = 3;
+            this.pnPin.Visible = false;
+            this.pnPin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // picPin
+            // 
+            this.picPin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picPin.Location = new System.Drawing.Point(0, 0);
+            this.picPin.Name = "picPin";
+            this.picPin.Size = new System.Drawing.Size(47, 23);
+            this.picPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPin.TabIndex = 1;
+            this.picPin.TabStop = false;
+            this.picPin.Visible = false;
+            this.picPin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // pnDelete
+            // 
+            this.pnDelete.Controls.Add(this.picDelete);
+            this.pnDelete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnDelete.Location = new System.Drawing.Point(100, 5);
+            this.pnDelete.Margin = new System.Windows.Forms.Padding(10);
+            this.pnDelete.Name = "pnDelete";
+            this.pnDelete.Size = new System.Drawing.Size(47, 23);
+            this.pnDelete.TabIndex = 2;
+            this.pnDelete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // picDelete
+            // 
+            this.picDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picDelete.Image = ((System.Drawing.Image)(resources.GetObject("picDelete.Image")));
+            this.picDelete.Location = new System.Drawing.Point(0, 0);
+            this.picDelete.Name = "picDelete";
+            this.picDelete.Size = new System.Drawing.Size(47, 23);
+            this.picDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picDelete.TabIndex = 1;
+            this.picDelete.TabStop = false;
+            this.picDelete.Click += new System.EventHandler(this.picDelete_Click);
+            this.picDelete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // labelName
             // 
@@ -236,12 +240,12 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.pnMenu.ResumeLayout(false);
+            this.pnEdit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).EndInit();
             this.pnPin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picPin)).EndInit();
             this.pnDelete.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picDelete)).EndInit();
-            this.pnEdit.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

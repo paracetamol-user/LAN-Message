@@ -259,9 +259,9 @@ namespace UI
 		{
 			return user.Id.ToString();
 		}
-		public async void AddMessage(string mess)
+		public async void AddMessage(string IDMess,string mess)
 		{
-			userForm.AddItemInToListChat(user, mess);
+			userForm.AddItemInToListChat(user,IDMess, mess);
 		}
 		public bool GetStatus()
 		{
@@ -271,9 +271,13 @@ namespace UI
 		{
 			this.user.Status = status;
 		}
-		public void EditMessage(string oldMess , string newMess)
+		public void EditMessage(string idmess, string newMess)
         {
-			this.userForm.EditMessage(oldMess, newMess);
+			this.userForm.EditMessage(idmess, newMess);
+        }
+		public void DeleteMessage(string IDMess)
+        {
+			this.userForm.DeleteMessage(IDMess);
         }
 	}
 }

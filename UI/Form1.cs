@@ -36,7 +36,9 @@ namespace UI
 		public NetworkStream stream;
 		public static List<User> listUser;
 		public static Theme theme;
-		
+		public static List<ucUserINChatBox> listMessAwaitID;
+		public static List<ucUserINChatBox> listFileAwaitID;
+
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
 		//242,243,245
 		public Form1()
@@ -47,6 +49,8 @@ namespace UI
 		{
 			UserUIs = new List<UserUI>();
 			listUser = new List<User>();
+			listMessAwaitID = new List<ucUserINChatBox>();
+			listFileAwaitID = new List<ucUserINChatBox>();
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
@@ -92,7 +96,6 @@ namespace UI
 			serverUsersForm.ChangeColorControl();
 			//frmFriend.ChangeColorControl();
 		}
-
 		private void ChangeColorFocus()
 		{
 			if (userUIForcus != null ) userUIForcus.ucInterac.ChangeColorWhenClick();
@@ -213,13 +216,13 @@ namespace UI
 						}
 					}
 				}
-				else if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
+				else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi 
 				{
 					for (int i = 0; i < UserUIs.Count; i++)
 					{
-						if (UserUIs[i].GetId() == data[2])
+						if (UserUIs[i].GetId() == data[3])
 						{
-							UserUIs[i].AddMessage(data[1]);
+							UserUIs[i].AddMessage(data[1],data[2]);
 							UserUIs[i].BringToTop();
 							break;
 						}
@@ -364,13 +367,34 @@ namespace UI
 				{
                     foreach (var item in UserUIs)
                     {
-						if (item.user.Id == data[1])
+						if (item.user.Id == data[2])
                         {
-							item.EditMessage(data[2], data[3]);
+							item.EditMessage(data[1], data[3]);
 							break;
                         }
                     }
 				}
+				else if (action == "DELETEMESSAGE")
+                {
+					foreach (var item in UserUIs)
+					{
+						if (item.user.Id == data[2])
+						{
+							item.DeleteMessage(data[1]);
+							break;
+						}
+					}
+				}
+				else if (action == "IDMESS")
+                {
+					listMessAwaitID[0].ID = data[1];
+					listMessAwaitID.Remove(listMessAwaitID[0]);
+                }
+				else if (action == "IDFILE")
+                {
+					listFileAwaitID[0].ID = data[1];
+					listFileAwaitID.Remove(listFileAwaitID[0]);
+                }
 				else
 				{
 					/// Nén gói tin bị thừa lại để vừa đủ số byte của file.
@@ -394,7 +418,14 @@ namespace UI
 						{
 							isAvatar = false;
 							string path = @"..\..\cache\avatar\" + fileData.Name + fileData.Extension;
-							File.WriteAllBytes(path, dataFile);
+                            try
+                            {
+								File.WriteAllBytes(path, dataFile);
+							}
+							catch(Exception ex)
+                            {
+
+                            }
 							foreach (var item in UserUIs)
 							{
 								if (item.user.Id == fileData.Name)

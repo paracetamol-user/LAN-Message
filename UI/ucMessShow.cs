@@ -66,7 +66,7 @@ namespace UI
 					ucParent.parent.messageFocus.DisablePnMenu();
 				}
 				ucParent.BackColor = Form1.theme.Menu;
-				if (user == Form1.me)
+				if (user == Form1.me && this.ucParent.acceptFocus)
 				{
 					this.ucParent.EnablePnMenu();
 				}
@@ -74,5 +74,11 @@ namespace UI
 				ucParent.parent.messageFocus = ucParent;
 			}
 		}
+		public void DeleteMessage()
+        {
+			this.label1.Text = "Deleted message";
+			this.label1.Font = new Font("Dubai",10,FontStyle.Underline);
+
+        }
     }
 }

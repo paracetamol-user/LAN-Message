@@ -148,7 +148,7 @@ namespace UI
             this.pnMenu.Controls.Add(this.pn1);
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnMenu.Location = new System.Drawing.Point(0, 37);
-            this.pnMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnMenu.Margin = new System.Windows.Forms.Padding(4);
             this.pnMenu.Name = "pnMenu";
             this.pnMenu.Padding = new System.Windows.Forms.Padding(13, 0, 13, 62);
             this.pnMenu.Size = new System.Drawing.Size(303, 852);
@@ -163,7 +163,7 @@ namespace UI
             this.btnTheme.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTheme.ForeColor = System.Drawing.Color.DimGray;
             this.btnTheme.Location = new System.Drawing.Point(13, 120);
-            this.btnTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTheme.Margin = new System.Windows.Forms.Padding(4);
             this.btnTheme.Name = "btnTheme";
             this.btnTheme.Size = new System.Drawing.Size(277, 46);
             this.btnTheme.TabIndex = 14;
@@ -192,7 +192,7 @@ namespace UI
             this.btnLog.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLog.ForeColor = System.Drawing.Color.Maroon;
             this.btnLog.Location = new System.Drawing.Point(13, 744);
-            this.btnLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLog.Margin = new System.Windows.Forms.Padding(4);
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(277, 46);
             this.btnLog.TabIndex = 4;
@@ -211,7 +211,7 @@ namespace UI
             this.btnNotification.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNotification.ForeColor = System.Drawing.Color.DimGray;
             this.btnNotification.Location = new System.Drawing.Point(13, 74);
-            this.btnNotification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNotification.Margin = new System.Windows.Forms.Padding(4);
             this.btnNotification.Name = "btnNotification";
             this.btnNotification.Size = new System.Drawing.Size(277, 46);
             this.btnNotification.TabIndex = 3;
@@ -229,7 +229,7 @@ namespace UI
             this.btnMyAccount.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMyAccount.ForeColor = System.Drawing.Color.DimGray;
             this.btnMyAccount.Location = new System.Drawing.Point(13, 30);
-            this.btnMyAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMyAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnMyAccount.Name = "btnMyAccount";
             this.btnMyAccount.Size = new System.Drawing.Size(277, 44);
             this.btnMyAccount.TabIndex = 2;
@@ -245,7 +245,7 @@ namespace UI
             this.pn1.Controls.Add(this.label8);
             this.pn1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn1.Location = new System.Drawing.Point(13, 0);
-            this.pn1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pn1.Margin = new System.Windows.Forms.Padding(4);
             this.pn1.Name = "pn1";
             this.pn1.Padding = new System.Windows.Forms.Padding(63, 0, 0, 0);
             this.pn1.Size = new System.Drawing.Size(277, 30);
@@ -269,7 +269,7 @@ namespace UI
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(1562, 37);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 4, 53, 4);
             this.panel1.Size = new System.Drawing.Size(117, 852);
@@ -280,7 +280,7 @@ namespace UI
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(64, 36);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -294,7 +294,7 @@ namespace UI
             this.pnTheme.Controls.Add(this.panel12);
             this.pnTheme.Controls.Add(this.panel9);
             this.pnTheme.Location = new System.Drawing.Point(339, 23);
-            this.pnTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnTheme.Margin = new System.Windows.Forms.Padding(4);
             this.pnTheme.Name = "pnTheme";
             this.pnTheme.Size = new System.Drawing.Size(300, 133);
             this.pnTheme.TabIndex = 9;
@@ -305,7 +305,7 @@ namespace UI
             this.panel12.Controls.Add(this.panel14);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 41);
-            this.panel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(300, 50);
             this.panel12.TabIndex = 2;
@@ -316,7 +316,7 @@ namespace UI
             this.panel14.Controls.Add(this.radioButton1);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel14.Location = new System.Drawing.Point(0, 0);
-            this.panel14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel14.Margin = new System.Windows.Forms.Padding(4);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(251, 50);
             this.panel14.TabIndex = 1;
@@ -326,7 +326,7 @@ namespace UI
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton2.Location = new System.Drawing.Point(151, 15);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(66, 21);
             this.radioButton2.TabIndex = 2;
@@ -340,7 +340,7 @@ namespace UI
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton1.Location = new System.Drawing.Point(45, 15);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(73, 21);
             this.radioButton1.TabIndex = 1;
@@ -354,7 +354,7 @@ namespace UI
             this.panel9.Controls.Add(this.label9);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
             this.panel9.Size = new System.Drawing.Size(300, 41);
@@ -446,6 +446,7 @@ namespace UI
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save change";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // pnContainDiscard
             // 
@@ -472,6 +473,7 @@ namespace UI
             this.btnDiscard.TabIndex = 3;
             this.btnDiscard.Text = "Discard change";
             this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // panel7
             // 
@@ -587,6 +589,7 @@ namespace UI
             this.btnEditDownloadPath.TabIndex = 0;
             this.btnEditDownloadPath.Text = "CHANGE";
             this.btnEditDownloadPath.UseVisualStyleBackColor = false;
+            this.btnEditDownloadPath.Click += new System.EventHandler(this.btnEditDownloadPath_Click);
             // 
             // pnPassword
             // 
@@ -671,6 +674,7 @@ namespace UI
             this.btnSavePassword.Text = "SAVE";
             this.btnSavePassword.UseVisualStyleBackColor = false;
             this.btnSavePassword.Visible = false;
+            this.btnSavePassword.Click += new System.EventHandler(this.btnSavePassword_Click);
             // 
             // txtNewPassword
             // 
@@ -795,6 +799,7 @@ namespace UI
             this.btnEditPassword.TabIndex = 0;
             this.btnEditPassword.Text = "CHANGE";
             this.btnEditPassword.UseVisualStyleBackColor = false;
+            this.btnEditPassword.Click += new System.EventHandler(this.btnEditPassword_Click);
             // 
             // pnUserName
             // 
@@ -904,6 +909,7 @@ namespace UI
             this.btnEditUsername.TabIndex = 0;
             this.btnEditUsername.Text = "CHANGE";
             this.btnEditUsername.UseVisualStyleBackColor = false;
+            this.btnEditUsername.Click += new System.EventHandler(this.btnEditUsername_Click);
             // 
             // panel8
             // 
@@ -971,6 +977,7 @@ namespace UI
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel3
             // 

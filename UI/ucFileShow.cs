@@ -100,5 +100,14 @@ namespace UI
         {
 			this.ucparent.BackColor = Color.Transparent;
         }
+		public string GetText()
+        {
+			return this.label1.Text;
+        }
+		public void DeleteMessage()
+        {
+			this.label1.Text = "Deleted file";
+			this.label1.Font = new Font("Dubai", 10, FontStyle.Underline);
+		}
     }
 }
