@@ -32,17 +32,17 @@ namespace Communication
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 
 
-        string connString = @"Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;";
-        string queryLogin = "select * from USERS";
-        string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
-        string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
-        string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
-        string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
-        string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
+		string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True;";
+		string queryLogin = "select * from USERS";
+		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
+		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
+		string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
+		string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
+		string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
 
-        SqlConnection connection;
-        SqlCommand command;
-        SqlDataReader reader;
+		SqlConnection connection;
+		SqlCommand command;
+		SqlDataReader reader;
 
 		public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
 		public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
@@ -136,7 +136,7 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang,@source)", connection);
+					command = new SqlCommand("INSERT INTO USERS VALUES (@id , @tendangnhap , @matkhau, @hoten ,@sdt, @gioitinh, @tinhtrang,@source,@theme)", connection);
 					command.Parameters.AddWithValue("@id", idfocus.ToString());
 					command.Parameters.AddWithValue("@tendangnhap", data[1]);
 					command.Parameters.AddWithValue("@matkhau", data[2]);
@@ -145,6 +145,7 @@ namespace Communication
 					command.Parameters.AddWithValue("@gioitinh", data[5] == "True" ? 0 : 1   );
 					command.Parameters.AddWithValue("@tinhtrang", 0);
 					command.Parameters.AddWithValue("@source", "Default");
+					command.Parameters.AddWithValue("@theme", "White");
 					command.ExecuteNonQuery();
 					byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
 					tempBuffer.CopyTo(buffMessage, 0);
@@ -172,7 +173,7 @@ namespace Communication
 						if (reader.Read() == false) break;
 						if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
 						{
-							byte[] tempBuff = Encoding.UTF8.GetBytes("LOGINOKE " + reader.GetString(0));
+							byte[] tempBuff = Encoding.UTF8.GetBytes("LOGINOKE " + reader.GetString(0) + " " +reader.GetString(8));
 							tempBuff.CopyTo(buffMessage, 0);
 							await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 							client.id_ = reader.GetString(0);
@@ -272,9 +273,27 @@ namespace Communication
 				}
 				return true;
 			}
-			else if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;
-								   // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
+			else if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;				   // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
 			{
+
+				Guid id =  Guid.NewGuid();
+				this.connection = new SqlConnection(this.connString);
+				this.connection.Open();
+				this.command = new SqlCommand(queryMessage, connection);
+				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
+				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
+				this.command.Parameters.Add(new SqlParameter("@idnguoinhan", data[2]));
+				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
+				this.command.Parameters.Add(new SqlParameter("@loai", 1));
+				this.command.ExecuteNonQuery();
+				this.connection.Close();
+				// Lưu vào database
+				byte[] tempbuff;
+				buffMessage = new byte[1024];
+				tempbuff = Encoding.UTF8.GetBytes("IDMESS%" + id.ToString());
+				tempbuff.CopyTo(buffMessage, 0);
+				await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+				// Gửi lại ID cho client
 				int i = 0;
 				foreach (var item in clientInvalid)
 				{
@@ -282,9 +301,8 @@ namespace Communication
 					{
 						try
 						{
-							byte[] tempbuff;
 							buffMessage = new byte[1024];
-							tempbuff = Encoding.UTF8.GetBytes("MESSAGE" + "%" + data[3] + "%" + data[1]);
+							tempbuff = Encoding.UTF8.GetBytes("MESSAGE%"+ id.ToString()+"%"+ data[3] + "%" + data[1]);
 							tempbuff.CopyTo(buffMessage, 0);
 							await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 							return true;
@@ -421,9 +439,9 @@ namespace Communication
 				return true;
 			}
 			else if (data[0] == "ACCEPTFRIEND")
-            {
+			{
 				try
-                {
+				{
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand("INSERT INTO FRIEND VALUES (@id,@idfriend)", connection);
@@ -451,13 +469,13 @@ namespace Communication
 					}
 				}
 				catch (Exception ex)
-                {
+				{
 
-                }
+				}
 				return true;
-            }
+			}
 			else if (data[0] == "REMOVEFRIEND")
-            {
+			{
 				connection = new SqlConnection(connString);
 				connection.Open();
 				command = new SqlCommand("DELETE FROM FRIEND WHERE ID = @id AND IDFRIEND = @idfriend", connection);
@@ -488,20 +506,60 @@ namespace Communication
 				return true;
 			}
 			else if (data[0] == "PENDING")
-            {
+			{
 				byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + data[1]);
 				buffMessage = new byte[1024];
 				tempbuff.CopyTo(buffMessage, 0);
-                foreach (var item in clientInvalid)
-                {
+				foreach (var item in clientInvalid)
+				{
 					if (item.id_ == data[2])
-                    {
+					{
 						await item.client_.GetStream().WriteAsync(buffMessage,0,buffMessage.Length);
 						break;
 					}
-                }
+				}
 				return true;
-            }
+			}
+			else if (data[0] == "THEME")
+			{
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand("UPDATE USERS SET THEME = @THEME WHERE ID = @ID", connection);
+				command.Parameters.AddWithValue("@THEME", data[1]);
+				command.Parameters.AddWithValue("@ID", client.id_);
+				command.ExecuteNonQuery();
+				connection.Close();
+			}
+			else if (data[0] == "EDITMESSAGE")
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+data[1]+ "%" + client.id_  + "%" +data[3]);
+				buffMessage = new byte[1024];
+				tempbuff.CopyTo(buffMessage, 0);
+				foreach (var item in clientInvalid)
+				{
+					if (item.id_ == data[2])
+					{
+						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+						break;
+					}
+				}
+				return true;
+			}
+			else if (data[0] == "DELETEMESSAGE")
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + data[1] + "%"+ client.id_);
+				buffMessage = new byte[1024];
+				tempbuff.CopyTo(buffMessage, 0);
+				foreach (var item in clientInvalid)
+				{
+					if (item.id_ == data[2])
+					{
+						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+						break;
+					}
+				}
+				return true;
+			}
 			return false;
 		}
 		private async Task SendFileToClient(byte[] package , UserClient client)
@@ -578,11 +636,16 @@ namespace Communication
 							if (infoByte.AllByteRead == infoByte.Length) // khi nhan du du lieu -> file
 							{
 								if (isFile)
-                                {
+								{
 									isFile = false;
 									// tạo id
 									Guid Createid = Guid.NewGuid();
 									// Lưu File trong Filedata
+									byte[] tempbuff;
+									byte[] buffMessage = new byte[1024];
+									tempbuff = Encoding.UTF8.GetBytes("IDFILE%" + Createid.ToString());
+									tempbuff.CopyTo(buffMessage, 0);
+									await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 									File.WriteAllBytes(@"..\..\filedata\" + Createid.ToString() + infoByte.Extension, dataFile);
 									// them du lieu vao data base
 									this.connection = new SqlConnection(this.connString);
@@ -603,7 +666,7 @@ namespace Communication
 										{
 											try
 											{
-												byte[] buffMessage = new byte[1024];
+												buffMessage = new byte[1024];
 												byte[] bufferSendToClintReceive = System.Text.Encoding.UTF8.GetBytes("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
 												bufferSendToClintReceive.CopyTo(buffMessage, 0);
 												await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
@@ -617,8 +680,8 @@ namespace Communication
 										i++;
 									}
 								}
-                                else if (isAvatar)
-                                {
+								else if (isAvatar)
+								{
 									isAvatar = false;
 									string path = @"..\..\avatar\" + infoByte.ID + infoByte.Extension;
 									File.WriteAllBytes(path, dataFile);

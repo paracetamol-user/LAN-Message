@@ -40,7 +40,7 @@
             this.btnOnline = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelLine = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -52,6 +52,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panelAll);
@@ -65,6 +66,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.btnDanhBa);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(377, 0);
@@ -76,7 +78,7 @@
             // 
             // btnDanhBa
             // 
-            this.btnDanhBa.BackColor = System.Drawing.Color.White;
+            this.btnDanhBa.BackColor = System.Drawing.Color.Transparent;
             this.btnDanhBa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDanhBa.FlatAppearance.BorderSize = 0;
             this.btnDanhBa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -89,9 +91,12 @@
             this.btnDanhBa.TabIndex = 1;
             this.btnDanhBa.Text = "Danh Ba";
             this.btnDanhBa.UseVisualStyleBackColor = false;
+            this.btnDanhBa.MouseLeave += new System.EventHandler(this.btnAll_MouseLeave);
+            this.btnDanhBa.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAll_MouseMove);
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
             this.panel5.Controls.Add(this.btnGroup);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(279, 0);
@@ -103,7 +108,7 @@
             // 
             // btnGroup
             // 
-            this.btnGroup.BackColor = System.Drawing.Color.White;
+            this.btnGroup.BackColor = System.Drawing.Color.Transparent;
             this.btnGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGroup.FlatAppearance.BorderSize = 0;
             this.btnGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -116,9 +121,12 @@
             this.btnGroup.TabIndex = 1;
             this.btnGroup.Text = "Group";
             this.btnGroup.UseVisualStyleBackColor = false;
+            this.btnGroup.MouseLeave += new System.EventHandler(this.btnAll_MouseLeave);
+            this.btnGroup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAll_MouseMove);
             // 
             // panelAll
             // 
+            this.panelAll.BackColor = System.Drawing.Color.Transparent;
             this.panelAll.Controls.Add(this.btnAll);
             this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelAll.Location = new System.Drawing.Point(179, 0);
@@ -130,7 +138,7 @@
             // 
             // btnAll
             // 
-            this.btnAll.BackColor = System.Drawing.Color.White;
+            this.btnAll.BackColor = System.Drawing.Color.Transparent;
             this.btnAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAll.FlatAppearance.BorderSize = 0;
             this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -144,9 +152,12 @@
             this.btnAll.Text = "All";
             this.btnAll.UseVisualStyleBackColor = false;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
+            this.btnAll.MouseLeave += new System.EventHandler(this.btnAll_MouseLeave);
+            this.btnAll.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAll_MouseMove);
             // 
             // panelOnline
             // 
+            this.panelOnline.BackColor = System.Drawing.Color.Transparent;
             this.panelOnline.Controls.Add(this.btnOnline);
             this.panelOnline.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelOnline.Location = new System.Drawing.Point(82, 0);
@@ -158,7 +169,7 @@
             // 
             // btnOnline
             // 
-            this.btnOnline.BackColor = System.Drawing.Color.White;
+            this.btnOnline.BackColor = System.Drawing.Color.Transparent;
             this.btnOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOnline.FlatAppearance.BorderSize = 0;
             this.btnOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -172,9 +183,12 @@
             this.btnOnline.Text = "Online";
             this.btnOnline.UseVisualStyleBackColor = false;
             this.btnOnline.Click += new System.EventHandler(this.btnOnline_Click);
+            this.btnOnline.MouseLeave += new System.EventHandler(this.btnAll_MouseLeave);
+            this.btnOnline.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAll_MouseMove);
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -186,6 +200,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(15, 2);
@@ -196,14 +211,14 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // panel4
+            // panelLine
             // 
-            this.panel4.BackColor = System.Drawing.Color.LightGray;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 43);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(600, 1);
-            this.panel4.TabIndex = 3;
+            this.panelLine.BackColor = System.Drawing.Color.Transparent;
+            this.panelLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLine.Location = new System.Drawing.Point(0, 43);
+            this.panelLine.Name = "panelLine";
+            this.panelLine.Size = new System.Drawing.Size(600, 1);
+            this.panelLine.TabIndex = 3;
             // 
             // FrmFriend
             // 
@@ -211,7 +226,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(600, 366);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panelLine);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -242,6 +257,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnDanhBa;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelLine;
     }
 }

@@ -32,6 +32,7 @@ namespace UI
 		public ucUserAll ucSearch;
 
 		public ContextMenuStrip cmns;
+		public ContextMenuStrip cmnsMess;
 		public UserUI() { }
 		public UserUI(User user, Panel PANELINTERACTED, Panel PANELRIGHT)
 		{
@@ -39,13 +40,43 @@ namespace UI
 			this.panelINTERACTED = PANELINTERACTED;
 			this.panelRIGHT = PANELRIGHT;
 			InitUserForm();
+			this.panelRIGHT.Controls.Add(userForm);
+			userForm.InitColor();
 			ucUserAll = new ucUserAll(this);
 			ucUserOnline = new ucUserOnline(this);
 			ucInterac = new ucInterac(this);
-			this.panelRIGHT.Controls.Add(userForm);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
+		}
+		public void ResetTheme()
+		{
+			this.userForm.BackColor = Form1.theme.BackColor;
+			this.userForm.InitColor();
+			foreach (var item in userForm.Controls)
+			{
+				if (item.GetType() == typeof(ucUserINChatBox))
+				{
+					(item as ucUserINChatBox).InitColor();
+				}
+				else if (item.GetType() == typeof(ucMessShow))
+				{
+					(item as ucMessShow).ChangeTheme();
+				}
+				else if (item.GetType() == typeof(ucFileShow))
+				{
+					(item as ucFileShow).InitColor();
+				}
+			}
+			ucUserAll.ResetTheme();
+			ucUserOnline.ResetTheme();
+			ucFriend.ResetTheme();
+			if (ucPending!= null)ucPending.ResetTheme();
+		}
+		public void ResetPicture()
+		{
+			this.userForm.ResetPicture();
+			this.ucInterac.ResetPicture();
 		}
 		/// <summary>
 		/// Get các thuộc tính
@@ -64,12 +95,12 @@ namespace UI
 			userForm = new UserForm(user);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
+
 			cmns = new ContextMenuStrip();
 			cmns.Width = 100;
 			cmns.RenderMode = ToolStripRenderMode.System;
 			cmns.BackColor = Color.White;
 			cmns.ShowImageMargin = false;
-
 			ToolStripButton tsAddFriend = new ToolStripButton("ADD Friend");
 			tsAddFriend.Click += TsAddFriend_Click;
 			ToolStripButton tsAddGroup = new ToolStripButton("ADD Group");
@@ -78,12 +109,20 @@ namespace UI
 			tsRemoveFriend.Click += TsRemoveFriend_Click;
 			tsRemoveFriend.ForeColor = Color.Red;
 			ToolStripSeparator tsLine = new ToolStripSeparator();
-
 			cmns.Items.Add(tsAddFriend);
 			cmns.Items.Add(tsAddGroup);
 			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
+
+			//ToolStripButton tsbEdit = new ToolStripButton("Edit Message");
+			//ToolStripButton tsbDelete = new ToolStripButton("Delete Message");
+			//ToolStripButton tsbPin = new ToolStripButton("Pin Message");
+
+			//cmnsMess.Items.Add(tsAddFriend);
+			//cmnsMess.Items.Add(tsAddGroup);
+			//cmnsMess.Items.Add(tsLine);
+			//cmnsMess.Items.Add(tsRemoveFriend);
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
@@ -171,23 +210,28 @@ namespace UI
 		public void AddUserIntoPanelAll(Panel panelAll)
 		{
 			panelAll.Controls.Add(ucUserAll);
+			ucUserAll.InitColor();
 		}
 		public void AddUserIntoPanelPending(Panel panelPending)
 		{
 			ucPending = new ucPending(this, panelPending);
 			panelPending.Controls.Add(ucPending);
+			ucPending.InitColor();
 		}
 		public void AddUserIntoPanelFriend(Panel pnFriend)
 		{
 			pnFriend.Controls.Add(ucFriend);
+			ucFriend.InitColor();
 		}
 		public void AddUserIntoPanelOnline(Panel panelOnline)
 		{
 			panelOnline.Controls.Add(ucUserOnline);
+			ucUserOnline.InitColor();
 		}
 		public void AddUserIntoPanelListSearch(Panel panelListSearch)
-        {
+		{
 			panelListSearch.Controls.Add(ucSearch);
+			ucSearch.InitColor();
 		}
 		public void ShowChatForm()
 		{
@@ -209,14 +253,15 @@ namespace UI
 				ucInterac.Dock = DockStyle.Top;
 				this.panelINTERACTED.Controls.Add(ucInterac);
 			}
+			ucInterac.InitColor();
 		}
 		public string GetId()
 		{
 			return user.Id.ToString();
 		}
-		public async void AddMessage(string mess)
+		public async void AddMessage(string IDMess,string mess)
 		{
-			userForm.AddItemInToListChat(user, mess);
+			userForm.AddItemInToListChat(user,IDMess, mess);
 		}
 		public bool GetStatus()
 		{
@@ -226,5 +271,13 @@ namespace UI
 		{
 			this.user.Status = status;
 		}
+		public void EditMessage(string idmess, string newMess)
+        {
+			this.userForm.EditMessage(idmess, newMess);
+        }
+		public void DeleteMessage(string IDMess)
+        {
+			this.userForm.DeleteMessage(IDMess);
+        }
 	}
 }

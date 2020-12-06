@@ -54,29 +54,30 @@
             // 
             // pnContain
             // 
+            this.pnContain.BackColor = System.Drawing.Color.Transparent;
             this.pnContain.Controls.Add(this.pnContainId);
             this.pnContain.Controls.Add(this.pnContrainName);
             this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.panel1);
             this.pnContain.Controls.Add(this.pnContainPicture);
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContain.Location = new System.Drawing.Point(10, 1);
+            this.pnContain.Location = new System.Drawing.Point(11, 1);
+            this.pnContain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Padding = new System.Windows.Forms.Padding(10, 7, 20, 7);
+            this.pnContain.Padding = new System.Windows.Forms.Padding(11, 7, 20, 7);
             this.pnContain.Size = new System.Drawing.Size(365, 68);
             this.pnContain.TabIndex = 3;
-            this.pnContain.Click += new System.EventHandler(this.pnContain_Click);
-            this.pnContain.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContainId
             // 
+            this.pnContainId.BackColor = System.Drawing.Color.Transparent;
             this.pnContainId.Controls.Add(this.lbId);
             this.pnContainId.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContainId.Location = new System.Drawing.Point(69, 36);
+            this.pnContainId.Location = new System.Drawing.Point(70, 37);
+            this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainId.Name = "pnContainId";
-            this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(196, 24);
+            this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
+            this.pnContainId.Size = new System.Drawing.Size(201, 25);
             this.pnContainId.TabIndex = 9;
             this.pnContainId.Click += new System.EventHandler(this.pnContainId_Click_1);
             this.pnContainId.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
@@ -85,10 +86,11 @@
             // lbId
             // 
             this.lbId.AutoSize = true;
+            this.lbId.BackColor = System.Drawing.Color.Transparent;
             this.lbId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbId.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
-            this.lbId.Location = new System.Drawing.Point(5, 3);
+            this.lbId.Location = new System.Drawing.Point(5, 2);
             this.lbId.Name = "lbId";
             this.lbId.Size = new System.Drawing.Size(53, 20);
             this.lbId.TabIndex = 0;
@@ -99,12 +101,14 @@
             // 
             // pnContrainName
             // 
+            this.pnContrainName.BackColor = System.Drawing.Color.Transparent;
             this.pnContrainName.Controls.Add(this.lbName);
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContrainName.Location = new System.Drawing.Point(69, 7);
+            this.pnContrainName.Location = new System.Drawing.Point(70, 7);
+            this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContrainName.Name = "pnContrainName";
-            this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(196, 29);
+            this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
+            this.pnContrainName.Size = new System.Drawing.Size(201, 30);
             this.pnContrainName.TabIndex = 8;
             this.pnContrainName.Click += new System.EventHandler(this.pnContainId_Click_1);
             this.pnContrainName.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
@@ -113,9 +117,10 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
+            this.lbName.BackColor = System.Drawing.Color.Transparent;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(5, 3);
+            this.lbName.Location = new System.Drawing.Point(5, 2);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(74, 26);
             this.lbName.TabIndex = 0;
@@ -126,11 +131,13 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.picChat);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(265, 7);
+            this.panel2.Location = new System.Drawing.Point(271, 7);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
             this.panel2.Size = new System.Drawing.Size(40, 54);
             this.panel2.TabIndex = 7;
             this.panel2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
@@ -138,11 +145,13 @@
             // 
             // picChat
             // 
+            this.picChat.BackColor = System.Drawing.Color.Transparent;
             this.picChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picChat.Image = ((System.Drawing.Image)(resources.GetObject("picChat.Image")));
             this.picChat.Location = new System.Drawing.Point(0, 0);
+            this.picChat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picChat.Name = "picChat";
-            this.picChat.Size = new System.Drawing.Size(30, 54);
+            this.picChat.Size = new System.Drawing.Size(29, 54);
             this.picChat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picChat.TabIndex = 0;
             this.picChat.TabStop = false;
@@ -152,60 +161,65 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.picAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(305, 7);
+            this.panel1.Location = new System.Drawing.Point(311, 7);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(40, 54);
+            this.panel1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.panel1.Size = new System.Drawing.Size(34, 54);
             this.panel1.TabIndex = 1;
             // 
             // picAdd
             // 
+            this.picAdd.BackColor = System.Drawing.Color.Transparent;
             this.picAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picAdd.Image = ((System.Drawing.Image)(resources.GetObject("picAdd.Image")));
-            this.picAdd.Location = new System.Drawing.Point(10, 0);
+            this.picAdd.Location = new System.Drawing.Point(11, 0);
+            this.picAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picAdd.Name = "picAdd";
-            this.picAdd.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.picAdd.Size = new System.Drawing.Size(30, 54);
+            this.picAdd.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.picAdd.Size = new System.Drawing.Size(23, 54);
             this.picAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAdd.TabIndex = 0;
             this.picAdd.TabStop = false;
             this.picAdd.Click += new System.EventHandler(this.picAdd_Click);
-            this.picAdd.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picMenu_MouseMove);
             // 
             // pnContainPicture
             // 
+            this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
             this.pnContainPicture.Controls.Add(this.gunaPic);
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnContainPicture.Location = new System.Drawing.Point(10, 7);
+            this.pnContainPicture.Location = new System.Drawing.Point(11, 7);
+            this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainPicture.Name = "pnContainPicture";
-            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
+            this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
             this.pnContainPicture.TabIndex = 0;
-            this.pnContainPicture.MouseLeave += new System.EventHandler(this.pnContainPicture_MouseLeave);
             // 
             // gunaPic
             // 
+            this.gunaPic.BackColor = System.Drawing.Color.Transparent;
             this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
-            this.gunaPic.Location = new System.Drawing.Point(3, 3);
+            this.gunaPic.Location = new System.Drawing.Point(3, 2);
+            this.gunaPic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaPic.Name = "gunaPic";
             this.gunaPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.gunaPic.ShadowDecoration.Parent = this.gunaPic;
-            this.gunaPic.Size = new System.Drawing.Size(53, 48);
+            this.gunaPic.Size = new System.Drawing.Size(53, 50);
             this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPic.TabIndex = 0;
             this.gunaPic.TabStop = false;
-            this.gunaPic.Click += new System.EventHandler(this.gunaPic_Click);
-            this.gunaPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseMove);
             // 
             // pnLine
             // 
-            this.pnLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnLine.BackColor = System.Drawing.Color.Transparent;
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine.ForeColor = System.Drawing.Color.Black;
-            this.pnLine.Location = new System.Drawing.Point(10, 0);
+            this.pnLine.Location = new System.Drawing.Point(11, 0);
+            this.pnLine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLine.Name = "pnLine";
             this.pnLine.Size = new System.Drawing.Size(365, 1);
             this.pnLine.TabIndex = 2;
@@ -217,12 +231,10 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnContain);
             this.Controls.Add(this.pnLine);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucUserOnline";
-            this.Padding = new System.Windows.Forms.Padding(10, 0, 30, 0);
+            this.Padding = new System.Windows.Forms.Padding(11, 0, 29, 0);
             this.Size = new System.Drawing.Size(405, 69);
-            this.Click += new System.EventHandler(this.ucUserOnline_Click);
-            this.MouseLeave += new System.EventHandler(this.ucUserOnline_MouseLeave);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucUserOnline_MouseMove);
             this.pnContain.ResumeLayout(false);
             this.pnContainId.ResumeLayout(false);
             this.pnContainId.PerformLayout();

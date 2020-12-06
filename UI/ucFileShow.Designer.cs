@@ -40,52 +40,64 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(11, 2);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 37);
+            this.pictureBox1.Size = new System.Drawing.Size(29, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // pictureBoxDownLoad
             // 
+            this.pictureBoxDownLoad.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxDownLoad.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBoxDownLoad.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDownLoad.Image")));
             this.pictureBoxDownLoad.Location = new System.Drawing.Point(310, 2);
             this.pictureBoxDownLoad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxDownLoad.Name = "pictureBoxDownLoad";
-            this.pictureBoxDownLoad.Size = new System.Drawing.Size(27, 37);
+            this.pictureBoxDownLoad.Size = new System.Drawing.Size(27, 36);
             this.pictureBoxDownLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxDownLoad.TabIndex = 1;
             this.pictureBoxDownLoad.TabStop = false;
             this.pictureBoxDownLoad.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBoxDownLoad.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.pictureBoxDownLoad.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(41, 2);
+            this.panel1.Location = new System.Drawing.Point(40, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5, 7, 20, 0);
-            this.panel1.Size = new System.Drawing.Size(269, 30);
+            this.panel1.Size = new System.Drawing.Size(270, 30);
             this.panel1.TabIndex = 2;
+            this.panel1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // label1
             // 
             this.label1.AllowDrop = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Century", 9.3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
             this.label1.Location = new System.Drawing.Point(5, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 23);
+            this.label1.Size = new System.Drawing.Size(245, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
+            this.label1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // ucFileShow
             // 
@@ -99,7 +111,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucFileShow";
             this.Padding = new System.Windows.Forms.Padding(11, 2, 20, 1);
-            this.Size = new System.Drawing.Size(357, 40);
+            this.Size = new System.Drawing.Size(357, 39);
+            this.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDownLoad)).EndInit();
             this.panel1.ResumeLayout(false);

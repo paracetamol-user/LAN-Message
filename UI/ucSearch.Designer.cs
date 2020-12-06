@@ -41,24 +41,27 @@ namespace UI
             // 
             // pnSearch
             // 
-            this.pnSearch.BackColor = System.Drawing.Color.White;
+            this.pnSearch.BackColor = System.Drawing.Color.Transparent;
             this.pnSearch.Controls.Add(this.textBox1);
             this.pnSearch.Controls.Add(this.panel3);
             this.pnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSearch.Location = new System.Drawing.Point(5, 5);
+            this.pnSearch.Location = new System.Drawing.Point(7, 6);
+            this.pnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnSearch.Name = "pnSearch";
-            this.pnSearch.Padding = new System.Windows.Forms.Padding(20, 5, 20, 5);
-            this.pnSearch.Size = new System.Drawing.Size(341, 35);
+            this.pnSearch.Padding = new System.Windows.Forms.Padding(27, 6, 27, 6);
+            this.pnSearch.Size = new System.Drawing.Size(454, 43);
             this.pnSearch.TabIndex = 5;
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.Gainsboro;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox1.Location = new System.Drawing.Point(20, 5);
+            this.textBox1.Location = new System.Drawing.Point(27, 6);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(273, 25);
+            this.textBox1.Size = new System.Drawing.Size(363, 29);
             this.textBox1.TabIndex = 4;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
@@ -66,19 +69,22 @@ namespace UI
             // 
             this.panel3.Controls.Add(this.picSearch);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(293, 5);
+            this.panel3.Location = new System.Drawing.Point(390, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panel3.Size = new System.Drawing.Size(28, 25);
+            this.panel3.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.panel3.Size = new System.Drawing.Size(37, 31);
             this.panel3.TabIndex = 3;
             // 
             // picSearch
             // 
+            this.picSearch.BackColor = System.Drawing.Color.Transparent;
             this.picSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picSearch.Image = ((System.Drawing.Image)(resources.GetObject("picSearch.Image")));
-            this.picSearch.Location = new System.Drawing.Point(5, 0);
+            this.picSearch.Location = new System.Drawing.Point(7, 0);
+            this.picSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picSearch.Name = "picSearch";
-            this.picSearch.Size = new System.Drawing.Size(23, 25);
+            this.picSearch.Size = new System.Drawing.Size(30, 31);
             this.picSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSearch.TabIndex = 2;
             this.picSearch.TabStop = false;
@@ -86,12 +92,14 @@ namespace UI
             // 
             // ucSearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnSearch);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucSearch";
-            this.Padding = new System.Windows.Forms.Padding(5);
-            this.Size = new System.Drawing.Size(351, 45);
+            this.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Size = new System.Drawing.Size(468, 55);
             this.pnSearch.ResumeLayout(false);
             this.pnSearch.PerformLayout();
             this.panel3.ResumeLayout(false);

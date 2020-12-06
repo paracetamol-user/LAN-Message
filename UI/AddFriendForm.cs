@@ -30,8 +30,33 @@ namespace UI
 			InitializeComponent();
 			InitControls();
 			this.mainForm = mainForm;
-			
 		}
+		public void ChangeColorControl()
+        {
+			this.ucSearch.ResetTheme();
+            foreach (var item in panelAllUser.Controls)
+            {
+				if (item.GetType() == typeof(ucUserAll))
+                {
+					(item as ucUserAll).ResetTheme();
+                }
+            }
+			foreach (var item in panelOnlineUser.Controls)
+			{
+				if (item.GetType() == typeof(ucUserOnline))
+				{
+					(item as ucUserOnline).ResetTheme();
+				}
+			}
+		}
+		public void ResetPicture()
+        {
+			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureGroup);
+        }
+		public void ChangeColorLine()
+        {
+			this.panelLine.BackColor = Form1.theme.LineColor;
+        }
         private void InitControls()
         {
 			panelAllUser = new Panel(); panelAllUser.AutoScroll = true;
@@ -52,7 +77,6 @@ namespace UI
 			btnFocus = null;
 			picPoint.Visible = false;
 		}
-
         private void InitPanelListSearch()
 		{
 			panelListSearch.Visible = false;
@@ -91,8 +115,8 @@ namespace UI
 			this.pnContainSearch.Visible = true;
 			this.ucSearch.IsFriend = true;
 			this.ucSearch.IsOnline = true;
-			if (btnFocus != null) btnFocus.BackColor = Color.White;
-			(sender as Button).BackColor = Color.DarkGray;
+			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
+			(sender as Button).BackColor = Form1.theme.FocusColor;
 			countUserOnline = 0;
 			panelOnlineUser.Controls.Clear();
 			panelOnlineUser.Show();
@@ -113,8 +137,8 @@ namespace UI
 			this.pnContainSearch.Visible = true;
 			this.ucSearch.IsFriend = false;
 			this.ucSearch.IsOnline = false;
-			if (btnFocus != null) btnFocus.BackColor = Color.White;
-			(sender as Button).BackColor = Color.DarkGray;
+			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
+			(sender as Button).BackColor = Form1.theme.FocusColor;
 			panelAllUser.Show();
 			panelAllUser.BringToFront();
 			if (!CheckLoadAllUser)
@@ -136,14 +160,24 @@ namespace UI
 		private void btnPending_Click_1(object sender, EventArgs e)
 		{
 			this.pnContainSearch.Visible = false;
-			if (btnFocus != null) btnFocus.BackColor = Color.White;
-			(sender as Button).BackColor = Color.DarkGray;
+			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
+			(sender as Button).BackColor =  Form1.theme.FocusColor;
 			btnFocus = sender as Button;
 			panelPending.Show();
 			panelPending.BringToFront();
 			labelCOUNT.Text = "Pending - " + countPending.ToString();
 			picPoint.Visible = false;
 			mainForm.DisableNotification();
+		}
+
+        private void btnPending_MouseMove(object sender, MouseEventArgs e)
+        {
+			(sender as Button).BackColor = Form1.theme.FocusColor;
+		}
+
+        private void btnPending_MouseLeave(object sender, EventArgs e)
+        {
+			(sender as Button).BackColor = Color.Transparent;
 		}
     }
 }

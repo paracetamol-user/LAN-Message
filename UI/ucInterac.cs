@@ -20,14 +20,26 @@ namespace UI
 		public ucInterac(UserUI Parent)
 		{
 			InitializeComponent();
+			
 			this.parent = Parent;
 			this.lbName.Text = parent.user.Name;
 			this.lbStatus.Text = parent.user.Status == false ? "Offline" : "Online";
 		}
-		public void SetAvatar(string path)
+		public void ResetPicture()
         {
-			this.gunaPic.Image = Image.FromFile(path);
+			this.picClose.Image = Image.FromFile(Form1.theme.PictureClose);
         }
+		public void InitColor()
+		{
+			this.lbName.ForeColor = Form1.theme.TextColor;
+			this.lbStatus.ForeColor = Form1.theme.TextMenuColor;
+			//this.BackColor = Form1.theme.BackColor;
+			this.BackColor = Color.Transparent;
+		}
+		public void SetAvatar(string path)
+		{
+			this.gunaPic.Image = Image.FromFile(path);
+		}
 		public void Online()
 		{
 			this.lbStatus.Text = "Online";
@@ -38,12 +50,11 @@ namespace UI
 		}
 		public void ChangeColorWhenClick()
 		{
-			
-			this.BackColor = Color.FromArgb(242, 243, 245);
+			this.BackColor = Form1.theme.FocusColor;
 		}
 		public void ChangeColorWhenNonClick()
 		{
-			this.BackColor = Color.White;
+			this.BackColor = Color.Transparent;
 		}
 		private void ucInterac_Click(object sender, EventArgs e)
 		{
@@ -168,7 +179,6 @@ namespace UI
 		private void lbStatus_MouseMove(object sender, MouseEventArgs e)
 		{
 			ChangeColorWhenClick();
-		  
 		}
 		private void lbName_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -196,7 +206,6 @@ namespace UI
 		{
 			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
 				ChangeColorWhenNonClick();
-		   
 		}
 		private void pnContrainName_MouseLeave(object sender, EventArgs e)
 		{

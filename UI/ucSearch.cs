@@ -25,6 +25,10 @@ namespace UI
 		public ucSearch(List<UserUI> userUIs , Panel pnContain,bool isOnline, bool isFriend)
 		{
 			InitializeComponent();
+			//this.BackColor = Form1.theme.FocusColor;
+			this.textBox1.BackColor = Color.WhiteSmoke;
+			this.textBox1.ForeColor = Form1.theme.TextColor;
+			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
 			this.UserUIs = userUIs;
 			this.pnContain = pnContain;
 			this.Dock = DockStyle.Fill;
@@ -32,9 +36,25 @@ namespace UI
 			this.isFriend = isFriend;
 			this.isGr = false;
 		}
-        /// <summary>
-        /// Contructor Search dành cho Group
-        /// </summary>
+        //public void ChangeColorText()
+        //{
+        //    this.textBox1.BackColor = Form1.theme.TxtBackColor;
+        //    this.textBox1.ForeColor = Form1.theme.TxtForeColor;
+        //}
+        public void ResetTheme()
+		{
+			this.textBox1.BackColor = Form1.theme.TxtBackColor;
+			this.textBox1.ForeColor = Form1.theme.TxtForeColor;
+			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
+		}
+		public void InitColor()
+		{
+			//this.BackColor = Form1.theme.BackColor;
+			this.BackColor = Color.Transparent;
+		}
+		/// <summary>
+		/// Contructor Search dành cho Group
+		/// </summary>
 		//public ucSearch(List<GrUI> GrUIs, Panel pnContain, isGroup)
 		//{
 		//	InitializeComponent();
@@ -43,7 +63,7 @@ namespace UI
 		//	this.Dock = DockStyle.Fill;
 		//	this.isGr = isGr;
 		//}
-        public bool IsFriend
+		public bool IsFriend
 		{
 			set
 			{
@@ -78,7 +98,7 @@ namespace UI
 		private void EnableUser(string text)
 		{
 			if (isGr)// này là dành cho search gr
-            {
+			{
 				//foreach (var item in GrUIs)
 				//{
 				//	if (item.user.Name.Contains(text))
@@ -92,8 +112,8 @@ namespace UI
 				//	else item.ucSearch.Visible = false;
 				//}
 			}
-            else
-            {
+			else
+			{
 				foreach (var item in UserUIs)
 				{
 					if (item.user.Name.Contains(text))
@@ -112,8 +132,6 @@ namespace UI
 					else item.ucSearch.Visible = false;
 				}
 			} // Cái này là search người trong server
-			
-
 		}
 		public static string RemoveUnicode(string text)
 		{

@@ -17,7 +17,7 @@ namespace UI
     public partial class LoginForm : Form
     {
         //Info Server
-        private string ipServer = "192.168.1.3";
+        private string ipServer = "172.17.27.32";
         private string portSever = "5000";
 
         static public SocketClient client;
@@ -49,7 +49,7 @@ namespace UI
             if (data[0].Trim('\0', '\r', '\n') == "LOGINOKE")
             {
                 User user = new User(data[1].Trim('\0', '\r', '\n'), account, true, @"..\..\avatarDefault");      
-                Form1 mainform = new Form1(this, user , client , server);
+                Form1 mainform = new Form1(this, user , client , server,data[2].Trim('\0', '\r', '\n'));
                 mainform.Show();
                 this.Hide();
                 label2.Visible = false;
