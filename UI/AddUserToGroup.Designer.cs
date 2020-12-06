@@ -90,7 +90,6 @@ namespace UI
             // picBoxAdd
             // 
             this.picBoxAdd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picBoxAdd.Enabled = false;
             this.picBoxAdd.Image = ((System.Drawing.Image)(resources.GetObject("picBoxAdd.Image")));
             this.picBoxAdd.Location = new System.Drawing.Point(3, 0);
             this.picBoxAdd.Name = "picBoxAdd";
@@ -143,7 +142,6 @@ namespace UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUserToGroup";
             this.Text = "AddUserToGroup";
-            this.Load += new System.EventHandler(this.AddUserToGroup_Load);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();

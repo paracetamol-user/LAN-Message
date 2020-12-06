@@ -28,10 +28,12 @@ namespace UI
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = uiParent.group.ID;
         }
-        public ucGroupPending(string id , string name)
+        public ucGroupPending(string id , string name, Panel pnPending)
         {
+            InitializeComponent();
             this.Dock = DockStyle.Top;
-            this.gunaPic.Image = Image.FromFile(@"..\..\");
+            this.pnParent = pnPending;
+            this.gunaPic.Image = Image.FromFile(@"..\..\groupDefault.png");
             this.lbName.Text = name;
             this.lbId.Text = id;
         }

@@ -13,21 +13,25 @@ namespace UI
 {
     public partial class ucGroupAll : UserControl
     {
+        private GroupUI parent;
+        private Panel pnParent;
         public ucGroupAll()
         {
             InitializeComponent();
             this.Dock = DockStyle.Top;
         }
-        public ucGroupAll(Group group)
+        public ucGroupAll(Group group, GroupUI groupUI)
         {
             InitializeComponent();
             this.Dock = DockStyle.Top;
-            lbName.Text = group.Name;
-            lbId.Text = group.ID;
+            this.parent = groupUI;
+            this.lbName.Text = group.Name;
+            this.lbId.Text = "#" + group.ID;
         }
         private void picChat_Click(object sender, EventArgs e)
         {
-
+            this.parent.ShowChatForm();
+            this.parent.AddGroupInteracted();
         }
         public void SetAvatar(string path)
         {

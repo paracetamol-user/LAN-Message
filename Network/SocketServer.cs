@@ -518,9 +518,9 @@ namespace Communication
 						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 						break;
                     }
-					return true;
                 }
-            }
+				return true;
+			}
 			else if (data[0] == "GROUPACCEPT")
 			{
 				// SQL command for add user to group

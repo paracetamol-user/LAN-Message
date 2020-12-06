@@ -30,6 +30,8 @@ namespace UI
 			this.Visible = false;
 			this.group = group;
 			this.ID = 0;
+			this.labelName.Text = group.Name;
+			this.labelID.Text = group.ID;
 			LastInteracted = 0;
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();

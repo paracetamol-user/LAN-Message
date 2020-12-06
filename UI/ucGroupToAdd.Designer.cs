@@ -53,6 +53,7 @@ namespace UI
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
             this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
             this.pnContainPicture.TabIndex = 0;
+            this.pnContainPicture.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // gunaPic
             // 
@@ -66,6 +67,7 @@ namespace UI
             this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPic.TabIndex = 0;
             this.gunaPic.TabStop = false;
+            this.gunaPic.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // pnContain
             // 
@@ -77,6 +79,7 @@ namespace UI
             this.pnContain.Name = "pnContain";
             this.pnContain.Size = new System.Drawing.Size(337, 54);
             this.pnContain.TabIndex = 6;
+            this.pnContain.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // pnContainStatus
             // 
@@ -87,6 +90,7 @@ namespace UI
             this.pnContainStatus.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
             this.pnContainStatus.Size = new System.Drawing.Size(278, 24);
             this.pnContainStatus.TabIndex = 3;
+            this.pnContainStatus.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // lbID
             // 
@@ -100,6 +104,7 @@ namespace UI
             this.lbID.Size = new System.Drawing.Size(53, 21);
             this.lbID.TabIndex = 0;
             this.lbID.Text = "label2";
+            this.lbID.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // pnContrainName
             // 
@@ -110,6 +115,7 @@ namespace UI
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 1, 0, 0);
             this.pnContrainName.Size = new System.Drawing.Size(278, 30);
             this.pnContrainName.TabIndex = 2;
+            this.pnContrainName.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // lbName
             // 
@@ -121,6 +127,7 @@ namespace UI
             this.lbName.Size = new System.Drawing.Size(74, 26);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
+            this.lbName.Click += new System.EventHandler(this.pnContainStatus_Click);
             // 
             // ucGroupToAdd
             // 
@@ -131,6 +138,7 @@ namespace UI
             this.Name = "ucGroupToAdd";
             this.Padding = new System.Windows.Forms.Padding(20, 7, 20, 7);
             this.Size = new System.Drawing.Size(377, 68);
+            this.Click += new System.EventHandler(this.pnContainStatus_Click);
             this.MouseLeave += new System.EventHandler(this.ucGroupToAdd_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucGroupToAdd_MouseMove);
             this.pnContainPicture.ResumeLayout(false);

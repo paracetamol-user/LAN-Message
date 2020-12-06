@@ -114,10 +114,9 @@ namespace UI
         {
 			userUI.AddUserIntoPanelPending(panelPending);
         }
-		public void AddGroupPending(ucGroupPending ucGrPending)
+		public void AddGroupPending(GroupUI groupUI)
         {
-			ucGroup.Controls.Add(ucGrPending);
-			ucGrPending.Dock = DockStyle.Top;
+			groupUI.AddGroupIntoPanelPending(panelPending);
         }
 		public void RemovePending()
         {

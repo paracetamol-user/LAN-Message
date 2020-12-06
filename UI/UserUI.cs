@@ -46,7 +46,7 @@ namespace UI
 			this.panelRIGHT.Controls.Add(userForm);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
-			addToGroup = new AddUserToGroup();
+			addToGroup = new AddUserToGroup(panelRIGHT);
 		}
 		/// <summary>
 		/// Get các thuộc tính
@@ -85,6 +85,7 @@ namespace UI
 			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
+			addToGroup = new AddUserToGroup(panelRIGHT);
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
@@ -96,7 +97,7 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			addToGroup = new AddUserToGroup(user);
+			addToGroup.InitAddGroupForm(user);
 			addToGroup.Show();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)

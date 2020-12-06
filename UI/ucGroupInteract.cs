@@ -12,15 +12,17 @@ namespace UI
 {
 	public partial class ucGroupInteract : UserControl
 	{
-		public UserUI parent;
+		public GroupUI parent;
 		public ucGroupInteract()
 		{
 			InitializeComponent();
 		}
-		public ucGroupInteract(UserUI parent)
+		public ucGroupInteract(GroupUI parent)
 		{
 			InitializeComponent();
 			this.parent = parent;
+			this.lbName.Text = parent.group.Name;
+			this.lbStatus.Text = parent.group.ID;
 		}
 		public void SetAvatar(string path)
 		{
@@ -42,5 +44,11 @@ namespace UI
 		{
 
 		}
+
+        private void gunaPic_MouseClick(object sender, MouseEventArgs e)
+        {
+			this.parent.groupForm.Show();
+			this.parent.groupForm.BringToFront();
+        }
     }
 }

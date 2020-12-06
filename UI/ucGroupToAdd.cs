@@ -11,26 +11,35 @@ using UserManager;
 
 namespace UI
 {
-    public partial class ucGroupToAdd : UserControl
-    {
-        public ucGroupToAdd()
-        {
-            InitializeComponent();
-        }
-        public ucGroupToAdd(Group group)
-        {
-            InitializeComponent();
-            this.Dock = DockStyle.Top;
-            this.lbName.Text = group.Name;
-            this.lbID.Text = group.ID;
-        }
-        private void ucGroupToAdd_MouseMove(object sender, MouseEventArgs e)
-        {
-            this.BackColor = Color.FromArgb(242, 243, 245);
-        }
-        private void ucGroupToAdd_MouseLeave(object sender, EventArgs e)
-        {
-            this.BackColor = Color.White;
-        }
-    }
+	public partial class ucGroupToAdd : UserControl
+	{
+		private Group group;
+		public ucGroupToAdd()
+		{
+			InitializeComponent();
+		}
+		public ucGroupToAdd(Group group)
+		{
+			InitializeComponent();
+			this.Dock = DockStyle.Top;
+			this.lbName.Text = group.Name;
+			this.lbID.Text = group.ID;
+			this.group = group;
+		}
+		private void ucGroupToAdd_MouseMove(object sender, MouseEventArgs e)
+		{
+			this.BackColor = Color.FromArgb(242, 243, 245);
+		}
+		private void ucGroupToAdd_MouseLeave(object sender, EventArgs e)
+		{
+			this.BackColor = Color.White;
+		}
+
+		private void pnContainStatus_Click(object sender, EventArgs e)
+		{
+			// Change color
+			this.BackColor = Color.FromArgb(242, 243, 245);
+			AddUserToGroup.SelectedGroup = group;
+		}
+	}
 }

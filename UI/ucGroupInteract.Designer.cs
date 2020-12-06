@@ -62,6 +62,7 @@ namespace UI
             this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPic.TabIndex = 0;
             this.gunaPic.TabStop = false;
+            this.gunaPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContain
             // 
@@ -74,6 +75,7 @@ namespace UI
             this.pnContain.Name = "pnContain";
             this.pnContain.Size = new System.Drawing.Size(415, 54);
             this.pnContain.TabIndex = 6;
+            this.pnContain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContainStatus
             // 
@@ -84,6 +86,7 @@ namespace UI
             this.pnContainStatus.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
             this.pnContainStatus.Size = new System.Drawing.Size(337, 24);
             this.pnContainStatus.TabIndex = 3;
+            this.pnContainStatus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // lbStatus
             // 
@@ -97,6 +100,7 @@ namespace UI
             this.lbStatus.Size = new System.Drawing.Size(53, 21);
             this.lbStatus.TabIndex = 0;
             this.lbStatus.Text = "label2";
+            this.lbStatus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContrainName
             // 
@@ -107,6 +111,7 @@ namespace UI
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 1, 0, 0);
             this.pnContrainName.Size = new System.Drawing.Size(337, 30);
             this.pnContrainName.TabIndex = 2;
+            this.pnContrainName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // lbName
             // 
@@ -118,6 +123,7 @@ namespace UI
             this.lbName.Size = new System.Drawing.Size(74, 26);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
+            this.lbName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // panel2
             // 
@@ -128,6 +134,7 @@ namespace UI
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(19, 54);
             this.panel2.TabIndex = 1;
+            this.panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pictureBox1
             // 
@@ -139,6 +146,7 @@ namespace UI
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // picClose
             // 
@@ -149,6 +157,7 @@ namespace UI
             this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picClose.TabIndex = 0;
             this.picClose.TabStop = false;
+            this.picClose.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContainPicture
             // 
@@ -159,6 +168,7 @@ namespace UI
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
             this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
             this.pnContainPicture.TabIndex = 0;
+            this.pnContainPicture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // ucGroupInteract
             // 
@@ -169,6 +179,7 @@ namespace UI
             this.Name = "ucGroupInteract";
             this.Padding = new System.Windows.Forms.Padding(20, 7, 20, 7);
             this.Size = new System.Drawing.Size(455, 68);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             this.MouseLeave += new System.EventHandler(this.ucGroupInteract_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucGroupInteract_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();

@@ -16,16 +16,19 @@ namespace UI
         public Panel panelINTERACTED;
         public Panel panelRIGHT;
 
+        public ucGroupToAdd ucGroupToAdd;
         public ucGroupAll ucGroupAll;
         public ucGroupInteract ucGroupInteract;
         public ucGroupPending ucGroupPending;
-
         public GroupUI(Group group, Panel interact, Panel right)
         {
             this.group = group;
             this.panelINTERACTED = interact;
             this.panelRIGHT = right;
-            ucGroupAll = new ucGroupAll(group);
+            ucGroupAll = new ucGroupAll(group, this);
+            InitGroupForm();
+            ucGroupInteract = new ucGroupInteract(this);
+            ucGroupToAdd = new ucGroupToAdd(group);
         }
 
         public ucGroupAll UcGroupAll { get; set; }
@@ -37,6 +40,9 @@ namespace UI
             groupForm = new GroupForm(group);
             groupForm.TopLevel = false;
             groupForm.Dock = DockStyle.Fill;
+
+            this.panelRIGHT.Controls.Add(groupForm);
+            
         }
         public async void AddMessage(User user, string message) 
             => groupForm.AddItemToListChat(user, message);
@@ -64,16 +70,16 @@ namespace UI
         {
             panelGroupAll.Controls.Add(ucGroupAll);
         }
-        public void AddGroupIntoPanelGroupPending(Panel panelGPending)
+        public void AddGroupIntoPanelPending(Panel pnPending)
         {
-            ucGroupPending = new ucGroupPending(this, panelGPending);
-            panelGPending.Controls.Add(ucGroupPending);
+            ucGroupPending = new ucGroupPending(this, pnPending);
+            pnPending.Controls.Add(ucGroupPending);
         }
         public void ShowChatForm()
         {
             groupForm.Show();
             groupForm.BringToFront();
-            // Form1.groupFormFocus = this.groupForm;
+            Form1.groupFormFocus = this.groupForm;
         }
         public void AddGroupInteracted()
         {

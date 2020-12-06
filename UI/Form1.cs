@@ -28,6 +28,7 @@ namespace UI
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
+		public static GroupForm groupFormFocus = null;
 		public static SocketClient client;
 		public static TcpClient server;
 		public static SettingForm settingForm;
@@ -59,8 +60,8 @@ namespace UI
 			LoadDataUser();
 			InitServerUsersForm();
 			InitFrmFriend();
-			AwaitReadData(); 
-			
+			LoadGroupData();
+			AwaitReadData();
 		}
 		private void InitFrmFriend()
 		{
@@ -277,50 +278,53 @@ namespace UI
 				else if (action == "LOADGROUPDATA")
 				{
 					for(int i = 1; i < data.Length; i++)
-                    {
+					{
 						if (data[i] == "") break;
 
 						string[] arr = data[i].Split(' ');
 						string path = @"..\..\groupDefault.png";
 						listGroup.Add(new Group(arr[0], arr[1], path));
 						for(int j = 2; j < arr.Length; j += 2)
-                        {
+						{
 							listGroup[listGroup.Count - 1].AddMember(new User(arr[j], arr[j + 1], true));
-                        }
+						}
 						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], panelINTERACTED, panelRIGHT));
-                    }
+					}
 				}
 				else if (action == "GPENDING")
 				{
-					ucGroupPending temp = new ucGroupPending(data[1] , data[2]);
+					GroupUI temp = new GroupUI(new Group(data[1], data[2]), panelINTERACTED, panelRIGHT);
 					serverUsersForm.AddGroupPending(temp);
+					serverUsersForm.EnablePointPending();
+					picNotification.Visible = true;
+					break;
 				}
 				else if (action == "GROUPDATA")
-                {
+				{
 					for(int i = 1; i < data.Length; i++)
-                    {
+					{
 						string[] arr = data[i].Split(' ');
 						// arr[0] , arr[1] = groupInfo(id, name)
 						// arr[i] , arr[i + 1] = userinfo(id, name) (i >= 2)
 						Group group = new Group(arr[0], arr[1]);
 						for(int j = 2; j < arr.Length; j += 2)
-                        {
+						{
 							group.AddMember(new User(arr[j], arr[j + 1], true));
-                        }
+						}
 						listGroup.Add(group);
 						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], panelINTERACTED, panelRIGHT));
-                    }
-                }
+					}
+				}
 				else if (action == "GROUPACCEPT")
 				{
 					string[] groupInfo = data[1].Split(' ');
 					Group group = new Group(groupInfo[0], groupInfo[1]);
 					for(int i = 2; i < data.Length; i++)
-                    {
+					{
 						if (data[i] == string.Empty) break;
 						string[] info = data[i].Split(' ');
 						group.AddMember(new User(info[0], info[1], true));
-                    }
+					}
 					listGroup.Add(group);
 					GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], panelINTERACTED, panelRIGHT));
 				}
@@ -381,7 +385,7 @@ namespace UI
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
 		private async void LoadGroupData()
-        {
+		{
 			byte[] buff = new byte[1024];
 			byte[] tembuff = Encoding.UTF8.GetBytes("LOADGROUPDATA%" + me.Id);
 			tembuff.CopyTo(buff, 0);
@@ -426,7 +430,6 @@ namespace UI
 			frmFriend.Show();
 			frmFriend.BringToFront();
 			frmFriend.Reset();
-			LoadGroupData();
 		}
 		public void DisableNotification()
 		{
