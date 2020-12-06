@@ -15,11 +15,11 @@ namespace UI
         public ucGroup()
         {
             InitializeComponent();
-            this.Dock = DockStyle.Top;
+            this.Dock = DockStyle.Fill;
         }
-        private void btnCreate_Click(object sender, EventArgs e)
+        public void AddGr(ucGroupAll emtrai)
         {
-
+            this.pnContainAll.Controls.Add(emtrai);
         }
     }
 }

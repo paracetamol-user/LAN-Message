@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UserManager;
 
 namespace UI
 {
@@ -15,8 +16,15 @@ namespace UI
         public ucGroupAll()
         {
             InitializeComponent();
+            this.Dock = DockStyle.Top;
         }
-
+        public ucGroupAll(Group group)
+        {
+            InitializeComponent();
+            this.Dock = DockStyle.Top;
+            lbName.Text = group.Name;
+            lbId.Text = group.ID;
+        }
         private void picChat_Click(object sender, EventArgs e)
         {
 

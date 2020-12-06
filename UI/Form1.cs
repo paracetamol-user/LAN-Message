@@ -126,7 +126,6 @@ namespace UI
 							UserUIs.Add(new UserUI(listUser[listUser.Count - 1], panelINTERACTED, panelRIGHT));
 						}
 					}
-
 				}
 				else if (action == "MESSAGE") // MESSAGE + tin nhắn + Id người gửi 
 				{
@@ -277,16 +276,19 @@ namespace UI
 				}
 				else if (action == "LOADGROUPDATA")
 				{
-					for (int i = 1; i < data.Length; i++)
-					{
+					for(int i = 1; i < data.Length; i++)
+                    {
 						if (data[i] == "") break;
 
-						string[] arr = data[i].Split();
+						string[] arr = data[i].Split(' ');
 						string path = @"..\..\groupDefault.png";
-
 						listGroup.Add(new Group(arr[0], arr[1], path));
+						for(int j = 2; j < arr.Length; j += 2)
+                        {
+							listGroup[listGroup.Count - 1].AddMember(new User(arr[j], arr[j + 1], true));
+                        }
 						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], panelINTERACTED, panelRIGHT));
-					}
+                    }
 				}
 				else if (action == "GPENDING")
 				{
@@ -378,13 +380,16 @@ namespace UI
 			tembuff.CopyTo(buff, 0);
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
+		private async void LoadGroupData()
+        {
+			byte[] buff = new byte[1024];
+			byte[] tembuff = Encoding.UTF8.GetBytes("LOADGROUPDATA%" + me.Id);
+			tembuff.CopyTo(buff, 0);
+			await server.GetStream().WriteAsync(buff, 0, buff.Length);
+		}
 		public static void AddUserIntoFrmFriend(UserUI userUI)
 		{
 			frmFriend.AddUserIntoFrmFriend(userUI);
-		}
-		public static void AddUserToGroup(GroupUI groupUI)
-		{
-			// 
 		}
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -421,6 +426,7 @@ namespace UI
 			frmFriend.Show();
 			frmFriend.BringToFront();
 			frmFriend.Reset();
+			LoadGroupData();
 		}
 		public void DisableNotification()
 		{

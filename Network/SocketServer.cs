@@ -552,8 +552,47 @@ namespace Communication
             }
 			else if (data[0] == "LOADGROUPDATA")
             {
-				// SQL command
-				
+                // SQL command
+                try
+                {
+					string query = "select GROUPS.IDNHOM, TENNHOM from MEMBER, GROUPS " +
+									"where MEMBER.IDNHOM = GROUPS.IDNHOM " +
+									"and MEMBER.IDUSERS = @id";
+					connection.Close();
+					string message = "LOADGROUPDATA";
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand(query, connection);
+					command.Parameters.AddWithValue("@id", data[1]);
+					reader = command.ExecuteReader();
+                    while (reader.HasRows)
+                    {
+						if (!reader.Read()) break;
+						message += string.Format("%{0} {1}", reader.GetString(0), reader.GetString(1));
+						query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
+						SqlConnection subConnect = new SqlConnection(connString);
+						subConnect.Open();
+						SqlCommand subCommand = new SqlCommand(query, subConnect);
+						subCommand.Parameters.AddWithValue("@id", reader.GetString(0));
+						SqlDataReader subReader = subCommand.ExecuteReader();
+                        while (subReader.HasRows)
+                        {
+							if (!subReader.Read()) break;
+							message += string.Format(" {0} {1}", subReader.GetString(0), subReader.GetString(1));
+                        }
+						subConnect.Close();
+                    }
+					connection.Close();
+					buffMessage = new byte[1024];
+					byte[] tempBuff = Encoding.UTF8.GetBytes(message);
+					tempBuff.CopyTo(buffMessage, 0);
+					await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+					return true;
+				}
+				catch(Exception ex)
+                {
+					System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
 			}
 
 			return false;

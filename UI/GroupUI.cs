@@ -25,6 +25,7 @@ namespace UI
             this.group = group;
             this.panelINTERACTED = interact;
             this.panelRIGHT = right;
+            ucGroupAll = new ucGroupAll(group);
         }
 
         public ucGroupAll UcGroupAll { get; set; }
