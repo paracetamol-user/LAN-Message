@@ -508,12 +508,12 @@ namespace Communication
 			}
 			else if (data[0] == "GPENDING")
             {
-				byte[] tempBuff = Encoding.UTF8.GetBytes("GPENDING%" + data[1]);
+				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("GPENDING%{0}%{1}", data[1], data[2]));
 				buffMessage = new byte[1024];
 				tempBuff.CopyTo(buffMessage, 0);
 				foreach(var item in clientInvalid)
                 {
-					if(item.id_ == data[2])
+					if(item.id_ == data[3])
                     {
 						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 						break;
@@ -523,15 +523,38 @@ namespace Communication
             }
 			else if (data[0] == "GROUPACCEPT")
 			{
+				// SQL command for add user to group
+				// GROUPACCEPT + id_1 + name_1 + ... + id_n + name_n
                 try
                 {
-					// SQL command
-                }
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("select ID, TEN from GROUP where GROUPID = @id", connection);
+					command.Parameters.AddWithValue("@id", data[1]);
+					reader = command.ExecuteReader();
+					// message =  GROUPDATA + id_master + id_2 + ... + id_n;
+					string message = string.Format("GROUPACCEPT%{0}", data[1]); // group_id + group_name
+					while (reader.HasRows)
+					{
+						if (!reader.Read()) break;
+						message += string.Format("%{0} {1}", reader.GetString(0), reader.GetString(1));
+					}
+					connection.Close();
+					buffMessage = new byte[1024];
+					byte[] tempBuff = Encoding.UTF8.GetBytes(message);
+					tempBuff.CopyTo(buffMessage, 0);
+					await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+				}
 				catch(Exception ex)
                 {
 
                 }
             }
+			else if (data[0] == "LOADGROUPDATA")
+            {
+				// SQL command
+				
+			}
 
 			return false;
 		}

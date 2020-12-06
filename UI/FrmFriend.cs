@@ -17,10 +17,14 @@ namespace UI
 		Panel pnOnlineFriend;
 		Panel pnDanhba;
 		Button btnFocus;
+
+		ucGroup UcGroup;
+
 		bool isLoad;
 		public FrmFriend()
 		{
 			InitializeComponent();
+			UcGroup = new ucGroup();
 			InitPnAllFriend();
 			InitPnOnlineFriend();
 			InitPnGroup();
@@ -76,9 +80,10 @@ namespace UI
         }
 		private void LoadPnGroup()
         {
+			pnGroup.Controls.Add(UcGroup);
 			foreach(var item in Form1.GroupUIs)
             {
-				pnGroup.Controls.Add(item.ucGroupAll);
+				UcGroup.Controls.Add(item.ucGroupAll);
             }
         }
 		public void AddUserIntoFrmFriend(UserUI userUI)

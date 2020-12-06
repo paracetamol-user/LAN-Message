@@ -34,7 +34,7 @@ namespace UI
             this.gunaPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pnContain = new System.Windows.Forms.Panel();
             this.pnContainStatus = new System.Windows.Forms.Panel();
-            this.lbStatus = new System.Windows.Forms.Label();
+            this.lbID = new System.Windows.Forms.Label();
             this.pnContrainName = new System.Windows.Forms.Panel();
             this.lbName = new System.Windows.Forms.Label();
             this.pnContainPicture.SuspendLayout();
@@ -80,7 +80,7 @@ namespace UI
             // 
             // pnContainStatus
             // 
-            this.pnContainStatus.Controls.Add(this.lbStatus);
+            this.pnContainStatus.Controls.Add(this.lbID);
             this.pnContainStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContainStatus.Location = new System.Drawing.Point(59, 30);
             this.pnContainStatus.Name = "pnContainStatus";
@@ -88,18 +88,18 @@ namespace UI
             this.pnContainStatus.Size = new System.Drawing.Size(278, 24);
             this.pnContainStatus.TabIndex = 3;
             // 
-            // lbStatus
+            // lbID
             // 
-            this.lbStatus.AutoSize = true;
-            this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbStatus.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.ForeColor = System.Drawing.Color.DimGray;
-            this.lbStatus.Location = new System.Drawing.Point(5, 2);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lbStatus.Size = new System.Drawing.Size(53, 21);
-            this.lbStatus.TabIndex = 0;
-            this.lbStatus.Text = "label2";
+            this.lbID.AutoSize = true;
+            this.lbID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbID.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbID.ForeColor = System.Drawing.Color.DimGray;
+            this.lbID.Location = new System.Drawing.Point(5, 2);
+            this.lbID.Name = "lbID";
+            this.lbID.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.lbID.Size = new System.Drawing.Size(53, 21);
+            this.lbID.TabIndex = 0;
+            this.lbID.Text = "label2";
             // 
             // pnContrainName
             // 
@@ -126,10 +126,13 @@ namespace UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnContain);
             this.Name = "ucGroupToAdd";
             this.Padding = new System.Windows.Forms.Padding(20, 7, 20, 7);
             this.Size = new System.Drawing.Size(377, 68);
+            this.MouseLeave += new System.EventHandler(this.ucGroupToAdd_MouseLeave);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucGroupToAdd_MouseMove);
             this.pnContainPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.pnContain.ResumeLayout(false);
@@ -147,7 +150,7 @@ namespace UI
         private Guna.UI2.WinForms.Guna2CirclePictureBox gunaPic;
         private System.Windows.Forms.Panel pnContain;
         private System.Windows.Forms.Panel pnContainStatus;
-        private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Panel pnContrainName;
         private System.Windows.Forms.Label lbName;
     }

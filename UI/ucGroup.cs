@@ -15,7 +15,11 @@ namespace UI
         public ucGroup()
         {
             InitializeComponent();
+            this.Dock = DockStyle.Top;
         }
-        
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

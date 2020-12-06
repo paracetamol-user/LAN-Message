@@ -28,6 +28,13 @@ namespace UI
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = uiParent.group.ID;
         }
+        public ucGroupPending(string id , string name)
+        {
+            this.Dock = DockStyle.Top;
+            this.gunaPic.Image = Image.FromFile(@"..\..\");
+            this.lbName.Text = name;
+            this.lbId.Text = id;
+        }
         private void pnContain_MouseMove(object sender, MouseEventArgs e)
         {
             this.BackColor = Color.FromArgb(242, 243, 245);
@@ -47,6 +54,8 @@ namespace UI
         }
         private async void SendAcceptGroupInviteToServer()
         {
+
+            // goi len server gui thanh vien ve
             byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + Form1.me.Id + "%" + uiParent.GetID());
             byte[] buff = new byte[1024];
             tempbuff.CopyTo(buff, 0);

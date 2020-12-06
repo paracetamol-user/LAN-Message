@@ -36,15 +36,22 @@ namespace UI
         }
         private void LoadGroupOption()
         {
-            
+            foreach(var item in Form1.listGroup)
+            {
+                this.pnGroup.Controls.Add(new ucGroupToAdd(item));
+            }
         }
         private async void SendAddToGroupToServer()
         {
             byte[] tempBuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedGroup.ID + "%" +
+                                                                   selectedGroup.Name + "%" + 
                                                                    selectedUser.Id);
             byte[] buff = new byte[1024];
             tempBuff.CopyTo(buff, 0);
             Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
         }
+
+        private void AddUserToGroup_Load(object sender, EventArgs e)
+            => LoadGroupOption();
     }
 }

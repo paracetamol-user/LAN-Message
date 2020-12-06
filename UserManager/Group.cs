@@ -21,6 +21,7 @@ namespace UserManager
             this.avatarPath = string.Empty;
             this.memberList = null;
             this.admin = null;
+            memberList = new List<User>();
         }
         public Group(string name)
         {
@@ -29,6 +30,7 @@ namespace UserManager
             this.avatarPath = string.Empty;
             this.memberList = null;
             this.admin = null;
+            memberList = new List<User>();
         }
         public Group(string id, string name)
         {
@@ -37,6 +39,7 @@ namespace UserManager
             this.avatarPath = string.Empty;
             this.memberList = null;
             this.admin = null;
+            memberList = new List<User>();
         }
         public Group(string id, string name, string avatarPath)
         {
@@ -45,6 +48,7 @@ namespace UserManager
             this.avatarPath = avatarPath;
             this.memberList = null;
             this.admin = null;
+            memberList = new List<User>();
         }
         public Group(string id, string name, string avatarPath, User admin)
         {

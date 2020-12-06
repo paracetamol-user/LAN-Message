@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UserManager;
 
 namespace UI
 {
@@ -16,6 +17,7 @@ namespace UI
 		public Panel panelAllUser;
 		public Panel panelOnlineUser;
 		public Panel panelPending;
+		public ucGroup ucGroup;
 		public Button btnFocus;
 		public bool CheckLoadAllUser;
 
@@ -27,12 +29,14 @@ namespace UI
 		{
 			InitializeComponent();
 			this.mainForm = mainForm;
+			ucGroup = new ucGroup();  
 			panelAllUser = new Panel(); panelAllUser.AutoScroll = true;
 			panelOnlineUser = new Panel(); panelOnlineUser.AutoScroll = true;
 			panelPending = new Panel(); panelPending.AutoScroll = true;
 			this.Controls.Add(panelAllUser);
 			this.Controls.Add(panelOnlineUser);
 			this.Controls.Add(panelPending);
+			this.Controls.Add(ucGroup);
 			this.InitPanelAllUser();
 			this.InitPanelOnlineUser();
 			this.InitPanelPending();
@@ -110,9 +114,10 @@ namespace UI
         {
 			userUI.AddUserIntoPanelPending(panelPending);
         }
-		public void AddGroupPending(GroupUI groupUI)
+		public void AddGroupPending(ucGroupPending ucGrPending)
         {
-			groupUI.AddGroupIntoPanelGroupPending(panelPending);
+			ucGroup.Controls.Add(ucGrPending);
+			ucGrPending.Dock = DockStyle.Top;
         }
 		public void RemovePending()
         {

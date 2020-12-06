@@ -37,6 +37,7 @@ namespace UI
             this.picBoxAdd = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.picBoxCancel = new System.Windows.Forms.PictureBox();
+            this.pnGroup = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,7 +69,7 @@ namespace UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Menu;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -110,6 +111,7 @@ namespace UI
             // 
             // picBoxCancel
             // 
+            this.picBoxCancel.BackColor = System.Drawing.Color.White;
             this.picBoxCancel.Dock = System.Windows.Forms.DockStyle.Right;
             this.picBoxCancel.ErrorImage = null;
             this.picBoxCancel.Image = ((System.Drawing.Image)(resources.GetObject("picBoxCancel.Image")));
@@ -122,16 +124,26 @@ namespace UI
             this.picBoxCancel.TabStop = false;
             this.picBoxCancel.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // pnGroup
+            // 
+            this.pnGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnGroup.Location = new System.Drawing.Point(0, 38);
+            this.pnGroup.Name = "pnGroup";
+            this.pnGroup.Size = new System.Drawing.Size(479, 340);
+            this.pnGroup.TabIndex = 1;
+            // 
             // AddUserToGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(479, 378);
+            this.Controls.Add(this.pnGroup);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUserToGroup";
             this.Text = "AddUserToGroup";
+            this.Load += new System.EventHandler(this.AddUserToGroup_Load);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -152,5 +164,6 @@ namespace UI
         private System.Windows.Forms.PictureBox picBoxCancel;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnGroup;
     }
 }

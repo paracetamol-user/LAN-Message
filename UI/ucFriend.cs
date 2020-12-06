@@ -30,7 +30,6 @@ namespace UI
 		{
 			this.BackColor = Color.FromArgb(242, 243, 245);
 		}
-
 		private void pnContain_MouseLeave(object sender, EventArgs e)
 		{
 			this.BackColor = Color.White;
