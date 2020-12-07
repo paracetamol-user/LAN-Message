@@ -300,9 +300,36 @@ namespace Communication
 				return true;
 			}
 			else if (data[0] == "GSEND")
-            {
-
-            }
+			{
+				string query = "select USERS.ID, USERS.TENTK " +
+						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
+						"and MEMBER.IDNHOM = @id";
+				connection.Close();
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@id", data[1]);
+				reader = command.ExecuteReader();
+                while (reader.HasRows)
+                {
+					if (!reader.Read()) break;
+					// groupid, userid, message
+					string mess = string.Format("GSEND%{0}%{1}%{2}", data[1], data[2], data[3]);
+					buffMessage = new byte[1024];
+					buff = Encoding.UTF8.GetBytes(mess);
+					buff.CopyTo(buffMessage, 0);
+					foreach(var item in clientInvalid)
+                    {
+						if(item.id_ == reader.GetString(0))
+                        {
+							item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+							break;
+                        }
+                    }
+                }
+				connection.Close();
+				return true;
+			}
 			else if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
 			{
 				string queryFINDSOURCE = "SELECT * FROM TINNHAN";
@@ -507,54 +534,78 @@ namespace Communication
 				return true;
 			}
 			else if (data[0] == "GPENDING")
-            {
+			{
 				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("GPENDING%{0}%{1}", data[1], data[2]));
 				buffMessage = new byte[1024];
 				tempBuff.CopyTo(buffMessage, 0);
 				foreach(var item in clientInvalid)
-                {
+				{
 					if(item.id_ == data[3])
-                    {
+					{
 						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 						break;
-                    }
-                }
+					}
+				}
 				return true;
 			}
 			else if (data[0] == "GROUPACCEPT")
 			{
-				// SQL command for add user to group
-				// GROUPACCEPT + id_1 + name_1 + ... + id_n + name_n
-                try
-                {
+				// goi nguoc group data ve cho user accept
+				// luu vao database
+				// goi ve cho tat ca thanh vien cho mot thang moi them vao
+				try
+				{
+					string query = "select USERS.ID, USERS.TENTK " +
+						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
+						"and MEMBER.IDNHOM = @id";
+					connection.Close();
+					string message = string.Format("GROUPDATA%{0} {1}", data[1], data[2]);
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("select ID, TEN from GROUP where GROUPID = @id", connection);
+					command = new SqlCommand(query, connection);
 					command.Parameters.AddWithValue("@id", data[1]);
 					reader = command.ExecuteReader();
-					// message =  GROUPDATA + id_master + id_2 + ... + id_n;
-					string message = string.Format("GROUPACCEPT%{0}", data[1]); // group_id + group_name
-					while (reader.HasRows)
-					{
+					// id_1 + name_1 + ... 
+                    while (reader.HasRows)
+                    {
 						if (!reader.Read()) break;
 						message += string.Format("%{0} {1}", reader.GetString(0), reader.GetString(1));
-					}
+						foreach(var item in clientInvalid)
+                        {
+							if(item.id_ == reader.GetString(0))
+                            {
+								byte[] buffMess = new byte[1024];
+								byte[] temp = Encoding.UTF8.GetBytes(string.Format("NEWMEMBER%{0}%{1}%{2}", data[1], data[3], data[4]));
+								temp.CopyTo(buffMess, 0);
+								item.client_.GetStream().WriteAsync(buffMess, 0, buffMess.Length);
+								break;
+                            }
+                        }
+                    }
+					connection.Close();
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("insert into MEMBER values(@idgroup, @idmember)", connection);
+					command.Parameters.AddWithValue("@idgroup", data[1]);
+					command.Parameters.AddWithValue("@idmember", data[3]);
+					command.ExecuteNonQuery();
 					connection.Close();
 					buffMessage = new byte[1024];
 					byte[] tempBuff = Encoding.UTF8.GetBytes(message);
 					tempBuff.CopyTo(buffMessage, 0);
 					await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+					return true;
 				}
 				catch(Exception ex)
-                {
+				{
 
-                }
-            }
+				}
+			}
 			else if (data[0] == "LOADGROUPDATA")
-            {
-                // SQL command
-                try
-                {
+			{
+				// SQL command
+				try
+				{
 					string query = "select GROUPS.IDNHOM, TENNHOM from MEMBER, GROUPS " +
 									"where MEMBER.IDNHOM = GROUPS.IDNHOM " +
 									"and MEMBER.IDUSERS = @id";
@@ -565,8 +616,8 @@ namespace Communication
 					command = new SqlCommand(query, connection);
 					command.Parameters.AddWithValue("@id", data[1]);
 					reader = command.ExecuteReader();
-                    while (reader.HasRows)
-                    {
+					while (reader.HasRows)
+					{
 						if (!reader.Read()) break;
 						message += string.Format("%{0} {1}", reader.GetString(0), reader.GetString(1));
 						query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
@@ -575,13 +626,13 @@ namespace Communication
 						SqlCommand subCommand = new SqlCommand(query, subConnect);
 						subCommand.Parameters.AddWithValue("@id", reader.GetString(0));
 						SqlDataReader subReader = subCommand.ExecuteReader();
-                        while (subReader.HasRows)
-                        {
+						while (subReader.HasRows)
+						{
 							if (!subReader.Read()) break;
 							message += string.Format(" {0} {1}", subReader.GetString(0), subReader.GetString(1));
-                        }
+						}
 						subConnect.Close();
-                    }
+					}
 					connection.Close();
 					buffMessage = new byte[1024];
 					byte[] tempBuff = Encoding.UTF8.GetBytes(message);
@@ -590,9 +641,9 @@ namespace Communication
 					return true;
 				}
 				catch(Exception ex)
-                {
+				{
 					System.Diagnostics.Debug.WriteLine(ex.ToString());
-                }
+				}
 			}
 
 			return false;

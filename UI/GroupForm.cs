@@ -74,8 +74,8 @@ namespace UI
 			{
 				byte[] buff = new byte[1024];
 				byte[] tempBuff;
-				tempBuff = Encoding.UTF8.GetBytes("GSEND%" + Form1.me.Id + "%" +
-															group.ID + "%" +
+				tempBuff = Encoding.UTF8.GetBytes("GSEND%" + group.ID + "%" +
+															Form1.me.Id + "%" +
 															this.TextBoxEnterChat.Text);
 				tempBuff.CopyTo(buff, 0);
 				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);

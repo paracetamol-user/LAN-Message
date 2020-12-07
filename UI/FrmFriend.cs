@@ -80,6 +80,7 @@ namespace UI
 		}
 		private void LoadPnGroup()
 		{
+			pnGroup.Controls.Clear();
 			pnGroup.Controls.Add(UcGroup);
 			foreach(var item in Form1.GroupUIs)
 			{

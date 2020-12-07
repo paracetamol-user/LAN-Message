@@ -56,12 +56,13 @@ namespace UI
         }
         private async void SendAcceptGroupInviteToServer()
         {
-
             // goi len server gui thanh vien ve
-            byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + Form1.me.Id + "%" + uiParent.GetID());
+            byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + uiParent.group.ID + "%" + uiParent.group.Name + "%" 
+                                                                    + Form1.me.Id + "%" + Form1.me.Name);
             byte[] buff = new byte[1024];
             tempbuff.CopyTo(buff, 0);
             await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+            pnParent.Controls.Remove(this);
         }
     }
 }
