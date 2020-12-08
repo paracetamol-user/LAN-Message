@@ -63,6 +63,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(781, 43);
             this.panel1.TabIndex = 0;
@@ -73,11 +74,11 @@
             this.pnPending.Controls.Add(this.picPoint);
             this.pnPending.Controls.Add(this.btnPending);
             this.pnPending.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnPending.Location = new System.Drawing.Point(279, 0);
-            this.pnPending.Margin = new System.Windows.Forms.Padding(2);
+            this.pnPending.Location = new System.Drawing.Point(371, 0);
+            this.pnPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnPending.Name = "pnPending";
-            this.pnPending.Padding = new System.Windows.Forms.Padding(15, 8, 15, 8);
-            this.pnPending.Size = new System.Drawing.Size(125, 43);
+            this.pnPending.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.pnPending.Size = new System.Drawing.Size(167, 53);
             this.pnPending.TabIndex = 4;
             // 
             // picPoint
@@ -85,10 +86,10 @@
             this.picPoint.BackColor = System.Drawing.Color.Transparent;
             this.picPoint.Dock = System.Windows.Forms.DockStyle.Right;
             this.picPoint.Image = ((System.Drawing.Image)(resources.GetObject("picPoint.Image")));
-            this.picPoint.Location = new System.Drawing.Point(95, 8);
-            this.picPoint.Margin = new System.Windows.Forms.Padding(2);
+            this.picPoint.Location = new System.Drawing.Point(127, 10);
+            this.picPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picPoint.Name = "picPoint";
-            this.picPoint.Size = new System.Drawing.Size(15, 27);
+            this.picPoint.Size = new System.Drawing.Size(20, 33);
             this.picPoint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPoint.TabIndex = 3;
             this.picPoint.TabStop = false;
@@ -101,10 +102,10 @@
             this.btnPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPending.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPending.ForeColor = System.Drawing.Color.DimGray;
-            this.btnPending.Location = new System.Drawing.Point(15, 8);
-            this.btnPending.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPending.Location = new System.Drawing.Point(20, 10);
+            this.btnPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPending.Name = "btnPending";
-            this.btnPending.Size = new System.Drawing.Size(95, 27);
+            this.btnPending.Size = new System.Drawing.Size(127, 33);
             this.btnPending.TabIndex = 2;
             this.btnPending.Text = "Pending";
             this.btnPending.UseVisualStyleBackColor = false;
@@ -117,11 +118,11 @@
             this.panelAll.BackColor = System.Drawing.Color.Transparent;
             this.panelAll.Controls.Add(this.btnPeople);
             this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelAll.Location = new System.Drawing.Point(179, 0);
-            this.panelAll.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAll.Location = new System.Drawing.Point(238, 0);
+            this.panelAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelAll.Name = "panelAll";
-            this.panelAll.Padding = new System.Windows.Forms.Padding(15, 8, 15, 8);
-            this.panelAll.Size = new System.Drawing.Size(100, 43);
+            this.panelAll.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.panelAll.Size = new System.Drawing.Size(133, 53);
             this.panelAll.TabIndex = 2;
             // 
             // btnPeople
@@ -132,10 +133,10 @@
             this.btnPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPeople.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPeople.ForeColor = System.Drawing.Color.DimGray;
-            this.btnPeople.Location = new System.Drawing.Point(15, 8);
-            this.btnPeople.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPeople.Location = new System.Drawing.Point(20, 10);
+            this.btnPeople.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPeople.Name = "btnPeople";
-            this.btnPeople.Size = new System.Drawing.Size(70, 27);
+            this.btnPeople.Size = new System.Drawing.Size(93, 33);
             this.btnPeople.TabIndex = 1;
             this.btnPeople.Text = "People";
             this.btnPeople.UseVisualStyleBackColor = false;
@@ -148,11 +149,11 @@
             this.panelOnline.BackColor = System.Drawing.Color.Transparent;
             this.panelOnline.Controls.Add(this.btnOnline);
             this.panelOnline.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelOnline.Location = new System.Drawing.Point(82, 0);
-            this.panelOnline.Margin = new System.Windows.Forms.Padding(2);
+            this.panelOnline.Location = new System.Drawing.Point(109, 0);
+            this.panelOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelOnline.Name = "panelOnline";
-            this.panelOnline.Padding = new System.Windows.Forms.Padding(15, 8, 15, 8);
-            this.panelOnline.Size = new System.Drawing.Size(97, 43);
+            this.panelOnline.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.panelOnline.Size = new System.Drawing.Size(129, 53);
             this.panelOnline.TabIndex = 1;
             // 
             // btnOnline
@@ -163,10 +164,10 @@
             this.btnOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOnline.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOnline.ForeColor = System.Drawing.Color.DimGray;
-            this.btnOnline.Location = new System.Drawing.Point(15, 8);
-            this.btnOnline.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOnline.Location = new System.Drawing.Point(20, 10);
+            this.btnOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOnline.Name = "btnOnline";
-            this.btnOnline.Size = new System.Drawing.Size(67, 27);
+            this.btnOnline.Size = new System.Drawing.Size(89, 33);
             this.btnOnline.TabIndex = 1;
             this.btnOnline.Text = "Online";
             this.btnOnline.UseVisualStyleBackColor = false;
@@ -180,10 +181,10 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(20, 2, 15, 2);
-            this.panel2.Size = new System.Drawing.Size(82, 43);
+            this.panel2.Padding = new System.Windows.Forms.Padding(20, 2, 20, 2);
+            this.panel2.Size = new System.Drawing.Size(109, 53);
             this.panel2.TabIndex = 0;
             // 
             // pictureBox1
@@ -192,9 +193,9 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(20, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 39);
+            this.pictureBox1.Size = new System.Drawing.Size(69, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -255,7 +256,7 @@
             // 
             // ServerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(781, 467);

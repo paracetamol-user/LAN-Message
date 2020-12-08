@@ -31,6 +31,8 @@ namespace UI
 		public ucFriend ucFriendOnline;
 		public ucUserAll ucSearch;
 
+		public AddUserToGroup addToGroup;
+
 		public ContextMenuStrip cmns;
 		public ContextMenuStrip cmnsMess;
 		public UserUI() { }
@@ -47,6 +49,7 @@ namespace UI
 			ucInterac = new ucInterac(this);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
+			addToGroup = new AddUserToGroup(panelRIGHT);
 			ucSearch = new ucUserAll(this);
 		}
 		public void ResetTheme()
@@ -114,15 +117,6 @@ namespace UI
 			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
-
-			//ToolStripButton tsbEdit = new ToolStripButton("Edit Message");
-			//ToolStripButton tsbDelete = new ToolStripButton("Delete Message");
-			//ToolStripButton tsbPin = new ToolStripButton("Pin Message");
-
-			//cmnsMess.Items.Add(tsAddFriend);
-			//cmnsMess.Items.Add(tsAddGroup);
-			//cmnsMess.Items.Add(tsLine);
-			//cmnsMess.Items.Add(tsRemoveFriend);
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
@@ -134,7 +128,8 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			
+			addToGroup.InitAddGroupForm(user);
+			addToGroup.Show();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{

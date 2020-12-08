@@ -15,6 +15,11 @@ namespace UI
         public ucGroup()
         {
             InitializeComponent();
+            this.Dock = DockStyle.Fill;
+        }
+        public void AddGr(ucGroupAll groupAll)
+        {
+            this.pnContainAll.Controls.Add(groupAll);
         }
     }
 }

@@ -13,21 +13,27 @@ namespace UI
 	public partial class FrmFriend : Form
 	{
 		Panel pnAllFriend;
+		Panel pnGroup;
 		Panel pnOnlineFriend;
 		Panel pnDanhba;
 		Button btnFocus;
-		bool isload;
+
+		ucGroup UcGroup;
+
+		bool isLoad;
 		public FrmFriend()
 		{
 			InitializeComponent();
 			this.BackColor = Form1.theme.BackColor;
+			UcGroup = new ucGroup();
 			InitPnAllFriend();
 			InitPnOnlineFriend();
-			isload = false;
+			InitPnGroup();
+			isLoad = false;
 			btnFocus = null;
 		}
 		public void Reset()
-        {
+		{
 			//if (btnFocus!=null) btnFocus.BackColor = Color.White;
 			//btnFocus = null;
 			//pnAllFriend.Visible = false;
@@ -41,7 +47,7 @@ namespace UI
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureMessage);
         }
 		//public void ChangeColorControl()
-  //      {
+  		//      {
 		//	foreach (var item in pnAllFriend.Controls)
 		//	{
 		//		if (item.GetType() == typeof(ucUserAll))
@@ -90,11 +96,34 @@ namespace UI
 			this.pnAllFriend.Visible = false;
 			this.Controls.Add(pnAllFriend);
 		}
+		private void InitPnGroup()
+		{
+			this.pnGroup = new Panel();
+			this.pnGroup.Dock = DockStyle.Fill;
+			this.pnGroup.Padding = new Padding(30, 20, 20, 0);
+			this.pnGroup.BringToFront();
+			this.pnGroup.Visible = false;
+			this.Controls.Add(pnGroup);
+		}
+		private void LoadPnGroup()
+		{
+			pnGroup.Controls.Clear();
+			pnGroup.Controls.Add(UcGroup);
+			foreach(var item in Form1.GroupUIs)
+			{
+				UcGroup.AddGr(item.ucGroupAll);
+			}
+		}
 		public void AddUserIntoFrmFriend(UserUI userUI)
 		{
 			if (!pnAllFriend.Contains(userUI.ucFriend))
 				pnAllFriend.Controls.Add(userUI.ucFriend);
 			userUI.ucFriend.InitColor();
+		}
+		public void AddGroupIntoGroupForm(GroupUI groupUI)
+		{
+			if (!pnGroup.Contains(groupUI.ucGroupAll))
+				pnGroup.Controls.Add(groupUI.ucGroupAll);
 		}
 		public void RemoveFriend(UserUI userUI)
 		{
@@ -107,8 +136,8 @@ namespace UI
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
 			(sender as Button).BackColor = Form1.theme.FocusColor;
 			btnFocus = sender as Button;
-			if (!isload) LoadPnAllFriend();
-			isload = true;
+			if (!isLoad) LoadPnAllFriend();
+			isLoad = true;
 			this.pnAllFriend.Visible = true;
 			pnAllFriend.Show();
 			pnAllFriend.BringToFront();
@@ -139,5 +168,16 @@ namespace UI
         {
 			(sender as Button).BackColor = Color.Transparent;
 		}
-    }
+		private void btnGroup_Click(object sender, EventArgs e)
+		{
+			if (btnFocus != null) btnFocus.BackColor = Color.White;
+			(sender as Button).BackColor = Color.DarkGray;
+			btnFocus = sender as Button;
+			pnGroup.Controls.Clear();
+			pnGroup.Show();
+			pnGroup.BringToFront();
+			pnGroup.Visible = true;
+			LoadPnGroup();
+		}
+	}
 }

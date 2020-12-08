@@ -44,7 +44,6 @@ namespace UI
 		{
 			this.BackColor = Form1.theme.FocusColor ;
 		}
-
 		private void pnContain_MouseLeave(object sender, EventArgs e)
 		{
 			this.BackColor = Color.Transparent;
@@ -64,7 +63,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			Form1.userUIForcus = this.Parent;
 		}
-
         private void pnContainPicture_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();

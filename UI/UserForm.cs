@@ -238,5 +238,109 @@ namespace UI
 			}
 
 		}
-	}
+        private void panelListChat_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelENTERCHAT_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelCHATBOX_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TextBoxEnterChat_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelENTERCHATOPTION_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelSEND_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBoxSend_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelUSERINFO_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelAll_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelOPTIONUSER_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelSearch_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBoxSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBoxMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelNULL2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelUSERCHATINFO_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelListFile_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
 }
