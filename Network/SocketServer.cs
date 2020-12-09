@@ -274,13 +274,12 @@ namespace Communication
 				Guid id =  Guid.NewGuid();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
-				this.command = new SqlCommand("insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai,@nhomnhan)", connection);
+				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NGUOINHAN,NOIDUNGTINNHAN,LOAI) values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
 				this.command.Parameters.Add(new SqlParameter("@idnguoinhan", data[2]));
 				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
 				this.command.Parameters.Add(new SqlParameter("@loai", 1));
-				this.command.Parameters.Add(new SqlParameter("@nhomnhan", "-1"));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
 				// Lưu vào database
