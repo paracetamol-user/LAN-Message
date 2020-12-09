@@ -25,19 +25,20 @@ namespace UI
 		private List<FileInfo> files;
 		private short LastInteracted;
 		public ucUserINChatBox messageFocus;
+		public UserUI userUI;
 		public UserForm()
 		{
 			InitializeComponent();
 			this.Visible = false;
 		}
-		public UserForm(UserManager.User user)
+		public UserForm(UserManager.User user , UserUI userUI)
 		{
 			InitializeComponent();
 			this.panelLine.BackColor = Form1.theme.FocusColor;
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
 		
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
-	
+			this.userUI = userUI;
 			this.Visible = false;
 			this.user = user;
 			this.id = 0;
@@ -72,7 +73,8 @@ namespace UI
 			Panel tempPanel = new Panel();
 			tempPanel.Dock = DockStyle.Top;
 			tempPanel.AutoSize = true;
-			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user,this);
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user,this.user.Id);
+			if (user.Id != Form1.me.Id) UserInChatBox.DisableEdit(); 
 			ucMessShow messShow = new ucMessShow(str,user,UserInChatBox);
 			messShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
@@ -92,7 +94,8 @@ namespace UI
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
-			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user,this);
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user,this.user.Id);
+			UserInChatBox.DisableEdit();
 			ucFileShow fileshow = new ucFileShow(_user, tempID, tempName,UserInChatBox);
 			if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
@@ -154,7 +157,7 @@ namespace UI
 
 				// tạo một panel chat 
 				this.AddItemInToListChat(Form1.me,"-1", this.TextBoxEnterChat.Text);
-
+				this.userUI.AddMessageIntoInteract(Form1.me.Name, TextBoxEnterChat.Text);
 				//clear textbox nhập chat
 				TextBoxEnterChat.Text = "";
 			}
@@ -191,8 +194,15 @@ namespace UI
 		}
 		private async void PictureBoxSend_Click(object sender, EventArgs e)
 		{
+			if (Form1.chatBoxFocus != null)
+            {
+				Form1.chatBoxFocus.BackColor = Color.Transparent;
+				Form1.chatBoxFocus.DisableMenu();
+			}
+			
 			await SendFile();
 			await SendMessage();
+			
 		}
 		public void AddFrom(Panel panelRight)
 		{
@@ -202,6 +212,11 @@ namespace UI
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
+				if (Form1.chatBoxFocus != null)
+				{
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
+				}
 				SendMessage();
 				e.SuppressKeyPress = true;
 			}
@@ -238,109 +253,6 @@ namespace UI
 			}
 
 		}
-        private void panelListChat_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelENTERCHAT_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelCHATBOX_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void TextBoxEnterChat_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelENTERCHATOPTION_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelSEND_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBoxSend_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelUSERINFO_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelAll_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelOPTIONUSER_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelSearch_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBoxSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBoxMenu_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelNULL2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelUSERCHATINFO_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void labelID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelListFile_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+   
     }
 }

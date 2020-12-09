@@ -60,9 +60,9 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 53);
+            this.panel1.Size = new System.Drawing.Size(798, 53);
             this.panel1.TabIndex = 1;
             // 
             // panel3
@@ -122,9 +122,9 @@
             this.btnGroup.TabIndex = 1;
             this.btnGroup.Text = "Group";
             this.btnGroup.UseVisualStyleBackColor = false;
+            this.btnGroup.Click += new System.EventHandler(this.btnGroup_Click);
             this.btnGroup.MouseLeave += new System.EventHandler(this.btnAll_MouseLeave);
             this.btnGroup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAll_MouseMove);
-            this.btnGroup.Click += new System.EventHandler(this.btnGroup_Click);
             // 
             // panelAll
             // 
@@ -217,9 +217,9 @@
             // 
             this.panelLine.BackColor = System.Drawing.Color.Transparent;
             this.panelLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLine.Location = new System.Drawing.Point(0, 43);
+            this.panelLine.Location = new System.Drawing.Point(0, 53);
             this.panelLine.Name = "panelLine";
-            this.panelLine.Size = new System.Drawing.Size(600, 1);
+            this.panelLine.Size = new System.Drawing.Size(798, 1);
             this.panelLine.TabIndex = 3;
             // 
             // FrmFriend
@@ -227,7 +227,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(798, 366);
             this.Controls.Add(this.panelLine);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

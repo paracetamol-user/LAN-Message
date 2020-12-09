@@ -40,7 +40,6 @@ namespace UI
 			//pnOnlineFriend.Visible = true;
 			//pnOnlineFriend.Show();
 			//pnOnlineFriend.BringToFront();
-			isload = false;
         }
 		public void ResetPicture()
         {

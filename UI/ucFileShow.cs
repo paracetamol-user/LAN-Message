@@ -15,7 +15,7 @@ namespace UI
 {
 	public partial class ucFileShow : UserControl
 	{
-		private ucUserINChatBox ucparent;
+		private ucUserINChatBox ucParent;
 		private string fileId;
 		private string fileName;
 		public User user;
@@ -26,7 +26,7 @@ namespace UI
 		public ucFileShow(User user , string fileId , string fileName, ucUserINChatBox ucUserINChatBox)
 		{
 			InitializeComponent();
-			this.ucparent = ucUserINChatBox;
+			this.ucParent = ucUserINChatBox;
 			this.user = user;
 			this.fileId = fileId;
 			this.fileName = fileName;
@@ -44,7 +44,7 @@ namespace UI
 		{
 			set
 			{
-				this.ucparent = value;
+				this.ucParent = value;
 			}
 		}
 		public string _FileId
@@ -84,8 +84,8 @@ namespace UI
 			tempbuff.CopyTo(buff, 0);
 			await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 			PictureBox temp = sender as PictureBox;
-			temp.Image = Image.FromFile(@"..\..\images\check.png");
-			temp.Enabled = false;
+			//temp.Image = Image.FromFile(@"..\..\images\check.png");
+			//temp.Enabled = false;
 		}
 		public void _DisableButDownLoad()
 		{
@@ -94,12 +94,19 @@ namespace UI
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-			this.ucparent.BackColor = Form1.theme.Menu;
-        }
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
-        {
-			this.ucparent.BackColor = Color.Transparent;
-        }
+			if (Form1.chatBoxFocus != ucParent)
+			{
+				if (Form1.chatBoxFocus != null)
+				{
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				Form1.chatBoxFocus = ucParent;
+				this.ucParent.EnableMenu();
+				this.ucParent.BackColor = Form1.theme.Menu;
+			}
+			else return;
+		}
 		public string GetText()
         {
 			return this.label1.Text;
@@ -108,6 +115,7 @@ namespace UI
         {
 			this.label1.Text = "Deleted file";
 			this.label1.Font = new Font("Dubai", 10, FontStyle.Underline);
+			this.pictureBoxDownLoad.Visible = false;
 		}
     }
 }

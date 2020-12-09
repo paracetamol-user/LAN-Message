@@ -81,7 +81,6 @@
             this.panelENTERCHAT.Padding = new System.Windows.Forms.Padding(9);
             this.panelENTERCHAT.Size = new System.Drawing.Size(559, 69);
             this.panelENTERCHAT.TabIndex = 5;
-            this.panelENTERCHAT.Paint += new System.Windows.Forms.PaintEventHandler(this.panelENTERCHAT_Paint);
             // 
             // panelCHATBOX
             // 
@@ -94,7 +93,6 @@
             this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelCHATBOX.Size = new System.Drawing.Size(444, 51);
             this.panelCHATBOX.TabIndex = 2;
-            this.panelCHATBOX.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCHATBOX_Paint);
             // 
             // TextBoxEnterChat
             // 
@@ -125,7 +123,6 @@
             this.TextBoxEnterChat.ShadowDecoration.Parent = this.TextBoxEnterChat;
             this.TextBoxEnterChat.Size = new System.Drawing.Size(430, 39);
             this.TextBoxEnterChat.TabIndex = 0;
-            this.TextBoxEnterChat.TextChanged += new System.EventHandler(this.TextBoxEnterChat_TextChanged);
             this.TextBoxEnterChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxEnterChat_KeyDown);
             // 
             // panelENTERCHATOPTION
@@ -139,11 +136,11 @@
             this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(9);
             this.panelENTERCHATOPTION.Size = new System.Drawing.Size(45, 51);
             this.panelENTERCHATOPTION.TabIndex = 1;
-            this.panelENTERCHATOPTION.Paint += new System.Windows.Forms.PaintEventHandler(this.panelENTERCHATOPTION_Paint);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(9, 9);
@@ -166,11 +163,11 @@
             this.panelSEND.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelSEND.Size = new System.Drawing.Size(52, 51);
             this.panelSEND.TabIndex = 0;
-            this.panelSEND.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSEND_Paint);
             // 
             // pictureBoxSend
             // 
             this.pictureBoxSend.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
             this.pictureBoxSend.Location = new System.Drawing.Point(7, 6);
@@ -180,7 +177,6 @@
             this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSend.TabIndex = 0;
             this.pictureBoxSend.TabStop = false;
-            this.pictureBoxSend.Click += new System.EventHandler(this.pictureBoxSend_Click_1);
             // 
             // panelUSERINFO
             // 
@@ -194,7 +190,6 @@
             this.panelUSERINFO.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.panelUSERINFO.Size = new System.Drawing.Size(559, 58);
             this.panelUSERINFO.TabIndex = 4;
-            this.panelUSERINFO.Paint += new System.Windows.Forms.PaintEventHandler(this.panelUSERINFO_Paint);
             // 
             // panelAll
             // 
@@ -208,7 +203,6 @@
             this.panelAll.Name = "panelAll";
             this.panelAll.Size = new System.Drawing.Size(559, 55);
             this.panelAll.TabIndex = 4;
-            this.panelAll.Paint += new System.Windows.Forms.PaintEventHandler(this.panelAll_Paint);
             // 
             // panelOPTIONUSER
             // 
@@ -222,7 +216,6 @@
             this.panelOPTIONUSER.Padding = new System.Windows.Forms.Padding(9, 7, 40, 7);
             this.panelOPTIONUSER.Size = new System.Drawing.Size(172, 55);
             this.panelOPTIONUSER.TabIndex = 4;
-            this.panelOPTIONUSER.Paint += new System.Windows.Forms.PaintEventHandler(this.panelOPTIONUSER_Paint);
             // 
             // panelSearch
             // 
@@ -235,7 +228,6 @@
             this.panelSearch.Padding = new System.Windows.Forms.Padding(9);
             this.panelSearch.Size = new System.Drawing.Size(52, 41);
             this.panelSearch.TabIndex = 1;
-            this.panelSearch.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSearch_Paint);
             // 
             // pictureBoxSearch
             // 
@@ -248,7 +240,6 @@
             this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSearch.TabIndex = 0;
             this.pictureBoxSearch.TabStop = false;
-            this.pictureBoxSearch.Click += new System.EventHandler(this.pictureBoxSearch_Click);
             // 
             // panelMenu
             // 
@@ -261,7 +252,6 @@
             this.panelMenu.Padding = new System.Windows.Forms.Padding(9);
             this.panelMenu.Size = new System.Drawing.Size(52, 41);
             this.panelMenu.TabIndex = 0;
-            this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
             // pictureBoxMenu
             // 
@@ -276,7 +266,6 @@
             this.pictureBoxMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxMenu.TabIndex = 0;
             this.pictureBoxMenu.TabStop = false;
-            this.pictureBoxMenu.Click += new System.EventHandler(this.pictureBoxMenu_Click);
             // 
             // panelNULL2
             // 
@@ -288,7 +277,6 @@
             this.panelNULL2.Padding = new System.Windows.Forms.Padding(9);
             this.panelNULL2.Size = new System.Drawing.Size(56, 55);
             this.panelNULL2.TabIndex = 3;
-            this.panelNULL2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNULL2_Paint);
             // 
             // panelUSERCHATINFO
             // 
@@ -301,7 +289,6 @@
             this.panelUSERCHATINFO.Padding = new System.Windows.Forms.Padding(16, 2, 0, 2);
             this.panelUSERCHATINFO.Size = new System.Drawing.Size(301, 55);
             this.panelUSERCHATINFO.TabIndex = 1;
-            this.panelUSERCHATINFO.Paint += new System.Windows.Forms.PaintEventHandler(this.panelUSERCHATINFO_Paint);
             // 
             // panel1
             // 
@@ -315,7 +302,6 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(20, 2, 0, 0);
             this.panel1.Size = new System.Drawing.Size(285, 51);
             this.panel1.TabIndex = 3;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // labelID
             // 
@@ -330,7 +316,6 @@
             this.labelID.Size = new System.Drawing.Size(49, 17);
             this.labelID.TabIndex = 1;
             this.labelID.Text = "#0040";
-            this.labelID.Click += new System.EventHandler(this.labelID_Click);
             // 
             // labelName
             // 
@@ -344,7 +329,6 @@
             this.labelName.Size = new System.Drawing.Size(111, 23);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "User Name";
-            this.labelName.Click += new System.EventHandler(this.labelName_Click);
             // 
             // panelLine
             // 
@@ -368,7 +352,6 @@
             this.panelListFile.Size = new System.Drawing.Size(559, 81);
             this.panelListFile.TabIndex = 6;
             this.panelListFile.Visible = false;
-            this.panelListFile.Paint += new System.Windows.Forms.PaintEventHandler(this.panelListFile_Paint);
             // 
             // panelListChat
             // 
@@ -381,7 +364,6 @@
             this.panelListChat.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.panelListChat.Size = new System.Drawing.Size(559, 343);
             this.panelListChat.TabIndex = 7;
-            this.panelListChat.Paint += new System.Windows.Forms.PaintEventHandler(this.panelListChat_Paint);
             // 
             // UserForm
             // 

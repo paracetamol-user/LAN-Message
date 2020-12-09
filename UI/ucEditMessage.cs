@@ -30,17 +30,15 @@ namespace UI
 			this.textBox1.Text = ucMessShow.GetText();
 			this.Visible = true;
 		}
-
 		private void lbCancel_Click(object sender, EventArgs e)
 		{
 			ucmessshow.Visible = true;
 			pnparent._RemoveEditControls(this);
 			pnparent.isTurnOnEdit = false;
 		}
-
 		private void lbSave_Click(object sender, EventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+ pnparent.ID+"%"+pnparent.parent.user.Id + "%" + textBox1.Text);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+ pnparent.ID+"%"+pnparent.IDParent + "%" + textBox1.Text);
 			byte[] buff = new byte[1024];
 			tempbuff.CopyTo(buff, 0);
 			Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);

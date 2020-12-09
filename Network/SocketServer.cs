@@ -34,7 +34,7 @@ namespace Communication
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
-		string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)";
+		string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai,@nhomnhan)";
 		string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
 		string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
 
@@ -56,9 +56,7 @@ namespace Communication
 			if (handler != null)
 				handler(this, trea);
 		}
-
 		private bool KeepRunning { get; set; }
-
 		public SocketServer()
 		{
 			clients = new List<UserClient>();
@@ -273,16 +271,16 @@ namespace Communication
 			}
 			else if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;				   // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
 			{
-
 				Guid id =  Guid.NewGuid();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
-				this.command = new SqlCommand(queryMessage, connection);
+				this.command = new SqlCommand("insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai,@nhomnhan)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
 				this.command.Parameters.Add(new SqlParameter("@idnguoinhan", data[2]));
 				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
 				this.command.Parameters.Add(new SqlParameter("@loai", 1));
+				this.command.Parameters.Add(new SqlParameter("@nhomnhan", "-1"));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
 				// Lưu vào database
@@ -320,7 +318,25 @@ namespace Communication
 				string query = "select USERS.ID, USERS.TENTK " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
 						"and MEMBER.IDNHOM = @id";
-				connection.Close();
+				Guid id = Guid.NewGuid();
+				this.connection.Close();
+				this.connection = new SqlConnection(this.connString);
+				this.connection.Open();
+				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NOIDUNGTINNHAN,LOAI,NHOMNHAN) values(@id,@idnguoigui,@tinnhan,@loai,@nhomnhan)", connection);
+				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
+				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
+				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
+				this.command.Parameters.Add(new SqlParameter("@loai", 1));
+				this.command.Parameters.Add(new SqlParameter("@nhomnhan", data[1]));
+				this.command.ExecuteNonQuery();
+				this.connection.Close();
+
+				byte[] tempbuff;
+				buffMessage = new byte[1024];
+				tempbuff = Encoding.UTF8.GetBytes("IDMESS%" + id.ToString());
+				tempbuff.CopyTo(buffMessage, 0);
+				await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+
 				connection = new SqlConnection(connString);
 				connection.Open();
 				command = new SqlCommand(query, connection);
@@ -330,7 +346,7 @@ namespace Communication
                 {
 					if (!reader.Read()) break;
 					// groupid, userid, message
-					string mess = string.Format("GSEND%{0}%{1}%{2}", data[1], data[2], data[3]);
+					string mess = string.Format("GSEND%{0}%{1}%{2}%{3}", data[1], data[2], data[3],id.ToString());
 					buffMessage = new byte[1024];
 					buff = Encoding.UTF8.GetBytes(mess);
 					buff.CopyTo(buffMessage, 0);
@@ -561,18 +577,67 @@ namespace Communication
 			}
 			else if (data[0] == "EDITMESSAGE")
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%"+data[1]+ "%" + client.id_  + "%" +data[3]);
-				buffMessage = new byte[1024];
-				tempbuff.CopyTo(buffMessage, 0);
-				foreach (var item in clientInvalid)
+				string tempquery = "Select * from tinnhan where MATINNHAN = @id ";
+				string nguoinhan = "";
+				string nhomnhan = "";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(tempquery, connection);
+				command.Parameters.AddWithValue("@id", data[1]);
+				reader = command.ExecuteReader();
+				while (reader.HasRows)
 				{
-					if (item.id_ == data[2])
-					{
-						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
-						break;
-					}
+					if (!reader.Read()) break;
+					try { nguoinhan = reader.GetString(2); } catch { }
+					try { nhomnhan = reader.GetString(5); } catch { }
+
 				}
-				return true;
+				connection.Close();
+				if (nguoinhan != "")
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%" + data[1] + "%" + client.id_ + "%" + data[3]);
+					buffMessage = new byte[1024];
+					tempbuff.CopyTo(buffMessage, 0);
+					foreach (var item in clientInvalid)
+					{
+						if (item.id_ == data[2])
+						{
+							await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+							break;
+						}
+					}
+					return true;
+				}
+				else
+                {
+					byte[] tempbuff = Encoding.UTF8.GetBytes("EDITGROUPMESSAGE%" + data[1] + "%" + nhomnhan + "%" + data[3]);
+					buffMessage = new byte[1024];
+					tempbuff.CopyTo(buffMessage, 0);
+					string query = "select USERS.ID, USERS.TENTK " +
+						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
+						"and MEMBER.IDNHOM = @id";
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand(query, connection);
+					command.Parameters.AddWithValue("@id", nhomnhan);
+					reader = command.ExecuteReader();
+					while (reader.HasRows)
+					{
+						if (!reader.Read()) break;
+						// groupid, userid, message
+						foreach (var item in clientInvalid)
+						{
+							if (item.id_ == reader.GetString(0))
+							{
+								item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+								break;
+							}
+						}
+					}
+					connection.Close();
+					return true;
+				}
+				
 			}
 			else if (data[0] == "GPENDING")
 			{
@@ -591,18 +656,67 @@ namespace Communication
 			}
 			else if (data[0] == "DELETEMESSAGE")
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + data[1] + "%"+ client.id_);
-				buffMessage = new byte[1024];
-				tempbuff.CopyTo(buffMessage, 0);
-				foreach (var item in clientInvalid)
-				{
-					if (item.id_ == data[2])
+				string tempquery = "Select * from tinnhan where MATINNHAN = @id ";
+				string nguoinhan="";
+				string nhomnhan = "";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(tempquery, connection);
+				command.Parameters.AddWithValue("@id", data[1]);
+				reader = command.ExecuteReader();
+				while (reader.HasRows)
+                {
+					if (!reader.Read()) break;
+					try { nguoinhan = reader.GetString(2); }catch { }
+					try { nhomnhan = reader.GetString(5); } catch { }
+					
+                }
+				connection.Close();
+				if (nguoinhan != "")
+                {
+					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + data[1] + "%" + client.id_);
+					buffMessage = new byte[1024];
+					tempbuff.CopyTo(buffMessage, 0);
+					foreach (var item in clientInvalid)
 					{
-						await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
-						break;
+						if (item.id_ == data[2])
+						{
+							await item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+							break;
+						}
 					}
+					return true;
+				}else
+                {
+					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEGROUPMESSAGE%" + data[1] + "%" + nhomnhan);
+					buffMessage = new byte[1024];
+					tempbuff.CopyTo(buffMessage, 0);
+
+					string query = "select USERS.ID, USERS.TENTK " +
+						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
+						"and MEMBER.IDNHOM = @id";
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand(query, connection);
+					command.Parameters.AddWithValue("@id", nhomnhan);
+					reader = command.ExecuteReader();
+					while (reader.HasRows)
+					{
+						if (!reader.Read()) break;
+						// groupid, userid, message
+						foreach (var item in clientInvalid)
+						{
+							if (item.id_ == reader.GetString(0))
+							{
+								item.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+								break;
+							}
+						}
+					}
+					connection.Close();
+					return true;
 				}
-				return true;
+				
 			}
 			else if (data[0] == "GROUPACCEPT")
 			{
@@ -797,6 +911,7 @@ namespace Communication
 									this.command.Parameters.Add(new SqlParameter("@idnguoinhan", infoByte.ID));
 									this.command.Parameters.Add(new SqlParameter("@tinnhan", @"..\..\filedata\" + Createid.ToString() + infoByte.Extension.ToString()));
 									this.command.Parameters.Add(new SqlParameter("@loai", 1));
+									this.command.Parameters.Add(new SqlParameter("@nhomnhan", "-1"));
 									this.command.ExecuteNonQuery();
 									this.connection.Close();
 									int i = 0;

@@ -25,17 +25,23 @@ namespace UI
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public static List<GroupUI> GroupUIs; // List form giao diện chat cho từng group
 		public static User me; // Nguoi su dung chuong trinh
+
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
-		public static GroupForm groupFormFocus = null;
+        public static GroupForm groupFormFocus = null;
+		public static ucUserINChatBox chatBoxFocus = null;
+		public static ucInterac interactFocus = null;
+
 		public static SocketClient client;
 		public static TcpClient server;
 		public static SettingForm settingForm;
 		public static FrmFriend frmFriend;
 		public static List<string> listFile;
+
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
+
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -379,11 +385,33 @@ namespace UI
                         }
                     }
 				}
+				else if (action == "EDITGROUPMESSAGE")
+                {
+					foreach (var item in GroupUIs)
+					{
+						if (item.group.ID == data[2])
+						{
+							item.EditMessage(data[1], data[3]);
+							break;
+						}
+					}
+				}
 				else if (action == "DELETEMESSAGE")
                 {
 					foreach (var item in UserUIs)
 					{
 						if (item.user.Id == data[2])
+						{
+							item.DeleteMessage(data[1]);
+							break;
+						}
+					}
+				}
+				else if (action == "DELETEGROUPMESSAGE")
+                {
+					foreach (var item in GroupUIs)
+					{
+						if (item.group.ID == data[2])
 						{
 							item.DeleteMessage(data[1]);
 							break;
@@ -468,7 +496,7 @@ namespace UI
                             {
 								if(user.Id == data[2])
                                 {
-									GroupUIs[i].AddMessage(user, data[3]);
+									GroupUIs[i].AddMessage(user,data[4], data[3]);
 									GroupUIs[i].BringToTop();
 									break;
                                 }
@@ -616,10 +644,6 @@ namespace UI
 			}
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
-		}
-		public void DisableNotification()
-		{
-			picNotification.Visible = false;
 		}
     }
 }

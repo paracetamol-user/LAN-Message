@@ -58,12 +58,12 @@ namespace UI
         {
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
+			if (Form1.interactFocus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
+			Form1.interactFocus = this.Parent.ucInterac;
 		}
         private void panel2_MouseMove(object sender, MouseEventArgs e)
         {
@@ -79,12 +79,12 @@ namespace UI
         {
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
+			if (Form1.interactFocus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
+			Form1.interactFocus = this.Parent.ucInterac;
 		}
 
         private async void picAdd_Click(object sender, EventArgs e)

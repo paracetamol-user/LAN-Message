@@ -61,10 +61,11 @@ namespace UI
             this.gunaPic.Name = "gunaPic";
             this.gunaPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.gunaPic.ShadowDecoration.Parent = this.gunaPic;
-            this.gunaPic.Size = new System.Drawing.Size(53, 48);
+            this.gunaPic.Size = new System.Drawing.Size(53, 44);
             this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPic.TabIndex = 0;
             this.gunaPic.TabStop = false;
+            this.gunaPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContain
             // 
@@ -77,8 +78,9 @@ namespace UI
             this.pnContain.Location = new System.Drawing.Point(10, 1);
             this.pnContain.Name = "pnContain";
             this.pnContain.Padding = new System.Windows.Forms.Padding(10, 7, 20, 7);
-            this.pnContain.Size = new System.Drawing.Size(365, 68);
+            this.pnContain.Size = new System.Drawing.Size(364, 64);
             this.pnContain.TabIndex = 5;
+            this.pnContain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContainId
             // 
@@ -87,20 +89,22 @@ namespace UI
             this.pnContainId.Location = new System.Drawing.Point(69, 36);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(196, 24);
+            this.pnContainId.Size = new System.Drawing.Size(207, 24);
             this.pnContainId.TabIndex = 9;
+            this.pnContainId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // lbId
             // 
             this.lbId.AutoSize = true;
             this.lbId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbId.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbId.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
             this.lbId.Location = new System.Drawing.Point(5, 3);
             this.lbId.Name = "lbId";
-            this.lbId.Size = new System.Drawing.Size(53, 20);
+            this.lbId.Size = new System.Drawing.Size(42, 17);
             this.lbId.TabIndex = 0;
             this.lbId.Text = "label2";
+            this.lbId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnContrainName
             // 
@@ -109,29 +113,32 @@ namespace UI
             this.pnContrainName.Location = new System.Drawing.Point(69, 7);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(196, 29);
+            this.pnContrainName.Size = new System.Drawing.Size(207, 29);
             this.pnContrainName.TabIndex = 8;
+            this.pnContrainName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(5, 3);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(74, 26);
+            this.lbName.Size = new System.Drawing.Size(60, 23);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
+            this.lbName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.picChat);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(265, 7);
+            this.panel2.Location = new System.Drawing.Point(276, 7);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.panel2.Size = new System.Drawing.Size(40, 54);
+            this.panel2.Size = new System.Drawing.Size(34, 50);
             this.panel2.TabIndex = 7;
+            this.panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // picChat
             // 
@@ -139,21 +146,23 @@ namespace UI
             this.picChat.Image = ((System.Drawing.Image)(resources.GetObject("picChat.Image")));
             this.picChat.Location = new System.Drawing.Point(0, 0);
             this.picChat.Name = "picChat";
-            this.picChat.Size = new System.Drawing.Size(30, 54);
+            this.picChat.Size = new System.Drawing.Size(24, 50);
             this.picChat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picChat.TabIndex = 0;
             this.picChat.TabStop = false;
             this.picChat.Click += new System.EventHandler(this.picChat_Click);
+            this.picChat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.picAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(305, 7);
+            this.panel1.Location = new System.Drawing.Point(310, 7);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(40, 54);
+            this.panel1.Size = new System.Drawing.Size(34, 50);
             this.panel1.TabIndex = 1;
+            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // picAdd
             // 
@@ -162,7 +171,7 @@ namespace UI
             this.picAdd.Location = new System.Drawing.Point(10, 0);
             this.picAdd.Name = "picAdd";
             this.picAdd.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.picAdd.Size = new System.Drawing.Size(30, 54);
+            this.picAdd.Size = new System.Drawing.Size(24, 50);
             this.picAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAdd.TabIndex = 0;
             this.picAdd.TabStop = false;
@@ -174,8 +183,9 @@ namespace UI
             this.pnContainPicture.Location = new System.Drawing.Point(10, 7);
             this.pnContainPicture.Name = "pnContainPicture";
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3);
-            this.pnContainPicture.Size = new System.Drawing.Size(59, 54);
+            this.pnContainPicture.Size = new System.Drawing.Size(59, 50);
             this.pnContainPicture.TabIndex = 0;
+            this.pnContainPicture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // pnLine
             // 
@@ -184,8 +194,9 @@ namespace UI
             this.pnLine.ForeColor = System.Drawing.Color.Black;
             this.pnLine.Location = new System.Drawing.Point(10, 0);
             this.pnLine.Name = "pnLine";
-            this.pnLine.Size = new System.Drawing.Size(365, 1);
+            this.pnLine.Size = new System.Drawing.Size(364, 1);
             this.pnLine.TabIndex = 4;
+            this.pnLine.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gunaPic_MouseClick);
             // 
             // ucGroupAll
             // 
@@ -196,7 +207,7 @@ namespace UI
             this.Controls.Add(this.pnLine);
             this.Name = "ucGroupAll";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 30, 0);
-            this.Size = new System.Drawing.Size(405, 69);
+            this.Size = new System.Drawing.Size(404, 65);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.pnContain.ResumeLayout(false);
             this.pnContainId.ResumeLayout(false);

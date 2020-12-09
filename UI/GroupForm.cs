@@ -19,17 +19,19 @@ namespace UI
 		private int ID;
 		private List<FileInfo> files;
 		private short LastInteracted;
+		public GroupUI GroupUI;
 		public GroupForm()
 		{
 			InitializeComponent();
 			this.Visible = false;
 		}
-		public GroupForm(Group group)
+		public GroupForm(Group group , GroupUI grUI)
 		{
 			InitializeComponent();
 			this.Visible = false;
 			this.group = group;
 			this.ID = 0;
+			this.GroupUI = grUI;
 			this.labelName.Text = group.Name;
 			this.labelID.Text = group.ID;
 			LastInteracted = 0;
@@ -37,28 +39,33 @@ namespace UI
 			files = new List<FileInfo>();
 			InitGroupForm();
 		}
-		public void AddItemToListChat(User user, string str)
+		public void AddItemToListChat(User user, string IDMess,string str)
 		{
 			Panel tempPanel = new Panel();
 			tempPanel.Dock = DockStyle.Top;
 			tempPanel.AutoSize = true;
-			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
-			ucMessShow messShow = new ucMessShow(str);
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user, group.ID);
+			ucMessShow messShow = new ucMessShow(str,user,UserInChatBox);
+			if (user.Id != Form1.me.Id) UserInChatBox.DisableEdit();
 			messShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
 			UserInChatBox._AddMessControl(messShow);
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
 			this.panelListChat.Controls.Add(tempPanel);
+
+			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
+			else UserInChatBox.ID = IDMess;
 		}
-		public void AddFileToListChat(User user, string tempId, string tempName)
+		public void AddFileToListChat(User user,string IDMess, string tempId, string tempName)
 		{
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
-			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user);
-			ucFileShow fileShow = new ucFileShow(user, tempId, tempName);
+			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user, group.ID);
+			ucFileShow fileShow = new ucFileShow(user, tempId, tempName,UserInChatBox);
+			UserInChatBox.DisableEdit();
 			if (user == Form1.me)
 				fileShow._DisableButDownLoad();
 			fileShow.Dock = DockStyle.Top;
@@ -67,6 +74,8 @@ namespace UI
 			UserInChatBox._AddFileControl(fileShow);
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
+			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
+			else UserInChatBox.ID = IDMess;
 		}
 		public async Task SendMessage()
 		{
@@ -80,8 +89,8 @@ namespace UI
 				tempBuff.CopyTo(buff, 0);
 				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 
-				this.AddItemToListChat(Form1.me, this.TextBoxEnterChat.Text);
-
+				this.AddItemToListChat(Form1.me,"-1", this.TextBoxEnterChat.Text);
+				this.GroupUI.AddMessageIntoInteract(Form1.me.Name, TextBoxEnterChat.Text);
 				TextBoxEnterChat.Text = string.Empty;
 			}
 		}
@@ -142,7 +151,40 @@ namespace UI
 				}
 				panelListFile.Visible = true;
 			}
-
+		}
+		public void DeleteMessage(string IDMess)
+		{
+			foreach (var item in this.panelListChat.Controls)
+			{
+				if (item.GetType() == typeof(Panel))
+				{
+					foreach (var item2 in (item as Panel).Controls)
+					{
+						if ((item2 as ucUserINChatBox).ID == IDMess)
+						{
+							(item2 as ucUserINChatBox).DeleteMessage(IDMess);
+							return;
+						}
+					}
+				}
+			}
+		}
+		public void EditMessage(string IDMess, string newMess)
+		{
+			foreach (var item in this.panelListChat.Controls)
+			{
+				if (item.GetType() == typeof(Panel))
+				{
+					foreach (var item2 in (item as Panel).Controls)
+					{
+						if ((item2 as ucUserINChatBox).ID == IDMess)
+						{
+							(item2 as ucUserINChatBox).EditMessage(newMess);
+							return;
+						}
+					}
+				}
+			}
 		}
 	}
 }

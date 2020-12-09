@@ -59,6 +59,7 @@
             this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.panel1);
             this.pnContain.Controls.Add(this.pnContainPicture);
+            this.pnContain.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(0, 0);
             this.pnContain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -74,6 +75,7 @@
             // 
             this.pnContainId.BackColor = System.Drawing.Color.Transparent;
             this.pnContainId.Controls.Add(this.lbId);
+            this.pnContainId.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainId.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContainId.Location = new System.Drawing.Point(70, 37);
             this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -89,6 +91,7 @@
             // 
             this.lbId.AutoSize = true;
             this.lbId.BackColor = System.Drawing.Color.Transparent;
+            this.lbId.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbId.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
@@ -105,6 +108,7 @@
             // 
             this.pnContrainName.BackColor = System.Drawing.Color.Transparent;
             this.pnContrainName.Controls.Add(this.lbName);
+            this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContrainName.Location = new System.Drawing.Point(70, 7);
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -120,6 +124,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.BackColor = System.Drawing.Color.Transparent;
+            this.lbName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(5, 2);
@@ -135,6 +140,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.picmess);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(278, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -148,6 +154,7 @@
             // picmess
             // 
             this.picmess.BackColor = System.Drawing.Color.Transparent;
+            this.picmess.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picmess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picmess.Image = ((System.Drawing.Image)(resources.GetObject("picmess.Image")));
             this.picmess.Location = new System.Drawing.Point(0, 5);
@@ -165,6 +172,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.picRemove);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(318, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -178,6 +186,7 @@
             // picRemove
             // 
             this.picRemove.BackColor = System.Drawing.Color.Transparent;
+            this.picRemove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRemove.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picRemove.Image = ((System.Drawing.Image)(resources.GetObject("picRemove.Image")));
             this.picRemove.Location = new System.Drawing.Point(11, 5);
@@ -195,6 +204,7 @@
             // 
             this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
             this.pnContainPicture.Controls.Add(this.gunaPic);
+            this.pnContainPicture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(11, 7);
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -209,6 +219,7 @@
             // gunaPic
             // 
             this.gunaPic.BackColor = System.Drawing.Color.Transparent;
+            this.gunaPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
             this.gunaPic.Location = new System.Drawing.Point(3, 2);

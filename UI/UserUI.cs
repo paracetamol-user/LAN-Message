@@ -46,7 +46,8 @@ namespace UI
 			userForm.InitColor();
 			ucUserAll = new ucUserAll(this);
 			ucUserOnline = new ucUserOnline(this);
-			ucInterac = new ucInterac(this);
+			ucInterac = new ucInterac(user.Name , user.Status);
+			ucInterac.SetUser(this);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
 			addToGroup = new AddUserToGroup(panelRIGHT);
@@ -95,7 +96,7 @@ namespace UI
 		/// </summary>
 		private void InitUserForm()
 		{
-			userForm = new UserForm(user);
+			userForm = new UserForm(user,this);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
 
@@ -257,6 +258,11 @@ namespace UI
 		public async void AddMessage(string IDMess,string mess)
 		{
 			userForm.AddItemInToListChat(user,IDMess, mess);
+			this.ucInterac.AddMessage(user.Name+": " + mess);
+		}
+		public void AddMessageIntoInteract(string name,string mess)
+        {
+			this.ucInterac.AddMessage(name + ": " + mess);
 		}
 		public bool GetStatus()
 		{

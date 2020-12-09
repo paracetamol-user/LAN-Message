@@ -56,23 +56,23 @@ namespace UI
 		{
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
+			if (Form1.interactFocus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
+			Form1.interactFocus = this.Parent.ucInterac;
 		}
         private void pnContainPicture_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
+			if (Form1.interactFocus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
+			Form1.interactFocus = this.Parent.ucInterac;
 		}
     }
 }

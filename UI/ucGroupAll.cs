@@ -13,7 +13,7 @@ namespace UI
 {
     public partial class ucGroupAll : UserControl
     {
-        private GroupUI parent;
+        private GroupUI Parent;
         private Panel pnParent;
         public ucGroupAll()
         {
@@ -24,18 +24,30 @@ namespace UI
         {
             InitializeComponent();
             this.Dock = DockStyle.Top;
-            this.parent = groupUI;
+            this.Parent = groupUI;
             this.lbName.Text = group.Name;
             this.lbId.Text = "#" + group.ID;
         }
         private void picChat_Click(object sender, EventArgs e)
         {
-            this.parent.ShowChatForm();
-            this.parent.AddGroupInteracted();
+            this.Parent.ShowChatForm();
+            this.Parent.AddGroupInteracted();
         }
         public void SetAvatar(string path)
         {
             gunaPic.Image = Image.FromFile(path);
+        }
+
+        private void gunaPic_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Parent.ShowChatForm();
+            this.Parent.AddGroupInteracted();
+            if (Form1.interactFocus != null)
+            {
+                Form1.interactFocus.ChangeColorWhenNonClick();
+            }
+            this.Parent.ucGroupInteract.ChangeColorWhenClick();
+            Form1.interactFocus = this.Parent.ucGroupInteract;
         }
     }
 }

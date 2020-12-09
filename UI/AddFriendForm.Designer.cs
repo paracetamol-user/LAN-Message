@@ -65,7 +65,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(781, 43);
+            this.panel1.Size = new System.Drawing.Size(781, 53);
             this.panel1.TabIndex = 0;
             // 
             // pnPending
@@ -204,7 +204,7 @@
             // 
             this.panelLine.BackColor = System.Drawing.Color.Transparent;
             this.panelLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLine.Location = new System.Drawing.Point(0, 43);
+            this.panelLine.Location = new System.Drawing.Point(0, 53);
             this.panelLine.Name = "panelLine";
             this.panelLine.Size = new System.Drawing.Size(781, 1);
             this.panelLine.TabIndex = 2;
@@ -214,11 +214,11 @@
             this.pnContainCount.BackColor = System.Drawing.Color.Transparent;
             this.pnContainCount.Controls.Add(this.labelCOUNT);
             this.pnContainCount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContainCount.Location = new System.Drawing.Point(0, 44);
+            this.pnContainCount.Location = new System.Drawing.Point(0, 54);
             this.pnContainCount.Margin = new System.Windows.Forms.Padding(2);
             this.pnContainCount.Name = "pnContainCount";
             this.pnContainCount.Padding = new System.Windows.Forms.Padding(30, 5, 40, 5);
-            this.pnContainCount.Size = new System.Drawing.Size(781, 23);
+            this.pnContainCount.Size = new System.Drawing.Size(781, 29);
             this.pnContainCount.TabIndex = 3;
             // 
             // labelCOUNT
@@ -230,7 +230,7 @@
             this.labelCOUNT.Location = new System.Drawing.Point(30, 5);
             this.labelCOUNT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCOUNT.Name = "labelCOUNT";
-            this.labelCOUNT.Size = new System.Drawing.Size(49, 14);
+            this.labelCOUNT.Size = new System.Drawing.Size(56, 18);
             this.labelCOUNT.TabIndex = 0;
             this.labelCOUNT.Text = "label1";
             // 
@@ -238,9 +238,9 @@
             // 
             this.pnContainSearch.BackColor = System.Drawing.Color.Transparent;
             this.pnContainSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContainSearch.Location = new System.Drawing.Point(0, 67);
+            this.pnContainSearch.Location = new System.Drawing.Point(0, 83);
             this.pnContainSearch.Name = "pnContainSearch";
-            this.pnContainSearch.Size = new System.Drawing.Size(781, 45);
+            this.pnContainSearch.Size = new System.Drawing.Size(781, 54);
             this.pnContainSearch.TabIndex = 4;
             this.pnContainSearch.Visible = false;
             // 
@@ -248,10 +248,10 @@
             // 
             this.pnContainListSearch.BackColor = System.Drawing.Color.Transparent;
             this.pnContainListSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContainListSearch.Location = new System.Drawing.Point(0, 112);
+            this.pnContainListSearch.Location = new System.Drawing.Point(0, 137);
             this.pnContainListSearch.Name = "pnContainListSearch";
             this.pnContainListSearch.Padding = new System.Windows.Forms.Padding(30, 20, 20, 0);
-            this.pnContainListSearch.Size = new System.Drawing.Size(781, 355);
+            this.pnContainListSearch.Size = new System.Drawing.Size(781, 330);
             this.pnContainListSearch.TabIndex = 5;
             // 
             // ServerForm
