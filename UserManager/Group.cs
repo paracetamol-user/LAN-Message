@@ -101,5 +101,13 @@ namespace UserManager
         public void AddMember(User member) => memberList.Add(member);
         // Kick member
         public void DeleteMember(User member) => memberList.Remove(member);
+        public bool MemberInGroup(User user)
+        {
+            foreach (var item in memberList)
+            {
+                if (item == user) return true;
+            }
+            return false;
+        }
     }
 }

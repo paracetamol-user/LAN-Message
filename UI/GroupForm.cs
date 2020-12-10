@@ -57,14 +57,14 @@ namespace UI
 			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
 		}
-		public void AddFileToListChat(User user,string IDMess, string tempId, string tempName)
+		public void AddFileToListChat(User user,string IDMess, string tempName)
 		{
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user, group.ID);
-			ucFileShow fileShow = new ucFileShow(user, tempId, tempName,UserInChatBox);
+			ucFileShow fileShow = new ucFileShow(user, IDMess, tempName,UserInChatBox);
 			UserInChatBox.DisableEdit();
 			if (user == Form1.me)
 				fileShow._DisableButDownLoad();
@@ -94,6 +94,30 @@ namespace UI
 				TextBoxEnterChat.Text = string.Empty;
 			}
 		}
+		public async Task SendFile()
+		{
+			if (this.panelListFile.Controls.Count > 0)
+			{
+				foreach (var item in files)
+				{
+					AddFileToListChat(Form1.me, "-1", item.Name);
+					//Gửi
+					byte[] data = File.ReadAllBytes(item.FullName);
+					int temp = 1024 - (data.Length % 1024);
+					byte[] package = new byte[data.Length + temp];
+					data.CopyTo(package, 0);
+					byte[] buff = new byte[1024];
+					byte[] tempbuff;
+					tempbuff = System.Text.Encoding.UTF8.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + group.ID);
+					tempbuff.CopyTo(buff, 0);
+					await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+					await Form1.client.SendFileToServer(package);
+				}
+				this.files.Clear();
+				this.panelListFile.Controls.Clear();
+				this.panelListFile.Visible = false;
+			}
+		}
 		public void InitGroupForm()
 		{
 			this.labelID.Text = string.Format("#{0}", group.ID);
@@ -106,6 +130,7 @@ namespace UI
 		}
 		private async void PictureBoxSend_Click(object sender, EventArgs e)
 		{
+			await SendFile(); 
 			await SendMessage();
 		}
 		public void AddFrom(Panel panelRight)

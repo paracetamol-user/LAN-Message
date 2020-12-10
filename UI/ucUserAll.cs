@@ -23,7 +23,7 @@ namespace UI
 		{
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picMenu.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 			isPlus = true;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
@@ -33,7 +33,7 @@ namespace UI
 		public void ResetTheme()
         {
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picMenu.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 		}
 		public void InitColor()
 		{
@@ -58,22 +58,27 @@ namespace UI
             this.Parent.ucInterac.ChangeColorWhenClick();
             Form1.interactFocus = this.Parent.ucInterac;
         }
-		//private void gunaPic_Click(object sender, EventArgs e)
-		//{
 
-		//}
-		//private void picMenu_MouseMove(object sender, MouseEventArgs e)
-		//{
-		//	this.BackColor =  Form1.theme.FocusColor;
-		//}
+        private void picMenu_Click(object sender, EventArgs e)
+        {
+			Parent.cmns.Show(MousePosition);
+		}
+        //private void gunaPic_Click(object sender, EventArgs e)
+        //{
 
-		//private void gunaPic_MouseLeave(object sender, EventArgs e)
-		//{
-		//	this.BackColor =  Color.Transparent;
-		//}
-		//private async void picMenu_Click(object sender, EventArgs e)
-		//{
-		//	Parent.cmns.Show(MousePosition);
-		//}
-	}
+        //}
+        //private void picMenu_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //	this.BackColor =  Form1.theme.FocusColor;
+        //}
+
+        //private void gunaPic_MouseLeave(object sender, EventArgs e)
+        //{
+        //	this.BackColor =  Color.Transparent;
+        //}
+        //private async void picMenu_Click(object sender, EventArgs e)
+        //{
+        //	
+        //}
+    }
 }

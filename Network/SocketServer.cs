@@ -109,7 +109,7 @@ namespace Communication
 			{
 				try
 				{
-					string idEnd = "";
+					int idEnd = 0;
 				   
 					connection = new SqlConnection(connString);
 					connection.Open();
@@ -125,9 +125,9 @@ namespace Communication
 							await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 							return true;
 						}
-						idEnd = reader.GetString(0);
+						if (idEnd < int.Parse(reader.GetString(0))) idEnd = int.Parse(reader.GetString(0));
 					}
-					int.TryParse(idEnd,out idfocus);
+					idfocus = idEnd;
 					idfocus++;
 					connection.Close();
 					connection = new SqlConnection(connString);
@@ -838,6 +838,7 @@ namespace Communication
 			byte[] dataFile = null;
 			bool isFile = false;
 			bool isAvatar = false;
+			bool grFile = false;
 			try
 			{
 				stream = client.client_.GetStream();
@@ -901,6 +902,8 @@ namespace Communication
 									tempbuff.CopyTo(buffMessage, 0);
 									await client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
 									File.WriteAllBytes(@"..\..\filedata\" + Createid.ToString() + infoByte.Extension, dataFile);
+
+									connection.Close();
 									// them du lieu vao data base
 									this.connection = new SqlConnection(this.connString);
 									this.connection.Open();

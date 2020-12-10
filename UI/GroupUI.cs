@@ -12,7 +12,7 @@ namespace UI
 	{
 		public Group group;
 		public GroupForm groupForm; // Khung chat của Group
-
+		Form1 mainForm;
 		public Panel panelINTERACTED;
 		public Panel panelRIGHT;
 
@@ -20,16 +20,17 @@ namespace UI
 		public ucGroupAll ucGroupAll;
 		public ucInterac ucGroupInteract;
 		public ucGroupPending ucGroupPending;
-		public GroupUI(Group group, Panel interact, Panel right)
+		public GroupUI(Group group, Form1 mainForm)
 		{
 			this.group = group;
-			this.panelINTERACTED = interact;
-			this.panelRIGHT = right;
+			this.panelINTERACTED = mainForm.PnInteract;
+			this.panelRIGHT = mainForm.PnRight;
+			this.mainForm = mainForm;
 			ucGroupAll = new ucGroupAll(group, this);
 			InitGroupForm();
 			ucGroupInteract = new ucInterac(this.group.Name);
 			ucGroupInteract.SetGroup(this);
-			ucGroupToAdd = new ucGroupToAdd(group);
+			ucGroupToAdd = new ucGroupToAdd(group,mainForm.addMemberForm);
 		}
 		public void InitGroupForm()
 		{
@@ -104,5 +105,9 @@ namespace UI
 		{
 			this.groupForm.EditMessage(idmess, newMess);
 		}
+		public bool MemberInGroup(User user)
+        {
+			return group.MemberInGroup(user);
+        }
 	}
 }

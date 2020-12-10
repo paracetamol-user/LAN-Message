@@ -68,8 +68,6 @@
             this.pnContain.Size = new System.Drawing.Size(372, 66);
             this.pnContain.TabIndex = 3;
             this.pnContain.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.pnContain.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContainId
             // 
@@ -81,11 +79,9 @@
             this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(208, 25);
+            this.pnContainId.Size = new System.Drawing.Size(214, 25);
             this.pnContainId.TabIndex = 6;
             this.pnContainId.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.pnContainId.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContainId.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // lbId
             // 
@@ -101,8 +97,6 @@
             this.lbId.TabIndex = 0;
             this.lbId.Text = "label2";
             this.lbId.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.lbId.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.lbId.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContrainName
             // 
@@ -114,11 +108,9 @@
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(208, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(214, 30);
             this.pnContrainName.TabIndex = 5;
             this.pnContrainName.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.pnContrainName.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContrainName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // lbName
             // 
@@ -133,8 +125,6 @@
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
             this.lbName.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.lbName.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.lbName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // panel2
             // 
@@ -142,14 +132,12 @@
             this.panel2.Controls.Add(this.picmess);
             this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(278, 7);
+            this.panel2.Location = new System.Drawing.Point(284, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 5, 11, 5);
-            this.panel2.Size = new System.Drawing.Size(40, 52);
+            this.panel2.Size = new System.Drawing.Size(34, 52);
             this.panel2.TabIndex = 4;
-            this.panel2.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // picmess
             // 
@@ -160,13 +148,11 @@
             this.picmess.Location = new System.Drawing.Point(0, 5);
             this.picmess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picmess.Name = "picmess";
-            this.picmess.Size = new System.Drawing.Size(29, 42);
+            this.picmess.Size = new System.Drawing.Size(23, 42);
             this.picmess.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picmess.TabIndex = 0;
             this.picmess.TabStop = false;
             this.picmess.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.picmess.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.picmess.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // panel1
             // 
@@ -180,8 +166,6 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(11, 5, 0, 5);
             this.panel1.Size = new System.Drawing.Size(34, 52);
             this.panel1.TabIndex = 1;
-            this.panel1.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // picRemove
             // 
@@ -197,8 +181,6 @@
             this.picRemove.TabIndex = 0;
             this.picRemove.TabStop = false;
             this.picRemove.Click += new System.EventHandler(this.picMenu_Click);
-            this.picRemove.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.picRemove.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContainPicture
             // 
@@ -213,8 +195,6 @@
             this.pnContainPicture.Size = new System.Drawing.Size(59, 52);
             this.pnContainPicture.TabIndex = 0;
             this.pnContainPicture.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.pnContainPicture.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContainPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // gunaPic
             // 
@@ -232,8 +212,6 @@
             this.gunaPic.TabIndex = 0;
             this.gunaPic.TabStop = false;
             this.gunaPic.Click += new System.EventHandler(this.pnContainPicture_Click);
-            this.gunaPic.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.gunaPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // ucFriend
             // 

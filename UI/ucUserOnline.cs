@@ -23,7 +23,7 @@ namespace UI
 			isPlus = true;
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picAdd.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
 			this.lbName.Text = Parent.user.Name;
@@ -32,7 +32,7 @@ namespace UI
 		public void ResetTheme()
         {
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picAdd.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
 		}
 		public void InitColor()
 		{

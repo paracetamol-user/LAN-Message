@@ -14,56 +14,51 @@ namespace UI
 	public partial class AddUserToGroup : Form
 	{
 		User selectedUser;
-		Panel panelRight;
-
-		public static Group SelectedGroup { get; set; }
-
-		public AddUserToGroup(Panel panelRight)
+		Form1 mainForm;
+		public List<Group> listAdd;
+		public AddUserToGroup(Form1 mainForm)
 		{
 			InitializeComponent();
-			this.panelRight = panelRight;
-			this.Dock = DockStyle.Bottom;
-			this.TopLevel = false;
-		}
-		public AddUserToGroup(User selectedUser, Panel panelRIGHT)
-		{
-			InitializeComponent();
-			this.selectedUser = selectedUser;
-			this.TopLevel = false;
-			this.panelRight = panelRIGHT;
-			this.Dock = DockStyle.Bottom;
-			SelectedGroup = null;
-		}
+			this.mainForm = mainForm;
+			listAdd = new List<Group>();
+	}
 		public void InitAddGroupForm(User selectedUser)
         {
+			listAdd = new List<Group>();
+			this.Show();this.BringToFront();
 			this.selectedUser = selectedUser;
+			this.pnGroup.Controls.Clear();
 			LoadGroupOption();
-        }
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-			this.Hide();
 		}
 		private void picBoxAdd_Click(object sender, EventArgs e)
 		{
-			SendAddToGroupToServer();
-			this.Close();
+			this.Hide();
 		}
 		private void LoadGroupOption()
 		{
-			this.panelRight.Controls.Add(this);
 			foreach(var item in Form1.GroupUIs)
 			{
-				this.pnGroup.Controls.Add(item.ucGroupToAdd);
+				if (!item.group.MemberInGroup(selectedUser))
+					this.pnGroup.Controls.Add(item.ucGroupToAdd);
 			}
 		}
 		private async void SendAddToGroupToServer()
 		{
-			byte[] tempBuff = Encoding.UTF8.GetBytes("GPENDING%" + SelectedGroup.ID + "%" +
-																   SelectedGroup.Name + "%" + 
+            foreach (var item in listAdd)
+            {
+				byte[] tempBuff = Encoding.UTF8.GetBytes("GPENDING%" + item.ID + "%" +
+																   item.Name + "%" +
 																   selectedUser.Id);
-			byte[] buff = new byte[1024];
-			tempBuff.CopyTo(buff, 0);
-			Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+				byte[] buff = new byte[1024];
+				tempBuff.CopyTo(buff, 0);
+				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+			}
+			
 		}
-	}
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+			SendAddToGroupToServer();
+			this.Hide();
+		}
+    }
 }

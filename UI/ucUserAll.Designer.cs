@@ -93,7 +93,7 @@
             this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(196, 25);
+            this.pnContainId.Size = new System.Drawing.Size(208, 25);
             this.pnContainId.TabIndex = 6;
             this.pnContainId.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -122,7 +122,7 @@
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(196, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(208, 30);
             this.pnContrainName.TabIndex = 5;
             this.pnContrainName.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -146,11 +146,11 @@
             this.panel2.Controls.Add(this.picChat);
             this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(266, 7);
+            this.panel2.Location = new System.Drawing.Point(278, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
-            this.panel2.Size = new System.Drawing.Size(40, 54);
+            this.panel2.Size = new System.Drawing.Size(34, 54);
             this.panel2.TabIndex = 4;
             this.panel2.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -163,7 +163,7 @@
             this.picChat.Location = new System.Drawing.Point(0, 0);
             this.picChat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picChat.Name = "picChat";
-            this.picChat.Size = new System.Drawing.Size(29, 54);
+            this.picChat.Size = new System.Drawing.Size(23, 54);
             this.picChat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picChat.TabIndex = 0;
             this.picChat.TabStop = false;
@@ -175,11 +175,11 @@
             this.panel1.Controls.Add(this.picMenu);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(306, 7);
+            this.panel1.Location = new System.Drawing.Point(312, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(34, 54);
+            this.panel1.Size = new System.Drawing.Size(28, 54);
             this.panel1.TabIndex = 1;
             this.panel1.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -192,10 +192,11 @@
             this.picMenu.Location = new System.Drawing.Point(11, 0);
             this.picMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picMenu.Name = "picMenu";
-            this.picMenu.Size = new System.Drawing.Size(23, 54);
+            this.picMenu.Size = new System.Drawing.Size(17, 54);
             this.picMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMenu.TabIndex = 0;
             this.picMenu.TabStop = false;
+            this.picMenu.Click += new System.EventHandler(this.picMenu_Click);
             // 
             // pnContainPicture
             // 

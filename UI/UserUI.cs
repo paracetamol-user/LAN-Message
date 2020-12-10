@@ -19,7 +19,7 @@ namespace UI
 
 		public UserForm userForm; // Khung Chat của user
 		public User user;
-
+		public Form1 mainForm;
 		public Panel panelINTERACTED; 
 		public Panel panelRIGHT;
 
@@ -30,8 +30,6 @@ namespace UI
 		public ucFriend ucFriend;
 		public ucFriend ucFriendOnline;
 		public ucUserAll ucSearch;
-
-		public AddUserToGroup addToGroup;
 
 		public ContextMenuStrip cmns;
 		public ContextMenuStrip cmnsMess;
@@ -50,7 +48,23 @@ namespace UI
 			ucInterac.SetUser(this);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
-			addToGroup = new AddUserToGroup(panelRIGHT);
+			ucSearch = new ucUserAll(this);
+		}
+		public UserUI(User user, Form1 mainForm)
+		{
+			this.user = user;
+			this.mainForm = mainForm;
+			this.panelINTERACTED = mainForm.PnInteract;
+			this.panelRIGHT = mainForm.PnRight;
+			InitUserForm();
+			this.panelRIGHT.Controls.Add(userForm);
+			userForm.InitColor();
+			ucUserAll = new ucUserAll(this);
+			ucUserOnline = new ucUserOnline(this);
+			ucInterac = new ucInterac(user.Name, user.Status);
+			ucInterac.SetUser(this);
+			ucFriend = new ucFriend(this);
+			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
 		}
 		public void ResetTheme()
@@ -129,8 +143,9 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			addToGroup.InitAddGroupForm(user);
-			addToGroup.Show();
+			mainForm.addMemberForm.InitAddGroupForm(user);
+			mainForm.addMemberForm.Show();
+			mainForm.addMemberForm.BringToFront();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{

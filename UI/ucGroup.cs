@@ -21,5 +21,10 @@ namespace UI
         {
             this.pnContainAll.Controls.Add(groupAll);
         }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

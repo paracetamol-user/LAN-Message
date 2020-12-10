@@ -13,33 +13,36 @@ namespace UI
 {
 	public partial class ucGroupToAdd : UserControl
 	{
-		private Group group;
+		public Group group;
+		public AddUserToGroup addUserToGroup;
 		public ucGroupToAdd()
 		{
 			InitializeComponent();
 		}
-		public ucGroupToAdd(Group group)
+		public ucGroupToAdd(Group group, AddUserToGroup addUserToGroup)
 		{
 			InitializeComponent();
 			this.Dock = DockStyle.Top;
-			this.lbName.Text = group.Name;
-			this.lbID.Text = group.ID;
+			this.label1.Text = group.Name;
+			this.label2.Text = group.ID;
 			this.group = group;
-		}
-		private void ucGroupToAdd_MouseMove(object sender, MouseEventArgs e)
-		{
-			this.BackColor = Color.FromArgb(242, 243, 245);
-		}
-		private void ucGroupToAdd_MouseLeave(object sender, EventArgs e)
-		{
-			this.BackColor = Color.White;
+			this.addUserToGroup = addUserToGroup;
 		}
 
-		private void pnContainStatus_Click(object sender, EventArgs e)
-		{
-			// Change color
-			this.BackColor = Color.FromArgb(242, 243, 245);
-			AddUserToGroup.SelectedGroup = group;
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			if (button1.Text == "ADD")
+			{
+				addUserToGroup.listAdd.Add(group);
+				button1.Text = "CANCEL";
+			}
+			else
+			{
+				addUserToGroup.listAdd.Remove(group);
+				button1.Text = "ADD";
+			}
 		}
-	}
+    }
 }

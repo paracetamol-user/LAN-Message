@@ -41,7 +41,7 @@ namespace UI
 
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
-
+		public AddUserToGroup addMemberForm;
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -78,11 +78,20 @@ namespace UI
 			InitServerUsersForm();
 			InitFrmFriend();
 			InitSettingForm();
+			InitAddMemberForm();
 			ChangeTheme();
 			LoadGroupData();
 			AwaitReadData(); 
 		}
-		private void InitSettingForm()
+		public void InitAddMemberForm()
+        {
+			addMemberForm = new AddUserToGroup(this);
+			addMemberForm.TopLevel = false;
+			addMemberForm.BackColor = theme.Menu;
+			addMemberForm.Location = new Point(this.Width / 2 - (addMemberForm.Width/2 - 10), this.Height / 2 - (addMemberForm.Height / 2 + 10));
+			this.Controls.Add(addMemberForm);
+		}
+        public void InitSettingForm()
 		{
 			settingForm = new SettingForm(me, this);
 			settingForm.TopLevel = false;
@@ -223,7 +232,7 @@ namespace UI
 						if (arr[1] != me.Name)
 						{
 							listUser.Add(new User(arr[0], arr[1], bool.Parse(arr[2]), path));
-							UserUIs.Add(new UserUI(listUser[listUser.Count - 1], panelINTERACTED, panelRIGHT));
+							UserUIs.Add(new UserUI(listUser[listUser.Count - 1],this ));
 						}
 					}
 				}
@@ -242,7 +251,7 @@ namespace UI
 				else if (action == "ADDUSER")
 				{
 					string path = @"..\..\avatarDefault.png";
-					UserUIs.Add(new UserUI(new User(data[1], data[2], false, path), panelINTERACTED, panelRIGHT));
+					UserUIs.Add(new UserUI(new User(data[1], data[2], false, path),this));
 				}
 				else if (action == "ONLINE")
 				{
@@ -439,18 +448,25 @@ namespace UI
 						listGroup.Add(new Group(arr[0], arr[1], path));
 						for(int j = 2; j < arr.Length; j += 2)
 						{
-							listGroup[listGroup.Count - 1].AddMember(new User(arr[j], arr[j + 1], true));
+                            foreach (var item in listUser)
+                            {
+								if (arr[j] == item.Id)
+                                {
+									listGroup[listGroup.Count - 1].AddMember(item);
+									break;
+								}
+                            }
+							
 						}
-						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], panelINTERACTED, panelRIGHT));
+						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1],this));
 					}
 				}
 				else if (action == "GPENDING")
 				{
-					GroupUI temp = new GroupUI(new Group(data[1], data[2]), panelINTERACTED, panelRIGHT);
+					GroupUI temp = new GroupUI(new Group(data[1], data[2]),this);
 					serverUsersForm.AddGroupPending(temp);
 					serverUsersForm.EnablePointPending();
 					picNotification.Visible = true;
-					break;
 				}
 				else if (action == "GROUPACCEPT")
 				{
@@ -460,10 +476,18 @@ namespace UI
 					{
 						if (data[i] == string.Empty) break;
 						string[] info = data[i].Split(' ');
-						group.AddMember(new User(info[0], info[1], true));
+						foreach (var item in listUser)
+						{
+							if (info[i] == item.Id)
+							{
+								group.AddMember(item);
+								break;
+							}
+						}
+						
 					}
 					listGroup.Add(group);
-					GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], panelINTERACTED, panelRIGHT));
+					GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1],this));
 				}
 				else if (action == "GROUPDATA")
                 {
@@ -471,10 +495,17 @@ namespace UI
 					Group group = new Group(arr[0], arr[1]);
 					for(int j = 2; j < arr.Length; j += 2)
                     {
-						group.AddMember(new User(arr[j], arr[j + 1], true));
+						foreach (var item in listUser)
+						{
+							if (arr[j] == item.Id)
+							{
+								group.AddMember(item);
+								break;
+							}
+						}
                     }
 					listGroup.Add(group);
-					GroupUIs.Add(new GroupUI(group, panelINTERACTED, panelRIGHT));
+					GroupUIs.Add(new GroupUI(group,this));
                 }
 				else if (action == "NEWMEMBER")
                 {
@@ -482,7 +513,14 @@ namespace UI
                     {
 						if(item.group.ID == data[1])
                         {
-							item.group.AddMember(new User(data[2], data[3], true));
+							foreach (var item2 in listUser)
+							{
+								if (data[2] == item2.Id)
+								{
+									item.group.AddMember(item2);
+									break;
+								}
+							}
                         }
                     }
                 }
@@ -584,6 +622,11 @@ namespace UI
 			byte[] tembuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White":"Black"));
 			tembuff.CopyTo(buff, 0);
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
+			try
+            {
+				addMemberForm.Close();
+			}
+			catch { }
 			loginForm.Close();
 		}
 		public void DisableNotification()
@@ -645,5 +688,19 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
+		public Panel PnRight
+        {
+            get
+            {
+				return this.panelRIGHT;
+            }
+        }
+		public Panel PnInteract
+        {
+            get
+            {
+				return this.panelINTERACTED;
+            }
+        }
     }
 }
