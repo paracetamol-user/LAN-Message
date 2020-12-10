@@ -28,9 +28,10 @@ namespace UI
 			this.group = group;
 			this.addUserToGroup = addUserToGroup;
 		}
-
-
-
+		public void Reset()
+        {
+			button1.Text = "ADD";
+        }
         private void button1_Click(object sender, EventArgs e)
         {
 			if (button1.Text == "ADD")

@@ -25,7 +25,8 @@ namespace UI
 		public void InitAddGroupForm(User selectedUser)
         {
 			listAdd = new List<Group>();
-			this.Show();this.BringToFront();
+			this.Show();
+			this.BringToFront();
 			this.selectedUser = selectedUser;
 			this.pnGroup.Controls.Clear();
 			LoadGroupOption();
@@ -39,7 +40,10 @@ namespace UI
 			foreach(var item in Form1.GroupUIs)
 			{
 				if (!item.group.MemberInGroup(selectedUser))
+				{
+					item.ucGroupToAdd.Reset();
 					this.pnGroup.Controls.Add(item.ucGroupToAdd);
+				}
 			}
 		}
 		private async void SendAddToGroupToServer()
