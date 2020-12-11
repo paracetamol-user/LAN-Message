@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
+using Network;
 
 namespace UI
 {
@@ -69,10 +70,9 @@ namespace UI
 
         private async void SendAcceptFriendToServer()
         {
-			byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%"+ Form1.me.Id + "%" + uiParent.user.Id);
-			byte[] buff = new byte[1024];
-			tempbuff.CopyTo(buff, 0);
-			await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + Form1.me.Id + "%" + uiParent.user.Id);
+			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 		}
     }
 }

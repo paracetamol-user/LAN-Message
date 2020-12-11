@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,14 +27,27 @@ namespace UI
 		}
 		public SettingForm(User me, Form1 parent)
 		{
-			InitializeComponent();
+			InitializeComponent(); 
 			this.me = me;
 			this.parent = parent;
+			InitSettingForm();
+			ChangeColorAllLabelControl(this);
 			InitPnMyAccount();
 			InitStartForm();
 			
 		}
-		public void ChangeColorPanelControl()
+
+        private void InitSettingForm()
+        {
+			this.TopLevel = false;
+			this.parent.Controls.Add(this);
+			this.Dock = DockStyle.Fill;
+			this.BackColor = Form1.theme.BackColor;
+			this.ChangeColorPanelControl();
+			this.ChangeColorLine();
+        }
+
+        public void ChangeColorPanelControl()
 		{
 			this.pnMenu.BackColor = Form1.theme.Menu;
 			this.pnUserName.BackColor = Form1.theme.FocusColor;
@@ -98,6 +112,7 @@ namespace UI
 			lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			this.parentForm = parent;
 			this.pictureBox1.Image = Image.FromFile(me.AvatarPath);
+
 		}
 		private bool isChangingUsername = false;
 		private TextBox txtUsername = null;
@@ -138,25 +153,23 @@ namespace UI
 		}
 		private void ChangeUsernameInServer(string newUsername)
 		{
-			byte[] buff = new byte[1024];
-			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHANGENAME%{0}%{1}", Form1.me.Id, newUsername));
 
-			tempBuff.CopyTo(buff, 0);
-			Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHANGENAME%{0}%{1}", Form1.me.Id, newUsername));
+			SmallPackage packageReceive = new SmallPackage(0,1024, "M", tempBuff, "0");
+			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
 		public async void ChangeAvatar()
 		{
-			byte[] tempBuff = Encoding.UTF8.GetBytes("SAVEAVATAR%" + Form1.me.Id + "%" + fi.Name + "%" + fi.Length + "%" + fi.Extension);
-			byte[] buffer = new byte[1024];
-			tempBuff.CopyTo(buffer, 0);
-			await Form1.server.GetStream().WriteAsync(buffer, 0, buffer.Length);
+			Guid id = Guid.NewGuid();
+			byte[] tempBuff = Encoding.UTF8.GetBytes("SAVEAVATAR%" + fi.Length + "%" + fi.Name + "%"  + fi.Extension + "%" + id.ToString());
+			SmallPackage packageReceive = new SmallPackage(0, 1024, "M", tempBuff, "0");
+			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
 			/// Send file
 			byte[] data = File.ReadAllBytes(fi.FullName);
-			int temp = 1024 - (data.Length % 1024);
-			byte[] package = new byte[data.Length + temp];
-			data.CopyTo(package, 0);
-			await Form1.client.SendFileToServer(package);
+
+			await Form1.client.SendFileToServer(data , "A" ,id.ToString());
+
 			byte[] tempfile = File.ReadAllBytes(fi.FullName);
 			File.WriteAllBytes(@"..\..\cache\avatar\" + fi.Name + fi.Extension, tempfile);
 			Form1.me.AvatarPath = @"..\..\cache\avatar\" + fi.Name + fi.Extension;

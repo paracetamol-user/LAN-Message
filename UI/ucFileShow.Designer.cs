@@ -50,7 +50,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+//            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // pictureBoxDownLoad
             // 
@@ -65,7 +65,7 @@
             this.pictureBoxDownLoad.TabIndex = 1;
             this.pictureBoxDownLoad.TabStop = false;
             this.pictureBoxDownLoad.Click += new System.EventHandler(this.pictureBox2_Click);
-            this.pictureBoxDownLoad.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+          //  this.pictureBoxDownLoad.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // panel1
             // 
@@ -79,7 +79,7 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(5, 7, 20, 0);
             this.panel1.Size = new System.Drawing.Size(270, 30);
             this.panel1.TabIndex = 2;
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+    //        this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // label1
             // 
@@ -93,7 +93,7 @@
             this.label1.Size = new System.Drawing.Size(245, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
-            this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+   //         this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // ucFileShow
             // 
@@ -108,7 +108,7 @@
             this.Name = "ucFileShow";
             this.Padding = new System.Windows.Forms.Padding(11, 2, 20, 1);
             this.Size = new System.Drawing.Size(357, 39);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+   //         this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDownLoad)).EndInit();
             this.panel1.ResumeLayout(false);

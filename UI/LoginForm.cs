@@ -1,5 +1,6 @@
 ﻿using Communication;
 using Microsoft.VisualBasic.ApplicationServices;
+using Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using User = UserManager.User;
-
 namespace UI
 {
     public partial class LoginForm : Form
@@ -42,14 +42,23 @@ namespace UI
         }
         public async void SendRequest(string account, string pass, string action)
         {
-            UserManager.UserVerification userVerification= new UserManager.UserVerification();
+            UserManager.UserVerification userVerification = new UserManager.UserVerification();
             pass = userVerification.GetSHA256(pass);
-            await client.SendToServer(action + "%" + account + "%" + pass);
-            string[] data = (await (client.ReadDataAsync(server))).Split(' ');
-            if (data[0].Trim('\0', '\r', '\n') == "LOGINOKE")
+            byte[] tempBuff = Encoding.UTF8.GetBytes(action + "%" + account + "%" + pass);
+            SmallPackage package = new SmallPackage(1024, 1024, "M", tempBuff, "0");
+            byte[] buffMessage = package.Packing();
+            await server.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+
+            byte[] buffReceive = new byte[1024];
+            await server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
+            SmallPackage packageReceive = new SmallPackage();
+            packageReceive.DividePackage(buffReceive);
+
+            string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
+            if (data[0] == "LOGINOKE")
             {
-                User user = new User(data[1].Trim('\0', '\r', '\n'), account, true, @"..\..\avatarDefault");      
-                Form1 mainform = new Form1(this, user , client , server,data[2].Trim('\0', '\r', '\n'));
+                User user = new User(data[1], account, true, @"..\..\avatarDefault");
+                Form1 mainform = new Form1(this, user, client, server, data[2]);
                 mainform.Show();
                 this.Hide();
                 label2.Visible = false;

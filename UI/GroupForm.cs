@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,20 +75,18 @@ namespace UI
 			UserInChatBox._AddFileControl(fileShow);
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
-			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
+			if (IDMess == "-1") Form1.listFileAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
 		}
 		public async Task SendMessage()
 		{
 			if (TextBoxEnterChat.Text.Trim() != "")
 			{
-				byte[] buff = new byte[1024];
-				byte[] tempBuff;
-				tempBuff = Encoding.UTF8.GetBytes("GSEND%" + group.ID + "%" +
+				byte[] tempbuff = Encoding.UTF8.GetBytes("GSEND%" + group.ID + "%" +
 															Form1.me.Id + "%" +
 															this.TextBoxEnterChat.Text);
-				tempBuff.CopyTo(buff, 0);
-				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 
 				this.AddItemToListChat(Form1.me,"-1", this.TextBoxEnterChat.Text);
 				this.GroupUI.AddMessageIntoInteract(Form1.me.Name, TextBoxEnterChat.Text);
@@ -103,15 +102,13 @@ namespace UI
 					AddFileToListChat(Form1.me, "-1", item.Name);
 					//Gửi
 					byte[] data = File.ReadAllBytes(item.FullName);
-					int temp = 1024 - (data.Length % 1024);
-					byte[] package = new byte[data.Length + temp];
-					data.CopyTo(package, 0);
-					byte[] buff = new byte[1024];
-					byte[] tempbuff;
-					tempbuff = System.Text.Encoding.UTF8.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + group.ID);
-					tempbuff.CopyTo(buff, 0);
-					await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
-					await Form1.client.SendFileToServer(package);
+					Guid id = Guid.NewGuid();
+
+					byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + group.ID + "%"+ data.Length.ToString()+ "%" + item.Name  +"%" + item.Extension + "%"
+															+ id.ToString() + "%" + "Public");
+					SmallPackage Smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					await Form1.server.GetStream().WriteAsync(Smallpackage.Packing(), 0, Smallpackage.Packing().Length);
+				 Form1.client.SendFileToServer(data, "F", id.ToString()); ;
 				}
 				this.files.Clear();
 				this.panelListFile.Controls.Clear();

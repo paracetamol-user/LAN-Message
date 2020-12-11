@@ -1,5 +1,6 @@
 ﻿using Communication;
 using Guna.UI2.WinForms;
+using Network;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -170,9 +171,8 @@ namespace UI
 		public async void SendAddFriendToServer()
 		{
 			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + Form1.me.Id + "%" + user.Id);
-			byte[] buff = new byte[1024];
-			tempbuff.CopyTo(buff, 0);
-			await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 		}
 		public async void SendRemoveFriendToServer()
 		{
@@ -180,9 +180,8 @@ namespace UI
 			if (temp == DialogResult.Yes)
 			{
 				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + Form1.me.Id + "%" + user.Id);
-				byte[] buff = new byte[1024];
-				tempbuff.CopyTo(buff, 0);
-				await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
 		}
 		public void SetAvatar(string path)

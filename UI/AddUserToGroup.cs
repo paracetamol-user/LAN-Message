@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,12 +51,11 @@ namespace UI
 		{
             foreach (var item in listAdd)
             {
-				byte[] tempBuff = Encoding.UTF8.GetBytes("GPENDING%" + item.ID + "%" +
+				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.ID + "%" +
 																   item.Name + "%" +
 																   selectedUser.Id);
-				byte[] buff = new byte[1024];
-				tempBuff.CopyTo(buff, 0);
-				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
 			
 		}

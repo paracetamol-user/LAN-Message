@@ -74,18 +74,18 @@ namespace UI
             this.panelListChat.AutoScroll = true;
             this.panelListChat.BackColor = System.Drawing.Color.White;
             this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelListChat.Location = new System.Drawing.Point(0, 57);
+            this.panelListChat.Location = new System.Drawing.Point(0, 53);
             this.panelListChat.Margin = new System.Windows.Forms.Padding(4);
             this.panelListChat.Name = "panelListChat";
             this.panelListChat.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panelListChat.Size = new System.Drawing.Size(559, 344);
+            this.panelListChat.Size = new System.Drawing.Size(559, 348);
             this.panelListChat.TabIndex = 11;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightGray;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 53);
+            this.panel3.Location = new System.Drawing.Point(0, 49);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(559, 1);
@@ -123,7 +123,7 @@ namespace UI
             this.pictureBoxMenu.Location = new System.Drawing.Point(9, 9);
             this.pictureBoxMenu.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxMenu.Name = "pictureBoxMenu";
-            this.pictureBoxMenu.Size = new System.Drawing.Size(34, 21);
+            this.pictureBoxMenu.Size = new System.Drawing.Size(34, 17);
             this.pictureBoxMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxMenu.TabIndex = 0;
             this.pictureBoxMenu.TabStop = false;
@@ -136,7 +136,7 @@ namespace UI
             this.panelMenu.Margin = new System.Windows.Forms.Padding(4);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Padding = new System.Windows.Forms.Padding(9);
-            this.panelMenu.Size = new System.Drawing.Size(52, 39);
+            this.panelMenu.Size = new System.Drawing.Size(52, 35);
             this.panelMenu.TabIndex = 0;
             // 
             // pictureBoxSearch
@@ -145,7 +145,7 @@ namespace UI
             this.pictureBoxSearch.Location = new System.Drawing.Point(9, 9);
             this.pictureBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(34, 21);
+            this.pictureBoxSearch.Size = new System.Drawing.Size(34, 17);
             this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSearch.TabIndex = 0;
             this.pictureBoxSearch.TabStop = false;
@@ -158,7 +158,7 @@ namespace UI
             this.panelSearch.Margin = new System.Windows.Forms.Padding(4);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Padding = new System.Windows.Forms.Padding(9);
-            this.panelSearch.Size = new System.Drawing.Size(52, 39);
+            this.panelSearch.Size = new System.Drawing.Size(52, 35);
             this.panelSearch.TabIndex = 1;
             // 
             // panelListFile
@@ -182,7 +182,7 @@ namespace UI
             this.panelOPTIONUSER.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONUSER.Name = "panelOPTIONUSER";
             this.panelOPTIONUSER.Padding = new System.Windows.Forms.Padding(9, 7, 40, 7);
-            this.panelOPTIONUSER.Size = new System.Drawing.Size(172, 53);
+            this.panelOPTIONUSER.Size = new System.Drawing.Size(172, 49);
             this.panelOPTIONUSER.TabIndex = 4;
             // 
             // panelUSERINFO
@@ -195,7 +195,7 @@ namespace UI
             this.panelUSERINFO.Margin = new System.Windows.Forms.Padding(4);
             this.panelUSERINFO.Name = "panelUSERINFO";
             this.panelUSERINFO.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.panelUSERINFO.Size = new System.Drawing.Size(559, 57);
+            this.panelUSERINFO.Size = new System.Drawing.Size(559, 53);
             this.panelUSERINFO.TabIndex = 8;
             // 
             // panelAll
@@ -207,7 +207,7 @@ namespace UI
             this.panelAll.Location = new System.Drawing.Point(0, 0);
             this.panelAll.Margin = new System.Windows.Forms.Padding(4);
             this.panelAll.Name = "panelAll";
-            this.panelAll.Size = new System.Drawing.Size(559, 53);
+            this.panelAll.Size = new System.Drawing.Size(559, 49);
             this.panelAll.TabIndex = 4;
             // 
             // panelNULL2
@@ -217,7 +217,7 @@ namespace UI
             this.panelNULL2.Margin = new System.Windows.Forms.Padding(4);
             this.panelNULL2.Name = "panelNULL2";
             this.panelNULL2.Padding = new System.Windows.Forms.Padding(9);
-            this.panelNULL2.Size = new System.Drawing.Size(56, 53);
+            this.panelNULL2.Size = new System.Drawing.Size(56, 49);
             this.panelNULL2.TabIndex = 3;
             // 
             // panelUSERCHATINFO
@@ -228,7 +228,7 @@ namespace UI
             this.panelUSERCHATINFO.Margin = new System.Windows.Forms.Padding(4);
             this.panelUSERCHATINFO.Name = "panelUSERCHATINFO";
             this.panelUSERCHATINFO.Padding = new System.Windows.Forms.Padding(16, 3, 0, 3);
-            this.panelUSERCHATINFO.Size = new System.Drawing.Size(302, 53);
+            this.panelUSERCHATINFO.Size = new System.Drawing.Size(302, 49);
             this.panelUSERCHATINFO.TabIndex = 1;
             // 
             // panel1
@@ -240,7 +240,7 @@ namespace UI
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(20, 3, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(286, 47);
+            this.panel1.Size = new System.Drawing.Size(286, 43);
             this.panel1.TabIndex = 3;
             // 
             // pictureBoxSend
