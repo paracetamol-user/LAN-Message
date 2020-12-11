@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbCancel = new System.Windows.Forms.Label();
             this.lbSave = new System.Windows.Forms.Label();
+            this.lbCancel = new System.Windows.Forms.Label();
             this.pnContainTxt = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
@@ -48,19 +48,6 @@
             this.panel1.Size = new System.Drawing.Size(486, 32);
             this.panel1.TabIndex = 1;
             // 
-            // lbCancel
-            // 
-            this.lbCancel.AutoSize = true;
-            this.lbCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbCancel.Font = new System.Drawing.Font("Dubai", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCancel.ForeColor = System.Drawing.Color.White;
-            this.lbCancel.Location = new System.Drawing.Point(179, 3);
-            this.lbCancel.Name = "lbCancel";
-            this.lbCancel.Size = new System.Drawing.Size(52, 25);
-            this.lbCancel.TabIndex = 0;
-            this.lbCancel.Text = "Cancel";
-            this.lbCancel.Click += new System.EventHandler(this.lbCancel_Click);
-            // 
             // lbSave
             // 
             this.lbSave.AutoSize = true;
@@ -73,6 +60,19 @@
             this.lbSave.TabIndex = 1;
             this.lbSave.Text = "Save";
             this.lbSave.Click += new System.EventHandler(this.lbSave_Click);
+            // 
+            // lbCancel
+            // 
+            this.lbCancel.AutoSize = true;
+            this.lbCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbCancel.Font = new System.Drawing.Font("Dubai", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCancel.ForeColor = System.Drawing.Color.White;
+            this.lbCancel.Location = new System.Drawing.Point(179, 3);
+            this.lbCancel.Name = "lbCancel";
+            this.lbCancel.Size = new System.Drawing.Size(52, 25);
+            this.lbCancel.TabIndex = 0;
+            this.lbCancel.Text = "Cancel";
+            this.lbCancel.Click += new System.EventHandler(this.lbCancel_Click);
             // 
             // pnContainTxt
             // 
@@ -89,10 +89,10 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(5, 7);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 36);
+            this.textBox1.Size = new System.Drawing.Size(471, 27);
             this.textBox1.TabIndex = 0;
             // 
             // ucEditMessage

@@ -29,6 +29,8 @@ namespace UI
 		private string pictureCancel;
 		private string pictureClose;
 		private string pictureCheck;
+		public string pictureCircleOnline { get; set; }
+		public string pictureCircleOffline { get; set; }
 		private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -291,7 +293,8 @@ namespace UI
 			pictureCancel = @"..\..\images\cancel-black.png";
 			pictureClose = @"..\..\images\close-black.png";
 			pictureCheck = @"..\..\images\check-black.png";
-
+			pictureCircleOnline = @"..\..\images\circle-blue.png";
+			pictureCircleOffline = @"..\..\images\circle-black.png";
 		}
 		public void Black()
 		{

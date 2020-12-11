@@ -40,15 +40,6 @@ namespace UI
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
 		}
-		private void pnContain_MouseMove(object sender, MouseEventArgs e)
-		{
-			this.BackColor = Form1.theme.FocusColor ;
-		}
-
-		private void pnContain_MouseLeave(object sender, EventArgs e)
-		{
-			this.BackColor = Color.Transparent;
-		}
 		private void picMenu_Click(object sender, EventArgs e)
 		{
 			Parent.cmns.Show(MousePosition);
@@ -57,24 +48,23 @@ namespace UI
 		{
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
+			if (Form1.interactFocus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
+			Form1.interactFocus = this.Parent.ucInterac;
 		}
-
         private void pnContainPicture_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
+			if (Form1.interactFocus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				Form1.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
+			Form1.interactFocus = this.Parent.ucInterac;
 		}
     }
 }

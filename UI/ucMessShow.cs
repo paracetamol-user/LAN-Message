@@ -58,21 +58,21 @@ namespace UI
         }
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-			if (ucParent.parent.messageFocus != ucParent)
+			if (Form1.chatBoxFocus != ucParent)
 			{
-				if (ucParent.parent.messageFocus != null)
+				if (Form1.chatBoxFocus != null)
 				{
-					ucParent.parent.messageFocus.BackColor = Color.Transparent;
-					ucParent.parent.messageFocus.DisablePnMenu();
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
 				}
-				ucParent.BackColor = Form1.theme.Menu;
-				if (user == Form1.me && this.ucParent.acceptFocus)
-				{
-					this.ucParent.EnablePnMenu();
-				}
-				
-				ucParent.parent.messageFocus = ucParent;
+				Form1.chatBoxFocus = ucParent;
+				this.ucParent.EnableMenu();
+				this.ucParent.BackColor = Form1.theme.Menu;
 			}
+            else
+            {
+				return;
+            }
 		}
 		public void DeleteMessage()
         {

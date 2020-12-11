@@ -12,18 +12,49 @@ namespace UI
 {
 	public partial class ucInterac : UserControl
 	{
-		public UserUI parent;
-		public ucInterac()
+		public string Name { get; set; }
+		public bool Status { get; set; }
+		public string Message { get; set; }
+		public UserUI UserUI { get; set; }
+		public GroupUI GroupUI { get; set; }
+		public bool isGroup { get; set; }
+		public bool isMove { get; set; }
+		public ucInterac(){}
+		public ucInterac(string Name , bool Status , string Message)
 		{
 			InitializeComponent();
+			this.Name = Name;
+			this.Status = Status;
+			this.Message = Message;
+			this.lbName.Text = Name;
+			this.lbMess.Text = Message;
+			if (this.Status == true) this.Online();
+			else this.Offline();
 		}
-		public ucInterac(UserUI Parent)
+		public ucInterac(string Name, bool Status)
 		{
 			InitializeComponent();
-			
-			this.parent = Parent;
-			this.lbName.Text = parent.user.Name;
-			this.lbStatus.Text = parent.user.Status == false ? "Offline" : "Online";
+			this.Name = Name;
+			this.Status = Status;
+			this.lbName.Text = Name; 
+			if (this.Status == true) this.Online();
+			else this.Offline();
+		}
+		public ucInterac(string Name, string Message)
+		{
+			InitializeComponent();
+			this.Name = Name;
+			this.Message = Message;
+			this.lbName.Text = Name;
+			this.lbMess.Text = Message;
+			this.lbMess.Visible = true;
+			this.Offline();
+		}
+		public ucInterac(string Name)
+		{
+			InitializeComponent();
+			this.lbName.Text = Name;
+			this.Offline();
 		}
 		public void ResetPicture()
         {
@@ -32,8 +63,7 @@ namespace UI
 		public void InitColor()
 		{
 			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbStatus.ForeColor = Form1.theme.TextMenuColor;
-			//this.BackColor = Form1.theme.BackColor;
+			this.lbMess.ForeColor = Form1.theme.TextMenuColor;
 			this.BackColor = Color.Transparent;
 		}
 		public void SetAvatar(string path)
@@ -42,12 +72,22 @@ namespace UI
 		}
 		public void Online()
 		{
-			this.lbStatus.Text = "Online";
+			this.Status = true;
+			picStatus.Image = Image.FromFile(Form1.theme.pictureCircleOnline);
+			picStatus.Visible = true;
 		}
 		public void Offline()
 		{
-			this.lbStatus.Text = "Offline";
+			this.Status = false;
+			picStatus.Image = Image.FromFile(Form1.theme.pictureCircleOffline);
+			picStatus.Visible = true;
 		}
+		public void AddMessage(string mess)
+        {
+			if (!this.lbMess.Visible) this.lbMess.Visible = true;
+			this.lbMess.Text = mess;
+			this.Message = mess;
+        }
 		public void ChangeColorWhenClick()
 		{
 			this.BackColor = Form1.theme.FocusColor;
@@ -56,174 +96,47 @@ namespace UI
 		{
 			this.BackColor = Color.Transparent;
 		}
-		private void ucInterac_Click(object sender, EventArgs e)
-		{
-			this.parent.ShowChatForm();
-			if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-			else if (Form1.userUIForcus == null)
-			{
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
+		public void SetUser(UserUI userUI)
+        {
+			this.isGroup = false;
+			this.UserUI = userUI;
+        }
+		public void SetGroup(GroupUI groupUI)
+        {
+			this.isGroup = true;
+			this.GroupUI = groupUI;
+			this.picStatus.Visible = true;
+			picStatus.Image = Image.FromFile(Form1.theme.pictureCircleOnline);
 		}
-		private void ucInterac_MouseMove(object sender, MouseEventArgs e)
+		private void pnContain_Click(object sender, EventArgs e)
 		{
-			ChangeColorWhenClick();
-			
-		}
-		private void ucInterac_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-		
-		}
-		private void gunaPic_Click(object sender, EventArgs e)
-		{
-			this.parent.ShowChatForm();
-			if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id)
+			if (isGroup)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
+				GroupUI.ShowChatForm();
 			}
-			else if (Form1.userUIForcus == null)
+			else
+            {
+				UserUI.ShowChatForm();
+			}
+			if (Form1.interactFocus != null && Form1.interactFocus != this)
+			{
+				Form1.interactFocus.ChangeColorWhenNonClick();
+				this.ChangeColorWhenClick();
+				Form1.interactFocus = this;
+			}
+			else if (Form1.interactFocus == null)
 			{
 				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
+				Form1.interactFocus = this;
 			}
 		}
-		private void pnContainStatus_Click(object sender, EventArgs e)
-		{
-			this.parent.ShowChatForm();
-			if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-			else if (Form1.userUIForcus == null)
-			{
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
+        private void picClose_Click(object sender, EventArgs e)
+        {
+			if (isGroup)
+            {
+				GroupUI.panelINTERACTED.Controls.Remove(this);
+            }
+			else UserUI.panelINTERACTED.Controls.Remove(this);
 		}
-		private void pnContrainName_Click(object sender, EventArgs e)
-		{
-			this.parent.ShowChatForm();
-			if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-			else if (Form1.userUIForcus == null)
-			{
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-		}
-		private void lbName_Click(object sender, EventArgs e)
-		{
-			this.parent.ShowChatForm();
-			if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-			else if (Form1.userUIForcus == null)
-			{
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-		}
-		private void lbStatus_Click(object sender, EventArgs e)
-		{
-			this.parent.ShowChatForm();
-			if (Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-			else if (Form1.userUIForcus == null)
-			{
-				this.ChangeColorWhenClick();
-				Form1.userUIForcus = parent;
-			}
-		}
-		private void picClose_Click(object sender, EventArgs e)
-		{
-			this.parent.panelINTERACTED.Controls.Remove(this);
-		}
-		private void gunaPic_MouseMove(object sender, MouseEventArgs e)
-		{
-			ChangeColorWhenClick();
-			
-		}
-		private void pnContainStatus_MouseMove(object sender, MouseEventArgs e)
-		{
-			ChangeColorWhenClick();
-			
-		}
-		private void pnContrainName_MouseMove(object sender, MouseEventArgs e)
-		{
-			ChangeColorWhenClick();
-			
-		}
-		private void lbStatus_MouseMove(object sender, MouseEventArgs e)
-		{
-			ChangeColorWhenClick();
-		}
-		private void lbName_MouseMove(object sender, MouseEventArgs e)
-		{
-			ChangeColorWhenClick();
-		   
-		}
-		private void picClose_MouseMove(object sender, MouseEventArgs e)
-		{
-			ChangeColorWhenClick();
-			
-		}
-		private void gunaPic_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-		   
-		}
-		private void lbStatus_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-  
-		}
-		private void lbName_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-		}
-		private void pnContrainName_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-			
-		}
-		private void pnContainStatus_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-			
-		}
-		private void picClose_MouseLeave(object sender, EventArgs e)
-		{
-			if ((Form1.userUIForcus != null && Form1.userUIForcus.GetId() != this.parent.user.Id) || Form1.userUIForcus == null)
-				ChangeColorWhenNonClick();
-		  
-		}
-	}
+    }
 }

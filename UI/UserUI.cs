@@ -19,7 +19,7 @@ namespace UI
 
 		public UserForm userForm; // Khung Chat của user
 		public User user;
-
+		public Form1 mainForm;
 		public Panel panelINTERACTED; 
 		public Panel panelRIGHT;
 
@@ -44,7 +44,25 @@ namespace UI
 			userForm.InitColor();
 			ucUserAll = new ucUserAll(this);
 			ucUserOnline = new ucUserOnline(this);
-			ucInterac = new ucInterac(this);
+			ucInterac = new ucInterac(user.Name , user.Status);
+			ucInterac.SetUser(this);
+			ucFriend = new ucFriend(this);
+			ucFriendOnline = new ucFriend(this);
+			ucSearch = new ucUserAll(this);
+		}
+		public UserUI(User user, Form1 mainForm)
+		{
+			this.user = user;
+			this.mainForm = mainForm;
+			this.panelINTERACTED = mainForm.PnInteract;
+			this.panelRIGHT = mainForm.PnRight;
+			InitUserForm();
+			this.panelRIGHT.Controls.Add(userForm);
+			userForm.InitColor();
+			ucUserAll = new ucUserAll(this);
+			ucUserOnline = new ucUserOnline(this);
+			ucInterac = new ucInterac(user.Name, user.Status);
+			ucInterac.SetUser(this);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
@@ -92,7 +110,7 @@ namespace UI
 		/// </summary>
 		private void InitUserForm()
 		{
-			userForm = new UserForm(user);
+			userForm = new UserForm(user,this);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
 
@@ -114,15 +132,6 @@ namespace UI
 			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
-
-			//ToolStripButton tsbEdit = new ToolStripButton("Edit Message");
-			//ToolStripButton tsbDelete = new ToolStripButton("Delete Message");
-			//ToolStripButton tsbPin = new ToolStripButton("Pin Message");
-
-			//cmnsMess.Items.Add(tsAddFriend);
-			//cmnsMess.Items.Add(tsAddGroup);
-			//cmnsMess.Items.Add(tsLine);
-			//cmnsMess.Items.Add(tsRemoveFriend);
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
@@ -134,7 +143,9 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			
+			mainForm.addMemberForm.InitAddGroupForm(user);
+			mainForm.addMemberForm.Show();
+			mainForm.addMemberForm.BringToFront();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{
@@ -262,6 +273,11 @@ namespace UI
 		public async void AddMessage(string IDMess,string mess)
 		{
 			userForm.AddItemInToListChat(user,IDMess, mess);
+			this.ucInterac.AddMessage(user.Name+": " + mess);
+		}
+		public void AddMessageIntoInteract(string name,string mess)
+        {
+			this.ucInterac.AddMessage(name + ": " + mess);
 		}
 		public bool GetStatus()
 		{

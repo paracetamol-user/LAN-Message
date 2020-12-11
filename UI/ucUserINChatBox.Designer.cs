@@ -63,7 +63,7 @@
             this.panel1.Location = new System.Drawing.Point(9, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(57, 562);
+            this.panel1.Size = new System.Drawing.Size(57, 382);
             this.panel1.TabIndex = 0;
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
@@ -72,7 +72,6 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 57);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -129,7 +128,7 @@
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnMenu.Location = new System.Drawing.Point(775, 3);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Padding = new System.Windows.Forms.Padding(5);
+            this.pnMenu.Padding = new System.Windows.Forms.Padding(10);
             this.pnMenu.Size = new System.Drawing.Size(152, 33);
             this.pnMenu.TabIndex = 1;
             this.pnMenu.Visible = false;
@@ -139,11 +138,12 @@
             // 
             this.pnEdit.Controls.Add(this.picEdit);
             this.pnEdit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnEdit.Location = new System.Drawing.Point(6, 5);
+            this.pnEdit.Location = new System.Drawing.Point(1, 10);
             this.pnEdit.Margin = new System.Windows.Forms.Padding(10);
             this.pnEdit.Name = "pnEdit";
-            this.pnEdit.Size = new System.Drawing.Size(47, 23);
+            this.pnEdit.Size = new System.Drawing.Size(47, 13);
             this.pnEdit.TabIndex = 4;
+            this.pnEdit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // picEdit
             // 
@@ -152,20 +152,21 @@
             this.picEdit.Image = ((System.Drawing.Image)(resources.GetObject("picEdit.Image")));
             this.picEdit.Location = new System.Drawing.Point(0, 0);
             this.picEdit.Name = "picEdit";
-            this.picEdit.Size = new System.Drawing.Size(47, 23);
+            this.picEdit.Size = new System.Drawing.Size(47, 13);
             this.picEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picEdit.TabIndex = 0;
             this.picEdit.TabStop = false;
             this.picEdit.Click += new System.EventHandler(this.picEdit_Click);
+            this.picEdit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // pnPin
             // 
             this.pnPin.Controls.Add(this.picPin);
             this.pnPin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnPin.Location = new System.Drawing.Point(53, 5);
+            this.pnPin.Location = new System.Drawing.Point(48, 10);
             this.pnPin.Margin = new System.Windows.Forms.Padding(10);
             this.pnPin.Name = "pnPin";
-            this.pnPin.Size = new System.Drawing.Size(47, 23);
+            this.pnPin.Size = new System.Drawing.Size(47, 13);
             this.pnPin.TabIndex = 3;
             this.pnPin.Visible = false;
             this.pnPin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
@@ -175,7 +176,7 @@
             this.picPin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picPin.Location = new System.Drawing.Point(0, 0);
             this.picPin.Name = "picPin";
-            this.picPin.Size = new System.Drawing.Size(47, 23);
+            this.picPin.Size = new System.Drawing.Size(47, 13);
             this.picPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPin.TabIndex = 1;
             this.picPin.TabStop = false;
@@ -186,10 +187,10 @@
             // 
             this.pnDelete.Controls.Add(this.picDelete);
             this.pnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnDelete.Location = new System.Drawing.Point(100, 5);
+            this.pnDelete.Location = new System.Drawing.Point(95, 10);
             this.pnDelete.Margin = new System.Windows.Forms.Padding(10);
             this.pnDelete.Name = "pnDelete";
-            this.pnDelete.Size = new System.Drawing.Size(47, 23);
+            this.pnDelete.Size = new System.Drawing.Size(47, 13);
             this.pnDelete.TabIndex = 2;
             this.pnDelete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
@@ -200,7 +201,7 @@
             this.picDelete.Image = ((System.Drawing.Image)(resources.GetObject("picDelete.Image")));
             this.picDelete.Location = new System.Drawing.Point(0, 0);
             this.picDelete.Name = "picDelete";
-            this.picDelete.Size = new System.Drawing.Size(47, 23);
+            this.picDelete.Size = new System.Drawing.Size(47, 13);
             this.picDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picDelete.TabIndex = 1;
             this.picDelete.TabStop = false;
@@ -228,10 +229,9 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucUserINChatBox";
             this.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.Size = new System.Drawing.Size(998, 562);
+            this.Size = new System.Drawing.Size(998, 382);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

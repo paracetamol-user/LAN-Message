@@ -23,7 +23,7 @@ namespace UI
 		{
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picMenu.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 			isPlus = true;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
@@ -33,7 +33,7 @@ namespace UI
 		public void ResetTheme()
         {
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picMenu.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 		}
 		public void InitColor()
 		{
@@ -46,167 +46,39 @@ namespace UI
 		{
 			gunaPic.Image = Image.FromFile(path);
 		}
-		private void gunaPic_Click(object sender, EventArgs e)
-		{
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-		private void gunaPic_MouseMove(object sender, MouseEventArgs e)
-		{
-			this.BackColor = Form1.theme.FocusColor;
-		}
-		private void pnContain_MouseMove(object sender, MouseEventArgs e)
-		{
-			this.BackColor =  Form1.theme.FocusColor;
-		}
-		private void picMenu_MouseMove(object sender, MouseEventArgs e)
-		{
-			this.BackColor =  Form1.theme.FocusColor;
-		}
 
-		private void gunaPic_MouseLeave(object sender, EventArgs e)
-		{
-			this.BackColor =  Color.Transparent;
-		}
-		private void pnContain_MouseLeave(object sender, EventArgs e)
-		{
-			this.BackColor = Color.Transparent;
-		}
-		private void picMenu_MouseLeave(object sender, EventArgs e)
-		{
-			this.BackColor = Color.Transparent;
-		}
-		private void pnContain_Click(object sender, EventArgs e)
-		{
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-		private void pnContainId_Click_1(object sender, EventArgs e)
-		{
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-		private void pnContrainName_Click_1(object sender, EventArgs e)
-		{
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-		private void lbName_Click_1(object sender, EventArgs e)
-		{
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-        private void lbId_Click(object sender, EventArgs e)
+        private void ucUserAll_Click(object sender, EventArgs e)
         {
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-        private void pnContainId_MouseMove_1(object sender, MouseEventArgs e)
+            this.Parent.ShowChatForm();
+            this.Parent.AddUserInteracted();
+            if (Form1.interactFocus != null)
+            {
+                Form1.interactFocus.ChangeColorWhenNonClick();
+            }
+            this.Parent.ucInterac.ChangeColorWhenClick();
+            Form1.interactFocus = this.Parent.ucInterac;
+        }
+
+        private void picMenu_Click(object sender, EventArgs e)
         {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void pnContainId_MouseLeave_1(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void pnContrainName_MouseMove_1(object sender, MouseEventArgs e)
-        {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void pnContrainName_MouseLeave_1(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void panel1_MouseLeave(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void panel2_MouseMove(object sender, MouseEventArgs e)
-        {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void panel2_MouseLeave(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void lbName_MouseMove_1(object sender, MouseEventArgs e)
-        {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void lbName_MouseLeave(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void lbId_MouseMove_1(object sender, MouseEventArgs e)
-        {
-			this.BackColor = Form1.theme.FocusColor;
-		}
-        private void lbId_MouseLeave(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-			this.Parent.ShowChatForm();
-			this.Parent.AddUserInteracted();
-			if (Form1.userUIForcus != null)
-			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-			}
-			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.userUIForcus = this.Parent;
-		}
-		private async void picMenu_Click(object sender, EventArgs e)
-		{
 			Parent.cmns.Show(MousePosition);
 		}
+        //private void gunaPic_Click(object sender, EventArgs e)
+        //{
+
+        //}
+        //private void picMenu_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //	this.BackColor =  Form1.theme.FocusColor;
+        //}
+
+        //private void gunaPic_MouseLeave(object sender, EventArgs e)
+        //{
+        //	this.BackColor =  Color.Transparent;
+        //}
+        //private async void picMenu_Click(object sender, EventArgs e)
+        //{
+        //	
+        //}
     }
 }

@@ -23,23 +23,31 @@ namespace UI
 		/// </summary> 
 		public LoginForm loginForm;
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
+		public static List<GroupUI> GroupUIs; // List form giao diện chat cho từng group
 		public static User me; // Nguoi su dung chuong trinh
+
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
+        public static GroupForm groupFormFocus = null;
+		public static ucUserINChatBox chatBoxFocus = null;
+		public static ucInterac interactFocus = null;
+
 		public static SocketClient client;
 		public static TcpClient server;
 		public static SettingForm settingForm;
 		public static FrmFriend frmFriend;
 		public static List<string> listFile;
+
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
+		public AddUserToGroup addMemberForm;
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
 		public static List<ucUserINChatBox> listFileAwaitID;
-
-		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mõi class.
+		public static List<Group> listGroup;
+		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mỗi class.
 		//242,243,245
 		public Form1()
 		{
@@ -51,6 +59,8 @@ namespace UI
 			listUser = new List<User>();
 			listMessAwaitID = new List<ucUserINChatBox>();
 			listFileAwaitID = new List<ucUserINChatBox>();
+			GroupUIs = new List<GroupUI>();
+			listGroup = new List<Group>();
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
@@ -68,10 +78,20 @@ namespace UI
 			InitServerUsersForm();
 			InitFrmFriend();
 			InitSettingForm();
+			InitAddMemberForm();
 			ChangeTheme();
+			LoadGroupData();
 			AwaitReadData(); 
 		}
-		private void InitSettingForm()
+		public void InitAddMemberForm()
+        {
+			addMemberForm = new AddUserToGroup(this);
+			addMemberForm.TopLevel = false;
+			addMemberForm.BackColor = theme.Menu;
+			addMemberForm.Location = new Point(this.Width / 2 - (addMemberForm.Width/2 - 10), this.Height / 2 - (addMemberForm.Height / 2 + 10));
+			this.Controls.Add(addMemberForm);
+		}
+        public void InitSettingForm()
 		{
 			settingForm = new SettingForm(me, this);
 			settingForm.TopLevel = false;
@@ -212,7 +232,7 @@ namespace UI
 						if (arr[1] != me.Name)
 						{
 							listUser.Add(new User(arr[0], arr[1], bool.Parse(arr[2]), path));
-							UserUIs.Add(new UserUI(listUser[listUser.Count-1], panelINTERACTED, panelRIGHT));
+							UserUIs.Add(new UserUI(listUser[listUser.Count - 1],this ));
 						}
 					}
 				}
@@ -231,7 +251,7 @@ namespace UI
 				else if (action == "ADDUSER")
 				{
 					string path = @"..\..\avatarDefault.png";
-					UserUIs.Add(new UserUI(new User(data[1], data[2], false, path), panelINTERACTED, panelRIGHT));
+					UserUIs.Add(new UserUI(new User(data[1], data[2], false, path),this));
 				}
 				else if (action == "ONLINE")
 				{
@@ -374,11 +394,33 @@ namespace UI
                         }
                     }
 				}
+				else if (action == "EDITGROUPMESSAGE")
+                {
+					foreach (var item in GroupUIs)
+					{
+						if (item.group.ID == data[2])
+						{
+							item.EditMessage(data[1], data[3]);
+							break;
+						}
+					}
+				}
 				else if (action == "DELETEMESSAGE")
                 {
 					foreach (var item in UserUIs)
 					{
 						if (item.user.Id == data[2])
+						{
+							item.DeleteMessage(data[1]);
+							break;
+						}
+					}
+				}
+				else if (action == "DELETEGROUPMESSAGE")
+                {
+					foreach (var item in GroupUIs)
+					{
+						if (item.group.ID == data[2])
 						{
 							item.DeleteMessage(data[1]);
 							break;
@@ -394,6 +436,112 @@ namespace UI
                 {
 					listFileAwaitID[0].ID = data[1];
 					listFileAwaitID.Remove(listFileAwaitID[0]);
+				}
+				else if (action == "LOADGROUPDATA")
+				{
+					for(int i = 1; i < data.Length; i++)
+					{
+						if (data[i] == "") break;
+
+						string[] arr = data[i].Split(' ');
+						string path = @"..\..\groupDefault.png";
+						listGroup.Add(new Group(arr[0], arr[1], path));
+						for(int j = 2; j < arr.Length; j += 2)
+						{
+                            foreach (var item in listUser)
+                            {
+								if (arr[j] == item.Id)
+                                {
+									listGroup[listGroup.Count - 1].AddMember(item);
+									break;
+								}
+                            }
+							
+						}
+						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1],this));
+					}
+				}
+				else if (action == "GPENDING")
+				{
+					GroupUI temp = new GroupUI(new Group(data[1], data[2]),this);
+					serverUsersForm.AddGroupPending(temp);
+					serverUsersForm.EnablePointPending();
+					picNotification.Visible = true;
+				}
+				else if (action == "GROUPACCEPT")
+				{
+					string[] groupInfo = data[1].Split(' ');
+					Group group = new Group(groupInfo[0], groupInfo[1]);
+					for(int i = 2; i < data.Length; i++)
+					{
+						if (data[i] == string.Empty) break;
+						string[] info = data[i].Split(' ');
+						foreach (var item in listUser)
+						{
+							if (info[i] == item.Id)
+							{
+								group.AddMember(item);
+								break;
+							}
+						}
+						
+					}
+					listGroup.Add(group);
+					GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1],this));
+				}
+				else if (action == "GROUPDATA")
+                {
+					string[] arr = data[1].Split(' ');
+					Group group = new Group(arr[0], arr[1]);
+					for(int j = 2; j < arr.Length; j += 2)
+                    {
+						foreach (var item in listUser)
+						{
+							if (arr[j] == item.Id)
+							{
+								group.AddMember(item);
+								break;
+							}
+						}
+                    }
+					listGroup.Add(group);
+					GroupUIs.Add(new GroupUI(group,this));
+                }
+				else if (action == "NEWMEMBER")
+                {
+					foreach(var item in GroupUIs)
+                    {
+						if(item.group.ID == data[1])
+                        {
+							foreach (var item2 in listUser)
+							{
+								if (data[2] == item2.Id)
+								{
+									item.group.AddMember(item2);
+									break;
+								}
+							}
+                        }
+                    }
+                }
+				else if (action == "GSEND")
+                {
+					for (int i = 0; i < GroupUIs.Count; i++)
+					{
+						if (GroupUIs[i].group.ID == data[1])
+						{
+							foreach(User user in listUser)
+                            {
+								if(user.Id == data[2])
+                                {
+									GroupUIs[i].AddMessage(user,data[4], data[3]);
+									GroupUIs[i].BringToTop();
+									break;
+                                }
+                            }
+							break;
+						}
+					}
                 }
 				else
 				{
@@ -457,6 +605,13 @@ namespace UI
 			tembuff.CopyTo(buff, 0);
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
 		}
+		private async void LoadGroupData()
+		{
+			byte[] buff = new byte[1024];
+			byte[] tembuff = Encoding.UTF8.GetBytes("LOADGROUPDATA%" + me.Id);
+			tembuff.CopyTo(buff, 0);
+			await server.GetStream().WriteAsync(buff, 0, buff.Length);
+		}
 		public static void AddUserIntoFrmFriend(UserUI userUI)
 		{
 			frmFriend.AddUserIntoFrmFriend(userUI);
@@ -467,6 +622,11 @@ namespace UI
 			byte[] tembuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White":"Black"));
 			tembuff.CopyTo(buff, 0);
 			await server.GetStream().WriteAsync(buff, 0, buff.Length);
+			try
+            {
+				addMemberForm.Close();
+			}
+			catch { }
 			loginForm.Close();
 		}
 		public void DisableNotification()
@@ -478,7 +638,6 @@ namespace UI
 		/// </summary>
 		private void pictureBoxSetting_Click(object sender, EventArgs e)
 		{
-			
 			settingForm.Show();
 			settingForm.BringToFront();
 		}
@@ -529,5 +688,19 @@ namespace UI
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
 		}
-	}
+		public Panel PnRight
+        {
+            get
+            {
+				return this.panelRIGHT;
+            }
+        }
+		public Panel PnInteract
+        {
+            get
+            {
+				return this.panelINTERACTED;
+            }
+        }
+    }
 }

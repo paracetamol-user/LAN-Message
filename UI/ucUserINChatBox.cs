@@ -13,9 +13,9 @@ namespace UI
 {
 	public partial class ucUserINChatBox : UserControl
 	{
-		public string ID;
-		public User user;
-		public UserForm parent;
+		public string ID { get; set; }
+		public string IDParent { get; set; }
+		public User User {get;set;}
 		public ucMessShow ucmessshow;
 		public ucFileShow ucfileshow;
 		public bool isTurnOnEdit;
@@ -25,33 +25,34 @@ namespace UI
 		{
 			InitializeComponent();
 		}
-		public ucUserINChatBox(User _user , UserForm parent)
+		public ucUserINChatBox(User _User , string idParent)
 		{
 			InitializeComponent();
 			acceptFocus = true;
 			isTurnOnEdit = false;
 			isFile = false;
-			this.user = _user;
-			this.parent = parent;
-			this.labelName.Text = user.Name;
-			if (this.user == Form1.me)
+			this.User = _User;
+			this.IDParent = idParent;
+			this.labelName.Text = User.Name;
+			if (this.User == Form1.me)
 			{
 				pictureBox1.Image = Image.FromFile(Form1.me.AvatarPath);
 			}
-			else pictureBox1.Image = Image.FromFile(user.AvatarPath);
+			else pictureBox1.Image = Image.FromFile(User.AvatarPath);
 		}
 		public void InitColor()
 		{
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.BackColor = Color.Transparent;
 		}
-		public User _User
-		{
-			set
-			{
-				this.user = value;
-			}
-		}
+		public void EnableMenu()
+        {
+			this.pnMenu.Visible = true;
+        }
+		public void DisableMenu()
+        {
+			this.pnMenu.Visible = false;
+        }
 		public void _AddFileControl(ucFileShow filecontrol)
 		{
 			isFile = true;
@@ -64,39 +65,9 @@ namespace UI
 			this.panelAddMessage.Controls.Add(messcontrol);
 			this.ucmessshow = messcontrol;
 		}
-		private void panel1_MouseMove(object sender, MouseEventArgs e)
-		{
-			if (parent.messageFocus != this)
-			{
-				
-				if (parent.messageFocus != null)
-				{
-					parent.messageFocus.BackColor = Color.Transparent;
-					parent.messageFocus.pnMenu.Visible = false;
-				}
-				this.BackColor = Form1.theme.Menu;
-				if (user == Form1.me && acceptFocus == true)
-				{
-					this.pnMenu.Visible = true;
-					if (isFile)
-					{
-						this.pnEdit.Visible = false;
-					}
-				}
-				parent.messageFocus = this;
-			}
-		}
 		public void _RemoveEditControls(ucEditMessage ucEdit)
 		{
 			this.panelAddMessage.Controls.Remove(ucEdit);
-		}
-		public void EnablePnMenu()
-		{
-			this.pnMenu.Visible = true;
-		}
-		public void DisablePnMenu()
-		{
-			this.pnMenu.Visible = false;
 		}
 		public void EditMessage(string newMess)
 		{
@@ -116,21 +87,29 @@ namespace UI
 			DialogResult temp = MessageBox.Show("Are you sure delete this message", "Delete Message", MessageBoxButtons.OKCancel);
 			if (temp == DialogResult.OK)
 			{
-				if (isFile)
+				if (this.User.Id != Form1.me.Id)
+                {
+					this.Visible = false;
+                } 
+				else if (isFile)
 				{
-					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + parent.user.Id);
+					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
 					byte[] buff = new byte[1024];
 					tempbuff.CopyTo(buff, 0);
 					Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 					this.ucfileshow.DeleteMessage();
+					this.DisableEdit();
+					this.DisableDelete();
 				}
 				else
 				{
-					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + parent.user.Id);
+					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
 					byte[] buff = new byte[1024];
 					tempbuff.CopyTo(buff, 0);
 					Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
 					this.ucmessshow.DeleteMessage();
+					this.DisableEdit();
+					this.DisableDelete();
 				}
 					
 				acceptFocus = false;
@@ -147,5 +126,29 @@ namespace UI
 				isTurnOnEdit = true;
 			}
 		}
+		private void panel1_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (Form1.chatBoxFocus != this)
+			{
+				if (Form1.chatBoxFocus != null)
+				{
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				Form1.chatBoxFocus = this;
+				this.EnableMenu();
+				this.pnMenu.Visible = true;
+				this.BackColor = Form1.theme.Menu;
+			}
+			else return;
+		}
+		public void DisableEdit()
+        {
+			this.picEdit.Visible = false;
+        }
+		public void DisableDelete()
+        {
+			this.picDelete.Visible = false;
+        }
 	}
 }

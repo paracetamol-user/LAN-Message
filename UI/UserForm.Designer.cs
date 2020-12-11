@@ -140,6 +140,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(9, 9);
@@ -166,6 +167,7 @@
             // pictureBoxSend
             // 
             this.pictureBoxSend.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
             this.pictureBoxSend.Location = new System.Drawing.Point(7, 6);
