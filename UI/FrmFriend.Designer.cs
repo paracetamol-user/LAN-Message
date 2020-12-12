@@ -58,7 +58,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(798, 53);
+            this.panel1.Size = new System.Drawing.Size(806, 53);
             this.panel1.TabIndex = 1;
             // 
             // panelAll
@@ -154,7 +154,7 @@
             this.panelLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLine.Location = new System.Drawing.Point(0, 53);
             this.panelLine.Name = "panelLine";
-            this.panelLine.Size = new System.Drawing.Size(798, 1);
+            this.panelLine.Size = new System.Drawing.Size(806, 1);
             this.panelLine.TabIndex = 3;
             // 
             // panel3
@@ -165,7 +165,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 54);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(20);
-            this.panel3.Size = new System.Drawing.Size(798, 490);
+            this.panel3.Size = new System.Drawing.Size(806, 458);
             this.panel3.TabIndex = 6;
             // 
             // pnOnline
@@ -187,7 +187,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(798, 564);
+            this.ClientSize = new System.Drawing.Size(806, 532);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelLine);
             this.Controls.Add(this.panel1);

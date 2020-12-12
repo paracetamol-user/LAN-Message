@@ -80,7 +80,6 @@ namespace UI
 			InitFrmFriend();
 			InitSettingForm();
 			UcGroup = new ucGroup(this, GroupUIs);
-			// Khoi tao cac form
 			LoadGroupData();
 			ChangeTheme();
 			AwaitReadData();
@@ -652,7 +651,7 @@ namespace UI
 			server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 			try
 			{
-				addMemberForm.Close();
+				
 			}
 			catch { }
 			loginForm.Close();
@@ -710,5 +709,12 @@ namespace UI
 				return this.panelINTERACTED;
 			}
 		}
-	}
+
+        private void btnGroup_Click(object sender, EventArgs e)
+        {
+			this.UcGroup.Show();
+			this.UcGroup.BringToFront();
+			this.UcGroup._LoadGroup();
+        }
+    }
 }

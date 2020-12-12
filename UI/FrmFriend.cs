@@ -66,11 +66,6 @@ namespace UI
 				pnAll.Controls.Add(userUI.ucFriend);
 			userUI.ucFriend.InitColor();
 		}
-		//public void AddGroupIntoGroupForm(GroupUI groupUI)
-		//{
-		//	if (!pnGroup.Contains(groupUI.ucGroupAll))
-		//		pnGroup.Controls.Add(groupUI.ucGroupAll);
-		//}
 		public void RemoveFriend(UserUI userUI)
 		{
 			if (pnAll.Contains(userUI.ucFriend))

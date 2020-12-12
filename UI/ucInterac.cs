@@ -129,7 +129,6 @@ namespace UI
 				this.ChangeColorWhenClick();
 				Form1.interactFocus = this;
 			}
-			Form1.addMemberForm.Hide();
 		}
         private void picClose_Click(object sender, EventArgs e)
         {
