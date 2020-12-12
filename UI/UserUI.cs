@@ -144,9 +144,9 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			mainForm.addMemberForm.InitAddGroupForm(user);
-			mainForm.addMemberForm.Show();
-			mainForm.addMemberForm.BringToFront();
+			Form1.addMemberForm.InitAddGroupForm(user);
+			Form1.addMemberForm.Show();
+			Form1.addMemberForm.BringToFront();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{

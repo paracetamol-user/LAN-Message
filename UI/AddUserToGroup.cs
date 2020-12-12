@@ -30,12 +30,10 @@ namespace UI
 			this.BringToFront();
 			this.selectedUser = selectedUser;
 			this.pnGroup.Controls.Clear();
+			this.pnLine.BackColor = Form1.theme.LineColor;
 			LoadGroupOption();
 		}
-		private void picBoxAdd_Click(object sender, EventArgs e)
-		{
-			this.Hide();
-		}
+	
 		private void LoadGroupOption()
 		{
 			foreach(var item in Form1.GroupUIs)
@@ -59,6 +57,12 @@ namespace UI
 			}
 			
 		}
+ 
+        private void picBoxAdd_Click(object sender, EventArgs e)
+        {
+			this.Hide();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 			SendAddToGroupToServer();

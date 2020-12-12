@@ -103,10 +103,8 @@ namespace UserManager
         public void DeleteMember(User member) => memberList.Remove(member);
         public bool MemberInGroup(User user)
         {
-            foreach (var item in memberList)
-            {
-                if (item == user) return true;
-            }
+            if (memberList.Contains(user)) return true;
+            else 
             return false;
         }
     }

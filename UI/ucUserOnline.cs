@@ -56,6 +56,7 @@ namespace UI
 
         private void pnContainId_Click_1(object sender, EventArgs e)
         {
+			Form1.addMemberForm.Hide();
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
 			if (Form1.interactFocus != null)
@@ -77,6 +78,7 @@ namespace UI
 
         private void picChat_Click(object sender, EventArgs e)
         {
+			Form1.addMemberForm.Hide();
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
 			if (Form1.interactFocus != null)

@@ -29,7 +29,7 @@ namespace UI
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
-        public static GroupForm groupFormFocus = null;
+		public static GroupForm groupFormFocus = null;
 		public static ucUserINChatBox chatBoxFocus = null;
 		public static ucInterac interactFocus = null;
 
@@ -41,7 +41,8 @@ namespace UI
 
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
-		public AddUserToGroup addMemberForm;
+		public ucGroup UcGroup;
+		public static AddUserToGroup addMemberForm;
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -51,7 +52,7 @@ namespace UI
 		//242,243,245
 		public Form1()
 		{
-			InitializeComponent();           
+			InitializeComponent();
 		}
 		public Form1(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
@@ -78,28 +79,21 @@ namespace UI
 			InitServerUsersForm();
 			InitFrmFriend();
 			InitSettingForm();
-			InitAddMemberForm();
+			UcGroup = new ucGroup(this, GroupUIs);
 			// Khoi tao cac form
 			LoadGroupData();
 			ChangeTheme();
 			AwaitReadData();
-			
+
 		}
-		public void InitAddMemberForm()
-        {
-			addMemberForm = new AddUserToGroup(this);
-			addMemberForm.TopLevel = false;
-			addMemberForm.BackColor = theme.Menu;
-			addMemberForm.Location = new Point(this.Width / 2 - (addMemberForm.Width/2 - 10), this.Height / 2 - (addMemberForm.Height / 2 + 10));
-			this.Controls.Add(addMemberForm);
-		}
-        public void InitSettingForm()
+
+		public void InitSettingForm()
 		{
 			settingForm = new SettingForm(me, this);
 			settingForm.TopLevel = false;
 			settingForm.Dock = DockStyle.Fill;
 			this.Controls.Add(settingForm);
-			settingForm.BackColor = theme.BackColor;	
+			settingForm.BackColor = theme.BackColor;
 		}
 		public void ChangeTheme()
 		{
@@ -113,7 +107,7 @@ namespace UI
 			ChangePicture();
 			ChangeColorUserUIs();
 			ChangeColorFocus();
-			
+
 			settingForm.ChangeColorPanelControl();
 			settingForm.ChangeColorAllLabelControl(settingForm);
 			serverUsersForm.ChangeColorControl();
@@ -121,7 +115,7 @@ namespace UI
 		}
 		private void ChangeColorFocus()
 		{
-			if (userUIForcus != null ) userUIForcus.ucInterac.ChangeColorWhenClick();
+			if (userUIForcus != null) userUIForcus.ucInterac.ChangeColorWhenClick();
 		}
 		private void ChangeColorUserUIs()
 		{
@@ -161,7 +155,7 @@ namespace UI
 				if (item.GetType() == typeof(Label))
 				{
 					(item as Label).ForeColor = theme.TextColor;
-					
+
 				}
 				else
 				if (item.GetType() == typeof(Button))
@@ -183,7 +177,7 @@ namespace UI
 			Form1.frmFriend.Dock = DockStyle.Fill;
 			panelRIGHT.Controls.Add(Form1.frmFriend);
 		}
-		public  void LoadUser()
+		public void LoadUser()
 		{
 			this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
@@ -199,12 +193,12 @@ namespace UI
 		}
 		private void LoadMyData()
 		{
-			labelID.Text = "#"+me.Id;
+			labelID.Text = "#" + me.Id;
 			labelUSERNAME.Text = me.Name;
 		}
 		private async Task AwaitReadData()
 		{
-			
+
 			byte[] tempBuff;
 			SmallPackage package;
 			List<Package> listAwaitPackage = new List<Package>();
@@ -280,7 +274,7 @@ namespace UI
 							}
 						}
 					}
-					else if (action == "FILE") 
+					else if (action == "FILE")
 					{
 						Package awaitPackage = new Package(data[1], me.Id, 0, int.Parse(data[2]),
 									"F", data[3], data[4], data[5], false);
@@ -292,7 +286,7 @@ namespace UI
 						string tempidNguoiGui = data[2];
 						string tempFileName = data[3];
 						if (data[4] == "Private")
-                        {
+						{
 							for (int i = 0; i < Form1.UserUIs.Count; i++)
 							{
 								if (UserUIs[i].GetId() == tempidNguoiGui)
@@ -304,11 +298,11 @@ namespace UI
 							}
 						}
 						else
-                        {
+						{
 							for (int i = 0; i < Form1.GroupUIs.Count; i++)
 							{
 								if (GroupUIs[i].group.ID == data[5])
-                                {
+								{
 									foreach (var item in listUser)
 									{
 										if (item.Id == tempidNguoiGui)
@@ -337,7 +331,7 @@ namespace UI
 						else
 							settingForm.RespondToChangeUsernameMessage(false);
 					}
-					else if (action == "AVATAR") 
+					else if (action == "AVATAR")
 					{
 						Package awaitPackage = new Package("0", me.Id, 0, int.Parse(data[2]),
 									"A", data[1], data[3], data[4], false);
@@ -579,7 +573,7 @@ namespace UI
 							if (item.Ack == item.Length)
 							{
 								_FileDialog fd = new _FileDialog();
-								fd.SaveFile(item.Data,item.FileName);
+								fd.SaveFile(item.Data, item.FileName);
 							}
 						}
 					}
@@ -653,11 +647,11 @@ namespace UI
 		}
 		private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White":"Black"));
+			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White" : "Black"));
 			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			 server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 			try
-            {
+			{
 				addMemberForm.Close();
 			}
 			catch { }
@@ -672,24 +666,26 @@ namespace UI
 		/// </summary>
 		private void pictureBoxSetting_Click(object sender, EventArgs e)
 		{
+			Form1.addMemberForm.Hide();
 			settingForm = new SettingForm(me, this);
 			settingForm.Show();
 			settingForm.BringToFront();
 		}
 		private void btnFriend_Click(object sender, EventArgs e)
 		{
+			
 			if (Form1.userUIForcus != null)
 			{
 				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
 				Form1.userUIForcus = null;
 			}
-			
+
 			frmFriend.Show();
 			frmFriend.BringToFront();
-			frmFriend.Reset();
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
+			
 			picNotification.Visible = false;
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			if (Form1.userUIForcus != null)
@@ -701,18 +697,18 @@ namespace UI
 			serverUsersForm.BringToFront();
 		}
 		public Panel PnRight
-        {
-            get
-            {
+		{
+			get
+			{
 				return this.panelRIGHT;
-            }
-        }
+			}
+		}
 		public Panel PnInteract
-        {
-            get
-            {
+		{
+			get
+			{
 				return this.panelINTERACTED;
-            }
-        }
-    }
+			}
+		}
+	}
 }

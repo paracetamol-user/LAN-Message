@@ -30,7 +30,7 @@ namespace UI
 			InitGroupForm();
 			ucGroupInteract = new ucInterac(this.group.Name);
 			ucGroupInteract.SetGroup(this);
-			ucGroupToAdd = new ucGroupToAdd(group,mainForm.addMemberForm);
+			ucGroupToAdd = new ucGroupToAdd(group,Form1.addMemberForm);
 		}
 		public void InitGroupForm()
 		{
