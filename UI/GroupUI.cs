@@ -56,9 +56,10 @@ namespace UI
 			this.ucGroupInteract.SetAvatar(path);
 			this.ucGroupAll.SetAvatar(path);
 		}
-		public void AddPanelFile(string tempId, string tempName)
+		public void AddPanelFile(User user,string fileid, string filename)
 		{
-		   // this.groupForm.AddFileToListChat();
+
+			this.groupForm.AddFileToListChat(user,fileid , filename);
 		}
 		public void BringToTop()
 		{

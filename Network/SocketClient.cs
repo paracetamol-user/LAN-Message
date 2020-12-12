@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -137,16 +138,22 @@ namespace Communication
 
         // FTP
         int bufferSize = 1024;
-        public async Task SendFileToServer(byte[] package)
+        public async Task SendFileToServer(byte[] package, string Style , string IDpackage)
         {
-            // Send to server
             int byteSent = 0;
             int byteLeft = package.Length;
+            int nextPackageSize = 964;
+           
+            SmallPackage packageSend;
             while (byteLeft > 0)
             {
-                //int nextPackageSize = byteLeft > bufferSize ? bufferSize : byteLeft;
-                int nextPackageSize = bufferSize;
-                mClient.GetStream().Write(package, byteSent, nextPackageSize);
+                byte[] tempBuff = new byte[964];
+                if (byteLeft >= 964) Buffer.BlockCopy(package, byteSent, tempBuff, 0, 964);
+                else Buffer.BlockCopy(package, byteSent, tempBuff, 0, byteLeft);
+
+                packageSend = new SmallPackage(byteSent, package.Length, Style, tempBuff, IDpackage.ToString());
+
+                mClient.GetStream().WriteAsync(packageSend.Packing(), 0, packageSend.Packing().Length);
                 byteSent += nextPackageSize;
                 byteLeft -= nextPackageSize;
             }

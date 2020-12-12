@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -360,11 +361,17 @@ namespace UI
                 if (checkBox2.Checked) tempGioitinh = false; 
                 UserManager.UserVerification userVerification = new UserManager.UserVerification();
                 string pass=userVerification.GetSHA256(txtMatkhau.Text);
-                byte[] buff = new byte[1024];
-                byte[] tempByte = System.Text.Encoding.ASCII.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass + "%" + this.txtTen.Text +"%" +this.txtSodienthoai.Text + "%" + tempGioitinh.ToString());
-                tempByte.CopyTo(buff, 0);
-                LoginForm.server.GetStream().WriteAsync(buff, 0, buff.Length);
-                string[] data = (await(LoginForm.client.ReadDataAsync(LoginForm.server))).Split(' ');
+
+                byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass + "%" + this.txtTen.Text + "%" + this.txtSodienthoai.Text + "%" + tempGioitinh.ToString());
+                SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+                await LoginForm.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+
+                byte[] buffReceive = new byte[1024];
+                await LoginForm.server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
+                SmallPackage packageReceive = new SmallPackage();
+                packageReceive.DividePackage(buffReceive);
+
+                string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
                 if (data[0].Trim('\0', '\r', '\n') == "SIGNUPOKE")
                 {
                     MessageBox.Show("SIGN UP successfully");

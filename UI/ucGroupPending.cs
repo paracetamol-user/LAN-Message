@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -57,11 +58,10 @@ namespace UI
         private async void SendAcceptGroupInviteToServer()
         {
             // goi len server gui thanh vien ve
-            byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + uiParent.group.ID + "%" + uiParent.group.Name + "%" 
+            byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + uiParent.group.ID + "%" + uiParent.group.Name + "%"
                                                                     + Form1.me.Id + "%" + Form1.me.Name);
-            byte[] buff = new byte[1024];
-            tempbuff.CopyTo(buff, 0);
-            await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+            SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+            Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
             pnParent.Controls.Remove(this);
         }
     }

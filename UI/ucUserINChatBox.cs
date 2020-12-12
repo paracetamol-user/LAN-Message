@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
+using Network;
 
 namespace UI
 {
@@ -94,19 +95,18 @@ namespace UI
 				else if (isFile)
 				{
 					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
-					byte[] buff = new byte[1024];
-					tempbuff.CopyTo(buff, 0);
-					Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 					this.ucfileshow.DeleteMessage();
 					this.DisableEdit();
 					this.DisableDelete();
 				}
 				else
 				{
+
 					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
-					byte[] buff = new byte[1024];
-					tempbuff.CopyTo(buff, 0);
-					Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 					this.ucmessshow.DeleteMessage();
 					this.DisableEdit();
 					this.DisableDelete();

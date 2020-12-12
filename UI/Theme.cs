@@ -283,7 +283,7 @@ namespace UI
 			this.menu = Color.FromArgb(242, 243, 245);
 			this.txtBackColor = menu;
 			this.txtForeColor = Color.Black;
-			pictureGroup = @"..\..\images\group-black.png";
+			pictureGroup = @"..\..\images\group-white.png";
 			pictureOption = @"..\..\images\gear-option-black.png";
 			picturePlus = @"..\..\images\plus-black.png";
 			pictureMessage = @"..\..\images\message-black.png";
@@ -318,6 +318,8 @@ namespace UI
 			pictureCancel = @"..\..\images\cancel-white.png";
 			pictureClose = @"..\..\images\close-white.png";
 			pictureCheck = @"..\..\images\check-white.png";
+			pictureCircleOnline = @"..\..\images\circle-blue.png";
+			pictureCircleOffline = @"..\..\images\circle-black.png";
 			this.menu = Color.FromArgb(47, 49, 54);
 		}
 	}

@@ -27,7 +27,7 @@ namespace UI
 		public int countUserAll = 0;
 		public int countUserOnline = 0;
 		public int countPending = 0;
-		private Form1 mainForm;
+		public Form1 mainForm;
 		public ServerForm(Form1 mainForm)
 		{
 			InitializeComponent();
@@ -60,7 +60,7 @@ namespace UI
         {
 			this.panelLine.BackColor = Form1.theme.LineColor;
         }
-        private void InitControls()
+        public void InitControls()
         {
 			ucGroup = new ucGroup();  
 			panelAllUser = new Panel(); panelAllUser.AutoScroll = true;
@@ -82,11 +82,11 @@ namespace UI
 			btnFocus = null;
 			picPoint.Visible = false;
 		}
-        private void InitPanelListSearch()
+        public void InitPanelListSearch()
 		{
 			panelListSearch.Visible = false;
 		}
-		private void InitPanelPending()
+		public void InitPanelPending()
 		{
 			panelPending.Dock = DockStyle.Fill;
 			panelPending.Padding = new Padding(30, 20, 20, 0);
@@ -95,27 +95,28 @@ namespace UI
 		{
 			picPoint.Visible = true;
 		}
-		private void LoadListAllUser()
+		public void LoadListAllUser()
 		{
 			for (int i = 0; i < Form1.UserUIs.Count; i++)
 			{
 				Form1.UserUIs[i].AddUserIntoPanelAll(panelAllUser);
 			}
 			countUserAll = Form1.UserUIs.Count;
+			CheckLoadAllUser = true;
 		}
-		private void InitPanelAllUser()
+		public void InitPanelAllUser()
 		{
 			panelAllUser.Dock = DockStyle.Fill;
 			panelAllUser.Padding = new Padding(30, 20, 0, 0);
 			panelAllUser.BringToFront();
 		}
-		private void InitPanelOnlineUser()
+		public void InitPanelOnlineUser()
 		{
 			panelOnlineUser.Dock = DockStyle.Fill;
 			panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
 			panelOnlineUser.BringToFront();
 		}
-		private void btnOnline_Click(object sender, EventArgs e)
+		public void btnOnline_Click(object sender, EventArgs e)
 		{
 			this.pnContainSearch.Visible = true;
 			this.ucSearch.IsFriend = true;
@@ -137,7 +138,7 @@ namespace UI
 			labelCOUNT.Text = "Online - " + countUserOnline.ToString(); 
 			btnFocus = sender as Button;
 		}
-		private void btnPeople_Click(object sender, EventArgs e)
+		public void btnPeople_Click(object sender, EventArgs e)
 		{
 			this.pnContainSearch.Visible = true;
 			this.ucSearch.IsFriend = false;
@@ -166,7 +167,7 @@ namespace UI
 		{
 
 		}
-		private void btnPending_Click_1(object sender, EventArgs e)
+		public void btnPending_Click_1(object sender, EventArgs e)
 		{
 			this.pnContainSearch.Visible = false;
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
@@ -179,12 +180,12 @@ namespace UI
 			mainForm.DisableNotification();
 		}
 
-        private void btnPending_MouseMove(object sender, MouseEventArgs e)
+        public void btnPending_MouseMove(object sender, MouseEventArgs e)
         {
 			(sender as Button).BackColor = Form1.theme.FocusColor;
 		}
 
-        private void btnPending_MouseLeave(object sender, EventArgs e)
+        public void btnPending_MouseLeave(object sender, EventArgs e)
         {
 			(sender as Button).BackColor = Color.Transparent;
 		}

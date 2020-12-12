@@ -14,6 +14,7 @@ using UserManager;
 using User = UserManager.User;
 using Guna.UI2.WinForms;
 using System.IO;
+using Network;
 
 namespace UI
 {
@@ -149,12 +150,9 @@ namespace UI
 			if (TextBoxEnterChat.Text != "")
 			{
 				// Gửi tin nhắn qua server
-				byte[] buff = new byte[1024];
-				byte[] tempbuff;
-				tempbuff = System.Text.Encoding.UTF8.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
-				tempbuff.CopyTo(buff, 0);
-				Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
-
+				byte[] tempbuff = Encoding.UTF8.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 				// tạo một panel chat 
 				this.AddItemInToListChat(Form1.me,"-1", this.TextBoxEnterChat.Text);
 				this.userUI.AddMessageIntoInteract(Form1.me.Name, TextBoxEnterChat.Text);
@@ -171,15 +169,13 @@ namespace UI
 					AddFileToListChat(Form1.me, "-1", item.Name);
 					//Gửi
 					byte[] data = File.ReadAllBytes(item.FullName);
-					int temp = 1024 - (data.Length % 1024);
-					byte[] package = new byte[data.Length + temp];
-					data.CopyTo(package, 0);
-					byte[] buff = new byte[1024];
-					byte[] tempbuff;
-					tempbuff = System.Text.Encoding.UTF8.GetBytes("STARTFILE%" + item.Name + "%" + data.Length.ToString() + "%" + item.Extension + "%" + user.Id);
-					tempbuff.CopyTo(buff, 0);
-					await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
-					await Form1.client.SendFileToServer(package);
+					Guid id = Guid.NewGuid();
+
+					byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + user.Id +"%" + data.Length.ToString()  + "%" + item.Name + "%" + item.Extension + "%"
+															+ id.ToString() +"%" + "Private");
+					SmallPackage smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					Form1.server.GetStream().WriteAsync(smallpackage.Packing(), 0, smallpackage.Packing().Length);
+					await Form1.client.SendFileToServer(data, "F", id.ToString()) ;
 				}
 				this.files.Clear();
 				this.panelListFile.Controls.Clear();

@@ -35,6 +35,7 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelINTERACTED = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnLine3 = new System.Windows.Forms.Panel();
             this.btnFriend = new System.Windows.Forms.Button();
             this.panelOPTION = new System.Windows.Forms.Panel();
             this.panelOPTIONNULL = new System.Windows.Forms.Panel();
@@ -113,39 +114,51 @@
             // 
             this.panelINTERACTED.AutoScroll = true;
             this.panelINTERACTED.BackColor = System.Drawing.Color.Transparent;
-            this.panelINTERACTED.Location = new System.Drawing.Point(0, 89);
+            this.panelINTERACTED.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelINTERACTED.Location = new System.Drawing.Point(0, 91);
             this.panelINTERACTED.Margin = new System.Windows.Forms.Padding(4);
             this.panelINTERACTED.Name = "panelINTERACTED";
-            this.panelINTERACTED.Size = new System.Drawing.Size(302, 523);
+            this.panelINTERACTED.Size = new System.Drawing.Size(302, 521);
             this.panelINTERACTED.TabIndex = 7;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.pnLine3);
             this.panel1.Controls.Add(this.btnFriend);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 55);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(302, 34);
+            this.panel1.Size = new System.Drawing.Size(302, 36);
             this.panel1.TabIndex = 6;
+            // 
+            // pnLine3
+            // 
+            this.pnLine3.BackColor = System.Drawing.Color.Gainsboro;
+            this.pnLine3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnLine3.Location = new System.Drawing.Point(0, 35);
+            this.pnLine3.Margin = new System.Windows.Forms.Padding(4);
+            this.pnLine3.Name = "pnLine3";
+            this.pnLine3.Padding = new System.Windows.Forms.Padding(16, 6, 11, 6);
+            this.pnLine3.Size = new System.Drawing.Size(302, 1);
+            this.pnLine3.TabIndex = 6;
             // 
             // btnFriend
             // 
             this.btnFriend.BackColor = System.Drawing.Color.Transparent;
+            this.btnFriend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFriend.FlatAppearance.BorderSize = 0;
             this.btnFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFriend.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFriend.Location = new System.Drawing.Point(0, 0);
             this.btnFriend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFriend.Name = "btnFriend";
-            this.btnFriend.Size = new System.Drawing.Size(302, 34);
+            this.btnFriend.Size = new System.Drawing.Size(302, 36);
             this.btnFriend.TabIndex = 5;
             this.btnFriend.Text = "FRIEND";
             this.btnFriend.UseVisualStyleBackColor = false;
             this.btnFriend.Click += new System.EventHandler(this.btnFriend_Click);
-            this.btnFriend.MouseLeave += new System.EventHandler(this.btnFriend_MouseLeave);
-            this.btnFriend.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnFriend_MouseMove);
             // 
             // panelOPTION
             // 
@@ -257,7 +270,7 @@
             // 
             // pnLine
             // 
-            this.pnLine.BackColor = System.Drawing.Color.LightGray;
+            this.pnLine.BackColor = System.Drawing.Color.Gainsboro;
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine.Location = new System.Drawing.Point(0, 53);
             this.pnLine.Margin = new System.Windows.Forms.Padding(4);
@@ -291,8 +304,6 @@
             this.picNotification.TabIndex = 3;
             this.picNotification.TabStop = false;
             this.picNotification.Visible = false;
-            this.picNotification.MouseLeave += new System.EventHandler(this.btnFriend_MouseLeave);
-            this.picNotification.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnFriend_MouseMove);
             // 
             // btnServer
             // 
@@ -308,8 +319,6 @@
             this.btnServer.Text = "Server";
             this.btnServer.UseVisualStyleBackColor = true;
             this.btnServer.Click += new System.EventHandler(this.btnServer_Click);
-            this.btnServer.MouseLeave += new System.EventHandler(this.btnFriend_MouseLeave);
-            this.btnServer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnFriend_MouseMove);
             // 
             // Form1
             // 
@@ -359,6 +368,7 @@
         private System.Windows.Forms.Panel panelRIGHT;
         private System.Windows.Forms.Button btnServer;
         private System.Windows.Forms.PictureBox picNotification;
+        private System.Windows.Forms.Panel pnLine3;
     }
 }
 

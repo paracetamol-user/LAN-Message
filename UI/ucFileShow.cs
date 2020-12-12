@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using UserManager;
 using System.Threading;
+using Network;
 
 namespace UI
 {
@@ -78,11 +79,9 @@ namespace UI
 		}
 		private async void pictureBox2_Click(object sender, EventArgs e)
 		{
-			byte[] buff = new byte[1024];
-			byte[] tempbuff;
-			tempbuff = System.Text.Encoding.UTF8.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text + "%" + user.Id);
-			tempbuff.CopyTo(buff, 0);
-			await Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text + "%" + user.Id);
+			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			PictureBox temp = sender as PictureBox;
 			//temp.Image = Image.FromFile(@"..\..\images\check.png");
 			//temp.Enabled = false;
@@ -92,21 +91,21 @@ namespace UI
 			this.pictureBoxDownLoad.Visible = false;
 		}
 
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-			if (Form1.chatBoxFocus != ucParent)
-			{
-				if (Form1.chatBoxFocus != null)
-				{
-					Form1.chatBoxFocus.BackColor = Color.Transparent;
-					Form1.chatBoxFocus.DisableMenu();
-				}
-				Form1.chatBoxFocus = ucParent;
-				this.ucParent.EnableMenu();
-				this.ucParent.BackColor = Form1.theme.Menu;
-			}
-			else return;
-		}
+  //      private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+  //      {
+		//	if (Form1.chatBoxFocus != ucParent)
+		//	{
+		//		if (Form1.chatBoxFocus != null)
+		//		{
+		//			Form1.chatBoxFocus.BackColor = Color.Transparent;
+		//			Form1.chatBoxFocus.DisableMenu();
+		//		}
+		//		Form1.chatBoxFocus = ucParent;
+		//		this.ucParent.EnableMenu();
+		//		this.ucParent.BackColor = Form1.theme.Menu;
+		//	}
+		//	else return;
+		//}
 		public string GetText()
         {
 			return this.label1.Text;
