@@ -28,6 +28,8 @@ namespace UI
             this.gunaPic.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = uiParent.group.ID;
+            this.lbId.ForeColor = Form1.theme.TextColor;
+            this.lbName.ForeColor = Form1.theme.TextColor;
         }
         public ucGroupPending(string id , string name, Panel pnPending)
         {
@@ -37,6 +39,13 @@ namespace UI
             this.gunaPic.Image = Image.FromFile(@"..\..\groupDefault.png");
             this.lbName.Text = name;
             this.lbId.Text = id;
+            this.lbId.ForeColor = Form1.theme.TextColor;
+			this.lbName.ForeColor = Form1.theme.TextColor;
+        }
+        public void InitColor()
+        {
+            this.lbId.ForeColor = Form1.theme.TextColor;
+            this.lbName.ForeColor = Form1.theme.TextColor;
         }
         private void pnContain_MouseMove(object sender, MouseEventArgs e)
         {

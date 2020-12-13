@@ -12,82 +12,87 @@ using UserManager;
 
 namespace UI
 {
-	public partial class AddUserToGroup : Form
-	{
-		User selectedUser;
+    public partial class frmADD : Form
+    {
+		Group selectedGroup;
 		Form1 mainForm;
-		public List<Group> listAdd;
-		public AddUserToGroup(Form1 mainForm)
+		public List<User> listAdd;
+		public frmADD(Form1 mainForm)
 		{
 			InitializeComponent();
 			InitControls();
-			
 			this.mainForm = mainForm;
 			this.TopLevel = false;
 			this.Dock = DockStyle.Fill;
 			this.mainForm.Controls.Add(this);
 			this.pnContainAll.Location = new Point(mainForm.Width / 2 - this.pnContainAll.Width / 2, mainForm.Height / 2 - this.pnContainAll.Height / 2);
-			listAdd = new List<Group>();
+			listAdd = new List<User>();
 		}
 
 		public void InitControls()
-        {
+		{
 			this.BackColor = Form1.theme.BackColor;
 		}
 
-        public void InitAddGroupForm(User selectedUser)
-        {
-			listAdd = new List<Group>();
+		public void InitAddGroupForm(Group selectedGroup)
+		{
+			listAdd = new List<User>();
 			this.Show();
 			this.BringToFront();
-			this.selectedUser = selectedUser;
-			this.pnGroup.Controls.Clear();
+			this.selectedGroup = selectedGroup;
+			this.pnUser.Controls.Clear();
 			this.pnLine.BackColor = Form1.theme.LineColor;
-			LoadGroupOption();
+			LoadUserOption();
 		}
 		public void ReLocation()
-        {
+		{
 			this.pnContainAll.Location = new Point(mainForm.Width / 2 - this.pnContainAll.Width / 2, mainForm.Height / 2 - this.pnContainAll.Height / 2);
 		}
-		private void LoadGroupOption()
+		private void LoadUserOption()
 		{
-			foreach(var item in mainForm.GroupUIs)
+			foreach (var item in Form1.UserUIs)
 			{
-				if (!item.group.MemberInGroup(selectedUser))
+				if (!selectedGroup.MemberInGroup(item.user) && item.user.IsFriend && item.user.Status)
 				{
-					item.ucGroupToAdd.Reset();
-					this.pnGroup.Controls.Add(item.ucGroupToAdd);
+					item.ucADD.Reset();
+					this.pnUser.Controls.Add(item.ucADD);
 				}
 			}
 		}
 		private async void SendAddToGroupToServer()
 		{
-            foreach (var item in pnGroup.Controls)
-			{ 
-				if (item.GetType() == typeof(ucGroupToAdd))
+			foreach (var item in pnUser.Controls)
+			{
+				if (item.GetType() == typeof(ucADD))
 				{
-					if ((item as ucGroupToAdd).isAdd)
-                    {
-						listAdd.Add((item as ucGroupToAdd).group);
-                    }
-                }
-            }
-            foreach (var item in listAdd)
-            {
-				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedUser.Id + "%" + item.ID + "%" + item.Name);
+					if ((item as ucADD).isAdd)
+					{
+						listAdd.Add((item as ucADD).user);
+					}
+				}
+			}
+			foreach (var item in listAdd)
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.Id + "%" +
+																   selectedGroup.ID + "%" +selectedGroup.Name);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
-			
+
 		}
-        private void picBoxAdd_Click_1(object sender, EventArgs e)
-        {
+		private void picBoxAdd_Click_1(object sender, EventArgs e)
+		{
 			this.Hide();
 		}
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
+		private void pictureBox1_Click_1(object sender, EventArgs e)
+		{
 			SendAddToGroupToServer();
+			this.Hide();
+		}
+
+        private void picBoxAdd_Click(object sender, EventArgs e)
+        {
 			this.Hide();
 		}
     }

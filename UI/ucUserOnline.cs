@@ -24,6 +24,9 @@ namespace UI
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
 			this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.lbName.ForeColor = Form1.theme.TextColor;
+			this.lbId.ForeColor = Form1.theme.TextMenuColor;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
 			this.lbName.Text = Parent.user.Name;
@@ -33,11 +36,15 @@ namespace UI
         {
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
 			this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.lbName.ForeColor = Form1.theme.TextColor;
+			this.lbId.ForeColor = Form1.theme.TextMenuColor;
 		}
 		public void InitColor()
 		{
 			this.lbName.ForeColor = Form1.theme.TextColor;
 			this.lbId.ForeColor = Form1.theme.TextMenuColor;
+			this.pnLine.BackColor = Form1.theme.LineColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
 		}
@@ -56,6 +63,7 @@ namespace UI
 
         private void pnContainId_Click_1(object sender, EventArgs e)
         {
+	
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
 			if (Form1.interactFocus != null)
@@ -89,6 +97,7 @@ namespace UI
 
         private async void picAdd_Click(object sender, EventArgs e)
         {
+			Parent.cmns.BackColor = Form1.theme.Menu;
 			Parent.cmns.Show(MousePosition);
 		}
 

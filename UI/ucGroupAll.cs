@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,11 @@ namespace UI
         {
             InitializeComponent();
             this.Dock = DockStyle.Top;
+            this.lbId.ForeColor = Form1.theme.TextColor;
+            this.lbName.ForeColor = Form1.theme.TextColor;
+            this.pnLine.BackColor = Form1.theme.LineColor;
+            this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
+            this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
         }
         public ucGroupAll(Group group, GroupUI groupUI)
         {
@@ -27,6 +33,19 @@ namespace UI
             this.Parent = groupUI;
             this.lbName.Text = group.Name;
             this.lbId.Text = "#" + group.ID;
+            this.lbId.ForeColor = Form1.theme.TextColor;
+            this.lbName.ForeColor = Form1.theme.TextColor;
+            this.pnLine.BackColor = Form1.theme.LineColor;
+            this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
+            this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
+        }
+        public void InitColor()
+        {
+            this.lbId.ForeColor = Form1.theme.TextColor;
+            this.lbName.ForeColor = Form1.theme.TextColor;
+            this.pnLine.BackColor = Form1.theme.LineColor;
+            this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
+            this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
         }
         private void picChat_Click(object sender, EventArgs e)
         {
@@ -48,6 +67,11 @@ namespace UI
             }
             this.Parent.ucGroupInteract.ChangeColorWhenClick();
             Form1.interactFocus = this.Parent.ucGroupInteract;
+        }
+        private void picAdd_Click(object sender, EventArgs e)
+        {
+            this.Parent.cmns.BackColor = Form1.theme.Menu;
+            this.Parent.cmns.Show(MousePosition);
         }
     }
 }

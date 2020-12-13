@@ -42,7 +42,9 @@ namespace UI
 		}
 		private void picMenu_Click(object sender, EventArgs e)
 		{
+			Parent.cmns.BackColor = Form1.theme.Menu;
 			Parent.cmns.Show(MousePosition);
+
 		}
 		private  void pictureBox1_Click(object sender, EventArgs e)
 		{

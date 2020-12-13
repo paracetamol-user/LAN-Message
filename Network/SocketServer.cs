@@ -30,7 +30,7 @@ namespace Communication
 
 		// Database of K
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @"Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True;";
+		string connString = @"Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;";
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -580,7 +580,7 @@ namespace Communication
 				{
 					if (!reader.Read()) break;
 					try { nguoinhan = reader.GetString(2); } catch { }
-					try { nhomnhan = reader.GetString(5); } catch { }
+					try { nhomnhan = reader.GetString(3); } catch { }
 
 				}
 				connection.Close();
@@ -628,12 +628,12 @@ namespace Communication
 			}
 			else if (data[0] == "GPENDING")
 			{
-				tempBuff = Encoding.UTF8.GetBytes(string.Format("GPENDING%{0}%{1}", data[1], data[2]));
+				tempBuff = Encoding.UTF8.GetBytes(string.Format("GPENDING%{0}%{1}", data[2], data[3]));
 				packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
 
 				foreach (var item in clientInvalid)
 				{
-					if (item.id_ == data[3])
+					if (item.id_ == data[1])
 					{
 						item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 						break;
@@ -654,7 +654,7 @@ namespace Communication
 				{
 					if (!reader.Read()) break;
 					try { nguoinhan = reader.GetString(2); } catch { }
-					try { nhomnhan = reader.GetString(5); } catch { }
+					try { nhomnhan = reader.GetString(3); } catch { }
 
 				}
 				connection.Close();

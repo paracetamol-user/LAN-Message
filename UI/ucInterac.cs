@@ -65,6 +65,7 @@ namespace UI
 			this.lbName.ForeColor = Form1.theme.TextColor;
 			this.lbMess.ForeColor = Form1.theme.TextMenuColor;
 			this.BackColor = Color.Transparent;
+			this.picClose.Image = Image.FromFile(Form1.theme.PictureClose);
 		}
 		public void SetAvatar(string path)
 		{

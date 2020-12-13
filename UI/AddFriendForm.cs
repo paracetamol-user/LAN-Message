@@ -135,7 +135,7 @@ namespace UI
 					countUserOnline++;
 				}
 			}
-			labelCOUNT.Text = "Online - " + countUserOnline.ToString(); 
+			labelCOUNT.Text = "People Online In Server - " + countUserOnline.ToString(); 
 			btnFocus = sender as Button;
 		}
 		public void btnPeople_Click(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace UI
 				LoadListAllUser();
 				CheckLoadAllUser = true;
 			}
-			labelCOUNT.Text = "All - " + countUserAll.ToString();
+			labelCOUNT.Text = "All People In Server - " + countUserAll.ToString();
 			btnFocus = sender as Button;
 		}
 		public void AddPending(UserUI userUI)

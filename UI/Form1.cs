@@ -23,13 +23,13 @@ namespace UI
 		/// </summary> 
 		public LoginForm loginForm;
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
-		public static List<GroupUI> GroupUIs; // List form giao diện chat cho từng group
+		public List<GroupUI> GroupUIs { get; set; } // List form giao diện chat cho từng group
 		public static User me; // Nguoi su dung chuong trinh
 
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
 		public static UserForm userFormFocus = null;
-        public static GroupForm groupFormFocus = null;
+		public static GroupForm groupFormFocus = null;
 		public static ucUserINChatBox chatBoxFocus = null;
 		public static ucInterac interactFocus = null;
 
@@ -41,7 +41,10 @@ namespace UI
 
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
-		public AddUserToGroup addMemberForm;
+		public ucGroup UcGroup;
+		public AddUserToGroup AddToGroup;
+		public frmADD frmADD;
+		
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -51,7 +54,7 @@ namespace UI
 		//242,243,245
 		public Form1()
 		{
-			InitializeComponent();           
+			InitializeComponent();
 		}
 		public Form1(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
@@ -78,28 +81,23 @@ namespace UI
 			InitServerUsersForm();
 			InitFrmFriend();
 			InitSettingForm();
-			InitAddMemberForm();
-			// Khoi tao cac form
+			UcGroup = new ucGroup(this, GroupUIs);
+			AddToGroup = new AddUserToGroup(this);
+			frmADD = new frmADD(this);
 			LoadGroupData();
-			ChangeTheme();
-			AwaitReadData();
 			
+			if (Theme == "Black" ) ChangeTheme();
+			AwaitReadData();
+
 		}
-		public void InitAddMemberForm()
-        {
-			addMemberForm = new AddUserToGroup(this);
-			addMemberForm.TopLevel = false;
-			addMemberForm.BackColor = theme.Menu;
-			addMemberForm.Location = new Point(this.Width / 2 - (addMemberForm.Width/2 - 10), this.Height / 2 - (addMemberForm.Height / 2 + 10));
-			this.Controls.Add(addMemberForm);
-		}
-        public void InitSettingForm()
+
+		public void InitSettingForm()
 		{
 			settingForm = new SettingForm(me, this);
 			settingForm.TopLevel = false;
 			settingForm.Dock = DockStyle.Fill;
 			this.Controls.Add(settingForm);
-			settingForm.BackColor = theme.BackColor;	
+			settingForm.BackColor = theme.BackColor;
 		}
 		public void ChangeTheme()
 		{
@@ -111,21 +109,26 @@ namespace UI
 			ChangeColorAllLabelControls(this);
 			ChangeColorLine();
 			ChangePicture();
-			ChangeColorUserUIs();
+			ChangeColorBoxChat();
 			ChangeColorFocus();
-			
+
 			settingForm.ChangeColorPanelControl();
 			settingForm.ChangeColorAllLabelControl(settingForm);
 			serverUsersForm.ChangeColorControl();
+			UcGroup.InitColor();
 			//frmFriend.ChangeColorControl();
 		}
 		private void ChangeColorFocus()
 		{
-			if (userUIForcus != null ) userUIForcus.ucInterac.ChangeColorWhenClick();
+			if (userUIForcus != null) userUIForcus.ucInterac.ChangeColorWhenClick();
 		}
-		private void ChangeColorUserUIs()
+		private void ChangeColorBoxChat()
 		{
 			foreach (var item in UserUIs)
+			{
+				item.ResetTheme();
+			}
+			foreach (var item in GroupUIs)
 			{
 				item.ResetTheme();
 			}
@@ -146,6 +149,8 @@ namespace UI
 			this.pnLine.BackColor = theme.LineColor;
 			this.pnLine2.BackColor = theme.LineColor;
 			this.pnLine3.BackColor = theme.LineColor;
+			this.pnLine4.BackColor = theme.LineColor;
+			this.pnLine5.BackColor = theme.LineColor;
 			serverUsersForm.ChangeColorLine();
 			frmFriend.ChangeColorLine();
 			settingForm.ChangeColorLine();
@@ -161,7 +166,7 @@ namespace UI
 				if (item.GetType() == typeof(Label))
 				{
 					(item as Label).ForeColor = theme.TextColor;
-					
+
 				}
 				else
 				if (item.GetType() == typeof(Button))
@@ -183,7 +188,7 @@ namespace UI
 			Form1.frmFriend.Dock = DockStyle.Fill;
 			panelRIGHT.Controls.Add(Form1.frmFriend);
 		}
-		public  void LoadUser()
+		public void LoadUser()
 		{
 			this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
@@ -199,12 +204,12 @@ namespace UI
 		}
 		private void LoadMyData()
 		{
-			labelID.Text = "#"+me.Id;
+			labelID.Text = "#" + me.Id;
 			labelUSERNAME.Text = me.Name;
 		}
 		private async Task AwaitReadData()
 		{
-			
+
 			byte[] tempBuff;
 			SmallPackage package;
 			List<Package> listAwaitPackage = new List<Package>();
@@ -280,7 +285,7 @@ namespace UI
 							}
 						}
 					}
-					else if (action == "FILE") 
+					else if (action == "FILE")
 					{
 						Package awaitPackage = new Package(data[1], me.Id, 0, int.Parse(data[2]),
 									"F", data[3], data[4], data[5], false);
@@ -292,7 +297,7 @@ namespace UI
 						string tempidNguoiGui = data[2];
 						string tempFileName = data[3];
 						if (data[4] == "Private")
-                        {
+						{
 							for (int i = 0; i < Form1.UserUIs.Count; i++)
 							{
 								if (UserUIs[i].GetId() == tempidNguoiGui)
@@ -304,11 +309,11 @@ namespace UI
 							}
 						}
 						else
-                        {
-							for (int i = 0; i < Form1.GroupUIs.Count; i++)
+						{
+							for (int i = 0; i < GroupUIs.Count; i++)
 							{
 								if (GroupUIs[i].group.ID == data[5])
-                                {
+								{
 									foreach (var item in listUser)
 									{
 										if (item.Id == tempidNguoiGui)
@@ -337,7 +342,7 @@ namespace UI
 						else
 							settingForm.RespondToChangeUsernameMessage(false);
 					}
-					else if (action == "AVATAR") 
+					else if (action == "AVATAR")
 					{
 						Package awaitPackage = new Package("0", me.Id, 0, int.Parse(data[2]),
 									"A", data[1], data[3], data[4], false);
@@ -579,7 +584,7 @@ namespace UI
 							if (item.Ack == item.Length)
 							{
 								_FileDialog fd = new _FileDialog();
-								fd.SaveFile(item.Data,item.FileName);
+								fd.SaveFile(item.Data, item.FileName);
 							}
 						}
 					}
@@ -653,12 +658,12 @@ namespace UI
 		}
 		private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White":"Black"));
+			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White" : "Black"));
 			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			 server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 			try
-            {
-				addMemberForm.Close();
+			{
+				
 			}
 			catch { }
 			loginForm.Close();
@@ -683,13 +688,14 @@ namespace UI
 				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
 				Form1.userUIForcus = null;
 			}
-			
+
 			frmFriend.Show();
 			frmFriend.BringToFront();
-			frmFriend.Reset();
+			frmFriend.InitStart();
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
+			
 			picNotification.Visible = false;
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			if (Form1.userUIForcus != null)
@@ -701,18 +707,50 @@ namespace UI
 			serverUsersForm.BringToFront();
 		}
 		public Panel PnRight
-        {
-            get
-            {
+		{
+			get
+			{
 				return this.panelRIGHT;
-            }
-        }
+			}
+		}
 		public Panel PnInteract
-        {
-            get
-            {
+		{
+			get
+			{
 				return this.panelINTERACTED;
+			}
+		}
+        private void btnGroup_Click(object sender, EventArgs e)
+        {
+			this.UcGroup.Show();
+			this.UcGroup.BringToFront();
+			this.UcGroup._LoadGroup();
+        }
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+			this.AddToGroup.ReLocation();
+        }
+        private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
+        {
+			try
+            {
+				(sender as Button).BackColor = theme.FocusColor;
+            }
+            catch
+            {
+				btnServer.BackColor = theme.FocusColor;
             }
         }
+        private void btnGroup_MouseLeave(object sender, EventArgs e)
+        {
+			try
+			{
+				(sender as Button).BackColor = Color.Transparent;
+			}
+			catch
+			{
+				btnServer.BackColor = Color.Transparent;
+			}
+		}
     }
 }

@@ -166,20 +166,31 @@ namespace UI
 			{
 				foreach (var item in files)
 				{
-					AddFileToListChat(Form1.me, "-1", item.Name);
-					//Gửi
-					byte[] data = File.ReadAllBytes(item.FullName);
-					Guid id = Guid.NewGuid();
-
-					byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + user.Id +"%" + data.Length.ToString()  + "%" + item.Name + "%" + item.Extension + "%"
-															+ id.ToString() +"%" + "Private");
-					SmallPackage smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					Form1.server.GetStream().WriteAsync(smallpackage.Packing(), 0, smallpackage.Packing().Length);
-					await Form1.client.SendFileToServer(data, "F", id.ToString()) ;
+					if (item.Length > 3000000)
+                    {
+						MessageBox.Show("Size file small than 4 Mb", "Error", MessageBoxButtons.OK);
+						return;
+                    }
 				}
-				this.files.Clear();
-				this.panelListFile.Controls.Clear();
-				this.panelListFile.Visible = false;
+			}
+			if (this.panelListFile.Controls.Count > 0)
+			{
+			foreach (var item in files)
+			{
+				AddFileToListChat(Form1.me, "-1", item.Name);
+				//Gửi
+				byte[] data = File.ReadAllBytes(item.FullName);
+				Guid id = Guid.NewGuid();
+
+				byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + user.Id +"%" + data.Length.ToString()  + "%" + item.Name + "%" + item.Extension + "%"
+														+ id.ToString() +"%" + "Private");
+				SmallPackage smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				Form1.server.GetStream().WriteAsync(smallpackage.Packing(), 0, smallpackage.Packing().Length);
+				await Form1.client.SendFileToServer(data, "F", id.ToString()) ;
+			}
+			this.files.Clear();
+			this.panelListFile.Controls.Clear();
+			this.panelListFile.Visible = false;
 			}
 		}
 		private void InitUserForm()
@@ -195,10 +206,8 @@ namespace UI
 				Form1.chatBoxFocus.BackColor = Color.Transparent;
 				Form1.chatBoxFocus.DisableMenu();
 			}
-			
 			await SendFile();
 			await SendMessage();
-			
 		}
 		public void AddFrom(Panel panelRight)
 		{

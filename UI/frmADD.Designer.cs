@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-    partial class AddUserToGroup
+    partial class frmADD
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserToGroup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmADD));
             this.pnContainAll = new System.Windows.Forms.Panel();
-            this.pnGroup = new System.Windows.Forms.Panel();
+            this.pnUser = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -50,24 +50,24 @@ namespace UI
             // pnContainAll
             // 
             this.pnContainAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnContainAll.Controls.Add(this.pnGroup);
+            this.pnContainAll.Controls.Add(this.pnUser);
             this.pnContainAll.Controls.Add(this.panel2);
             this.pnContainAll.Controls.Add(this.pnLine);
-            this.pnContainAll.Location = new System.Drawing.Point(220, 142);
+            this.pnContainAll.Location = new System.Drawing.Point(202, 83);
             this.pnContainAll.Name = "pnContainAll";
             this.pnContainAll.Size = new System.Drawing.Size(396, 284);
-            this.pnContainAll.TabIndex = 0;
+            this.pnContainAll.TabIndex = 1;
             // 
-            // pnGroup
+            // pnUser
             // 
-            this.pnGroup.AutoScroll = true;
-            this.pnGroup.BackColor = System.Drawing.Color.Transparent;
-            this.pnGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnGroup.Location = new System.Drawing.Point(0, 32);
-            this.pnGroup.Margin = new System.Windows.Forms.Padding(2);
-            this.pnGroup.Name = "pnGroup";
-            this.pnGroup.Size = new System.Drawing.Size(394, 250);
-            this.pnGroup.TabIndex = 6;
+            this.pnUser.AutoScroll = true;
+            this.pnUser.BackColor = System.Drawing.Color.Transparent;
+            this.pnUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnUser.Location = new System.Drawing.Point(0, 32);
+            this.pnUser.Margin = new System.Windows.Forms.Padding(2);
+            this.pnUser.Name = "pnUser";
+            this.pnUser.Size = new System.Drawing.Size(394, 250);
+            this.pnUser.TabIndex = 6;
             // 
             // panel2
             // 
@@ -94,7 +94,6 @@ namespace UI
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // panel4
             // 
@@ -104,7 +103,7 @@ namespace UI
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(182, 31);
+            this.panel4.Size = new System.Drawing.Size(121, 31);
             this.panel4.TabIndex = 3;
             // 
             // label1
@@ -141,7 +140,7 @@ namespace UI
             this.picBoxAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picBoxAdd.TabIndex = 1;
             this.picBoxAdd.TabStop = false;
-            this.picBoxAdd.Click += new System.EventHandler(this.picBoxAdd_Click_1);
+            this.picBoxAdd.Click += new System.EventHandler(this.picBoxAdd_Click);
             // 
             // pnLine
             // 
@@ -152,19 +151,15 @@ namespace UI
             this.pnLine.Size = new System.Drawing.Size(394, 1);
             this.pnLine.TabIndex = 4;
             // 
-            // AddUserToGroup
+            // frmADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(919, 571);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pnContainAll);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "AddUserToGroup";
-            this.Padding = new System.Windows.Forms.Padding(8);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddUserToGroup";
+            this.Name = "frmADD";
+            this.Text = "frmADD";
             this.pnContainAll.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -179,7 +174,7 @@ namespace UI
         #endregion
 
         private System.Windows.Forms.Panel pnContainAll;
-        private System.Windows.Forms.Panel pnGroup;
+        private System.Windows.Forms.Panel pnUser;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;

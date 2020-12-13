@@ -45,12 +45,12 @@ namespace UI
 		}
 		private void pnContain_MouseMove(object sender, MouseEventArgs e)
 		{
-			this.BackColor = Color.FromArgb(242, 243, 245);
+			this.BackColor = Form1.theme.FocusColor;
 		}
 
 		private void pnContain_MouseLeave(object sender, EventArgs e)
 		{
-			this.BackColor = Color.White;
+			this.BackColor = Color.Transparent;
 		}
 
 		private void picMenu_Click(object sender, EventArgs e)
