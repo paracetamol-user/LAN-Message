@@ -29,6 +29,7 @@ namespace UI
 		public GroupForm(Group group , GroupUI grUI)
 		{
 			InitializeComponent();
+			InitColor();
 			this.Visible = false;
 			this.group = group;
 			this.ID = 0;
@@ -39,6 +40,16 @@ namespace UI
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
 			InitGroupForm();
+		}
+		public void InitColor()
+		{
+			this.labelName.ForeColor = Form1.theme.TextColor;
+			this.labelID.ForeColor = Form1.theme.TextMenuColor;
+			this.BackColor = Form1.theme.BackColor;
+			this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
+			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
+			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
+			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 		}
 		public void AddItemToListChat(User user, string IDMess,string str)
 		{
@@ -115,11 +126,13 @@ namespace UI
 				this.panelListFile.Visible = false;
 			}
 		}
+
 		public void InitGroupForm()
 		{
 			this.labelID.Text = string.Format("#{0}", group.ID);
 			this.labelName.Text = group.Name;
 			this.pictureBoxSend.Click += PictureBoxSend_Click;
+
 		}
 		public void SetAvatar(string path)
 		{

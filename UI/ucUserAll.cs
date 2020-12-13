@@ -24,6 +24,7 @@ namespace UI
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
 			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pnLine.BackColor = Form1.theme.LineColor;
 			isPlus = true;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
@@ -34,6 +35,9 @@ namespace UI
         {
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
 			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.lbName.ForeColor = Form1.theme.TextColor;
+			this.lbId.ForeColor = Form1.theme.TextMenuColor;
 		}
 		public void InitColor()
 		{
@@ -41,6 +45,7 @@ namespace UI
 			this.lbId.ForeColor = Form1.theme.TextMenuColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
+			this.pnLine.BackColor = Form1.theme.LineColor;
 		}
 		public void SetAvatar(string path)
 		{
@@ -61,6 +66,7 @@ namespace UI
 
         private void picMenu_Click(object sender, EventArgs e)
         {
+			Parent.cmns.BackColor = Form1.theme.Menu;
 			Parent.cmns.Show(MousePosition);
 		}
         //private void gunaPic_Click(object sender, EventArgs e)

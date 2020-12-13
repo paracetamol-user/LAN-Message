@@ -34,7 +34,6 @@ namespace UI
 			ChangeColorAllLabelControl(this);
 			InitPnMyAccount();
 			InitStartForm();
-			
 		}
 
         private void InitSettingForm()

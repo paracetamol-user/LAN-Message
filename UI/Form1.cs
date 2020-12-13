@@ -23,7 +23,7 @@ namespace UI
 		/// </summary> 
 		public LoginForm loginForm;
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
-		public static List<GroupUI> GroupUIs; // List form giao diện chat cho từng group
+		public List<GroupUI> GroupUIs { get; set; } // List form giao diện chat cho từng group
 		public static User me; // Nguoi su dung chuong trinh
 
 		public static UserUI userRightForcus = null;
@@ -42,7 +42,9 @@ namespace UI
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		public ucGroup UcGroup;
-		public static AddUserToGroup addMemberForm;
+		public AddUserToGroup AddToGroup;
+		public frmADD frmADD;
+		
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -80,8 +82,11 @@ namespace UI
 			InitFrmFriend();
 			InitSettingForm();
 			UcGroup = new ucGroup(this, GroupUIs);
+			AddToGroup = new AddUserToGroup(this);
+			frmADD = new frmADD(this);
 			LoadGroupData();
-			ChangeTheme();
+			
+			if (Theme == "Black" ) ChangeTheme();
 			AwaitReadData();
 
 		}
@@ -104,21 +109,26 @@ namespace UI
 			ChangeColorAllLabelControls(this);
 			ChangeColorLine();
 			ChangePicture();
-			ChangeColorUserUIs();
+			ChangeColorBoxChat();
 			ChangeColorFocus();
 
 			settingForm.ChangeColorPanelControl();
 			settingForm.ChangeColorAllLabelControl(settingForm);
 			serverUsersForm.ChangeColorControl();
+			UcGroup.InitColor();
 			//frmFriend.ChangeColorControl();
 		}
 		private void ChangeColorFocus()
 		{
 			if (userUIForcus != null) userUIForcus.ucInterac.ChangeColorWhenClick();
 		}
-		private void ChangeColorUserUIs()
+		private void ChangeColorBoxChat()
 		{
 			foreach (var item in UserUIs)
+			{
+				item.ResetTheme();
+			}
+			foreach (var item in GroupUIs)
 			{
 				item.ResetTheme();
 			}
@@ -139,6 +149,8 @@ namespace UI
 			this.pnLine.BackColor = theme.LineColor;
 			this.pnLine2.BackColor = theme.LineColor;
 			this.pnLine3.BackColor = theme.LineColor;
+			this.pnLine4.BackColor = theme.LineColor;
+			this.pnLine5.BackColor = theme.LineColor;
 			serverUsersForm.ChangeColorLine();
 			frmFriend.ChangeColorLine();
 			settingForm.ChangeColorLine();
@@ -298,7 +310,7 @@ namespace UI
 						}
 						else
 						{
-							for (int i = 0; i < Form1.GroupUIs.Count; i++)
+							for (int i = 0; i < GroupUIs.Count; i++)
 							{
 								if (GroupUIs[i].group.ID == data[5])
 								{
@@ -665,14 +677,12 @@ namespace UI
 		/// </summary>
 		private void pictureBoxSetting_Click(object sender, EventArgs e)
 		{
-			Form1.addMemberForm.Hide();
 			settingForm = new SettingForm(me, this);
 			settingForm.Show();
 			settingForm.BringToFront();
 		}
 		private void btnFriend_Click(object sender, EventArgs e)
 		{
-			
 			if (Form1.userUIForcus != null)
 			{
 				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
@@ -681,6 +691,7 @@ namespace UI
 
 			frmFriend.Show();
 			frmFriend.BringToFront();
+			frmFriend.InitStart();
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
@@ -709,12 +720,37 @@ namespace UI
 				return this.panelINTERACTED;
 			}
 		}
-
         private void btnGroup_Click(object sender, EventArgs e)
         {
 			this.UcGroup.Show();
 			this.UcGroup.BringToFront();
 			this.UcGroup._LoadGroup();
         }
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+			this.AddToGroup.ReLocation();
+        }
+        private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
+        {
+			try
+            {
+				(sender as Button).BackColor = theme.FocusColor;
+            }
+            catch
+            {
+				btnServer.BackColor = theme.FocusColor;
+            }
+        }
+        private void btnGroup_MouseLeave(object sender, EventArgs e)
+        {
+			try
+			{
+				(sender as Button).BackColor = Color.Transparent;
+			}
+			catch
+			{
+				btnServer.BackColor = Color.Transparent;
+			}
+		}
     }
 }

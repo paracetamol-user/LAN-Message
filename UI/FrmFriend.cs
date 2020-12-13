@@ -14,6 +14,8 @@ namespace UI
 	{
 		Button btnFocus;
 		bool isLoad;
+		int friendOnlineCount;
+		int friendCount;
 		public FrmFriend()
 		{
 			InitializeComponent();
@@ -23,8 +25,22 @@ namespace UI
 			this.pnAll.Dock = DockStyle.Fill;
 			this.pnAll.BringToFront();
 			this.pnOnline.Dock = DockStyle.Fill;
+			friendOnlineCount = 0;
+			friendCount = 0;
 		}
-		public void ResetPicture()
+        public void InitStart()
+        {
+			btnFocus = btnAll;
+			btnAll.BackColor = Form1.theme.FocusColor;
+			if (!isLoad) LoadpnAll();
+			isLoad = true;
+			this.pnAll.Visible = true;
+			pnAll.Show();
+			pnAll.BringToFront();
+			labelCOUNT.Text = "All Friend - " + friendCount.ToString();
+		}
+
+        public void ResetPicture()
         {
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureMessage);
         }
@@ -65,9 +81,11 @@ namespace UI
 			if (!pnAll.Contains(userUI.ucFriend))
 				pnAll.Controls.Add(userUI.ucFriend);
 			userUI.ucFriend.InitColor();
+			friendCount++;
 		}
 		public void RemoveFriend(UserUI userUI)
 		{
+			friendCount--;
 			if (pnAll.Contains(userUI.ucFriend))
 				pnAll.Controls.Remove(userUI.ucFriend);
 			userUI.ucFriend.InitColor();
@@ -82,9 +100,11 @@ namespace UI
 			this.pnAll.Visible = true;
 			pnAll.Show();
 			pnAll.BringToFront();
+			labelCOUNT.Text = "All Friend - " + friendCount.ToString();
 		}
 		private void btnOnline_Click(object sender, EventArgs e)
 		{
+			friendOnlineCount = 0;
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
 			(sender as Button).BackColor = Form1.theme.FocusColor;
 			btnFocus = sender as Button;
@@ -98,8 +118,10 @@ namespace UI
 				{
 					pnOnline.Controls.Add(item.ucFriendOnline);
 					item.ucFriendOnline.InitColor();
+					friendOnlineCount++;
 				}
 			}
+			labelCOUNT.Text = "Friend Online - " + friendOnlineCount.ToString();
 		}
         private void btnAll_MouseMove(object sender, MouseEventArgs e)
         {

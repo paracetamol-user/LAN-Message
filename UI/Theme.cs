@@ -284,7 +284,7 @@ namespace UI
 			this.txtBackColor = menu;
 			this.txtForeColor = Color.Black;
 			pictureGroup = @"..\..\images\group-white.png";
-			pictureOption = @"..\..\images\gear-option-black.png";
+			pictureOption = @"..\..\images\gear-option-white.png";
 			picturePlus = @"..\..\images\plus-black.png";
 			pictureMessage = @"..\..\images\message-black.png";
 			pictureMenu = @"..\..\images\menu-black.png";
@@ -292,7 +292,7 @@ namespace UI
 			pictureCmn = @"..\..\images\menu-black.png";
 			pictureCancel = @"..\..\images\cancel-black.png";
 			pictureClose = @"..\..\images\close-black.png";
-			pictureCheck = @"..\..\images\check-black.png";
+			pictureCheck = @"..\..\images\checked-black.png";
 			pictureCircleOnline = @"..\..\images\circle-blue.png";
 			pictureCircleOffline = @"..\..\images\circle-black.png";
 		}
@@ -317,7 +317,7 @@ namespace UI
 			pictureCmn = @"..\..\images\menu-white-1.png";
 			pictureCancel = @"..\..\images\cancel-white.png";
 			pictureClose = @"..\..\images\close-white.png";
-			pictureCheck = @"..\..\images\check-white.png";
+			pictureCheck = @"..\..\images\checked-white.png";
 			pictureCircleOnline = @"..\..\images\circle-blue.png";
 			pictureCircleOffline = @"..\..\images\circle-black.png";
 			this.menu = Color.FromArgb(47, 49, 54);

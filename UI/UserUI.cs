@@ -31,26 +31,10 @@ namespace UI
 		public ucFriend ucFriend;
 		public ucFriend ucFriendOnline;
 		public ucUserAll ucSearch;
+		public ucADD ucADD { get; set; }
 
 		public ContextMenuStrip cmns;
-		public ContextMenuStrip cmnsMess;
 		public UserUI() { }
-		public UserUI(User user, Panel PANELINTERACTED, Panel PANELRIGHT)
-		{
-			this.user = user;
-			this.panelINTERACTED = PANELINTERACTED;
-			this.panelRIGHT = PANELRIGHT;
-			InitUserForm();
-			this.panelRIGHT.Controls.Add(userForm);
-			userForm.InitColor();
-			ucUserAll = new ucUserAll(this);
-			ucUserOnline = new ucUserOnline(this);
-			ucInterac = new ucInterac(user.Name , user.Status);
-			ucInterac.SetUser(this);
-			ucFriend = new ucFriend(this);
-			ucFriendOnline = new ucFriend(this);
-			ucSearch = new ucUserAll(this);
-		}
 		public UserUI(User user, Form1 mainForm)
 		{
 			this.user = user;
@@ -64,9 +48,11 @@ namespace UI
 			ucUserOnline = new ucUserOnline(this);
 			ucInterac = new ucInterac(user.Name, user.Status);
 			ucInterac.SetUser(this);
+			ucInterac.InitColor();
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
+			ucADD = new ucADD(user);
 		}
 		public void ResetTheme()
 		{
@@ -90,6 +76,7 @@ namespace UI
 			ucUserAll.ResetTheme();
 			ucUserOnline.ResetTheme();
 			ucFriend.ResetTheme();
+			ucADD.InitControls();
 			if (ucPending!= null)ucPending.ResetTheme();
 		}
 		public void ResetPicture()
@@ -97,18 +84,6 @@ namespace UI
 			this.userForm.ResetPicture();
 			this.ucInterac.ResetPicture();
 		}
-		/// <summary>
-		/// Get các thuộc tính
-		/// </summary>
-		public ucFriend UcFriend { get; set; }
-		public ucInterac UcInterac { get; set; }
-		public ucPending UcPending { get; set; }
-		public ucUserAll UcUserAll { get; set; }
-		public ucUserOnline UcUserOnline { get; set; }
-		public User User { get; set; }
-		/// <summary>
-		/// Các hàm chức năng
-		/// </summary>
 		private void InitUserForm()
 		{
 			userForm = new UserForm(user,this);
@@ -118,7 +93,7 @@ namespace UI
 			cmns = new ContextMenuStrip();
 			cmns.Width = 100;
 			cmns.RenderMode = ToolStripRenderMode.System;
-			cmns.BackColor = Color.White;
+			cmns.BackColor = Form1.theme.Menu;
 			cmns.ShowImageMargin = false;
 			ToolStripButton tsAddFriend = new ToolStripButton("ADD Friend");
 			tsAddFriend.Click += TsAddFriend_Click;
@@ -144,9 +119,10 @@ namespace UI
 		}
 		private void TsAddGroup_Click(object sender, EventArgs e)
 		{
-			Form1.addMemberForm.InitAddGroupForm(user);
-			Form1.addMemberForm.Show();
-			Form1.addMemberForm.BringToFront();
+			mainForm.AddToGroup.InitControls();
+			mainForm.AddToGroup.InitAddGroupForm(this.user);
+			mainForm.AddToGroup.Show();
+			mainForm.BringToFront();
 		}
 		private void TsAddFriend_Click(object sender, EventArgs e)
 		{

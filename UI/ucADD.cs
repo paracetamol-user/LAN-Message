@@ -11,35 +11,33 @@ using UserManager;
 
 namespace UI
 {
-	public partial class ucGroupToAdd : UserControl
+	public partial class ucADD : UserControl
 	{
-		public Group group { get; set; }
+		public User user { get; set; }
 		public bool isAdd { get; set; }
-		public ucGroupToAdd()
+		public ucADD() { }
+		public ucADD(User user)
 		{
 			InitializeComponent();
-		}
-		public ucGroupToAdd(Group group)
-		{
-			InitializeComponent();
-			this.Dock = DockStyle.Top;
-			this.label1.Text = group.Name;
-			this.label2.Text = group.ID;
-			this.group = group;
-			this.label1.ForeColor = Form1.theme.TextColor;
-			this.label2.ForeColor = Form1.theme.TextColor;
+			this.user = user;
+			this.label1.Text = user.Name;
+			this.label2.Text = user.Id;
 			
+			this.Dock = DockStyle.Top;
+			InitControls();
 		}
-		public void InitColor()
+		public void InitControls()
 		{
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.label2.ForeColor = Form1.theme.TextColor;
+			this.gunaPic.Image = Image.FromFile(user.AvatarPath);
 		}
 		public void Reset()
         {
 			button1.Text = "ADD";
 			isAdd = false;
-        }
+		}
+
         private void button1_Click(object sender, EventArgs e)
         {
 			if (button1.Text == "ADD")

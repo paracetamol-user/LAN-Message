@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace UI
 		public ucGroupAll ucGroupAll;
 		public ucInterac ucGroupInteract;
 		public ucGroupPending ucGroupPending;
+		public ContextMenuStrip cmns { get; set; }
 		public GroupUI(Group group, Form1 mainForm)
 		{
 			this.group = group;
@@ -30,16 +32,81 @@ namespace UI
 			InitGroupForm();
 			ucGroupInteract = new ucInterac(this.group.Name);
 			ucGroupInteract.SetGroup(this);
-			ucGroupToAdd = new ucGroupToAdd(group,Form1.addMemberForm);
+			ucGroupInteract.InitColor();
+			ucGroupToAdd = new ucGroupToAdd(group);
+			//ucGroupToAdd = new ucGroupToAdd(group);
+		}
+		public void ResetTheme()
+        {
+			this.groupForm.BackColor = Form1.theme.BackColor;
+			this.groupForm.InitColor();
+			foreach (var item in groupForm.Controls)
+			{
+				if (item.GetType() == typeof(ucUserINChatBox))
+				{
+					(item as ucUserINChatBox).InitColor();
+				}
+				else if (item.GetType() == typeof(ucMessShow))
+				{
+					(item as ucMessShow).ChangeTheme();
+				}
+				else if (item.GetType() == typeof(ucFileShow))
+				{
+					(item as ucFileShow).InitColor();
+				}
+			}
+			ucGroupAll.InitColor();
+			ucGroupInteract.InitColor();
+			if (ucGroupPending != null) ucGroupPending.InitColor();
+			if (ucGroupToAdd != null) ucGroupToAdd.InitColor();
 		}
 		public void InitGroupForm()
 		{
 			groupForm = new GroupForm(group,this);
 			groupForm.TopLevel = false;
+			groupForm.BackColor = Form1.theme.BackColor;
 			groupForm.Dock = DockStyle.Fill;
+			groupForm.InitColor();
 			this.panelRIGHT.Controls.Add(groupForm);
+
+			cmns = new ContextMenuStrip();
+			cmns.Width = 100;
+			cmns.RenderMode = ToolStripRenderMode.System;
+			cmns.BackColor = Form1.theme.Menu;
+			cmns.ShowImageMargin = false;
+			ToolStripButton tsAddGroup = new ToolStripButton("ADD Member");
+			ToolStripButton tsOutGroup = new ToolStripButton("Out Group");
+			ToolStripButton tsRemoveGroup = new ToolStripButton("Remove Group");
+			tsRemoveGroup.ForeColor = Color.Red;
+            tsAddGroup.Click += TsAddGroup_Click;
+            tsOutGroup.Click += TsOutGroup_Click;
+            tsRemoveGroup.Click += TsRemoveGroup_Click;
+			cmns.Items.Add(tsAddGroup);
+			cmns.Items.Add(tsOutGroup);
+			cmns.Items.Add(tsRemoveGroup);
 		}
-		public async void AddMessage(User user,string IDMess, string message)
+
+        private void TsRemoveGroup_Click(object sender, EventArgs e)
+        {
+			MessageBox.Show("Are you sure remove this Group", "Remove Group", MessageBoxButtons.YesNo);
+			// gửi lên server xóa group
+			//mainForm.GroupUIs.Remove(this);
+        }
+
+        private void TsOutGroup_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TsAddGroup_Click(object sender, EventArgs e)
+        {
+			mainForm.frmADD.InitControls();
+			mainForm.frmADD.InitAddGroupForm(group);
+			mainForm.frmADD.Show();
+			mainForm.frmADD.BringToFront();
+        }
+
+        public async void AddMessage(User user,string IDMess, string message)
 		{
 			groupForm.AddItemToListChat(user, IDMess,message);
 			this.ucGroupInteract.AddMessage(user.Name + ": "+ message);

@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-    partial class ucGroupToAdd
+    partial class ucADD
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,9 +29,8 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucGroupToAdd));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucADD));
             this.pnContainPicture = new System.Windows.Forms.Panel();
-            this.gunaPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pnContain = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,12 +38,13 @@ namespace UI
             this.label1 = new System.Windows.Forms.Label();
             this.pnRight = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.gunaPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pnContainPicture.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).BeginInit();
             this.pnContain.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).BeginInit();
             this.SuspendLayout();
             // 
             // pnContainPicture
@@ -56,23 +56,8 @@ namespace UI
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(2);
             this.pnContainPicture.Name = "pnContainPicture";
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(2);
-            this.pnContainPicture.Size = new System.Drawing.Size(44, 40);
+            this.pnContainPicture.Size = new System.Drawing.Size(44, 44);
             this.pnContainPicture.TabIndex = 0;
-            // 
-            // gunaPic
-            // 
-            this.gunaPic.BackColor = System.Drawing.Color.Transparent;
-            this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
-            this.gunaPic.Location = new System.Drawing.Point(2, 2);
-            this.gunaPic.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaPic.Name = "gunaPic";
-            this.gunaPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.gunaPic.ShadowDecoration.Parent = this.gunaPic;
-            this.gunaPic.Size = new System.Drawing.Size(40, 36);
-            this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.gunaPic.TabIndex = 0;
-            this.gunaPic.TabStop = false;
             // 
             // pnContain
             // 
@@ -82,11 +67,11 @@ namespace UI
             this.pnContain.Controls.Add(this.pnRight);
             this.pnContain.Controls.Add(this.pnContainPicture);
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContain.Location = new System.Drawing.Point(15, 6);
+            this.pnContain.Location = new System.Drawing.Point(0, 0);
             this.pnContain.Margin = new System.Windows.Forms.Padding(2);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Size = new System.Drawing.Size(310, 40);
-            this.pnContain.TabIndex = 6;
+            this.pnContain.Size = new System.Drawing.Size(304, 44);
+            this.pnContain.TabIndex = 7;
             // 
             // panel3
             // 
@@ -97,7 +82,7 @@ namespace UI
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(4, 2, 0, 0);
-            this.panel3.Size = new System.Drawing.Size(160, 17);
+            this.panel3.Size = new System.Drawing.Size(154, 17);
             this.panel3.TabIndex = 20;
             // 
             // label2
@@ -124,7 +109,7 @@ namespace UI
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(4, 1, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(160, 23);
+            this.panel2.Size = new System.Drawing.Size(154, 23);
             this.panel2.TabIndex = 19;
             // 
             // label1
@@ -145,11 +130,11 @@ namespace UI
             this.pnRight.BackColor = System.Drawing.Color.Transparent;
             this.pnRight.Controls.Add(this.button1);
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnRight.Location = new System.Drawing.Point(204, 0);
+            this.pnRight.Location = new System.Drawing.Point(198, 0);
             this.pnRight.Margin = new System.Windows.Forms.Padding(2);
             this.pnRight.Name = "pnRight";
             this.pnRight.Padding = new System.Windows.Forms.Padding(8);
-            this.pnRight.Size = new System.Drawing.Size(106, 40);
+            this.pnRight.Size = new System.Drawing.Size(106, 44);
             this.pnRight.TabIndex = 18;
             // 
             // button1
@@ -163,30 +148,43 @@ namespace UI
             this.button1.Location = new System.Drawing.Point(8, 8);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 24);
+            this.button1.Size = new System.Drawing.Size(90, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "ADD";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ucGroupToAdd
+            // gunaPic
+            // 
+            this.gunaPic.BackColor = System.Drawing.Color.Transparent;
+            this.gunaPic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gunaPic.Image = ((System.Drawing.Image)(resources.GetObject("gunaPic.Image")));
+            this.gunaPic.Location = new System.Drawing.Point(2, 2);
+            this.gunaPic.Margin = new System.Windows.Forms.Padding(2);
+            this.gunaPic.Name = "gunaPic";
+            this.gunaPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.gunaPic.ShadowDecoration.Parent = this.gunaPic;
+            this.gunaPic.Size = new System.Drawing.Size(40, 40);
+            this.gunaPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.gunaPic.TabIndex = 0;
+            this.gunaPic.TabStop = false;
+            // 
+            // ucADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnContain);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ucGroupToAdd";
-            this.Padding = new System.Windows.Forms.Padding(15, 6, 15, 6);
-            this.Size = new System.Drawing.Size(340, 52);
+            this.Name = "ucADD";
+            this.Size = new System.Drawing.Size(304, 44);
             this.pnContainPicture.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.pnContain.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gunaPic)).EndInit();
             this.ResumeLayout(false);
 
         }

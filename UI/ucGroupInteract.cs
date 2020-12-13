@@ -23,6 +23,13 @@ namespace UI
 			this.parent = parent;
 			this.lbName.Text = parent.group.Name;
 			this.lbStatus.Text = parent.group.ID;
+			this.lbStatus.ForeColor = Form1.theme.TextColor;
+			this.lbName.ForeColor = Form1.theme.TextColor;
+		}
+		public void ChangeTheme()
+		{
+			this.lbStatus.ForeColor = Form1.theme.TextColor;
+			this.lbName.ForeColor = Form1.theme.TextColor;
 		}
 		public void SetAvatar(string path)
 		{

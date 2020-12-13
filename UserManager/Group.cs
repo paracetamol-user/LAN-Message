@@ -12,7 +12,7 @@ namespace UserManager
         private string id;
         private string avatarPath;
         List<User> memberList;
-        User admin;
+        User admin { get; set; }
         // Constructors
         public Group()
         {
