@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -30,13 +31,38 @@ namespace UI
 			this.mainForm = mainForm;
 			ucGroupAll = new ucGroupAll(group, this);
 			InitGroupForm();
+			InitCmns();
 			ucGroupInteract = new ucInterac(this.group.Name);
 			ucGroupInteract.SetGroup(this);
 			ucGroupInteract.InitColor();
+			ucGroupInteract.SetAvatar(group.AvatarPath);
 			ucGroupToAdd = new ucGroupToAdd(group);
 			//ucGroupToAdd = new ucGroupToAdd(group);
 		}
-		public void ResetTheme()
+
+        public void InitCmns()
+        {
+			cmns = new ContextMenuStrip();
+			cmns.Width = 100;
+			cmns.RenderMode = ToolStripRenderMode.System;
+			cmns.BackColor = Form1.theme.Menu;
+			cmns.ShowImageMargin = false;
+			ToolStripButton tsAddGroup = new ToolStripButton("ADD Member");
+			tsAddGroup.ForeColor = Form1.theme.TxtForeColor;
+			ToolStripButton tsOutGroup = new ToolStripButton("Out Group");
+			tsOutGroup.ForeColor = Form1.theme.TxtForeColor;
+			ToolStripButton tsRemoveGroup = new ToolStripButton("Remove Group");
+			tsRemoveGroup.ForeColor = Color.Red;
+			tsAddGroup.Click += TsAddGroup_Click;
+			tsOutGroup.Click += TsOutGroup_Click;
+			tsRemoveGroup.Click += TsRemoveGroup_Click;
+			if (group.admin != Form1.me) tsRemoveGroup.Visible = false;
+			cmns.Items.Add(tsAddGroup);
+			cmns.Items.Add(tsOutGroup);
+			cmns.Items.Add(tsRemoveGroup);
+		}
+
+        public void ResetTheme()
         {
 			this.groupForm.BackColor = Form1.theme.BackColor;
 			this.groupForm.InitColor();
@@ -55,6 +81,7 @@ namespace UI
 					(item as ucFileShow).InitColor();
 				}
 			}
+			InitCmns();
 			ucGroupAll.InitColor();
 			ucGroupInteract.InitColor();
 			if (ucGroupPending != null) ucGroupPending.InitColor();
@@ -68,37 +95,32 @@ namespace UI
 			groupForm.Dock = DockStyle.Fill;
 			groupForm.InitColor();
 			this.panelRIGHT.Controls.Add(groupForm);
-
-			cmns = new ContextMenuStrip();
-			cmns.Width = 100;
-			cmns.RenderMode = ToolStripRenderMode.System;
-			cmns.BackColor = Form1.theme.Menu;
-			cmns.ShowImageMargin = false;
-			ToolStripButton tsAddGroup = new ToolStripButton("ADD Member");
-			ToolStripButton tsOutGroup = new ToolStripButton("Out Group");
-			ToolStripButton tsRemoveGroup = new ToolStripButton("Remove Group");
-			tsRemoveGroup.ForeColor = Color.Red;
-            tsAddGroup.Click += TsAddGroup_Click;
-            tsOutGroup.Click += TsOutGroup_Click;
-            tsRemoveGroup.Click += TsRemoveGroup_Click;
-			cmns.Items.Add(tsAddGroup);
-			cmns.Items.Add(tsOutGroup);
-			cmns.Items.Add(tsRemoveGroup);
 		}
-
         private void TsRemoveGroup_Click(object sender, EventArgs e)
         {
 			MessageBox.Show("Are you sure remove this Group", "Remove Group", MessageBoxButtons.YesNo);
 			// gửi lên server xóa group
 			//mainForm.GroupUIs.Remove(this);
         }
-
         private void TsOutGroup_Click(object sender, EventArgs e)
         {
-            
-        }
+			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
+			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%"+(group.admin == Form1.me ? "true" : "false"));
+			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
-        private void TsAddGroup_Click(object sender, EventArgs e)
+			mainForm.GroupUIs.Remove(this);
+			this.Dispose();
+		}
+		public void Dispose()
+        {
+			groupForm.Dispose();
+			this.ucGroupAll.Dispose();
+			this.ucGroupInteract.Dispose();
+			//this.ucGroupPending.Dispose();
+			this.ucGroupToAdd.Dispose();
+        }
+		private void TsAddGroup_Click(object sender, EventArgs e)
         {
 			mainForm.frmADD.InitControls();
 			mainForm.frmADD.InitAddGroupForm(group);

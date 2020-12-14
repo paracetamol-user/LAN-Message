@@ -74,7 +74,7 @@ namespace UI
             }
             foreach (var item in listAdd)
             {
-				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedUser.Id + "%" + item.ID + "%" + item.Name);
+				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedUser.Id + "%" + item.ID + "%" + item.Name + "%" + item.admin.Id);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}

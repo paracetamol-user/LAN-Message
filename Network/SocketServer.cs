@@ -711,7 +711,17 @@ namespace Communication
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
 						"and MEMBER.IDNHOM = @id";
 					connection.Close();
-					string message = string.Format("GROUPDATA%{0} {1}", data[1], data[2]);
+					connection.Open();
+					command = new SqlCommand("select IDADMIN from groups where IDNHOM = @id", connection);
+					command.Parameters.AddWithValue("@id", data[1]);
+					reader = command.ExecuteReader();
+					string temp = "";
+                    while (reader.HasRows)
+                    {
+						if (!reader.Read()) break;
+						temp = reader.GetString(0);
+                    }
+					string message = string.Format("GROUPDATA%{0}•{1}•{2}", data[1], data[2] , temp);
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(query, connection);
@@ -721,7 +731,7 @@ namespace Communication
 					while (reader.HasRows)
 					{
 						if (!reader.Read()) break;
-						message += string.Format("%{0} {1}", reader.GetString(0), reader.GetString(1));
+						message += string.Format("•{0}•{1}", reader.GetString(0), reader.GetString(1));
 						foreach (var item in clientInvalid)
 						{
 							if (item.id_ == reader.GetString(0))
@@ -755,9 +765,10 @@ namespace Communication
 			{
 				// SQL command
 				// SQL command
+				// Xu li Truong hop day goi tin
 				try
 				{
-					string query = "select GROUPS.IDNHOM, TENNHOM from MEMBER, GROUPS " +
+					string query = "select GROUPS.IDNHOM, TENNHOM, IDADMIN from MEMBER, GROUPS " +
 									"where MEMBER.IDNHOM = GROUPS.IDNHOM " +
 									"and MEMBER.IDUSERS = @id";
 					connection.Close();
@@ -770,7 +781,7 @@ namespace Communication
 					while (reader.HasRows)
 					{
 						if (!reader.Read()) break;
-						message += string.Format("%{0} {1}", reader.GetString(0), reader.GetString(1));
+						message += string.Format("%{0}•{1}•{2}", reader.GetString(0), reader.GetString(1),reader.GetString(2));
 						query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
 						SqlConnection subConnect = new SqlConnection(connString);
 						subConnect.Open();
@@ -780,7 +791,7 @@ namespace Communication
 						while (subReader.HasRows)
 						{
 							if (!subReader.Read()) break;
-							message += string.Format(" {0} {1}", subReader.GetString(0), subReader.GetString(1));
+							message += string.Format("•{0}•{1}", subReader.GetString(0), subReader.GetString(1));
 						}
 						subConnect.Close();
 					}
@@ -795,11 +806,221 @@ namespace Communication
 				}
 			}
 			else if (data[0] == "SAVEAVATAR")
-            {
+			{
 				Package awaitPackage = new Package(client.id_, "0", 0, int.Parse(data[1]),
 									"A", data[2], data[3], data[4],false);
 				listAwaitPackage.Add(awaitPackage);
 			}
+			else if (data[0] == "CREATEGR")
+			{
+				string GrName = data[1];
+				string IDhost = data[2];
+				byte[] tempBuffer;
+				string query = "select Count(TENNHOM) from groups where TENNHOM = @tennhom";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@tennhom", GrName);
+				var count = (int)command.ExecuteScalar();
+				if (count > 0 )
+				{
+					tempBuffer = Encoding.UTF8.GetBytes(string.Format("CREATEGRERROR"));
+					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+				}
+				else
+                {
+					string getID = "";
+					connection.Close();
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("Select IDNHOM from groups order by IDNHOM DESC", connection);
+					reader = command.ExecuteReader();
+					while (reader.HasRows)
+                    {
+						if (!reader.Read()) break;
+						getID = reader.GetString(0);
+						break;
+                    }
+					connection.Close();
+					string temp = getID.Substring(1, getID.Length - 1);
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("insert into groups values (@idnhom, @tennhom, @idadmin, @sourceavatar)", connection);
+					command.Parameters.AddWithValue("@idnhom" , "G" + (int.Parse(temp) + 1).ToString());
+					command.Parameters.AddWithValue("@tennhom", GrName);
+					command.Parameters.AddWithValue("@idadmin", client.id_);
+					command.Parameters.AddWithValue("@sourceavatar", "Default");
+					command.ExecuteNonQuery();
+					connection.Close();
+
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand("insert into member values (@idnhom, @idthanhvien)", connection);
+					command.Parameters.AddWithValue("@idnhom", "G" + (int.Parse(temp) + 1).ToString());
+					command.Parameters.AddWithValue("@idthanhvien", client.id_);
+					command.ExecuteNonQuery();
+					connection.Close();
+
+					tempBuffer = Encoding.UTF8.GetBytes(string.Format("CREATEGROKE"));
+					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+
+					tempBuffer = Encoding.UTF8.GetBytes(string.Format("GROUPDATA%{0}•{1}•{2}•{3}", (int.Parse(temp) + 1).ToString(),GrName,client.id_,client.id_));
+					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+				}
+			}
+			else if (data[0] == "OUTGR")
+            {
+				string IDGR = data[1];
+				string IDMember = client.id_;
+				bool isHost = bool.Parse(data[2]);
+				SqlConnection subconnection;
+				SqlCommand subcommand;
+				SqlDataReader subReader;
+			
+				if (isHost)
+				{
+					string newHost = "";
+					string queryCountMember = "select Count(IDUSERS) from member where IDNHOM = @id";
+					connection = new SqlConnection(connString);
+					connection.Open();
+					command = new SqlCommand(queryCountMember, connection);
+					command.Parameters.AddWithValue("@id", IDGR);
+					var count = (int)command.ExecuteScalar();
+					if (count > 1)
+					{
+						
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						subcommand = new SqlCommand("select IDUSERS from MEMBER where IDNHOM = @id", subconnection);
+						subcommand.Parameters.AddWithValue("@id", IDGR);
+						subReader = subcommand.ExecuteReader();
+						while (subReader.HasRows)
+                        {
+							if (!subReader.Read()) break;
+							if (subReader.GetString(0) != client.id_)
+                            {
+								newHost = subReader.GetString(0);
+								break;
+                            } 
+                        }
+						subconnection.Close();
+						// tìm thằng đầu tiên khác host
+
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						command = new SqlCommand("Update groups set IDADMIN = @id where IDNHOM = @idnhom", subconnection);
+						command.Parameters.AddWithValue("@id", newHost);
+						command.Parameters.AddWithValue("@idnhom", IDGR);
+						command.ExecuteNonQuery();
+						subconnection.Close();
+						// thêm nó là host mới
+
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						command = new SqlCommand("select IDUSERS from member where IDNHOM = @id", subconnection);
+						command.Parameters.AddWithValue("@id", IDGR);
+						subReader = command.ExecuteReader();
+						while (subReader.HasRows)
+						{
+							if (!subReader.Read()) break;
+                            foreach (var item in clientInvalid)
+                            {
+								if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
+                                {
+									byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("CHANGEHOST%{0}%{1}", IDGR, newHost));
+									packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+									item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+								}
+                            }
+						}				
+						subconnection.Close();
+						// thông báo về cho các client là có host mới
+						
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						subcommand = new SqlCommand("delete from member where IDNHOM = @idnhom and IDUSERS = @iduser", subconnection);
+						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+						subcommand.Parameters.AddWithValue("@iduser", IDMember);
+						subcommand.ExecuteNonQuery();
+						subconnection.Close();
+
+						string query = "select IDUSERS from MEMBER where IDNHOM = @id";
+						SqlConnection subConnect = new SqlConnection(connString);
+						subConnect.Open();
+						SqlCommand subCommand = new SqlCommand(query, subConnect);
+						subCommand.Parameters.AddWithValue("@id", IDGR);
+						subReader = subCommand.ExecuteReader();
+						while (subReader.HasRows)
+						{
+							if (!subReader.Read()) break;
+							foreach (var item in clientInvalid)
+							{
+								if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
+								{
+									byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("OUTGR%{0}%{1}", IDGR, IDMember));
+									packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+									item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+								}
+							}
+						}
+						subConnect.Close();
+						// xóa thành viên
+					}
+					else
+					{
+						string queryRemoveMember = "delete from member where IDNHOM = @idnhom";
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						subcommand = new SqlCommand(queryRemoveMember, subconnection);
+						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+						subcommand.ExecuteNonQuery();
+						subconnection.Close();
+
+						queryRemoveMember = "delete from groups where IDNHOM = @idnhom";
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						subcommand = new SqlCommand(queryRemoveMember, subconnection);
+						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+						subcommand.ExecuteNonQuery();
+						subconnection.Close();
+					}	
+				}
+				else
+                {
+					string queryRemoveMember = "delete from member where IDUSERS = @id and IDNHOM = @idnhom";
+					subconnection = new SqlConnection(connString);
+					subconnection.Open();
+					subcommand = new SqlCommand(queryRemoveMember, subconnection);
+					subcommand.Parameters.AddWithValue("@id", IDMember);
+					subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+					subcommand.ExecuteNonQuery();
+					subconnection.Close();
+
+					string query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
+					SqlConnection subConnect = new SqlConnection(connString);
+					subConnect.Open();
+					SqlCommand subCommand = new SqlCommand(query, subConnect);
+					subCommand.Parameters.AddWithValue("@id", IDGR);
+					subReader = subCommand.ExecuteReader();
+					while (subReader.HasRows)
+					{
+						if (!subReader.Read()) break;
+                        foreach (var item in clientInvalid)
+                        {
+							if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
+                            {
+								byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("OUTGR%{0}%{1}",IDGR,IDMember));
+								packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+								item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+							}
+                        }
+					}
+					subConnect.Close();
+				}
+            }
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)
 		{
@@ -999,17 +1220,17 @@ namespace Communication
 								if (item.Ack == item.Length)
 								{
 									string path = @"..\..\avatar\" + item.IDpackage + item.Extension;
-                                    File.WriteAllBytes(path, item.Data);
-                                    // Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
-                                    string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
-                                    connection = new SqlConnection(connString);
-                                    connection.Open();
-                                    command = new SqlCommand(query, connection);
-                                    command.Parameters.AddWithValue("@SOURCE", path);
-                                    command.Parameters.AddWithValue("@ID", client.id_);
-                                    command.ExecuteNonQuery();
-                                    connection.Close();
-                                }
+									File.WriteAllBytes(path, item.Data);
+									// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
+									string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
+									connection = new SqlConnection(connString);
+									connection.Open();
+									command = new SqlCommand(query, connection);
+									command.Parameters.AddWithValue("@SOURCE", path);
+									command.Parameters.AddWithValue("@ID", client.id_);
+									command.ExecuteNonQuery();
+									connection.Close();
+								}
 							}
 						}
 					}
