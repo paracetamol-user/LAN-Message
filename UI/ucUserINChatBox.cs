@@ -40,6 +40,8 @@ namespace UI
 				pictureBox1.Image = Image.FromFile(Form1.me.AvatarPath);
 			}
 			else pictureBox1.Image = Image.FromFile(User.AvatarPath);
+			this.labelName.ForeColor = Form1.theme.TextColor;
+			this.BackColor = Color.Transparent;
 		}
 		public void InitColor()
 		{

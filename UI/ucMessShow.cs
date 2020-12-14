@@ -28,6 +28,8 @@ namespace UI
 			this.label1.Text = mess;
 			this.ScaleLabel();
 			this.ucParent = ucUserINChatBox;
+			this.label1.ForeColor = Form1.theme.TextColor;
+			this.BackColor = Color.Transparent;
 		}
 		public void ChangeTheme()
         {

@@ -28,12 +28,14 @@ namespace UI
 			this.group = group;
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.label2.ForeColor = Form1.theme.TextColor;
+			this.button1.ForeColor = Form1.theme.TextColor;
 			
 		}
 		public void InitColor()
 		{
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.label2.ForeColor = Form1.theme.TextColor;
+			this.button1.ForeColor = Form1.theme.TextColor;
 		}
 		public void Reset()
         {
