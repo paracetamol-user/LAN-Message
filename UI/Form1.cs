@@ -90,7 +90,6 @@ namespace UI
 			AwaitReadData();
 
 		}
-
 		public void InitSettingForm()
 		{
 			settingForm = new SettingForm(me, this);
@@ -490,27 +489,6 @@ namespace UI
 						serverUsersForm.EnablePointPending();
 						picNotification.Visible = true;
 					}
-					else if (action == "GROUPACCEPT")
-					{
-						string[] groupInfo = data[1].Split(' ');
-						Group group = new Group(groupInfo[0], groupInfo[1]);
-						for (int i = 2; i < data.Length; i++)
-						{
-							if (data[i] == string.Empty) break;
-							string[] info = data[i].Split(' ');
-							foreach (var item in listUser)
-							{
-								if (info[i] == item.Id)
-								{
-									group.AddMember(item);
-									break;
-								}
-							}
-
-						}
-						listGroup.Add(group);
-						GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], this));
-					}
 					else if (action == "GROUPDATA")
 					{
 						string[] arr = data[1].Split(' ');
@@ -720,29 +698,29 @@ namespace UI
 				return this.panelINTERACTED;
 			}
 		}
-        private void btnGroup_Click(object sender, EventArgs e)
-        {
+		private void btnGroup_Click(object sender, EventArgs e)
+		{
 			this.UcGroup.Show();
 			this.UcGroup.BringToFront();
 			this.UcGroup._LoadGroup();
-        }
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
+		}
+		private void Form1_SizeChanged(object sender, EventArgs e)
+		{
 			this.AddToGroup.ReLocation();
-        }
-        private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
-        {
+		}
+		private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
+		{
 			try
-            {
+			{
 				(sender as Button).BackColor = theme.FocusColor;
-            }
-            catch
-            {
+			}
+			catch
+			{
 				btnServer.BackColor = theme.FocusColor;
-            }
-        }
-        private void btnGroup_MouseLeave(object sender, EventArgs e)
-        {
+			}
+		}
+		private void btnGroup_MouseLeave(object sender, EventArgs e)
+		{
 			try
 			{
 				(sender as Button).BackColor = Color.Transparent;
@@ -752,5 +730,5 @@ namespace UI
 				btnServer.BackColor = Color.Transparent;
 			}
 		}
-    }
+	}
 }

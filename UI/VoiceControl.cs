@@ -3,87 +3,110 @@ using System.IO;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using NAudio.Wave;
+using UserManager;
 
 namespace UI
 {
-    public class VoiceControl
-    {
-        private string path = @"..\buffer.wav";
-        private WaveIn sourceStream;
-        private WaveFileWriter writer;
-        private Timer timer;
-        int deviceNumber = 0;
-        TcpClient client;
+	public class VoiceControl
+	{
+		WaveFileWriter writer;
+		WaveFileReader reader;
+		DirectSoundOut player;
+		WaveIn wave;
+		private int deviceNumber;
+		public int nextID;
+		public string Path = @"..\voice_mess\";
 
-        public VoiceControl(TcpClient client)
-        {
-            this.client = client;
-        }
+		public VoiceControl()
+		{
+			deviceNumber = 0;
+			nextID = 0;
+		}
+		public VoiceControl(User user)
+		{
+			deviceNumber = 0;
+			if (!Directory.Exists(Path))
+				Directory.CreateDirectory(Path);
+			Path += string.Format(@"{0}\", user.Id);
+			if (!Directory.Exists(Path))
+				Directory.CreateDirectory(Path);
+			nextID = GetNextID();
+		}
+		public VoiceControl(Group group)
+		{
+			deviceNumber = 0;
+			if(!Directory.Exists(Path))
+				Directory.CreateDirectory(Path);
+			Path += string.Format(@"G{0}\", group.ID);
+			if (!Directory.Exists(Path))
+				Directory.CreateDirectory(Path);
+			nextID = GetNextID();
+		}
 
-        public void BeginRecord()
-        {
-            timer = new Timer();
-            for (int i = 0; i < WaveIn.DeviceCount; i++)
-            {
-                if (WaveIn.GetCapabilities(i).ProductName.Contains("icrophone"))
-                    deviceNumber = i;
-            }
-            timer.Interval = 2000;
-            timer.Enabled = false;
-            timer.Tick += timer_Tick;
-            timer.Start();
-        }
-        public void StopRecord()
-        {
-            if (timer != null)
-                timer.Stop();
-        }
+		public WaveIn GetWave() => wave;
+		public void StartRecording()
+		{
+			DisposeAll();
+			wave = new WaveIn();
 
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            // Re
-            // Dispose
-            Dispose();
-            // Send byte array
-            SendByte();
-        }
+			for (int i = 0; i < WaveIn.DeviceCount; i++)
+				if (WaveIn.GetCapabilities(i).ProductName.Contains("icrophone"))
+				{
+					deviceNumber = i;
+					break;
+				}
 
-        private byte[] buff;
-        private void SendByte()
-        {
-            buff = File.ReadAllBytes(path);
-            client.GetStream().WriteAsync(buff, 0, buff.Length);
-        }
-        private void Dispose()
-        {
-            if (sourceStream != null)
-                sourceStream.Dispose();
+			wave.DeviceNumber = deviceNumber;
+			wave.WaveFormat = new WaveFormat(11000, WaveIn.GetCapabilities(deviceNumber).Channels);
+			wave.DataAvailable += new EventHandler<WaveInEventArgs>(wave_DataAvailable);
 
-            if (writer != null)
-                writer.Dispose();
-            GC.SuppressFinalize(this);
-        }
+			writer = new WaveFileWriter(Path, wave.WaveFormat);
 
-        private void RecordWAV()
-        {
-            sourceStream = new WaveIn();
+			wave.StartRecording();
+			System.Diagnostics.Debug.WriteLine("Recording");
 
-            sourceStream.DeviceNumber = deviceNumber;
-            sourceStream.WaveFormat = new WaveFormat(22000, WaveIn.GetCapabilities(deviceNumber).Channels);
-            sourceStream.DataAvailable += new EventHandler<WaveInEventArgs>(sourceStream_DataAvailable);
+		}
+		private void wave_DataAvailable(object sender, WaveInEventArgs e)
+		{
+			if (writer == null) return;
 
-            writer = new WaveFileWriter(path, sourceStream.WaveFormat);
+			writer.WriteData(e.Buffer, 0, e.BytesRecorded);
 
-            sourceStream.StartRecording();
-            timer.Start();
-        }
+			writer.Flush();
+		}
+		public void StopRecording()
+		{
+			if (wave == null) return;
+			wave.StopRecording();
+		}
+		public void PlayRecording(int id)
+		{
+			DisposeAll();
+			reader = new WaveFileReader(string.Format("{0}{1}.wav", Path, id));
+			player = new DirectSoundOut();
+			player.Init(new WaveChannel32(reader));
+			player.Play();
+		}
+		private void DisposeAll()
+		{
+			if (reader != null)
+				reader.Dispose();
+			if (writer != null)
+				writer.Dispose();
+			if (player != null)
+				player.Dispose();
+		}
 
-        private void sourceStream_DataAvailable(object sender, WaveInEventArgs e)
-        {
-            if (writer == null) return;
-
-            writer.WriteData(e.Buffer, 0, e.BytesRecorded);
-            writer.Flush();
-        }
-    }
+		private int GetNextID()
+		{
+			int id = 0;
+			while (true)
+			{
+				string temp = string.Format(@"{0}{1}.wav", Path, id);
+				if (!File.Exists(temp))
+					return id;
+				id++;
+			}
+		}
+	}
 }

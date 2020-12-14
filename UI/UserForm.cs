@@ -263,5 +263,10 @@ namespace UI
         {
 
         }
+
+        private void pictureBoxSend_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

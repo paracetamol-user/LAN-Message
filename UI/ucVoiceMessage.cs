@@ -16,82 +16,60 @@ namespace UI
 	{
 		private NAudio.Wave.DirectSoundOut player;
 		private NAudio.Wave.WaveFileReader wave;
+
 		private ucUserINChatBox ucParent;
-		public User user;
-		public Group group;
 
 		public string Path { get; set; }
-		public int VoiceID { get; set; }
 
 		public ucVoiceMessage()
 		{
 			InitializeComponent();
 		}
-		public ucVoiceMessage(User user, ucUserINChatBox ucParent)
-		{
+		public ucVoiceMessage(string path, ucUserINChatBox ucParent)
+        {
 			InitializeComponent();
-			this.user = user;
+			this.Path = path;
 			this.ucParent = ucParent;
-			Path = string.Format(@"..\..\{0}\", user.Id);
+        }
 
-			if (!Directory.Exists(Path))
-				Directory.CreateDirectory(Path);
-
-			VoiceID = GetNextID();
-		}
-		public ucVoiceMessage(Group group, ucUserINChatBox ucParent)
+		public void InitColor()
 		{
-			InitializeComponent();
-			this.group = group;
-			this.ucParent = ucParent;
-			Path = string.Format(@"..\..\G_{0}\", group.ID);
-
-			if (!Directory.Exists(Path))
-				Directory.CreateDirectory(Path);
-
-			VoiceID = GetNextID();
-		}
-
-		private int GetNextID()
-		{
-			int id = 0;
-			while (true)
-			{
-				if (!File.Exists(string.Format("{0}{1}.wav", Path, id)))
-					return id;
-				id++;
-			}
+			this.BackColor = Form1.theme.FocusColor;
+			//this.BackColor = Form1.theme.BackColor;
+			this.BackColor = Color.Transparent;
 		}
 
 		private void pictureBox3_Click(object sender, EventArgs e)
 		{
-			if (player == null)
-			{
-				if (wave == null)
-					wave = new NAudio.Wave.WaveFileReader(Path);
-				player = new NAudio.Wave.DirectSoundOut();
-				player.Init(wave);
-				player.Play();
-			}
-            else
-            {
-				player.Play();
-            }
+			DisposeAll();
+			wave = new NAudio.Wave.WaveFileReader(Path);
+			player = new NAudio.Wave.DirectSoundOut();
+			player.Init(new NAudio.Wave.WaveChannel32(wave));
+			player.Play();
 		}
 		private void pictureBox2_Click(object sender, EventArgs e)
 		{
 			if(player != null)
-			{
+            {
 				player.Pause();
-			}
+            }
 		}
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 			if(player != null)
             {
 				player.Stop();
-				player.Dispose();
+				DisposeAll();
             }
+        }
+
+		private void DisposeAll()
+        {
+			if (player != null)
+				player.Dispose();
+			if (wave != null)
+				wave.Dispose();
+
         }
     }
 }

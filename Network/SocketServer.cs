@@ -795,7 +795,7 @@ namespace Communication
 				}
 			}
 			else if (data[0] == "SAVEAVATAR")
-            {
+			{
 				Package awaitPackage = new Package(client.id_, "0", 0, int.Parse(data[1]),
 									"A", data[2], data[3], data[4],false);
 				listAwaitPackage.Add(awaitPackage);
@@ -999,17 +999,17 @@ namespace Communication
 								if (item.Ack == item.Length)
 								{
 									string path = @"..\..\avatar\" + item.IDpackage + item.Extension;
-                                    File.WriteAllBytes(path, item.Data);
-                                    // Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
-                                    string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
-                                    connection = new SqlConnection(connString);
-                                    connection.Open();
-                                    command = new SqlCommand(query, connection);
-                                    command.Parameters.AddWithValue("@SOURCE", path);
-                                    command.Parameters.AddWithValue("@ID", client.id_);
-                                    command.ExecuteNonQuery();
-                                    connection.Close();
-                                }
+									File.WriteAllBytes(path, item.Data);
+									// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
+									string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
+									connection = new SqlConnection(connString);
+									connection.Open();
+									command = new SqlCommand(query, connection);
+									command.Parameters.AddWithValue("@SOURCE", path);
+									command.Parameters.AddWithValue("@ID", client.id_);
+									command.ExecuteNonQuery();
+									connection.Close();
+								}
 							}
 						}
 					}
