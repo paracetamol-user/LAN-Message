@@ -106,7 +106,7 @@
             // 
             // panelMenu
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.Transparent;
+            this.panelMenu.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelMenu.Controls.Add(this.panelINTERACTED);
             this.panelMenu.Controls.Add(this.panel4);
             this.panelMenu.Controls.Add(this.panel2);

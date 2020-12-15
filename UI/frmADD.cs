@@ -74,25 +74,20 @@ namespace UI
 			foreach (var item in listAdd)
 			{
 				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.Id + "%" +
-																   selectedGroup.ID + "%" +selectedGroup.Name);
+																   selectedGroup.ID + "%" + selectedGroup.Name + "%" + selectedGroup.admin.Id) ;
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
 
 		}
-		private void picBoxAdd_Click_1(object sender, EventArgs e)
-		{
-			this.Hide();
-		}
-
-		private void pictureBox1_Click_1(object sender, EventArgs e)
-		{
-			SendAddToGroupToServer();
-			this.Hide();
-		}
-
         private void picBoxAdd_Click(object sender, EventArgs e)
         {
+			this.Hide();
+		}
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+			SendAddToGroupToServer();
 			this.Hide();
 		}
     }

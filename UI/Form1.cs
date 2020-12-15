@@ -20,7 +20,7 @@ namespace UI
 		/// <summary>
 		///QUY ĐỊNH NGƯỜI SỬ DỤNG CHƯƠNG TRÌNH CÓ BIẾN LÀ <ME>
 		///NGƯỜI SỬ DỤNG SERVER LÀ USER
-		/// </summary> 
+		/// </summary>
 		public LoginForm loginForm;
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public List<GroupUI> GroupUIs { get; set; } // List form giao diện chat cho từng group
@@ -44,7 +44,7 @@ namespace UI
 		public ucGroup UcGroup;
 		public AddUserToGroup AddToGroup;
 		public frmADD frmADD;
-		
+
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -85,7 +85,6 @@ namespace UI
 			AddToGroup = new AddUserToGroup(this);
 			frmADD = new frmADD(this);
 			LoadGroupData();
-			
 			if (Theme == "Black") ChangeTheme();
 			AwaitReadData();
 			this.SizeChanged += new EventHandler(Form1_SizeChanged);
@@ -243,7 +242,7 @@ namespace UI
 						}
 						serverUsersForm.LoadListAllUser();
 					}
-					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi 
+					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 					{
 						for (int i = 0; i < UserUIs.Count; i++)
 						{
@@ -464,21 +463,23 @@ namespace UI
 						{
 							if (data[i] == "") break;
 
-							string[] arr = data[i].Split(' ');
+							string[] arr = data[i].Split('•');
 							string path = @"..\..\groupDefault.png";
 							listGroup.Add(new Group(arr[0], arr[1], path));
-							for (int j = 2; j < arr.Length; j += 2)
+							listGroup[listGroup.Count - 1].AddMember(me);
+							for (int j = 3; j < arr.Length; j += 2)
 							{
 								foreach (var item in listUser)
 								{
 									if (arr[j] == item.Id)
 									{
 										listGroup[listGroup.Count - 1].AddMember(item);
+										if (item.Id == arr[3]) listGroup[listGroup.Count - 1].admin = item;
 										break;
 									}
 								}
-
 							}
+							if (arr[3] == me.Id) listGroup[listGroup.Count - 1].admin = me;
 							GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], this));
 						}
 					}
@@ -491,19 +492,24 @@ namespace UI
 					}
 					else if (action == "GROUPDATA")
 					{
-						string[] arr = data[1].Split(' ');
+						string[] arr = data[1].Split('•');
 						Group group = new Group(arr[0], arr[1]);
-						for (int j = 2; j < arr.Length; j += 2)
+						string admin = arr[3];
+
+						for (int j = 3; j < arr.Length; j += 2)
 						{
 							foreach (var item in listUser)
 							{
 								if (arr[j] == item.Id)
 								{
 									group.AddMember(item);
+									if (admin == item.Id) group.admin = item;
 									break;
 								}
 							}
 						}
+						group.AddMember(me);
+						if (arr[3] == me.Id) group.admin = me;
 						listGroup.Add(group);
 						GroupUIs.Add(new GroupUI(group, this));
 					}
@@ -543,6 +549,47 @@ namespace UI
 							}
 						}
 					}
+					else if (action == "OUTGR")
+					{
+						string IDGr = data[1];
+						string IDmember = data[2];
+						foreach (var item in this.GroupUIs)
+						{
+							if (item.group.ID == IDGr)
+							{
+								item.group.RemoveMember(IDmember);
+							}
+						}
+					}
+					else if (action == "CREATEGRERROR")
+					{
+						MessageBox.Show("Create Group Fail! Please check your name group or connection", "Create Error", MessageBoxButtons.OK);
+					}
+					else if (action == "CREATEGROKE")
+					{
+						MessageBox.Show("Create Group successfully!", "Create Group", MessageBoxButtons.OK);
+					}
+					else if (action == "CHANGEHOST")
+                    {
+						string IDgr = data[1];
+						string newHost = data[2];
+
+                        foreach (var item in GroupUIs)
+                        {
+							if (item.group.ID == data[1])
+                            {
+								if (me.Id == data[2])
+								{
+									item.group.admin = me;
+								}
+								else
+								{
+									item.group.ChangeHost(newHost);
+								}
+								break;
+                            }
+                        }
+                    }
 				}
 				else if (package.Style == "F")
 				{
@@ -628,7 +675,7 @@ namespace UI
 							item.Ack = item.Ack + package.Data.Length;
 							if(item.Ack == item.Length)
                             {
-								
+
                             }
 						}
 					}
@@ -663,7 +710,7 @@ namespace UI
 			server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 			try
 			{
-				
+
 			}
 			catch { }
 			loginForm.Close();
@@ -695,7 +742,7 @@ namespace UI
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
-			
+
 			picNotification.Visible = false;
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			if (Form1.userUIForcus != null)

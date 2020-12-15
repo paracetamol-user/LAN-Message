@@ -42,6 +42,7 @@ namespace UI
 			this.panelINTERACTED = mainForm.PnInteract;
 			this.panelRIGHT = mainForm.PnRight;
 			InitUserForm();
+			InitCmns();
 			this.panelRIGHT.Controls.Add(userForm);
 			userForm.InitColor();
 			ucUserAll = new ucUserAll(this);
@@ -49,47 +50,15 @@ namespace UI
 			ucInterac = new ucInterac(user.Name, user.Status);
 			ucInterac.SetUser(this);
 			ucInterac.InitColor();
+			ucInterac.SetAvatar(user.AvatarPath);
 			ucFriend = new ucFriend(this);
 			ucFriendOnline = new ucFriend(this);
 			ucSearch = new ucUserAll(this);
 			ucADD = new ucADD(user);
 		}
-		public void ResetTheme()
-		{
-			this.userForm.BackColor = Form1.theme.BackColor;
-			this.userForm.InitColor();
-			foreach (var item in userForm.Controls)
-			{
-				if (item.GetType() == typeof(ucUserINChatBox))
-				{
-					(item as ucUserINChatBox).InitColor();
-				}
-				else if (item.GetType() == typeof(ucMessShow))
-				{
-					(item as ucMessShow).ChangeTheme();
-				}
-				else if (item.GetType() == typeof(ucFileShow))
-				{
-					(item as ucFileShow).InitColor();
-				}
-			}
-			ucUserAll.ResetTheme();
-			ucUserOnline.ResetTheme();
-			ucFriend.ResetTheme();
-			ucADD.InitControls();
-			if (ucPending!= null)ucPending.ResetTheme();
-		}
-		public void ResetPicture()
-		{
-			this.userForm.ResetPicture();
-			this.ucInterac.ResetPicture();
-		}
-		private void InitUserForm()
-		{
-			userForm = new UserForm(user,this);
-			userForm.TopLevel = false;
-			userForm.Dock = DockStyle.Fill;
 
+        public void InitCmns()
+        {
 			cmns = new ContextMenuStrip();
 			cmns.Width = 100;
 			cmns.RenderMode = ToolStripRenderMode.System;
@@ -108,6 +77,46 @@ namespace UI
 			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
+		}
+
+        public void ResetTheme()
+		{
+			this.userForm.BackColor = Form1.theme.BackColor;
+			this.userForm.InitColor();
+			foreach (var item in userForm.Controls)
+			{
+				if (item.GetType() == typeof(ucUserINChatBox))
+				{
+					(item as ucUserINChatBox).InitColor();
+				}
+				else if (item.GetType() == typeof(ucMessShow))
+				{
+					(item as ucMessShow).ChangeTheme();
+				}
+				else if (item.GetType() == typeof(ucFileShow))
+				{
+					(item as ucFileShow).InitColor();
+				}
+			}
+			InitCmns();
+			ucUserAll.ResetTheme();
+			ucUserOnline.ResetTheme();
+			ucFriend.ResetTheme();
+			ucADD.InitControls();
+			if (ucPending!= null)ucPending.ResetTheme();
+		}
+		public void ResetPicture()
+		{
+			this.userForm.ResetPicture();
+			this.ucInterac.ResetPicture();
+		}
+		private void InitUserForm()
+		{
+			userForm = new UserForm(user,this);
+			userForm.TopLevel = false;
+			userForm.Dock = DockStyle.Fill;
+
+			
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
