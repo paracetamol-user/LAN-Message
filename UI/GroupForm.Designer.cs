@@ -271,6 +271,7 @@ namespace UI
             this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSend.TabIndex = 0;
             this.pictureBoxSend.TabStop = false;
+            this.pictureBoxSend.Click += new System.EventHandler(this.pictureBoxSend_Click_1);
             // 
             // panelSEND
             // 

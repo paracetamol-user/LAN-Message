@@ -19,17 +19,20 @@ namespace UI
 
 		private ucUserINChatBox ucParent;
 
+		public User user;
 		public string Path { get; set; }
 
 		public ucVoiceMessage()
 		{
 			InitializeComponent();
 		}
-		public ucVoiceMessage(string path, ucUserINChatBox ucParent)
+		public ucVoiceMessage(User user, string path, ucUserINChatBox ucParent)
         {
 			InitializeComponent();
+			this.user = user;
 			this.Path = path;
 			this.ucParent = ucParent;
+			this.Dock = DockStyle.Top;
         }
 
 		public void InitColor()

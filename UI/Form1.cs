@@ -20,7 +20,7 @@ namespace UI
 		/// <summary>
 		///QUY ĐỊNH NGƯỜI SỬ DỤNG CHƯƠNG TRÌNH CÓ BIẾN LÀ <ME>
 		///NGƯỜI SỬ DỤNG SERVER LÀ USER
-		/// </summary> 
+		/// </summary>
 		public LoginForm loginForm;
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public List<GroupUI> GroupUIs { get; set; } // List form giao diện chat cho từng group
@@ -44,7 +44,7 @@ namespace UI
 		public ucGroup UcGroup;
 		public AddUserToGroup AddToGroup;
 		public frmADD frmADD;
-		
+
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -85,8 +85,9 @@ namespace UI
 			AddToGroup = new AddUserToGroup(this);
 			frmADD = new frmADD(this);
 			LoadGroupData();
-			if (Theme == "Black" ) ChangeTheme();
+			if (Theme == "Black") ChangeTheme();
 			AwaitReadData();
+			this.SizeChanged += new EventHandler(Form1_SizeChanged);
 		}
 		public void InitSettingForm()
 		{
@@ -241,7 +242,7 @@ namespace UI
 						}
 						serverUsersForm.LoadListAllUser();
 					}
-					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi 
+					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 					{
 						for (int i = 0; i < UserUIs.Count; i++)
 						{
@@ -572,7 +573,7 @@ namespace UI
                     {
 						string IDgr = data[1];
 						string newHost = data[2];
-						
+
                         foreach (var item in GroupUIs)
                         {
 							if (item.group.ID == data[1])
@@ -657,6 +658,28 @@ namespace UI
 						}
 					}
 				}
+				else if (package.Style == "V")
+				{
+					foreach (var item in listAwaitPackage)
+					{
+						if(package.ID == item.IDpackage)
+                        {
+							if (item.Ack + package.Data.Length > item.Length)
+							{
+								byte[] tempBuffer = new byte[item.Length - item.Ack];
+								Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
+								package.Data = new byte[item.Length - item.Ack];
+								tempBuffer.CopyTo(package.Data, 0);
+							}
+							package.Data.CopyTo(item.Data, item.Ack);
+							item.Ack = item.Ack + package.Data.Length;
+							if(item.Ack == item.Length)
+                            {
+
+                            }
+						}
+					}
+				}
 			}
 		}
 		public void SetAvatar(string path)
@@ -687,7 +710,7 @@ namespace UI
 			server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 			try
 			{
-				
+
 			}
 			catch { }
 			loginForm.Close();
@@ -719,7 +742,7 @@ namespace UI
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
-			
+
 			picNotification.Visible = false;
 			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			if (Form1.userUIForcus != null)
@@ -750,11 +773,11 @@ namespace UI
 			this.UcGroup.BringToFront();
 			this.UcGroup._LoadGroup();
 		}
-		private void Form1_SizeChanged(object sender, EventArgs e)
-		{
-			this.AddToGroup.ReLocation();
-		}
-		private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            this.AddToGroup.ReLocation();
+        }
+        private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
 		{
 			try
 			{
