@@ -30,7 +30,6 @@ namespace UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupForm));
-            this.panelListChat = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelID = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
@@ -38,20 +37,24 @@ namespace UI
             this.panelMenu = new System.Windows.Forms.Panel();
             this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.panelListFile = new System.Windows.Forms.Panel();
             this.panelOPTIONUSER = new System.Windows.Forms.Panel();
             this.panelUSERINFO = new System.Windows.Forms.Panel();
             this.panelAll = new System.Windows.Forms.Panel();
             this.panelNULL2 = new System.Windows.Forms.Panel();
             this.panelUSERCHATINFO = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBoxSend = new System.Windows.Forms.PictureBox();
-            this.panelSEND = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelENTERCHATOPTION = new System.Windows.Forms.Panel();
-            this.TextBoxEnterChat = new Guna.UI2.WinForms.Guna2TextBox();
-            this.panelCHATBOX = new System.Windows.Forms.Panel();
+            this.pncontaininfor = new System.Windows.Forms.Panel();
+            this.pnLine1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelListChat = new System.Windows.Forms.Panel();
+            this.panelListFile = new System.Windows.Forms.Panel();
             this.panelENTERCHAT = new System.Windows.Forms.Panel();
+            this.panelCHATBOX = new System.Windows.Forms.Panel();
+            this.TextBoxEnterChat = new Guna.UI2.WinForms.Guna2TextBox();
+            this.panelENTERCHATOPTION = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelSEND = new System.Windows.Forms.Panel();
+            this.pictureBoxSend = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).BeginInit();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
@@ -61,25 +64,15 @@ namespace UI
             this.panelAll.SuspendLayout();
             this.panelUSERCHATINFO.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).BeginInit();
-            this.panelSEND.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelENTERCHATOPTION.SuspendLayout();
-            this.panelCHATBOX.SuspendLayout();
+            this.pncontaininfor.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panelENTERCHAT.SuspendLayout();
+            this.panelCHATBOX.SuspendLayout();
+            this.panelENTERCHATOPTION.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelSEND.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panelListChat
-            // 
-            this.panelListChat.AutoScroll = true;
-            this.panelListChat.BackColor = System.Drawing.Color.White;
-            this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelListChat.Location = new System.Drawing.Point(0, 53);
-            this.panelListChat.Margin = new System.Windows.Forms.Padding(4);
-            this.panelListChat.Name = "panelListChat";
-            this.panelListChat.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panelListChat.Size = new System.Drawing.Size(559, 348);
-            this.panelListChat.TabIndex = 11;
             // 
             // panel3
             // 
@@ -127,6 +120,7 @@ namespace UI
             this.pictureBoxMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxMenu.TabIndex = 0;
             this.pictureBoxMenu.TabStop = false;
+            this.pictureBoxMenu.Click += new System.EventHandler(this.pictureBoxMenu_Click);
             // 
             // panelMenu
             // 
@@ -160,18 +154,6 @@ namespace UI
             this.panelSearch.Padding = new System.Windows.Forms.Padding(9);
             this.panelSearch.Size = new System.Drawing.Size(52, 35);
             this.panelSearch.TabIndex = 1;
-            // 
-            // panelListFile
-            // 
-            this.panelListFile.AutoScroll = true;
-            this.panelListFile.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelListFile.Location = new System.Drawing.Point(0, 401);
-            this.panelListFile.Margin = new System.Windows.Forms.Padding(4);
-            this.panelListFile.Name = "panelListFile";
-            this.panelListFile.Padding = new System.Windows.Forms.Padding(27, 6, 0, 12);
-            this.panelListFile.Size = new System.Drawing.Size(559, 81);
-            this.panelListFile.TabIndex = 10;
-            this.panelListFile.Visible = false;
             // 
             // panelOPTIONUSER
             // 
@@ -243,52 +225,82 @@ namespace UI
             this.panel1.Size = new System.Drawing.Size(286, 43);
             this.panel1.TabIndex = 3;
             // 
-            // pictureBoxSend
+            // pncontaininfor
             // 
-            this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
-            this.pictureBoxSend.Location = new System.Drawing.Point(7, 6);
-            this.pictureBoxSend.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBoxSend.Name = "pictureBoxSend";
-            this.pictureBoxSend.Size = new System.Drawing.Size(38, 39);
-            this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSend.TabIndex = 0;
-            this.pictureBoxSend.TabStop = false;
+            this.pncontaininfor.AutoScroll = true;
+            this.pncontaininfor.Controls.Add(this.pnLine1);
+            this.pncontaininfor.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pncontaininfor.Location = new System.Drawing.Point(302, 53);
+            this.pncontaininfor.Name = "pncontaininfor";
+            this.pncontaininfor.Size = new System.Drawing.Size(257, 498);
+            this.pncontaininfor.TabIndex = 9;
             // 
-            // panelSEND
+            // pnLine1
             // 
-            this.panelSEND.Controls.Add(this.pictureBoxSend);
-            this.panelSEND.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelSEND.Location = new System.Drawing.Point(498, 9);
-            this.panelSEND.Margin = new System.Windows.Forms.Padding(4);
-            this.panelSEND.Name = "panelSEND";
-            this.panelSEND.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panelSEND.Size = new System.Drawing.Size(52, 51);
-            this.panelSEND.TabIndex = 0;
+            this.pnLine1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnLine1.Location = new System.Drawing.Point(0, 0);
+            this.pnLine1.Name = "pnLine1";
+            this.pnLine1.Size = new System.Drawing.Size(1, 498);
+            this.pnLine1.TabIndex = 0;
             // 
-            // pictureBox1
+            // panel4
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.panel4.Controls.Add(this.panelListChat);
+            this.panel4.Controls.Add(this.panelListFile);
+            this.panel4.Controls.Add(this.panelENTERCHAT);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 53);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(302, 498);
+            this.panel4.TabIndex = 0;
             // 
-            // panelENTERCHATOPTION
+            // panelListChat
             // 
-            this.panelENTERCHATOPTION.Controls.Add(this.pictureBox1);
-            this.panelENTERCHATOPTION.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelENTERCHATOPTION.Location = new System.Drawing.Point(9, 9);
-            this.panelENTERCHATOPTION.Margin = new System.Windows.Forms.Padding(4);
-            this.panelENTERCHATOPTION.Name = "panelENTERCHATOPTION";
-            this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(9);
-            this.panelENTERCHATOPTION.Size = new System.Drawing.Size(46, 51);
-            this.panelENTERCHATOPTION.TabIndex = 1;
+            this.panelListChat.AutoScroll = true;
+            this.panelListChat.BackColor = System.Drawing.Color.White;
+            this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelListChat.Location = new System.Drawing.Point(0, 0);
+            this.panelListChat.Margin = new System.Windows.Forms.Padding(4);
+            this.panelListChat.Name = "panelListChat";
+            this.panelListChat.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.panelListChat.Size = new System.Drawing.Size(302, 348);
+            this.panelListChat.TabIndex = 14;
+            // 
+            // panelListFile
+            // 
+            this.panelListFile.AutoScroll = true;
+            this.panelListFile.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelListFile.Location = new System.Drawing.Point(0, 348);
+            this.panelListFile.Margin = new System.Windows.Forms.Padding(4);
+            this.panelListFile.Name = "panelListFile";
+            this.panelListFile.Padding = new System.Windows.Forms.Padding(27, 6, 0, 12);
+            this.panelListFile.Size = new System.Drawing.Size(302, 81);
+            this.panelListFile.TabIndex = 13;
+            this.panelListFile.Visible = false;
+            // 
+            // panelENTERCHAT
+            // 
+            this.panelENTERCHAT.Controls.Add(this.panelCHATBOX);
+            this.panelENTERCHAT.Controls.Add(this.panelENTERCHATOPTION);
+            this.panelENTERCHAT.Controls.Add(this.panelSEND);
+            this.panelENTERCHAT.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelENTERCHAT.Location = new System.Drawing.Point(0, 429);
+            this.panelENTERCHAT.Margin = new System.Windows.Forms.Padding(4);
+            this.panelENTERCHAT.Name = "panelENTERCHAT";
+            this.panelENTERCHAT.Padding = new System.Windows.Forms.Padding(9);
+            this.panelENTERCHAT.Size = new System.Drawing.Size(302, 69);
+            this.panelENTERCHAT.TabIndex = 12;
+            // 
+            // panelCHATBOX
+            // 
+            this.panelCHATBOX.Controls.Add(this.TextBoxEnterChat);
+            this.panelCHATBOX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCHATBOX.Location = new System.Drawing.Point(55, 9);
+            this.panelCHATBOX.Margin = new System.Windows.Forms.Padding(4);
+            this.panelCHATBOX.Name = "panelCHATBOX";
+            this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panelCHATBOX.Size = new System.Drawing.Size(186, 51);
+            this.panelCHATBOX.TabIndex = 2;
             // 
             // TextBoxEnterChat
             // 
@@ -314,33 +326,57 @@ namespace UI
             this.TextBoxEnterChat.PlaceholderText = "";
             this.TextBoxEnterChat.SelectedText = "";
             this.TextBoxEnterChat.ShadowDecoration.Parent = this.TextBoxEnterChat;
-            this.TextBoxEnterChat.Size = new System.Drawing.Size(429, 39);
+            this.TextBoxEnterChat.Size = new System.Drawing.Size(172, 39);
             this.TextBoxEnterChat.TabIndex = 0;
-            this.TextBoxEnterChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxEnterChat_KeyDown);
+            this.TextBoxEnterChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxEnterChat_KeyDown_1);
             // 
-            // panelCHATBOX
+            // panelENTERCHATOPTION
             // 
-            this.panelCHATBOX.Controls.Add(this.TextBoxEnterChat);
-            this.panelCHATBOX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCHATBOX.Location = new System.Drawing.Point(55, 9);
-            this.panelCHATBOX.Margin = new System.Windows.Forms.Padding(4);
-            this.panelCHATBOX.Name = "panelCHATBOX";
-            this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panelCHATBOX.Size = new System.Drawing.Size(443, 51);
-            this.panelCHATBOX.TabIndex = 2;
+            this.panelENTERCHATOPTION.Controls.Add(this.pictureBox1);
+            this.panelENTERCHATOPTION.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelENTERCHATOPTION.Location = new System.Drawing.Point(9, 9);
+            this.panelENTERCHATOPTION.Margin = new System.Windows.Forms.Padding(4);
+            this.panelENTERCHATOPTION.Name = "panelENTERCHATOPTION";
+            this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(9);
+            this.panelENTERCHATOPTION.Size = new System.Drawing.Size(46, 51);
+            this.panelENTERCHATOPTION.TabIndex = 1;
             // 
-            // panelENTERCHAT
+            // pictureBox1
             // 
-            this.panelENTERCHAT.Controls.Add(this.panelCHATBOX);
-            this.panelENTERCHAT.Controls.Add(this.panelENTERCHATOPTION);
-            this.panelENTERCHAT.Controls.Add(this.panelSEND);
-            this.panelENTERCHAT.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelENTERCHAT.Location = new System.Drawing.Point(0, 482);
-            this.panelENTERCHAT.Margin = new System.Windows.Forms.Padding(4);
-            this.panelENTERCHAT.Name = "panelENTERCHAT";
-            this.panelENTERCHAT.Padding = new System.Windows.Forms.Padding(9);
-            this.panelENTERCHAT.Size = new System.Drawing.Size(559, 69);
-            this.panelENTERCHAT.TabIndex = 9;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(9, 9);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(28, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // panelSEND
+            // 
+            this.panelSEND.Controls.Add(this.pictureBoxSend);
+            this.panelSEND.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelSEND.Location = new System.Drawing.Point(241, 9);
+            this.panelSEND.Margin = new System.Windows.Forms.Padding(4);
+            this.panelSEND.Name = "panelSEND";
+            this.panelSEND.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panelSEND.Size = new System.Drawing.Size(52, 51);
+            this.panelSEND.TabIndex = 0;
+            // 
+            // pictureBoxSend
+            // 
+            this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
+            this.pictureBoxSend.Location = new System.Drawing.Point(7, 6);
+            this.pictureBoxSend.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxSend.Name = "pictureBoxSend";
+            this.pictureBoxSend.Size = new System.Drawing.Size(38, 39);
+            this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSend.TabIndex = 0;
+            this.pictureBoxSend.TabStop = false;
+            this.pictureBoxSend.Click += new System.EventHandler(this.pictureBoxSend_Click_1);
             // 
             // GroupForm
             // 
@@ -348,10 +384,9 @@ namespace UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(559, 551);
-            this.Controls.Add(this.panelListChat);
-            this.Controls.Add(this.panelListFile);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pncontaininfor);
             this.Controls.Add(this.panelUSERINFO);
-            this.Controls.Add(this.panelENTERCHAT);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(559, 551);
             this.Name = "GroupForm";
@@ -366,19 +401,19 @@ namespace UI
             this.panelUSERCHATINFO.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).EndInit();
-            this.panelSEND.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelENTERCHATOPTION.ResumeLayout(false);
-            this.panelCHATBOX.ResumeLayout(false);
+            this.pncontaininfor.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panelENTERCHAT.ResumeLayout(false);
+            this.panelCHATBOX.ResumeLayout(false);
+            this.panelENTERCHATOPTION.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelSEND.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelListChat;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelName;
@@ -386,19 +421,23 @@ namespace UI
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.PictureBox pictureBoxSearch;
         private System.Windows.Forms.Panel panelSearch;
-        private System.Windows.Forms.Panel panelListFile;
         private System.Windows.Forms.Panel panelOPTIONUSER;
         private System.Windows.Forms.Panel panelUSERINFO;
         private System.Windows.Forms.Panel panelAll;
         private System.Windows.Forms.Panel panelNULL2;
         private System.Windows.Forms.Panel panelUSERCHATINFO;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBoxSend;
-        private System.Windows.Forms.Panel panelSEND;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panelENTERCHATOPTION;
-        private Guna.UI2.WinForms.Guna2TextBox TextBoxEnterChat;
-        private System.Windows.Forms.Panel panelCHATBOX;
+        private System.Windows.Forms.Panel pncontaininfor;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelListChat;
+        private System.Windows.Forms.Panel panelListFile;
         private System.Windows.Forms.Panel panelENTERCHAT;
+        private System.Windows.Forms.Panel panelCHATBOX;
+        private Guna.UI2.WinForms.Guna2TextBox TextBoxEnterChat;
+        private System.Windows.Forms.Panel panelENTERCHATOPTION;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panelSEND;
+        private System.Windows.Forms.PictureBox pictureBoxSend;
+        private System.Windows.Forms.Panel pnLine1;
     }
 }

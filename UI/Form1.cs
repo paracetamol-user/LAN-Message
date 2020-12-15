@@ -50,6 +50,7 @@ namespace UI
 		public static List<Group> listGroup;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mỗi class.
 		//242,243,245
+		
 		public Form1()
 		{
 			InitializeComponent();
@@ -85,7 +86,6 @@ namespace UI
 			AwaitReadData();
 
 		}
-
 		public void InitSettingForm()
 		{
 			settingForm = new SettingForm(me, this);
@@ -665,7 +665,7 @@ namespace UI
 		/// </summary>
 		private void pictureBoxSetting_Click(object sender, EventArgs e)
 		{
-			Form1.addMemberForm.Hide();
+			//Form1.addMemberForm.Hide();
 			settingForm = new SettingForm(me, this);
 			settingForm.Show();
 			settingForm.BringToFront();

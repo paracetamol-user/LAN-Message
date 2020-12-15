@@ -20,6 +20,7 @@ namespace UI
 {
 	public partial class UserForm : Form
 	{
+		
 		public User user;
 		private List<Panel> BoxChats;
 		private int id;
@@ -27,10 +28,15 @@ namespace UI
 		private short LastInteracted;
 		public ucUserINChatBox messageFocus;
 		public UserUI userUI;
+		public ucInforuser ucInforuser;
+		public List<ucFileShow> listfileShows=new List<ucFileShow>();
 		public UserForm()
 		{
 			InitializeComponent();
 			this.Visible = false;
+			addpnInfor();
+			ucInforuser._LoadInforUser(user, listfileShows);
+			isclickmenu = false;
 		}
 		public UserForm(UserManager.User user , UserUI userUI)
 		{
@@ -41,12 +47,38 @@ namespace UI
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 			this.userUI = userUI;
 			this.Visible = false;
+			
 			this.user = user;
 			this.id = 0;
 			LastInteracted = 0;
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
 			InitUserForm();
+			addpnInfor();
+			ucInforuser._LoadInforUser(user, listfileShows);
+			isclickmenu = false;
+		}
+		public Panel Pncontaininfor
+		{
+			get
+			{
+				return this.pncontaininfo;
+			}
+			set
+            {
+				pncontaininfo = value;
+            }
+		}
+		public Panel PnLine1
+		{
+			get
+			{
+				return this.pnLine1;
+			}
+			set
+            {
+				this.pnLine1 = value;
+            }
 		}
 		public void ResetPicture()
 		{
@@ -56,6 +88,7 @@ namespace UI
 		public void ChangeColorLine()
 		{
 			this.panelLine.BackColor = Form1.theme.LineColor;
+			this.pnLine1.BackColor = Form1.theme.LineColor;
 		}
 		public void InitColor()
 		{
@@ -64,6 +97,7 @@ namespace UI
 			this.BackColor = Form1.theme.BackColor;
 			this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
 			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
+			
 		}
 		public void SetAvatar(string path)
 		{
@@ -101,35 +135,36 @@ namespace UI
 			if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
-				
+
 			UserInChatBox._AddFileControl(fileshow);
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
 			UserInChatBox.InitColor();
 			fileshow.InitColor();
+			listfileShows.Add(fileshow);
 
 			if (tempID == "-1") Form1.listFileAwaitID.Add(UserInChatBox);// Thêm vào hàng đợi ID file từ server gửi xuống
 			else UserInChatBox.ID = tempID;
 		}
 		public void EditMessage(string IDMess, string newMess)
-        {
-            foreach (var item in this.panelListChat.Controls)
-            {
+		{
+			foreach (var item in this.panelListChat.Controls)
+			{
 				if (item.GetType() == typeof(Panel))
-                {
+				{
 					foreach (var item2 in (item as Panel).Controls)
-                    {
+					{
 						if ((item2 as ucUserINChatBox).ID == IDMess)
-                        {
+						{
 							(item2 as ucUserINChatBox).EditMessage(newMess);
 							return;
 						}
 					}
-                }
-            }
-        }
+				}
+			}
+		}
 		public void DeleteMessage(string IDMess)
-        {
+		{
 			foreach (var item in this.panelListChat.Controls)
 			{
 				if (item.GetType() == typeof(Panel))
@@ -167,10 +202,10 @@ namespace UI
 				foreach (var item in files)
 				{
 					if (item.Length > 3000000)
-                    {
+					{
 						MessageBox.Show("Size file small than 4 Mb", "Error", MessageBoxButtons.OK);
 						return;
-                    }
+					}
 				}
 			}
 			if (this.panelListFile.Controls.Count > 0)
@@ -197,36 +232,13 @@ namespace UI
 		{
 			this.labelID.Text = "#"+user.Id;
 			this.labelName.Text = user.Name;
-			this.pictureBoxSend.Click += PictureBoxSend_Click;
-		}
-		private async void PictureBoxSend_Click(object sender, EventArgs e)
-		{
-			if (Form1.chatBoxFocus != null)
-            {
-				Form1.chatBoxFocus.BackColor = Color.Transparent;
-				Form1.chatBoxFocus.DisableMenu();
-			}
-			await SendFile();
-			await SendMessage();
+			this.pictureBoxSend.Click += pictureBox1_Click_1;
 		}
 		public void AddFrom(Panel panelRight)
 		{
 			panelRight.Controls.Add(this);
 		}
-		private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				if (Form1.chatBoxFocus != null)
-				{
-					Form1.chatBoxFocus.BackColor = Color.Transparent;
-					Form1.chatBoxFocus.DisableMenu();
-				}
-				SendMessage();
-				e.SuppressKeyPress = true;
-			}
-		}
-		private void pictureBox1_Click(object sender, EventArgs e)
+		private void pictureBox1_Click_1(object sender, EventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			openFileDialog.Filter =
@@ -244,7 +256,7 @@ namespace UI
 					{
 						FileInfo temp = new FileInfo(item);
 						files.Add(temp);
-						usFileTemp x = new usFileTemp(panelListFile,files, temp);
+						usFileTemp x = new usFileTemp(panelListFile, files, temp);
 						this.panelListFile.Controls.Add(x);
 						x.Dock = DockStyle.Left;
 						x._FileName = temp.Name;
@@ -256,8 +268,60 @@ namespace UI
 				}
 				panelListFile.Visible = true;
 			}
-
 		}
-   
+
+        private void TextBoxEnterChat_KeyDown_1(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+			{
+				if (Form1.chatBoxFocus != null)
+				{
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				SendMessage();
+				e.SuppressKeyPress = true;
+			}
+		}
+
+        private async void pictureBoxSend_Click_1(object sender, EventArgs e)
+        {
+			if (Form1.chatBoxFocus != null)
+			{
+				Form1.chatBoxFocus.BackColor = Color.Transparent;
+				Form1.chatBoxFocus.DisableMenu();
+			}
+			await SendFile();
+			await SendMessage();
+		}
+		public void addpnInfor()
+        {
+			this.ucInforuser = new ucInforuser(this);
+			this.ucInforuser._LoadInforUser(user, listfileShows);
+			this.pncontaininfo.Visible = false;
+		}
+		bool isclickmenu = false;
+        private void pictureBoxMenu_Click(object sender, EventArgs e)
+        {
+			
+			isclickmenu =! isclickmenu;
+			pncontaininfo.AutoScroll = true;
+			if(isclickmenu)
+            {
+				this.ucInforuser._LoadInforUser(user, listfileShows);
+				
+				this.pncontaininfo.Visible = true;
+            }
+			else
+            {
+				this.pncontaininfo.Visible = false;
+            }
+		
+        }
+		public void _clearlistchat()
+        {
+			panelListChat.Controls.Clear();
+        }
+		
     }
 }

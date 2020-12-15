@@ -21,12 +21,16 @@ namespace UI
 		private List<FileInfo> files;
 		private short LastInteracted;
 		public GroupUI GroupUI;
+		public ucInforGroup ucInforGroup;
+		public List<ucFileShow> listfileShows = new List<ucFileShow>();
 		public GroupForm()
 		{
 			InitializeComponent();
 			this.Visible = false;
+			addpnInfor();
+			this.ucInforGroup._LoadInforGroup(group, listfileShows);
 		}
-		public GroupForm(Group group , GroupUI grUI)
+		public GroupForm(Group group, GroupUI grUI)
 		{
 			InitializeComponent();
 			this.Visible = false;
@@ -39,6 +43,30 @@ namespace UI
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
 			InitGroupForm();
+			addpnInfor();
+			this.ucInforGroup._LoadInforGroup(group, listfileShows);
+		}
+		public Panel Pncontaininfor
+		{
+			get
+			{
+				return this.pncontaininfor;
+			}
+			set
+			{
+				this.pncontaininfor = value;
+			}
+		}
+		public Panel PnLine1
+		{
+			get
+			{
+				return this.pnLine1;
+			}
+			set
+			{
+				this.pnLine1 = value;
+			}
 		}
 		public void AddItemToListChat(User user, string IDMess,string str)
 		{
@@ -77,6 +105,8 @@ namespace UI
 			this.panelListChat.Controls.Add(tempPanel);
 			if (IDMess == "-1") Form1.listFileAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
+			
+			listfileShows.Add(fileShow);
 		}
 		public async Task SendMessage()
 		{
@@ -119,61 +149,19 @@ namespace UI
 		{
 			this.labelID.Text = string.Format("#{0}", group.ID);
 			this.labelName.Text = group.Name;
-			this.pictureBoxSend.Click += PictureBoxSend_Click;
+			this.pictureBoxSend.Click += pictureBox1_Click_1;
 		}
 		public void SetAvatar(string path)
 		{
 
 		}
-		private async void PictureBoxSend_Click(object sender, EventArgs e)
-		{
-			await SendFile(); 
-			await SendMessage();
-		}
+		
 		public void AddFrom(Panel panelRight)
 		{
 			panelRight.Controls.Add(this);
 		}
 
-		private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
-		{
-			if(e.KeyCode == Keys.Enter)
-			{
-				SendMessage();
-				e.SuppressKeyPress = true;
-			}
-		}
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter =
-				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
-				"All files (*.*)|*.*";
-
-			openFileDialog.Multiselect = true;
-			//openFileDialog.Title = "Select Photos";		
-			DialogResult dr = openFileDialog.ShowDialog();
-			if (dr == DialogResult.OK)
-			{
-				foreach (string item in openFileDialog.FileNames)
-				{
-					try
-					{
-						FileInfo temp = new FileInfo(item);
-						files.Add(temp);
-						usFileTemp x = new usFileTemp(panelListFile, files, temp);
-						this.panelListFile.Controls.Add(x);
-						x.Dock = DockStyle.Left;
-						x._FileName = temp.Name;
-					}
-					catch (Exception ex)
-					{
-						MessageBox.Show(ex.Message);
-					}
-				}
-				panelListFile.Visible = true;
-			}
-		}
+		
 		public void DeleteMessage(string IDMess)
 		{
 			foreach (var item in this.panelListChat.Controls)
@@ -207,6 +195,79 @@ namespace UI
 					}
 				}
 			}
+		}
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter =
+				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
+				"All files (*.*)|*.*";
+
+			openFileDialog.Multiselect = true;
+			//openFileDialog.Title = "Select Photos";		
+			DialogResult dr = openFileDialog.ShowDialog();
+			if (dr == DialogResult.OK)
+			{
+				foreach (string item in openFileDialog.FileNames)
+				{
+					try
+					{
+						FileInfo temp = new FileInfo(item);
+						files.Add(temp);
+						usFileTemp x = new usFileTemp(panelListFile, files, temp);
+						this.panelListFile.Controls.Add(x);
+						x.Dock = DockStyle.Left;
+						x._FileName = temp.Name;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message);
+					}
+				}
+				panelListFile.Visible = true;
+			}
+		}
+
+        private void TextBoxEnterChat_KeyDown_1(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+			{
+				SendMessage();
+				e.SuppressKeyPress = true;
+			}
+		}
+
+        private async void pictureBoxSend_Click_1(object sender, EventArgs e)
+        {
+			await SendFile();
+			await SendMessage();
+		}
+		public void addpnInfor()
+		{
+			this.ucInforGroup = new ucInforGroup(this);
+			this.ucInforGroup._LoadInforGroup(group, listfileShows);
+			this.pncontaininfor.Visible = false;
+		}
+		bool isclickmenu = false;
+		private void pictureBoxMenu_Click(object sender, EventArgs e)
+        {
+			isclickmenu = !isclickmenu;
+			pncontaininfor.AutoScroll = true;
+			if (isclickmenu)
+			{
+				this.ucInforGroup._LoadInforGroup(group, listfileShows);
+
+				this.pncontaininfor.Visible = true;
+			}
+			else
+			{
+				this.pncontaininfor.Visible = false;
+			}
+		}
+		public void _clearlistchat()
+		{
+			this.panelListChat.Controls.Clear();
 		}
 	}
 }

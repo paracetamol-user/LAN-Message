@@ -100,6 +100,7 @@ namespace UI
 					this.ucfileshow.DeleteMessage();
 					this.DisableEdit();
 					this.DisableDelete();
+					
 				}
 				else
 				{
