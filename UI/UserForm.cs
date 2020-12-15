@@ -209,35 +209,37 @@ namespace UI
 		{
 			this.labelID.Text = "#"+user.Id;
 			this.labelName.Text = user.Name;
-			this.pictureBoxSend.Click += PictureBoxSend_Click;
+			
 		}
-		private async void PictureBoxSend_Click(object sender, EventArgs e)
-		{
-			if (Form1.chatBoxFocus != null)
-            {
-				Form1.chatBoxFocus.BackColor = Color.Transparent;
-				Form1.chatBoxFocus.DisableMenu();
-			}
-			await SendFile();
-			await SendMessage();
-		}
+
 		public void AddFrom(Panel panelRight)
 		{
 			panelRight.Controls.Add(this);
 		}
-		private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
+
+		private bool isShow;
+
+		public void AddVoiceMessage(ucVoiceMessage voiceMessage)
+        {
+			this.panelListChat.Controls.Add(voiceMessage);
+        }
+
+		private void pictureVoice_Click(object sender, EventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter)
+			if (!isShow)
 			{
-				if (Form1.chatBoxFocus != null)
-				{
-					Form1.chatBoxFocus.BackColor = Color.Transparent;
-					Form1.chatBoxFocus.DisableMenu();
-				}
-				SendMessage();
-				e.SuppressKeyPress = true;
+				voicePanel.Visible = true;
+				voicePanel.Show();
+				voicePanel.BringToFront();
+				isShow = true;
+			}
+			else
+			{
+				voicePanel.Visible = false;
+				isShow = false;
 			}
 		}
+
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -256,7 +258,7 @@ namespace UI
 					{
 						FileInfo temp = new FileInfo(item);
 						files.Add(temp);
-						usFileTemp x = new usFileTemp(panelListFile,files, temp);
+						usFileTemp x = new usFileTemp(panelListFile, files, temp);
 						this.panelListFile.Controls.Add(x);
 						x.Dock = DockStyle.Left;
 						x._FileName = temp.Name;
@@ -268,28 +270,31 @@ namespace UI
 				}
 				panelListFile.Visible = true;
 			}
-
 		}
 
-		private bool isShow;
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-			if (!isShow)
+		private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
 			{
-				voicePanel.Visible = true;
-				voicePanel.Show();
-				voicePanel.BringToFront();
-				isShow = true;
-			}
-			else
-			{
-				voicePanel.Visible = false;
-				isShow = false;
+				if (Form1.chatBoxFocus != null)
+				{
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				SendMessage();
+				e.SuppressKeyPress = true;
 			}
 		}
-		public void AddVoiceMessage(ucVoiceMessage voiceMessage)
-        {
-			this.panelListChat.Controls.Add(voiceMessage);
-        }
-    }
+
+		private async void pictureBoxSend_Click(object sender, EventArgs e)
+		{
+			if (Form1.chatBoxFocus != null)
+			{
+				Form1.chatBoxFocus.BackColor = Color.Transparent;
+				Form1.chatBoxFocus.DisableMenu();
+			}
+			await SendFile();
+			await SendMessage();
+		}
+	}
 }

@@ -131,62 +131,18 @@ namespace UI
 		{
 			this.labelID.Text = string.Format("#{0}", group.ID);
 			this.labelName.Text = group.Name;
-			this.pictureBoxSend.Click += PictureBoxSend_Click;
 
 		}
 		public void SetAvatar(string path)
 		{
 
 		}
-		private async void PictureBoxSend_Click(object sender, EventArgs e)
-		{
-			await SendFile(); 
-			await SendMessage();
-		}
+
 		public void AddFrom(Panel panelRight)
 		{
 			panelRight.Controls.Add(this);
 		}
 
-		private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
-		{
-			if(e.KeyCode == Keys.Enter)
-			{
-				SendMessage();
-				e.SuppressKeyPress = true;
-			}
-		}
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter =
-				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
-				"All files (*.*)|*.*";
-
-			openFileDialog.Multiselect = true;
-			//openFileDialog.Title = "Select Photos";		
-			DialogResult dr = openFileDialog.ShowDialog();
-			if (dr == DialogResult.OK)
-			{
-				foreach (string item in openFileDialog.FileNames)
-				{
-					try
-					{
-						FileInfo temp = new FileInfo(item);
-						files.Add(temp);
-						usFileTemp x = new usFileTemp(panelListFile, files, temp);
-						this.panelListFile.Controls.Add(x);
-						x.Dock = DockStyle.Left;
-						x._FileName = temp.Name;
-					}
-					catch (Exception ex)
-					{
-						MessageBox.Show(ex.Message);
-					}
-				}
-				panelListFile.Visible = true;
-			}
-		}
 		public void DeleteMessage(string IDMess)
 		{
 			foreach (var item in this.panelListChat.Controls)
@@ -222,14 +178,47 @@ namespace UI
 			}
 		}
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
+		private void pictureVoice_Click(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void pictureBoxSend_Click_1(object sender, EventArgs e)
-        {
+		private async void pictureBoxSend_Click(object sender, EventArgs e)
+		{
+			await SendFile();
+			await SendMessage();
+		}
 
-        }
-    }
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter =
+				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
+				"All files (*.*)|*.*";
+
+			openFileDialog.Multiselect = true;
+			//openFileDialog.Title = "Select Photos";		
+			DialogResult dr = openFileDialog.ShowDialog();
+			if (dr == DialogResult.OK)
+			{
+				foreach (string item in openFileDialog.FileNames)
+				{
+					try
+					{
+						FileInfo temp = new FileInfo(item);
+						files.Add(temp);
+						usFileTemp x = new usFileTemp(panelListFile, files, temp);
+						this.panelListFile.Controls.Add(x);
+						x.Dock = DockStyle.Left;
+						x._FileName = temp.Name;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message);
+					}
+				}
+				panelListFile.Visible = true;
+			}
+		}
+	}
 }
