@@ -74,8 +74,8 @@
             this.pnPending.Controls.Add(this.picPoint);
             this.pnPending.Controls.Add(this.btnPending);
             this.pnPending.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnPending.Location = new System.Drawing.Point(371, 0);
-            this.pnPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnPending.Location = new System.Drawing.Point(269, 0);
+            this.pnPending.Margin = new System.Windows.Forms.Padding(2);
             this.pnPending.Name = "pnPending";
             this.pnPending.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.pnPending.Size = new System.Drawing.Size(167, 53);
@@ -117,8 +117,8 @@
             this.panelAll.BackColor = System.Drawing.Color.Transparent;
             this.panelAll.Controls.Add(this.btnPeople);
             this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelAll.Location = new System.Drawing.Point(238, 0);
-            this.panelAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelAll.Location = new System.Drawing.Point(169, 0);
+            this.panelAll.Margin = new System.Windows.Forms.Padding(2);
             this.panelAll.Name = "panelAll";
             this.panelAll.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.panelAll.Size = new System.Drawing.Size(133, 53);
@@ -148,8 +148,9 @@
             this.panelOnline.BackColor = System.Drawing.Color.Transparent;
             this.panelOnline.Controls.Add(this.btnOnline);
             this.panelOnline.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelOnline.Location = new System.Drawing.Point(109, 0);
-            this.panelOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelOnline.Location = new System.Drawing.Point(72, 0);
+            this.panelOnline.Margin = new System.Windows.Forms.Padding(2);
+
             this.panelOnline.Name = "panelOnline";
             this.panelOnline.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.panelOnline.Size = new System.Drawing.Size(129, 53);
@@ -182,8 +183,8 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-            this.panel2.Size = new System.Drawing.Size(109, 53);
+            this.panel2.Padding = new System.Windows.Forms.Padding(15, 8, 15, 8);
+            this.panel2.Size = new System.Drawing.Size(72, 43);
             this.panel2.TabIndex = 0;
             // 
             // pictureBox1
@@ -194,7 +195,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(20, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(69, 33);
+            this.pictureBox1.Size = new System.Drawing.Size(42, 27);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;

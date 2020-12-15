@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Network;
 
 namespace UI
 {
@@ -59,7 +60,7 @@ namespace UI
 		}
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
-			if (txtCreate.Text != "" || txtCreate.Text != null)
+			if (txtCreate.Text != "" && txtCreate.Text != null)
 			{
 				if (txtCreate.Text.Length > 32)
 				{
@@ -67,7 +68,11 @@ namespace UI
 					return;
 				}
 				byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}",txtCreate.Text , Form1.me.Id));
-				btnCreate.Enabled = false;
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+
+				this.txtCreate.Text = "";
+				//btnCreate.Enabled = false;
 			}
 		}
 	}
