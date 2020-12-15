@@ -14,13 +14,11 @@ namespace UI
 		DirectSoundOut player;
 		WaveIn wave;
 		private int deviceNumber;
-		public int nextID;
-		public string Path = @"..\voice_mess\";
+		public string Path = @"..\..\voice_mess\";
 
 		public VoiceControl()
 		{
 			deviceNumber = 0;
-			nextID = 0;
 		}
 		public VoiceControl(User user)
 		{
@@ -30,7 +28,6 @@ namespace UI
 			Path += string.Format(@"{0}\", user.Id);
 			if (!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
-			nextID = GetNextID();
 		}
 		public VoiceControl(Group group)
 		{
@@ -40,7 +37,6 @@ namespace UI
 			Path += string.Format(@"G{0}\", group.ID);
 			if (!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
-			nextID = GetNextID();
 		}
 
 		public WaveIn GetWave() => wave;
@@ -79,15 +75,15 @@ namespace UI
 			if (wave == null) return;
 			wave.StopRecording();
 		}
-		public void PlayRecording(int id)
+		public void PlayRecording(string path)
 		{
 			DisposeAll();
-			reader = new WaveFileReader(string.Format("{0}{1}.wav", Path, id));
+			reader = new WaveFileReader(path);
 			player = new DirectSoundOut();
 			player.Init(new WaveChannel32(reader));
 			player.Play();
 		}
-		private void DisposeAll()
+		public void DisposeAll()
 		{
 			if (reader != null)
 				reader.Dispose();
@@ -97,14 +93,14 @@ namespace UI
 				player.Dispose();
 		}
 
-		private int GetNextID()
+		public string GetNextPath()
 		{
 			int id = 0;
 			while (true)
 			{
 				string temp = string.Format(@"{0}{1}.wav", Path, id);
 				if (!File.Exists(temp))
-					return id;
+					return temp;
 				id++;
 			}
 		}

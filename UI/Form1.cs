@@ -86,9 +86,9 @@ namespace UI
 			frmADD = new frmADD(this);
 			LoadGroupData();
 			
-			if (Theme == "Black" ) ChangeTheme();
+			if (Theme == "Black") ChangeTheme();
 			AwaitReadData();
-
+			this.SizeChanged += new EventHandler(Form1_SizeChanged);
 		}
 		public void InitSettingForm()
 		{
@@ -611,6 +611,28 @@ namespace UI
 						}
 					}
 				}
+				else if (package.Style == "V")
+				{
+					foreach (var item in listAwaitPackage)
+					{
+						if(package.ID == item.IDpackage)
+                        {
+							if (item.Ack + package.Data.Length > item.Length)
+							{
+								byte[] tempBuffer = new byte[item.Length - item.Ack];
+								Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
+								package.Data = new byte[item.Length - item.Ack];
+								tempBuffer.CopyTo(package.Data, 0);
+							}
+							package.Data.CopyTo(item.Data, item.Ack);
+							item.Ack = item.Ack + package.Data.Length;
+							if(item.Ack == item.Length)
+                            {
+								
+                            }
+						}
+					}
+				}
 			}
 		}
 		public void SetAvatar(string path)
@@ -704,11 +726,11 @@ namespace UI
 			this.UcGroup.BringToFront();
 			this.UcGroup._LoadGroup();
 		}
-		private void Form1_SizeChanged(object sender, EventArgs e)
-		{
-			this.AddToGroup.ReLocation();
-		}
-		private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            this.AddToGroup.ReLocation();
+        }
+        private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
 		{
 			try
 			{
