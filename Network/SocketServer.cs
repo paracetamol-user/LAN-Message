@@ -30,7 +30,7 @@ namespace Communication
 
 		// Database of K
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @"Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;";
+		string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -1196,7 +1196,6 @@ namespace Communication
 										// Gửi 1 file tạm gồm tên file và id của file về cho người nhận
 										listAwaitPackage.Remove(item);
 									}
-
 								}
 								break;
 							}
@@ -1233,6 +1232,35 @@ namespace Communication
 								}
 							}
 						}
+					}
+					else if (package.Style == "V")
+                    {
+						foreach (var item in listAwaitPackage)
+                        {
+							if (package.ID == item.IDpackage)
+							{
+								if (item.Ack + package.Data.Length > item.Length)
+								{
+									byte[] tempBuff = new byte[item.Length - item.Ack];
+									Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
+									package.Data = new byte[item.Length - item.Ack];
+									tempBuff.CopyTo(package.Data, 0);
+								}
+								package.Data.CopyTo(item.Data, item.Ack);
+								item.Ack = item.Ack + package.Data.Length;
+								if (item.Ack == item.Length)
+								{
+									if (item.isPrivate)
+									{
+										Guid IDMessage = Guid.NewGuid();
+										byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
+										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "V", tempBuff, "0");
+										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+									}
+								}
+							}
+						}
+
 					}
 					System.Diagnostics.Debug.WriteLine("Received message: " + (Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')));
 					OnRaiseTextREceivedEvent(new TextReceivedEventArgs(

@@ -26,6 +26,7 @@ namespace UI
 		private List<FileInfo> files;
 		private short LastInteracted;
 		public ucUserINChatBox messageFocus;
+		public ucVoicePanel voicePanel;
 		public UserUI userUI;
 		public UserForm()
 		{
@@ -47,8 +48,19 @@ namespace UI
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
 			InitUserForm();
+			voicePanel = new ucVoicePanel(user, this);
+			this.Controls.Add(voicePanel);
+            this.SizeChanged += UserForm_SizeChanged;
 		}
-		public void ResetPicture()
+
+        private void UserForm_SizeChanged(object sender, EventArgs e)
+        {
+			Point point = panel2.Location;
+			voicePanel.Location = new Point(point.X - voicePanel.Width / 2,
+											this.Height - 70 - voicePanel.Height);
+		}
+
+        public void ResetPicture()
 		{
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
@@ -186,7 +198,7 @@ namespace UI
 														+ id.ToString() +"%" + "Private");
 				SmallPackage smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				Form1.server.GetStream().WriteAsync(smallpackage.Packing(), 0, smallpackage.Packing().Length);
-				await Form1.client.SendFileToServer(data, "F", id.ToString()) ;
+				await Form1.client.SendFileToServer(data, "F", id.ToString());
 			}
 			this.files.Clear();
 			this.panelListFile.Controls.Clear();
@@ -258,6 +270,26 @@ namespace UI
 			}
 
 		}
-   
+
+		private bool isShow;
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+			if (!isShow)
+			{
+				voicePanel.Visible = true;
+				voicePanel.Show();
+				voicePanel.BringToFront();
+				isShow = true;
+			}
+			else
+			{
+				voicePanel.Visible = false;
+				isShow = false;
+			}
+		}
+		public void AddVoiceMessage(ucVoiceMessage voiceMessage)
+        {
+			this.panelListChat.Controls.Add(voiceMessage);
+        }
     }
 }
