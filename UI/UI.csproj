@@ -37,6 +37,9 @@
       <HintPath>..\LAN_Message\packages\Guna.UI2.WinForms.2.0.1.2\lib\net40\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\LAN_Message\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -205,6 +208,18 @@
     <Compile Include="ucUserOnline.Designer.cs">
       <DependentUpon>ucUserOnline.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucVoiceMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucVoiceMessage.Designer.cs">
+      <DependentUpon>ucVoiceMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucVoicePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucVoicePanel.Designer.cs">
+      <DependentUpon>ucVoicePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="usFileTemp.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -231,6 +246,7 @@
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserUI.cs" />
+    <Compile Include="VoiceControl.cs" />
     <EmbeddedResource Include="AddFriendForm.resx">
       <DependentUpon>AddFriendForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserOnline.resx">
       <DependentUpon>ucUserOnline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucVoiceMessage.resx">
+      <DependentUpon>ucVoiceMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucVoicePanel.resx">
+      <DependentUpon>ucVoicePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="usFileTemp.resx">
       <DependentUpon>usFileTemp.cs</DependentUpon>
