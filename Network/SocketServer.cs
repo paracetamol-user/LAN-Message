@@ -1021,6 +1021,39 @@ namespace Communication
 					subConnect.Close();
 				}
             }
+			else if (data[0] == "LOADCONTACTBOOK")
+			{
+				String findContactBook = "select * from contactbook where iduser = @id";
+				string message = "LOADCONTACTBOOK";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(findContactBook, connection);
+				command.Parameters.AddWithValue("@id", client.id_);
+				reader = command.ExecuteReader();
+				while (reader.HasRows)
+				{
+					if (!reader.Read()) break;
+					string IDContact = reader.GetString(0);
+					string NameContact = reader.GetString(1);
+					message = message + "%" + IDContact + "•" + NameContact;
+					SqlConnection subConnection = new SqlConnection(connString);
+					subConnection.Open();
+					SqlCommand subCommand= new SqlCommand("SELECT * FROM CONTACTMEMBER WHERE ID = @idcontact", subConnection);
+					subCommand.Parameters.AddWithValue("@idcontact", IDContact);
+					SqlDataReader subReader = subCommand.ExecuteReader();
+					while (subReader.HasRows)
+					{
+						if (!subReader.Read()) break;
+						message += "•" + subReader.GetString(1);
+					}
+					subConnection.Close();
+				}
+				connection.Close();
+
+				byte[] tempBuffer = Encoding.UTF8.GetBytes(message);
+				packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+				client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)
 		{
