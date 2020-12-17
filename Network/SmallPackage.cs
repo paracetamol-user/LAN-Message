@@ -19,7 +19,6 @@ namespace Network
 		}
 		public SmallPackage(int seq, int length, string style, byte[] data, string id)
 		{
-
 			this.Seq = seq;
 			this.Length = length;
 			this.Style = style;

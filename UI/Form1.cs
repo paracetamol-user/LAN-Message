@@ -570,14 +570,14 @@ namespace UI
 						MessageBox.Show("Create Group successfully!", "Create Group", MessageBoxButtons.OK);
 					}
 					else if (action == "CHANGEHOST")
-                    {
+					{
 						string IDgr = data[1];
 						string newHost = data[2];
 
-                        foreach (var item in GroupUIs)
-                        {
+						foreach (var item in GroupUIs)
+						{
 							if (item.group.ID == data[1])
-                            {
+							{
 								if (me.Id == data[2])
 								{
 									item.group.admin = me;
@@ -587,9 +587,15 @@ namespace UI
 									item.group.ChangeHost(newHost);
 								}
 								break;
-                            }
-                        }
-                    }
+							}
+						}
+					}
+					else if (action == "VOICE")
+					{
+						Package awaitPackage = new Package(data[1], Form1.me.Id, 0, int.Parse(data[2]), "V", "NULL", 
+														".wav", data[3], true);
+						listAwaitPackage.Add(awaitPackage);
+					}
 				}
 				else if (package.Style == "F")
 				{
@@ -663,7 +669,7 @@ namespace UI
 					foreach (var item in listAwaitPackage)
 					{
 						if(package.ID == item.IDpackage)
-                        {
+						{
 							if (item.Ack + package.Data.Length > item.Length)
 							{
 								byte[] tempBuffer = new byte[item.Length - item.Ack];
@@ -674,9 +680,24 @@ namespace UI
 							package.Data.CopyTo(item.Data, item.Ack);
 							item.Ack = item.Ack + package.Data.Length;
 							if(item.Ack == item.Length)
-                            {
-
-                            }
+							{
+                                if (item.isPrivate)
+                                {
+									foreach(var userUI in UserUIs)
+                                    {
+										if(userUI.user.Id == item.IDsend)
+                                        {
+											string path = string.Format(@"..\..\voice_mess\{0}\", item.IDsend);
+											if (!Directory.Exists(path))
+												Directory.CreateDirectory(path);
+											path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
+											File.WriteAllBytes(path, item.Data);
+											userUI.userForm.AddVoiceMessage(userUI.user, path);
+											break;
+                                        }
+                                    }
+                                }
+							}
 						}
 					}
 				}
@@ -773,11 +794,11 @@ namespace UI
 			this.UcGroup.BringToFront();
 			this.UcGroup._LoadGroup();
 		}
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
-            this.AddToGroup.ReLocation();
-        }
-        private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
+		private void Form1_SizeChanged(object sender, EventArgs e)
+		{
+			this.AddToGroup.ReLocation();
+		}
+		private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
 		{
 			try
 			{
@@ -799,5 +820,16 @@ namespace UI
 				btnServer.BackColor = Color.Transparent;
 			}
 		}
+		private int GetIDForIncomingVoice(string path)
+        {
+			int id = 0;
+            while (true)
+            {
+				string temp = string.Format("{0}{1}.wav", path, id);
+				if (!File.Exists(temp))
+					return id;
+				id++;
+            }
+        }
 	}
 }

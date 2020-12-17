@@ -55,9 +55,9 @@ namespace UI
 
         private void UserForm_SizeChanged(object sender, EventArgs e)
         {
-			Point point = panel2.Location;
-			voicePanel.Location = new Point(point.X - voicePanel.Width / 2,
-											this.Height - 70 - voicePanel.Height);
+			Point point = panel4.Location;
+			voicePanel.Location = new Point(point.X - voicePanel.Width / 2 + 10,
+											this.Height - 50 - voicePanel.Height);
 		}
 
         public void ResetPicture()
@@ -113,7 +113,7 @@ namespace UI
 			if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
-				
+
 			UserInChatBox._AddFileControl(fileshow);
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
@@ -219,10 +219,25 @@ namespace UI
 
 		private bool isShow;
 
-		public void AddVoiceMessage(ucVoiceMessage voiceMessage)
+		public void AddVoiceMessage(User _user, string path)
         {
-			this.panelListChat.Controls.Add(voiceMessage);
-        }
+			Panel tempPanel = new Panel();
+			tempPanel.AutoSize = false;
+			tempPanel.Dock = DockStyle.Top;
+
+			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, this.user.Id);
+			userINChatBox.DisableEdit();
+			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
+			voiceMessage.Path = path;
+			voiceMessage.Dock = DockStyle.Top;
+			userINChatBox.Dock = DockStyle.Top;
+
+			userINChatBox._AddVoiceMessage(voiceMessage);
+			tempPanel.Controls.Add(userINChatBox);
+			this.panelListChat.Controls.Add(tempPanel);
+			userINChatBox.InitColor();
+			// voiceMessage.InitColor();
+		}
 
 		private void pictureVoice_Click(object sender, EventArgs e)
 		{
@@ -296,5 +311,5 @@ namespace UI
 			await SendFile();
 			await SendMessage();
 		}
-	}
+    }
 }

@@ -30,7 +30,7 @@ namespace Communication
 
 		// Database of K
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @"Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;";
+		string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -319,7 +319,8 @@ namespace Communication
 
 				}
 			}
-			else if (data[0] == "STARTSENDFILE")// STARTSENDFILE <ID gửi> <ID Nhận> <chiều dài file> <file name> <extension file> <nhan group hay nhan private>
+			else if (data[0] == "STARTSENDFILE")
+			// STARTSENDFILE <ID gửi> <ID Nhận> <chiều dài file> <file name> <extension file> <nhan group hay nhan private>
 			{
 				Package awaitPackage = new Package(client.id_, data[1], 0, int.Parse(data[2]),
 									"F", data[3], data[4], data[5],
@@ -1021,6 +1022,13 @@ namespace Communication
 					subConnect.Close();
 				}
             }
+			else if (data[0] == "STARTSENDVOICE")
+			// STARTSENDVOICE <ID send> <ID receive> <data length> <filename = IDsend> <.wav> <nhan group hay nhan private>
+            {
+				Package awaitPackage = new Package(client.id_, data[1], 0, int.Parse(data[2]), "V", client.id_, ".wav", data[3],
+													data[4] == "Private" ? true : false);
+				listAwaitPackage.Add(awaitPackage);
+            }
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)
 		{
@@ -1253,10 +1261,20 @@ namespace Communication
 									if (item.isPrivate)
 									{
 										Guid IDMessage = Guid.NewGuid();
-										byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
-										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "V", tempBuff, "0");
-										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-									}
+										foreach (var item2 in clientInvalid)
+										{
+											if(item2.id_ == item.IDreceive)
+                                            {
+												byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
+																										item.IDsend, item.Length, IDMessage));
+												SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
+												item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+												await SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
+												break;
+											}
+										}
+										
+                                    }
 								}
 							}
 						}
