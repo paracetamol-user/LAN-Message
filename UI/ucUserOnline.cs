@@ -54,7 +54,7 @@ namespace UI
         }
 		public void SetAvatar(string path)
         {
-			this.gunaPic.Image = Image.FromFile(path);
+			//this.gunaPic.Image = Image.FromFile(path);
         }
 		public void ChangeColorWhenFocus()
         {

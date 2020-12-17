@@ -61,7 +61,7 @@ namespace UI
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.labelID.ForeColor = Form1.theme.TextMenuColor;
 			this.BackColor = Form1.theme.BackColor;
-			this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
+			//this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
 			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);

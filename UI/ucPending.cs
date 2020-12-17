@@ -27,7 +27,7 @@ namespace UI
 			this.Dock = DockStyle.Top;
 			this.pnParent = pnPending;
 			this.uiParent = userUI;
-			this.gunaPic.Image = Image.FromFile(uiParent.user.AvatarPath);
+			//this.gunaPic.Image = Image.FromFile(uiParent.user.AvatarPath);
 			this.lbName.Text = uiParent.user.Name;
 			this.lbId.Text = uiParent.user.Id;
 		}

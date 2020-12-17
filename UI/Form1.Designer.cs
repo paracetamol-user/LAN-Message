@@ -44,29 +44,27 @@
 			this.pnLine3 = new System.Windows.Forms.Panel();
 			this.btnFriend = new System.Windows.Forms.Button();
 			this.panelOPTION = new System.Windows.Forms.Panel();
-			this.panelOPTIONNULL = new System.Windows.Forms.Panel();
-			this.panelInfo = new System.Windows.Forms.Panel();
-			this.labelID = new System.Windows.Forms.Label();
-			this.labelUSERNAME = new System.Windows.Forms.Label();
 			this.panelPICTUREOPTION = new System.Windows.Forms.Panel();
 			this.pictureBoxSetting = new System.Windows.Forms.PictureBox();
-			this.Avatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
 			this.pnLine = new System.Windows.Forms.Panel();
 			this.panelServer = new System.Windows.Forms.Panel();
 			this.picNotification = new System.Windows.Forms.PictureBox();
 			this.btnServer = new System.Windows.Forms.Button();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.panelInfo = new System.Windows.Forms.Panel();
+			this.labelID = new System.Windows.Forms.Label();
+			this.labelUSERNAME = new System.Windows.Forms.Label();
 			this.pnContainAll.SuspendLayout();
 			this.panelMenu.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panelOPTION.SuspendLayout();
-			this.panelInfo.SuspendLayout();
 			this.panelPICTUREOPTION.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
 			this.panelServer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picNotification)).BeginInit();
+			this.panelInfo.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnContainAll
@@ -253,63 +251,15 @@
 			// panelOPTION
 			// 
 			this.panelOPTION.BackColor = System.Drawing.Color.Transparent;
-			this.panelOPTION.Controls.Add(this.panelOPTIONNULL);
 			this.panelOPTION.Controls.Add(this.panelInfo);
+			this.panelOPTION.Controls.Add(this.panel3);
 			this.panelOPTION.Controls.Add(this.panelPICTUREOPTION);
-			this.panelOPTION.Controls.Add(this.Avatar);
 			this.panelOPTION.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panelOPTION.Location = new System.Drawing.Point(0, 450);
 			this.panelOPTION.Name = "panelOPTION";
 			this.panelOPTION.Padding = new System.Windows.Forms.Padding(12, 6, 0, 6);
 			this.panelOPTION.Size = new System.Drawing.Size(226, 57);
 			this.panelOPTION.TabIndex = 2;
-			// 
-			// panelOPTIONNULL
-			// 
-			this.panelOPTIONNULL.BackColor = System.Drawing.Color.Transparent;
-			this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelOPTIONNULL.Location = new System.Drawing.Point(170, 6);
-			this.panelOPTIONNULL.Name = "panelOPTIONNULL";
-			this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(6);
-			this.panelOPTIONNULL.Size = new System.Drawing.Size(6, 45);
-			this.panelOPTIONNULL.TabIndex = 3;
-			// 
-			// panelInfo
-			// 
-			this.panelInfo.BackColor = System.Drawing.Color.Transparent;
-			this.panelInfo.Controls.Add(this.labelID);
-			this.panelInfo.Controls.Add(this.labelUSERNAME);
-			this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.panelInfo.Location = new System.Drawing.Point(54, 6);
-			this.panelInfo.Name = "panelInfo";
-			this.panelInfo.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-			this.panelInfo.Size = new System.Drawing.Size(116, 45);
-			this.panelInfo.TabIndex = 2;
-			// 
-			// labelID
-			// 
-			this.labelID.AutoSize = true;
-			this.labelID.BackColor = System.Drawing.Color.Transparent;
-			this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelID.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelID.Location = new System.Drawing.Point(6, 17);
-			this.labelID.Name = "labelID";
-			this.labelID.Size = new System.Drawing.Size(57, 19);
-			this.labelID.TabIndex = 1;
-			this.labelID.Text = "#0040";
-			// 
-			// labelUSERNAME
-			// 
-			this.labelUSERNAME.AutoEllipsis = true;
-			this.labelUSERNAME.AutoSize = true;
-			this.labelUSERNAME.BackColor = System.Drawing.Color.Transparent;
-			this.labelUSERNAME.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelUSERNAME.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelUSERNAME.Location = new System.Drawing.Point(6, 0);
-			this.labelUSERNAME.Name = "labelUSERNAME";
-			this.labelUSERNAME.Size = new System.Drawing.Size(82, 17);
-			this.labelUSERNAME.TabIndex = 0;
-			this.labelUSERNAME.Text = "User Name";
 			// 
 			// panelPICTUREOPTION
 			// 
@@ -335,21 +285,6 @@
 			this.pictureBoxSetting.TabIndex = 2;
 			this.pictureBoxSetting.TabStop = false;
 			this.pictureBoxSetting.Click += new System.EventHandler(this.pictureBoxSetting_Click);
-			// 
-			// Avatar
-			// 
-			this.Avatar.BackColor = System.Drawing.Color.Transparent;
-			this.Avatar.Dock = System.Windows.Forms.DockStyle.Left;
-			this.Avatar.Image = ((System.Drawing.Image)(resources.GetObject("Avatar.Image")));
-			this.Avatar.Location = new System.Drawing.Point(12, 6);
-			this.Avatar.Name = "Avatar";
-			this.Avatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-			this.Avatar.ShadowDecoration.Parent = this.Avatar;
-			this.Avatar.Size = new System.Drawing.Size(42, 45);
-			this.Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.Avatar.TabIndex = 0;
-			this.Avatar.TabStop = false;
-			this.Avatar.UseTransparentBackground = true;
 			// 
 			// pnLine
 			// 
@@ -405,6 +340,51 @@
 			this.btnServer.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
 			this.btnServer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelRIGHT_MouseMove);
 			// 
+			// panel3
+			// 
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+			this.panel3.Location = new System.Drawing.Point(12, 6);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(48, 45);
+			this.panel3.TabIndex = 2;
+			// 
+			// panelInfo
+			// 
+			this.panelInfo.BackColor = System.Drawing.Color.Transparent;
+			this.panelInfo.Controls.Add(this.labelID);
+			this.panelInfo.Controls.Add(this.labelUSERNAME);
+			this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.panelInfo.Location = new System.Drawing.Point(60, 6);
+			this.panelInfo.Name = "panelInfo";
+			this.panelInfo.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+			this.panelInfo.Size = new System.Drawing.Size(110, 45);
+			this.panelInfo.TabIndex = 3;
+			// 
+			// labelID
+			// 
+			this.labelID.AutoSize = true;
+			this.labelID.BackColor = System.Drawing.Color.Transparent;
+			this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelID.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelID.Location = new System.Drawing.Point(6, 17);
+			this.labelID.Name = "labelID";
+			this.labelID.Size = new System.Drawing.Size(57, 19);
+			this.labelID.TabIndex = 1;
+			this.labelID.Text = "#0040";
+			// 
+			// labelUSERNAME
+			// 
+			this.labelUSERNAME.AutoEllipsis = true;
+			this.labelUSERNAME.AutoSize = true;
+			this.labelUSERNAME.BackColor = System.Drawing.Color.Transparent;
+			this.labelUSERNAME.Dock = System.Windows.Forms.DockStyle.Top;
+			this.labelUSERNAME.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelUSERNAME.Location = new System.Drawing.Point(6, 0);
+			this.labelUSERNAME.Name = "labelUSERNAME";
+			this.labelUSERNAME.Size = new System.Drawing.Size(82, 17);
+			this.labelUSERNAME.TabIndex = 0;
+			this.labelUSERNAME.Text = "User Name";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,13 +403,12 @@
 			this.panel2.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panelOPTION.ResumeLayout(false);
-			this.panelInfo.ResumeLayout(false);
-			this.panelInfo.PerformLayout();
 			this.panelPICTUREOPTION.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.Avatar)).EndInit();
 			this.panelServer.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.picNotification)).EndInit();
+			this.panelInfo.ResumeLayout(false);
+			this.panelInfo.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -442,13 +421,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnFriend;
         private System.Windows.Forms.Panel panelOPTION;
-        private System.Windows.Forms.Panel panelOPTIONNULL;
-        private System.Windows.Forms.Panel panelInfo;
-        private System.Windows.Forms.Label labelID;
-        private System.Windows.Forms.Label labelUSERNAME;
         private System.Windows.Forms.Panel panelPICTUREOPTION;
         private System.Windows.Forms.PictureBox pictureBoxSetting;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox Avatar;
         private System.Windows.Forms.Panel pnLine;
         private System.Windows.Forms.Panel panelServer;
         private System.Windows.Forms.Panel panelRIGHT;
@@ -462,6 +436,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnLine4;
         private System.Windows.Forms.Button btnGroup;
-    }
+		private System.Windows.Forms.Panel panelInfo;
+		private System.Windows.Forms.Label labelID;
+		private System.Windows.Forms.Label labelUSERNAME;
+		private System.Windows.Forms.Panel panel3;
+	}
 }
 

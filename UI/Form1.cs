@@ -194,7 +194,7 @@ namespace UI
 		}
 		public void LoadUser()
 		{
-			this.Avatar.Image = Image.FromFile(me.AvatarPath);
+			//this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
 			this.labelID.Text = me.Id;
 		}
@@ -613,12 +613,12 @@ namespace UI
 									item.group.ChangeHost(newHost);
 								}
 								break;
-                            }
-                        }
-                    }
+							}
+						}
+					}
 					else if (action == "CREATECBERRORNAME")
 					{
-						MessageBox.Show("Contact name has exists!","Erorr Create Contact", MessageBoxButtons.OK);
+						MessageBox.Show("Contact name has exists!", "Erorr Create Contact", MessageBoxButtons.OK);
 					}
 					else if (action == "CREATECBSUCCES")
 					{
@@ -628,8 +628,7 @@ namespace UI
 					{
 						ContactBook newContactBook = new ContactBook(data[1], data[2]);
 						frmContactBook._AddContactBook(newContactBook);
-							}
-						}
+
 					}
 					else if (action == "VOICE")
 					{

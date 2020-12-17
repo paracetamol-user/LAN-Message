@@ -49,7 +49,7 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-			gunaPic.Image = Image.FromFile(path);
+			//gunaPic.Image = Image.FromFile(path);
 		}
 
         private void ucUserAll_Click(object sender, EventArgs e)
