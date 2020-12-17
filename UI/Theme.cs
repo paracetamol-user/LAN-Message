@@ -31,6 +31,7 @@ namespace UI
 		private string pictureCheck;
 		public string pictureCircleOnline { get; set; }
 		public string pictureCircleOffline { get; set; }
+		public string pictureAdd { get; set; }
 		private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -259,6 +260,7 @@ namespace UI
 				this.pictureCheck = value;
 			}
 		}
+		public string PictureMinus { get; set; }
 		public bool IsWhite
 		{
 			get
@@ -295,6 +297,8 @@ namespace UI
 			pictureCheck = @"..\..\images\checked-black.png";
 			pictureCircleOnline = @"..\..\images\circle-blue.png";
 			pictureCircleOffline = @"..\..\images\circle-black.png";
+			pictureAdd = @"..\..\images\add-black.png";
+			PictureMinus = @"..\..\images\minus-black.png";
 		}
 		public void Black()
 		{
@@ -319,7 +323,9 @@ namespace UI
 			pictureClose = @"..\..\images\close-white.png";
 			pictureCheck = @"..\..\images\checked-white.png";
 			pictureCircleOnline = @"..\..\images\circle-blue.png";
-			pictureCircleOffline = @"..\..\images\circle-black.png";
+			pictureCircleOffline = @"..\..\images\circle-black.png"; 
+			pictureAdd = @"..\..\images\add-white.png";
+			PictureMinus = @"..\..\images\minus-white.png";
 			this.menu = Color.FromArgb(47, 49, 54);
 		}
 	}

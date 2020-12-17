@@ -44,7 +44,8 @@ namespace UI
 		public ucGroup UcGroup;
 		public AddUserToGroup AddToGroup;
 		public frmADD frmADD;
-
+		public FrmContactBook frmContactBook;
+		public FrmADDMemberToContact frmADDMemberToContact;
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -58,13 +59,6 @@ namespace UI
 		}
 		public Form1(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
-			InitializeComponent();
-			UserUIs = new List<UserUI>();
-			listUser = new List<User>();
-			listMessAwaitID = new List<ucUserINChatBox>();
-			listFileAwaitID = new List<ucUserINChatBox>();
-			GroupUIs = new List<GroupUI>();
-			listGroup = new List<Group>();
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
@@ -75,16 +69,27 @@ namespace UI
 				theme.Black();
 			}
 			else theme.White();
+			InitializeComponent();
+			UserUIs = new List<UserUI>();
+			listUser = new List<User>();
+			listMessAwaitID = new List<ucUserINChatBox>();
+			listFileAwaitID = new List<ucUserINChatBox>();
+			GroupUIs = new List<GroupUI>();
+			listGroup = new List<Group>();
+			frmContactBook = new FrmContactBook(this);
+			UcGroup = new ucGroup(this, GroupUIs);
+			AddToGroup = new AddUserToGroup(this);
+			frmADD = new frmADD(this);
+			frmADDMemberToContact = new FrmADDMemberToContact(this);
+			
 			me.AvatarPath = @"../../avatarDefault.png";
 			LoadMyData();
 			LoadDataUser();
 			InitServerUsersForm();
 			InitFrmFriend();
 			InitSettingForm();
-			UcGroup = new ucGroup(this, GroupUIs);
-			AddToGroup = new AddUserToGroup(this);
-			frmADD = new frmADD(this);
 			LoadGroupData();
+			LoadContactBook();
 			if (Theme == "Black") ChangeTheme();
 			AwaitReadData();
 			this.SizeChanged += new EventHandler(Form1_SizeChanged);
@@ -104,6 +109,7 @@ namespace UI
 			serverUsersForm.BackColor = theme.BackColor;
 			frmFriend.BackColor = theme.BackColor;
 			settingForm.BackColor = theme.BackColor;
+			frmContactBook._InitControls();
 			ChangeColorAllLabelControls(this);
 			ChangeColorLine();
 			ChangePicture();
@@ -241,6 +247,26 @@ namespace UI
 							}
 						}
 						serverUsersForm.LoadListAllUser();
+					}
+					else if (action == "LOADCONTACTBOOK")
+					{
+						for (int j = 1; j < data.Length; j++)
+						{
+							string[] arr = data[j].Split('•');
+							ContactBook newContactBook = new ContactBook(arr[0], arr[1]);
+							for (int i = 2; i < arr.Length; i++)
+							{
+								foreach (var item3 in listUser)
+								{
+									if (item3.Id == arr[i])
+									{
+										newContactBook._AddMember(item3);
+										break;
+									}
+								}
+							}
+							frmContactBook._AddContactBook(newContactBook);
+						}
 					}
 					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 					{
@@ -590,6 +616,19 @@ namespace UI
                             }
                         }
                     }
+					else if (action == "CREATECBERRORNAME")
+					{
+						MessageBox.Show("Contact name has exists!","Erorr Create Contact", MessageBoxButtons.OK);
+					}
+					else if (action == "CREATECBSUCCES")
+					{
+						MessageBox.Show("Create contact successfully!", "Create Contact", MessageBoxButtons.OK);
+					}
+					else if (action == "NEWCB")
+					{
+						ContactBook newContactBook = new ContactBook(data[1], data[2]);
+						frmContactBook._AddContactBook(newContactBook);
+					}
 				}
 				else if (package.Style == "F")
 				{
@@ -699,6 +738,12 @@ namespace UI
 			SmallPackage packageReceive = new SmallPackage(0, 1024, "M", tempbuff, "0");
 			await server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
+		private async void LoadContactBook()
+		{
+			byte[] tempbuff = Encoding.UTF8.GetBytes("LOADCONTACTBOOK%");
+			SmallPackage packageReceive = new SmallPackage(0, 1024, "M", tempbuff, "0");
+			await server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+		}
 		public static void AddUserIntoFrmFriend(UserUI userUI)
 		{
 			frmFriend.AddUserIntoFrmFriend(userUI);
@@ -798,6 +843,11 @@ namespace UI
 			{
 				btnServer.BackColor = Color.Transparent;
 			}
+		}
+		private void btnPhoneBook_Click(object sender, EventArgs e)
+		{
+			this.frmContactBook.Show();
+			this.frmContactBook.BringToFront();
 		}
 	}
 }
