@@ -28,10 +28,14 @@ namespace UI
 		public ucUserINChatBox messageFocus;
 		public ucVoicePanel voicePanel;
 		public UserUI userUI;
+		public ucInforuser ucInforuser;
+		public List<ucFileShow> listfileShows = new List<ucFileShow>();
 		public UserForm()
 		{
 			InitializeComponent();
 			this.Visible = false;
+			addpnInfor();
+			ucInforuser._LoadInforUser(user, listfileShows);
 		}
 		public UserForm(UserManager.User user , UserUI userUI)
 		{
@@ -51,8 +55,10 @@ namespace UI
 			voicePanel = new ucVoicePanel(user, this);
 			this.Controls.Add(voicePanel);
             this.SizeChanged += UserForm_SizeChanged;
+			addpnInfor();
+			ucInforuser._LoadInforUser(user, listfileShows);
 		}
-
+		
         private void UserForm_SizeChanged(object sender, EventArgs e)
         {
 			Point point = panel2.Location;
@@ -122,6 +128,8 @@ namespace UI
 
 			if (tempID == "-1") Form1.listFileAwaitID.Add(UserInChatBox);// Thêm vào hàng đợi ID file từ server gửi xuống
 			else UserInChatBox.ID = tempID;
+			
+			listfileShows.Add(fileshow);
 		}
 		public void EditMessage(string IDMess, string newMess)
         {
@@ -296,5 +304,53 @@ namespace UI
 			await SendFile();
 			await SendMessage();
 		}
-	}
+		public Panel Pncontaininfor
+		{
+			get
+			{
+				return this.panel1;
+			}
+			set
+			{
+				panel1 = value;
+			}
+		}
+		public Panel PnLine1
+		{
+			get
+			{
+				return this.pnLine1;
+			}
+			set
+			{
+				this.pnLine1 = value;
+			}
+		}
+		public void addpnInfor()
+		{
+			this.ucInforuser = new ucInforuser(this);
+			this.ucInforuser._LoadInforUser(user, listfileShows);
+			this.panel1.Visible = false;
+		}
+		bool isclickmenu = false;
+		public void _clearlistchat()
+		{
+			panelListChat.Controls.Clear();
+		}
+		private void pictureBoxMenu_Click(object sender, EventArgs e)
+        {
+			isclickmenu = !isclickmenu;
+			panel1.AutoScroll = true;
+			if (isclickmenu)
+			{
+				this.ucInforuser._LoadInforUser(user, listfileShows);
+
+				this.panel1.Visible = true;
+			}
+			else
+			{
+				this.panel1.Visible = false;
+			}
+		}
+    }
 }

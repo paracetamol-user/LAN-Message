@@ -30,7 +30,8 @@ namespace Communication
 
 		// Database of K
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @"Data Source=DESKTOP-TSN7OH7;Initial Catalog=LANCHAT;User ID=sa;Password=1;";
+		//Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True
+		string connString = @"Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True";
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -377,7 +378,6 @@ namespace Communication
 				string queryFINDSOURCE = "SELECT * FROM TINNHAN Where MATINNHAN = @id";
 				string FILEID = data[1];
 				string FILENAME = data[2];
-				string ID = data[3];
 				string path = "";
 				connection = new SqlConnection(this.connString);
 				connection.Open();
@@ -389,7 +389,7 @@ namespace Communication
 					if (reader.Read() == false) break;
 					if (reader.GetString(0) == FILEID)
 					{
-						path = reader.GetString(3).ToString();
+						path = reader.GetString(4).ToString();
 						break;
 					}
 				}
@@ -830,7 +830,7 @@ namespace Communication
 				}
 				else
                 {
-					string getID = "";
+					string getID = "G0";
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();

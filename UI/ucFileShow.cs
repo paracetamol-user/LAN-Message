@@ -33,6 +33,13 @@ namespace UI
 			this.fileName = fileName;
 			this._FileName = fileName;
 		}
+		public ucFileShow( string fileId, string fileName)
+		{
+			InitializeComponent();
+			this.fileId = fileId;
+			this.fileName = fileName;
+			this._FileName = fileName;
+		}
 		public void InitColor()
 		{
 			this.label1.ForeColor = Form1.theme.TextColor;
@@ -72,6 +79,10 @@ namespace UI
 		}
 		public User _User
 		{
+            get
+            {
+				return this.user;
+            }
 			set
 			{
 				this.user = value;
@@ -79,7 +90,7 @@ namespace UI
 		}
 		private async void pictureBox2_Click(object sender, EventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text + "%" + user.Id);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text );
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			PictureBox temp = sender as PictureBox;
