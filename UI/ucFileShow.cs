@@ -33,13 +33,7 @@ namespace UI
 			this.fileName = fileName;
 			this._FileName = fileName;
 		}
-		public ucFileShow( string fileId, string fileName)
-		{
-			InitializeComponent();
-			this.fileId = fileId;
-			this.fileName = fileName;
-			this._FileName = fileName;
-		}
+
 		public void InitColor()
 		{
 			this.label1.ForeColor = Form1.theme.TextColor;
