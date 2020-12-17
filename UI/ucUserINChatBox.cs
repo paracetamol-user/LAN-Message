@@ -19,6 +19,7 @@ namespace UI
 		public User User {get;set;}
 		public ucMessShow ucmessshow;
 		public ucFileShow ucfileshow;
+		public ucVoiceMessage ucVoiceMessage;
 		public bool isTurnOnEdit;
 		public bool acceptFocus;
 		public bool isFile;
@@ -68,6 +69,12 @@ namespace UI
 			this.panelAddMessage.Controls.Add(messcontrol);
 			this.ucmessshow = messcontrol;
 		}
+		public void _AddVoiceMessage(ucVoiceMessage voiceMessage)
+        {
+			isFile = false;
+			this.panelAddMessage.Controls.Add(voiceMessage);
+			this.ucVoiceMessage = voiceMessage;
+        }
 		public void _RemoveEditControls(ucEditMessage ucEdit)
 		{
 			this.panelAddMessage.Controls.Remove(ucEdit);

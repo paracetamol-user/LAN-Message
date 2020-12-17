@@ -32,6 +32,7 @@ namespace Communication
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 		//Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True
 		string connString = @"Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True";
+
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
@@ -244,7 +245,7 @@ namespace Communication
 						arr = arr + reader.GetString(1) + "%";
 					}
 					connection.Close();
-					// Lấy tất cả bạn 
+					// Lấy tất cả bạn
 					tempBuff = Encoding.UTF8.GetBytes(arr);
 					packageReceive = new SmallPackage(package.Seq, package.Length, package.Style, tempBuff, "0");
 					buffMessage = packageReceive.Packing();
@@ -320,7 +321,8 @@ namespace Communication
 
 				}
 			}
-			else if (data[0] == "STARTSENDFILE")// STARTSENDFILE <ID gửi> <ID Nhận> <chiều dài file> <file name> <extension file> <nhan group hay nhan private>
+			else if (data[0] == "STARTSENDFILE")
+			// STARTSENDFILE <ID gửi> <ID Nhận> <chiều dài file> <file name> <extension file> <nhan group hay nhan private>
 			{
 				Package awaitPackage = new Package(client.id_, data[1], 0, int.Parse(data[2]),
 									"F", data[3], data[4], data[5],
@@ -716,18 +718,18 @@ namespace Communication
 					command.Parameters.AddWithValue("@id", data[1]);
 					reader = command.ExecuteReader();
 					string temp = "";
-                    while (reader.HasRows)
-                    {
+					while (reader.HasRows)
+					{
 						if (!reader.Read()) break;
 						temp = reader.GetString(0);
-                    }
+					}
 					string message = string.Format("GROUPDATA%{0}•{1}•{2}", data[1], data[2] , temp);
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(query, connection);
 					command.Parameters.AddWithValue("@id", data[1]);
 					reader = command.ExecuteReader();
-					// id_1 + name_1 + ... 
+					// id_1 + name_1 + ...
 					while (reader.HasRows)
 					{
 						if (!reader.Read()) break;
@@ -837,11 +839,11 @@ namespace Communication
 					command = new SqlCommand("Select IDNHOM from groups order by IDNHOM DESC", connection);
 					reader = command.ExecuteReader();
 					while (reader.HasRows)
-                    {
+					{
 						if (!reader.Read()) break;
 						getID = reader.GetString(0);
 						break;
-                    }
+					}
 					connection.Close();
 					string temp = getID.Substring(1, getID.Length - 1);
 					connection = new SqlConnection(connString);
@@ -872,14 +874,14 @@ namespace Communication
 				}
 			}
 			else if (data[0] == "OUTGR")
-            {
+			{
 				string IDGR = data[1];
 				string IDMember = client.id_;
 				bool isHost = bool.Parse(data[2]);
 				SqlConnection subconnection;
 				SqlCommand subcommand;
 				SqlDataReader subReader;
-			
+
 				if (isHost)
 				{
 					string newHost = "";
@@ -891,21 +893,21 @@ namespace Communication
 					var count = (int)command.ExecuteScalar();
 					if (count > 1)
 					{
-						
+
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
 						subcommand = new SqlCommand("select IDUSERS from MEMBER where IDNHOM = @id", subconnection);
 						subcommand.Parameters.AddWithValue("@id", IDGR);
 						subReader = subcommand.ExecuteReader();
 						while (subReader.HasRows)
-                        {
+						{
 							if (!subReader.Read()) break;
 							if (subReader.GetString(0) != client.id_)
-                            {
+							{
 								newHost = subReader.GetString(0);
 								break;
-                            } 
-                        }
+							}
+						}
 						subconnection.Close();
 						// tìm thằng đầu tiên khác host
 
@@ -926,19 +928,19 @@ namespace Communication
 						while (subReader.HasRows)
 						{
 							if (!subReader.Read()) break;
-                            foreach (var item in clientInvalid)
-                            {
+							foreach (var item in clientInvalid)
+							{
 								if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
-                                {
+								{
 									byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("CHANGEHOST%{0}%{1}", IDGR, newHost));
 									packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 									item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 								}
-                            }
-						}				
+							}
+						}
 						subconnection.Close();
 						// thông báo về cho các client là có host mới
-						
+
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
 						subcommand = new SqlCommand("delete from member where IDNHOM = @idnhom and IDUSERS = @iduser", subconnection);
@@ -986,10 +988,10 @@ namespace Communication
 						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
 						subcommand.ExecuteNonQuery();
 						subconnection.Close();
-					}	
+					}
 				}
 				else
-                {
+				{
 					string queryRemoveMember = "delete from member where IDUSERS = @id and IDNHOM = @idnhom";
 					subconnection = new SqlConnection(connString);
 					subconnection.Open();
@@ -1008,15 +1010,15 @@ namespace Communication
 					while (subReader.HasRows)
 					{
 						if (!subReader.Read()) break;
-                        foreach (var item in clientInvalid)
-                        {
+						foreach (var item in clientInvalid)
+						{
 							if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
-                            {
+							{
 								byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("OUTGR%{0}%{1}",IDGR,IDMember));
 								packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 								item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 							}
-                        }
+						}
 					}
 					subConnect.Close();
 				}
@@ -1148,6 +1150,13 @@ namespace Communication
 				command.Parameters.AddWithValue("@IDContact", IDContact);
 				command.ExecuteNonQuery();
 				connection.Close();
+			}
+			else if (data[0] == "STARTSENDVOICE")
+			// STARTSENDVOICE <ID send> <ID receive> <data length> <filename = IDsend> <.wav> <nhan group hay nhan private>
+			{
+				Package awaitPackage = new Package(client.id_, data[1], 0, int.Parse(data[2]), "V", client.id_, ".wav", data[3],
+													data[4] == "Private" ? true : false);
+				listAwaitPackage.Add(awaitPackage);
 			}
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)
@@ -1362,9 +1371,9 @@ namespace Communication
 						}
 					}
 					else if (package.Style == "V")
-                    {
+					{
 						foreach (var item in listAwaitPackage)
-                        {
+						{
 							if (package.ID == item.IDpackage)
 							{
 								if (item.Ack + package.Data.Length > item.Length)
@@ -1381,9 +1390,52 @@ namespace Communication
 									if (item.isPrivate)
 									{
 										Guid IDMessage = Guid.NewGuid();
-										byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
-										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "V", tempBuff, "0");
-										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+										foreach (var item2 in clientInvalid)
+										{
+											if(item2.id_ == item.IDreceive)
+											{
+												byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
+																										item.IDsend, item.Length, IDMessage));
+												SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
+												item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+												SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
+												break;
+											}
+										}
+									}
+									else
+									{
+										Guid IDMessage = Guid.NewGuid();
+										string query = "select USERS.ID " +
+											"from MEMBER, USERS " +
+											"where MEMBER.IDUSERS = USERS.ID " +
+											"and MEMBER.IDNHOM = @id";
+
+										byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
+																						item.IDsend, item.IDreceive, item.Length, IDMessage));
+										SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
+
+										connection = new SqlConnection(connString);
+										connection.Open();
+										command = new SqlCommand(query, connection);
+										command.Parameters.AddWithValue("@id", item.IDreceive);
+										reader = command.ExecuteReader();
+
+										while (reader.HasRows)
+										{
+											if (!reader.Read()) break;
+											if (reader.GetString(0) == item.IDsend) continue;
+											foreach(var item2 in clientInvalid)
+											{
+												if(item2.id_ == reader.GetString(0))
+												{
+													item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+													SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
+													break;
+												}
+											}
+										}
+										connection.Close();
 									}
 								}
 							}

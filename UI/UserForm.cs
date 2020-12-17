@@ -28,7 +28,7 @@ namespace UI
 		public ucUserINChatBox messageFocus;
 		public ucVoicePanel voicePanel;
 		public UserUI userUI;
-		
+
 		public UserForm()
 		{
 			InitializeComponent();
@@ -40,7 +40,7 @@ namespace UI
 			InitializeComponent();
 			this.panelLine.BackColor = Form1.theme.FocusColor;
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
-		
+
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 			this.userUI = userUI;
 			this.Visible = false;
@@ -55,12 +55,12 @@ namespace UI
             this.SizeChanged += UserForm_SizeChanged;
 
 		}
-		
+
         private void UserForm_SizeChanged(object sender, EventArgs e)
         {
-			Point point = panel2.Location;
-			voicePanel.Location = new Point(point.X - voicePanel.Width / 2,
-											this.Height - 70 - voicePanel.Height);
+			Point point = panel4.Location;
+			voicePanel.Location = new Point(point.X - voicePanel.Width / 2 + 10,
+											this.Height - 50 - voicePanel.Height);
 		}
 
         public void ResetPicture()
@@ -82,7 +82,7 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-			
+
 		}
 		public void AddItemInToListChat(User user,string IDMess, string str)
 		{
@@ -90,7 +90,7 @@ namespace UI
 			tempPanel.Dock = DockStyle.Top;
 			tempPanel.AutoSize = true;
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user,this.user.Id);
-			if (user.Id != Form1.me.Id) UserInChatBox.DisableEdit(); 
+			if (user.Id != Form1.me.Id) UserInChatBox.DisableEdit();
 			ucMessShow messShow = new ucMessShow(str,user,UserInChatBox);
 			messShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
@@ -116,7 +116,7 @@ namespace UI
 			if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
-				
+
 			UserInChatBox._AddFileControl(fileshow);
 			tempPanel.Controls.Add(UserInChatBox);
 			this.panelListChat.Controls.Add(tempPanel);
@@ -169,7 +169,7 @@ namespace UI
 				byte[] tempbuff = Encoding.UTF8.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-				// tạo một panel chat 
+				// tạo một panel chat
 				this.AddItemInToListChat(Form1.me,"-1", this.TextBoxEnterChat.Text);
 				this.userUI.AddMessageIntoInteract(Form1.me.Name, TextBoxEnterChat.Text);
 				//clear textbox nhập chat
@@ -213,7 +213,7 @@ namespace UI
 		{
 			this.labelID.Text = "#"+user.Id;
 			this.labelName.Text = user.Name;
-			
+
 		}
 
 		public void AddFrom(Panel panelRight)
@@ -221,13 +221,27 @@ namespace UI
 			panelRight.Controls.Add(this);
 		}
 
-		private bool isShow;
-
-		public void AddVoiceMessage(ucVoiceMessage voiceMessage)
+		public void AddVoiceMessage(User _user, string path)
         {
-			this.panelListChat.Controls.Add(voiceMessage);
-        }
+			Panel tempPanel = new Panel();
+			tempPanel.AutoSize = false;
+			tempPanel.Dock = DockStyle.Top;
 
+			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, this.user.Id);
+			userINChatBox.DisableEdit();
+			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
+			voiceMessage.Path = path;
+			voiceMessage.Dock = DockStyle.Top;
+			userINChatBox.Dock = DockStyle.Top;
+
+			userINChatBox._AddVoiceMessage(voiceMessage);
+			tempPanel.Controls.Add(userINChatBox);
+			this.panelListChat.Controls.Add(tempPanel);
+			userINChatBox.InitColor();
+			// voiceMessage.InitColor();
+		}
+
+		private bool isShow;
 		private void pictureVoice_Click(object sender, EventArgs e)
 		{
 			if (!isShow)
@@ -252,7 +266,7 @@ namespace UI
 				"All files (*.*)|*.*";
 
 			openFileDialog.Multiselect = true;
-			//openFileDialog.Title = "Select Photos";		
+			//openFileDialog.Title = "Select Photos";
 			DialogResult dr = openFileDialog.ShowDialog();
 			if (dr == DialogResult.OK)
 			{

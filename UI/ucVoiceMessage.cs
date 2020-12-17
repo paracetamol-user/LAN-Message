@@ -17,22 +17,20 @@ namespace UI
 		private NAudio.Wave.DirectSoundOut player;
 		private NAudio.Wave.WaveFileReader wave;
 
-		private ucUserINChatBox ucParent;
+		private ucUserINChatBox userINChatBox;
 
-		public User user;
 		public string Path { get; set; }
+		VoiceControl voice;
 
 		public ucVoiceMessage()
 		{
 			InitializeComponent();
 		}
-		public ucVoiceMessage(User user, string path, ucUserINChatBox ucParent)
+		public ucVoiceMessage(string path, ucUserINChatBox userINChatBox)
         {
 			InitializeComponent();
-			this.user = user;
 			this.Path = path;
-			this.ucParent = ucParent;
-			this.Dock = DockStyle.Top;
+			this.userINChatBox = userINChatBox;
         }
 
 		public void InitColor()

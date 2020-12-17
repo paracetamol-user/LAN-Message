@@ -32,5 +32,6 @@ namespace Communication
 			this.Data = new byte[this.Length];
 			this.isPrivate = isPrivate;
 		}
+
 	}
 }
