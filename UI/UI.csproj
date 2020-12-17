@@ -111,6 +111,9 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Ngay.cs" />
+    <Compile Include="roundpicturebox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sign up.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,11 +193,29 @@
     <Compile Include="ucGroupToAdd.Designer.cs">
       <DependentUpon>ucGroupToAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucInforGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInforGroup.Designer.cs">
+      <DependentUpon>ucInforGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucInforuser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInforuser.Designer.cs">
+      <DependentUpon>ucInforuser.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucInterac.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucInterac.Designer.cs">
       <DependentUpon>ucInterac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucmemberform.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucmemberform.Designer.cs">
+      <DependentUpon>ucmemberform.cs</DependentUpon>
     </Compile>
     <Compile Include="ucMessShow.cs">
       <SubType>UserControl</SubType>
@@ -337,8 +358,17 @@
     <EmbeddedResource Include="ucGroupToAdd.resx">
       <DependentUpon>ucGroupToAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucInforGroup.resx">
+      <DependentUpon>ucInforGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucInforuser.resx">
+      <DependentUpon>ucInforuser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucInterac.resx">
       <DependentUpon>ucInterac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucmemberform.resx">
+      <DependentUpon>ucmemberform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucMessShow.resx">
       <DependentUpon>ucMessShow.cs</DependentUpon>
