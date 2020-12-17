@@ -21,6 +21,8 @@ namespace UI
 		private List<FileInfo> files;
 		private short LastInteracted;
 		public GroupUI GroupUI;
+		public ucVoicePanel voicePanel;
+
 		public GroupForm()
 		{
 			InitializeComponent();
@@ -39,9 +41,20 @@ namespace UI
 			LastInteracted = 0;
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
+			voicePanel = new ucVoicePanel(group, this);
+			this.Controls.Add(voicePanel);
+			this.SizeChanged += GroupForm_SizeChanged;
 			InitGroupForm();
 		}
-		public void InitColor()
+
+        private void GroupForm_SizeChanged(object sender, EventArgs e)
+        {
+			Point point = panel4.Location;
+			voicePanel.Location = new Point(point.X - voicePanel.Width / 2 + 10,
+											this.Height - 50 - voicePanel.Height);
+		}
+
+        public void InitColor()
 		{
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.labelID.ForeColor = Form1.theme.TextMenuColor;
@@ -178,9 +191,41 @@ namespace UI
 			}
 		}
 
+		public void AddVoiceMessage(User _user, string path)
+        {
+			Panel tempPanel = new Panel();
+			tempPanel.AutoSize = false;
+			tempPanel.Dock = DockStyle.Top;
+
+			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, group.ID);
+			userINChatBox.DisableEdit();
+			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
+			voiceMessage.Path = path;
+			voiceMessage.Dock = DockStyle.Top;
+			userINChatBox.Dock = DockStyle.Top;
+
+			userINChatBox._AddVoiceMessage(voiceMessage);
+			tempPanel.Controls.Add(userINChatBox);
+			this.panelListChat.Controls.Add(tempPanel);
+			userINChatBox.InitColor();
+			// voiceMessage.InitColor();
+		}
+
+		private bool isShow;
 		private void pictureVoice_Click(object sender, EventArgs e)
 		{
-
+			if (!isShow)
+			{
+				voicePanel.Visible = true;
+				voicePanel.Show();
+				voicePanel.BringToFront();
+				isShow = true;
+			}
+			else
+			{
+				voicePanel.Visible = false;
+				isShow = false;
+			}
 		}
 
 		private async void pictureBoxSend_Click(object sender, EventArgs e)

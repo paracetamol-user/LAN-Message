@@ -717,11 +717,11 @@ namespace Communication
 					command.Parameters.AddWithValue("@id", data[1]);
 					reader = command.ExecuteReader();
 					string temp = "";
-                    while (reader.HasRows)
-                    {
+					while (reader.HasRows)
+					{
 						if (!reader.Read()) break;
 						temp = reader.GetString(0);
-                    }
+					}
 					string message = string.Format("GROUPDATA%{0}•{1}•{2}", data[1], data[2] , temp);
 					connection = new SqlConnection(connString);
 					connection.Open();
@@ -830,7 +830,7 @@ namespace Communication
 					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 				}
 				else
-                {
+				{
 					string getID = "";
 					connection.Close();
 					connection = new SqlConnection(connString);
@@ -838,11 +838,11 @@ namespace Communication
 					command = new SqlCommand("Select IDNHOM from groups order by IDNHOM DESC", connection);
 					reader = command.ExecuteReader();
 					while (reader.HasRows)
-                    {
+					{
 						if (!reader.Read()) break;
 						getID = reader.GetString(0);
 						break;
-                    }
+					}
 					connection.Close();
 					string temp = getID.Substring(1, getID.Length - 1);
 					connection = new SqlConnection(connString);
@@ -873,7 +873,7 @@ namespace Communication
 				}
 			}
 			else if (data[0] == "OUTGR")
-            {
+			{
 				string IDGR = data[1];
 				string IDMember = client.id_;
 				bool isHost = bool.Parse(data[2]);
@@ -899,14 +899,14 @@ namespace Communication
 						subcommand.Parameters.AddWithValue("@id", IDGR);
 						subReader = subcommand.ExecuteReader();
 						while (subReader.HasRows)
-                        {
+						{
 							if (!subReader.Read()) break;
 							if (subReader.GetString(0) != client.id_)
-                            {
+							{
 								newHost = subReader.GetString(0);
 								break;
-                            } 
-                        }
+							} 
+						}
 						subconnection.Close();
 						// tìm thằng đầu tiên khác host
 
@@ -927,15 +927,15 @@ namespace Communication
 						while (subReader.HasRows)
 						{
 							if (!subReader.Read()) break;
-                            foreach (var item in clientInvalid)
-                            {
+							foreach (var item in clientInvalid)
+							{
 								if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
-                                {
+								{
 									byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("CHANGEHOST%{0}%{1}", IDGR, newHost));
 									packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 									item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 								}
-                            }
+							}
 						}				
 						subconnection.Close();
 						// thông báo về cho các client là có host mới
@@ -990,7 +990,7 @@ namespace Communication
 					}	
 				}
 				else
-                {
+				{
 					string queryRemoveMember = "delete from member where IDUSERS = @id and IDNHOM = @idnhom";
 					subconnection = new SqlConnection(connString);
 					subconnection.Open();
@@ -1009,26 +1009,26 @@ namespace Communication
 					while (subReader.HasRows)
 					{
 						if (!subReader.Read()) break;
-                        foreach (var item in clientInvalid)
-                        {
+						foreach (var item in clientInvalid)
+						{
 							if (item.id_ == subReader.GetString(0) && item.id_ != client.id_)
-                            {
+							{
 								byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("OUTGR%{0}%{1}",IDGR,IDMember));
 								packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 								item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 							}
-                        }
+						}
 					}
 					subConnect.Close();
 				}
-            }
+			}
 			else if (data[0] == "STARTSENDVOICE")
 			// STARTSENDVOICE <ID send> <ID receive> <data length> <filename = IDsend> <.wav> <nhan group hay nhan private>
-            {
+			{
 				Package awaitPackage = new Package(client.id_, data[1], 0, int.Parse(data[2]), "V", client.id_, ".wav", data[3],
 													data[4] == "Private" ? true : false);
 				listAwaitPackage.Add(awaitPackage);
-            }
+			}
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)
 		{
@@ -1242,9 +1242,9 @@ namespace Communication
 						}
 					}
 					else if (package.Style == "V")
-                    {
+					{
 						foreach (var item in listAwaitPackage)
-                        {
+						{
 							if (package.ID == item.IDpackage)
 							{
 								if (item.Ack + package.Data.Length > item.Length)
@@ -1264,17 +1264,50 @@ namespace Communication
 										foreach (var item2 in clientInvalid)
 										{
 											if(item2.id_ == item.IDreceive)
-                                            {
+											{
 												byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
 																										item.IDsend, item.Length, IDMessage));
 												SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
 												item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-												await SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
+												SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
 												break;
 											}
 										}
-										
-                                    }
+									}
+									else
+									{
+										Guid IDMessage = Guid.NewGuid();
+										string query = "select USERS.ID " +
+											"from MEMBER, USERS " +
+											"where MEMBER.IDUSERS = USERS.ID " +
+											"and MEMBER.IDNHOM = @id";
+
+										byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
+																						item.IDsend, item.IDreceive, item.Length, IDMessage));
+										SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
+
+										connection = new SqlConnection(connString);
+										connection.Open();
+										command = new SqlCommand(query, connection);
+										command.Parameters.AddWithValue("@id", item.IDreceive);
+										reader = command.ExecuteReader();
+
+										while (reader.HasRows)
+										{
+											if (!reader.Read()) break;
+											if (reader.GetString(0) == item.IDsend) continue;
+											foreach(var item2 in clientInvalid)
+											{
+												if(item2.id_ == reader.GetString(0))
+												{
+													item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+													SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
+													break;
+												}
+											}
+										}
+										connection.Close();
+									}
 								}
 							}
 						}

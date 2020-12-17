@@ -217,8 +217,6 @@ namespace UI
 			panelRight.Controls.Add(this);
 		}
 
-		private bool isShow;
-
 		public void AddVoiceMessage(User _user, string path)
         {
 			Panel tempPanel = new Panel();
@@ -239,6 +237,7 @@ namespace UI
 			// voiceMessage.InitColor();
 		}
 
+		private bool isShow;
 		private void pictureVoice_Click(object sender, EventArgs e)
 		{
 			if (!isShow)

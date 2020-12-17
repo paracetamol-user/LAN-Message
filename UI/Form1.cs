@@ -592,9 +592,19 @@ namespace UI
 					}
 					else if (action == "VOICE")
 					{
-						Package awaitPackage = new Package(data[1], Form1.me.Id, 0, int.Parse(data[2]), "V", "NULL", 
+						Package awaitPackage;
+						if (data[2][0] != 'G')
+						{
+							awaitPackage = new Package(data[1], Form1.me.Id, 0, int.Parse(data[2]), "V", "NULL",
 														".wav", data[3], true);
-						listAwaitPackage.Add(awaitPackage);
+							listAwaitPackage.Add(awaitPackage);
+						}
+						else
+						{
+							awaitPackage = new Package(data[1], data[2], 0, int.Parse(data[3]), "V", "NULL",
+																		".wav", data[4], false);
+							listAwaitPackage.Add(awaitPackage);
+						}
 					}
 				}
 				else if (package.Style == "F")
@@ -668,7 +678,7 @@ namespace UI
 				{
 					foreach (var item in listAwaitPackage)
 					{
-						if(package.ID == item.IDpackage)
+						if (package.ID == item.IDpackage)
 						{
 							if (item.Ack + package.Data.Length > item.Length)
 							{
@@ -679,14 +689,14 @@ namespace UI
 							}
 							package.Data.CopyTo(item.Data, item.Ack);
 							item.Ack = item.Ack + package.Data.Length;
-							if(item.Ack == item.Length)
+							if (item.Ack == item.Length)
 							{
-                                if (item.isPrivate)
-                                {
-									foreach(var userUI in UserUIs)
-                                    {
-										if(userUI.user.Id == item.IDsend)
-                                        {
+								if (item.isPrivate)
+								{
+									foreach (var userUI in UserUIs)
+									{
+										if (userUI.user.Id == item.IDsend)
+										{
 											string path = string.Format(@"..\..\voice_mess\{0}\", item.IDsend);
 											if (!Directory.Exists(path))
 												Directory.CreateDirectory(path);
@@ -694,9 +704,32 @@ namespace UI
 											File.WriteAllBytes(path, item.Data);
 											userUI.userForm.AddVoiceMessage(userUI.user, path);
 											break;
-                                        }
-                                    }
-                                }
+										}
+									}
+								}
+								else
+								{
+									foreach (var groupUI in GroupUIs)
+									{
+										if ("G" + groupUI.group.ID == item.IDreceive)
+										{
+											string path = string.Format(@"..\..\voice_mess\{0}\", item.IDreceive);
+											if (!Directory.Exists(path))
+												Directory.CreateDirectory(path);
+											path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
+											File.WriteAllBytes(path, item.Data);
+											foreach (var userUI in UserUIs)
+											{
+												if (userUI.user.Id == item.IDsend)
+												{
+													groupUI.groupForm.AddVoiceMessage(userUI.user, path);
+													break;
+												}
+											}
+											break;
+										}
+									}
+								}
 							}
 						}
 					}
@@ -821,15 +854,15 @@ namespace UI
 			}
 		}
 		private int GetIDForIncomingVoice(string path)
-        {
+		{
 			int id = 0;
-            while (true)
-            {
+			while (true)
+			{
 				string temp = string.Format("{0}{1}.wav", path, id);
 				if (!File.Exists(temp))
 					return id;
 				id++;
-            }
-        }
+			}
+		}
 	}
 }

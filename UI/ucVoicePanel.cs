@@ -64,21 +64,21 @@ namespace UI
 				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 				Form1.client.SendFileToServer(data, "V", id.ToString());
 
-				userForm.AddVoiceMessage(user, voice.Path);
+				userForm.AddVoiceMessage(Form1.me, voice.Path);
 				userForm.Controls.Remove(this);
 			}
 			else
 			{
-				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%G{1}%{2}%{3}%{4}", 
-																						Form1.me.Id, group.ID,
+				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%{1}%{2}%{3}", 
+																						group.ID,
 																						data.Length,
 																						id.ToString(), "Public"));
-				SmallPackage smallPackage = new SmallPackage(0, 1024, "V", tempBuff, "0");
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
 				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 				Form1.client.SendFileToServer(data, "V", id.ToString());
 
-				userForm.AddVoiceMessage(user, voice.Path);
-				userForm.Controls.Remove(this);
+				groupForm.AddVoiceMessage(Form1.me, voice.Path);
+				groupForm.Controls.Remove(this);
 			}
 			// Process when record sent
 			isRecorded = false;
