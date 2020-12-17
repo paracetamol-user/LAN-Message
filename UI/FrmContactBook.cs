@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -56,7 +57,7 @@ namespace UI
 		}
 		public void _AddContactBook(ContactBook newContactBook)
 		{
-			ucContact newUcContact = new ucContact(newContactBook, this);
+			ucContact newUcContact = new ucContact(newContactBook, this , mainForm);
 			listContact.Add(newUcContact);
 			this.pnListContact.Controls.Add(newUcContact);
 		}
@@ -64,6 +65,14 @@ namespace UI
 		{
 			this.pnListContact.Controls.Remove(ucContact);
 			this.listContact.Remove(ucContact);
+		}
+
+		private async void btnCreate_Click(object sender, EventArgs e)
+		{
+			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}",this.textBox1.Text));
+			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
+			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			textBox1.Clear();
 		}
 	}
 }

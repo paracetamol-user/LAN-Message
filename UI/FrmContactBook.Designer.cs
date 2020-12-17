@@ -53,7 +53,7 @@ namespace UI
 			// 
 			this.pnLine.BackColor = System.Drawing.Color.LightGray;
 			this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnLine.Location = new System.Drawing.Point(0, 49);
+			this.pnLine.Location = new System.Drawing.Point(0, 44);
 			this.pnLine.Name = "pnLine";
 			this.pnLine.Size = new System.Drawing.Size(669, 1);
 			this.pnLine.TabIndex = 3;
@@ -64,7 +64,7 @@ namespace UI
 			this.pnHeader.Controls.Add(this.lbContactBook);
 			this.pnHeader.Controls.Add(this.pictureBox1);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 5);
+			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
 			this.pnHeader.Padding = new System.Windows.Forms.Padding(20, 5, 20, 5);
 			this.pnHeader.Size = new System.Drawing.Size(669, 44);
@@ -97,10 +97,10 @@ namespace UI
 			this.panel1.Controls.Add(this.pnListContact);
 			this.panel1.Controls.Add(this.pnCreate);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel1.Location = new System.Drawing.Point(0, 50);
+			this.panel1.Location = new System.Drawing.Point(0, 45);
 			this.panel1.Name = "panel1";
 			this.panel1.Padding = new System.Windows.Forms.Padding(20, 5, 20, 5);
-			this.panel1.Size = new System.Drawing.Size(669, 393);
+			this.panel1.Size = new System.Drawing.Size(669, 398);
 			this.panel1.TabIndex = 4;
 			// 
 			// pnListContact
@@ -110,7 +110,8 @@ namespace UI
 			this.pnListContact.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnListContact.Location = new System.Drawing.Point(20, 35);
 			this.pnListContact.Name = "pnListContact";
-			this.pnListContact.Size = new System.Drawing.Size(629, 353);
+			this.pnListContact.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.pnListContact.Size = new System.Drawing.Size(629, 358);
 			this.pnListContact.TabIndex = 1;
 			// 
 			// pnCreate
@@ -129,7 +130,7 @@ namespace UI
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 3);
+			this.panel2.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
 			this.panel2.Size = new System.Drawing.Size(506, 30);
 			this.panel2.TabIndex = 1;
 			// 
@@ -138,10 +139,10 @@ namespace UI
 			this.textBox1.BackColor = System.Drawing.Color.Gainsboro;
 			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox1.Location = new System.Drawing.Point(10, 5);
+			this.textBox1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox1.Location = new System.Drawing.Point(10, 3);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(486, 20);
+			this.textBox1.Size = new System.Drawing.Size(486, 23);
 			this.textBox1.TabIndex = 0;
 			// 
 			// pnBtnCreate
@@ -159,12 +160,15 @@ namespace UI
 			this.btnCreate.BackColor = System.Drawing.Color.Transparent;
 			this.btnCreate.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCreate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnCreate.ForeColor = System.Drawing.Color.Black;
 			this.btnCreate.Location = new System.Drawing.Point(5, 1);
 			this.btnCreate.Name = "btnCreate";
 			this.btnCreate.Size = new System.Drawing.Size(113, 28);
 			this.btnCreate.TabIndex = 0;
 			this.btnCreate.Text = "Create";
 			this.btnCreate.UseVisualStyleBackColor = false;
+			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
 			// 
 			// FrmContactBook
 			// 
@@ -176,7 +180,6 @@ namespace UI
 			this.Controls.Add(this.pnHeader);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FrmContactBook";
-			this.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
 			this.Text = "FrmContactList";
 			this.pnHeader.ResumeLayout(false);
 			this.pnHeader.PerformLayout();

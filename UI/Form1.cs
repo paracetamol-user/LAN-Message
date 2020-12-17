@@ -45,6 +45,7 @@ namespace UI
 		public AddUserToGroup AddToGroup;
 		public frmADD frmADD;
 		public FrmContactBook frmContactBook;
+		public FrmADDMemberToContact frmADDMemberToContact;
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
@@ -79,7 +80,7 @@ namespace UI
 			UcGroup = new ucGroup(this, GroupUIs);
 			AddToGroup = new AddUserToGroup(this);
 			frmADD = new frmADD(this);
-			
+			frmADDMemberToContact = new FrmADDMemberToContact(this);
 			
 			me.AvatarPath = @"../../avatarDefault.png";
 			LoadMyData();
@@ -615,6 +616,19 @@ namespace UI
                             }
                         }
                     }
+					else if (action == "CREATECBERRORNAME")
+					{
+						MessageBox.Show("Contact name has exists!","Erorr Create Contact", MessageBoxButtons.OK);
+					}
+					else if (action == "CREATECBSUCCES")
+					{
+						MessageBox.Show("Create contact successfully!", "Create Contact", MessageBoxButtons.OK);
+					}
+					else if (action == "NEWCB")
+					{
+						ContactBook newContactBook = new ContactBook(data[1], data[2]);
+						frmContactBook._AddContactBook(newContactBook);
+					}
 				}
 				else if (package.Style == "F")
 				{
@@ -830,7 +844,6 @@ namespace UI
 				btnServer.BackColor = Color.Transparent;
 			}
 		}
-
 		private void btnPhoneBook_Click(object sender, EventArgs e)
 		{
 			this.frmContactBook.Show();

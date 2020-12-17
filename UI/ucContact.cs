@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,14 +16,16 @@ namespace UI
 	{
 		public ContactBook contactBook { get; set; }
 		public FrmContactBook FrmContactBook { get; set; }
-		public List<ucContact__User> listContact__User; 
+		public List<ucContact__User> listContact__User;
+		public Form1 mainForm;
 		public ucContact()
 		{
 			InitializeComponent();
 		}
-		public ucContact(ContactBook contactBook ,FrmContactBook frmContactBook)
+		public ucContact(ContactBook contactBook ,FrmContactBook frmContactBook , Form1 mainForm)
 		{
 			this.contactBook = contactBook;
+			this.mainForm = mainForm;
 			this.FrmContactBook = frmContactBook;
 			this.Dock = DockStyle.Top;
 			listContact__User = new List<ucContact__User>();
@@ -40,9 +43,10 @@ namespace UI
 		}
 		public void _InitControls()
 		{
+			this.pnHeader.BackColor = Form1.theme.Menu;
 			this.lbNameContact.ForeColor = Form1.theme.TextColor;
 			this.pictureAdd.Image = Image.FromFile(Form1.theme.pictureAdd);
-			this.pictureClose.Image = Image.FromFile(Form1.theme.PictureClose);
+			this.pictureDelete.Image = Image.FromFile(Form1.theme.PictureMinus);
 			this.pnLine.BackColor = Form1.theme.LineColor;
 			this.lbNameContact.Text = contactBook.Name;
 			foreach (var item in listContact__User)
@@ -67,6 +71,7 @@ namespace UI
 		}
 		public void _RemoveContact__User(ucContact__User ucContact__User)
 		{
+			this.contactBook._RemoveMember(ucContact__User.user);
 			this.pnList.Controls.Remove(ucContact__User);
 			this.listContact__User.Remove(ucContact__User);
 		}
@@ -76,6 +81,24 @@ namespace UI
 			{
 				return this.contactBook.ID;
 			}
-		} 
+		}
+
+		private void pictureDelete_Click(object sender, EventArgs e)
+		{
+			DialogResult dialogResult =  MessageBox.Show("Are you sure remove this contact!", "Remove Contact", MessageBoxButtons.YesNo);
+			if (dialogResult == DialogResult.Yes)
+			{
+				byte[] buff = Encoding.UTF8.GetBytes("DELETECONTACT%" + this._ID);
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "Server");
+				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+
+				_RemoveThis();
+			}
+		}
+
+		private void pictureAdd_Click(object sender, EventArgs e)
+		{
+			mainForm.frmADDMemberToContact.OpenAdd(this);
+		}
 	}
 }

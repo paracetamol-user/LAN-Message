@@ -12,57 +12,62 @@ using UserManager;
 
 namespace UI
 {
-    public partial class frmADD : Form
-    {
-		Group selectedGroup;
-		Form1 mainForm;
-		public List<User> listAdd;
-		public frmADD(Form1 mainForm)
+	public partial class FrmADDMemberToContact : Form
+	{
+		public Form1 mainForm { get; set; }
+		public List<User> listUser;
+		public ucContact selectedContactBook;
+		public FrmADDMemberToContact()
 		{
 			InitializeComponent();
-			InitControls();
+		}
+		public FrmADDMemberToContact(Form1 mainForm)
+		{
+			InitializeComponent();
 			this.mainForm = mainForm;
 			this.TopLevel = false;
 			this.Dock = DockStyle.Fill;
 			this.mainForm.Controls.Add(this);
 			this.pnContainAll.Location = new Point(mainForm.Width / 2 - this.pnContainAll.Width / 2, mainForm.Height / 2 - this.pnContainAll.Height / 2);
-			listAdd = new List<User>();
+			listUser = new List<User>();
+			InitControls();
 		}
-
-		public void InitControls()
+		public void  InitControls()
 		{
-			this.BackColor = Form1.theme.BackColor;
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.picBoxClose.Image = Image.FromFile(Form1.theme.PictureClose);
-		}
-
-		public void InitAddGroupForm(Group selectedGroup)
-		{
-			listAdd = new List<User>();
-			this.Show();
-			this.BringToFront();
-			this.selectedGroup = selectedGroup;
-			this.pnUser.Controls.Clear();
-			this.pnLine.BackColor = Form1.theme.LineColor;
-			ReLocation();
-			LoadUserOption();
+			this.BackColor = Form1.theme.BackColor;
 		}
 		public void ReLocation()
 		{
-			this.pnContainAll.Location = new Point(mainForm.Width / 2 - this.pnContainAll.Width / 2, mainForm.Height / 2 - this.pnContainAll.Height / 2);
+			this.pnContainAll.Location = new Point(mainForm.Width / 2 - 
+													this.pnContainAll.Width / 2, mainForm.Height / 2 
+													- this.pnContainAll.Height / 2);
 		}
-		private void LoadUserOption()
+		public void OpenAdd(ucContact selectedContactBook)
+		{
+			InitControls();
+			this.selectedContactBook = selectedContactBook;
+			this.Show();
+			this.BringToFront();
+			this.listUser.Clear();
+			this.pnUser.Controls.Clear();
+			this.pnLine.BackColor = Form1.theme.LineColor;
+			ReLocation();
+			LoadUser();
+		}
+		private void LoadUser()
 		{
 			foreach (var item in Form1.UserUIs)
 			{
-				if (!selectedGroup.MemberInGroup(item.user) && item.user.IsFriend && item.user.Status)
+				if (!selectedContactBook.contactBook._IsInContactBook(item.user) && item.user.IsFriend)
 				{
 					item.ucADD.Reset();
 					this.pnUser.Controls.Add(item.ucADD);
 				}
 			}
 		}
-		private async void SendAddToGroupToServer()
+		private async void SendAddToContact()
 		{
 			foreach (var item in pnUser.Controls)
 			{
@@ -70,28 +75,30 @@ namespace UI
 				{
 					if ((item as ucADD).isAdd)
 					{
-						listAdd.Add((item as ucADD).user);
+						listUser.Add((item as ucADD).user);
 					}
 				}
 			}
-			foreach (var item in listAdd)
+			foreach (var item in listUser)
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.Id + "%" +
-																   selectedGroup.ID + "%" + selectedGroup.Name + "%" + selectedGroup.admin.Id) ;
+				byte[] tempbuff = Encoding.UTF8.GetBytes("ADDCONTACT%" + item.Id + "%" +
+																   selectedContactBook.contactBook.ID);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+
+				selectedContactBook._AddUser(item);
 			}
-
 		}
-        private void picBoxAdd_Click(object sender, EventArgs e)
-        {
+
+		private void picBoxClose_Click(object sender, EventArgs e)
+		{
 			this.Hide();
 		}
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-			SendAddToGroupToServer();
+		private void pictureBoxAdd_Click(object sender, EventArgs e)
+		{
 			this.Hide();
+			SendAddToContact();
 		}
-    }
+	}
 }

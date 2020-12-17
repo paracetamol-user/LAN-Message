@@ -377,7 +377,6 @@ namespace Communication
 				string queryFINDSOURCE = "SELECT * FROM TINNHAN Where MATINNHAN = @id";
 				string FILEID = data[1];
 				string FILENAME = data[2];
-				string ID = data[3];
 				string path = "";
 				connection = new SqlConnection(this.connString);
 				connection.Open();
@@ -389,7 +388,7 @@ namespace Communication
 					if (reader.Read() == false) break;
 					if (reader.GetString(0) == FILEID)
 					{
-						path = reader.GetString(3).ToString();
+						path = reader.GetString(4).ToString();
 						break;
 					}
 				}
@@ -830,7 +829,7 @@ namespace Communication
 				}
 				else
                 {
-					string getID = "";
+					string getID = "G0";
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
@@ -1053,6 +1052,101 @@ namespace Communication
 				byte[] tempBuffer = Encoding.UTF8.GetBytes(message);
 				packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 				client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			else if (data[0] == "DELETEUSERINCONTACT")
+			{
+				string IDContact = data[1];
+				string IDUser = data[2];
+				string Query = "delete from contactmember where ID = @IDContact and IDUSER = @IDUser ";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(Query, connection);
+				command.Parameters.AddWithValue("@IDContact", IDContact);
+				command.Parameters.AddWithValue("@IDUser", IDUser);
+				command.ExecuteNonQuery();
+				connection.Close();
+			}
+			else if (data[0] == "DELETECONTACT")
+			{
+				string IDContact = data[1];
+				string query = "delete from contactmember where ID = @id";
+				string subQuery = "delete from contactbook where ID = @id";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@id", IDContact);
+				command.ExecuteNonQuery();
+				connection.Close();
+
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(subQuery, connection);
+				command.Parameters.AddWithValue("@id", IDContact);
+				command.ExecuteNonQuery();
+				connection.Close();
+			}
+			else if (data[0] == "CREATECB")
+			{
+				string query = "select Count(*) from contactbook where IDUSER = @id and CONTACTNAME = @name";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@id", client.id_);
+				command.Parameters.AddWithValue("@name", data[1]);
+				var count = (int)command.ExecuteScalar();
+				if (count > 0)
+				{
+					byte[] tempBuffer = Encoding.UTF8.GetBytes("CREATECBERRORNAME");
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuffer, "Client");
+					client.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+					return;
+				}
+				connection.Close();
+				string ID = "C0";
+				query = "Select ID from contactbook order by ID DESC";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				reader = command.ExecuteReader();
+				while (reader.HasRows)
+				{
+					if (!reader.Read()) break;
+					ID = reader.GetString(0);
+					break;
+				}
+				connection.Close();
+				string temp = ID.Substring(1, ID.Length - 1);
+				ID = "C" + (int.Parse(temp) + 1).ToString();
+				query = "insert into contactbook values(@id,@name,@iduser)";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@id", ID);
+				command.Parameters.AddWithValue("@name", data[1]);
+				command.Parameters.AddWithValue("@iduser", client.id_);
+				command.ExecuteNonQuery();
+				connection.Close();
+
+				tempBuff = Encoding.UTF8.GetBytes("CREATECBSUCCESS");
+				packageReceive = new SmallPackage(0, 1024, "M", tempBuff, "Client");
+				client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+
+				tempBuff = Encoding.UTF8.GetBytes("NEWCB%" + ID + "%"+data[1]);
+				packageReceive = new SmallPackage(0, 1024, "M", tempBuff, "Client");
+				client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			else if (data[0] == "ADDCONTACT")
+			{
+				string IDUser = data[1];
+				string IDContact = data[2];
+				string query = "insert into contactmember values(@IDContact,@IDUser) ";
+				connection = new SqlConnection(connString);
+				connection.Open();
+				command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@IDUser", IDUser);
+				command.Parameters.AddWithValue("@IDContact", IDContact);
+				command.ExecuteNonQuery();
+				connection.Close();
 			}
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)

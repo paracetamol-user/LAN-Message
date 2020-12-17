@@ -260,6 +260,7 @@ namespace UI
 				this.pictureCheck = value;
 			}
 		}
+		public string PictureMinus { get; set; }
 		public bool IsWhite
 		{
 			get
@@ -297,6 +298,7 @@ namespace UI
 			pictureCircleOnline = @"..\..\images\circle-blue.png";
 			pictureCircleOffline = @"..\..\images\circle-black.png";
 			pictureAdd = @"..\..\images\add-black.png";
+			PictureMinus = @"..\..\images\minus-black.png";
 		}
 		public void Black()
 		{
@@ -323,6 +325,7 @@ namespace UI
 			pictureCircleOnline = @"..\..\images\circle-blue.png";
 			pictureCircleOffline = @"..\..\images\circle-black.png"; 
 			pictureAdd = @"..\..\images\add-white.png";
+			PictureMinus = @"..\..\images\minus-white.png";
 			this.menu = Color.FromArgb(47, 49, 54);
 		}
 	}

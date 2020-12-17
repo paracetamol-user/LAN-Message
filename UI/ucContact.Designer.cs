@@ -36,7 +36,7 @@ namespace UI
 			this.pnPic = new System.Windows.Forms.Panel();
 			this.pic = new System.Windows.Forms.PictureBox();
 			this.pnMenu = new System.Windows.Forms.Panel();
-			this.pictureClose = new System.Windows.Forms.PictureBox();
+			this.pictureDelete = new System.Windows.Forms.PictureBox();
 			this.pictureAdd = new System.Windows.Forms.PictureBox();
 			this.pnLine = new System.Windows.Forms.Panel();
 			this.pnList = new System.Windows.Forms.Panel();
@@ -45,7 +45,7 @@ namespace UI
 			this.pnPic.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
 			this.pnMenu.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureClose)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureDelete)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureAdd)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -73,10 +73,10 @@ namespace UI
 			// lbNameContact
 			// 
 			this.lbNameContact.AutoSize = true;
-			this.lbNameContact.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbNameContact.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbNameContact.Location = new System.Drawing.Point(7, 6);
 			this.lbNameContact.Name = "lbNameContact";
-			this.lbNameContact.Size = new System.Drawing.Size(44, 18);
+			this.lbNameContact.Size = new System.Drawing.Size(55, 18);
 			this.lbNameContact.TabIndex = 0;
 			this.lbNameContact.Text = "label1";
 			// 
@@ -86,6 +86,7 @@ namespace UI
 			this.pnPic.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnPic.Location = new System.Drawing.Point(10, 0);
 			this.pnPic.Name = "pnPic";
+			this.pnPic.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
 			this.pnPic.Size = new System.Drawing.Size(33, 30);
 			this.pnPic.TabIndex = 3;
 			// 
@@ -93,16 +94,16 @@ namespace UI
 			// 
 			this.pic.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pic.Image = ((System.Drawing.Image)(resources.GetObject("pic.Image")));
-			this.pic.Location = new System.Drawing.Point(0, 0);
+			this.pic.Location = new System.Drawing.Point(0, 3);
 			this.pic.Name = "pic";
-			this.pic.Size = new System.Drawing.Size(33, 30);
+			this.pic.Size = new System.Drawing.Size(33, 24);
 			this.pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pic.TabIndex = 0;
 			this.pic.TabStop = false;
 			// 
 			// pnMenu
 			// 
-			this.pnMenu.Controls.Add(this.pictureClose);
+			this.pnMenu.Controls.Add(this.pictureDelete);
 			this.pnMenu.Controls.Add(this.pictureAdd);
 			this.pnMenu.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnMenu.Location = new System.Drawing.Point(395, 0);
@@ -111,26 +112,26 @@ namespace UI
 			this.pnMenu.Size = new System.Drawing.Size(66, 30);
 			this.pnMenu.TabIndex = 4;
 			// 
-			// pictureClose
+			// pictureDelete
 			// 
-			this.pictureClose.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pictureClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureClose.Image")));
-			this.pictureClose.Location = new System.Drawing.Point(40, 7);
-			this.pictureClose.Name = "pictureClose";
-			this.pictureClose.Size = new System.Drawing.Size(16, 16);
-			this.pictureClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureClose.TabIndex = 1;
-			this.pictureClose.TabStop = false;
+			this.pictureDelete.Dock = System.Windows.Forms.DockStyle.Right;
+			this.pictureDelete.Location = new System.Drawing.Point(40, 7);
+			this.pictureDelete.Name = "pictureDelete";
+			this.pictureDelete.Size = new System.Drawing.Size(16, 16);
+			this.pictureDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureDelete.TabIndex = 1;
+			this.pictureDelete.TabStop = false;
+			this.pictureDelete.Click += new System.EventHandler(this.pictureDelete_Click);
 			// 
 			// pictureAdd
 			// 
-			this.pictureAdd.Image = ((System.Drawing.Image)(resources.GetObject("pictureAdd.Image")));
 			this.pictureAdd.Location = new System.Drawing.Point(10, 7);
 			this.pictureAdd.Name = "pictureAdd";
 			this.pictureAdd.Size = new System.Drawing.Size(19, 16);
 			this.pictureAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureAdd.TabIndex = 0;
 			this.pictureAdd.TabStop = false;
+			this.pictureAdd.Click += new System.EventHandler(this.pictureAdd_Click);
 			// 
 			// pnLine
 			// 
@@ -140,6 +141,7 @@ namespace UI
 			this.pnLine.Name = "pnLine";
 			this.pnLine.Size = new System.Drawing.Size(461, 1);
 			this.pnLine.TabIndex = 7;
+			this.pnLine.Visible = false;
 			// 
 			// pnList
 			// 
@@ -147,7 +149,7 @@ namespace UI
 			this.pnList.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnList.Location = new System.Drawing.Point(0, 31);
 			this.pnList.Name = "pnList";
-			this.pnList.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
+			this.pnList.Padding = new System.Windows.Forms.Padding(20, 5, 20, 0);
 			this.pnList.Size = new System.Drawing.Size(461, 5);
 			this.pnList.TabIndex = 8;
 			// 
@@ -168,7 +170,7 @@ namespace UI
 			this.pnPic.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
 			this.pnMenu.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureClose)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureDelete)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureAdd)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -183,7 +185,7 @@ namespace UI
 		private System.Windows.Forms.Panel pnPic;
 		private System.Windows.Forms.PictureBox pic;
 		private System.Windows.Forms.Panel pnMenu;
-		private System.Windows.Forms.PictureBox pictureClose;
+		private System.Windows.Forms.PictureBox pictureDelete;
 		private System.Windows.Forms.PictureBox pictureAdd;
 		private System.Windows.Forms.Panel pnLine;
 		private System.Windows.Forms.Panel pnList;

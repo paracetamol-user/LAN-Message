@@ -86,7 +86,7 @@
 			this.panelRIGHT.BackColor = System.Drawing.Color.Transparent;
 			this.panelRIGHT.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelRIGHT.Location = new System.Drawing.Point(228, 0);
-			this.panelRIGHT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panelRIGHT.Margin = new System.Windows.Forms.Padding(2);
 			this.panelRIGHT.Name = "panelRIGHT";
 			this.panelRIGHT.Size = new System.Drawing.Size(456, 507);
 			this.panelRIGHT.TabIndex = 14;
@@ -97,7 +97,7 @@
 			this.pnLine2.BackColor = System.Drawing.Color.Transparent;
 			this.pnLine2.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnLine2.Location = new System.Drawing.Point(226, 0);
-			this.pnLine2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pnLine2.Margin = new System.Windows.Forms.Padding(2);
 			this.pnLine2.Name = "pnLine2";
 			this.pnLine2.Size = new System.Drawing.Size(2, 507);
 			this.pnLine2.TabIndex = 12;
@@ -115,7 +115,7 @@
 			this.panelMenu.Controls.Add(this.panelServer);
 			this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelMenu.Location = new System.Drawing.Point(0, 0);
-			this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
 			this.panelMenu.Name = "panelMenu";
 			this.panelMenu.Size = new System.Drawing.Size(226, 507);
 			this.panelMenu.TabIndex = 11;
@@ -137,7 +137,7 @@
 			this.panel4.Controls.Add(this.btnPhoneBook);
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel4.Location = new System.Drawing.Point(0, 103);
-			this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel4.Margin = new System.Windows.Forms.Padding(2);
 			this.panel4.Name = "panel4";
 			this.panel4.Size = new System.Drawing.Size(226, 29);
 			this.panel4.TabIndex = 9;
@@ -160,7 +160,7 @@
 			this.btnPhoneBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPhoneBook.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnPhoneBook.Location = new System.Drawing.Point(0, 0);
-			this.btnPhoneBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnPhoneBook.Margin = new System.Windows.Forms.Padding(2);
 			this.btnPhoneBook.Name = "btnPhoneBook";
 			this.btnPhoneBook.Size = new System.Drawing.Size(226, 29);
 			this.btnPhoneBook.TabIndex = 5;
@@ -177,7 +177,7 @@
 			this.panel2.Controls.Add(this.btnGroup);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 74);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel2.Margin = new System.Windows.Forms.Padding(2);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(226, 29);
 			this.panel2.TabIndex = 8;
@@ -200,7 +200,7 @@
 			this.btnGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnGroup.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnGroup.Location = new System.Drawing.Point(0, 0);
-			this.btnGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnGroup.Margin = new System.Windows.Forms.Padding(2);
 			this.btnGroup.Name = "btnGroup";
 			this.btnGroup.Size = new System.Drawing.Size(226, 29);
 			this.btnGroup.TabIndex = 5;
@@ -217,7 +217,7 @@
 			this.panel1.Controls.Add(this.btnFriend);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 45);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel1.Margin = new System.Windows.Forms.Padding(2);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(226, 29);
 			this.panel1.TabIndex = 6;
@@ -240,7 +240,7 @@
 			this.btnFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFriend.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnFriend.Location = new System.Drawing.Point(0, 0);
-			this.btnFriend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnFriend.Margin = new System.Windows.Forms.Padding(2);
 			this.btnFriend.Name = "btnFriend";
 			this.btnFriend.Size = new System.Drawing.Size(226, 29);
 			this.btnFriend.TabIndex = 5;
@@ -270,7 +270,7 @@
 			this.panelOPTIONNULL.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelOPTIONNULL.Location = new System.Drawing.Point(170, 6);
 			this.panelOPTIONNULL.Name = "panelOPTIONNULL";
-			this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.panelOPTIONNULL.Padding = new System.Windows.Forms.Padding(6);
 			this.panelOPTIONNULL.Size = new System.Drawing.Size(6, 45);
 			this.panelOPTIONNULL.TabIndex = 3;
 			// 
@@ -353,7 +353,7 @@
 			// 
 			// pnLine
 			// 
-			this.pnLine.BackColor = System.Drawing.Color.Gainsboro;
+			this.pnLine.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnLine.Location = new System.Drawing.Point(0, 43);
 			this.pnLine.Name = "pnLine";
@@ -379,7 +379,7 @@
 			this.picNotification.Dock = System.Windows.Forms.DockStyle.Right;
 			this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
 			this.picNotification.Location = new System.Drawing.Point(208, 0);
-			this.picNotification.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.picNotification.Margin = new System.Windows.Forms.Padding(2);
 			this.picNotification.Name = "picNotification";
 			this.picNotification.Size = new System.Drawing.Size(18, 43);
 			this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -412,7 +412,7 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(684, 507);
 			this.Controls.Add(this.pnContainAll);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MinimumSize = new System.Drawing.Size(699, 544);
 			this.Name = "Form1";
 			this.Text = "Form1";

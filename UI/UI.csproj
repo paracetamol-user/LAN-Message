@@ -79,6 +79,12 @@
     <Compile Include="frmADD.Designer.cs">
       <DependentUpon>frmADD.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmADDMemberToContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmADDMemberToContact.Designer.cs">
+      <DependentUpon>FrmADDMemberToContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmContactBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmADD.resx">
       <DependentUpon>frmADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmADDMemberToContact.resx">
+      <DependentUpon>FrmADDMemberToContact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmContactBook.resx">
       <DependentUpon>FrmContactBook.cs</DependentUpon>
