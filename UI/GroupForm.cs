@@ -22,12 +22,14 @@ namespace UI
 		private short LastInteracted;
 		public GroupUI GroupUI;
 		public ucVoicePanel voicePanel;
-
+		public ucInfoGroup ucInfoGroup;
+		public List<ucFileShow> listfileShows = new List<ucFileShow>();
 		public GroupForm()
 		{
 			InitializeComponent();
 			this.Visible = false;
-	
+			addpnInfo();
+			this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
 		}
 		public GroupForm(Group group , GroupUI grUI)
 		{
@@ -46,7 +48,8 @@ namespace UI
 			this.Controls.Add(voicePanel);
 			this.SizeChanged += GroupForm_SizeChanged;
 			InitGroupForm();
-
+			addpnInfo();
+			this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
 		}
 
         private void GroupForm_SizeChanged(object sender, EventArgs e)
@@ -104,7 +107,7 @@ namespace UI
 			if (IDMess == "-1") Form1.listFileAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
 
-
+			listfileShows.Add(fileShow);
 		}
 		public async Task SendMessage()
 		{
@@ -267,6 +270,56 @@ namespace UI
 					}
 				}
 				panelListFile.Visible = true;
+			}
+		}
+		public Panel Pncontaininfor
+		{
+			get
+			{
+				return this.panel1;
+			}
+			set
+			{
+				this.panel1 = value;
+			}
+		}
+		public Panel PnLine1
+		{
+			get
+			{
+				return this.pnLine1;
+			}
+			set
+			{
+				this.pnLine1 = value;
+			}
+		}
+		public void addpnInfo()
+		{
+			this.ucInfoGroup = new ucInfoGroup(this);
+			this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
+			this.panel1.Visible = false;
+		}
+		bool isclickmenu = false;
+		public void _clearlistchat()
+		{
+			this.panelListChat.Controls.Clear();
+		}
+
+		
+        private void pictureBoxMenu_Click_1(object sender, EventArgs e)
+        {
+			isclickmenu = !isclickmenu;
+			panel1.AutoScroll = true;
+			if (isclickmenu)
+			{
+				this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
+
+				this.panel1.Visible = true;
+			}
+			else
+			{
+				this.panel1.Visible = false;
 			}
 		}
     }
