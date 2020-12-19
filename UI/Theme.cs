@@ -32,6 +32,11 @@ namespace UI
 		public string pictureCircleOnline { get; set; }
 		public string pictureCircleOffline { get; set; }
 		public string pictureAdd { get; set; }
+		public string picturePlay { get; set; }
+		public string pictureBin { get; set; }
+		public string pictureSend { get; set; }
+		public string pictureStop { get; set; }
+		public string pictureRecord { get; set; }
 		private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -299,6 +304,11 @@ namespace UI
 			pictureCircleOffline = @"..\..\images\circle-black.png";
 			pictureAdd = @"..\..\images\add-black.png";
 			PictureMinus = @"..\..\images\minus-black.png";
+			picturePlay = @"..\..\images\play-back.png";
+			pictureBin = @"..\..\images\garbage-can.png";
+			pictureSend = @"..\..\images\send.png";
+			pictureStop = @"..\..\images\stop_recording.jpg";
+			pictureRecord = @"..\..\images\record-button.png";
 		}
 		public void Black()
 		{
@@ -326,6 +336,11 @@ namespace UI
 			pictureCircleOffline = @"..\..\images\circle-black.png"; 
 			pictureAdd = @"..\..\images\add-white.png";
 			PictureMinus = @"..\..\images\minus-white.png";
+			picturePlay = @"..\..\images\play-back.png";
+			pictureBin = @"..\..\images\garbage-can.png";
+			pictureSend = @"..\..\images\send.png";
+			pictureStop = @"..\..\images\stop_recording.jpg";
+			pictureRecord = @"..\..\images\record-button.png";
 			this.menu = Color.FromArgb(47, 49, 54);
 		}
 	}
