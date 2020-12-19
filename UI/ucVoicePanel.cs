@@ -124,7 +124,8 @@ namespace UI
 			this.panelRecord.Controls.Remove(pctPlay);
 			this.panelRecord.Controls.Add(pctRecord);
 			this.Visible = false;
-			userForm.isVoicePanelShow = false;
+			if (userForm != null) userForm.isVoicePanelShow = false;
+			else groupForm.isVoicePanelShow = false;
 			isValidForSend = false;
         }
         private void PctStop_Click(object sender, EventArgs e)
