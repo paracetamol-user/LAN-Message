@@ -321,6 +321,8 @@ namespace UI
 			{
 				this.panel1.Visible = false;
 			}
+			
 		}
+		
     }
 }
