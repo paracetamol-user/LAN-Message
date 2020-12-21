@@ -39,6 +39,13 @@ namespace UI
 			ucGroupToAdd = new ucGroupToAdd(group);
 			//ucGroupToAdd = new ucGroupToAdd(group);
 		}
+		public Form1 MAINFORM
+		{ 
+			get
+            {
+				return this.mainForm;
+            }
+		}
 
         public void InitCmns()
         {

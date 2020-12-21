@@ -17,7 +17,7 @@ namespace UI
     public partial class LoginForm : Form
     {
         //Info Server
-        private string ipServer = "192.168.43.148";
+        private string ipServer = "172.17.22.36";
         private string portSever = "5000";
 
         static public SocketClient client;

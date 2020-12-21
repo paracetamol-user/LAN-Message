@@ -20,7 +20,8 @@ namespace UI
         public ucInfoUser()
         {
             InitializeComponent();
-        }
+			InitControls();
+		}
 		public ucInfoUser(UserForm frmMain)
 		{
 			this.frmMain = frmMain;
@@ -31,7 +32,7 @@ namespace UI
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);
 			pnaddfile.Visible = false;
-
+			
 		}
 
 

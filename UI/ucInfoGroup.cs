@@ -13,16 +13,22 @@ namespace UI
 {
     public partial class ucInfoGroup : UserControl
     {
+        
         GroupForm frmMain;
         private Group group;
         List<User> listmember;
+        public frmADD frmADD;
+        Form1 mainForm;
         public ucInfoGroup()
         {
             InitializeComponent();
             pnaddfile.Visible = false;
             pnaddmember.Visible = false;
+            
             pnfile.AutoSize = true;
             pnmember.AutoSize = true;
+            this.mainForm = this.frmMain.GroupUI.MAINFORM;
+            this.frmADD = new frmADD(mainForm);
         }
         public ucInfoGroup(GroupForm frmMain)
         {
@@ -34,8 +40,12 @@ namespace UI
             locationpanel(ref panel1, pnavata_name);
             pnaddfile.Visible = false;
             pnaddmember.Visible = false;
+            
             pnfile.AutoSize = true;
             pnmember.AutoSize = true;
+            
+            this.mainForm = this.frmMain.GroupUI.MAINFORM;
+            this.frmADD = new frmADD(mainForm);
         }
         public void locationlabel(ref Label a, Panel b)
         {
@@ -75,6 +85,7 @@ namespace UI
             this.pnLine9.BackColor = Form1.theme.LineColor;
             this.pnLine10.BackColor = Form1.theme.LineColor;
             this.pnLine11.BackColor = Form1.theme.LineColor;
+            this.pnLine12.BackColor = Form1.theme.LineColor;
             this.frmMain.PnLine1.BackColor = this.pnLine1.BackColor;
         }
         public void _LoadInfoGroup(Group group, List<ucFileShow> listfileShows)
@@ -93,6 +104,7 @@ namespace UI
 
             listmember = new List<User>(group.GetMembers());
             _addmember(listmember);
+            
         }
         public void _addfileinfilesent(List<ucFileShow> listfileShows)
         {
@@ -124,26 +136,44 @@ namespace UI
         public void _addmember(List<User> listmember)
         {
             List<ucMember> listuser = new List<ucMember>();
-
+            
+            
             if (listmember != null)
             {
-
+              
                 for (int i = 0; i < listmember.Count; i++)
                 {
-                    ucMember tam = new ucMember(group, listmember[i]);
-                    listuser.Add(tam);
-                }
 
+                    if(listmember[i] != group.admin)
+                    {
+                        ucMember tam = new ucMember(group, listmember[i]);
+                        listuser.Add(tam);
+                    }
+                    
+                }
+                for (int i = 0; i < listmember.Count; i++)
+                {
+
+                    if (listmember[i] == group.admin)
+                    {
+                        ucMember tam = new ucMember(group, listmember[i]);
+                        listuser.Add(tam);
+                    }
+
+                }
             }
             pnaddmember.Controls.Clear();
+
             if (listuser != null)
             {
                 for (int i = 0; i < listuser.Count; i++)
                 {
                     pnaddmember.Controls.Add(listuser[i]);
+                    
                     listuser[i].Dock = DockStyle.Top;
                 }
             }
+            
         }
         public Image _xoayanh(Image image, float rotationAngle)
         {
@@ -186,6 +216,8 @@ namespace UI
                 pictureBoxMenumember.Image = _xoayanh(pictureBoxMenumember.Image, 90);
                 pnaddmember.Visible = true;
                 pnaddmember.AutoSize = true;
+                
+                
                 Pen pen = new Pen(Form1.theme.TextColor);
                 g.DrawRectangle(pen, new Rectangle(pictureBoxMenumember.Location.X - 1, pictureBoxMenumember.Location.Y - 1, pictureBoxMenumember.Width + 1, pictureBoxMenumember.Height + 1));
             }
@@ -194,6 +226,7 @@ namespace UI
                 pictureBoxMenumember.Image = _xoayanh(pictureBoxMenumember.Image, -90);
                 pnaddmember.Visible = false;
                 pnaddmember.AutoSize = false;
+               
                 g.Clear(this.frmMain.BackColor);
             }
         }
@@ -217,6 +250,22 @@ namespace UI
                 pnaddfile.AutoSize = false;
                 g.Clear(this.frmMain.BackColor);
             }
+        }
+
+        private void pnthemthanhvien_Click(object sender, EventArgs e)
+        {
+            mainForm.frmADD.InitControls();
+            mainForm.frmADD.InitAddGroupForm(group);
+            mainForm.frmADD.Show();
+            mainForm.frmADD.BringToFront();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            mainForm.frmADD.InitControls();
+            mainForm.frmADD.InitAddGroupForm(group);
+            mainForm.frmADD.Show();
+            mainForm.frmADD.BringToFront();
         }
     }
 }
