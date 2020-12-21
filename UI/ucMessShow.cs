@@ -64,12 +64,10 @@ namespace UI
 			{
 				if (Form1.chatBoxFocus != null)
 				{
-					Form1.chatBoxFocus.BackColor = Color.Transparent;
 					Form1.chatBoxFocus.DisableMenu();
 				}
 				Form1.chatBoxFocus = ucParent;
 				this.ucParent.EnableMenu();
-				this.ucParent.BackColor = Form1.theme.Menu;
 			}
             else
             {

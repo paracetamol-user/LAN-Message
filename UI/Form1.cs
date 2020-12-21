@@ -125,6 +125,7 @@ namespace UI
 		private void ChangeColorFocus()
 		{
 			if (userUIForcus != null) userUIForcus.ucInterac.ChangeColorWhenClick();
+			if (interactFocus != null) interactFocus.ChangeColorWhenClick();
 		}
 		private void ChangeColorBoxChat()
 		{
@@ -210,6 +211,7 @@ namespace UI
 		{
 			labelID.Text = "#" + me.Id;
 			labelUSERNAME.Text = me.Name;
+			this.roundPicAvatar.Image = Image.FromFile(me.AvatarPath);
 		}
 		private async Task AwaitReadData()
 		{

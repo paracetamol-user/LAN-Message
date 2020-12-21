@@ -31,9 +31,10 @@ namespace UI
 		public void _InitControls()
 		{
 			this.label1.Text = user.Name;
+			this.label1.ForeColor = Form1.theme.TxtForeColor;
 			this.pnLine.BackColor = Form1.theme.LineColor;
 			this.picRemove.Image = Image.FromFile(Form1.theme.PictureClose);
-			this.pictureBox1.Image = Image.FromFile(user.AvatarPath);
+			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
 		}
 		public void _RemoveThis()
 		{

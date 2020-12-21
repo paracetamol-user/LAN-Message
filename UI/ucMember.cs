@@ -22,8 +22,6 @@ namespace UI
             InitColor();
             SetName(user.Name);
             SetAvatar(user.AvatarPath);
-            this.group = group;
-            this.user = user;
             _loadadmin();
         }
         public ucMember(Group group, User user)

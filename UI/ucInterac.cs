@@ -69,7 +69,7 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-			//this.gunaPic.Image = Image.FromFile(path);
+			this.roundPicAvatar.Image = Image.FromFile(path);
 		}
 		public void Online()
 		{

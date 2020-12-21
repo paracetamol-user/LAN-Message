@@ -102,21 +102,20 @@ namespace UI
 			this.pictureBoxDownLoad.Visible = false;
 		}
 
-  //      private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-  //      {
-		//	if (Form1.chatBoxFocus != ucParent)
-		//	{
-		//		if (Form1.chatBoxFocus != null)
-		//		{
-		//			Form1.chatBoxFocus.BackColor = Color.Transparent;
-		//			Form1.chatBoxFocus.DisableMenu();
-		//		}
-		//		Form1.chatBoxFocus = ucParent;
-		//		this.ucParent.EnableMenu();
-		//		this.ucParent.BackColor = Form1.theme.Menu;
-		//	}
-		//	else return;
-		//}
+		private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (Form1.chatBoxFocus != ucParent)
+			{
+				if (Form1.chatBoxFocus != null)
+				{
+				
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				Form1.chatBoxFocus = ucParent;
+				this.ucParent.EnableMenu();
+			}
+			else return;
+		}
 		public string GetText()
         {
 			return this.label1.Text;

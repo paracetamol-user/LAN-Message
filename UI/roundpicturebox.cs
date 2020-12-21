@@ -16,7 +16,7 @@ namespace UI
             GraphicsPath gp = new GraphicsPath();
             gp.AddEllipse(new Rectangle(0, 0, this.Width, this.Height));
 
-            this.BackColor = SystemColors.ActiveCaption;
+            this.BackColor = SystemColors.Control;
             this.Region = new Region(gp);
         }
     }

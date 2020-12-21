@@ -37,6 +37,7 @@ namespace UI
 		public string pictureSend { get; set; }
 		public string pictureStop { get; set; }
 		public string pictureRecord { get; set; }
+		public string pictureVoice { get; set; }
 		private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -304,11 +305,12 @@ namespace UI
 			pictureCircleOffline = @"..\..\images\circle-black.png";
 			pictureAdd = @"..\..\images\add-black.png";
 			PictureMinus = @"..\..\images\minus-black.png";
-			picturePlay = @"..\..\images\play-back.png";
-			pictureBin = @"..\..\images\garbage-can.png";
+			picturePlay = @"..\..\images\play-back-black.png";
+			pictureBin = @"..\..\images\garbage-can-black.png";
 			pictureSend = @"..\..\images\send.png";
-			pictureStop = @"..\..\images\stop_recording.jpg";
-			pictureRecord = @"..\..\images\record-button.png";
+			pictureStop = @"..\..\images\stop-button-black.png";
+			pictureRecord = @"..\..\images\record.png";
+			pictureVoice = @"..\..\images\microphone-black.png";
 		}
 		public void Black()
 		{
@@ -336,11 +338,12 @@ namespace UI
 			pictureCircleOffline = @"..\..\images\circle-black.png"; 
 			pictureAdd = @"..\..\images\add-white.png";
 			PictureMinus = @"..\..\images\minus-white.png";
-			picturePlay = @"..\..\images\play-back.png";
-			pictureBin = @"..\..\images\garbage-can.png";
+			picturePlay = @"..\..\images\play-back-white.png";
+			pictureBin = @"..\..\images\garbage-can-white.png";
 			pictureSend = @"..\..\images\send.png";
-			pictureStop = @"..\..\images\stop_recording.jpg";
-			pictureRecord = @"..\..\images\record-button.png";
+			pictureStop = @"..\..\images\stop-button-white.png";
+			pictureRecord = @"..\..\images\record.png";
+			pictureVoice = @"..\..\images\microphone-white.png";
 			this.menu = Color.FromArgb(47, 49, 54);
 		}
 	}

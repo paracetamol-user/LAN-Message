@@ -24,6 +24,7 @@ namespace UI
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
 			this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.roundPicAvatar.Image = Image.FromFile(Parent.user.AvatarPath);
 			this.pnLine.BackColor = Form1.theme.LineColor;
 			this.lbName.ForeColor = Form1.theme.TextColor;
 			this.lbId.ForeColor = Form1.theme.TextMenuColor;

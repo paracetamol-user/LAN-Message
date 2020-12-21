@@ -34,7 +34,6 @@ namespace UI
 		public GroupForm(Group group , GroupUI grUI)
 		{
 			InitializeComponent();
-			InitColor();
 			this.Visible = false;
 			this.group = group;
 			this.ID = 0;
@@ -46,6 +45,8 @@ namespace UI
 			files = new List<FileInfo>();
 			voicePanel = new ucVoicePanel(group, this);
 			this.Controls.Add(voicePanel);
+			
+			InitColor();
 			this.SizeChanged += GroupForm_SizeChanged;
 			InitGroupForm();
 			addpnInfo();
@@ -64,10 +65,14 @@ namespace UI
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.labelID.ForeColor = Form1.theme.TextMenuColor;
 			this.BackColor = Form1.theme.BackColor;
-			//this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
+			panelLine.BackColor = Form1.theme.LineColor;
+			
 			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
+			this.TextBoxEnterChat.BackColor = Form1.theme.Menu;
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
+
 		}
 		public void AddItemToListChat(User user, string IDMess,string str)
 		{
@@ -322,5 +327,20 @@ namespace UI
 				this.panel1.Visible = false;
 			}
 		}
-    }
+
+		private async void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				if (Form1.chatBoxFocus != null)
+				{
+					Form1.chatBoxFocus.BackColor = Color.Transparent;
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				await SendFile();
+				await SendMessage();
+				e.SuppressKeyPress = true;
+			}
+		}
+	}
 }
