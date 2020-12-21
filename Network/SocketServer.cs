@@ -31,7 +31,7 @@ namespace Communication
 		// Database of K
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 		//Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @"Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True";
+		string connString = @"Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True";
 
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";

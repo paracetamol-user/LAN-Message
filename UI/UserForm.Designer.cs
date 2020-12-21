@@ -77,9 +77,9 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // panelListChat
-            // 
+            //
             this.panelListChat.AutoScroll = true;
             this.panelListChat.BackColor = System.Drawing.Color.Transparent;
             this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -89,9 +89,9 @@ namespace UI
             this.panelListChat.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.panelListChat.Size = new System.Drawing.Size(642, 351);
             this.panelListChat.TabIndex = 12;
-            // 
+            //
             // panelListFile
-            // 
+            //
             this.panelListFile.AutoScroll = true;
             this.panelListFile.BackColor = System.Drawing.Color.Transparent;
             this.panelListFile.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -102,9 +102,9 @@ namespace UI
             this.panelListFile.Size = new System.Drawing.Size(642, 81);
             this.panelListFile.TabIndex = 10;
             this.panelListFile.Visible = false;
-            // 
+            //
             // panelLine
-            // 
+            //
             this.panelLine.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLine.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelLine.Location = new System.Drawing.Point(0, 50);
@@ -112,9 +112,9 @@ namespace UI
             this.panelLine.Name = "panelLine";
             this.panelLine.Size = new System.Drawing.Size(642, 1);
             this.panelLine.TabIndex = 3;
-            // 
+            //
             // labelID
-            // 
+            //
             this.labelID.AutoSize = true;
             this.labelID.BackColor = System.Drawing.Color.Transparent;
             this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -126,9 +126,9 @@ namespace UI
             this.labelID.Size = new System.Drawing.Size(49, 17);
             this.labelID.TabIndex = 1;
             this.labelID.Text = "#0040";
-            // 
+            //
             // labelName
-            // 
+            //
             this.labelName.AutoSize = true;
             this.labelName.BackColor = System.Drawing.Color.Transparent;
             this.labelName.Dock = System.Windows.Forms.DockStyle.Top;
@@ -139,9 +139,9 @@ namespace UI
             this.labelName.Size = new System.Drawing.Size(111, 23);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "User Name";
-            // 
+            //
             // panel3
-            // 
+            //
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.labelID);
             this.panel3.Controls.Add(this.labelName);
@@ -152,9 +152,9 @@ namespace UI
             this.panel3.Padding = new System.Windows.Forms.Padding(20, 2, 0, 0);
             this.panel3.Size = new System.Drawing.Size(285, 46);
             this.panel3.TabIndex = 3;
-            // 
+            //
             // panelNULL2
-            // 
+            //
             this.panelNULL2.BackColor = System.Drawing.Color.Transparent;
             this.panelNULL2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelNULL2.Location = new System.Drawing.Point(301, 0);
@@ -163,9 +163,9 @@ namespace UI
             this.panelNULL2.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.panelNULL2.Size = new System.Drawing.Size(56, 50);
             this.panelNULL2.TabIndex = 3;
-            // 
+            //
             // panelUSERCHATINFO
-            // 
+            //
             this.panelUSERCHATINFO.BackColor = System.Drawing.Color.Transparent;
             this.panelUSERCHATINFO.Controls.Add(this.panel3);
             this.panelUSERCHATINFO.Dock = System.Windows.Forms.DockStyle.Left;
@@ -175,9 +175,9 @@ namespace UI
             this.panelUSERCHATINFO.Padding = new System.Windows.Forms.Padding(16, 2, 0, 2);
             this.panelUSERCHATINFO.Size = new System.Drawing.Size(301, 50);
             this.panelUSERCHATINFO.TabIndex = 1;
-            // 
+            //
             // pictureBoxMenu
-            // 
+            //
             this.pictureBoxMenu.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxMenu.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -190,9 +190,9 @@ namespace UI
             this.pictureBoxMenu.TabIndex = 0;
             this.pictureBoxMenu.TabStop = false;
             this.pictureBoxMenu.Click += new System.EventHandler(this.pictureBoxMenu_Click);
-            // 
+            //
             // pictureBoxSearch
-            // 
+            //
             this.pictureBoxSearch.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSearch.Location = new System.Drawing.Point(9, 9);
@@ -202,9 +202,9 @@ namespace UI
             this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSearch.TabIndex = 0;
             this.pictureBoxSearch.TabStop = false;
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.Controls.Add(this.panelListChat);
             this.panel2.Controls.Add(this.panelListFile);
             this.panel2.Controls.Add(this.panelUSERINFO);
@@ -215,9 +215,9 @@ namespace UI
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(642, 554);
             this.panel2.TabIndex = 3;
-            // 
+            //
             // panelUSERINFO
-            // 
+            //
             this.panelUSERINFO.BackColor = System.Drawing.Color.Transparent;
             this.panelUSERINFO.Controls.Add(this.panelAll);
             this.panelUSERINFO.Controls.Add(this.panelLine);
@@ -228,9 +228,9 @@ namespace UI
             this.panelUSERINFO.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.panelUSERINFO.Size = new System.Drawing.Size(642, 53);
             this.panelUSERINFO.TabIndex = 8;
-            // 
+            //
             // panelAll
-            // 
+            //
             this.panelAll.BackColor = System.Drawing.Color.Transparent;
             this.panelAll.Controls.Add(this.panelOPTIONUSER);
             this.panelAll.Controls.Add(this.panelNULL2);
@@ -241,9 +241,9 @@ namespace UI
             this.panelAll.Name = "panelAll";
             this.panelAll.Size = new System.Drawing.Size(642, 50);
             this.panelAll.TabIndex = 4;
-            // 
+            //
             // panelOPTIONUSER
-            // 
+            //
             this.panelOPTIONUSER.BackColor = System.Drawing.Color.Transparent;
             this.panelOPTIONUSER.Controls.Add(this.panelSearch);
             this.panelOPTIONUSER.Controls.Add(this.panelMenu);
@@ -254,9 +254,9 @@ namespace UI
             this.panelOPTIONUSER.Padding = new System.Windows.Forms.Padding(9, 7, 40, 7);
             this.panelOPTIONUSER.Size = new System.Drawing.Size(172, 50);
             this.panelOPTIONUSER.TabIndex = 4;
-            // 
+            //
             // panelSearch
-            // 
+            //
             this.panelSearch.BackColor = System.Drawing.Color.Transparent;
             this.panelSearch.Controls.Add(this.pictureBoxSearch);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Right;
@@ -266,9 +266,9 @@ namespace UI
             this.panelSearch.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.panelSearch.Size = new System.Drawing.Size(52, 36);
             this.panelSearch.TabIndex = 1;
-            // 
+            //
             // panelMenu
-            // 
+            //
             this.panelMenu.BackColor = System.Drawing.Color.Transparent;
             this.panelMenu.Controls.Add(this.pictureBoxMenu);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Right;
@@ -278,9 +278,9 @@ namespace UI
             this.panelMenu.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.panelMenu.Size = new System.Drawing.Size(52, 36);
             this.panelMenu.TabIndex = 0;
-            // 
+            //
             // panelENTERCHAT
-            // 
+            //
             this.panelENTERCHAT.BackColor = System.Drawing.Color.Transparent;
             this.panelENTERCHAT.Controls.Add(this.panelCHATBOX);
             this.panelENTERCHAT.Controls.Add(this.panel4);
@@ -293,9 +293,9 @@ namespace UI
             this.panelENTERCHAT.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.panelENTERCHAT.Size = new System.Drawing.Size(642, 69);
             this.panelENTERCHAT.TabIndex = 9;
-            // 
+            //
             // panelCHATBOX
-            // 
+            //
             this.panelCHATBOX.BackColor = System.Drawing.Color.Transparent;
             this.panelCHATBOX.Controls.Add(this.TextBoxEnterChat);
             this.panelCHATBOX.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -305,9 +305,9 @@ namespace UI
             this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelCHATBOX.Size = new System.Drawing.Size(475, 51);
             this.panelCHATBOX.TabIndex = 3;
-            // 
+            //
             // TextBoxEnterChat
-            // 
+            //
             this.TextBoxEnterChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxEnterChat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxEnterChat.Location = new System.Drawing.Point(7, 6);
@@ -316,9 +316,9 @@ namespace UI
             this.TextBoxEnterChat.Size = new System.Drawing.Size(461, 39);
             this.TextBoxEnterChat.TabIndex = 1;
             this.TextBoxEnterChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxEnterChat_KeyDown);
-            // 
+            //
             // panel4
-            // 
+            //
             this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.Controls.Add(this.pictureVoice);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -328,9 +328,9 @@ namespace UI
             this.panel4.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panel4.Size = new System.Drawing.Size(52, 51);
             this.panel4.TabIndex = 2;
-            // 
+            //
             // pictureVoice
-            // 
+            //
             this.pictureVoice.BackColor = System.Drawing.Color.Transparent;
             this.pictureVoice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureVoice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -343,9 +343,9 @@ namespace UI
             this.pictureVoice.TabIndex = 0;
             this.pictureVoice.TabStop = false;
             this.pictureVoice.Click += new System.EventHandler(this.pictureVoice_Click_1);
-            // 
+            //
             // panelENTERCHATOPTION
-            // 
+            //
             this.panelENTERCHATOPTION.BackColor = System.Drawing.Color.Transparent;
             this.panelENTERCHATOPTION.Controls.Add(this.pictureBox1);
             this.panelENTERCHATOPTION.Dock = System.Windows.Forms.DockStyle.Left;
@@ -355,9 +355,9 @@ namespace UI
             this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.panelENTERCHATOPTION.Size = new System.Drawing.Size(45, 51);
             this.panelENTERCHATOPTION.TabIndex = 1;
-            // 
+            //
             // pictureBox1
-            // 
+            //
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -370,9 +370,9 @@ namespace UI
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
+            //
             // panelSEND
-            // 
+            //
             this.panelSEND.BackColor = System.Drawing.Color.Transparent;
             this.panelSEND.Controls.Add(this.pictureBoxSend);
             this.panelSEND.Dock = System.Windows.Forms.DockStyle.Right;
@@ -382,9 +382,9 @@ namespace UI
             this.panelSEND.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelSEND.Size = new System.Drawing.Size(52, 51);
             this.panelSEND.TabIndex = 0;
-            // 
+            //
             // pictureBoxSend
-            // 
+            //
             this.pictureBoxSend.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -397,9 +397,9 @@ namespace UI
             this.pictureBoxSend.TabIndex = 0;
             this.pictureBoxSend.TabStop = false;
             this.pictureBoxSend.Click += new System.EventHandler(this.pictureBoxSend_Click_1);
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this.pnLine1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(642, 0);
@@ -408,17 +408,17 @@ namespace UI
             this.panel1.Size = new System.Drawing.Size(227, 554);
             this.panel1.TabIndex = 2;
             this.panel1.Visible = false;
-            // 
+            //
             // pnLine1
-            // 
+            //
             this.pnLine1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLine1.Location = new System.Drawing.Point(0, 0);
             this.pnLine1.Name = "pnLine1";
             this.pnLine1.Size = new System.Drawing.Size(1, 554);
             this.pnLine1.TabIndex = 2;
-            // 
+            //
             // UserForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 554);
