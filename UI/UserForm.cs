@@ -244,22 +244,20 @@ namespace UI
 			// voiceMessage.InitColor();
 		}
 
-		private bool isShow;
-
-
+		public bool isVoicePanelShow = false;
 		private void pictureVoice_Click_1(object sender, EventArgs e)
 		{
-			if (!isShow)
+			if (!isVoicePanelShow)
 			{
 				voicePanel.Visible = true;
 				voicePanel.Show();
 				voicePanel.BringToFront();
-				isShow = true;
+				isVoicePanelShow = true;
 			}
 			else
 			{
-				voicePanel.Visible = false;
-				isShow = false;
+				voicePanel.Visible = false;	
+				isVoicePanelShow = false;
 			}
 		}
 
