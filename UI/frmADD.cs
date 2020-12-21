@@ -16,6 +16,7 @@ namespace UI
     {
 		Group selectedGroup;
 		Form1 mainForm;
+		GroupForm groupForm;
 		public List<User> listAdd;
 		public frmADD(Form1 mainForm)
 		{
@@ -28,7 +29,7 @@ namespace UI
 			this.pnContainAll.Location = new Point(mainForm.Width / 2 - this.pnContainAll.Width / 2, mainForm.Height / 2 - this.pnContainAll.Height / 2);
 			listAdd = new List<User>();
 		}
-
+		
 		public void InitControls()
 		{
 			this.BackColor = Form1.theme.BackColor;

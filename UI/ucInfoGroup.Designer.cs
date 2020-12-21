@@ -38,6 +38,9 @@ namespace UI
             this.lbName = new System.Windows.Forms.Label();
             this.pnLine2 = new System.Windows.Forms.Panel();
             this.pnfuction = new System.Windows.Forms.Panel();
+            this.pnthemthanhvien = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnLine12 = new System.Windows.Forms.Panel();
             this.pnclearhistory = new System.Windows.Forms.Panel();
             this.lbclearhistory = new System.Windows.Forms.Label();
             this.pnLine6 = new System.Windows.Forms.Panel();
@@ -47,11 +50,10 @@ namespace UI
             this.pnLine10 = new System.Windows.Forms.Panel();
             this.pnmenumeber = new System.Windows.Forms.Panel();
             this.panelMenumember = new System.Windows.Forms.Panel();
+            this.pictureBoxMenumember = new System.Windows.Forms.PictureBox();
             this.lbmember = new System.Windows.Forms.Label();
             this.pnLine11 = new System.Windows.Forms.Panel();
             this.pnLine5 = new System.Windows.Forms.Panel();
-            this.pictureBoxMenumember = new System.Windows.Forms.PictureBox();
-            this.ptbavata = new UI.roundpicturebox();
             this.pnfile = new System.Windows.Forms.Panel();
             this.pnaddfile = new System.Windows.Forms.Panel();
             this.pnLine9 = new System.Windows.Forms.Panel();
@@ -61,21 +63,23 @@ namespace UI
             this.label1 = new System.Windows.Forms.Label();
             this.pnLine8 = new System.Windows.Forms.Panel();
             this.pnLine7 = new System.Windows.Forms.Panel();
+            this.ptbavata = new UI.roundpicturebox();
             this.pnavata_name.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnfuction.SuspendLayout();
+            this.pnthemthanhvien.SuspendLayout();
             this.pnclearhistory.SuspendLayout();
             this.pnmember.SuspendLayout();
             this.pnaddmember.SuspendLayout();
             this.pnmenumeber.SuspendLayout();
             this.panelMenumember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenumember)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.pnfile.SuspendLayout();
             this.pnaddfile.SuspendLayout();
             this.pnmemnufile.SuspendLayout();
             this.panelMenufile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenufile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.SuspendLayout();
             // 
             // pnLine1
@@ -84,7 +88,7 @@ namespace UI
             this.pnLine1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLine1.Location = new System.Drawing.Point(0, 0);
             this.pnLine1.Name = "pnLine1";
-            this.pnLine1.Size = new System.Drawing.Size(1, 526);
+            this.pnLine1.Size = new System.Drawing.Size(1, 580);
             this.pnLine1.TabIndex = 3;
             // 
             // pnNULL1
@@ -147,13 +151,45 @@ namespace UI
             // pnfuction
             // 
             this.pnfuction.AutoSize = true;
+            this.pnfuction.Controls.Add(this.pnthemthanhvien);
             this.pnfuction.Controls.Add(this.pnclearhistory);
             this.pnfuction.Controls.Add(this.pnLine3);
             this.pnfuction.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnfuction.Location = new System.Drawing.Point(1, 267);
             this.pnfuction.Name = "pnfuction";
-            this.pnfuction.Size = new System.Drawing.Size(320, 55);
+            this.pnfuction.Size = new System.Drawing.Size(320, 109);
             this.pnfuction.TabIndex = 8;
+            // 
+            // pnthemthanhvien
+            // 
+            this.pnthemthanhvien.Controls.Add(this.label2);
+            this.pnthemthanhvien.Controls.Add(this.pnLine12);
+            this.pnthemthanhvien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnthemthanhvien.Location = new System.Drawing.Point(0, 55);
+            this.pnthemthanhvien.Name = "pnthemthanhvien";
+            this.pnthemthanhvien.Size = new System.Drawing.Size(320, 54);
+            this.pnthemthanhvien.TabIndex = 7;
+            this.pnthemthanhvien.Click += new System.EventHandler(this.pnthemthanhvien_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 22);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Add member";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // pnLine12
+            // 
+            this.pnLine12.BackColor = System.Drawing.SystemColors.Control;
+            this.pnLine12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnLine12.Location = new System.Drawing.Point(0, 53);
+            this.pnLine12.Name = "pnLine12";
+            this.pnLine12.Size = new System.Drawing.Size(320, 1);
+            this.pnLine12.TabIndex = 2;
             // 
             // pnclearhistory
             // 
@@ -201,7 +237,7 @@ namespace UI
             this.pnmember.Controls.Add(this.pnmenumeber);
             this.pnmember.Controls.Add(this.pnLine5);
             this.pnmember.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnmember.Location = new System.Drawing.Point(1, 322);
+            this.pnmember.Location = new System.Drawing.Point(1, 376);
             this.pnmember.Name = "pnmember";
             this.pnmember.Size = new System.Drawing.Size(320, 102);
             this.pnmember.TabIndex = 9;
@@ -248,6 +284,21 @@ namespace UI
             this.panelMenumember.Size = new System.Drawing.Size(52, 53);
             this.panelMenumember.TabIndex = 4;
             // 
+            // pictureBoxMenumember
+            // 
+            this.pictureBoxMenumember.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxMenumember.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxMenumember.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxMenumember.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMenumember.Image")));
+            this.pictureBoxMenumember.Location = new System.Drawing.Point(13, 13);
+            this.pictureBoxMenumember.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxMenumember.Name = "pictureBoxMenumember";
+            this.pictureBoxMenumember.Size = new System.Drawing.Size(26, 27);
+            this.pictureBoxMenumember.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxMenumember.TabIndex = 0;
+            this.pictureBoxMenumember.TabStop = false;
+            this.pictureBoxMenumember.Click += new System.EventHandler(this.pictureBoxMenumember_Click);
+            // 
             // lbmember
             // 
             this.lbmember.AutoSize = true;
@@ -276,38 +327,13 @@ namespace UI
             this.pnLine5.Size = new System.Drawing.Size(320, 1);
             this.pnLine5.TabIndex = 1;
             // 
-            // pictureBoxMenumember
-            // 
-            this.pictureBoxMenumember.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxMenumember.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxMenumember.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMenumember.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMenumember.Image")));
-            this.pictureBoxMenumember.Location = new System.Drawing.Point(13, 13);
-            this.pictureBoxMenumember.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBoxMenumember.Name = "pictureBoxMenumember";
-            this.pictureBoxMenumember.Size = new System.Drawing.Size(26, 27);
-            this.pictureBoxMenumember.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMenumember.TabIndex = 0;
-            this.pictureBoxMenumember.TabStop = false;
-            this.pictureBoxMenumember.Click += new System.EventHandler(this.pictureBoxMenumember_Click);
-            // 
-            // ptbavata
-            // 
-            this.ptbavata.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptbavata.Location = new System.Drawing.Point(0, 0);
-            this.ptbavata.Name = "ptbavata";
-            this.ptbavata.Size = new System.Drawing.Size(120, 110);
-            this.ptbavata.TabIndex = 1;
-            this.ptbavata.TabStop = false;
-            // 
             // pnfile
             // 
             this.pnfile.Controls.Add(this.pnaddfile);
             this.pnfile.Controls.Add(this.pnmemnufile);
             this.pnfile.Controls.Add(this.pnLine7);
             this.pnfile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnfile.Location = new System.Drawing.Point(1, 424);
+            this.pnfile.Location = new System.Drawing.Point(1, 478);
             this.pnfile.Name = "pnfile";
             this.pnfile.Size = new System.Drawing.Size(320, 102);
             this.pnfile.TabIndex = 10;
@@ -396,6 +422,16 @@ namespace UI
             this.pnLine7.Size = new System.Drawing.Size(320, 1);
             this.pnLine7.TabIndex = 1;
             // 
+            // ptbavata
+            // 
+            this.ptbavata.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptbavata.Location = new System.Drawing.Point(0, 0);
+            this.ptbavata.Name = "ptbavata";
+            this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.TabIndex = 1;
+            this.ptbavata.TabStop = false;
+            // 
             // ucInfoGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -408,11 +444,13 @@ namespace UI
             this.Controls.Add(this.pnavata_name);
             this.Controls.Add(this.pnLine1);
             this.Name = "ucInfoGroup";
-            this.Size = new System.Drawing.Size(321, 526);
+            this.Size = new System.Drawing.Size(321, 580);
             this.pnavata_name.ResumeLayout(false);
             this.pnavata_name.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.pnfuction.ResumeLayout(false);
+            this.pnthemthanhvien.ResumeLayout(false);
+            this.pnthemthanhvien.PerformLayout();
             this.pnclearhistory.ResumeLayout(false);
             this.pnclearhistory.PerformLayout();
             this.pnmember.ResumeLayout(false);
@@ -422,13 +460,13 @@ namespace UI
             this.pnmenumeber.PerformLayout();
             this.panelMenumember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenumember)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.pnfile.ResumeLayout(false);
             this.pnaddfile.ResumeLayout(false);
             this.pnmemnufile.ResumeLayout(false);
             this.pnmemnufile.PerformLayout();
             this.panelMenufile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenufile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -450,8 +488,6 @@ namespace UI
         private System.Windows.Forms.Panel pnLine6;
         private System.Windows.Forms.Panel pnLine3;
         private System.Windows.Forms.Panel pnmember;
-        private System.Windows.Forms.Panel pnaddmember;
-        private System.Windows.Forms.Panel pnLine10;
         private System.Windows.Forms.Panel pnmenumeber;
         private System.Windows.Forms.Panel panelMenumember;
         private System.Windows.Forms.PictureBox pictureBoxMenumember;
@@ -467,5 +503,10 @@ namespace UI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnLine8;
         private System.Windows.Forms.Panel pnLine7;
+        private System.Windows.Forms.Panel pnaddmember;
+        private System.Windows.Forms.Panel pnLine10;
+        private System.Windows.Forms.Panel pnthemthanhvien;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel pnLine12;
     }
 }

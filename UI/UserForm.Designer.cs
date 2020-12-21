@@ -84,7 +84,7 @@ namespace UI
             this.panelListChat.BackColor = System.Drawing.Color.Transparent;
             this.panelListChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelListChat.Location = new System.Drawing.Point(0, 53);
-            this.panelListChat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelListChat.Margin = new System.Windows.Forms.Padding(4);
             this.panelListChat.Name = "panelListChat";
             this.panelListChat.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.panelListChat.Size = new System.Drawing.Size(642, 351);
@@ -96,7 +96,7 @@ namespace UI
             this.panelListFile.BackColor = System.Drawing.Color.Transparent;
             this.panelListFile.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelListFile.Location = new System.Drawing.Point(0, 404);
-            this.panelListFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelListFile.Margin = new System.Windows.Forms.Padding(4);
             this.panelListFile.Name = "panelListFile";
             this.panelListFile.Padding = new System.Windows.Forms.Padding(27, 6, 0, 12);
             this.panelListFile.Size = new System.Drawing.Size(642, 81);
@@ -108,7 +108,7 @@ namespace UI
             this.panelLine.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLine.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelLine.Location = new System.Drawing.Point(0, 50);
-            this.panelLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLine.Margin = new System.Windows.Forms.Padding(4);
             this.panelLine.Name = "panelLine";
             this.panelLine.Size = new System.Drawing.Size(642, 1);
             this.panelLine.TabIndex = 3;
@@ -147,7 +147,7 @@ namespace UI
             this.panel3.Controls.Add(this.labelName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(16, 2);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(20, 2, 0, 0);
             this.panel3.Size = new System.Drawing.Size(285, 46);
@@ -158,9 +158,9 @@ namespace UI
             this.panelNULL2.BackColor = System.Drawing.Color.Transparent;
             this.panelNULL2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelNULL2.Location = new System.Drawing.Point(301, 0);
-            this.panelNULL2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelNULL2.Margin = new System.Windows.Forms.Padding(4);
             this.panelNULL2.Name = "panelNULL2";
-            this.panelNULL2.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.panelNULL2.Padding = new System.Windows.Forms.Padding(9);
             this.panelNULL2.Size = new System.Drawing.Size(56, 50);
             this.panelNULL2.TabIndex = 3;
             // 
@@ -170,7 +170,7 @@ namespace UI
             this.panelUSERCHATINFO.Controls.Add(this.panel3);
             this.panelUSERCHATINFO.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelUSERCHATINFO.Location = new System.Drawing.Point(0, 0);
-            this.panelUSERCHATINFO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelUSERCHATINFO.Margin = new System.Windows.Forms.Padding(4);
             this.panelUSERCHATINFO.Name = "panelUSERCHATINFO";
             this.panelUSERCHATINFO.Padding = new System.Windows.Forms.Padding(16, 2, 0, 2);
             this.panelUSERCHATINFO.Size = new System.Drawing.Size(301, 50);
@@ -183,7 +183,7 @@ namespace UI
             this.pictureBoxMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxMenu.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMenu.Image")));
             this.pictureBoxMenu.Location = new System.Drawing.Point(9, 9);
-            this.pictureBoxMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxMenu.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxMenu.Name = "pictureBoxMenu";
             this.pictureBoxMenu.Size = new System.Drawing.Size(34, 18);
             this.pictureBoxMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -196,7 +196,7 @@ namespace UI
             this.pictureBoxSearch.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSearch.Location = new System.Drawing.Point(9, 9);
-            this.pictureBoxSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxSearch.Name = "pictureBoxSearch";
             this.pictureBoxSearch.Size = new System.Drawing.Size(34, 18);
             this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -211,7 +211,7 @@ namespace UI
             this.panel2.Controls.Add(this.panelENTERCHAT);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(642, 554);
             this.panel2.TabIndex = 3;
@@ -223,7 +223,7 @@ namespace UI
             this.panelUSERINFO.Controls.Add(this.panelLine);
             this.panelUSERINFO.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUSERINFO.Location = new System.Drawing.Point(0, 0);
-            this.panelUSERINFO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelUSERINFO.Margin = new System.Windows.Forms.Padding(4);
             this.panelUSERINFO.Name = "panelUSERINFO";
             this.panelUSERINFO.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.panelUSERINFO.Size = new System.Drawing.Size(642, 53);
@@ -237,7 +237,7 @@ namespace UI
             this.panelAll.Controls.Add(this.panelUSERCHATINFO);
             this.panelAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAll.Location = new System.Drawing.Point(0, 0);
-            this.panelAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelAll.Margin = new System.Windows.Forms.Padding(4);
             this.panelAll.Name = "panelAll";
             this.panelAll.Size = new System.Drawing.Size(642, 50);
             this.panelAll.TabIndex = 4;
@@ -249,7 +249,7 @@ namespace UI
             this.panelOPTIONUSER.Controls.Add(this.panelMenu);
             this.panelOPTIONUSER.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelOPTIONUSER.Location = new System.Drawing.Point(470, 0);
-            this.panelOPTIONUSER.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelOPTIONUSER.Margin = new System.Windows.Forms.Padding(4);
             this.panelOPTIONUSER.Name = "panelOPTIONUSER";
             this.panelOPTIONUSER.Padding = new System.Windows.Forms.Padding(9, 7, 40, 7);
             this.panelOPTIONUSER.Size = new System.Drawing.Size(172, 50);
@@ -261,9 +261,9 @@ namespace UI
             this.panelSearch.Controls.Add(this.pictureBoxSearch);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelSearch.Location = new System.Drawing.Point(28, 7);
-            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4);
             this.panelSearch.Name = "panelSearch";
-            this.panelSearch.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.panelSearch.Padding = new System.Windows.Forms.Padding(9);
             this.panelSearch.Size = new System.Drawing.Size(52, 36);
             this.panelSearch.TabIndex = 1;
             // 
@@ -273,9 +273,9 @@ namespace UI
             this.panelMenu.Controls.Add(this.pictureBoxMenu);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelMenu.Location = new System.Drawing.Point(80, 7);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(4);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.panelMenu.Padding = new System.Windows.Forms.Padding(9);
             this.panelMenu.Size = new System.Drawing.Size(52, 36);
             this.panelMenu.TabIndex = 0;
             // 
@@ -288,9 +288,9 @@ namespace UI
             this.panelENTERCHAT.Controls.Add(this.panelSEND);
             this.panelENTERCHAT.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelENTERCHAT.Location = new System.Drawing.Point(0, 485);
-            this.panelENTERCHAT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelENTERCHAT.Margin = new System.Windows.Forms.Padding(4);
             this.panelENTERCHAT.Name = "panelENTERCHAT";
-            this.panelENTERCHAT.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.panelENTERCHAT.Padding = new System.Windows.Forms.Padding(9);
             this.panelENTERCHAT.Size = new System.Drawing.Size(642, 69);
             this.panelENTERCHAT.TabIndex = 9;
             // 
@@ -300,7 +300,7 @@ namespace UI
             this.panelCHATBOX.Controls.Add(this.TextBoxEnterChat);
             this.panelCHATBOX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCHATBOX.Location = new System.Drawing.Point(54, 9);
-            this.panelCHATBOX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCHATBOX.Margin = new System.Windows.Forms.Padding(4);
             this.panelCHATBOX.Name = "panelCHATBOX";
             this.panelCHATBOX.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelCHATBOX.Size = new System.Drawing.Size(475, 51);
@@ -311,7 +311,7 @@ namespace UI
             this.TextBoxEnterChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxEnterChat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxEnterChat.Location = new System.Drawing.Point(7, 6);
-            this.TextBoxEnterChat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextBoxEnterChat.Margin = new System.Windows.Forms.Padding(4);
             this.TextBoxEnterChat.Name = "TextBoxEnterChat";
             this.TextBoxEnterChat.Size = new System.Drawing.Size(461, 39);
             this.TextBoxEnterChat.TabIndex = 1;
@@ -323,7 +323,7 @@ namespace UI
             this.panel4.Controls.Add(this.pictureVoice);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(529, 9);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panel4.Size = new System.Drawing.Size(52, 51);
@@ -336,7 +336,7 @@ namespace UI
             this.pictureVoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureVoice.Image = ((System.Drawing.Image)(resources.GetObject("pictureVoice.Image")));
             this.pictureVoice.Location = new System.Drawing.Point(7, 6);
-            this.pictureVoice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureVoice.Margin = new System.Windows.Forms.Padding(4);
             this.pictureVoice.Name = "pictureVoice";
             this.pictureVoice.Size = new System.Drawing.Size(38, 39);
             this.pictureVoice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -350,9 +350,9 @@ namespace UI
             this.panelENTERCHATOPTION.Controls.Add(this.pictureBox1);
             this.panelENTERCHATOPTION.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelENTERCHATOPTION.Location = new System.Drawing.Point(9, 9);
-            this.panelENTERCHATOPTION.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelENTERCHATOPTION.Margin = new System.Windows.Forms.Padding(4);
             this.panelENTERCHATOPTION.Name = "panelENTERCHATOPTION";
-            this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.panelENTERCHATOPTION.Padding = new System.Windows.Forms.Padding(9);
             this.panelENTERCHATOPTION.Size = new System.Drawing.Size(45, 51);
             this.panelENTERCHATOPTION.TabIndex = 1;
             // 
@@ -363,7 +363,7 @@ namespace UI
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(9, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(27, 33);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -377,7 +377,7 @@ namespace UI
             this.panelSEND.Controls.Add(this.pictureBoxSend);
             this.panelSEND.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelSEND.Location = new System.Drawing.Point(581, 9);
-            this.panelSEND.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSEND.Margin = new System.Windows.Forms.Padding(4);
             this.panelSEND.Name = "panelSEND";
             this.panelSEND.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panelSEND.Size = new System.Drawing.Size(52, 51);
@@ -390,7 +390,7 @@ namespace UI
             this.pictureBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSend.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSend.Image")));
             this.pictureBoxSend.Location = new System.Drawing.Point(7, 6);
-            this.pictureBoxSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxSend.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxSend.Name = "pictureBoxSend";
             this.pictureBoxSend.Size = new System.Drawing.Size(38, 39);
             this.pictureBoxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -403,7 +403,7 @@ namespace UI
             this.panel1.Controls.Add(this.pnLine1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(642, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(227, 554);
             this.panel1.TabIndex = 2;
@@ -425,7 +425,7 @@ namespace UI
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserForm";
             this.Text = "UserForm";
             this.panel3.ResumeLayout(false);
