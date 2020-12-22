@@ -29,98 +29,96 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucVoiceMessage));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(237, 2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(41, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(196, 2);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(41, 36);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(155, 2);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(41, 36);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 6;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            // 
-            // ucVoiceMessage
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ucVoiceMessage";
-            this.Padding = new System.Windows.Forms.Padding(11, 2, 20, 1);
-            this.Size = new System.Drawing.Size(298, 39);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucVoiceMessage));
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.picturePause = new System.Windows.Forms.PictureBox();
+			this.picturePlay = new System.Windows.Forms.PictureBox();
+			this.picturePlayBack = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picturePause)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picturePlay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picturePlayBack)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Location = new System.Drawing.Point(11, 2);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(47, 36);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.TabIndex = 3;
+			this.pictureBox1.TabStop = false;
+			// 
+			// picturePause
+			// 
+			this.picturePause.BackColor = System.Drawing.Color.Transparent;
+			this.picturePause.Dock = System.Windows.Forms.DockStyle.Right;
+			this.picturePause.Location = new System.Drawing.Point(237, 2);
+			this.picturePause.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.picturePause.Name = "picturePause";
+			this.picturePause.Size = new System.Drawing.Size(41, 36);
+			this.picturePause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.picturePause.TabIndex = 4;
+			this.picturePause.TabStop = false;
+			this.picturePause.Click += new System.EventHandler(this.pictureBox2_Click);
+			// 
+			// picturePlay
+			// 
+			this.picturePlay.BackColor = System.Drawing.Color.Transparent;
+			this.picturePlay.Dock = System.Windows.Forms.DockStyle.Right;
+			this.picturePlay.Location = new System.Drawing.Point(196, 2);
+			this.picturePlay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.picturePlay.Name = "picturePlay";
+			this.picturePlay.Size = new System.Drawing.Size(41, 36);
+			this.picturePlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.picturePlay.TabIndex = 5;
+			this.picturePlay.TabStop = false;
+			this.picturePlay.Click += new System.EventHandler(this.pictureBox3_Click);
+			// 
+			// picturePlayBack
+			// 
+			this.picturePlayBack.BackColor = System.Drawing.Color.Transparent;
+			this.picturePlayBack.Dock = System.Windows.Forms.DockStyle.Right;
+			this.picturePlayBack.Image = ((System.Drawing.Image)(resources.GetObject("picturePlayBack.Image")));
+			this.picturePlayBack.Location = new System.Drawing.Point(155, 2);
+			this.picturePlayBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.picturePlayBack.Name = "picturePlayBack";
+			this.picturePlayBack.Size = new System.Drawing.Size(41, 36);
+			this.picturePlayBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.picturePlayBack.TabIndex = 6;
+			this.picturePlayBack.TabStop = false;
+			this.picturePlayBack.Click += new System.EventHandler(this.pictureBox4_Click);
+			// 
+			// ucVoiceMessage
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.Transparent;
+			this.Controls.Add(this.picturePlayBack);
+			this.Controls.Add(this.picturePlay);
+			this.Controls.Add(this.picturePause);
+			this.Controls.Add(this.pictureBox1);
+			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.Name = "ucVoiceMessage";
+			this.Padding = new System.Windows.Forms.Padding(11, 2, 20, 1);
+			this.Size = new System.Drawing.Size(298, 39);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picturePause)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picturePlay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picturePlayBack)).EndInit();
+			this.ResumeLayout(false);
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox picturePause;
+        private System.Windows.Forms.PictureBox picturePlay;
+        private System.Windows.Forms.PictureBox picturePlayBack;
     }
 }

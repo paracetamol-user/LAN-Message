@@ -31,9 +31,10 @@ namespace UI
 		public void _InitControls()
 		{
 			this.label1.Text = user.Name;
+			this.label1.ForeColor = Form1.theme.TxtForeColor;
 			this.pnLine.BackColor = Form1.theme.LineColor;
 			this.picRemove.Image = Image.FromFile(Form1.theme.PictureClose);
-			this.pictureBox1.Image = Image.FromFile(user.AvatarPath);
+			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
 		}
 		public void _RemoveThis()
 		{
@@ -51,6 +52,25 @@ namespace UI
 
 				_RemoveThis();
 			}
+		}
+
+		private void pnLine_Click(object sender, EventArgs e)
+		{
+			foreach (var item in Form1.UserUIs)
+			{
+				if (item.user == this.user)
+				{
+					item.ShowChatForm();
+					item.AddUserInteracted();
+					if (Form1.interactFocus != null)
+					{
+						Form1.interactFocus.ChangeColorWhenNonClick();
+					}
+					item.ucInterac.ChangeColorWhenClick();
+					Form1.interactFocus = item.ucInterac;
+				}
+			}
+			
 		}
 	}
 }

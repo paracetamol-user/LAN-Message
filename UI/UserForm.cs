@@ -39,10 +39,10 @@ namespace UI
 		public UserForm(UserManager.User user, UserUI userUI)
 		{
 			InitializeComponent();
-			this.panelLine.BackColor = Form1.theme.FocusColor;
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
-
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
+			panelLine.BackColor = Form1.theme.LineColor;
 			this.userUI = userUI;
 			this.Visible = false;
 			this.user = user;
@@ -69,6 +69,7 @@ namespace UI
 		{
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
 		}
 		public void ChangeColorLine()
 		{
@@ -78,9 +79,12 @@ namespace UI
 		{
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.labelID.ForeColor = Form1.theme.TextMenuColor;
+			panelLine.BackColor = Form1.theme.LineColor;
 			this.BackColor = Form1.theme.BackColor;
-			//this.TextBoxEnterChat.FillColor = Form1.theme.TxtBackColor;
-			//this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
+			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
+			voicePanel.InitControls();
+			this.TextBoxEnterChat.BackColor = Form1.theme.Menu;
+			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
 		}
 		public void SetAvatar(string path)
 		{
@@ -115,7 +119,7 @@ namespace UI
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user, this.user.Id);
 			UserInChatBox.DisableEdit();
 			ucFileShow fileshow = new ucFileShow(_user, tempID, tempName, UserInChatBox);
-			if (_user == Form1.me) fileshow._DisableButDownLoad();
+			//if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
 
@@ -249,6 +253,7 @@ namespace UI
 		{
 			if (!isVoicePanelShow)
 			{
+				
 				voicePanel.Visible = true;
 				voicePanel.Show();
 				voicePanel.BringToFront();
@@ -304,7 +309,7 @@ namespace UI
 			await SendMessage();
 		}
 
-		private void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
+		private async void TextBoxEnterChat_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
@@ -313,7 +318,8 @@ namespace UI
 					Form1.chatBoxFocus.BackColor = Color.Transparent;
 					Form1.chatBoxFocus.DisableMenu();
 				}
-				SendMessage();
+				await SendFile();
+				await SendMessage();
 				e.SuppressKeyPress = true;
 			}
 		}

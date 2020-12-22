@@ -89,7 +89,7 @@ namespace UI
 				}
 			}
 			InitCmns();
-			ucGroupAll.InitColor();
+			ucGroupAll.InitControls();
 			ucGroupInteract.InitColor();
 			if (ucGroupPending != null) ucGroupPending.InitColor();
 			if (ucGroupToAdd != null) ucGroupToAdd.InitColor();

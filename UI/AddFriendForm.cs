@@ -52,10 +52,7 @@ namespace UI
 				}
 			}
 		}
-		public void ResetPicture()
-        {
-			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureGroup);
-        }
+
 		public void ChangeColorLine()
         {
 			this.panelLine.BackColor = Form1.theme.LineColor;

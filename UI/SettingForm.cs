@@ -17,26 +17,34 @@ namespace UI
 	{
 		string oldUsername;
 		Button btnFocus;
-		Form1 parentForm;
 		public FileInfo fi;
-		private User me;
-		private Form1 parent;
+		public User me;
+		public Form1 parent;
+		LoginForm loginForm;
 		public SettingForm()
 		{
 			InitializeComponent();
 		}
-		public SettingForm(User me, Form1 parent)
+		public SettingForm(User me, Form1 parent , LoginForm loginForm)
 		{
 			InitializeComponent(); 
 			this.me = me;
 			this.parent = parent;
+			this.loginForm = loginForm;
 			InitSettingForm();
 			ChangeColorAllLabelControl(this);
-			InitPnMyAccount();
 			InitStartForm();
+			LoadMyAccount();
 		}
 
-        private void InitSettingForm()
+		private void LoadMyAccount()
+		{
+			this.lblName.Text= me.Name;
+			this.lblID.Text = "#" + me.Id;
+			this.pictureAvatar.Image = Image.FromFile(me.AvatarPath);
+		}
+
+		private void InitSettingForm()
         {
 			this.TopLevel = false;
 			this.parent.Controls.Add(this);
@@ -49,14 +57,12 @@ namespace UI
         public void ChangeColorPanelControl()
 		{
 			this.pnMenu.BackColor = Form1.theme.Menu;
-			this.pnUserName.BackColor = Form1.theme.FocusColor;
 			this.pnPassword.BackColor = Form1.theme.FocusColor;
-			this.pnDownLoad.BackColor = Form1.theme.FocusColor;
-			this.btnEditDownloadPath.BackColor = Form1.theme.BackColor;
 			this.btnEditPassword.BackColor = Form1.theme.BackColor;
-			this.btnEditUsername.BackColor = Form1.theme.BackColor;
-			this.btnDiscard.BackColor =  Form1.theme.FocusColor;
 			this.btnSave.BackColor = Form1.theme.FocusColor;
+			this.btnSave.ForeColor = Form1.theme.TxtForeColor;
+			this.btnSavePassword.ForeColor = Form1.theme.TxtForeColor;
+			this.btnSavePassword.BackColor = Form1.theme.BackColor;
 		}
 		public void ChangeColorAllLabelControl(Control x)
 		{
@@ -101,39 +107,19 @@ namespace UI
 			this.btnMyAccount.BackColor = Form1.theme.FocusColor;
 			this.btnFocus = this.btnMyAccount;
 		}
-		private void InitPnMyAccount()
-		{
-			lblUsername.Text = me.Name;
-			lblName.Text = me.Name;
-			oldUsername = me.Name;
-			lblID.Text = string.Format("#{0}", me.Id);
-			lblPassword.Text = "*********";
-			lblPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-			this.parentForm = parent;
-			this.pictureBox1.Image = Image.FromFile(me.AvatarPath);
 
-		}
 		private bool isChangingUsername = false;
 		private TextBox txtUsername = null;
-		private void ReleaseUsernameChange()
-		{
-			// Remove textbox for change username
-			this.panelUsername.Controls.Remove(txtUsername);
-			txtUsername.Visible = false;
-			txtUsername = null;
-
-			// Show label username
-			this.lblUsername.Visible = true;
-		}
 		private void CheckPasswordFromServer()
 		{
 			UserVerification verification = new UserVerification();
-			byte[] buff = new byte[1024];
-			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}", Form1.me.Id,
-																							verification.GetSHA256(txtOldPassword.Text),
-																							verification.GetSHA256(txtNewPassword.Text)));
-			tempBuff.CopyTo(buff, 0);
-			Form1.server.GetStream().WriteAsync(buff, 0, buff.Length);
+
+			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}", 
+				Form1.me.Id,																		
+				verification.GetSHA256(txtOldPassword.Text),																
+				verification.GetSHA256(txtNewPassword.Text)));
+			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
+			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 		}
 		public void RespondToChangePasswordMessage(bool isSuccess)
 		{
@@ -170,32 +156,11 @@ namespace UI
 			await Form1.client.SendFileToServer(data , "A" ,id.ToString());
 
 			byte[] tempfile = File.ReadAllBytes(fi.FullName);
-			File.WriteAllBytes(@"..\..\cache\avatar\" + fi.Name + fi.Extension, tempfile);
-			Form1.me.AvatarPath = @"..\..\cache\avatar\" + fi.Name + fi.Extension;
-			this.parentForm.LoadUser();
+			File.WriteAllBytes(@"..\..\cache\avatar\" + me.Id + fi.Extension, tempfile);
+			Form1.me.AvatarPath = @"..\..\cache\avatar\" + me.Id + fi.Extension;
+			this.parent.LoadUser();
 			}
-		public void RespondToChangeUsernameMessage(bool isSuccess) 
-		{
-			if (isSuccess)
-			{
-				lblErrorINUsername.Visible = false;
-				lblNoticeINUsername.Visible = true;
-				lblName.Text = txtUsername.Text;
-				lblUsername.Text = txtUsername.Text;
-				ReleaseUsernameChange();
 
-				// Change status
-				this.btnDiscard.Enabled = false;
-				this.btnSave.Enabled = true;
-				isChangingUsername = false;
-				Form1.me.Name = lblUsername.Text;
-				parentForm.LoadUser();
-			}
-			else
-			{
-				lblErrorINUsername.Visible = true;
-			}
-		}
 		private void button1_Click(object sender, EventArgs e)
 		{
 			if (this.btnFocus != null) this.btnFocus.BackColor = Color.Transparent;
@@ -220,7 +185,10 @@ namespace UI
 		}
 		private void btnLog_Click(object sender, EventArgs e)
 		{
-			this.Hide();
+			parent.acceptClose = false;
+			this.Close();
+			parent.Close();
+			
 		}
 		private void pictureBox2_Click(object sender, EventArgs e)
 		{
@@ -237,61 +205,23 @@ namespace UI
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
 			Form1.theme.White();
-			parentForm.ChangeTheme();
+			parent.ChangeTheme();
+			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (Form1.theme.IsWhite == true ? "White" : "Black"));
+			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
 			Form1.theme.Black();
-			parentForm.ChangeTheme();
+			parent.ChangeTheme();
+			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (Form1.theme.IsWhite == true ? "White" : "Black"));
+			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
-		private void btnEditUsername_Click(object sender, EventArgs e)
-		{
-			if (!isChangingUsername)
-			{
-				isChangingUsername = true;
-				// Hide label
-				this.lblUsername.Visible = false;
-				// Create the textbox for typing username
-				txtUsername = new TextBox();
-				this.panelUsername.Controls.Add(txtUsername);
-				txtUsername.Text = lblUsername.Text;
-				txtUsername.Dock = DockStyle.Left;
-				txtUsername.Width = 180;
-				txtUsername.Height = 22;
-				txtUsername.TextChanged += (s, ev) =>
-				{
-					this.btnDiscard.Enabled = true;
-					this.btnSave.Enabled = true;
-				};
-			}
-			//// Enable discard and save button for click
-			//this.btnDiscard.Enabled = true;
-			//this.btnSave.Enabled = true;
-		}
-        private void btnEditDownloadPath_Click(object sender, EventArgs e)
-        {
-			FolderBrowserDialog browser = new FolderBrowserDialog();
-			// Description for browser
-			browser.Description = "Select downloads save path";
-			// Allow create new folders in file explorer
-			browser.ShowNewFolderButton = true;
-			// Default to the My documents folder
-			browser.RootFolder = Environment.SpecialFolder.MyDocuments;
-			// Show the browser dialog and return path string
-			DialogResult result = browser.ShowDialog();
-			if (result == DialogResult.OK)
-				lblPath.Text = browser.SelectedPath;
 
 
-			// Enable discard and save button for click
-			this.btnDiscard.Enabled = true;
-			this.btnSave.Enabled = true;
-		}
         private void btnSave_Click(object sender, EventArgs e)
         {
-			// Update to server
-			if (txtUsername != null && txtUsername.Text != Form1.me.Name)
-				ChangeUsernameInServer(txtUsername.Text);
 			ChangeAvatar();
 		}
         private void btnSavePassword_Click(object sender, EventArgs e)
@@ -321,21 +251,8 @@ namespace UI
 				this.btnSavePassword.Visible = false;
 			}
 		}
-        private void btnDiscard_Click(object sender, EventArgs e)
-        {
-			// Release changes in username field
-			ReleaseUsernameChange();
-			isChangingUsername = false;
-
-			// Release changes in path
-
-
-			// Enable discard and save button for click
-			this.btnDiscard.Enabled = false;
-			this.btnSave.Enabled = false;
-		}
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+		private void pictureAvatar_Click(object sender, EventArgs e)
+		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			openFileDialog.Filter =
 				"Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF";
@@ -346,21 +263,14 @@ namespace UI
 			if (result == DialogResult.OK)
 			{
 				Image avatar = Image.FromFile(openFileDialog.FileName);
-				this.pictureBox1.Image = avatar;
+				this.pictureAvatar.Image = avatar;
 
 				// Upload to database and update to all users.
 				fi = new FileInfo(openFileDialog.FileName);
 			}
 
 			// Enable discard and save button for click
-			this.btnDiscard.Enabled = false;
 			this.btnSave.Enabled = true;
 		}
-        //if (Form1.me.Name != lblName.Text)
-        //	{
-        //		Form1.me.Name = lblName.Text;
-        //	}
-        //	Form1.settingForm = null;
-        //	this.Close();
-    }
+	}
 }

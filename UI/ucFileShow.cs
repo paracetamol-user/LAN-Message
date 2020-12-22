@@ -43,9 +43,6 @@ namespace UI
 		public void InitColor()
 		{
 			this.label1.ForeColor = Form1.theme.TextColor;
-			this.BackColor = Form1.theme.FocusColor;
-			//this.BackColor = Form1.theme.BackColor;
-			this.BackColor = Color.Transparent;
 		}
 
 		public ucUserINChatBox _panelParent
@@ -90,7 +87,7 @@ namespace UI
 		}
 		private async void pictureBox2_Click(object sender, EventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + this.fileId + "%" + this.label1.Text );
+			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + ucParent.ID + "%" + this.label1.Text );
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			PictureBox temp = sender as PictureBox;
@@ -102,21 +99,20 @@ namespace UI
 			this.pictureBoxDownLoad.Visible = false;
 		}
 
-  //      private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-  //      {
-		//	if (Form1.chatBoxFocus != ucParent)
-		//	{
-		//		if (Form1.chatBoxFocus != null)
-		//		{
-		//			Form1.chatBoxFocus.BackColor = Color.Transparent;
-		//			Form1.chatBoxFocus.DisableMenu();
-		//		}
-		//		Form1.chatBoxFocus = ucParent;
-		//		this.ucParent.EnableMenu();
-		//		this.ucParent.BackColor = Form1.theme.Menu;
-		//	}
-		//	else return;
-		//}
+		private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (Form1.chatBoxFocus != ucParent)
+			{
+				if (Form1.chatBoxFocus != null)
+				{
+				
+					Form1.chatBoxFocus.DisableMenu();
+				}
+				Form1.chatBoxFocus = ucParent;
+				this.ucParent.EnableMenu();
+			}
+			else return;
+		}
 		public string GetText()
         {
 			return this.label1.Text;
@@ -124,7 +120,7 @@ namespace UI
 		public void DeleteMessage()
         {
 			this.label1.Text = "Deleted file";
-			this.label1.Font = new Font("Dubai", 10, FontStyle.Underline);
+			this.label1.Font = new Font("Tahoma", 10, FontStyle.Italic);
 			this.pictureBoxDownLoad.Visible = false;
 		}
     }

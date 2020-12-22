@@ -24,6 +24,7 @@ namespace UI
 			InitializeComponent();
 			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
 			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.roundPicAvatar.Image = Image.FromFile(Parent.user.AvatarPath);
 			this.pnLine.BackColor = Form1.theme.LineColor;
 			isPlus = true;
 			this.Dock = DockStyle.Top;

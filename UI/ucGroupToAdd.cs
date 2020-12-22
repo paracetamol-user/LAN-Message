@@ -29,7 +29,7 @@ namespace UI
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.label2.ForeColor = Form1.theme.TextColor;
 			this.button1.ForeColor = Form1.theme.TextColor;
-			
+			this.roundPicAvatar.Image = Image.FromFile(group.AvatarPath);
 		}
 		public void InitColor()
 		{

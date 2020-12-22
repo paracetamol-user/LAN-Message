@@ -38,6 +38,7 @@ namespace UI
 			foreach (var item in contactBook.listMember)
 			{
 				ucContact__User newContact__User = new ucContact__User(item, this);
+				listContact__User.Add(newContact__User);
 				this.pnList.Controls.Add(newContact__User);
 			}
 		}

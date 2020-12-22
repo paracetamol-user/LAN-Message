@@ -115,8 +115,6 @@ namespace UI
 			userForm = new UserForm(user,this);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
-
-			
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
