@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -28,7 +29,20 @@ namespace UI
 			InitializeComponent();
 			InitClient();
 			ConnecToServer();
+			ClearData();
 		}
+
+		private void ClearData()
+		{
+			string path = @"..\..\cache\avatar";
+			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+			DirectoryInfo dir = new DirectoryInfo(path);
+			foreach (var item in dir.GetFiles())
+			{
+				item.Delete();
+			}
+		}
+
 		private async void ConnecToServer()
 		{
 			server = await client.ConnectToServer();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Communication;
 using Network;
@@ -15,10 +16,21 @@ namespace Server
             mServer = new SocketServer();
             mServer.RaiseClientConnectedEvent += HandleClientConnected;
             mServer.RaiseTextReceivedEvent += HandleTextReceived;
-           
+            ClearData();
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+		private void ClearData()
+		{
+            string path = @"..\..\filedata";
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            DirectoryInfo dir = new DirectoryInfo(path);
+            foreach (var item in dir.GetFiles())
+            {
+                item.Delete();
+            }
+        }
+
+		private void btnStart_Click(object sender, EventArgs e)
         {
             txtBoxConsole.AppendText(string.Format("Server started! {0}", Environment.NewLine));
             mServer.StartForIncommingConnection();
