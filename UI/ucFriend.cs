@@ -27,6 +27,7 @@ namespace UI
 			this.Parent = userUI;
 			this.lbName.Text = userUI.user.Name;
 			this.lbId.Text = userUI.user.Id;
+			this.roundPicAvatar.Image = Image.FromFile(userUI.user.AvatarPath);
 		}
 		public void ResetTheme()
         {

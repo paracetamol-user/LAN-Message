@@ -26,7 +26,7 @@ namespace UI
 		{
 			InitializeComponent();
 			//this.BackColor = Form1.theme.FocusColor;
-			this.textBox1.BackColor = Form1.theme.BackColor;
+			this.textBox1.BackColor = Form1.theme.FocusColor;
 			this.textBox1.ForeColor = Form1.theme.TextColor;
 			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
 			this.UserUIs = userUIs;
@@ -43,7 +43,7 @@ namespace UI
         //}
         public void ResetTheme()
 		{
-			this.textBox1.BackColor = Form1.theme.BackColor;
+			this.textBox1.BackColor = Form1.theme.FocusColor;
 			this.textBox1.ForeColor = Form1.theme.TxtForeColor;
 			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
 		}

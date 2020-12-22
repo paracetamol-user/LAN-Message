@@ -40,10 +40,6 @@ namespace UI
 			labelCOUNT.Text = "All Friend - " + friendCount.ToString();
 		}
 
-        public void ResetPicture()
-        {
-			this.pictureBox1.Image = Image.FromFile(Form1.theme.PictureMessage);
-        }
 		//public void ChangeColorControl()
   		//      {
 		//	foreach (var item in pnAll.Controls)
@@ -73,6 +69,7 @@ namespace UI
 				{
 					pnAll.Controls.Add(item.ucFriend);
 					item.ucFriend.InitColor();
+					friendCount++;
 				}
 			}
 		}

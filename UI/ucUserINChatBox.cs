@@ -38,9 +38,9 @@ namespace UI
 			this.labelName.Text = User.Name;
 			if (this.User == Form1.me)
 			{
-				pictureBox1.Image = Image.FromFile(Form1.me.AvatarPath);
+				roundPicAvatar.Image = Image.FromFile(Form1.me.AvatarPath);
 			}
-			else pictureBox1.Image = Image.FromFile(User.AvatarPath);
+			else roundPicAvatar.Image = Image.FromFile(User.AvatarPath);
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.BackColor = Color.Transparent;
 		}
@@ -141,13 +141,11 @@ namespace UI
 			{
 				if (Form1.chatBoxFocus != null)
 				{
-					Form1.chatBoxFocus.BackColor = Color.Transparent;
 					Form1.chatBoxFocus.DisableMenu();
 				}
 				Form1.chatBoxFocus = this;
 				this.EnableMenu();
 				this.pnMenu.Visible = true;
-				this.BackColor = Form1.theme.Menu;
 			}
 			else return;
 		}

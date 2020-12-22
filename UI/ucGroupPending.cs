@@ -25,7 +25,7 @@ namespace UI
             this.Dock = DockStyle.Top;
             this.pnParent = pnPending;
             this.uiParent = groupUI;
-           // this.gunaPic.Image = Image.FromFile(uiParent.group.AvatarPath);
+            this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = uiParent.group.ID;
             this.lbId.ForeColor = Form1.theme.TextColor;
@@ -36,7 +36,7 @@ namespace UI
             InitializeComponent();
             this.Dock = DockStyle.Top;
             this.pnParent = pnPending;
-           // this.gunaPic.Image = Image.FromFile(@"..\..\groupDefault.png");
+            this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = name;
             this.lbId.Text = id;
             this.lbId.ForeColor = Form1.theme.TextColor;

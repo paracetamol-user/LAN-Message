@@ -24,10 +24,10 @@ namespace UI
 			this.frmMain = frmMain;
 			this.GroupUIs = GroupUIs;
 			InitializeComponent();
-			InitControls();
+			_InitControls();
 		}
 
-		private void InitControls()
+		private void _InitControls()
 		{
 			this.frmMain.PnRight.Controls.Add(this);
 			this.Dock = DockStyle.Fill;
@@ -37,6 +37,8 @@ namespace UI
 			this.btnCreate.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.FlatAppearance.BorderColor = Form1.theme.TextColor;
 			this.btnCreate.BackColor = Form1.theme.Menu;
+			this.lbHeaderName.ForeColor = Form1.theme.TxtForeColor;
+			this.pnLine.BackColor = Form1.theme.LineColor;
 		}
 		public void InitColor()
 		{
@@ -45,6 +47,8 @@ namespace UI
 			this.btnCreate.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.FlatAppearance.BorderColor = Form1.theme.TextColor;
 			this.btnCreate.BackColor = Form1.theme.Menu;
+			this.lbHeaderName.ForeColor = Form1.theme.TxtForeColor;
+			this.pnLine.BackColor = Form1.theme.LineColor;
 		}
 		public void _LoadGroup()
 		{
@@ -58,6 +62,7 @@ namespace UI
 		{
 			
 		}
+
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
 			if (txtCreate.Text != "" && txtCreate.Text != null)
@@ -67,7 +72,7 @@ namespace UI
 					MessageBox.Show("Name is shorter than 32", "Name is not invalid", MessageBoxButtons.OK);
 					return;
 				}
-				byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}",txtCreate.Text , Form1.me.Id));
+				byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}", txtCreate.Text, Form1.me.Id));
 				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
 				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 

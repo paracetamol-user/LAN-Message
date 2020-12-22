@@ -57,7 +57,14 @@ namespace UI
 			timer.Interval = 1000;
 			this.panelRecord.Controls.Add(pctRecord);
 		}
-
+		public void InitControls()
+		{
+			pctRecord.Image = Image.FromFile(Form1.theme.pictureRecord);
+			pctStop.Image = Image.FromFile(Form1.theme.pictureStop);
+			pctSend.Image = Image.FromFile(Form1.theme.pictureSend);
+			pctBin.Image = Image.FromFile(Form1.theme.pictureBin);
+			pctPlay.Image = Image.FromFile(Form1.theme.picturePlay);
+		}
         private void Timer_Tick(object sender, EventArgs e)
         {
 			isValidForSend = true;

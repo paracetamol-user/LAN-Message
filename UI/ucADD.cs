@@ -30,7 +30,7 @@ namespace UI
 		{
 			this.label1.ForeColor = Form1.theme.TextColor;
 			this.label2.ForeColor = Form1.theme.TextColor;
-			//this.gunaPic.Image = Image.FromFile(user.AvatarPath);
+			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
 		}
 		public void Reset()
         {

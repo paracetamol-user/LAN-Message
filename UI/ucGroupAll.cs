@@ -33,19 +33,17 @@ namespace UI
             this.Parent = groupUI;
             this.lbName.Text = group.Name;
             this.lbId.Text = "#" + group.ID;
-            this.lbId.ForeColor = Form1.theme.TextColor;
-            this.lbName.ForeColor = Form1.theme.TextColor;
-            this.pnLine.BackColor = Form1.theme.LineColor;
-            this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
-            this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
+            this.roundPicAvatar.Image = Image.FromFile(group.AvatarPath);
+            InitControls();
         }
-        public void InitColor()
+        public void InitControls()
         {
             this.lbId.ForeColor = Form1.theme.TextColor;
             this.lbName.ForeColor = Form1.theme.TextColor;
             this.pnLine.BackColor = Form1.theme.LineColor;
             this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
             this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
+            
         }
         private void picChat_Click(object sender, EventArgs e)
         {
