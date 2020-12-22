@@ -391,7 +391,7 @@ namespace Communication
 					if (reader.Read() == false) break;
 					if (reader.GetString(0) == FILEID)
 					{
-						path = reader.GetString(4).ToString();
+						path = reader.GetString(3).ToString();
 						break;
 					}
 				}

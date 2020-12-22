@@ -38,6 +38,8 @@ namespace UI
 		public string pictureStop { get; set; }
 		public string pictureRecord { get; set; }
 		public string pictureVoice { get; set; }
+		public string picturePlay02 { get; set; }
+		public string picturePause { get; set; }
 		private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -267,6 +269,7 @@ namespace UI
 			}
 		}
 		public string PictureMinus { get; set; }
+		
 		public bool IsWhite
 		{
 			get
@@ -311,6 +314,8 @@ namespace UI
 			pictureStop = @"..\..\images\stop-button-black.png";
 			pictureRecord = @"..\..\images\record.png";
 			pictureVoice = @"..\..\images\microphone-black.png";
+			picturePlay02 = @"..\..\images\play-button-black.png";
+			picturePause = @"..\..\images\pause-button-black.png";
 		}
 		public void Black()
 		{
@@ -344,6 +349,8 @@ namespace UI
 			pictureStop = @"..\..\images\stop-button-white.png";
 			pictureRecord = @"..\..\images\record.png";
 			pictureVoice = @"..\..\images\microphone-white.png";
+			picturePlay02 = @"..\..\images\play-button-white.png";
+			picturePause = @"..\..\images\pause-button-white.png";
 			this.menu = Color.FromArgb(47, 49, 54);
 		}
 	}

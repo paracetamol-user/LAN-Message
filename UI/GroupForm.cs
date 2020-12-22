@@ -206,7 +206,7 @@ namespace UI
 		public void AddVoiceMessage(User _user, string path)
         {
 			Panel tempPanel = new Panel();
-			tempPanel.AutoSize = false;
+			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
 			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, group.ID);

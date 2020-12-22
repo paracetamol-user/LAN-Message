@@ -31,14 +31,15 @@ namespace UI
 			InitializeComponent();
 			this.Path = path;
 			this.userINChatBox = userINChatBox;
-			this.picturePlay.Image = Image.FromFile(Form1.theme.picturePlay);
-			this.picturePause.Image = Image.FromFile(Form1.theme.pictureStop);
+			this.picturePlay.Image = Image.FromFile(Form1.theme.picturePlay02);
+			this.picturePause.Image = Image.FromFile(Form1.theme.picturePause);
+			this.picturePlayBack.Image = Image.FromFile(Form1.theme.pictureStop);
 			_InitColor();
         }
 
 		public void _InitColor()
 		{
-			this.BackColor = Form1.theme.FocusColor;
+			
 		}
 
 		private void pictureBox3_Click(object sender, EventArgs e)

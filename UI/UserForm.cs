@@ -119,7 +119,7 @@ namespace UI
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(_user, this.user.Id);
 			UserInChatBox.DisableEdit();
 			ucFileShow fileshow = new ucFileShow(_user, tempID, tempName, UserInChatBox);
-			if (_user == Form1.me) fileshow._DisableButDownLoad();
+			//if (_user == Form1.me) fileshow._DisableButDownLoad();
 			fileshow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
 

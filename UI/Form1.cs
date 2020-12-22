@@ -13,6 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
+using Timer = System.Windows.Forms.Timer;
+
 namespace UI
 {
 	public partial class Form1 : Form
@@ -46,19 +48,43 @@ namespace UI
 		public frmADD frmADD;
 		public FrmContactBook frmContactBook;
 		public FrmADDMemberToContact frmADDMemberToContact;
+		public FrmLoading frmLoading;
 		public static List<User> listUser;
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
 		public static List<ucUserINChatBox> listFileAwaitID;
 		public static List<Group> listGroup;
+
+		public bool acceptClose;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mỗi class.
-		//242,243,245
+		public Timer timer;
+		public bool time;
+		public int tick;
 		public Form1()
 		{
 			InitializeComponent();
 		}
 		public Form1(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
+			acceptClose = true;
+			frmLoading = new FrmLoading();
+			time = false;
+			tick = 0;
+			timer = new Timer();
+			
+			frmLoading.TopLevel = false;
+			frmLoading.Dock = DockStyle.Fill;
+			frmLoading.BringToFront();
+			frmLoading.Show();
+			this.Controls.Add(frmLoading);
+			timer.Interval = 1000;
+			timer.Tick += (timersender, timerEvent) => { tick++; if (time == true && tick > 1)
+				{
+					timer.Stop();
+					this.Controls.Remove(frmLoading);
+				} };
+			timer.Start();
+			
 			this.loginForm = loginform;
 			Form1.client = client;
 			Form1.server = server;
@@ -83,7 +109,7 @@ namespace UI
 			frmADDMemberToContact = new FrmADDMemberToContact(this);
 
 			me.AvatarPath = @"../../avatarDefault.png";
-			LoadMyData();
+			
 			LoadDataUser();
 			InitServerUsersForm();
 			InitFrmFriend();
@@ -91,12 +117,13 @@ namespace UI
 			LoadGroupData();
 			LoadContactBook();
 			if (Theme == "Black") ChangeTheme();
+			LoadMyData();
 			AwaitReadData();
 			this.SizeChanged += new EventHandler(Form1_SizeChanged);
 		}
 		public void InitSettingForm()
 		{
-			settingForm = new SettingForm(me, this);
+			settingForm = new SettingForm(me, this ,loginForm);
 			settingForm.TopLevel = false;
 			settingForm.Dock = DockStyle.Fill;
 			this.Controls.Add(settingForm);
@@ -145,8 +172,6 @@ namespace UI
 			{
 				item.ResetPicture();
 			}
-			serverUsersForm.ResetPicture();
-			frmFriend.ResetPicture();
 			settingForm.ResetPicture();
 		}
 		private void ChangeColorLine()
@@ -197,7 +222,8 @@ namespace UI
 		{
 			//this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
-			this.labelID.Text = me.Id;
+			this.labelID.Text = "#" + me.Id;
+			this.roundPicAvatar.Image = Image.FromFile(me.AvatarPath);
 		}
 		private void InitServerUsersForm()
 		{
@@ -258,17 +284,18 @@ namespace UI
 							ContactBook newContactBook = new ContactBook(arr[0], arr[1]);
 							for (int i = 2; i < arr.Length; i++)
 							{
-								foreach (var item3 in listUser)
+								foreach (var item3 in UserUIs)
 								{
-									if (item3.Id == arr[i])
+									if (item3.user.Id == arr[i])
 									{
-										newContactBook._AddMember(item3);
+										newContactBook._AddMember(item3.user);
 										break;
 									}
 								}
 							}
 							frmContactBook._AddContactBook(newContactBook);
 						}
+						time = true;
 					}
 					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 					{
@@ -360,13 +387,6 @@ namespace UI
 							settingForm.RespondToChangePasswordMessage(true);
 						else
 							settingForm.RespondToChangePasswordMessage(false);
-					}
-					else if (action == "CHANGENAME")
-					{
-						if (data[1] == "YES")
-							settingForm.RespondToChangeUsernameMessage(true);
-						else
-							settingForm.RespondToChangeUsernameMessage(false);
 					}
 					else if (action == "AVATAR")
 					{
@@ -805,18 +825,7 @@ namespace UI
 		{
 			frmFriend.AddUserIntoFrmFriend(userUI);
 		}
-		private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (theme.IsWhite == true ? "White" : "Black"));
-			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-			try
-			{
 
-			}
-			catch { }
-			loginForm.Close();
-		}
 		public void DisableNotification()
 		{
 			picNotification.Visible = false;
@@ -826,7 +835,7 @@ namespace UI
 		/// </summary>
 		private void pictureBoxSetting_Click(object sender, EventArgs e)
 		{
-			settingForm = new SettingForm(me, this);
+			settingForm = new SettingForm(me, this, loginForm);
 			settingForm.Show();
 			settingForm.BringToFront();
 		}
@@ -916,6 +925,23 @@ namespace UI
 					return id;
 				id++;
 			}
+		}
+
+		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (acceptClose == false)
+			{
+				this.Dispose();
+				this.loginForm.DisconectServer();
+				this.loginForm.Show();
+				this.loginForm.ReConnect();
+			}
+			else
+			{
+				this.Dispose();
+				loginForm.Close();
+			}
+				
 		}
 	}
 }

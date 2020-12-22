@@ -42,6 +42,7 @@
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.pnOnline = new System.Windows.Forms.Panel();
 			this.pnAll = new System.Windows.Forms.Panel();
+			this.lbHeaderName = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panelAll.SuspendLayout();
 			this.panelOnline.SuspendLayout();
@@ -69,11 +70,11 @@
 			this.panelAll.BackColor = System.Drawing.Color.Transparent;
 			this.panelAll.Controls.Add(this.btnAll);
 			this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
-			this.panelAll.Location = new System.Drawing.Point(238, 0);
+			this.panelAll.Location = new System.Drawing.Point(284, 0);
 			this.panelAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panelAll.Name = "panelAll";
 			this.panelAll.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-			this.panelAll.Size = new System.Drawing.Size(133, 53);
+			this.panelAll.Size = new System.Drawing.Size(117, 53);
 			this.panelAll.TabIndex = 2;
 			// 
 			// btnAll
@@ -82,12 +83,12 @@
 			this.btnAll.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnAll.FlatAppearance.BorderSize = 0;
 			this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnAll.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAll.ForeColor = System.Drawing.Color.DimGray;
+			this.btnAll.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAll.ForeColor = System.Drawing.Color.Black;
 			this.btnAll.Location = new System.Drawing.Point(20, 10);
 			this.btnAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnAll.Name = "btnAll";
-			this.btnAll.Size = new System.Drawing.Size(93, 33);
+			this.btnAll.Size = new System.Drawing.Size(77, 33);
 			this.btnAll.TabIndex = 1;
 			this.btnAll.Text = "All";
 			this.btnAll.UseVisualStyleBackColor = false;
@@ -100,11 +101,11 @@
 			this.panelOnline.BackColor = System.Drawing.Color.Transparent;
 			this.panelOnline.Controls.Add(this.btnOnline);
 			this.panelOnline.Dock = System.Windows.Forms.DockStyle.Left;
-			this.panelOnline.Location = new System.Drawing.Point(109, 0);
+			this.panelOnline.Location = new System.Drawing.Point(171, 0);
 			this.panelOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panelOnline.Name = "panelOnline";
 			this.panelOnline.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-			this.panelOnline.Size = new System.Drawing.Size(129, 53);
+			this.panelOnline.Size = new System.Drawing.Size(113, 53);
 			this.panelOnline.TabIndex = 1;
 			// 
 			// btnOnline
@@ -113,12 +114,12 @@
 			this.btnOnline.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnOnline.FlatAppearance.BorderSize = 0;
 			this.btnOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnOnline.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnOnline.ForeColor = System.Drawing.Color.DimGray;
+			this.btnOnline.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnOnline.ForeColor = System.Drawing.Color.Black;
 			this.btnOnline.Location = new System.Drawing.Point(20, 10);
 			this.btnOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnOnline.Name = "btnOnline";
-			this.btnOnline.Size = new System.Drawing.Size(89, 33);
+			this.btnOnline.Size = new System.Drawing.Size(73, 33);
 			this.btnOnline.TabIndex = 1;
 			this.btnOnline.Text = "Online";
 			this.btnOnline.UseVisualStyleBackColor = false;
@@ -129,24 +130,24 @@
 			// panel2
 			// 
 			this.panel2.BackColor = System.Drawing.Color.Transparent;
+			this.panel2.Controls.Add(this.lbHeaderName);
 			this.panel2.Controls.Add(this.pictureBox1);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel2.Name = "panel2";
 			this.panel2.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-			this.panel2.Size = new System.Drawing.Size(109, 53);
+			this.panel2.Size = new System.Drawing.Size(171, 53);
 			this.panel2.TabIndex = 0;
 			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(20, 10);
+			this.pictureBox1.Location = new System.Drawing.Point(20, 7);
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(69, 33);
+			this.pictureBox1.Size = new System.Drawing.Size(46, 38);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -177,10 +178,10 @@
 			this.labelCOUNT.AutoSize = true;
 			this.labelCOUNT.BackColor = System.Drawing.Color.Transparent;
 			this.labelCOUNT.Dock = System.Windows.Forms.DockStyle.Left;
-			this.labelCOUNT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelCOUNT.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelCOUNT.Location = new System.Drawing.Point(31, 6);
 			this.labelCOUNT.Name = "labelCOUNT";
-			this.labelCOUNT.Size = new System.Drawing.Size(60, 23);
+			this.labelCOUNT.Size = new System.Drawing.Size(59, 23);
 			this.labelCOUNT.TabIndex = 1;
 			this.labelCOUNT.Text = "label1";
 			// 
@@ -212,6 +213,16 @@
 			this.pnAll.Size = new System.Drawing.Size(301, 165);
 			this.pnAll.TabIndex = 6;
 			// 
+			// lbHeaderName
+			// 
+			this.lbHeaderName.AutoSize = true;
+			this.lbHeaderName.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbHeaderName.Location = new System.Drawing.Point(71, 12);
+			this.lbHeaderName.Name = "lbHeaderName";
+			this.lbHeaderName.Size = new System.Drawing.Size(88, 29);
+			this.lbHeaderName.TabIndex = 2;
+			this.lbHeaderName.Text = "Friend";
+			// 
 			// FrmFriend
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -231,6 +242,7 @@
 			this.panelAll.ResumeLayout(false);
 			this.panelOnline.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
@@ -254,5 +266,6 @@
         private System.Windows.Forms.Panel pnOnline;
         private System.Windows.Forms.Panel pnAll;
         private System.Windows.Forms.Label labelCOUNT;
-    }
+		private System.Windows.Forms.Label lbHeaderName;
+	}
 }

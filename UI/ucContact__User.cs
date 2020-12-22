@@ -53,5 +53,24 @@ namespace UI
 				_RemoveThis();
 			}
 		}
+
+		private void pnLine_Click(object sender, EventArgs e)
+		{
+			foreach (var item in Form1.UserUIs)
+			{
+				if (item.user == this.user)
+				{
+					item.ShowChatForm();
+					item.AddUserInteracted();
+					if (Form1.interactFocus != null)
+					{
+						Form1.interactFocus.ChangeColorWhenNonClick();
+					}
+					item.ucInterac.ChangeColorWhenClick();
+					Form1.interactFocus = item.ucInterac;
+				}
+			}
+			
+		}
 	}
 }
