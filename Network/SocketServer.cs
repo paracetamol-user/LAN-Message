@@ -173,7 +173,7 @@ namespace Communication
 						if (reader.Read() == false) break;
 						if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
 						{
-							tempBuff = Encoding.UTF8.GetBytes("LOGINOKE%" + reader.GetString(0) + "%" + reader.GetString(8));
+							tempBuff = Encoding.UTF8.GetBytes("LOGINOKE%" + reader.GetString(0) + "%" + reader.GetString(6));
 							SmallPackage tempPackage = new SmallPackage(0, package.Length, package.Style, tempBuff, "0");
 							buffMessage = tempPackage.Packing();
 							client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
@@ -222,7 +222,7 @@ namespace Communication
 					while (reader.HasRows)
 					{
 						if (reader.Read() == false) break;
-						arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(6).ToString() + "%";
+						arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(4).ToString() + "%";
 					}
 					connection.Close();
 					// Lấy tất cả người dùng từ data base
@@ -256,7 +256,7 @@ namespace Communication
 					while (reader.HasRows)
 					{
 						if (reader.Read() == false) break;
-						string path = (reader.GetString(7) != "Default") ? reader.GetString(7) : "";
+						string path = (reader.GetString(5) != "Default") ? reader.GetString(5) : "";
 						if (path != "")
 						{
 							FileInfo fi = new FileInfo(path);
