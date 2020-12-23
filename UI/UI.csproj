@@ -151,12 +151,6 @@
     <Compile Include="ucContact.Designer.cs">
       <DependentUpon>ucContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucCreateGroup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucCreateGroup.Designer.cs">
-      <DependentUpon>ucCreateGroup.cs</DependentUpon>
-    </Compile>
     <Compile Include="ucEditMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -342,9 +336,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucContact__User.resx">
       <DependentUpon>ucContact__User.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucCreateGroup.resx">
-      <DependentUpon>ucCreateGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucEditMessage.resx">
       <DependentUpon>ucEditMessage.cs</DependentUpon>

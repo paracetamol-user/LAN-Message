@@ -874,7 +874,7 @@ namespace Communication
 			else if (data[0] == "OUTGR")
 			{
 				string IDGR = data[1];
-				string IDMember = client.id_;
+				string IDMember = data[3];
 				bool isHost = bool.Parse(data[2]);
 				SqlConnection subconnection;
 				SqlCommand subcommand;
@@ -1155,6 +1155,43 @@ namespace Communication
 				Package awaitPackage = new Package(client.id_, data[1], 0, int.Parse(data[2]), "V", client.id_, ".wav", data[3],
 													data[4] == "Private" ? true : false);
 				listAwaitPackage.Add(awaitPackage);
+			}
+			else if (data[0] == "KICKMEMBER")
+            {
+				string IDGR = data[1];
+				string IDMember = data[2];
+				SqlConnection subconnection;
+				SqlCommand subcommand;
+				SqlDataReader subReader;
+				string queryRemoveMember = "delete from member where IDUSERS = @id and IDNHOM = @idnhom";
+				subconnection = new SqlConnection(connString);
+				subconnection.Open();
+				subcommand = new SqlCommand(queryRemoveMember, subconnection);
+				subcommand.Parameters.AddWithValue("@id", IDMember);
+				subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+				subcommand.ExecuteNonQuery();
+				subconnection.Close();
+
+				string query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
+				SqlConnection subConnect = new SqlConnection(connString);
+				subConnect.Open();
+				SqlCommand subCommand = new SqlCommand(query, subConnect);
+				subCommand.Parameters.AddWithValue("@id", IDGR);
+				subReader = subCommand.ExecuteReader();
+				while (subReader.HasRows)
+				{
+					if (!subReader.Read()) break;
+					foreach (var item in clientInvalid)
+					{
+						if (item.id_ == subReader.GetString(0))
+						{
+							byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("OUTGR%{0}%{1}", IDGR, IDMember));
+							packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+							item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+						}
+					}
+				}
+				subConnect.Close();
 			}
 		}
 		public async Task SendFileToClient(byte[] package, UserClient client, string Style, string IDpackage)

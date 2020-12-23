@@ -605,7 +605,12 @@ namespace UI
 						{
 							if (item.group.ID == IDGr)
 							{
-								item.group.RemoveMember(IDmember);
+								if (IDmember == me.Id)
+								{
+									GroupUIs.Remove(item);
+									item.Dispose();
+								}
+								else item.group.RemoveMember(IDmember);
 							}
 						}
 					}

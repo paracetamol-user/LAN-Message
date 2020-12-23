@@ -27,12 +27,10 @@ namespace UI
 			this.frmMain = frmMain;
 			InitializeComponent();
 			InitControls();
-
 			locationlabel(ref lbName, pnavata_name);
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);
 			pnaddfile.Visible = false;
-			
 		}
 
 
@@ -41,7 +39,7 @@ namespace UI
 
 			this.frmMain.Pncontaininfo.Controls.Add(this);
 			this.Dock = DockStyle.Top;
-			this.BackColor = Color.Transparent;
+			//this.BackColor = Form1.theme.Menu;
 			//mau chu
 			this.lbaddfriend.ForeColor = Form1.theme.TextColor;
 			//this.lbaddgroup.ForeColor = Form1.theme.TextColor;
@@ -51,6 +49,7 @@ namespace UI
 			this.lbName.ForeColor = Form1.theme.TextColor;
 			this.lbID.ForeColor = Form1.theme.TextColor;
 			//mau line
+			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.pictureArrow);
 			this.ChangeColorLine();
 		}
 		public void ChangeColorLine()

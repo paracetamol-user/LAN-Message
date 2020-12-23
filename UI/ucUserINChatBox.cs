@@ -42,12 +42,16 @@ namespace UI
 			}
 			else roundPicAvatar.Image = Image.FromFile(User.AvatarPath);
 			this.labelName.ForeColor = Form1.theme.TextColor;
+			this.picEdit.Image = Image.FromFile(Form1.theme.picturePen);
+			this.picDelete.Image = Image.FromFile(Form1.theme.pictureBin);
 			this.BackColor = Color.Transparent;
 		}
 		public void InitColor()
 		{
 			this.labelName.ForeColor = Form1.theme.TextColor;
 			this.BackColor = Color.Transparent;
+			this.picEdit.Image = Image.FromFile(Form1.theme.picturePen);
+			this.picDelete.Image = Image.FromFile(Form1.theme.pictureBin);
 		}
 		public void EnableMenu()
         {

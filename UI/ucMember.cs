@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,8 @@ namespace UI
 {
     public partial class ucMember : UserControl
     {
-        Group group;
-        User user;
+        public Group group;
+        public User user;
         public ucMember()
         {
             InitializeComponent();
@@ -42,23 +43,20 @@ namespace UI
             {
                 labeladdmin.Text = "(admin)";
                 Showpaneladmin();
-                if (user != Form1.me)
-                {
-                    Hidedeletemember();
-                }
-
+                Hidedeletemember();
             }
             else
             {
                 Hidepaneladmin();
             }
+            if (group.admin != Form1.me) Hidedeletemember();
         }
         public void InitColor()
         {
-
             this.BackColor = Color.Transparent;
             label1.ForeColor = Form1.theme.TextColor;
             labeladdmin.ForeColor = Form1.theme.TextColor;
+            this.pictureBoxdeletemember.Image = Image.FromFile(Form1.theme.PictureClose);
         }
         public Label labeladmin
         {
@@ -110,6 +108,15 @@ namespace UI
         public void Hidedeletemember()
         {
             pndeletemember.Visible = false;
+        }
+
+        private void pictureBoxdeletemember_Click(object sender, EventArgs e)
+        {
+            byte[] buffer = Encoding.UTF8.GetBytes("KICKMEMBER%" + group.ID  + "%" + user.Id);
+            SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buffer, "Server");
+            Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+            group.RemoveMember(user.Id);
+            this.Dispose();
         }
     }
 }

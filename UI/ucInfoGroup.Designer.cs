@@ -34,6 +34,7 @@ namespace UI
             this.pnNULL1 = new System.Windows.Forms.Panel();
             this.pnavata_name = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ptbavata = new UI.roundpicturebox();
             this.lbID = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.pnLine2 = new System.Windows.Forms.Panel();
@@ -63,9 +64,12 @@ namespace UI
             this.label1 = new System.Windows.Forms.Label();
             this.pnLine8 = new System.Windows.Forms.Panel();
             this.pnLine7 = new System.Windows.Forms.Panel();
-            this.ptbavata = new UI.roundpicturebox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pnavata_name.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.pnfuction.SuspendLayout();
             this.pnthemthanhvien.SuspendLayout();
             this.pnclearhistory.SuspendLayout();
@@ -79,7 +83,7 @@ namespace UI
             this.pnmemnufile.SuspendLayout();
             this.panelMenufile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenufile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnLine1
@@ -88,7 +92,7 @@ namespace UI
             this.pnLine1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLine1.Location = new System.Drawing.Point(0, 0);
             this.pnLine1.Name = "pnLine1";
-            this.pnLine1.Size = new System.Drawing.Size(1, 580);
+            this.pnLine1.Size = new System.Drawing.Size(1, 720);
             this.pnLine1.TabIndex = 3;
             // 
             // pnNULL1
@@ -119,23 +123,33 @@ namespace UI
             this.panel1.Size = new System.Drawing.Size(120, 110);
             this.panel1.TabIndex = 5;
             // 
+            // ptbavata
+            // 
+            this.ptbavata.BackColor = System.Drawing.SystemColors.Control;
+            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptbavata.Location = new System.Drawing.Point(0, 0);
+            this.ptbavata.Name = "ptbavata";
+            this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.TabIndex = 1;
+            this.ptbavata.TabStop = false;
+            // 
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbID.Location = new System.Drawing.Point(142, 220);
             this.lbID.Name = "lbID";
-            this.lbID.Size = new System.Drawing.Size(30, 22);
+            this.lbID.Size = new System.Drawing.Size(31, 24);
             this.lbID.TabIndex = 4;
             this.lbID.Text = "ID";
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.Font = new System.Drawing.Font("Tahoma", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(126, 190);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(64, 25);
+            this.lbName.Size = new System.Drawing.Size(69, 27);
             this.lbName.TabIndex = 3;
             this.lbName.Text = "Name";
             // 
@@ -174,10 +188,10 @@ namespace UI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 17);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 22);
+            this.label2.Size = new System.Drawing.Size(124, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "Add member";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -205,10 +219,10 @@ namespace UI
             // lbclearhistory
             // 
             this.lbclearhistory.AutoSize = true;
-            this.lbclearhistory.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbclearhistory.Location = new System.Drawing.Point(3, 17);
+            this.lbclearhistory.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbclearhistory.Location = new System.Drawing.Point(3, 15);
             this.lbclearhistory.Name = "lbclearhistory";
-            this.lbclearhistory.Size = new System.Drawing.Size(113, 22);
+            this.lbclearhistory.Size = new System.Drawing.Size(122, 24);
             this.lbclearhistory.TabIndex = 3;
             this.lbclearhistory.Text = "Clear history";
             this.lbclearhistory.Click += new System.EventHandler(this.lbclearhistory_Click);
@@ -302,10 +316,10 @@ namespace UI
             // lbmember
             // 
             this.lbmember.AutoSize = true;
-            this.lbmember.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbmember.Location = new System.Drawing.Point(3, 17);
+            this.lbmember.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbmember.Location = new System.Drawing.Point(3, 14);
             this.lbmember.Name = "lbmember";
-            this.lbmember.Size = new System.Drawing.Size(76, 22);
+            this.lbmember.Size = new System.Drawing.Size(82, 24);
             this.lbmember.TabIndex = 3;
             this.lbmember.Text = "Member";
             // 
@@ -397,10 +411,10 @@ namespace UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 17);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 22);
+            this.label1.Size = new System.Drawing.Size(85, 24);
             this.label1.TabIndex = 3;
             this.label1.Text = "File sent";
             // 
@@ -422,21 +436,44 @@ namespace UI
             this.pnLine7.Size = new System.Drawing.Size(320, 1);
             this.pnLine7.TabIndex = 1;
             // 
-            // ptbavata
+            // panel2
             // 
-            this.ptbavata.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptbavata.Location = new System.Drawing.Point(0, 0);
-            this.ptbavata.Name = "ptbavata";
-            this.ptbavata.Size = new System.Drawing.Size(120, 110);
-            this.ptbavata.TabIndex = 1;
-            this.ptbavata.TabStop = false;
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(1, 580);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(320, 54);
+            this.panel2.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(3, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 24);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Out Group";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 53);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(320, 1);
+            this.panel3.TabIndex = 2;
             // 
             // ucInfoGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnfile);
             this.Controls.Add(this.pnmember);
             this.Controls.Add(this.pnfuction);
@@ -444,10 +481,11 @@ namespace UI
             this.Controls.Add(this.pnavata_name);
             this.Controls.Add(this.pnLine1);
             this.Name = "ucInfoGroup";
-            this.Size = new System.Drawing.Size(321, 580);
+            this.Size = new System.Drawing.Size(321, 720);
             this.pnavata_name.ResumeLayout(false);
             this.pnavata_name.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.pnfuction.ResumeLayout(false);
             this.pnthemthanhvien.ResumeLayout(false);
             this.pnthemthanhvien.PerformLayout();
@@ -466,7 +504,8 @@ namespace UI
             this.pnmemnufile.PerformLayout();
             this.panelMenufile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenufile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,5 +547,8 @@ namespace UI
         private System.Windows.Forms.Panel pnthemthanhvien;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnLine12;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel3;
     }
 }

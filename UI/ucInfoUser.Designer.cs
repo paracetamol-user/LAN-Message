@@ -89,11 +89,13 @@ namespace UI
             // 
             // pnavata_name
             // 
+            this.pnavata_name.BackColor = System.Drawing.Color.Transparent;
             this.pnavata_name.Controls.Add(this.panel1);
             this.pnavata_name.Controls.Add(this.lbID);
             this.pnavata_name.Controls.Add(this.lbName);
             this.pnavata_name.Controls.Add(this.pnLine2);
             this.pnavata_name.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnavata_name.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnavata_name.Location = new System.Drawing.Point(1, 0);
             this.pnavata_name.Name = "pnavata_name";
             this.pnavata_name.Size = new System.Drawing.Size(320, 262);
@@ -109,7 +111,7 @@ namespace UI
             // 
             // ptbavata
             // 
-            this.ptbavata.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ptbavata.BackColor = System.Drawing.SystemColors.Control;
             this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ptbavata.Location = new System.Drawing.Point(0, 0);
             this.ptbavata.Name = "ptbavata";
@@ -120,20 +122,20 @@ namespace UI
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbID.Location = new System.Drawing.Point(141, 220);
             this.lbID.Name = "lbID";
-            this.lbID.Size = new System.Drawing.Size(30, 22);
+            this.lbID.Size = new System.Drawing.Size(31, 24);
             this.lbID.TabIndex = 4;
             this.lbID.Text = "ID";
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Font = new System.Drawing.Font("Times New Roman", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(126, 190);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(64, 25);
+            this.lbName.Size = new System.Drawing.Size(62, 24);
             this.lbName.TabIndex = 3;
             this.lbName.Text = "Name";
             // 
@@ -173,10 +175,10 @@ namespace UI
             // lbclearhistory
             // 
             this.lbclearhistory.AutoSize = true;
-            this.lbclearhistory.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbclearhistory.Location = new System.Drawing.Point(3, 17);
+            this.lbclearhistory.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbclearhistory.Location = new System.Drawing.Point(3, 15);
             this.lbclearhistory.Name = "lbclearhistory";
-            this.lbclearhistory.Size = new System.Drawing.Size(113, 22);
+            this.lbclearhistory.Size = new System.Drawing.Size(122, 24);
             this.lbclearhistory.TabIndex = 3;
             this.lbclearhistory.Text = "Clear history";
             this.lbclearhistory.Click += new System.EventHandler(this.lbclearhistory_Click);
@@ -204,10 +206,10 @@ namespace UI
             // lbaddfriend
             // 
             this.lbaddfriend.AutoSize = true;
-            this.lbaddfriend.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbaddfriend.Location = new System.Drawing.Point(3, 17);
+            this.lbaddfriend.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbaddfriend.Location = new System.Drawing.Point(3, 16);
             this.lbaddfriend.Name = "lbaddfriend";
-            this.lbaddfriend.Size = new System.Drawing.Size(96, 22);
+            this.lbaddfriend.Size = new System.Drawing.Size(101, 24);
             this.lbaddfriend.TabIndex = 2;
             this.lbaddfriend.Text = "Add friend";
             this.lbaddfriend.Click += new System.EventHandler(this.lbaddfriend_Click);
@@ -317,10 +319,10 @@ namespace UI
             // lbfilesent
             // 
             this.lbfilesent.AutoSize = true;
-            this.lbfilesent.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbfilesent.Location = new System.Drawing.Point(3, 17);
+            this.lbfilesent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbfilesent.Location = new System.Drawing.Point(3, 15);
             this.lbfilesent.Name = "lbfilesent";
-            this.lbfilesent.Size = new System.Drawing.Size(78, 22);
+            this.lbfilesent.Size = new System.Drawing.Size(85, 24);
             this.lbfilesent.TabIndex = 3;
             this.lbfilesent.Text = "File sent";
             // 
@@ -347,6 +349,7 @@ namespace UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnfilesent);
             this.Controls.Add(this.pnNULL2);
             this.Controls.Add(this.pnfuction);

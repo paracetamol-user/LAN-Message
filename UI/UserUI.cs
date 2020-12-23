@@ -83,21 +83,6 @@ namespace UI
 		{
 			this.userForm.BackColor = Form1.theme.BackColor;
 			this.userForm.InitColor();
-			foreach (var item in userForm.Controls)
-			{
-				if (item.GetType() == typeof(ucUserINChatBox))
-				{
-					(item as ucUserINChatBox).InitColor();
-				}
-				else if (item.GetType() == typeof(ucMessShow))
-				{
-					(item as ucMessShow).ChangeTheme();
-				}
-				else if (item.GetType() == typeof(ucFileShow))
-				{
-					(item as ucFileShow).InitColor();
-				}
-			}
 			InitCmns();
 			ucUserAll.ResetTheme();
 			ucUserOnline.ResetTheme();
