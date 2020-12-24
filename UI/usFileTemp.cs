@@ -32,7 +32,9 @@ namespace UI
         {
             this.labelFileName.ForeColor = Form1.theme.TextColor;
             //this.BackColor = Form1.theme.BackColor;
-            this.BackColor = Color.Transparent;
+            this.BackColor = Form1.theme.FocusColor;
+            this.pictureBoxClose.Image = Image.FromFile(Form1.theme.PictureClose);
+
         }
         public string _FileName
         {

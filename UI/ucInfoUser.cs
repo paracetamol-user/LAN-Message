@@ -27,30 +27,23 @@ namespace UI
 			this.frmMain = frmMain;
 			InitializeComponent();
 			InitControls();
-
 			locationlabel(ref lbName, pnavata_name);
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);
 			pnaddfile.Visible = false;
-			
 		}
 
 
 		public void InitControls()
 		{
-
 			this.frmMain.Pncontaininfo.Controls.Add(this);
 			this.Dock = DockStyle.Top;
-			this.BackColor = Color.Transparent;
-			//mau chu
 			this.lbaddfriend.ForeColor = Form1.theme.TextColor;
-			//this.lbaddgroup.ForeColor = Form1.theme.TextColor;
 			this.lbclearhistory.ForeColor = Form1.theme.TextColor;
-			//this.lbcreategroup.ForeColor = Form1.theme.TextColor;
 			this.lbfilesent.ForeColor = Form1.theme.TextColor;
 			this.lbName.ForeColor = Form1.theme.TextColor;
 			this.lbID.ForeColor = Form1.theme.TextColor;
-			//mau line
+			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.pictureArrow);
 			this.ChangeColorLine();
 		}
 		public void ChangeColorLine()
@@ -58,13 +51,8 @@ namespace UI
 			this.pnLine1.BackColor = Form1.theme.LineColor;
 			this.pnLine2.BackColor = Form1.theme.LineColor;
 			this.pnLine3.BackColor = Form1.theme.LineColor;
-			this.pnLine4.BackColor = Form1.theme.LineColor;
-			this.pnLine5.BackColor = Form1.theme.LineColor;
 			this.pnLine6.BackColor = Form1.theme.LineColor;
-			//this.pnLine7.BackColor = Form1.theme.LineColor;
-			//this.pnLine8.BackColor = Form1.theme.LineColor;
 			this.pnLine9.BackColor = Form1.theme.LineColor;
-			this.pnLine10.BackColor = Form1.theme.LineColor;
 			this.pnLine11.BackColor = Form1.theme.LineColor;
 			this.frmMain.PnLine1.BackColor = this.pnLine1.BackColor;
 		}
@@ -144,7 +132,6 @@ namespace UI
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 		}
-		bool isclickmenu = false;
 		
         private void lbaddfriend_Click(object sender, EventArgs e)
         {
@@ -174,11 +161,9 @@ namespace UI
 
         private void pictureBoxMenu_Click(object sender, EventArgs e)
         {
-			isclickmenu = !isclickmenu;
 			Graphics g = panelMenu.CreateGraphics();
-			if (isclickmenu)
+			if (pnaddfile.Visible == false)
 			{
-
 				pictureBoxMenu.Image = _xoayanh(pictureBoxMenu.Image, 90);
 				pnaddfile.Visible = true;
 				pnaddfile.AutoSize = true;
@@ -188,13 +173,25 @@ namespace UI
 			}
 			else
 			{
-
 				pictureBoxMenu.Image = _xoayanh(pictureBoxMenu.Image, -90);
 				pnaddfile.Visible = false;
-				pnaddfile.AutoSize = false;
-				pnfilesent.AutoSize = false;
 				g.Clear(this.frmMain.BackColor);
 			}
+		}
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+			var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
+			if (temp == DialogResult.Yes)
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + Form1.me.Id + "%" + user.Id);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			}
+			Form1.frmFriend.RemoveFriend(frmMain.userUI);
+			frmMain.userUI.DisableRemove();
+			frmMain.userUI.EnableADD();
+			this.user.IsFriend = false;
 		}
     }
 }

@@ -77,7 +77,7 @@ namespace UI
 		public void DeleteMessage()
         {
 			this.label1.Text = "Deleted message";
-			this.label1.Font = new Font("Time New Roman",10,FontStyle.Underline);
+			this.label1.Font = new Font("Tahoma",10,FontStyle.Italic);
 
         }
     }

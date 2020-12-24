@@ -4,6 +4,7 @@ using Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -18,20 +19,17 @@ namespace UI
 	public partial class LoginForm : Form
 	{
 		//Info Server
-		private string ipServer = "172.17.21.249";
+		private string ipServer = ConfigurationManager.AppSettings["IP Server"].ToString();
 		private string portSever = "5000";
-
 		static public SocketClient client;
 		static public TcpClient server;
-
 		public LoginForm()
 		{
 			InitializeComponent();
 			InitClient();
 			ConnecToServer();
-			ClearData();
+			//ClearData();
 		}
-
 		private void ClearData()
 		{
 			string path = @"..\..\cache\avatar";
@@ -42,7 +40,6 @@ namespace UI
 				item.Delete();
 			}
 		}
-
 		private async void ConnecToServer()
 		{
 			server = await client.ConnectToServer();
@@ -90,8 +87,6 @@ namespace UI
 			string action = "LOGIN";
 			SendRequest(account, password, action);
 		}
-
-
 		private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -103,7 +98,6 @@ namespace UI
 				e.SuppressKeyPress = true;
 			}
 		}
-
 		private void button2_Click(object sender, EventArgs e)
 		{
 			Sign_up tam = new Sign_up(this);

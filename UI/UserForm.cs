@@ -29,6 +29,7 @@ namespace UI
 		public UserUI userUI;
 		public ucInfoUser ucInfoUser;
 		public List<ucFileShow> listfileShows = new List<ucFileShow>();
+		public List<ucUserINChatBox> userINChatBoxes;
 		public UserForm()
 		{
 			InitializeComponent();
@@ -50,6 +51,7 @@ namespace UI
 			LastInteracted = 0;
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
+			userINChatBoxes = new List<ucUserINChatBox>();
 			InitUserForm();
 			voicePanel = new ucVoicePanel(user, this);
 			this.Controls.Add(voicePanel);
@@ -85,6 +87,11 @@ namespace UI
 			voicePanel.InitControls();
 			this.TextBoxEnterChat.BackColor = Form1.theme.Menu;
 			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
+			this.panel1.BackColor = Form1.theme.Menu;
+            foreach (var item in userINChatBoxes)
+            {
+				item.InitColor();
+            }
 		}
 		public void SetAvatar(string path)
 		{
@@ -109,6 +116,7 @@ namespace UI
 
 			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
+			userINChatBoxes.Add(UserInChatBox);
 		}
 		public void AddFileToListChat(User _user, string tempID, string tempName)
 		{
@@ -133,6 +141,7 @@ namespace UI
 			else UserInChatBox.ID = tempID;
 			
 			listfileShows.Add(fileshow);
+			userINChatBoxes.Add(UserInChatBox);
 		}
 		public void EditMessage(string IDMess, string newMess)
 		{
@@ -246,6 +255,7 @@ namespace UI
 			this.panelListChat.Controls.Add(tempPanel);
 			userINChatBox.InitColor();
 			// voiceMessage.InitColor();
+			userINChatBoxes.Add(userINChatBox);
 		}
 
 		public bool isVoicePanelShow = false;

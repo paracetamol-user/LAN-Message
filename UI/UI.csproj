@@ -33,14 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Guna.UI2, Version=2.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\LAN_Message\packages\Guna.UI2.WinForms.2.0.1.2\lib\net40\Guna.UI2.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\LAN_Message\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
@@ -150,12 +148,6 @@
     </Compile>
     <Compile Include="ucContact.Designer.cs">
       <DependentUpon>ucContact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucCreateGroup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucCreateGroup.Designer.cs">
-      <DependentUpon>ucCreateGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="ucEditMessage.cs">
       <SubType>UserControl</SubType>
@@ -342,9 +334,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucContact__User.resx">
       <DependentUpon>ucContact__User.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucCreateGroup.resx">
-      <DependentUpon>ucCreateGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucEditMessage.resx">
       <DependentUpon>ucEditMessage.cs</DependentUpon>
