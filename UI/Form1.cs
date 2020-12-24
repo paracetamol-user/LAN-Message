@@ -203,11 +203,6 @@ namespace UI
 				{
 					(item as Button).ForeColor = theme.TextColor;
 				}
-				else if (item.GetType() == typeof(Guna.UI2.WinForms.Guna2Button))
-				{
-					(item as Guna.UI2.WinForms.Guna2Button).ForeColor = theme.TextColor;
-				}
-
 				ChangeColorAllLabelControls(item as Control);
 			}
 		}

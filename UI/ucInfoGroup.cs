@@ -82,16 +82,12 @@ namespace UI
 		{
 			this.pnLine1.BackColor = Form1.theme.LineColor;
 			this.pnLine2.BackColor = Form1.theme.LineColor;
-			this.pnLine3.BackColor = Form1.theme.LineColor;
-			this.pnLine5.BackColor = Form1.theme.LineColor;
 			this.pnLine6.BackColor = Form1.theme.LineColor;
-			this.pnLine7.BackColor = Form1.theme.LineColor;
 			this.pnLine8.BackColor = Form1.theme.LineColor;
-			this.pnLine9.BackColor = Form1.theme.LineColor;
-			this.pnLine10.BackColor = Form1.theme.LineColor;
 			this.pnLine11.BackColor = Form1.theme.LineColor;
 			this.pnLine12.BackColor = Form1.theme.LineColor;
 			this.frmMain.PnLine1.BackColor = this.pnLine1.BackColor;
+			this.pnLine3.BackColor = Form1.theme.LineColor;
 		}
 		public void _LoadInfoGroup(Group group, List<ucFileShow> listfileShows)
 		{

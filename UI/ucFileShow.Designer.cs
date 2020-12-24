@@ -43,10 +43,10 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 5);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(29, 36);
+            this.pictureBox1.Size = new System.Drawing.Size(28, 34);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -56,10 +56,10 @@
             this.pictureBoxDownLoad.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxDownLoad.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBoxDownLoad.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDownLoad.Image")));
-            this.pictureBoxDownLoad.Location = new System.Drawing.Point(310, 2);
+            this.pictureBoxDownLoad.Location = new System.Drawing.Point(310, 5);
             this.pictureBoxDownLoad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxDownLoad.Name = "pictureBoxDownLoad";
-            this.pictureBoxDownLoad.Size = new System.Drawing.Size(27, 36);
+            this.pictureBoxDownLoad.Size = new System.Drawing.Size(27, 34);
             this.pictureBoxDownLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxDownLoad.TabIndex = 1;
             this.pictureBoxDownLoad.TabStop = false;
@@ -71,11 +71,11 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(40, 2);
+            this.panel1.Location = new System.Drawing.Point(39, 5);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5, 7, 20, 0);
-            this.panel1.Size = new System.Drawing.Size(270, 30);
+            this.panel1.Size = new System.Drawing.Size(271, 30);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -83,11 +83,11 @@
             this.label1.AllowDrop = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
             this.label1.Location = new System.Drawing.Point(5, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(245, 23);
+            this.label1.Size = new System.Drawing.Size(246, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
@@ -102,8 +102,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucFileShow";
-            this.Padding = new System.Windows.Forms.Padding(11, 2, 20, 1);
-            this.Size = new System.Drawing.Size(357, 39);
+            this.Padding = new System.Windows.Forms.Padding(11, 5, 20, 5);
+            this.Size = new System.Drawing.Size(357, 44);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDownLoad)).EndInit();
             this.panel1.ResumeLayout(false);

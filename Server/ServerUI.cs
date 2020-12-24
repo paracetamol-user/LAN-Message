@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Communication;
 using Network;
-
+using System.Configuration;
 namespace Server
 {
     public partial class ServerUI : Form
@@ -13,7 +13,7 @@ namespace Server
         public ServerUI()
         {
             InitializeComponent();
-            mServer = new SocketServer();
+            mServer = new SocketServer(ConfigurationManager.AppSettings["Database Source"].ToString());
             mServer.RaiseClientConnectedEvent += HandleClientConnected;
             mServer.RaiseTextReceivedEvent += HandleTextReceived;
             ClearData();

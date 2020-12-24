@@ -52,7 +52,7 @@
             this.panelForm.Location = new System.Drawing.Point(4, 4);
             this.panelForm.Margin = new System.Windows.Forms.Padding(0);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelForm.Padding = new System.Windows.Forms.Padding(4);
             this.panelForm.Size = new System.Drawing.Size(172, 33);
             this.panelForm.TabIndex = 0;
             // 
@@ -62,7 +62,7 @@
             this.panel2.Controls.Add(this.labelFileName);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(27, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 2, 3, 0);
             this.panel2.Size = new System.Drawing.Size(126, 23);
@@ -89,7 +89,7 @@
             this.pictureBoxClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
             this.pictureBoxClose.Location = new System.Drawing.Point(153, 4);
-            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxClose.Name = "pictureBoxClose";
             this.pictureBoxClose.Size = new System.Drawing.Size(13, 23);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -103,7 +103,7 @@
             this.pictureBoxPictureFile.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBoxPictureFile.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPictureFile.Image")));
             this.pictureBoxPictureFile.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxPictureFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxPictureFile.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxPictureFile.Name = "pictureBoxPictureFile";
             this.pictureBoxPictureFile.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.pictureBoxPictureFile.Size = new System.Drawing.Size(23, 23);
@@ -119,7 +119,7 @@
             this.Controls.Add(this.panelForm);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "usFileTemp";
-            this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Padding = new System.Windows.Forms.Padding(4);
             this.Size = new System.Drawing.Size(180, 41);
             this.panelForm.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

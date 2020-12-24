@@ -78,10 +78,6 @@ namespace UI
 				{
 					(item as Button).ForeColor = Form1.theme.TextColor;
 				}
-				else if (item.GetType() == typeof(Guna.UI2.WinForms.Guna2Button))
-				{
-					(item as Guna.UI2.WinForms.Guna2Button).ForeColor = Form1.theme.TextColor;
-				}
 				else if (item.GetType() == typeof(RadioButton))
 				{
 					(item as RadioButton).ForeColor = Form1.theme.TextColor;

@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Configuration;
 namespace Communication
 {
 	public class SocketServer
@@ -21,17 +21,8 @@ namespace Communication
 		TcpListener mListener;
 		List<UserClient> clients;
 		List<UserClient> clientInvalid;
-		//List<string> idInvalid;
 
-		// Database of DAT
-		//Data Source = DESKTOP - TSN7OH7; Initial Catalog = LANCHAT; Integrated Security = True
-		//
-		// Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True
-
-		// Database of K
-		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
-		//Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @" Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True";
+		string connString = ConfigurationManager.AppSettings["Database Source"].ToString();
 
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
@@ -59,11 +50,11 @@ namespace Communication
 				handler(this, trea);
 		}
 		private bool KeepRunning { get; set; }
-		public SocketServer()
+		public SocketServer(string DatabaseSource)
 		{
 			clients = new List<UserClient>();
 			clientInvalid = new List<UserClient>();
-			//idInvalid = new List<string>();
+			connString = @DatabaseSource;
 		}
 		public int idfocus = 0;
 		public async Task StartForIncommingConnection(IPAddress addr = null, int port = 5000)
@@ -866,7 +857,8 @@ namespace Communication
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
-					tempBuffer = Encoding.UTF8.GetBytes(string.Format("GROUPDATA%{0}•{1}•{2}•{3}", (int.Parse(temp) + 1).ToString(),GrName,client.id_,client.id_));
+                    tempBuffer = Encoding.UTF8.GetBytes(string.Format("GROUPDATA%{0}•{1}•{2}•{3}", "G" + (int.Parse(temp) + 1).ToString(), GrName, client.id_, client.id_));
+
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 				}
@@ -976,6 +968,14 @@ namespace Communication
 						subconnection.Open();
 						subcommand = new SqlCommand(queryRemoveMember, subconnection);
 						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+						subcommand.ExecuteNonQuery();
+						subconnection.Close();
+
+						queryRemoveMember = "delete from tinnhan where nhomnhan = @id";
+						subconnection = new SqlConnection(connString);
+						subconnection.Open();
+						subcommand = new SqlCommand(queryRemoveMember, subconnection);
+						subcommand.Parameters.AddWithValue("@id", IDGR);
 						subcommand.ExecuteNonQuery();
 						subconnection.Close();
 
