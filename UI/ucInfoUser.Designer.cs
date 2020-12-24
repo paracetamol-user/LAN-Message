@@ -34,7 +34,6 @@ namespace UI
             this.pnNULL1 = new System.Windows.Forms.Panel();
             this.pnavata_name = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ptbavata = new UI.roundpicturebox();
             this.lbID = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.pnLine2 = new System.Windows.Forms.Panel();
@@ -57,9 +56,9 @@ namespace UI
             this.lbfilesent = new System.Windows.Forms.Label();
             this.pnLine11 = new System.Windows.Forms.Panel();
             this.pnLine5 = new System.Windows.Forms.Panel();
+            this.ptbavata = new UI.roundpicturebox();
             this.pnavata_name.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.pnfuction.SuspendLayout();
             this.pnclearhistory.SuspendLayout();
             this.pnaddfriend.SuspendLayout();
@@ -68,6 +67,7 @@ namespace UI
             this.pnmenufile.SuspendLayout();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.SuspendLayout();
             // 
             // pnLine1
@@ -106,16 +106,6 @@ namespace UI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(120, 110);
             this.panel1.TabIndex = 5;
-            // 
-            // ptbavata
-            // 
-            this.ptbavata.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptbavata.Location = new System.Drawing.Point(0, 0);
-            this.ptbavata.Name = "ptbavata";
-            this.ptbavata.Size = new System.Drawing.Size(120, 110);
-            this.ptbavata.TabIndex = 1;
-            this.ptbavata.TabStop = false;
             // 
             // lbID
             // 
@@ -342,6 +332,16 @@ namespace UI
             this.pnLine5.Size = new System.Drawing.Size(320, 1);
             this.pnLine5.TabIndex = 1;
             // 
+            // ptbavata
+            // 
+            this.ptbavata.BackColor = System.Drawing.SystemColors.Control;
+            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptbavata.Location = new System.Drawing.Point(0, 0);
+            this.ptbavata.Name = "ptbavata";
+            this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.TabIndex = 1;
+            this.ptbavata.TabStop = false;
+            // 
             // ucInfoUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -358,7 +358,6 @@ namespace UI
             this.pnavata_name.ResumeLayout(false);
             this.pnavata_name.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.pnfuction.ResumeLayout(false);
             this.pnclearhistory.ResumeLayout(false);
             this.pnclearhistory.PerformLayout();
@@ -370,6 +369,7 @@ namespace UI
             this.pnmenufile.PerformLayout();
             this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

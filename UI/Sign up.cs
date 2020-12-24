@@ -25,11 +25,17 @@ namespace UI
             this.login = login;
            
         }
-
-       
+        public bool kiemtramatkhau()
+        {
+            if(txtMatkhau.Text != txtNhaplaimatkhau.Text)
+            {
+                return false;
+            }
+            return true;
+        }
         public bool kiemtradulieu()
         {
-            if(txtTen.Text=="Ho ten" || txtMatkhau.Text=="Matkhau"  || txtTendangnhap.Text=="Tendangnhap" )
+            if(txtNhaplaimatkhau.Text=="Nhap lai mat khau" || txtMatkhau.Text=="Mat khau"  || txtTendangnhap.Text=="Ten dang nhap" )
             {
                 return false;
             }
@@ -40,34 +46,23 @@ namespace UI
         }
         private void ClearTextBox_Combobox()
         {
-            
-            txtTen.Text = "Ho ten";
-            txtTendangnhap.Text = "Ten dang nhap";
-            txtMatkhau.Text = "Mat khau";
-            
            
+            txtTendangnhap.Text = "Ten dang nhap";
+            txtMatkhau.PasswordChar = '\0';
+            txtMatkhau.Text = "Mat khau";
+            txtNhaplaimatkhau.PasswordChar = '\0';
+            txtNhaplaimatkhau.Text = "Nhap lai mat khau";
+
             Graphics g = this.CreateGraphics();
             g.Clear(Color.White);
             
-            txtTen.BorderStyle = BorderStyle.Fixed3D;
+            txtNhaplaimatkhau.BorderStyle = BorderStyle.Fixed3D;
             txtTendangnhap.BorderStyle = BorderStyle.Fixed3D;
             txtMatkhau.BorderStyle = BorderStyle.Fixed3D;
            
         }
 
-       
-
-        
-
-        private void txtTen_Enter(object sender, EventArgs e)
-        {
-            if (txtTen.Text == "Ho ten")
-            {
-                txtTen.Clear();
-
-            }
-        }
-        public bool kiemtrakytudacbiet(string a)
+       public bool kiemtrakytudacbiet(string a)
         {
             for (int i=0;i<a.Length;i++)
             {
@@ -75,26 +70,7 @@ namespace UI
             }
             return false;
         }
-        private void txtTen_Leave(object sender, EventArgs e)
-        {
-            Pen red = new Pen(Color.Red);
-            Pen white = new Pen(Color.White);
-            Graphics g = this.CreateGraphics();
-            int variance = 1;
-            if (txtTen.Text == "" || kiemtrakytudacbiet(txtTen.Text)==true)
-            {
-                txtTen.Text = "Ho ten";
-                txtTen.BorderStyle = BorderStyle.None;
-                g.DrawRectangle(red, new Rectangle(txtTen.Location.X - variance, txtTen.Location.Y - variance, txtTen.Width + variance, txtTen.Height + variance));
-
-            }
-            else
-            {
-                g.DrawRectangle(white, new Rectangle(txtTen.Location.X - variance, txtTen.Location.Y - variance, txtTen.Width + variance, txtTen.Height + variance));
-                txtTen.BorderStyle = BorderStyle.Fixed3D;
-            }
-        }
-
+       
         private void txtTendangnhap_Enter(object sender, EventArgs e)
         {
             if (txtTendangnhap.Text == "Ten dang nhap")
@@ -167,7 +143,12 @@ namespace UI
             {
                 MessageBox.Show("Vui long nhap du lieu day du!");
             }
-            
+            if(kiemtramatkhau()==false)
+            {
+                MessageBox.Show("Mat khau khong trung khop!");
+                txtNhaplaimatkhau.PasswordChar = '\0';
+                txtNhaplaimatkhau.Text = "Nhap lai mat khau";
+            }
             else
             {
                
@@ -175,7 +156,7 @@ namespace UI
                 UserManager.UserVerification userVerification = new UserManager.UserVerification();
                 string pass=userVerification.GetSHA256(txtMatkhau.Text);
 
-                byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass + "%" + this.txtTen.Text );
+                byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass );
                 SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
                 await LoginForm.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 
@@ -203,6 +184,40 @@ namespace UI
         private void Sign_up_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.login.Show();
+        }
+
+        private void txtNhaplaimatkhau_Enter(object sender, EventArgs e)
+        {
+            if (txtNhaplaimatkhau.Text == "Nhap lai mat khau")
+            {
+                txtNhaplaimatkhau.Clear();
+                txtNhaplaimatkhau.PasswordChar = '*';
+            }
+        }
+
+        private void txtNhaplaimatkhau_Leave(object sender, EventArgs e)
+        {
+            Pen red = new Pen(Color.Red);
+            Pen white = new Pen(Color.White);
+            Graphics g = this.CreateGraphics();
+            int variance = 1;
+            if (txtNhaplaimatkhau.Text == "" || kiemtrakytudacbiet(txtNhaplaimatkhau.Text) == true)
+            {
+                txtNhaplaimatkhau.PasswordChar = '\0';
+                txtNhaplaimatkhau.Text = "Nhap lai mat khau";
+
+                txtNhaplaimatkhau.BorderStyle = BorderStyle.None;
+                g.DrawRectangle(red, new Rectangle(txtNhaplaimatkhau.Location.X - variance, txtNhaplaimatkhau.Location.Y - variance, txtNhaplaimatkhau.Width + variance, txtNhaplaimatkhau.Height + variance));
+
+
+
+            }
+            else
+            {
+                g.DrawRectangle(white, new Rectangle(txtNhaplaimatkhau.Location.X - variance, txtNhaplaimatkhau.Location.Y - variance, txtNhaplaimatkhau.Width + variance, txtNhaplaimatkhau.Height + variance));
+                txtNhaplaimatkhau.BorderStyle = BorderStyle.Fixed3D;
+                txtNhaplaimatkhau.PasswordChar = '*';
+            }
         }
     }
 }

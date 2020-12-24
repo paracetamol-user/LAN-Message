@@ -31,7 +31,7 @@ namespace Communication
 		// Database of K
 		// Data Source=Paracetamol;Initial Catalog=LANCHAT;Integrated Security=True
 		//Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True
-		string connString = @" Data Source=DESKTOP-BM0V9BJ;Initial Catalog=LANCHAT;Integrated Security=True";
+		string connString = @"Data Source=DESKTOP-L3418BN;Initial Catalog=LANCHAT;Integrated Security=True";
 
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
@@ -138,11 +138,10 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("INSERT INTO USERS(ID,TENTK,MATKHAU,HOTEN,TINHTRANG,SOURCEAVATAR,THEME) VALUES (@id , @tendangnhap , @matkhau, @hoten , @tinhtrang,@source,@theme)", connection);
+					command = new SqlCommand("INSERT INTO USERS(ID,TENTK,MATKHAU,TINHTRANG,SOURCEAVATAR,THEME) VALUES (@id , @tendangnhap , @matkhau, @tinhtrang,@source,@theme)", connection);
 					command.Parameters.AddWithValue("@id", idfocus.ToString());
 					command.Parameters.AddWithValue("@tendangnhap", data[1]);
 					command.Parameters.AddWithValue("@matkhau", data[2]);
-					command.Parameters.AddWithValue("@hoten", data[3]);
 					command.Parameters.AddWithValue("@tinhtrang", 0);
 					command.Parameters.AddWithValue("@source", "Default");
 					command.Parameters.AddWithValue("@theme", "White");
