@@ -203,11 +203,6 @@ namespace UI
 				{
 					(item as Button).ForeColor = theme.TextColor;
 				}
-				else if (item.GetType() == typeof(Guna.UI2.WinForms.Guna2Button))
-				{
-					(item as Guna.UI2.WinForms.Guna2Button).ForeColor = theme.TextColor;
-				}
-
 				ChangeColorAllLabelControls(item as Control);
 			}
 		}
@@ -605,7 +600,12 @@ namespace UI
 						{
 							if (item.group.ID == IDGr)
 							{
-								item.group.RemoveMember(IDmember);
+								if (IDmember == me.Id)
+								{
+									GroupUIs.Remove(item);
+									item.Dispose();
+								}
+								else item.group.RemoveMember(IDmember);
 							}
 						}
 					}

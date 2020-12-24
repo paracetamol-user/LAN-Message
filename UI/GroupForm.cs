@@ -20,10 +20,11 @@ namespace UI
 		private int ID;
 		private List<FileInfo> files;
 		private short LastInteracted;
-		public GroupUI GroupUI;
+		public GroupUI GroupUI { get; set; }
 		public ucVoicePanel voicePanel;
 		public ucInfoGroup ucInfoGroup;
 		public List<ucFileShow> listfileShows = new List<ucFileShow>();
+		public List<ucUserINChatBox> userINChatBoxes;
 		public GroupForm()
 		{
 			InitializeComponent();
@@ -44,6 +45,7 @@ namespace UI
 			BoxChats = new List<Panel>();
 			files = new List<FileInfo>();
 			voicePanel = new ucVoicePanel(group, this);
+			userINChatBoxes = new List<ucUserINChatBox>();
 			this.Controls.Add(voicePanel);
 			
 			InitColor();
@@ -72,7 +74,11 @@ namespace UI
 			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
 			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
 			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
-
+			this.panel1.BackColor = Form1.theme.Menu;
+			foreach (var item in userINChatBoxes)
+			{
+				item.InitColor();
+			}
 		}
 		public void AddItemToListChat(User user, string IDMess,string str)
 		{
@@ -91,6 +97,7 @@ namespace UI
 
 			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
+			userINChatBoxes.Add(UserInChatBox);
 		}
 		public void AddFileToListChat(User user,string IDMess, string tempName)
 		{
@@ -113,6 +120,7 @@ namespace UI
 			else UserInChatBox.ID = IDMess;
 
 			listfileShows.Add(fileShow);
+			userINChatBoxes.Add(UserInChatBox);
 		}
 		public async Task SendMessage()
 		{
@@ -221,6 +229,7 @@ namespace UI
 			this.panelListChat.Controls.Add(tempPanel);
 			userINChatBox.InitColor();
 			// voiceMessage.InitColor();
+			userINChatBoxes.Add(userINChatBox);
 		}
 
 		public bool isVoicePanelShow;

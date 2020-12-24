@@ -73,21 +73,6 @@ namespace UI
         {
 			this.groupForm.BackColor = Form1.theme.BackColor;
 			this.groupForm.InitColor();
-			foreach (var item in groupForm.Controls)
-			{
-				if (item.GetType() == typeof(ucUserINChatBox))
-				{
-					(item as ucUserINChatBox).InitColor();
-				}
-				else if (item.GetType() == typeof(ucMessShow))
-				{
-					(item as ucMessShow).ChangeTheme();
-				}
-				else if (item.GetType() == typeof(ucFileShow))
-				{
-					(item as ucFileShow).InitColor();
-				}
-			}
 			InitCmns();
 			ucGroupAll.InitControls();
 			ucGroupInteract.InitColor();
@@ -112,7 +97,7 @@ namespace UI
         private void TsOutGroup_Click(object sender, EventArgs e)
         {
 			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
-			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%"+(group.admin == Form1.me ? "true" : "false"));
+			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%"+(group.admin == Form1.me ? "true" : "false") + "%" + Form1.me.Id);
 			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
 			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
