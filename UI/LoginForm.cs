@@ -19,7 +19,7 @@ namespace UI
 	public partial class LoginForm : Form
 	{
 		//Info Server
-		private string ipServer = ConfigurationManager.AppSettings["IP Server"].ToString();
+		private string ipServer = ConfigurationManager.AppSettings["IP server"].ToString();
 		private string portSever = "5000";
 		static public SocketClient client;
 		static public TcpClient server;
@@ -32,7 +32,7 @@ namespace UI
 		}
 		private void ClearData()
 		{
-			string path = @"..\..\cache\avatar";
+			string path = @"./cache/avatar";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 			DirectoryInfo dir = new DirectoryInfo(path);
 			foreach (var item in dir.GetFiles())
@@ -68,7 +68,7 @@ namespace UI
 			string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
 			if (data[0] == "LOGINOKE")
 			{
-				User user = new User(data[1], account, true, @"..\..\avatarDefault");
+				User user = new User(data[1], account, true, @"./images/avatarDefault/avatarDefault.png");
 				Form1 mainform = new Form1(this, user, client, server, data[2]);
 				mainform.Show();
 				this.Hide();

@@ -152,8 +152,8 @@ namespace UI
 			await Form1.client.SendFileToServer(data , "A" ,id.ToString());
 
 			byte[] tempfile = File.ReadAllBytes(fi.FullName);
-			File.WriteAllBytes(@"..\..\cache\avatar\" + me.Id + fi.Extension, tempfile);
-			Form1.me.AvatarPath = @"..\..\cache\avatar\" + me.Id + fi.Extension;
+			File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
+			Form1.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
 			this.parent.LoadUser();
 			}
 

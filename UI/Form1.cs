@@ -108,7 +108,7 @@ namespace UI
 			frmADD = new frmADD(this);
 			frmADDMemberToContact = new FrmADDMemberToContact(this);
 
-			me.AvatarPath = @"../../avatarDefault.png";
+			me.AvatarPath = @"./images/avatarDefault/avatarDefault.png";
 			
 			LoadDataUser();
 			InitServerUsersForm();
@@ -262,7 +262,7 @@ namespace UI
 							if (data[i] == "") break;
 
 							string[] arr = data[i].Split(' ');
-							string path = @"..\..\avatarDefault.png";
+							string path = @"./images/avatarDefault/avatarDefault.png";
 							if (arr[1] != me.Name)
 							{
 								listUser.Add(new User(arr[0], arr[1], bool.Parse(arr[2]), path));
@@ -306,7 +306,7 @@ namespace UI
 					}
 					else if (action == "ADDUSER")
 					{
-						string path = @"..\..\avatarDefault.png";
+						string path = @"./images/avatarDefault/avatarDefault.png";
 						UserUIs.Add(new UserUI(new User(data[1], data[2], false, path), this));
 					}
 					else if (action == "ONLINE")
@@ -507,7 +507,7 @@ namespace UI
 							if (data[i] == "") break;
 
 							string[] arr = data[i].Split('•');
-							string path = @"..\..\groupDefault.png";
+							string path = @"./images/avatarDefault/groupDefault.png";
 							listGroup.Add(new Group(arr[0], arr[1], path));
 							listGroup[listGroup.Count - 1].AddMember(me);
 							for (int j = 3; j < arr.Length; j += 2)
@@ -709,7 +709,7 @@ namespace UI
 							item.Ack = item.Ack + package.Data.Length;
 							if (item.Ack == item.Length)
 							{
-								string path = @"..\..\cache\avatar\" + item.FileName + item.Extension;
+								string path = @"./cache/avatar/" + item.FileName + item.Extension;
 								try
 								{
 									File.WriteAllBytes(path, item.Data);
@@ -759,7 +759,7 @@ namespace UI
 									{
 										if (userUI.user.Id == item.IDsend)
 										{
-											string path = string.Format(@"..\..\voice_mess\{0}\", item.IDsend);
+											string path = string.Format(@"./voice/{0}/", item.IDsend);
 											if (!Directory.Exists(path))
 												Directory.CreateDirectory(path);
 											path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
@@ -775,7 +775,7 @@ namespace UI
 									{
 										if ("G" + groupUI.group.ID == item.IDreceive)
 										{
-											string path = string.Format(@"..\..\voice_mess\{0}\", item.IDreceive);
+											string path = string.Format(@"./voice/{0}/", item.IDreceive);
 											if (!Directory.Exists(path))
 												Directory.CreateDirectory(path);
 											path += string.Format("{0}.wav", GetIDForIncomingVoice(path));

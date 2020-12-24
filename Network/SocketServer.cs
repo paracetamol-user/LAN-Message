@@ -21,20 +21,16 @@ namespace Communication
 		TcpListener mListener;
 		List<UserClient> clients;
 		List<UserClient> clientInvalid;
-
-		string connString = ConfigurationManager.AppSettings["Database Source"].ToString();
-
+		string connString;
 		string queryLogin = "select * from USERS";
 		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
 		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
 		string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai,@nhomnhan)";
 		string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
 		string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
-
 		SqlConnection connection;
 		SqlCommand command;
 		SqlDataReader reader;
-
 		public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
 		public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
 		protected virtual void OnRaiseClientConnectedEvent(ClientConnectedEventArgs ccea)
@@ -50,11 +46,11 @@ namespace Communication
 				handler(this, trea);
 		}
 		private bool KeepRunning { get; set; }
-		public SocketServer(string DatabaseSource)
+		public SocketServer(string DataSource)
 		{
 			clients = new List<UserClient>();
 			clientInvalid = new List<UserClient>();
-			connString = @DatabaseSource;
+			connString = DataSource;
 		}
 		public int idfocus = 0;
 		public async Task StartForIncommingConnection(IPAddress addr = null, int port = 5000)
@@ -106,7 +102,6 @@ namespace Communication
 				{
 					string idEnd = "";
 					// Lấy id cuối cùng để tăng id lên 1 và thêm người dùng vào khi SIGNUP thành công
-
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(queryLogin, connection);
@@ -129,11 +124,10 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("INSERT INTO USERS(ID,TENTK,MATKHAU,HOTEN,TINHTRANG,SOURCEAVATAR,THEME) VALUES (@id , @tendangnhap , @matkhau, @hoten , @tinhtrang,@source,@theme)", connection);
+					command = new SqlCommand("INSERT INTO USERS(ID,TENTK,MATKHAU,TINHTRANG,SOURCEAVATAR,THEME) VALUES (@id , @tendangnhap , @matkhau, @tinhtrang,@source,@theme)", connection);
 					command.Parameters.AddWithValue("@id", idfocus.ToString());
 					command.Parameters.AddWithValue("@tendangnhap", data[1]);
 					command.Parameters.AddWithValue("@matkhau", data[2]);
-					command.Parameters.AddWithValue("@hoten", data[3]);
 					command.Parameters.AddWithValue("@tinhtrang", 0);
 					command.Parameters.AddWithValue("@source", "Default");
 					command.Parameters.AddWithValue("@theme", "White");
@@ -164,7 +158,7 @@ namespace Communication
 						if (reader.Read() == false) break;
 						if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
 						{
-							tempBuff = Encoding.UTF8.GetBytes("LOGINOKE%" + reader.GetString(0) + "%" + reader.GetString(6));
+							tempBuff = Encoding.UTF8.GetBytes("LOGINOKE%" + reader.GetString(0) + "%" + reader.GetString(5));
 							SmallPackage tempPackage = new SmallPackage(0, package.Length, package.Style, tempBuff, "0");
 							buffMessage = tempPackage.Packing();
 							client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
@@ -213,7 +207,7 @@ namespace Communication
 					while (reader.HasRows)
 					{
 						if (reader.Read() == false) break;
-						arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(4).ToString() + "%";
+						arr = arr + reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetBoolean(3).ToString() + "%";
 					}
 					connection.Close();
 					// Lấy tất cả người dùng từ data base
@@ -247,7 +241,7 @@ namespace Communication
 					while (reader.HasRows)
 					{
 						if (reader.Read() == false) break;
-						string path = (reader.GetString(5) != "Default") ? reader.GetString(5) : "";
+						string path = (reader.GetString(4) != "Default") ? reader.GetString(5) : "";
 						if (path != "")
 						{
 							FileInfo fi = new FileInfo(path);
@@ -274,12 +268,11 @@ namespace Communication
 				Guid id = Guid.NewGuid();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
-				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NGUOINHAN,NOIDUNGTINNHAN,LOAI) values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai)", connection);
+				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NGUOINHAN,NOIDUNGTINNHAN) values(@id,@idnguoigui,@idnguoinhan,@tinnhan)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
 				this.command.Parameters.Add(new SqlParameter("@idnguoinhan", data[2]));
 				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
-				this.command.Parameters.Add(new SqlParameter("@loai", 1));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
 				// Lưu vào database
@@ -327,11 +320,10 @@ namespace Communication
 				this.connection.Close();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
-				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NOIDUNGTINNHAN,LOAI,NHOMNHAN) values(@id,@idnguoigui,@tinnhan,@loai,@nhomnhan)", connection);
+				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NOIDUNGTINNHAN,NHOMNHAN) values(@id,@idnguoigui,@tinnhan,@nhomnhan)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
 				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
-				this.command.Parameters.Add(new SqlParameter("@loai", 1));
 				this.command.Parameters.Add(new SqlParameter("@nhomnhan", data[1]));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
@@ -380,7 +372,7 @@ namespace Communication
 					if (reader.Read() == false) break;
 					if (reader.GetString(0) == FILEID)
 					{
-						path = reader.GetString(3).ToString();
+						path = reader.GetString(4).ToString();
 						break;
 					}
 				}
@@ -1269,21 +1261,20 @@ namespace Communication
 										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
 										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 										// Gửi ID của file về cho người gửi
-										File.WriteAllBytes(@"..\..\filedata\" + IDMessage.ToString() + item.Extension, item.Data);
+										File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
 										// Lưu file vào trong thư mục của server
 										connection.Close();
-										string tinnhan = @"..\..\filedata\" + IDMessage.ToString() + item.Extension.ToString();
+										string tinnhan = @"./filedata/" + IDMessage.ToString() + item.Extension.ToString();
 										this.connection = new SqlConnection(this.connString);
 										this.connection.Open();
 										this.command = new SqlCommand("insert into TINNHAN(MATINNHAN," +
-																		" NGUOIGUI,NGUOINHAN, NOIDUNGTINNHAN," +
-																		" LOAI) values(@id, @idnguoigui,@idnguoinhan," +
-																		" @tinnhan, @loai)", connection);
+																		" NGUOIGUI,NGUOINHAN, NOIDUNGTINNHAN" +
+																		") values(@id, @idnguoigui,@idnguoinhan," +
+																		" @tinnhan)", connection);
 										this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
 										this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
 										this.command.Parameters.Add(new SqlParameter("@idnguoinhan", item.IDreceive));
 										this.command.Parameters.Add(new SqlParameter("@tinnhan", tinnhan));
-										this.command.Parameters.Add(new SqlParameter("@loai", 1));
 										this.command.ExecuteNonQuery();
 										this.connection.Close();
 										// Lưu file dưới dạng là 1 tin nhắn trong Database Table TINNHAN
@@ -1315,19 +1306,18 @@ namespace Communication
 										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
 										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 										// Gửi ID của file về cho người gửi
-										File.WriteAllBytes(@"..\..\filedata\" + IDMessage.ToString() + item.Extension, item.Data);
+										File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
 										// Lưu file vào trong thư mục của server
 										connection.Close();
 										this.connection = new SqlConnection(this.connString);
 										this.connection.Open();
 										this.command = new SqlCommand("insert into TINNHAN(MATINNHAN," +
 																		" NGUOIGUI, NOIDUNGTINNHAN," +
-																		" LOAI, NHOMNHAN) values(@id, @idnguoigui," +
-																		" @tinnhan, @loai,@nhomnhan)", connection);
+																		" NHOMNHAN) values(@id, @idnguoigui," +
+																		" @tinnhan,@nhomnhan)", connection);
 										this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
 										this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
-										this.command.Parameters.Add(new SqlParameter("@tinnhan", @"..\..\filedata\" + IDMessage.ToString() + item.Extension.ToString()));
-										this.command.Parameters.Add(new SqlParameter("@loai", 1));
+										this.command.Parameters.Add(new SqlParameter("@tinnhan", @"./filedata\" + IDMessage.ToString() + item.Extension.ToString()));
 										this.command.Parameters.Add(new SqlParameter("@nhomnhan", item.IDreceive));
 										this.command.ExecuteNonQuery();
 										this.connection.Close();
@@ -1390,7 +1380,7 @@ namespace Communication
 								item.Ack = item.Ack + package.Data.Length;
 								if (item.Ack == item.Length)
 								{
-									string path = @"..\..\avatar\" + item.IDpackage + item.Extension;
+									string path = @"./avatar/" + item.IDpackage + item.Extension;
 									File.WriteAllBytes(path, item.Data);
 									// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
 									string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
@@ -1480,7 +1470,9 @@ namespace Communication
 					System.Diagnostics.Debug.WriteLine("Received message: " + (Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')));
 					OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
-						(Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n'))
+						(package.Style == "M" ? ((Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')).Split('%'))[0] : 
+							(package.Style == "F" ? "File" : 
+							(package.Style == "V" ? "Voice" : "Save Avatar")))
 					));
 					Array.Clear(buff, 0, buff.Length);
 				}
