@@ -59,12 +59,20 @@ namespace UI
         }
         private async void SendAcceptGroupInviteToServer()
         {
-            // goi len server gui thanh vien ve
-            byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + uiParent.group.ID + "%" + uiParent.group.Name + "%"
-                                                                    + FrmMain.me.Id + "%" + FrmMain.me.Name);
-            SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-            FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-            pnParent.Controls.Remove(this);
+            try
+            {
+                // goi len server gui thanh vien ve
+                byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + uiParent.group.ID + "%" + uiParent.group.Name + "%"
+                                                                        + FrmMain.me.Id + "%" + FrmMain.me.Name);
+                SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+                FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+                pnParent.Controls.Remove(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
     }
 }

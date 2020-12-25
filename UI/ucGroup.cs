@@ -65,20 +65,28 @@ namespace UI
 
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
-			if (txtCreate.Text != "" && txtCreate.Text != null)
+			try
 			{
-				if (txtCreate.Text.Length > 32)
+				if (txtCreate.Text != "" && txtCreate.Text != null)
 				{
-					MessageBox.Show("Name is shorter than 32", "Name is not invalid", MessageBoxButtons.OK);
-					return;
-				}
-				byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}", txtCreate.Text, FrmMain.me.Id));
-				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+					if (txtCreate.Text.Length > 32)
+					{
+						MessageBox.Show("Name is shorter than 32", "Name is not invalid", MessageBoxButtons.OK);
+						return;
+					}
+					byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}", txtCreate.Text, FrmMain.me.Id));
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
-				this.txtCreate.Text = "";
-				//btnCreate.Enabled = false;
+					this.txtCreate.Text = "";
+					//btnCreate.Enabled = false;
+				}
 			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 	}
 }

@@ -92,13 +92,23 @@ namespace UI
         }
         private void TsOutGroup_Click(object sender, EventArgs e)
         {
-			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
-			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%"+(group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
-			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			try
+			{
+				DialogResult rs = MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
+				if (rs == DialogResult.Yes)
+				{
+					byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
-			mainForm.GroupUIs.Remove(this);
-			this.Dispose();
+					mainForm.GroupUIs.Remove(this);
+					this.Dispose();
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 		public void Dispose()
         {

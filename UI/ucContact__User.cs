@@ -43,15 +43,23 @@ namespace UI
 
 		private void picRemove_Click(object sender, EventArgs e)
 		{
-			DialogResult dialogResult = MessageBox.Show("Are you sure remove this user!", "Remove User In Contact", MessageBoxButtons.YesNo);
-			if (dialogResult == DialogResult.Yes)
+			try
 			{
-				byte[] buff = Encoding.UTF8.GetBytes("DELETEUSERINCONTACT%" + UcContactParent._ID + "%" + user.Id);
-				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "Server");
-				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				DialogResult dialogResult = MessageBox.Show("Are you sure remove this user!", "Remove User In Contact", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.Yes)
+				{
+					byte[] buff = Encoding.UTF8.GetBytes("DELETEUSERINCONTACT%" + UcContactParent._ID + "%" + user.Id);
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "Server");
+					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
-				_RemoveThis();
+					_RemoveThis();
+				}
 			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 
 		private void pnLine_Click(object sender, EventArgs e)

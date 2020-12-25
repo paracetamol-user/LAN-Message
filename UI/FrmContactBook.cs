@@ -31,6 +31,21 @@ namespace UI
 			this.TopLevel = false;
 			this.mainForm.PnRight.Controls.Add(this);
 		}
+		public void _RemoveUser(string id)
+        {
+			foreach (var item in listContact)
+			{
+                foreach (var item2 in item.listContact__User)
+                {
+					if (item2.user.Id == id)
+                    {
+						item._RemoveContact__User(item2);
+						break;
+                    }
+                }
+
+			}
+		}
 		public void _InitControls()
 		{
 			this.BackColor = FrmMain.theme.BackColor;
@@ -69,10 +84,18 @@ namespace UI
 
 		private async void btnCreate_Click(object sender, EventArgs e)
 		{
-			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}",this.textBox1.Text));
-			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
-			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-			textBox1.Clear();
+			try
+            {
+				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}", this.textBox1.Text));
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				textBox1.Clear();
+			}
+			catch
+            {
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 	}
 }

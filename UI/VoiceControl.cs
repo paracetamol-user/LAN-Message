@@ -14,7 +14,7 @@ namespace UI
 		DirectSoundOut player;
 		WaveIn wave;
 		private int deviceNumber;
-		public string Path = @"..\..\voice_mess\";
+		public string Path = @"./voice/";
 
 		public VoiceControl()
 		{
@@ -25,7 +25,7 @@ namespace UI
 			deviceNumber = 0;
 			if (!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
-			Path += string.Format(@"{0}\", user.Id);
+			Path += string.Format(@"{0}/", user.Id);
 			if (!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
 		}
@@ -34,7 +34,7 @@ namespace UI
 			deviceNumber = 0;
 			if(!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
-			Path += string.Format(@"G{0}\", group.ID);
+			Path += string.Format(@"G{0}/", group.ID);
 			if (!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
 		}

@@ -153,40 +153,47 @@ namespace UI
 			voice.StartRecording();
 			timer.Start();
         }
-
 		private async void SendVoiceToServer()
         {
-			if (voice.GetWave() == null) return;
-			voice.DisposeAll();
-
-			byte[] data = File.ReadAllBytes(voice.Path);
-			Guid id = new Guid();
-			if (user != null)
+			try
 			{
-				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%{1}%{2}%{3}",
-																						user.Id,
-																						data.Length,
-																						id.ToString(), "Private"));
-				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
-				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-				FrmMain.client.SendFileToServer(data, "V", id.ToString());
+				if (voice.GetWave() == null) return;
+				voice.DisposeAll();
 
-				userForm.AddVoiceMessage(FrmMain.me, voice.Path);
+				byte[] data = File.ReadAllBytes(voice.Path);
+				Guid id = new Guid();
+				if (user != null)
+				{
+					byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%{1}%{2}%{3}",
+																							user.Id,
+																							data.Length,
+																							id.ToString(), "Private"));
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
+					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+					FrmMain.client.SendFileToServer(data, "V", id.ToString());
+
+					userForm.AddVoiceMessage(FrmMain.me, voice.Path);
+				}
+				else
+				{
+					byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%{1}%{2}%{3}",
+																							group.ID,
+																							data.Length,
+																							id.ToString(), "Public"));
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
+					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+					FrmMain.client.SendFileToServer(data, "V", id.ToString());
+
+					groupForm.AddVoiceMessage(FrmMain.me, voice.Path);
+				}
+				// Process when record sent
+				voice.Path = voice.GetNextPath();
 			}
-			else
+			catch (Exception ex)
 			{
-				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%{1}%{2}%{3}",
-																						group.ID,
-																						data.Length,
-																						id.ToString(), "Public"));
-				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
-				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-				FrmMain.client.SendFileToServer(data, "V", id.ToString());
-
-				groupForm.AddVoiceMessage(FrmMain.me, voice.Path);
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
-			// Process when record sent
-			voice.Path = voice.GetNextPath();
+			
 		}
 	}
 }

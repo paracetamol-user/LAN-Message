@@ -65,23 +65,30 @@ namespace UI
 		}
 		private async void SendAddToGroupToServer()
 		{
-			foreach (var item in pnUser.Controls)
-			{
-				if (item.GetType() == typeof(ucADD))
+			try
+            {
+				foreach (var item in pnUser.Controls)
 				{
-					if ((item as ucADD).isAdd)
+					if (item.GetType() == typeof(ucADD))
 					{
-						listAdd.Add((item as ucADD).user);
+						if ((item as ucADD).isAdd)
+						{
+							listAdd.Add((item as ucADD).user);
+						}
 					}
 				}
+				foreach (var item in listAdd)
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.Id + "%" +
+																	   selectedGroup.ID + "%" + selectedGroup.Name + "%" + selectedGroup.admin.Id);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				}
+			}catch (Exception ex)
+            {
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
-			foreach (var item in listAdd)
-			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.Id + "%" +
-																   selectedGroup.ID + "%" + selectedGroup.Name + "%" + selectedGroup.admin.Id) ;
-				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-			}
+			
 
 		}
         private void picBoxAdd_Click(object sender, EventArgs e)

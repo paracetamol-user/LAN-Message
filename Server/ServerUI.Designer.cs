@@ -307,7 +307,6 @@
             // 
             // pnM__Contain
             // 
-            this.pnM__Contain.Controls.Add(this.pictureBox2);
             this.pnM__Contain.Controls.Add(this.txtBoxConsole);
             this.pnM__Contain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnM__Contain.Location = new System.Drawing.Point(0, 57);
@@ -320,7 +319,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(514, 11);
+            this.pictureBox2.Location = new System.Drawing.Point(517, 12);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 33);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -333,14 +332,14 @@
             this.txtBoxConsole.BackColor = System.Drawing.Color.White;
             this.txtBoxConsole.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxConsole.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxConsole.Location = new System.Drawing.Point(47, 122);
+            this.txtBoxConsole.Location = new System.Drawing.Point(47, 66);
             this.txtBoxConsole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBoxConsole.MaxLength = 5;
             this.txtBoxConsole.Multiline = true;
             this.txtBoxConsole.Name = "txtBoxConsole";
             this.txtBoxConsole.ReadOnly = true;
             this.txtBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBoxConsole.Size = new System.Drawing.Size(426, 199);
+            this.txtBoxConsole.Size = new System.Drawing.Size(426, 255);
             this.txtBoxConsole.TabIndex = 7;
             // 
             // pnLine2
@@ -354,6 +353,7 @@
             // 
             // pnM__Header
             // 
+            this.pnM__Header.Controls.Add(this.pictureBox2);
             this.pnM__Header.Controls.Add(this.pnM__Header__Info);
             this.pnM__Header.Controls.Add(this.pnM__Header__Console);
             this.pnM__Header.Controls.Add(this.pn1);

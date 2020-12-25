@@ -28,12 +28,9 @@ namespace UI
 			this.pnParent = pnPending;
 			this.uiParent = userUI;
 			this.roundPicAvatar.Image = Image.FromFile(uiParent.user.AvatarPath);
+			this.lbName.Text = userUI.user.Name;
+			this.lbId.Text = userUI.user.Name;
 			InitColor();
-		}
-		public void ResetTheme()
-        {
-			this.picCheck.Image = Image.FromFile(FrmMain.theme.PictureCheck);
-			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
 		public void InitColor()
 		{
@@ -63,9 +60,17 @@ namespace UI
 
         private async void SendAcceptFriendToServer()
         {
-			byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + FrmMain.me.Id + "%" + uiParent.user.Id);
-			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + FrmMain.me.Id + "%" + uiParent.user.Id);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
     }
 }

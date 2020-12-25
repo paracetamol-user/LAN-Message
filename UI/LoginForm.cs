@@ -53,35 +53,42 @@ namespace UI
 		}
 		public async void SendRequest(string account, string pass, string action)
 		{
-			UserManager.UserVerification userVerification = new UserManager.UserVerification();
-			pass = userVerification.GetSHA256(pass);
-			byte[] tempBuff = Encoding.UTF8.GetBytes(action + "%" + account + "%" + pass);
-			SmallPackage package = new SmallPackage(1024, 1024, "M", tempBuff, "0");
-			byte[] buffMessage = package.Packing();
-			await server.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
-
-			byte[] buffReceive = new byte[1024];
-			await server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
-			SmallPackage packageReceive = new SmallPackage();
-			packageReceive.DividePackage(buffReceive);
-
-			string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
-			if (data[0] == "LOGINOKE")
-			{
-				User user = new User(data[1], account, true, @"./images/avatarDefault/avatarDefault.png");
-				FrmMain mainform = new FrmMain(this, user, client, server, data[2]);
-				mainform.Show();
-				this.Hide();
-				label2.Visible = false;
-			}
-			else if (data[0] == "ERRORLOGINED")
+			try
             {
-				MessageBox.Show("Account was logined in other computer","Login error" , MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				UserManager.UserVerification userVerification = new UserManager.UserVerification();
+				pass = userVerification.GetSHA256(pass);
+				byte[] tempBuff = Encoding.UTF8.GetBytes(action + "%" + account + "%" + pass);
+				SmallPackage package = new SmallPackage(1024, 1024, "M", tempBuff, "0");
+				byte[] buffMessage = package.Packing();
+				await server.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+
+				byte[] buffReceive = new byte[1024];
+				await server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
+				SmallPackage packageReceive = new SmallPackage();
+				packageReceive.DividePackage(buffReceive);
+
+				string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
+				if (data[0] == "LOGINOKE")
+				{
+					User user = new User(data[1], account, true, @"./images/avatarDefault/avatarDefault.png");
+					FrmMain mainform = new FrmMain(this, user, client, server, data[2]);
+					mainform.Show();
+					this.Hide();
+					label2.Visible = false;
+				}
+				else if (data[0] == "ERRORLOGINED")
+				{
+					MessageBox.Show("Account was logined in other computer", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+				else
+				{
+					label2.Text = "Tai khoan hoac mat khau khong chinh xac";
+					label2.Visible = true;
+				}
 			}
-			else 
-			{
-				label2.Text = "Tai khoan hoac mat khau khong chinh xac";
-				label2.Visible = true;
+			catch ( Exception ex)
+            {
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK , MessageBoxIcon.Warning);
 			}
 		}
 		private void button1_Click(object sender, EventArgs e)
@@ -104,9 +111,17 @@ namespace UI
 		}
 		private void button2_Click(object sender, EventArgs e)
 		{
-			Sign_up tam = new Sign_up(this);
-			tam.Show();
-			this.Hide();
+			try
+			{
+				Sign_up tam = new Sign_up(this);
+				tam.Show();
+				this.Hide();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 		public void AcceptClose(bool accept)
 		{

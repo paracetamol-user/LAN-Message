@@ -191,5 +191,19 @@ namespace UI
         {
 			(sender as Button).BackColor = Color.Transparent;
 		}
+		public void InitStart()
+        {
+			this.pnContainSearch.Visible = true;
+			this.ucSearch.IsFriend = false;
+			this.ucSearch.IsOnline = false;
+			btnPeople.BackColor = FrmMain.theme.FocusColor;
+			countUserAll = 0;
+			panelAllUser.Controls.Clear();
+			LoadListAllUser();
+			labelCOUNT.Text = "All People In Server - " + countUserAll.ToString();
+			btnFocus = btnPeople;
+			panelAllUser.Show();
+			panelAllUser.BringToFront();
+		}
     }
 }

@@ -136,19 +136,35 @@ namespace UI
 		}
 		public async void SendAddFriendToServer()
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + FrmMain.me.Id + "%" + user.Id);
-			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-		}
-		public async void SendRemoveFriendToServer()
-		{
-			var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
-			if (temp == DialogResult.Yes)
+			try
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + FrmMain.me.Id + "%" + user.Id);
+				byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + FrmMain.me.Id + "%" + user.Id);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
+		}
+		public async void SendRemoveFriendToServer()
+		{
+			try
+			{
+				var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
+				if (temp == DialogResult.Yes)
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + FrmMain.me.Id + "%" + user.Id);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 		public void SetAvatar(string path)
 		{
@@ -262,14 +278,21 @@ namespace UI
 		}
 		public void Dispose()
 		{
-			this.ucFriend.Dispose();
-			this.ucInterac.Dispose();
-			this.ucPending.Dispose();
-			this.ucUserAll.Dispose();
-			this.ucADD.Dispose();
-			this.ucFriendOnline.Dispose();
-			this.ucSearch.Dispose();
-			this.userForm.Dispose();
+			try
+            {
+				this.ucFriend.Dispose();
+				this.ucInterac.Dispose();
+				//this.ucPending.Dispose();
+				this.ucUserAll.Dispose();
+				this.ucADD.Dispose();
+				this.ucFriendOnline.Dispose();
+				this.ucSearch.Dispose();
+				this.userForm.Dispose();
+			}catch (Exception ex)
+            {
+
+            }
+			
 		}
 	}
 }

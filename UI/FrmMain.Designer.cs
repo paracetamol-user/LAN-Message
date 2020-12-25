@@ -171,6 +171,7 @@
             this.btnPhoneBook.UseVisualStyleBackColor = false;
             this.btnPhoneBook.Click += new System.EventHandler(this.btnPhoneBook_Click);
             this.btnPhoneBook.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
+            this.btnPhoneBook.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
             // 
             // panel2
             // 
@@ -211,6 +212,7 @@
             this.btnGroup.UseVisualStyleBackColor = false;
             this.btnGroup.Click += new System.EventHandler(this.btnGroup_Click);
             this.btnGroup.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
+            this.btnGroup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
             // 
             // panel1
             // 
@@ -251,6 +253,7 @@
             this.btnFriend.UseVisualStyleBackColor = false;
             this.btnFriend.Click += new System.EventHandler(this.btnFriend_Click);
             this.btnFriend.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
+            this.btnFriend.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
             // 
             // panelOPTION
             // 
@@ -390,6 +393,7 @@
             this.picNotification.TabStop = false;
             this.picNotification.Visible = false;
             this.picNotification.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
+            this.picNotification.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
             // 
             // btnServer
             // 
@@ -406,6 +410,7 @@
             this.btnServer.UseVisualStyleBackColor = true;
             this.btnServer.Click += new System.EventHandler(this.btnServer_Click);
             this.btnServer.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
+            this.btnServer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
             // 
             // FrmMain
             // 

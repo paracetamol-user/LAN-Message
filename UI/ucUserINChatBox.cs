@@ -16,7 +16,7 @@ namespace UI
 	{
 		public string ID { get; set; }
 		public string IDParent { get; set; }
-		public User User {get;set;}
+		public User User { get; set; }
 		public ucMessShow ucmessshow;
 		public ucFileShow ucfileshow;
 		public ucVoiceMessage ucVoiceMessage;
@@ -27,7 +27,7 @@ namespace UI
 		{
 			InitializeComponent();
 		}
-		public ucUserINChatBox(User _User , string idParent)
+		public ucUserINChatBox(User _User, string idParent)
 		{
 			InitializeComponent();
 			acceptFocus = true;
@@ -54,13 +54,13 @@ namespace UI
 			this.picDelete.Image = Image.FromFile(FrmMain.theme.pictureBin);
 		}
 		public void EnableMenu()
-        {
+		{
 			this.pnMenu.Visible = true;
-        }
+		}
 		public void DisableMenu()
-        {
+		{
 			this.pnMenu.Visible = false;
-        }
+		}
 		public void _AddFileControl(ucFileShow filecontrol)
 		{
 			isFile = true;
@@ -74,59 +74,67 @@ namespace UI
 			this.ucmessshow = messcontrol;
 		}
 		public void _AddVoiceMessage(ucVoiceMessage voiceMessage)
-        {
+		{
 			isFile = false;
 			this.panelAddMessage.Controls.Add(voiceMessage);
 			this.ucVoiceMessage = voiceMessage;
-        }
+		}
 		public void _RemoveEditControls(ucEditMessage ucEdit)
 		{
 			this.panelAddMessage.Controls.Remove(ucEdit);
 		}
 		public void EditMessage(string newMess)
 		{
-				ucmessshow.SetText(newMess);
+			ucmessshow.SetText(newMess);
 		}
 		public void DeleteMessage(string IDMess)
 		{
-			if (ucmessshow!=null)
+			if (ucmessshow != null)
 			{
-					ucmessshow.DeleteMessage();
+				ucmessshow.DeleteMessage();
 			}
-			else 
+			else
 				ucfileshow.DeleteMessage();
 		}
 		private void picDelete_Click(object sender, EventArgs e)
 		{
-			DialogResult temp = MessageBox.Show("Are you sure delete this message", "Delete Message", MessageBoxButtons.OKCancel);
-			if (temp == DialogResult.OK)
+			try
 			{
-				if (this.User.Id != FrmMain.me.Id)
-                {
-					this.Visible = false;
-                } 
-				else if (isFile)
+				DialogResult temp = MessageBox.Show("Are you sure delete this message", "Delete Message", MessageBoxButtons.OKCancel);
+				if (temp == DialogResult.OK)
 				{
-					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
-					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-					this.ucfileshow.DeleteMessage();
-					this.DisableEdit();
-					this.DisableDelete();
-				}
-				else
-				{
+					if (this.User.Id != FrmMain.me.Id)
+					{
+						this.Visible = false;
+					}
+					else if (isFile)
+					{
+						byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
+						SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+						FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+						this.ucfileshow.DeleteMessage();
+						this.DisableEdit();
+						this.DisableDelete();
+					}
+					else
+					{
 
-					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
-					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-					this.ucmessshow.DeleteMessage();
-					this.DisableEdit();
-					this.DisableDelete();
+						byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
+						SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+						FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+						this.ucmessshow.DeleteMessage();
+						this.DisableEdit();
+						this.DisableDelete();
+					}
+
+					acceptFocus = false;
 				}
-					
-				acceptFocus = false;
-			}	
+			
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 		private void picEdit_Click(object sender, EventArgs e)
 		{
