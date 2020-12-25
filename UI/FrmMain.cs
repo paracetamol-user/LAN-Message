@@ -96,6 +96,12 @@ namespace UI
 			}
 			else theme.White();
 			InitializeComponent();
+			Panel temp = new Panel();
+			temp.Dock = DockStyle.Fill;
+			temp.BackColor = Color.Transparent;
+			this.panelRIGHT.Controls.Add(temp);
+			temp.BringToFront();
+			temp.Show();
 			UserUIs = new List<UserUI>();
 			listUser = new List<User>();
 			listMessAwaitID = new List<ucUserINChatBox>();
@@ -319,7 +325,9 @@ namespace UI
 					else if (action == "ADDUSER")
 					{
 						string path = @"./images/avatarDefault/avatarDefault.png";
-						UserUI temp = new UserUI(new User(data[1], data[2], false, path), this);
+						User tempUser = (new User(data[1], data[2], false, path));
+						UserUI temp = new UserUI(tempUser, this);
+						listUser.Add(tempUser);
 						UserUIs.Add(temp);
 						serverUsersForm._AddNewUser(temp);
 					}

@@ -36,12 +36,10 @@ namespace UI
 			this.picturePlayBack.Image = Image.FromFile(FrmMain.theme.pictureStop);
 			_InitColor();
         }
-
 		public void _InitColor()
 		{
 			
 		}
-
 		private void pictureBox3_Click(object sender, EventArgs e)
 		{
 			DisposeAll();
@@ -65,7 +63,6 @@ namespace UI
 				DisposeAll();
             }
         }
-
 		private void DisposeAll()
         {
 			if (player != null)

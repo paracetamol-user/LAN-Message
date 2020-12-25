@@ -29,45 +29,45 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-			this.PanelSend = new System.Windows.Forms.Panel();
-			this.panelRecord = new System.Windows.Forms.Panel();
-			this.PanelDelete = new System.Windows.Forms.Panel();
-			this.SuspendLayout();
-			// 
-			// PanelSend
-			// 
-			this.PanelSend.Dock = System.Windows.Forms.DockStyle.Right;
-			this.PanelSend.Location = new System.Drawing.Point(117, 5);
-			this.PanelSend.Name = "PanelSend";
-			this.PanelSend.Size = new System.Drawing.Size(37, 37);
-			this.PanelSend.TabIndex = 1;
-			// 
-			// panelRecord
-			// 
-			this.panelRecord.Location = new System.Drawing.Point(63, 5);
-			this.panelRecord.Name = "panelRecord";
-			this.panelRecord.Size = new System.Drawing.Size(37, 37);
-			this.panelRecord.TabIndex = 2;
-			// 
-			// PanelDelete
-			// 
-			this.PanelDelete.Location = new System.Drawing.Point(8, 5);
-			this.PanelDelete.Name = "PanelDelete";
-			this.PanelDelete.Size = new System.Drawing.Size(37, 37);
-			this.PanelDelete.TabIndex = 3;
-			// 
-			// ucVoicePanel
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.Transparent;
-			this.Controls.Add(this.PanelDelete);
-			this.Controls.Add(this.panelRecord);
-			this.Controls.Add(this.PanelSend);
-			this.Name = "ucVoicePanel";
-			this.Padding = new System.Windows.Forms.Padding(5);
-			this.Size = new System.Drawing.Size(159, 47);
-			this.ResumeLayout(false);
+            this.PanelSend = new System.Windows.Forms.Panel();
+            this.panelRecord = new System.Windows.Forms.Panel();
+            this.PanelDelete = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // PanelSend
+            // 
+            this.PanelSend.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanelSend.Location = new System.Drawing.Point(116, 5);
+            this.PanelSend.Name = "PanelSend";
+            this.PanelSend.Size = new System.Drawing.Size(38, 37);
+            this.PanelSend.TabIndex = 1;
+            // 
+            // panelRecord
+            // 
+            this.panelRecord.Location = new System.Drawing.Point(63, 5);
+            this.panelRecord.Name = "panelRecord";
+            this.panelRecord.Size = new System.Drawing.Size(37, 37);
+            this.panelRecord.TabIndex = 2;
+            // 
+            // PanelDelete
+            // 
+            this.PanelDelete.Location = new System.Drawing.Point(8, 5);
+            this.PanelDelete.Name = "PanelDelete";
+            this.PanelDelete.Size = new System.Drawing.Size(37, 37);
+            this.PanelDelete.TabIndex = 3;
+            // 
+            // ucVoicePanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.PanelDelete);
+            this.Controls.Add(this.panelRecord);
+            this.Controls.Add(this.PanelSend);
+            this.Name = "ucVoicePanel";
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Size = new System.Drawing.Size(159, 47);
+            this.ResumeLayout(false);
 
         }
 

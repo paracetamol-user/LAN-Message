@@ -70,11 +70,8 @@ namespace UI
 			tsAddGroup.Click += TsAddGroup_Click;
 			ToolStripButton tsRemoveFriend = new ToolStripButton("Remove Friend");
 			tsRemoveFriend.Click += TsRemoveFriend_Click;
-			tsRemoveFriend.ForeColor = Color.Red;
-			ToolStripSeparator tsLine = new ToolStripSeparator();
 			cmns.Items.Add(tsAddFriend);
 			cmns.Items.Add(tsAddGroup);
-			cmns.Items.Add(tsLine);
 			cmns.Items.Add(tsRemoveFriend);
 			DisableRemove();
 		}
@@ -84,11 +81,12 @@ namespace UI
 			this.userForm.BackColor = FrmMain.theme.BackColor;
 			this.userForm.InitColor();
 			InitCmns();
-			ucUserAll.ResetTheme();
-			ucUserOnline.ResetTheme();
-			ucFriend.ResetTheme();
+			ucUserAll.InitColor();
+			ucUserOnline.InitColor();
+			ucFriend.InitColor();
 			ucADD.InitControls();
-			if (ucPending != null) ucPending.ResetTheme();
+			ucInterac.InitColor();
+			if (ucPending != null) ucPending.InitColor();
 		}
 		public void ResetPicture()
 		{
@@ -122,11 +120,11 @@ namespace UI
 		}
 		public void EnableRemove()
 		{
-			cmns.Items[3].Visible = true;
+			cmns.Items[2].Visible = true;
 		}
 		public void DisableRemove()
 		{
-			cmns.Items[3].Visible = false;
+			cmns.Items[2].Visible = false;
 		}
 		public void EnableADD()
 		{

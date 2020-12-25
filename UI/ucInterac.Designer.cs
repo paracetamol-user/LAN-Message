@@ -190,7 +190,7 @@
             // 
             this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.picStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.picStatus.Location = new System.Drawing.Point(43, 35);
             this.picStatus.Name = "picStatus";
             this.picStatus.Size = new System.Drawing.Size(15, 15);
@@ -200,7 +200,7 @@
             // 
             // roundPicAvatar
             // 
-            this.roundPicAvatar.BackColor = System.Drawing.SystemColors.Control;
+            this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(3, 0);
             this.roundPicAvatar.Name = "roundPicAvatar";
@@ -213,7 +213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnContain);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
