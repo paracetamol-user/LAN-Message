@@ -150,11 +150,16 @@ namespace Server
 		}
         private void pnStop_Click(object sender, EventArgs e)
         {
-			txtBoxConsole.AppendText(string.Format("Servre stopped! {0}", Environment.NewLine));
-			mServer.StopServer();
-			this.pnStartServer.Enabled = true;
-			this.lbStart.Enabled = true;
-			this.pictureBoxStart.Enabled = true;
+			DialogResult ds = MessageBox.Show("Are you sure stop server!", "Reset Server", MessageBoxButtons.YesNo);
+			if (ds == DialogResult.Yes)
+			{
+				txtBoxConsole.AppendText(string.Format("Server stopped! {0}", Environment.NewLine));
+				mServer.StopServer();
+				this.pnStartServer.Enabled = true;
+				this.lbStart.Enabled = true;
+				this.pictureBoxStart.Enabled = true;
+
+			}
 		}
 		public async void RemoveUser(string ID)
         {

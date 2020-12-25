@@ -116,10 +116,10 @@ namespace UI
 					ucFileShow tam = new ucFileShow(listfileShows[i]._FileId, listfileShows[i]._FileName);
 
 					tam.Dock = DockStyle.Top;
-					if (listfileShows[i]._User == FrmMain.me)
-					{
-						tam._DisableButDownLoad();
-					}
+					//if (listfileShows[i]._User == FrmMain.me)
+					//{
+					//	tam._DisableButDownLoad();
+					//}
 
 					if (tam._FileName != "Deleted file")
 					{

@@ -836,6 +836,7 @@ namespace UI
 												path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
 												File.WriteAllBytes(path, item.Data);
 												userUI.userForm.AddVoiceMessage(userUI.user, path);
+												userUI.BringToTop();
 												break;
 											}
 										}
@@ -856,6 +857,7 @@ namespace UI
 													if (userUI.user.Id == item.IDsend)
 													{
 														groupUI.groupForm.AddVoiceMessage(userUI.user, path);
+														groupUI.BringToTop();
 														break;
 													}
 												}

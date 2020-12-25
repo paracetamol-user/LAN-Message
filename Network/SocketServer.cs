@@ -1494,9 +1494,9 @@ namespace Communication
 											if (reader.GetString(0) == item.IDsend) continue;
 											foreach(var item2 in clientInvalid)
 											{
-												if(item2.id_ == reader.GetString(0))
+												if(item2.id_ == reader.GetString(0) && item2.id_ != client.id_)
 												{
-													item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+													await item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 													SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
 													break;
 												}

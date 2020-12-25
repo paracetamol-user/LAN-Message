@@ -161,7 +161,7 @@ namespace UI
 				voice.DisposeAll();
 
 				byte[] data = File.ReadAllBytes(voice.Path);
-				Guid id = new Guid();
+				Guid id = Guid.NewGuid();
 				if (user != null)
 				{
 					byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("STARTSENDVOICE%{0}%{1}%{2}%{3}",
