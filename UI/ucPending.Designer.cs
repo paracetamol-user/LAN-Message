@@ -66,8 +66,6 @@
             this.pnContain.Padding = new System.Windows.Forms.Padding(11, 7, 20, 7);
             this.pnContain.Size = new System.Drawing.Size(428, 66);
             this.pnContain.TabIndex = 2;
-            this.pnContain.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContainId
             // 
@@ -80,8 +78,6 @@
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
             this.pnContainId.Size = new System.Drawing.Size(261, 25);
             this.pnContainId.TabIndex = 6;
-            this.pnContainId.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContainId.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // lbId
             // 
@@ -95,8 +91,6 @@
             this.lbId.Size = new System.Drawing.Size(54, 21);
             this.lbId.TabIndex = 0;
             this.lbId.Text = "label2";
-            this.lbId.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.lbId.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContrainName
             // 
@@ -109,8 +103,6 @@
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
             this.pnContrainName.Size = new System.Drawing.Size(261, 30);
             this.pnContrainName.TabIndex = 5;
-            this.pnContrainName.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContrainName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // lbName
             // 
@@ -123,8 +115,6 @@
             this.lbName.Size = new System.Drawing.Size(85, 29);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
-            this.lbName.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.lbName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // panel2
             // 
@@ -137,8 +127,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 5, 11, 5);
             this.panel2.Size = new System.Drawing.Size(40, 52);
             this.panel2.TabIndex = 4;
-            this.panel2.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // picCheck
             // 
@@ -153,8 +141,6 @@
             this.picCheck.TabIndex = 0;
             this.picCheck.TabStop = false;
             this.picCheck.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.picCheck.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.picCheck.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // panel1
             // 
@@ -167,8 +153,6 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(11, 5, 0, 5);
             this.panel1.Size = new System.Drawing.Size(40, 52);
             this.panel1.TabIndex = 1;
-            this.panel1.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // picClose
             // 
@@ -183,8 +167,6 @@
             this.picClose.TabIndex = 0;
             this.picClose.TabStop = false;
             this.picClose.Click += new System.EventHandler(this.picMenu_Click);
-            this.picClose.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.picClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // pnContainPicture
             // 
@@ -197,8 +179,6 @@
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.pnContainPicture.Size = new System.Drawing.Size(56, 52);
             this.pnContainPicture.TabIndex = 0;
-            this.pnContainPicture.MouseLeave += new System.EventHandler(this.pnContain_MouseLeave);
-            this.pnContainPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnContain_MouseMove);
             // 
             // roundPicAvatar
             // 
@@ -215,7 +195,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnContain);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucPending";

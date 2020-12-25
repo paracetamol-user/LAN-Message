@@ -44,15 +44,7 @@ namespace UI
 			this.picCheck.Image = Image.FromFile(FrmMain.theme.PictureCheck);
 			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
-		private void pnContain_MouseMove(object sender, MouseEventArgs e)
-		{
-			this.BackColor = FrmMain.theme.FocusColor;
-		}
-
-		private void pnContain_MouseLeave(object sender, EventArgs e)
-		{
-			this.BackColor = Color.Transparent;
-		}
+	
 
 		private void picMenu_Click(object sender, EventArgs e)
 		{

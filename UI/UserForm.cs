@@ -40,6 +40,7 @@ namespace UI
 		public UserForm(UserManager.User user, UserUI userUI)
 		{
 			InitializeComponent();
+			
 			this.pictureBox1.Image = Image.FromFile(FrmMain.theme.PicturePlus);
 			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
@@ -58,6 +59,7 @@ namespace UI
 			this.SizeChanged += UserForm_SizeChanged;
 			addpnInfo();
 			ucInfoUser._LoadInfoUser(user, listfileShows);
+			InitColor();
 		}
 
 		private void UserForm_SizeChanged(object sender, EventArgs e)
@@ -92,6 +94,7 @@ namespace UI
             {
 				item.InitColor();
             }
+			this.ucInfoUser.InitControls();
 		}
 		public void SetAvatar(string path)
 		{

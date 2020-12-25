@@ -85,7 +85,6 @@ namespace UI
 			groupForm.TopLevel = false;
 			groupForm.BackColor = FrmMain.theme.BackColor;
 			groupForm.Dock = DockStyle.Fill;
-			groupForm.InitColor();
 			this.panelRIGHT.Controls.Add(groupForm);
 		}
         private void TsRemoveGroup_Click(object sender, EventArgs e)

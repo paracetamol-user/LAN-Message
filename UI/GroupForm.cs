@@ -35,6 +35,7 @@ namespace UI
 		public GroupForm(Group group , GroupUI grUI)
 		{
 			InitializeComponent();
+	
 			this.Visible = false;
 			this.group = group;
 			this.ID = 0;
@@ -47,13 +48,12 @@ namespace UI
 			voicePanel = new ucVoicePanel(group, this);
 			userINChatBoxes = new List<ucUserINChatBox>();
 			this.Controls.Add(voicePanel);
-			
-			InitColor();
 			this.SizeChanged += GroupForm_SizeChanged;
             this.panel2.SizeChanged += GroupForm_SizeChanged;
 			InitGroupForm();
 			addpnInfo();
 			this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
+			InitColor();
 		}
 
         private void GroupForm_SizeChanged(object sender, EventArgs e)
@@ -65,6 +65,7 @@ namespace UI
 
         public void InitColor()
 		{
+			
 			this.labelName.ForeColor = FrmMain.theme.TextColor;
 			this.labelID.ForeColor = FrmMain.theme.TextMenuColor;
 			this.BackColor = FrmMain.theme.BackColor;
@@ -80,6 +81,7 @@ namespace UI
 			{
 				item.InitColor();
 			}
+			ucInfoGroup.InitControls();
 		}
 		public void AddItemToListChat(User user, string IDMess,string str)
 		{
@@ -329,7 +331,6 @@ namespace UI
 			if (isclickmenu)
 			{
 				this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
-
 				this.panel1.Visible = true;
 			}
 			else
