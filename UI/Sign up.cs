@@ -152,29 +152,35 @@ namespace UI
             else
             {
                
-               
-                UserManager.UserVerification userVerification = new UserManager.UserVerification();
-                string pass=userVerification.GetSHA256(txtMatkhau.Text);
-
-                byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass );
-                SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-                await LoginForm.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-
-                byte[] buffReceive = new byte[1024];
-                await LoginForm.server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
-                SmallPackage packageReceive = new SmallPackage();
-                packageReceive.DividePackage(buffReceive);
-
-                string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
-                if (data[0].Trim('\0', '\r', '\n') == "SIGNUPOKE")
+               try
                 {
-                    MessageBox.Show("SIGN UP successfully");
-                    this.login.Show();
-                    this.Close();
+                    UserManager.UserVerification userVerification = new UserManager.UserVerification();
+                    string pass = userVerification.GetSHA256(txtMatkhau.Text);
+
+                    byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass);
+                    SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+                    await LoginForm.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+
+                    byte[] buffReceive = new byte[1024];
+                    await LoginForm.server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
+                    SmallPackage packageReceive = new SmallPackage();
+                    packageReceive.DividePackage(buffReceive);
+
+                    string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
+                    if (data[0].Trim('\0', '\r', '\n') == "SIGNUPOKE")
+                    {
+                        MessageBox.Show("SIGN UP successfully");
+                        this.login.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tai khoan da ton tai");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Tai khoan da ton tai");
+                    MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }

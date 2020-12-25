@@ -80,8 +80,6 @@
             this.pnContainId.Size = new System.Drawing.Size(234, 25);
             this.pnContainId.TabIndex = 9;
             this.pnContainId.Click += new System.EventHandler(this.pnContainId_Click_1);
-            this.pnContainId.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.pnContainId.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // lbId
             // 
@@ -96,8 +94,6 @@
             this.lbId.TabIndex = 0;
             this.lbId.Text = "label2";
             this.lbId.Click += new System.EventHandler(this.pnContainId_Click_1);
-            this.lbId.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.lbId.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // pnContrainName
             // 
@@ -111,8 +107,6 @@
             this.pnContrainName.Size = new System.Drawing.Size(234, 30);
             this.pnContrainName.TabIndex = 8;
             this.pnContrainName.Click += new System.EventHandler(this.pnContainId_Click_1);
-            this.pnContrainName.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.pnContrainName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // lbName
             // 
@@ -126,8 +120,6 @@
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
             this.lbName.Click += new System.EventHandler(this.pnContainId_Click_1);
-            this.lbName.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.lbName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // panel2
             // 
@@ -140,8 +132,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
             this.panel2.Size = new System.Drawing.Size(35, 54);
             this.panel2.TabIndex = 7;
-            this.panel2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // picChat
             // 
@@ -156,8 +146,6 @@
             this.picChat.TabIndex = 0;
             this.picChat.TabStop = false;
             this.picChat.Click += new System.EventHandler(this.picChat_Click);
-            this.picChat.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.picChat.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // panel1
             // 

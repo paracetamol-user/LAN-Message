@@ -127,39 +127,54 @@ namespace UI
 		}
 		public async Task SendMessage()
 		{
-			if (TextBoxEnterChat.Text.Trim() != "")
-			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("GSEND%" + group.ID + "%" +
-															FrmMain.me.Id + "%" +
-															this.TextBoxEnterChat.Text);
-				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			try
+            {
+				if (TextBoxEnterChat.Text.Trim() != "")
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("GSEND%" + group.ID + "%" +
+																FrmMain.me.Id + "%" +
+																this.TextBoxEnterChat.Text);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 
-				this.AddItemToListChat(FrmMain.me,"-1", this.TextBoxEnterChat.Text);
-				this.GroupUI.AddMessageIntoInteract(FrmMain.me.Name, TextBoxEnterChat.Text);
-				TextBoxEnterChat.Text = string.Empty;
+					this.AddItemToListChat(FrmMain.me, "-1", this.TextBoxEnterChat.Text);
+					this.GroupUI.AddMessageIntoInteract(FrmMain.me.Name, TextBoxEnterChat.Text);
+					TextBoxEnterChat.Text = string.Empty;
+				}
+			}
+			catch (Exception ex)
+            {
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 		public async Task SendFile()
 		{
-			if (this.panelListFile.Controls.Count > 0)
+			
+			try
 			{
-				foreach (var item in files)
+				if (this.panelListFile.Controls.Count > 0)
 				{
-					AddFileToListChat(FrmMain.me, "-1", item.Name);
-					//Gửi
-					byte[] data = File.ReadAllBytes(item.FullName);
-					Guid id = Guid.NewGuid();
+					foreach (var item in files)
+					{
+						AddFileToListChat(FrmMain.me, "-1", item.Name);
+						//Gửi
+						byte[] data = File.ReadAllBytes(item.FullName);
+						Guid id = Guid.NewGuid();
 
-					byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + group.ID + "%"+ data.Length.ToString()+ "%" + item.Name  +"%" + item.Extension + "%"
-															+ id.ToString() + "%" + "Public");
-					SmallPackage Smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					await FrmMain.server.GetStream().WriteAsync(Smallpackage.Packing(), 0, Smallpackage.Packing().Length);
-				 FrmMain.client.SendFileToServer(data, "F", id.ToString()); ;
+						byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + group.ID + "%" + data.Length.ToString() + "%" + item.Name + "%" + item.Extension + "%"
+																+ id.ToString() + "%" + "Public");
+						SmallPackage Smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
+						await FrmMain.server.GetStream().WriteAsync(Smallpackage.Packing(), 0, Smallpackage.Packing().Length);
+						FrmMain.client.SendFileToServer(data, "F", id.ToString()); ;
+					}
+					this.files.Clear();
+					this.panelListFile.Controls.Clear();
+					this.panelListFile.Visible = false;
 				}
-				this.files.Clear();
-				this.panelListFile.Controls.Clear();
-				this.panelListFile.Visible = false;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 
@@ -221,6 +236,7 @@ namespace UI
 			tempPanel.Dock = DockStyle.Top;
 
 			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, group.ID);
+			userINChatBox.DisableDelete();
 			userINChatBox.DisableEdit();
 			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
 			voiceMessage.Path = path;

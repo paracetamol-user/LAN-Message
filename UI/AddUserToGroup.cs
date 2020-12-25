@@ -62,21 +62,28 @@ namespace UI
 		}
 		private async void SendAddToGroupToServer()
 		{
-            foreach (var item in pnGroup.Controls)
-			{ 
-				if (item.GetType() == typeof(ucGroupToAdd))
-				{
-					if ((item as ucGroupToAdd).isAdd)
-                    {
-						listAdd.Add((item as ucGroupToAdd).group);
-                    }
-                }
-            }
-            foreach (var item in listAdd)
+			try
             {
-				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedUser.Id + "%" + item.ID + "%" + item.Name + "%" + item.admin.Id);
-				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				foreach (var item in pnGroup.Controls)
+				{
+					if (item.GetType() == typeof(ucGroupToAdd))
+					{
+						if ((item as ucGroupToAdd).isAdd)
+						{
+							listAdd.Add((item as ucGroupToAdd).group);
+						}
+					}
+				}
+				foreach (var item in listAdd)
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedUser.Id + "%" + item.ID + "%" + item.Name + "%" + item.admin.Id);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				}
+			}
+            catch
+            {
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 			
 		}

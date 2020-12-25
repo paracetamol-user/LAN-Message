@@ -30,10 +30,12 @@ namespace UI
 		}
         public void InitStart()
         {
+			friendCount = 0;
 			btnFocus = btnAll;
+			pnAll.Controls.Clear();
 			btnAll.BackColor = FrmMain.theme.FocusColor;
-			if (!isLoad) LoadpnAll();
-			isLoad = true;
+			btnFocus = btnAll;
+			LoadpnAll();
 			this.pnAll.Visible = true;
 			pnAll.Show();
 			pnAll.BringToFront();

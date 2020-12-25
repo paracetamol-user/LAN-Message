@@ -88,7 +88,12 @@ namespace UI
 				pnaddfriend.Visible = false;
 				pnRemoveFriend.Visible = true;
 			}
-			else pnRemoveFriend.Visible = false;
+			else
+			{
+				pnRemoveFriend.Visible = false;
+				pnaddfriend.Visible = true;
+			}
+
 		}
 		public void _addfileinfilesent(List<ucFileShow> listfileShows)
 		{
@@ -132,21 +137,29 @@ namespace UI
 
 		public async void SendAddFriendToServer()
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + FrmMain.me.Id + "%" + user.Id);
-			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + FrmMain.me.Id + "%" + user.Id);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 		
         private void lbaddfriend_Click(object sender, EventArgs e)
         {
 			this.SendAddFriendToServer();
-			MessageBox.Show("Đã gửi lời mời kết bạn");
+			MessageBox.Show("Has sent friend request");
 		}
 
         private void pnaddfriend_Click(object sender, EventArgs e)
         {
 			this.SendAddFriendToServer();
-			MessageBox.Show("Đã gửi lời mời kết bạn");
+			MessageBox.Show("Has sent friend request");
 		}
 
         private void lbclearhistory_Click(object sender, EventArgs e)
@@ -185,17 +198,26 @@ namespace UI
 
         private void label3_Click(object sender, EventArgs e)
         {
-			var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
-			if (temp == DialogResult.Yes)
+			try
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + FrmMain.me.Id + "%" + user.Id);
-				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
+				if (temp == DialogResult.Yes)
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + FrmMain.me.Id + "%" + user.Id);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				}
+				FrmMain.frmFriend.RemoveFriend(frmMain.userUI);
+				frmMain.userUI.DisableRemove();
+				frmMain.userUI.EnableADD();
+				this.user.IsFriend = false;
+
 			}
-			FrmMain.frmFriend.RemoveFriend(frmMain.userUI);
-			frmMain.userUI.DisableRemove();
-			frmMain.userUI.EnableADD();
-			this.user.IsFriend = false;
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
     }
 }

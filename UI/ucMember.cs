@@ -41,7 +41,7 @@ namespace UI
         {
             if (group.admin == user)
             {
-                labeladdmin.Text = "(admin)";
+                labeladdmin.Text = "(Admin)";
                 Showpaneladmin();
                 Hidedeletemember();
             }
@@ -112,11 +112,19 @@ namespace UI
 
         private void pictureBoxdeletemember_Click(object sender, EventArgs e)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes("KICKMEMBER%" + group.ID  + "%" + user.Id);
-            SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buffer, "Server");
-            FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-            group.RemoveMember(user.Id);
-            this.Dispose();
+            try
+            {
+                byte[] buffer = Encoding.UTF8.GetBytes("KICKMEMBER%" + group.ID + "%" + user.Id);
+                SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buffer, "Server");
+                FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+                group.RemoveMember(user.Id);
+                this.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+          
         }
     }
 }

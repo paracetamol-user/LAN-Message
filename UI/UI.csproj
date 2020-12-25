@@ -114,7 +114,6 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ngay.cs" />
     <Compile Include="roundpicturebox.cs">
       <SubType>Component</SubType>
     </Compile>

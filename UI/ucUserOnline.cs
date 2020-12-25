@@ -61,14 +61,6 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			FrmMain.interactFocus = this.Parent.ucInterac;
 		}
-        private void panel2_MouseMove(object sender, MouseEventArgs e)
-        {
-			this.ChangeColorWhenFocus();
-		}
-        private void panel2_MouseLeave(object sender, EventArgs e)
-        {
-			this.BackColor = Color.Transparent;
-		}
         private void picChat_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();

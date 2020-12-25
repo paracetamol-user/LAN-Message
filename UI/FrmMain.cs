@@ -242,153 +242,383 @@ namespace UI
 		}
 		private async Task AwaitReadData()
 		{
-
-			byte[] tempBuff;
-			SmallPackage package;
-			List<Package> listAwaitPackage = new List<Package>();
-			while (true)
+			try
 			{
-				// Nhận Gói Tin
-				byte[] buff = new byte[1024];
-				int nReturn = await server.GetStream().ReadAsync(buff, 0, buff.Length);
-				package = new SmallPackage();
-				package.DividePackage(buff);
-
-				if (package.Style == "M")
+				byte[] tempBuff;
+				SmallPackage package;
+				List<Package> listAwaitPackage = new List<Package>();
+				while (true)
 				{
-					string[] data = (System.Text.Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\r', '\n')).Split('%');
-					// Xử lí gói tin
+					// Nhận Gói Tin
+					byte[] buff = new byte[1024];
+					int nReturn = await server.GetStream().ReadAsync(buff, 0, buff.Length);
+					package = new SmallPackage();
+					package.DividePackage(buff);
 
-					string action = data[0];
-					// Tìm hành động
-					if (action == "LOADUSERDATA")
+					if (package.Style == "M")
 					{
-						for (int i = 1; i < data.Length; i++)
-						{
-							if (data[i] == "") break;
+						string[] data = (System.Text.Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\r', '\n')).Split('%');
+						// Xử lí gói tin
 
-							string[] arr = data[i].Split(' ');
-							string path = @"./images/avatarDefault/avatarDefault.png";
-							if (arr[1] != me.Name)
-							{
-								listUser.Add(new User(arr[0], arr[1], bool.Parse(arr[2]), path));
-								UserUIs.Add(new UserUI(listUser[listUser.Count - 1], this));
-							}
-						}
-						serverUsersForm.LoadListAllUser();
-					}
-					else if (action == "LOADCONTACTBOOK")
-					{
-						for (int j = 1; j < data.Length; j++)
+						string action = data[0];
+						// Tìm hành động
+						if (action == "LOADUSERDATA")
 						{
-							string[] arr = data[j].Split('•');
-							ContactBook newContactBook = new ContactBook(arr[0], arr[1]);
-							for (int i = 2; i < arr.Length; i++)
+							for (int i = 1; i < data.Length; i++)
 							{
-								foreach (var item3 in UserUIs)
+								if (data[i] == "") break;
+
+								string[] arr = data[i].Split(' ');
+								string path = @"./images/avatarDefault/avatarDefault.png";
+								if (arr[1] != me.Name)
 								{
-									if (item3.user.Id == arr[i])
-									{
-										newContactBook._AddMember(item3.user);
-										break;
-									}
+									listUser.Add(new User(arr[0], arr[1], bool.Parse(arr[2]), path));
+									UserUIs.Add(new UserUI(listUser[listUser.Count - 1], this));
 								}
 							}
-							frmContactBook._AddContactBook(newContactBook);
+							serverUsersForm.LoadListAllUser();
 						}
-						time = true;
-					}
-					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
-					{
-						string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
-						string Message = "";
-						int count = 0;
-						for (int j = 0; j < temp.Length; j++)
+						else if (action == "LOADCONTACTBOOK")
 						{
-							if (count >= 3)
+							for (int j = 1; j < data.Length; j++)
 							{
-								Message = Message + temp[j];
-							}
-							else
-								if (temp[j] == '%') count++;
-						}
-						for (int i = 0; i < UserUIs.Count; i++)
-						{
-							if (UserUIs[i].GetId() == data[2])
-							{
-								UserUIs[i].AddMessage(data[1], Message);
-								UserUIs[i].BringToTop();
-								break;
-							}
-						}
-					}
-					else if (action == "ADDUSER")
-					{
-						string path = @"./images/avatarDefault/avatarDefault.png";
-						User tempUser = (new User(data[1], data[2], false, path));
-						UserUI temp = new UserUI(tempUser, this);
-						listUser.Add(tempUser);
-						UserUIs.Add(temp);
-						serverUsersForm._AddNewUser(temp);
-					}
-					else if (action == "ONLINE")
-					{
-						for (int i = 0; i < UserUIs.Count; i++)
-						{
-							if (UserUIs[i].GetId() == data[1])
-							{
-								UserUIs[i].SetStatus(true);
-								UserUIs[i].ChangeStatusOnline();
-								break;
-							}
-						}
-					}
-					else if (action == "OFFLINE")
-					{
-						for (int i = 0; i < UserUIs.Count; i++)
-						{
-							if (UserUIs[i].GetId() == data[1])
-							{
-								UserUIs[i].SetStatus(false);
-								UserUIs[i].ChangeStatusOffline();
-								break;
-							}
-						}
-					}
-					else if (action == "FILE")
-					{
-						Package awaitPackage = new Package(data[1], me.Id, 0, int.Parse(data[2]),
-									"F", data[3], data[4], data[5], false);
-						listAwaitPackage.Add(awaitPackage);
-					}
-					else if (action == "TEMPFILE") //("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
-					{
-						string tempFileId = data[1];
-						string tempidNguoiGui = data[2];
-						string tempFileName = data[3];
-						if (data[4] == "Private")
-						{
-							for (int i = 0; i < FrmMain.UserUIs.Count; i++)
-							{
-								if (UserUIs[i].GetId() == tempidNguoiGui)
+								string[] arr = data[j].Split('•');
+								ContactBook newContactBook = new ContactBook(arr[0], arr[1]);
+								for (int i = 2; i < arr.Length; i++)
 								{
-									UserUIs[i].AddPanelFile(tempFileId, tempFileName);
+									foreach (var item3 in UserUIs)
+									{
+										if (item3.user.Id == arr[i])
+										{
+											newContactBook._AddMember(item3.user);
+											break;
+										}
+									}
+								}
+								frmContactBook._AddContactBook(newContactBook);
+							}
+							time = true;
+						}
+						else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
+						{
+							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+							string Message = "";
+							int count = 0;
+							for (int j = 0; j < temp.Length; j++)
+							{
+								if (count >= 3)
+								{
+									Message = Message + temp[j];
+								}
+								else
+									if (temp[j] == '%') count++;
+							}
+							for (int i = 0; i < UserUIs.Count; i++)
+							{
+								if (UserUIs[i].GetId() == data[2])
+								{
+									UserUIs[i].AddMessage(data[1], Message);
 									UserUIs[i].BringToTop();
 									break;
 								}
 							}
 						}
-						else
+						else if (action == "ADDUSER")
 						{
-							for (int i = 0; i < GroupUIs.Count; i++)
+							string path = @"./images/avatarDefault/avatarDefault.png";
+							User tempUser = (new User(data[1], data[2], false, path));
+							UserUI temp = new UserUI(tempUser, this);
+							listUser.Add(tempUser);
+							UserUIs.Add(temp);
+							serverUsersForm._AddNewUser(temp);
+						}
+						else if (action == "ONLINE")
+						{
+							for (int i = 0; i < UserUIs.Count; i++)
 							{
-								if (GroupUIs[i].group.ID == data[5])
+								if (UserUIs[i].GetId() == data[1])
+								{
+									UserUIs[i].SetStatus(true);
+									UserUIs[i].ChangeStatusOnline();
+									break;
+								}
+							}
+						}
+						else if (action == "OFFLINE")
+						{
+							for (int i = 0; i < UserUIs.Count; i++)
+							{
+								if (UserUIs[i].GetId() == data[1])
+								{
+									UserUIs[i].SetStatus(false);
+									UserUIs[i].ChangeStatusOffline();
+									break;
+								}
+							}
+						}
+						else if (action == "FILE")
+						{
+							Package awaitPackage = new Package(data[1], me.Id, 0, int.Parse(data[2]),
+										"F", data[3], data[4], data[5], false);
+							listAwaitPackage.Add(awaitPackage);
+						}
+						else if (action == "TEMPFILE") //("TEMPFILE%" + Createid.ToString() + "%" + client.id_ + "%" + infoByte.Name);
+						{
+							string tempFileId = data[1];
+							string tempidNguoiGui = data[2];
+							string tempFileName = data[3];
+							if (data[4] == "Private")
+							{
+								for (int i = 0; i < FrmMain.UserUIs.Count; i++)
+								{
+									if (UserUIs[i].GetId() == tempidNguoiGui)
+									{
+										UserUIs[i].AddPanelFile(tempFileId, tempFileName);
+										UserUIs[i].BringToTop();
+										break;
+									}
+								}
+							}
+							else
+							{
+								for (int i = 0; i < GroupUIs.Count; i++)
+								{
+									if (GroupUIs[i].group.ID == data[5])
+									{
+										foreach (var item in listUser)
+										{
+											if (item.Id == tempidNguoiGui)
+											{
+												GroupUIs[i].AddPanelFile(item, tempFileId, tempFileName);
+												GroupUIs[i].BringToTop();
+												break;
+											}
+										}
+										break;
+									}
+								}
+							}
+						}
+						else if (action == "CHECKPASS")
+						{
+							if (data[1] == "YES")
+								settingForm.RespondToChangePasswordMessage(true);
+							else
+								settingForm.RespondToChangePasswordMessage(false);
+						}
+						else if (action == "AVATAR")
+						{
+							Package awaitPackage = new Package("0", me.Id, 0, int.Parse(data[2]),
+										"A", data[1], data[3], data[4], false);
+							listAwaitPackage.Add(awaitPackage);
+						}
+						else if (action == "PENDING")
+						{
+							foreach (var item in UserUIs)
+							{
+								if (item.user.Id == data[1])
+								{
+									serverUsersForm.AddPending(item);
+									serverUsersForm.EnablePointPending();
+									picNotification.Visible = true;
+									break;
+								}
+							}
+						}
+						else if (action == "FRIEND")
+						{
+							for (int i = 1; i < data.Length; i++)
+							{
+								if (data[i] == "") break;
+								foreach (var item in UserUIs)
+								{
+									if (item.user.Id == data[i])
+									{
+										item.user.IsFriend = true;
+										item.EnableRemove();
+										item.DisableADD();
+									}
+								}
+							}
+						}
+						else if (action == "ACCEPTFRIEND")
+						{
+							foreach (var item in UserUIs)
+							{
+								if (item.user.Id == data[1])
+								{
+									AddUserIntoFrmFriend(item);
+									item.user.IsFriend = true;
+									item.DisableADD();
+									item.EnableRemove();
+									break;
+								}
+							}
+						}
+						else if (action == "REMOVEFRIEND")
+						{
+							foreach (var item in UserUIs)
+							{
+								if (item.user.Id == data[1])
+								{
+									frmFriend.RemoveFriend(item);
+									item.user.IsFriend = false;
+									item.EnableADD();
+									item.DisableRemove();
+									break;
+								}
+							}
+						}
+						else if (action == "EDITMESSAGE")
+						{
+							foreach (var item in UserUIs)
+							{
+								if (item.user.Id == data[2])
+								{
+									item.EditMessage(data[1], data[3]);
+									break;
+								}
+							}
+						}
+						else if (action == "EDITGROUPMESSAGE")
+						{
+							foreach (var item in GroupUIs)
+							{
+								if (item.group.ID == data[2])
+								{
+									item.EditMessage(data[1], data[3]);
+									break;
+								}
+							}
+						}
+						else if (action == "DELETEMESSAGE")
+						{
+							foreach (var item in UserUIs)
+							{
+								if (item.user.Id == data[2])
+								{
+									item.DeleteMessage(data[1]);
+									break;
+								}
+							}
+						}
+						else if (action == "DELETEGROUPMESSAGE")
+						{
+							foreach (var item in GroupUIs)
+							{
+								if (item.group.ID == data[2])
+								{
+									item.DeleteMessage(data[1]);
+									break;
+								}
+							}
+						}
+						else if (action == "IDMESS")
+						{
+							listMessAwaitID[0].ID = data[1];
+							listMessAwaitID.Remove(listMessAwaitID[0]);
+						}
+						else if (action == "IDFILE")
+						{
+							listFileAwaitID[0].ID = data[1];
+							listFileAwaitID.Remove(listFileAwaitID[0]);
+						}
+						else if (action == "LOADGROUPDATA")
+						{
+							for (int i = 1; i < data.Length; i++)
+							{
+								if (data[i] == "") break;
+
+								string[] arr = data[i].Split('•');
+								string path = @"./images/avatarDefault/groupDefault.png";
+								listGroup.Add(new Group(arr[0], arr[1], path));
+								listGroup[listGroup.Count - 1].AddMember(me);
+								for (int j = 3; j < arr.Length; j += 2)
 								{
 									foreach (var item in listUser)
 									{
-										if (item.Id == tempidNguoiGui)
+										if (arr[j] == item.Id)
 										{
-											GroupUIs[i].AddPanelFile(item, tempFileId, tempFileName);
+											listGroup[listGroup.Count - 1].AddMember(item);
+											if (item.Id == arr[2]) listGroup[listGroup.Count - 1].admin = item;
+											break;
+										}
+									}
+								}
+								if (arr[2] == me.Id) listGroup[listGroup.Count - 1].admin = me;
+								GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], this));
+							}
+						}
+						else if (action == "GPENDING")
+						{
+							GroupUI temp = new GroupUI(new Group(data[1], data[2]), this);
+							serverUsersForm.AddGroupPending(temp);
+							serverUsersForm.EnablePointPending();
+							picNotification.Visible = true;
+						}
+						else if (action == "GROUPDATA")
+						{
+							string[] arr = data[1].Split('•');
+							Group group = new Group(arr[0], arr[1]);
+							string admin = arr[2];
+
+							for (int j = 3; j < arr.Length; j += 2)
+							{
+								foreach (var item in listUser)
+								{
+									if (arr[j] == item.Id)
+									{
+										group.AddMember(item);
+										if (admin == item.Id) group.admin = item;
+										break;
+									}
+								}
+							}
+							group.AddMember(me);
+							if (arr[2] == me.Id) group.admin = me;
+							listGroup.Add(group);
+							GroupUIs.Add(new GroupUI(group, this));
+						}
+						else if (action == "NEWMEMBER")
+						{
+							foreach (var item in GroupUIs)
+							{
+								if (item.group.ID == data[1])
+								{
+									foreach (var item2 in listUser)
+									{
+										if (data[2] == item2.Id)
+										{
+											item.group.AddMember(item2);
+											break;
+										}
+									}
+								}
+							}
+						}
+						else if (action == "GSEND")
+						{
+							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+							string Message = "";
+							int count = 0;
+							for (int j = 0; j < temp.Length; j++)
+							{
+								if (count >= 4)
+								{
+									Message = Message + temp[j];
+								}
+								else
+									if (temp[j] == '%') count++;
+							}
+							for (int i = 0; i < GroupUIs.Count; i++)
+							{
+								if (GroupUIs[i].group.ID == data[1])
+								{
+									foreach (User user in listUser)
+									{
+										if (user.Id == data[2])
+										{
+											GroupUIs[i].AddMessage(user, data[3], Message);
 											GroupUIs[i].BringToTop();
 											break;
 										}
@@ -397,467 +627,240 @@ namespace UI
 								}
 							}
 						}
-					}
-					else if (action == "CHECKPASS")
-					{
-						if (data[1] == "YES")
-							settingForm.RespondToChangePasswordMessage(true);
-						else
-							settingForm.RespondToChangePasswordMessage(false);
-					}
-					else if (action == "AVATAR")
-					{
-						Package awaitPackage = new Package("0", me.Id, 0, int.Parse(data[2]),
-									"A", data[1], data[3], data[4], false);
-						listAwaitPackage.Add(awaitPackage);
-					}
-					else if (action == "PENDING")
-					{
-						foreach (var item in UserUIs)
+						else if (action == "OUTGR")
 						{
-							if (item.user.Id == data[1])
+							string IDGr = data[1];
+							string IDmember = data[2];
+							foreach (var item in this.GroupUIs)
 							{
-								serverUsersForm.AddPending(item);
-								serverUsersForm.EnablePointPending();
-								picNotification.Visible = true;
-								break;
-							}
-						}
-					}
-					else if (action == "FRIEND")
-					{
-						for (int i = 1; i < data.Length; i++)
-						{
-							if (data[i] == "") break;
-							foreach (var item in UserUIs)
-							{
-								if (item.user.Id == data[i])
+								if (item.group.ID == IDGr)
 								{
-									item.user.IsFriend = true;
-									item.EnableRemove();
-									item.DisableADD();
-								}
-							}
-						}
-					}
-					else if (action == "ACCEPTFRIEND")
-					{
-						foreach (var item in UserUIs)
-						{
-							if (item.user.Id == data[1])
-							{
-								AddUserIntoFrmFriend(item);
-								item.user.IsFriend = true;
-								item.DisableADD();
-								item.EnableRemove();
-								break;
-							}
-						}
-					}
-					else if (action == "REMOVEFRIEND")
-					{
-						foreach (var item in UserUIs)
-						{
-							if (item.user.Id == data[1])
-							{
-								frmFriend.RemoveFriend(item);
-								item.user.IsFriend = false;
-								item.EnableADD();
-								item.DisableRemove();
-								break;
-							}
-						}
-					}
-					else if (action == "EDITMESSAGE")
-					{
-						foreach (var item in UserUIs)
-						{
-							if (item.user.Id == data[2])
-							{
-								item.EditMessage(data[1], data[3]);
-								break;
-							}
-						}
-					}
-					else if (action == "EDITGROUPMESSAGE")
-					{
-						foreach (var item in GroupUIs)
-						{
-							if (item.group.ID == data[2])
-							{
-								item.EditMessage(data[1], data[3]);
-								break;
-							}
-						}
-					}
-					else if (action == "DELETEMESSAGE")
-					{
-						foreach (var item in UserUIs)
-						{
-							if (item.user.Id == data[2])
-							{
-								item.DeleteMessage(data[1]);
-								break;
-							}
-						}
-					}
-					else if (action == "DELETEGROUPMESSAGE")
-					{
-						foreach (var item in GroupUIs)
-						{
-							if (item.group.ID == data[2])
-							{
-								item.DeleteMessage(data[1]);
-								break;
-							}
-						}
-					}
-					else if (action == "IDMESS")
-					{
-						listMessAwaitID[0].ID = data[1];
-						listMessAwaitID.Remove(listMessAwaitID[0]);
-					}
-					else if (action == "IDFILE")
-					{
-						listFileAwaitID[0].ID = data[1];
-						listFileAwaitID.Remove(listFileAwaitID[0]);
-					}
-					else if (action == "LOADGROUPDATA")
-					{
-						for (int i = 1; i < data.Length; i++)
-						{
-							if (data[i] == "") break;
-
-							string[] arr = data[i].Split('•');
-							string path = @"./images/avatarDefault/groupDefault.png";
-							listGroup.Add(new Group(arr[0], arr[1], path));
-							listGroup[listGroup.Count - 1].AddMember(me);
-							for (int j = 3; j < arr.Length; j += 2)
-							{
-								foreach (var item in listUser)
-								{
-									if (arr[j] == item.Id)
+									if (IDmember == me.Id)
 									{
-										listGroup[listGroup.Count - 1].AddMember(item);
-										if (item.Id == arr[2]) listGroup[listGroup.Count - 1].admin = item;
-										break;
+										GroupUIs.Remove(item);
+										listGroup.Remove(item.group);
+										item.Dispose();
 									}
-								}
-							}
-							if (arr[2] == me.Id) listGroup[listGroup.Count - 1].admin = me;
-							GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], this));
-						}
-					}
-					else if (action == "GPENDING")
-					{
-						GroupUI temp = new GroupUI(new Group(data[1], data[2]), this);
-						serverUsersForm.AddGroupPending(temp);
-						serverUsersForm.EnablePointPending();
-						picNotification.Visible = true;
-					}
-					else if (action == "GROUPDATA")
-					{
-						string[] arr = data[1].Split('•');
-						Group group = new Group(arr[0], arr[1]);
-						string admin = arr[2];
-
-						for (int j = 3; j < arr.Length; j += 2)
-						{
-							foreach (var item in listUser)
-							{
-								if (arr[j] == item.Id)
-								{
-									group.AddMember(item);
-									if (admin == item.Id) group.admin = item;
+									else
+									{
+										item.group.RemoveMember(IDmember);
+									}
 									break;
 								}
 							}
 						}
-						group.AddMember(me);
-						if (arr[2] == me.Id) group.admin = me;
-						listGroup.Add(group);
-						GroupUIs.Add(new GroupUI(group, this));
-					}
-					else if (action == "NEWMEMBER")
-					{
-						foreach (var item in GroupUIs)
+						else if (action == "CREATEGRERROR")
 						{
-							if (item.group.ID == data[1])
+							MessageBox.Show("Create Group Fail! Please check your name group or connection", "Create Error", MessageBoxButtons.OK);
+						}
+						else if (action == "CREATEGROKE")
+						{
+							MessageBox.Show("Create Group successfully!", "Create Group", MessageBoxButtons.OK);
+						}
+						else if (action == "CHANGEHOST")
+						{
+							string IDgr = data[1];
+							string newHost = data[2];
+
+							foreach (var item in GroupUIs)
 							{
-								foreach (var item2 in listUser)
+								if (item.group.ID == data[1])
 								{
-									if (data[2] == item2.Id)
+									if (me.Id == data[2])
 									{
-										item.group.AddMember(item2);
-										break;
+										item.group.admin = me;
 									}
+									else
+									{
+										item.group.ChangeHost(newHost);
+									}
+									break;
 								}
 							}
 						}
-					}
-					else if (action == "GSEND")
-					{
-						string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
-						string Message = "";
-						int count = 0;
-						for (int j = 0; j < temp.Length; j++)
+						else if (action == "CREATECBERRORNAME")
 						{
-							if (count >= 4)
+							MessageBox.Show("Contact name has exists!", "Erorr Create Contact", MessageBoxButtons.OK);
+						}
+						else if (action == "CREATECBSUCCES")
+						{
+							MessageBox.Show("Create contact successfully!", "Create Contact", MessageBoxButtons.OK);
+						}
+						else if (action == "NEWCB")
+						{
+							ContactBook newContactBook = new ContactBook(data[1], data[2]);
+							frmContactBook._AddContactBook(newContactBook);
+
+						}
+						else if (action == "VOICE")
+						{
+							Package awaitPackage;
+							if (data[2][0] != 'G')
 							{
-								Message = Message + temp[j];
+								awaitPackage = new Package(data[1], FrmMain.me.Id, 0, int.Parse(data[2]), "V", "NULL",
+															".wav", data[3], true);
+								listAwaitPackage.Add(awaitPackage);
 							}
 							else
-								if (temp[j] == '%') count++;
-						}
-						for (int i = 0; i < GroupUIs.Count; i++)
-						{
-							if (GroupUIs[i].group.ID == data[1])
 							{
-								foreach (User user in listUser)
-								{
-									if (user.Id == data[2])
-									{
-										GroupUIs[i].AddMessage(user, data[3], Message);
-										GroupUIs[i].BringToTop();
-										break;
-									}
-								}
-								break;
+								awaitPackage = new Package(data[1], data[2], 0, int.Parse(data[3]), "V", "NULL",
+																			".wav", data[4], false);
+								listAwaitPackage.Add(awaitPackage);
 							}
 						}
-					}
-					else if (action == "OUTGR")
-					{
-						string IDGr = data[1];
-						string IDmember = data[2];
-						foreach (var item in this.GroupUIs)
+						else if (action == "REMOVEUSER")
 						{
-							if (item.group.ID == IDGr)
+							User temp = new User();
+							foreach (var item in listUser)
 							{
-								if (IDmember == me.Id)
+								if (item.Id == data[1])
 								{
-									GroupUIs.Remove(item);
-									listGroup.Remove(item.group);
+									temp = item;
+									break;
+								}
+							}
+							foreach (var item in GroupUIs)
+							{
+								if (item.group.MemberInGroup(temp))
+								{
+									item.group.RemoveMember(temp.Id);
+								}
+
+							}
+							foreach (var item in UserUIs)
+							{
+								if (item.user.Id == temp.Id)
+								{
+									UserUIs.Remove(item);
 									item.Dispose();
+									break;
 								}
-								else
+							}
+							frmContactBook._RemoveUser(data[1]);
+							listUser.Remove(temp);
+						}
+					}
+					else if (package.Style == "F")
+					{
+						foreach (var item in listAwaitPackage)
+						{
+							if (package.ID == item.IDpackage)
+							{
+								if (item.Ack + package.Data.Length > item.Length)
 								{
-									item.group.RemoveMember(IDmember);
+									byte[] tempBuffer = new byte[item.Length - item.Ack];
+									Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
+									package.Data = new byte[item.Length - item.Ack];
+									tempBuffer.CopyTo(package.Data, 0);
 								}
-								break;
+								package.Data.CopyTo(item.Data, item.Ack);
+								item.Ack = item.Ack + package.Data.Length;
+								if (item.Ack == item.Length)
+								{
+									_FileDialog fd = new _FileDialog();
+									fd.SaveFile(item.Data, item.FileName);
+								}
 							}
 						}
 					}
-					else if (action == "CREATEGRERROR")
+					else if (package.Style == "A")
 					{
-						MessageBox.Show("Create Group Fail! Please check your name group or connection", "Create Error", MessageBoxButtons.OK);
-					}
-					else if (action == "CREATEGROKE")
-					{
-						MessageBox.Show("Create Group successfully!", "Create Group", MessageBoxButtons.OK);
-					}
-					else if (action == "CHANGEHOST")
-					{
-						string IDgr = data[1];
-						string newHost = data[2];
-
-						foreach (var item in GroupUIs)
+						foreach (var item in listAwaitPackage)
 						{
-							if (item.group.ID == data[1])
+							if (package.ID == item.IDpackage)
 							{
-								if (me.Id == data[2])
+								if (item.Ack + package.Data.Length > item.Length)
 								{
-									item.group.admin = me;
+									byte[] tempBuffer = new byte[item.Length - item.Ack];
+									Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
+									package.Data = new byte[item.Length - item.Ack];
+									tempBuffer.CopyTo(package.Data, 0);
 								}
-								else
+								package.Data.CopyTo(item.Data, item.Ack);
+								item.Ack = item.Ack + package.Data.Length;
+								if (item.Ack == item.Length)
 								{
-									item.group.ChangeHost(newHost);
-								}
-								break;
-							}
-						}
-					}
-					else if (action == "CREATECBERRORNAME")
-					{
-						MessageBox.Show("Contact name has exists!", "Erorr Create Contact", MessageBoxButtons.OK);
-					}
-					else if (action == "CREATECBSUCCES")
-					{
-						MessageBox.Show("Create contact successfully!", "Create Contact", MessageBoxButtons.OK);
-					}
-					else if (action == "NEWCB")
-					{
-						ContactBook newContactBook = new ContactBook(data[1], data[2]);
-						frmContactBook._AddContactBook(newContactBook);
-
-					}
-					else if (action == "VOICE")
-					{
-						Package awaitPackage;
-						if (data[2][0] != 'G')
-						{
-							awaitPackage = new Package(data[1], FrmMain.me.Id, 0, int.Parse(data[2]), "V", "NULL",
-														".wav", data[3], true);
-							listAwaitPackage.Add(awaitPackage);
-						}
-						else
-						{
-							awaitPackage = new Package(data[1], data[2], 0, int.Parse(data[3]), "V", "NULL",
-																		".wav", data[4], false);
-							listAwaitPackage.Add(awaitPackage);
-						}
-					}
-					else if (action == "REMOVEUSER")
-                    {
-						User temp = new User();
-                        foreach (var item in listUser)
-                        {
-							if (item.Id == data[1])
-                            {
-								temp = item;
-								break;
-                            }
-                        }
-                        foreach (var item in GroupUIs)
-                        {
-							if (item.group.MemberInGroup(temp))
-                            {
-								item.group.RemoveMember(temp.Id);
-							}
-							
-                        }
-                        foreach (var item in UserUIs)
-                        {
-							if (item.user.Id == temp.Id)
-                            {
-								UserUIs.Remove(item);
-								item.Dispose();
-								break;
-                            }
-                        }
-						
-                    }
-				}
-				else if (package.Style == "F")
-				{
-					foreach (var item in listAwaitPackage)
-					{
-						if (package.ID == item.IDpackage)
-						{
-							if (item.Ack + package.Data.Length > item.Length)
-							{
-								byte[] tempBuffer = new byte[item.Length - item.Ack];
-								Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
-								package.Data = new byte[item.Length - item.Ack];
-								tempBuffer.CopyTo(package.Data, 0);
-							}
-							package.Data.CopyTo(item.Data, item.Ack);
-							item.Ack = item.Ack + package.Data.Length;
-							if (item.Ack == item.Length)
-							{
-								_FileDialog fd = new _FileDialog();
-								fd.SaveFile(item.Data, item.FileName);
-							}
-						}
-					}
-				}
-				else if (package.Style == "A")
-				{
-					foreach (var item in listAwaitPackage)
-					{
-						if (package.ID == item.IDpackage)
-						{
-							if (item.Ack + package.Data.Length > item.Length)
-							{
-								byte[] tempBuffer = new byte[item.Length - item.Ack];
-								Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
-								package.Data = new byte[item.Length - item.Ack];
-								tempBuffer.CopyTo(package.Data, 0);
-							}
-							package.Data.CopyTo(item.Data, item.Ack);
-							item.Ack = item.Ack + package.Data.Length;
-							if (item.Ack == item.Length)
-							{
-								string path = @"./cache/avatar/" + item.FileName + item.Extension;
-								try
-								{
-									File.WriteAllBytes(path, item.Data);
-								}
-								catch (Exception ex)
-								{
-
-								}
-								foreach (var item2 in UserUIs)
-								{
-									if (item2.user.Id == item.FileName)
+									string path = @"./cache/avatar/" + item.FileName + item.Extension;
+									try
 									{
-										item2.SetAvatar(path);
-										break;
+										File.WriteAllBytes(path, item.Data);
 									}
-									if (item.FileName == me.Id)
+									catch (Exception ex)
 									{
-										this.SetAvatar(path);
-										this.LoadUser();
-										break;
+
 									}
-								}
-							}
-						}
-					}
-				}
-				else if (package.Style == "V")
-				{
-					foreach (var item in listAwaitPackage)
-					{
-						if (package.ID == item.IDpackage)
-						{
-							if (item.Ack + package.Data.Length > item.Length)
-							{
-								byte[] tempBuffer = new byte[item.Length - item.Ack];
-								Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
-								package.Data = new byte[item.Length - item.Ack];
-								tempBuffer.CopyTo(package.Data, 0);
-							}
-							package.Data.CopyTo(item.Data, item.Ack);
-							item.Ack = item.Ack + package.Data.Length;
-							if (item.Ack == item.Length)
-							{
-								if (item.isPrivate)
-								{
-									foreach (var userUI in UserUIs)
+									foreach (var item2 in UserUIs)
 									{
-										if (userUI.user.Id == item.IDsend)
+										if (item2.user.Id == item.FileName)
 										{
-											string path = string.Format(@"./voice/{0}/", item.IDsend);
-											if (!Directory.Exists(path))
-												Directory.CreateDirectory(path);
-											path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
-											File.WriteAllBytes(path, item.Data);
-											userUI.userForm.AddVoiceMessage(userUI.user, path);
+											item2.SetAvatar(path);
+											break;
+										}
+										if (item.FileName == me.Id)
+										{
+											this.SetAvatar(path);
+											this.LoadUser();
 											break;
 										}
 									}
 								}
-								else
+							}
+						}
+					}
+					else if (package.Style == "V")
+					{
+						foreach (var item in listAwaitPackage)
+						{
+							if (package.ID == item.IDpackage)
+							{
+								if (item.Ack + package.Data.Length > item.Length)
 								{
-									foreach (var groupUI in GroupUIs)
+									byte[] tempBuffer = new byte[item.Length - item.Ack];
+									Buffer.BlockCopy(package.Data, 0, tempBuffer, 0, item.Length - item.Ack);
+									package.Data = new byte[item.Length - item.Ack];
+									tempBuffer.CopyTo(package.Data, 0);
+								}
+								package.Data.CopyTo(item.Data, item.Ack);
+								item.Ack = item.Ack + package.Data.Length;
+								if (item.Ack == item.Length)
+								{
+									if (item.isPrivate)
 									{
-										if ("G" + groupUI.group.ID == item.IDreceive)
+										foreach (var userUI in UserUIs)
 										{
-											string path = string.Format(@"./voice/{0}/", item.IDreceive);
-											if (!Directory.Exists(path))
-												Directory.CreateDirectory(path);
-											path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
-											File.WriteAllBytes(path, item.Data);
-											foreach (var userUI in UserUIs)
+											if (userUI.user.Id == item.IDsend)
 											{
-												if (userUI.user.Id == item.IDsend)
-												{
-													groupUI.groupForm.AddVoiceMessage(userUI.user, path);
-													break;
-												}
+												string path = string.Format(@"./voice/{0}/", item.IDsend);
+												if (!Directory.Exists(path))
+													Directory.CreateDirectory(path);
+												path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
+												File.WriteAllBytes(path, item.Data);
+												userUI.userForm.AddVoiceMessage(userUI.user, path);
+												break;
 											}
-											break;
+										}
+									}
+									else
+									{
+										foreach (var groupUI in GroupUIs)
+										{
+											if ("G" + groupUI.group.ID == item.IDreceive)
+											{
+												string path = string.Format(@"./voice/{0}/", item.IDreceive);
+												if (!Directory.Exists(path))
+													Directory.CreateDirectory(path);
+												path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
+												File.WriteAllBytes(path, item.Data);
+												foreach (var userUI in UserUIs)
+												{
+													if (userUI.user.Id == item.IDsend)
+													{
+														groupUI.groupForm.AddVoiceMessage(userUI.user, path);
+														break;
+													}
+												}
+												break;
+											}
 										}
 									}
 								}
@@ -865,6 +868,10 @@ namespace UI
 						}
 					}
 				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 		public void SetAvatar(string path)
@@ -932,6 +939,7 @@ namespace UI
 			}
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();
+			serverUsersForm.InitStart();
 		}
 		public Panel PnRight
 		{
@@ -1002,5 +1010,16 @@ namespace UI
 			}
 				
 		}
-	}
+        private void btnPhoneBook_MouseMove(object sender, MouseEventArgs e)
+        {
+			try
+			{
+				(sender as Button).BackColor = theme.FocusColor;
+			}
+			catch
+			{
+				btnServer.BackColor = Color.Transparent;
+			}
+		}
+    }
 }

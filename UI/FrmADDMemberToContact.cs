@@ -69,24 +69,31 @@ namespace UI
 		}
 		private async void SendAddToContact()
 		{
-			foreach (var item in pnUser.Controls)
-			{
-				if (item.GetType() == typeof(ucADD))
+			try
+            {
+				foreach (var item in pnUser.Controls)
 				{
-					if ((item as ucADD).isAdd)
+					if (item.GetType() == typeof(ucADD))
 					{
-						listUser.Add((item as ucADD).user);
+						if ((item as ucADD).isAdd)
+						{
+							listUser.Add((item as ucADD).user);
+						}
 					}
 				}
-			}
-			foreach (var item in listUser)
-			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("ADDCONTACT%" + item.Id + "%" +
-																   selectedContactBook.contactBook.ID);
-				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				foreach (var item in listUser)
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("ADDCONTACT%" + item.Id + "%" +
+																	   selectedContactBook.contactBook.ID);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 
-				selectedContactBook._AddUser(item);
+					selectedContactBook._AddUser(item);
+				}
+			}
+			catch (Exception ex)
+            {
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 

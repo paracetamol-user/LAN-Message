@@ -87,12 +87,21 @@ namespace UI
 		}
 		private async void pictureBox2_Click(object sender, EventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + fileId + "%" + fileName );
-			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-			PictureBox temp = sender as PictureBox;
-			//temp.Image = Image.FromFile(@"..\..\images\check.png");
-			//temp.Enabled = false;
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + fileId + "%" + fileName);
+				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				PictureBox temp = sender as PictureBox;
+				//temp.Image = Image.FromFile(@"..\..\images\check.png");
+				//temp.Enabled = false;
+
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 		public void _DisableButDownLoad()
 		{

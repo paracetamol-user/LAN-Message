@@ -25,9 +25,9 @@ namespace UI
 		{
 			InitializeComponent();
 		}
-		public SettingForm(User me, FrmMain parent , LoginForm loginForm)
+		public SettingForm(User me, FrmMain parent, LoginForm loginForm)
 		{
-			InitializeComponent(); 
+			InitializeComponent();
 			this.me = me;
 			this.parent = parent;
 			this.loginForm = loginForm;
@@ -39,22 +39,22 @@ namespace UI
 
 		private void LoadMyAccount()
 		{
-			this.lblName.Text= me.Name;
+			this.lblName.Text = me.Name;
 			this.lblID.Text = "#" + me.Id;
 			this.pictureAvatar.Image = Image.FromFile(me.AvatarPath);
 		}
 
 		private void InitSettingForm()
-        {
+		{
 			this.TopLevel = false;
 			this.parent.Controls.Add(this);
 			this.Dock = DockStyle.Fill;
 			this.BackColor = FrmMain.theme.BackColor;
 			this.ChangeColorPanelControl();
 			this.ChangeColorLine();
-        }
+		}
 
-        public void ChangeColorPanelControl()
+		public void ChangeColorPanelControl()
 		{
 			this.pnMenu.BackColor = FrmMain.theme.Menu;
 			this.pnPassword.BackColor = FrmMain.theme.FocusColor;
@@ -108,14 +108,21 @@ namespace UI
 		private TextBox txtUsername = null;
 		private void CheckPasswordFromServer()
 		{
-			UserVerification verification = new UserVerification();
+			try
+			{
+				UserVerification verification = new UserVerification();
 
-			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}", 
-				FrmMain.me.Id,																		
-				verification.GetSHA256(txtOldPassword.Text),																
-				verification.GetSHA256(txtNewPassword.Text)));
-			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
-			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}",
+					FrmMain.me.Id,
+					verification.GetSHA256(txtOldPassword.Text),
+					verification.GetSHA256(txtNewPassword.Text)));
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 		public void RespondToChangePasswordMessage(bool isSuccess)
 		{
@@ -132,31 +139,32 @@ namespace UI
 				lblErrorINPassword.Visible = true;
 			}
 		}
-		private void ChangeUsernameInServer(string newUsername)
-		{
-
-			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHANGENAME%{0}%{1}", FrmMain.me.Id, newUsername));
-			SmallPackage packageReceive = new SmallPackage(0,1024, "M", tempBuff, "0");
-			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-		}
 		public async void ChangeAvatar()
 		{
-			Guid id = Guid.NewGuid();
-			byte[] tempBuff = Encoding.UTF8.GetBytes("SAVEAVATAR%" + fi.Length + "%" + fi.Name + "%"  + fi.Extension + "%" + id.ToString());
-			SmallPackage packageReceive = new SmallPackage(0, 1024, "M", tempBuff, "0");
-			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			try
+			{
+				Guid id = Guid.NewGuid();
+				byte[] tempBuff = Encoding.UTF8.GetBytes("SAVEAVATAR%" + fi.Length + "%" + fi.Name + "%" + fi.Extension + "%" + id.ToString());
+				SmallPackage packageReceive = new SmallPackage(0, 1024, "M", tempBuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
-			/// Send file
-			byte[] data = File.ReadAllBytes(fi.FullName);
+				/// Send file
+				byte[] data = File.ReadAllBytes(fi.FullName);
 
-			await FrmMain.client.SendFileToServer(data , "A" ,id.ToString());
+				await FrmMain.client.SendFileToServer(data, "A", id.ToString());
 
-			byte[] tempfile = File.ReadAllBytes(fi.FullName);
-			File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
-			FrmMain.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
-			this.parent.LoadUser();
+				byte[] tempfile = File.ReadAllBytes(fi.FullName);
+				File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
+				FrmMain.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
+				this.parent.LoadUser();
+
 			}
-
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
+		}
 		private void button1_Click(object sender, EventArgs e)
 		{
 			if (this.btnFocus != null) this.btnFocus.BackColor = Color.Transparent;
@@ -200,19 +208,35 @@ namespace UI
 		}
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
-			FrmMain.theme.White();
-			parent.ChangeTheme();
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
-			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			try
+			{
+				FrmMain.theme.White();
+				parent.ChangeTheme();
+				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
+				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
-			FrmMain.theme.Black();
-			parent.ChangeTheme();
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
-			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			try
+			{
+				FrmMain.theme.Black();
+				parent.ChangeTheme();
+				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
+				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 
 

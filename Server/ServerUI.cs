@@ -28,6 +28,13 @@ namespace Server
             this.txtBoxConsole.Dock = DockStyle.Fill;
             this.pictureBox2.BringToFront();
             this.pictureBox2.Show();
+
+			this.txtBoxConsole.TextChanged += new EventHandler(textChange);
+        }
+
+        private void textChange(object sender, EventArgs e)
+        {
+			if (txtBoxConsole.TextLength > 10000) txtBoxConsole.Clear();
         }
 
         private void SetOff()
@@ -101,7 +108,7 @@ namespace Server
 				{
 					item.Delete();
 				}
-				string query = "delete from tinnhan";
+				string query = "delete from message";
 				SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
 				connection.Open();
 				SqlCommand command = new SqlCommand(query, connection);
