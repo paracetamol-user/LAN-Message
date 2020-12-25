@@ -28,8 +28,7 @@ namespace UI
             this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = uiParent.group.ID;
-            this.lbId.ForeColor = FrmMain.theme.TextColor;
-            this.lbName.ForeColor = FrmMain.theme.TextColor;
+            InitColor();
         }
         public ucGroupPending(string id , string name, Panel pnPending)
         {
@@ -46,14 +45,8 @@ namespace UI
         {
             this.lbId.ForeColor = FrmMain.theme.TextColor;
             this.lbName.ForeColor = FrmMain.theme.TextColor;
-        }
-        private void pnContain_MouseMove(object sender, MouseEventArgs e)
-        {
-            this.BackColor = Color.FromArgb(242, 243, 245);
-        }
-        private void pnContain_MouseLeave(object sender, EventArgs e)
-        {
-            this.BackColor = Color.White;
+            this.picCheck.Image = Image.FromFile(FrmMain.theme.PictureCheck);
+            this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
         }
         private void picMenu_Click(object sender, EventArgs e)
         {

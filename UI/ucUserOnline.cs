@@ -22,32 +22,20 @@ namespace UI
 		{
 			isPlus = true;
 			InitializeComponent();
-			this.picChat.Image = Image.FromFile(FrmMain.theme.PictureMessage);
-			this.picAdd.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.roundPicAvatar.Image = Image.FromFile(Parent.user.AvatarPath);
-			this.pnLine.BackColor = FrmMain.theme.LineColor;
-			this.lbName.ForeColor = FrmMain.theme.TextColor;
-			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
 			this.lbName.Text = Parent.user.Name;
 			this.lbId.Text = "#"+Parent.user.Id;
+			InitColor();
 		}
-		public void ResetTheme()
+		public void InitColor()
         {
 			this.picChat.Image = Image.FromFile(FrmMain.theme.PictureMessage);
 			this.picAdd.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			this.lbName.ForeColor = FrmMain.theme.TextColor;
 			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
-		}
-		public void InitColor()
-		{
-			this.lbName.ForeColor = FrmMain.theme.TextColor;
-			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
-			this.pnLine.BackColor = FrmMain.theme.LineColor;
-			//this.BackColor = Form1.theme.BackColor;
-			this.BackColor = Color.Transparent;
 		}
 		public void EnableAddFriend()
         {
@@ -61,7 +49,6 @@ namespace UI
         {
 			this.BackColor = FrmMain.theme.FocusColor;
         }
-
         private void pnContainId_Click_1(object sender, EventArgs e)
         {
 	
@@ -78,12 +65,10 @@ namespace UI
         {
 			this.ChangeColorWhenFocus();
 		}
-
         private void panel2_MouseLeave(object sender, EventArgs e)
         {
 			this.BackColor = Color.Transparent;
 		}
-
         private void picChat_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
@@ -95,10 +80,12 @@ namespace UI
 			this.Parent.ucInterac.ChangeColorWhenClick();
 			FrmMain.interactFocus = this.Parent.ucInterac;
 		}
-
         private async void picAdd_Click(object sender, EventArgs e)
         {
 			Parent.cmns.BackColor = FrmMain.theme.Menu;
+			Parent.cmns.Items[0].ForeColor = FrmMain.theme.TxtForeColor;
+			Parent.cmns.Items[1].ForeColor = FrmMain.theme.TxtForeColor;
+			Parent.cmns.Items[2].ForeColor = FrmMain.theme.TxtForeColor;
 			Parent.cmns.Show(MousePosition);
 		}
 

@@ -42,6 +42,7 @@ namespace UI
 		public string picturePlay02 { get; set; }
 		public string picturePause { get; set; }
 		public string picturePen { get; set; }
+
 		private bool isWhite;
 		public Theme() { }
 		public Theme(Color backColor ,  Color focusColor , Color textColor ) 
@@ -310,7 +311,7 @@ namespace UI
 			pictureCircleOffline = @"./images/circle-black.png";
 			pictureAdd = @"./images/add-black.png";
 			PictureMinus = @"./images/minus-black.png";
-			picturePlay = @"./images/play-back-black.png";
+			picturePlay = @"./images/volume.png";
 			pictureBin = @"./images/garbage-can-black.png";
 			pictureSend = @"./images/send.png";
 			pictureStop = @"./images/stop-button-black.png";
@@ -347,7 +348,7 @@ namespace UI
 			pictureCircleOffline = @"./images/circle-black.png"; 
 			pictureAdd = @"./images/add-white.png";
 			PictureMinus = @"./images/minus-white.png";
-			picturePlay = @"./images/play-back-white.png";
+			picturePlay = @"./images/volume.png";
 			pictureBin = @"./images/garbage-can-white.png";
 			pictureSend = @"./images/send.png";
 			pictureStop = @"./images/stop-button-white.png";

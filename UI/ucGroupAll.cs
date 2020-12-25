@@ -69,6 +69,9 @@ namespace UI
         private void picAdd_Click(object sender, EventArgs e)
         {
             this.Parent.cmns.BackColor = FrmMain.theme.Menu;
+            Parent.cmns.Items[0].ForeColor = FrmMain.theme.TxtForeColor;
+            Parent.cmns.Items[1].ForeColor = FrmMain.theme.TxtForeColor;
+            Parent.cmns.Items[2].ForeColor = FrmMain.theme.TxtForeColor;
             this.Parent.cmns.Show(MousePosition);
         }
     }

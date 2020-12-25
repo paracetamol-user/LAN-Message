@@ -28,8 +28,7 @@ namespace UI
 			this.pnParent = pnPending;
 			this.uiParent = userUI;
 			this.roundPicAvatar.Image = Image.FromFile(uiParent.user.AvatarPath);
-			this.lbName.Text = uiParent.user.Name;
-			this.lbId.Text = uiParent.user.Id;
+			InitColor();
 		}
 		public void ResetTheme()
         {
@@ -42,6 +41,8 @@ namespace UI
 			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
+			this.picCheck.Image = Image.FromFile(FrmMain.theme.PictureCheck);
+			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
 		private void pnContain_MouseMove(object sender, MouseEventArgs e)
 		{

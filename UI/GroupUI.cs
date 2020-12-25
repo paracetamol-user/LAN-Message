@@ -59,7 +59,7 @@ namespace UI
 			ToolStripButton tsOutGroup = new ToolStripButton("Out Group");
 			tsOutGroup.ForeColor = FrmMain.theme.TxtForeColor;
 			ToolStripButton tsRemoveGroup = new ToolStripButton("Remove Group");
-			tsRemoveGroup.ForeColor = Color.Red;
+			tsRemoveGroup.ForeColor = FrmMain.theme.TxtForeColor;
 			tsAddGroup.Click += TsAddGroup_Click;
 			tsOutGroup.Click += TsOutGroup_Click;
 			tsRemoveGroup.Click += TsRemoveGroup_Click;

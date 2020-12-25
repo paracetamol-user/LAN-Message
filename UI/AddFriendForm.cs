@@ -46,14 +46,14 @@ namespace UI
             {
 				if (item.GetType() == typeof(ucUserAll))
                 {
-					(item as ucUserAll).ResetTheme();
+					(item as ucUserAll).InitColor();
                 }
             }
 			foreach (var item in panelOnlineUser.Controls)
 			{
 				if (item.GetType() == typeof(ucUserOnline))
 				{
-					(item as ucUserOnline).ResetTheme();
+					(item as ucUserOnline).InitColor();
 				}
 			}
 		}
@@ -105,7 +105,6 @@ namespace UI
 				FrmMain.UserUIs[i].AddUserIntoPanelAll(panelAllUser);
 			}
 			countUserAll = FrmMain.UserUIs.Count;
-			CheckLoadAllUser = true;
 		}
 		public void InitPanelAllUser()
 		{
@@ -128,8 +127,7 @@ namespace UI
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 			countUserOnline = 0;
 			panelOnlineUser.Controls.Clear();
-			panelOnlineUser.Show();
-			panelOnlineUser.BringToFront();
+			
 			for (int i = 0; i < FrmMain.UserUIs.Count; i++)
 			{
 				if (FrmMain.UserUIs[i].GetStatus() == true)
@@ -140,6 +138,8 @@ namespace UI
 			}
 			labelCOUNT.Text = "People Online In Server - " + countUserOnline.ToString(); 
 			btnFocus = sender as Button;
+			panelOnlineUser.Show();
+			panelOnlineUser.BringToFront();
 		}
 		public void btnPeople_Click(object sender, EventArgs e)
 		{
@@ -148,15 +148,14 @@ namespace UI
 			this.ucSearch.IsOnline = false;
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;
-			panelAllUser.Show();
-			panelAllUser.BringToFront();
-			if (!CheckLoadAllUser)
-			{
-				LoadListAllUser();
-				CheckLoadAllUser = true;
-			}
+			countUserAll = 0;
+			panelAllUser.Controls.Clear();
+
+			LoadListAllUser();
 			labelCOUNT.Text = "All People In Server - " + countUserAll.ToString();
 			btnFocus = sender as Button;
+			panelAllUser.Show();
+			panelAllUser.BringToFront();
 		}
 		public void AddPending(UserUI userUI)
 		{

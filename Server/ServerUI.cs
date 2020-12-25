@@ -21,6 +21,7 @@ namespace Server
 			mServer.RaiseClientConnectedEvent += HandleClientConnected;
 			mServer.RaiseTextReceivedEvent += HandleTextReceived;
             ClearData();
+			SetOff();
             ucData = new ucData(pnM__Contain , this);
             this.txtBoxConsole.BringToFront();
             this.txtBoxConsole.Show();
@@ -28,7 +29,18 @@ namespace Server
             this.pictureBox2.BringToFront();
             this.pictureBox2.Show();
         }
-		private void ClearData()
+
+        private void SetOff()
+        {
+			string query = "update users set status = 0";
+			SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
+			connection.Open();
+			SqlCommand command = new SqlCommand(query, connection);
+			command.ExecuteNonQuery();
+			connection.Close();
+		}
+
+        private void ClearData()
 		{
 			string path = @"./filedata";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);

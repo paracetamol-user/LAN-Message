@@ -39,24 +39,6 @@ namespace UI
 			pnAll.BringToFront();
 			labelCOUNT.Text = "All Friend - " + friendCount.ToString();
 		}
-
-		//public void ChangeColorControl()
-  		//      {
-		//	foreach (var item in pnAll.Controls)
-		//	{
-		//		if (item.GetType() == typeof(ucUserAll))
-		//		{
-		//			(item as ucUserAll).ResetTheme();
-		//		}
-		//	}
-		//	foreach (var item in pnOnline.Controls)
-		//	{
-		//		if (item.GetType() == typeof(ucUserOnline))
-		//		{
-		//			(item as ucUserOnline).ResetTheme();
-		//		}
-		//	}
-		//}
 		public void ChangeColorLine()
         {
 			this.panelLine.BackColor = FrmMain.theme.LineColor;
@@ -89,15 +71,17 @@ namespace UI
 		}
 		private void btnAll_Click(object sender, EventArgs e)
 		{
+			friendCount = 0;
+			pnAll.Controls.Clear();
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 			btnFocus = sender as Button;
-			if (!isLoad) LoadpnAll();
-			isLoad = true;
-			this.pnAll.Visible = true;
+			LoadpnAll();
+			labelCOUNT.Text = "All Friend - " + friendCount.ToString();
+			pnAll.Visible = true;
 			pnAll.Show();
 			pnAll.BringToFront();
-			labelCOUNT.Text = "All Friend - " + friendCount.ToString();
+			
 		}
 		private void btnOnline_Click(object sender, EventArgs e)
 		{
@@ -106,18 +90,19 @@ namespace UI
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 			btnFocus = sender as Button;
 			pnOnline.Controls.Clear();
+			
+			pnOnline.Visible = true;
+            foreach (var item in FrmMain.UserUIs)
+            {
+                if (item.user.Status == true && item.user.IsFriend == true)
+                {
+                    pnOnline.Controls.Add(item.ucFriendOnline);
+                    item.ucFriendOnline.InitColor();
+                    friendOnlineCount++;
+                }
+            }
 			pnOnline.Show();
 			pnOnline.BringToFront();
-			pnOnline.Visible = true;
-			foreach (var item in FrmMain.UserUIs)
-			{
-				if (item.user.Status == true && item.user.IsFriend == true)
-				{
-					pnOnline.Controls.Add(item.ucFriendOnline);
-					item.ucFriendOnline.InitColor();
-					friendOnlineCount++;
-				}
-			}
 			labelCOUNT.Text = "Friend Online - " + friendOnlineCount.ToString();
 		}
         private void btnAll_MouseMove(object sender, MouseEventArgs e)
