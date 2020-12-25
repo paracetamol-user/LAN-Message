@@ -294,11 +294,23 @@ namespace UI
 					}
 					else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 					{
+						string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+						string Message = "";
+						int count = 0;
+						for (int j = 0; j < temp.Length; j++)
+						{
+							if (count >= 3)
+							{
+								Message = Message + temp[j];
+							}
+							else
+								if (temp[j] == '%') count++;
+						}
 						for (int i = 0; i < UserUIs.Count; i++)
 						{
-							if (UserUIs[i].GetId() == data[3])
+							if (UserUIs[i].GetId() == data[2])
 							{
-								UserUIs[i].AddMessage(data[1], data[2]);
+								UserUIs[i].AddMessage(data[1], Message);
 								UserUIs[i].BringToTop();
 								break;
 							}
@@ -577,6 +589,18 @@ namespace UI
 					}
 					else if (action == "GSEND")
 					{
+						string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+						string Message = "";
+						int count = 0;
+						for (int j = 0; j < temp.Length; j++)
+						{
+							if (count >= 2)
+							{
+								Message = Message + temp[j];
+							}
+							else
+								if (temp[j] == '%') count++;
+						}
 						for (int i = 0; i < GroupUIs.Count; i++)
 						{
 							if (GroupUIs[i].group.ID == data[1])
@@ -585,7 +609,7 @@ namespace UI
 								{
 									if (user.Id == data[2])
 									{
-										GroupUIs[i].AddMessage(user, data[4], data[3]);
+										GroupUIs[i].AddMessage(user, data[3], Message);
 										GroupUIs[i].BringToTop();
 										break;
 									}
