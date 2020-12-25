@@ -10,14 +10,28 @@ namespace UI
 {
     class roundpicturebox:PictureBox
     {
+        public roundpicturebox()
+        {
+            this.BackColor = SystemColors.Control;
+        }
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-            GraphicsPath gp = new GraphicsPath();
-            gp.AddEllipse(new Rectangle(0, 0, this.Width, this.Height));
-
-            this.BackColor = SystemColors.Control;
-            this.Region = new Region(gp);
+            Control tam=this.Parent;
+            while (tam.Parent != null && tam.BackColor == Color.Transparent)
+            {
+                tam = tam.Parent;
+               
+            }
+            this.BackColor = tam.BackColor;
+            
+            using (GraphicsPath gp = new GraphicsPath())
+            {
+                gp.AddEllipse(0, 0, this.Width - 1, this.Height - 1);
+                Region = new Region(gp);
+                pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                pe.Graphics.DrawEllipse(new Pen(new SolidBrush(this.BackColor), 1), 0, 0, this.Width - 1, this.Height - 1);
+            }
         }
     }
 }
