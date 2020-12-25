@@ -32,7 +32,7 @@ namespace UI
 			this.frmMain.PnRight.Controls.Add(this);
 			this.Dock = DockStyle.Fill;
 			this.BackColor = Color.Transparent;
-			this.txtCreate.BackColor = Form1.theme.Menu;
+			this.txtCreate.BackColor = Form1.theme.FocusColor;
 			this.txtCreate.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.FlatAppearance.BorderColor = Form1.theme.TextColor;
@@ -42,7 +42,7 @@ namespace UI
 		}
 		public void InitColor()
 		{
-			this.txtCreate.BackColor = Form1.theme.Menu;
+			this.txtCreate.BackColor = Form1.theme.FocusColor;
 			this.txtCreate.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.FlatAppearance.BorderColor = Form1.theme.TextColor;

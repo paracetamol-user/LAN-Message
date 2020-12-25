@@ -70,23 +70,29 @@ namespace Server
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			//int count = dgv.SelectedRows.Count;
-			//string ID;
-			//string[] arr = { "tinnhan", "contactmember", "contactbook", "member", "groups", "friend", "users" };
-			//for (int i = 0; i < count; i++)
-			//{
-			//	ID = dgv.SelectedRows[i].Cells[2].Value.ToString();
-			//	string query = "delete from " + arr[i] + " where ;
-			//	SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
-			//	connection.Open();
-			//	SqlCommand command = new SqlCommand(query, connection);
-			//	command.CommandType = CommandType.Text;
-			//	SqlDataAdapter da = new SqlDataAdapter(command);
-			//	DataTable dt = new DataTable();
-			//	da.Fill(dt);
-			//	connection.Close();
-			//	dgv.DataSource = dt;
-			//}
-		}
-	}
+            //         int count = dgv.SelectedRows.Count;
+            //         string ID;
+            //string query;
+            //string status;
+            //         string[] arr = { "tinnhan", "contactmember", "contactbook", "member", "groups", "friend", "users" };
+            //         for (int i = 0; i < count; i++)
+            //         {
+            //             ID = dgv.SelectedRows[i].Cells[2].Value.ToString();
+            //	status = dgv.SelectedRows[i].Cells[3].Value.ToString();
+            //	if (status == "False")
+            //	{
+            //		SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
+            //		connection.Open();
+            //		SqlCommand command = new SqlCommand(query, connection);
+            //		command.CommandType = CommandType.Text;
+            //		SqlDataAdapter da = new SqlDataAdapter(command);
+            //		DataTable dt = new DataTable();
+            //		da.Fill(dt);
+            //		connection.Close();
+            //		dgv.DataSource = dt;
+            //	}
+
+            //         }
+        }
+    }
 }

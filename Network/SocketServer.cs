@@ -751,7 +751,7 @@ namespace Communication
 				// Xu li Truong hop day goi tin
 				try
 				{
-					string query = "select GROUPS.IDGROUP, TENNHOM, IDADMIN from MEMBER, GROUPS " +
+					string query = "select GROUPS.IDGROUP, GROUPNAME, IDADMIN from MEMBER, GROUPS " +
 									"where MEMBER.IDGROUP = GROUPS.IDGROUP " +
 									"and MEMBER.IDUSERS = @id";
 					connection.Close();
@@ -847,7 +847,7 @@ namespace Communication
 
 					tempBuffer = Encoding.UTF8.GetBytes(string.Format("CREATEGROKE"));
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
-					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+					await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
                     tempBuffer = Encoding.UTF8.GetBytes(string.Format("GROUPDATA%{0}•{1}•{2}•{3}", "G" + (int.Parse(temp) + 1).ToString(), GrName, client.id_, client.id_));
 
