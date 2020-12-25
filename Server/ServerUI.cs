@@ -21,7 +21,7 @@ namespace Server
 			mServer.RaiseClientConnectedEvent += HandleClientConnected;
 			mServer.RaiseTextReceivedEvent += HandleTextReceived;
             ClearData();
-            ucData = new ucData(pnM__Contain);
+            ucData = new ucData(pnM__Contain , this);
             this.txtBoxConsole.BringToFront();
             this.txtBoxConsole.Show();
             this.txtBoxConsole.Dock = DockStyle.Fill;
@@ -137,7 +137,10 @@ namespace Server
 			this.lbStart.Enabled = true;
 			this.pictureBoxStart.Enabled = true;
 		}
-
+		public async void RemoveUser(string ID)
+        {
+			mServer.NotificationRemoveUser(ID);
+        }
 
     }
 }

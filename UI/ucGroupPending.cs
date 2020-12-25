@@ -28,8 +28,8 @@ namespace UI
             this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = uiParent.group.ID;
-            this.lbId.ForeColor = Form1.theme.TextColor;
-            this.lbName.ForeColor = Form1.theme.TextColor;
+            this.lbId.ForeColor = FrmMain.theme.TextColor;
+            this.lbName.ForeColor = FrmMain.theme.TextColor;
         }
         public ucGroupPending(string id , string name, Panel pnPending)
         {
@@ -39,13 +39,13 @@ namespace UI
             this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = name;
             this.lbId.Text = id;
-            this.lbId.ForeColor = Form1.theme.TextColor;
-			this.lbName.ForeColor = Form1.theme.TextColor;
+            this.lbId.ForeColor = FrmMain.theme.TextColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
         }
         public void InitColor()
         {
-            this.lbId.ForeColor = Form1.theme.TextColor;
-            this.lbName.ForeColor = Form1.theme.TextColor;
+            this.lbId.ForeColor = FrmMain.theme.TextColor;
+            this.lbName.ForeColor = FrmMain.theme.TextColor;
         }
         private void pnContain_MouseMove(object sender, MouseEventArgs e)
         {
@@ -68,9 +68,9 @@ namespace UI
         {
             // goi len server gui thanh vien ve
             byte[] tempbuff = Encoding.UTF8.GetBytes("GROUPACCEPT%" + uiParent.group.ID + "%" + uiParent.group.Name + "%"
-                                                                    + Form1.me.Id + "%" + Form1.me.Name);
+                                                                    + FrmMain.me.Id + "%" + FrmMain.me.Name);
             SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-            Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+            FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
             pnParent.Controls.Remove(this);
         }
     }

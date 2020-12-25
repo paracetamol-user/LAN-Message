@@ -59,11 +59,11 @@ namespace UI
 		}
 		public void InitControls()
 		{
-			pctRecord.Image = Image.FromFile(Form1.theme.pictureRecord);
-			pctStop.Image = Image.FromFile(Form1.theme.pictureStop);
-			pctSend.Image = Image.FromFile(Form1.theme.pictureSend);
-			pctBin.Image = Image.FromFile(Form1.theme.pictureBin);
-			pctPlay.Image = Image.FromFile(Form1.theme.picturePlay);
+			pctRecord.Image = Image.FromFile(FrmMain.theme.pictureRecord);
+			pctStop.Image = Image.FromFile(FrmMain.theme.pictureStop);
+			pctSend.Image = Image.FromFile(FrmMain.theme.pictureSend);
+			pctBin.Image = Image.FromFile(FrmMain.theme.pictureBin);
+			pctPlay.Image = Image.FromFile(FrmMain.theme.picturePlay);
 		}
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -76,30 +76,30 @@ namespace UI
         {
 			pctRecord = new PictureBox();
 			pctRecord.Dock = DockStyle.Fill;
-			pctRecord.Image = Image.FromFile(Form1.theme.pictureRecord);
+			pctRecord.Image = Image.FromFile(FrmMain.theme.pictureRecord);
 			pctRecord.SizeMode = PictureBoxSizeMode.Zoom;
             pctRecord.Click += PctRecord_Click;
 
 			pctStop = new PictureBox();
 			pctStop.Dock = DockStyle.Fill;
-			pctStop.Image = Image.FromFile(Form1.theme.pictureStop);
+			pctStop.Image = Image.FromFile(FrmMain.theme.pictureStop);
 			pctStop.SizeMode = PictureBoxSizeMode.Zoom;
 			pctStop.Click += PctStop_Click;
 
 			pctSend = new PictureBox();
 			pctSend.Dock = DockStyle.Fill;
-			pctSend.Image = Image.FromFile(Form1.theme.pictureSend);
+			pctSend.Image = Image.FromFile(FrmMain.theme.pictureSend);
 			pctSend.SizeMode = PictureBoxSizeMode.Zoom;
 			pctSend.Click += PctSend_Click;
 
 			pctBin = new PictureBox();
 			pctBin.Dock = DockStyle.Fill;
-			pctBin.Image = Image.FromFile(Form1.theme.pictureBin);
+			pctBin.Image = Image.FromFile(FrmMain.theme.pictureBin);
 			pctBin.SizeMode = PictureBoxSizeMode.Zoom;
 			pctBin.Click += PctBin_Click;
 
 			pctPlay = new PictureBox();
-			pctPlay.Image = Image.FromFile(Form1.theme.picturePlay);
+			pctPlay.Image = Image.FromFile(FrmMain.theme.picturePlay);
 			pctPlay.SizeMode = PictureBoxSizeMode.Zoom;
 			pctPlay.Dock = DockStyle.Fill;
             pctPlay.Click += PctPlay_Click;
@@ -168,10 +168,10 @@ namespace UI
 																						data.Length,
 																						id.ToString(), "Private"));
 				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
-				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-				Form1.client.SendFileToServer(data, "V", id.ToString());
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				FrmMain.client.SendFileToServer(data, "V", id.ToString());
 
-				userForm.AddVoiceMessage(Form1.me, voice.Path);
+				userForm.AddVoiceMessage(FrmMain.me, voice.Path);
 			}
 			else
 			{
@@ -180,10 +180,10 @@ namespace UI
 																						data.Length,
 																						id.ToString(), "Public"));
 				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "0");
-				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-				Form1.client.SendFileToServer(data, "V", id.ToString());
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				FrmMain.client.SendFileToServer(data, "V", id.ToString());
 
-				groupForm.AddVoiceMessage(Form1.me, voice.Path);
+				groupForm.AddVoiceMessage(FrmMain.me, voice.Path);
 			}
 			// Process when record sent
 			voice.Path = voice.GetNextPath();

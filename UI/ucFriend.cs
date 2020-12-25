@@ -21,8 +21,8 @@ namespace UI
 		public ucFriend(UserUI userUI)
 		{
 			InitializeComponent();
-			this.picmess.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picRemove.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picmess.Image = Image.FromFile(FrmMain.theme.PictureMessage);
+			this.picRemove.Image = Image.FromFile(FrmMain.theme.PictureCmn);
 			this.Dock = DockStyle.Top;
 			this.Parent = userUI;
 			this.lbName.Text = userUI.user.Name;
@@ -31,19 +31,19 @@ namespace UI
 		}
 		public void ResetTheme()
         {
-			this.picmess.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picRemove.Image = Image.FromFile(Form1.theme.PictureCmn);
+			this.picmess.Image = Image.FromFile(FrmMain.theme.PictureMessage);
+			this.picRemove.Image = Image.FromFile(FrmMain.theme.PictureCmn);
 		}
 		public void InitColor()
 		{
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbId.ForeColor = Form1.theme.TextColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbId.ForeColor = FrmMain.theme.TextColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
 		}
 		private void picMenu_Click(object sender, EventArgs e)
 		{
-			Parent.cmns.BackColor = Form1.theme.Menu;
+			Parent.cmns.BackColor = FrmMain.theme.Menu;
 			Parent.cmns.Show(MousePosition);
 
 		}
@@ -51,23 +51,23 @@ namespace UI
 		{
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.interactFocus != null)
+			if (FrmMain.interactFocus != null)
 			{
-				Form1.interactFocus.ChangeColorWhenNonClick();
+				FrmMain.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.interactFocus = this.Parent.ucInterac;
+			FrmMain.interactFocus = this.Parent.ucInterac;
 		}
         private void pnContainPicture_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
-			if (Form1.interactFocus != null)
+			if (FrmMain.interactFocus != null)
 			{
-				Form1.interactFocus.ChangeColorWhenNonClick();
+				FrmMain.interactFocus.ChangeColorWhenNonClick();
 			}
 			this.Parent.ucInterac.ChangeColorWhenClick();
-			Form1.interactFocus = this.Parent.ucInterac;
+			FrmMain.interactFocus = this.Parent.ucInterac;
 		}
     }
 }

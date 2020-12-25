@@ -22,10 +22,10 @@ namespace UI
 		public ucUserAll(UserUI Parent)
 		{
 			InitializeComponent();
-			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
+			this.picChat.Image = Image.FromFile(FrmMain.theme.PictureMessage);
+			this.picMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.roundPicAvatar.Image = Image.FromFile(Parent.user.AvatarPath);
-			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			isPlus = true;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
@@ -34,19 +34,19 @@ namespace UI
 		}
 		public void ResetTheme()
         {
-			this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
-			this.picMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
-			this.pnLine.BackColor = Form1.theme.LineColor;
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbId.ForeColor = Form1.theme.TextMenuColor;
+			this.picChat.Image = Image.FromFile(FrmMain.theme.PictureMessage);
+			this.picMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
 		}
 		public void InitColor()
 		{
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbId.ForeColor = Form1.theme.TextMenuColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
-			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
 		}
 		public void SetAvatar(string path)
 		{
@@ -57,17 +57,17 @@ namespace UI
         {
             this.Parent.ShowChatForm();
             this.Parent.AddUserInteracted();
-            if (Form1.interactFocus != null)
+            if (FrmMain.interactFocus != null)
             {
-                Form1.interactFocus.ChangeColorWhenNonClick();
+                FrmMain.interactFocus.ChangeColorWhenNonClick();
             }
             this.Parent.ucInterac.ChangeColorWhenClick();
-            Form1.interactFocus = this.Parent.ucInterac;
+            FrmMain.interactFocus = this.Parent.ucInterac;
         }
 
         private void picMenu_Click(object sender, EventArgs e)
         {
-			Parent.cmns.BackColor = Form1.theme.Menu;
+			Parent.cmns.BackColor = FrmMain.theme.Menu;
 			Parent.cmns.Show(MousePosition);
 		}
         //private void gunaPic_Click(object sender, EventArgs e)

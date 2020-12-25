@@ -38,22 +38,22 @@ namespace UI
 		{
 			this.frmMain.Pncontaininfo.Controls.Add(this);
 			this.Dock = DockStyle.Top;
-			this.lbaddfriend.ForeColor = Form1.theme.TextColor;
-			this.lbclearhistory.ForeColor = Form1.theme.TextColor;
-			this.lbfilesent.ForeColor = Form1.theme.TextColor;
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbID.ForeColor = Form1.theme.TextColor;
-			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.pictureArrow);
+			this.lbaddfriend.ForeColor = FrmMain.theme.TextColor;
+			this.lbclearhistory.ForeColor = FrmMain.theme.TextColor;
+			this.lbfilesent.ForeColor = FrmMain.theme.TextColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbID.ForeColor = FrmMain.theme.TextColor;
+			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.pictureArrow);
 			this.ChangeColorLine();
 		}
 		public void ChangeColorLine()
 		{
-			this.pnLine1.BackColor = Form1.theme.LineColor;
-			this.pnLine2.BackColor = Form1.theme.LineColor;
-			this.pnLine3.BackColor = Form1.theme.LineColor;
-			this.pnLine6.BackColor = Form1.theme.LineColor;
-			this.pnLine9.BackColor = Form1.theme.LineColor;
-			this.pnLine11.BackColor = Form1.theme.LineColor;
+			this.pnLine1.BackColor = FrmMain.theme.LineColor;
+			this.pnLine2.BackColor = FrmMain.theme.LineColor;
+			this.pnLine3.BackColor = FrmMain.theme.LineColor;
+			this.pnLine6.BackColor = FrmMain.theme.LineColor;
+			this.pnLine9.BackColor = FrmMain.theme.LineColor;
+			this.pnLine11.BackColor = FrmMain.theme.LineColor;
 			this.frmMain.PnLine1.BackColor = this.pnLine1.BackColor;
 		}
 		public void locationlabel(ref Label a, Panel b)
@@ -98,7 +98,7 @@ namespace UI
 					ucFileShow tam = new ucFileShow(listfileShows[i]._FileId, listfileShows[i]._FileName);
 
 					tam.Dock = DockStyle.Top;
-					if (listfileShows[i]._User == Form1.me)
+					if (listfileShows[i]._User == FrmMain.me)
 					{
 						tam._DisableButDownLoad();
 					}
@@ -128,9 +128,9 @@ namespace UI
 
 		public async void SendAddFriendToServer()
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + Form1.me.Id + "%" + user.Id);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + FrmMain.me.Id + "%" + user.Id);
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 		}
 		
         private void lbaddfriend_Click(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace UI
 				pnaddfile.Visible = true;
 				pnaddfile.AutoSize = true;
 				pnfilesent.AutoSize = true;
-				Pen pen = new Pen(Form1.theme.TextColor);
+				Pen pen = new Pen(FrmMain.theme.TextColor);
 				g.DrawRectangle(pen, new Rectangle(pictureBoxMenu.Location.X - 1, pictureBoxMenu.Location.Y - 1, pictureBoxMenu.Width + 1, pictureBoxMenu.Height + 1));
 			}
 			else
@@ -184,11 +184,11 @@ namespace UI
 			var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
 			if (temp == DialogResult.Yes)
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + Form1.me.Id + "%" + user.Id);
+				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + FrmMain.me.Id + "%" + user.Id);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
-			Form1.frmFriend.RemoveFriend(frmMain.userUI);
+			FrmMain.frmFriend.RemoveFriend(frmMain.userUI);
 			frmMain.userUI.DisableRemove();
 			frmMain.userUI.EnableADD();
 			this.user.IsFriend = false;

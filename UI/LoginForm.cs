@@ -69,12 +69,16 @@ namespace UI
 			if (data[0] == "LOGINOKE")
 			{
 				User user = new User(data[1], account, true, @"./images/avatarDefault/avatarDefault.png");
-				Form1 mainform = new Form1(this, user, client, server, data[2]);
+				FrmMain mainform = new FrmMain(this, user, client, server, data[2]);
 				mainform.Show();
 				this.Hide();
 				label2.Visible = false;
 			}
-			else
+			else if (data[0] == "ERRORLOGINED")
+            {
+				MessageBox.Show("Account was logined in other computer","Login error" , MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			else 
 			{
 				label2.Text = "Tai khoan hoac mat khau khong chinh xac";
 				label2.Visible = true;

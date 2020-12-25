@@ -31,9 +31,9 @@ namespace UI
 		public void _InitControls()
 		{
 			this.label1.Text = user.Name;
-			this.label1.ForeColor = Form1.theme.TxtForeColor;
-			this.pnLine.BackColor = Form1.theme.LineColor;
-			this.picRemove.Image = Image.FromFile(Form1.theme.PictureClose);
+			this.label1.ForeColor = FrmMain.theme.TxtForeColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
+			this.picRemove.Image = Image.FromFile(FrmMain.theme.PictureClose);
 			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
 		}
 		public void _RemoveThis()
@@ -48,7 +48,7 @@ namespace UI
 			{
 				byte[] buff = Encoding.UTF8.GetBytes("DELETEUSERINCONTACT%" + UcContactParent._ID + "%" + user.Id);
 				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "Server");
-				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
 				_RemoveThis();
 			}
@@ -56,18 +56,18 @@ namespace UI
 
 		private void pnLine_Click(object sender, EventArgs e)
 		{
-			foreach (var item in Form1.UserUIs)
+			foreach (var item in FrmMain.UserUIs)
 			{
 				if (item.user == this.user)
 				{
 					item.ShowChatForm();
 					item.AddUserInteracted();
-					if (Form1.interactFocus != null)
+					if (FrmMain.interactFocus != null)
 					{
-						Form1.interactFocus.ChangeColorWhenNonClick();
+						FrmMain.interactFocus.ChangeColorWhenNonClick();
 					}
 					item.ucInterac.ChangeColorWhenClick();
-					Form1.interactFocus = item.ucInterac;
+					FrmMain.interactFocus = item.ucInterac;
 				}
 			}
 			

@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Form1
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			this.pnContainAll = new System.Windows.Forms.Panel();
 			this.panelRIGHT = new System.Windows.Forms.Panel();
 			this.pnLine2 = new System.Windows.Forms.Panel();

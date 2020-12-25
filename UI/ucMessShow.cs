@@ -28,12 +28,12 @@ namespace UI
 			this.label1.Text = mess;
 			this.ScaleLabel();
 			this.ucParent = ucUserINChatBox;
-			this.label1.ForeColor = Form1.theme.TextColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
 			this.BackColor = Color.Transparent;
 		}
 		public void ChangeTheme()
         {
-			this.label1.ForeColor = Form1.theme.TextColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
 			this.BackColor = Color.Transparent;
 		}
 		public void ScaleLabel()
@@ -60,13 +60,13 @@ namespace UI
         }
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-			if (Form1.chatBoxFocus != ucParent)
+			if (FrmMain.chatBoxFocus != ucParent)
 			{
-				if (Form1.chatBoxFocus != null)
+				if (FrmMain.chatBoxFocus != null)
 				{
-					Form1.chatBoxFocus.DisableMenu();
+					FrmMain.chatBoxFocus.DisableMenu();
 				}
-				Form1.chatBoxFocus = ucParent;
+				FrmMain.chatBoxFocus = ucParent;
 				this.ucParent.EnableMenu();
 			}
             else

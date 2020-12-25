@@ -24,10 +24,10 @@ namespace UI
 			InitializeComponent();
 			this.pnparent = ucUserINChatBox;
 			this.ucmessshow = ucMessShow;
-			this.lbCancel.ForeColor = Form1.theme.TxtForeColor;
-			this.lbSave.ForeColor = Form1.theme.TxtForeColor;
-			this.textBox1.BackColor = Form1.theme.BackColor;
-			this.textBox1.ForeColor = Form1.theme.TxtForeColor;
+			this.lbCancel.ForeColor = FrmMain.theme.TxtForeColor;
+			this.lbSave.ForeColor = FrmMain.theme.TxtForeColor;
+			this.textBox1.BackColor = FrmMain.theme.BackColor;
+			this.textBox1.ForeColor = FrmMain.theme.TxtForeColor;
 			this.textBox1.Text = ucMessShow.GetText();
 			this.Visible = true;
 		}
@@ -41,7 +41,7 @@ namespace UI
 		{
 			byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%" + pnparent.ID + "%" + pnparent.IDParent + "%" + textBox1.Text);
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			ucmessshow.Visible = true;
 			ucmessshow.SetText(textBox1.Text);
 			pnparent._RemoveEditControls(this);

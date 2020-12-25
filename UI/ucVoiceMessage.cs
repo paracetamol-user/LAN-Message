@@ -31,9 +31,9 @@ namespace UI
 			InitializeComponent();
 			this.Path = path;
 			this.userINChatBox = userINChatBox;
-			this.picturePlay.Image = Image.FromFile(Form1.theme.picturePlay02);
-			this.picturePause.Image = Image.FromFile(Form1.theme.picturePause);
-			this.picturePlayBack.Image = Image.FromFile(Form1.theme.pictureStop);
+			this.picturePlay.Image = Image.FromFile(FrmMain.theme.picturePlay02);
+			this.picturePause.Image = Image.FromFile(FrmMain.theme.picturePause);
+			this.picturePlayBack.Image = Image.FromFile(FrmMain.theme.pictureStop);
 			_InitColor();
         }
 

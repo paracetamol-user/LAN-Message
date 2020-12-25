@@ -14,14 +14,14 @@ namespace UI
 {
 	public partial class FrmADDMemberToContact : Form
 	{
-		public Form1 mainForm { get; set; }
+		public FrmMain mainForm { get; set; }
 		public List<User> listUser;
 		public ucContact selectedContactBook;
 		public FrmADDMemberToContact()
 		{
 			InitializeComponent();
 		}
-		public FrmADDMemberToContact(Form1 mainForm)
+		public FrmADDMemberToContact(FrmMain mainForm)
 		{
 			InitializeComponent();
 			this.mainForm = mainForm;
@@ -34,9 +34,9 @@ namespace UI
 		}
 		public void  InitControls()
 		{
-			this.label1.ForeColor = Form1.theme.TextColor;
-			this.picBoxClose.Image = Image.FromFile(Form1.theme.PictureClose);
-			this.BackColor = Form1.theme.BackColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
+			this.picBoxClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
+			this.BackColor = FrmMain.theme.BackColor;
 		}
 		public void ReLocation()
 		{
@@ -52,13 +52,13 @@ namespace UI
 			this.BringToFront();
 			this.listUser.Clear();
 			this.pnUser.Controls.Clear();
-			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			ReLocation();
 			LoadUser();
 		}
 		private void LoadUser()
 		{
-			foreach (var item in Form1.UserUIs)
+			foreach (var item in FrmMain.UserUIs)
 			{
 				if (!selectedContactBook.contactBook._IsInContactBook(item.user) && item.user.IsFriend)
 				{
@@ -84,7 +84,7 @@ namespace UI
 				byte[] tempbuff = Encoding.UTF8.GetBytes("ADDCONTACT%" + item.Id + "%" +
 																   selectedContactBook.contactBook.ID);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 
 				selectedContactBook._AddUser(item);
 			}

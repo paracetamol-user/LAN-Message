@@ -14,7 +14,7 @@ namespace UI
 	{
 		public Group group;
 		public GroupForm groupForm; // Khung chat của Group
-		Form1 mainForm;
+		FrmMain mainForm;
 		public Panel panelINTERACTED;
 		public Panel panelRIGHT;
 
@@ -23,7 +23,7 @@ namespace UI
 		public ucInterac ucGroupInteract;
 		public ucGroupPending ucGroupPending;
 		public ContextMenuStrip cmns { get; set; }
-		public GroupUI(Group group, Form1 mainForm)
+		public GroupUI(Group group, FrmMain mainForm)
 		{
 			this.group = group;
 			this.panelINTERACTED = mainForm.PnInteract;
@@ -39,7 +39,7 @@ namespace UI
 			ucGroupToAdd = new ucGroupToAdd(group);
 			//ucGroupToAdd = new ucGroupToAdd(group);
 		}
-		public Form1 MAINFORM
+		public FrmMain MAINFORM
 		{ 
 			get
             {
@@ -52,18 +52,18 @@ namespace UI
 			cmns = new ContextMenuStrip();
 			cmns.Width = 100;
 			cmns.RenderMode = ToolStripRenderMode.System;
-			cmns.BackColor = Form1.theme.Menu;
+			cmns.BackColor = FrmMain.theme.Menu;
 			cmns.ShowImageMargin = false;
 			ToolStripButton tsAddGroup = new ToolStripButton("ADD Member");
-			tsAddGroup.ForeColor = Form1.theme.TxtForeColor;
+			tsAddGroup.ForeColor = FrmMain.theme.TxtForeColor;
 			ToolStripButton tsOutGroup = new ToolStripButton("Out Group");
-			tsOutGroup.ForeColor = Form1.theme.TxtForeColor;
+			tsOutGroup.ForeColor = FrmMain.theme.TxtForeColor;
 			ToolStripButton tsRemoveGroup = new ToolStripButton("Remove Group");
 			tsRemoveGroup.ForeColor = Color.Red;
 			tsAddGroup.Click += TsAddGroup_Click;
 			tsOutGroup.Click += TsOutGroup_Click;
 			tsRemoveGroup.Click += TsRemoveGroup_Click;
-			if (group.admin != Form1.me) tsRemoveGroup.Visible = false;
+			if (group.admin != FrmMain.me) tsRemoveGroup.Visible = false;
 			cmns.Items.Add(tsAddGroup);
 			cmns.Items.Add(tsOutGroup);
 			cmns.Items.Add(tsRemoveGroup);
@@ -71,7 +71,7 @@ namespace UI
 
         public void ResetTheme()
         {
-			this.groupForm.BackColor = Form1.theme.BackColor;
+			this.groupForm.BackColor = FrmMain.theme.BackColor;
 			this.groupForm.InitColor();
 			InitCmns();
 			ucGroupAll.InitControls();
@@ -83,7 +83,7 @@ namespace UI
 		{
 			groupForm = new GroupForm(group,this);
 			groupForm.TopLevel = false;
-			groupForm.BackColor = Form1.theme.BackColor;
+			groupForm.BackColor = FrmMain.theme.BackColor;
 			groupForm.Dock = DockStyle.Fill;
 			groupForm.InitColor();
 			this.panelRIGHT.Controls.Add(groupForm);
@@ -97,9 +97,9 @@ namespace UI
         private void TsOutGroup_Click(object sender, EventArgs e)
         {
 			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
-			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%"+(group.admin == Form1.me ? "true" : "false") + "%" + Form1.me.Id);
+			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%"+(group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
 			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
 			mainForm.GroupUIs.Remove(this);
 			this.Dispose();
@@ -163,7 +163,7 @@ namespace UI
 		{
 			groupForm.Show();
 			groupForm.BringToFront();
-			Form1.groupFormFocus = this.groupForm;
+			FrmMain.groupFormFocus = this.groupForm;
 		}
 		public void AddGroupInteracted()
 		{

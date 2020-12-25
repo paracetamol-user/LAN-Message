@@ -17,7 +17,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace UI
 {
-	public partial class Form1 : Form
+	public partial class FrmMain : Form
 	{
 		/// <summary>
 		///QUY ĐỊNH NGƯỜI SỬ DỤNG CHƯƠNG TRÌNH CÓ BIẾN LÀ <ME>
@@ -60,11 +60,11 @@ namespace UI
 		public Timer timer;
 		public bool time;
 		public int tick;
-		public Form1()
+		public FrmMain()
 		{
 			InitializeComponent();
 		}
-		public Form1(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
+		public FrmMain(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
 			acceptClose = true;
 			frmLoading = new FrmLoading();
@@ -86,9 +86,9 @@ namespace UI
 			timer.Start();
 			
 			this.loginForm = loginform;
-			Form1.client = client;
-			Form1.server = server;
-			Form1.me = user;
+			FrmMain.client = client;
+			FrmMain.server = server;
+			FrmMain.me = user;
 			theme = new Theme();
 			if (Theme == "Black")
 			{
@@ -208,10 +208,10 @@ namespace UI
 		}
 		private void InitFrmFriend()
 		{
-			Form1.frmFriend = new FrmFriend();
-			Form1.frmFriend.TopLevel = false;
-			Form1.frmFriend.Dock = DockStyle.Fill;
-			panelRIGHT.Controls.Add(Form1.frmFriend);
+			FrmMain.frmFriend = new FrmFriend();
+			FrmMain.frmFriend.TopLevel = false;
+			FrmMain.frmFriend.Dock = DockStyle.Fill;
+			panelRIGHT.Controls.Add(FrmMain.frmFriend);
 		}
 		public void LoadUser()
 		{
@@ -360,7 +360,7 @@ namespace UI
 						string tempFileName = data[3];
 						if (data[4] == "Private")
 						{
-							for (int i = 0; i < Form1.UserUIs.Count; i++)
+							for (int i = 0; i < FrmMain.UserUIs.Count; i++)
 							{
 								if (UserUIs[i].GetId() == tempidNguoiGui)
 								{
@@ -594,7 +594,7 @@ namespace UI
 						int count = 0;
 						for (int j = 0; j < temp.Length; j++)
 						{
-							if (count >= 2)
+							if (count >= 4)
 							{
 								Message = Message + temp[j];
 							}
@@ -683,7 +683,7 @@ namespace UI
 						Package awaitPackage;
 						if (data[2][0] != 'G')
 						{
-							awaitPackage = new Package(data[1], Form1.me.Id, 0, int.Parse(data[2]), "V", "NULL",
+							awaitPackage = new Package(data[1], FrmMain.me.Id, 0, int.Parse(data[2]), "V", "NULL",
 														".wav", data[3], true);
 							listAwaitPackage.Add(awaitPackage);
 						}
@@ -694,6 +694,36 @@ namespace UI
 							listAwaitPackage.Add(awaitPackage);
 						}
 					}
+					else if (action == "REMOVEUSER")
+                    {
+						User temp = new User();
+                        foreach (var item in listUser)
+                        {
+							if (item.Id == data[1])
+                            {
+								temp = item;
+								break;
+                            }
+                        }
+                        foreach (var item in GroupUIs)
+                        {
+							if (item.group.MemberInGroup(temp))
+                            {
+								item.group.RemoveMember(temp.Id);
+							}
+							
+                        }
+                        foreach (var item in UserUIs)
+                        {
+							if (item.user.Id == temp.Id)
+                            {
+								UserUIs.Remove(item);
+								item.Dispose();
+								break;
+                            }
+                        }
+						
+                    }
 				}
 				else if (package.Style == "F")
 				{
@@ -867,10 +897,10 @@ namespace UI
 		}
 		private void btnFriend_Click(object sender, EventArgs e)
 		{
-			if (Form1.userUIForcus != null)
+			if (FrmMain.userUIForcus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				Form1.userUIForcus = null;
+				FrmMain.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				FrmMain.userUIForcus = null;
 			}
 
 			frmFriend.Show();
@@ -881,11 +911,11 @@ namespace UI
 		{
 
 			picNotification.Visible = false;
-			if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
-			if (Form1.userUIForcus != null)
+			if (FrmMain.userFormFocus != null) FrmMain.userFormFocus.Hide();
+			if (FrmMain.userUIForcus != null)
 			{
-				Form1.userUIForcus.ucInterac.ChangeColorWhenNonClick();
-				Form1.userUIForcus = null;
+				FrmMain.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				FrmMain.userUIForcus = null;
 			}
 			serverUsersForm.Show();
 			serverUsersForm.BringToFront();

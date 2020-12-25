@@ -15,10 +15,10 @@ namespace UI
     public partial class frmADD : Form
     {
 		Group selectedGroup;
-		Form1 mainForm;
+		FrmMain mainForm;
 		GroupForm groupForm;
 		public List<User> listAdd;
-		public frmADD(Form1 mainForm)
+		public frmADD(FrmMain mainForm)
 		{
 			InitializeComponent();
 			InitControls();
@@ -32,9 +32,9 @@ namespace UI
 		
 		public void InitControls()
 		{
-			this.BackColor = Form1.theme.BackColor;
-			this.label1.ForeColor = Form1.theme.TextColor;
-			this.picBoxClose.Image = Image.FromFile(Form1.theme.PictureClose);
+			this.BackColor = FrmMain.theme.BackColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
+			this.picBoxClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
 
 		public void InitAddGroupForm(Group selectedGroup)
@@ -44,7 +44,7 @@ namespace UI
 			this.BringToFront();
 			this.selectedGroup = selectedGroup;
 			this.pnUser.Controls.Clear();
-			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			ReLocation();
 			LoadUserOption();
 		}
@@ -54,7 +54,7 @@ namespace UI
 		}
 		private void LoadUserOption()
 		{
-			foreach (var item in Form1.UserUIs)
+			foreach (var item in FrmMain.UserUIs)
 			{
 				if (!selectedGroup.MemberInGroup(item.user) && item.user.IsFriend && item.user.Status)
 				{
@@ -80,7 +80,7 @@ namespace UI
 				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + item.Id + "%" +
 																   selectedGroup.ID + "%" + selectedGroup.Name + "%" + selectedGroup.admin.Id) ;
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
 
 		}

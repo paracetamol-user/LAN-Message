@@ -40,10 +40,10 @@ namespace UI
 		public UserForm(UserManager.User user, UserUI userUI)
 		{
 			InitializeComponent();
-			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
-			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
-			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
-			panelLine.BackColor = Form1.theme.LineColor;
+			this.pictureBox1.Image = Image.FromFile(FrmMain.theme.PicturePlus);
+			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
+			panelLine.BackColor = FrmMain.theme.LineColor;
 			this.userUI = userUI;
 			this.Visible = false;
 			this.user = user;
@@ -69,25 +69,25 @@ namespace UI
 
 		public void ResetPicture()
 		{
-			this.pictureBox1.Image = Image.FromFile(Form1.theme.PicturePlus);
-			this.pictureBoxMenu.Image = Image.FromFile(Form1.theme.PictureMenu);
-			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
+			this.pictureBox1.Image = Image.FromFile(FrmMain.theme.PicturePlus);
+			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
 		}
 		public void ChangeColorLine()
 		{
-			this.panelLine.BackColor = Form1.theme.LineColor;
+			this.panelLine.BackColor = FrmMain.theme.LineColor;
 		}
 		public void InitColor()
 		{
-			this.labelName.ForeColor = Form1.theme.TextColor;
-			this.labelID.ForeColor = Form1.theme.TextMenuColor;
-			panelLine.BackColor = Form1.theme.LineColor;
-			this.BackColor = Form1.theme.BackColor;
-			this.pictureVoice.Image = Image.FromFile(Form1.theme.pictureVoice);
+			this.labelName.ForeColor = FrmMain.theme.TextColor;
+			this.labelID.ForeColor = FrmMain.theme.TextMenuColor;
+			panelLine.BackColor = FrmMain.theme.LineColor;
+			this.BackColor = FrmMain.theme.BackColor;
+			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
 			voicePanel.InitControls();
-			this.TextBoxEnterChat.BackColor = Form1.theme.Menu;
-			this.TextBoxEnterChat.ForeColor = Form1.theme.TxtForeColor;
-			this.panel1.BackColor = Form1.theme.Menu;
+			this.TextBoxEnterChat.BackColor = FrmMain.theme.Menu;
+			this.TextBoxEnterChat.ForeColor = FrmMain.theme.TxtForeColor;
+			this.panel1.BackColor = FrmMain.theme.Menu;
             foreach (var item in userINChatBoxes)
             {
 				item.InitColor();
@@ -103,7 +103,7 @@ namespace UI
 			tempPanel.Dock = DockStyle.Top;
 			tempPanel.AutoSize = true;
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user, this.user.Id);
-			if (user.Id != Form1.me.Id) UserInChatBox.DisableEdit();
+			if (user.Id != FrmMain.me.Id) UserInChatBox.DisableEdit();
 			ucMessShow messShow = new ucMessShow(str, user, UserInChatBox);
 			messShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
@@ -114,7 +114,7 @@ namespace UI
 			UserInChatBox.InitColor();
 			messShow.ChangeTheme();
 
-			if (IDMess == "-1") Form1.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
+			if (IDMess == "-1") FrmMain.listMessAwaitID.Add(UserInChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
 			else UserInChatBox.ID = IDMess;
 			userINChatBoxes.Add(UserInChatBox);
 		}
@@ -137,7 +137,7 @@ namespace UI
 			UserInChatBox.InitColor();
 			fileshow.InitColor();
 
-			if (tempID == "-1") Form1.listFileAwaitID.Add(UserInChatBox);// Thêm vào hàng đợi ID file từ server gửi xuống
+			if (tempID == "-1") FrmMain.listFileAwaitID.Add(UserInChatBox);// Thêm vào hàng đợi ID file từ server gửi xuống
 			else UserInChatBox.ID = tempID;
 			
 			listfileShows.Add(fileshow);
@@ -182,12 +182,12 @@ namespace UI
 			if (TextBoxEnterChat.Text != "")
 			{
 				// Gửi tin nhắn qua server
-				byte[] tempbuff = Encoding.UTF8.GetBytes("SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
+				byte[] tempbuff = Encoding.UTF8.GetBytes("SEND%" + FrmMain.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 				// tạo một panel chat 
-				this.AddItemInToListChat(Form1.me, "-1", this.TextBoxEnterChat.Text);
-				this.userUI.AddMessageIntoInteract(Form1.me.Name, TextBoxEnterChat.Text);
+				this.AddItemInToListChat(FrmMain.me, "-1", this.TextBoxEnterChat.Text);
+				this.userUI.AddMessageIntoInteract(FrmMain.me.Name, TextBoxEnterChat.Text);
 				//clear textbox nhập chat
 				TextBoxEnterChat.Text = "";
 			}
@@ -209,7 +209,7 @@ namespace UI
 			{
 				foreach (var item in files)
 				{
-					AddFileToListChat(Form1.me, "-1", item.Name);
+					AddFileToListChat(FrmMain.me, "-1", item.Name);
 					//Gửi
 					byte[] data = File.ReadAllBytes(item.FullName);
 					Guid id = Guid.NewGuid();
@@ -217,8 +217,8 @@ namespace UI
 					byte[] tempbuff = Encoding.UTF8.GetBytes("STARTSENDFILE%" + user.Id + "%" + data.Length.ToString() + "%" + item.Name + "%" + item.Extension + "%"
 															+ id.ToString() + "%" + "Private");
 					SmallPackage smallpackage = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					Form1.server.GetStream().WriteAsync(smallpackage.Packing(), 0, smallpackage.Packing().Length);
-					await Form1.client.SendFileToServer(data, "F", id.ToString());
+					FrmMain.server.GetStream().WriteAsync(smallpackage.Packing(), 0, smallpackage.Packing().Length);
+					await FrmMain.client.SendFileToServer(data, "F", id.ToString());
 				}
 				this.files.Clear();
 				this.panelListFile.Controls.Clear();
@@ -310,10 +310,10 @@ namespace UI
 
 		private async void pictureBoxSend_Click_1(object sender, EventArgs e)
 		{
-			if (Form1.chatBoxFocus != null)
+			if (FrmMain.chatBoxFocus != null)
 			{
-				Form1.chatBoxFocus.BackColor = Color.Transparent;
-				Form1.chatBoxFocus.DisableMenu();
+				FrmMain.chatBoxFocus.BackColor = Color.Transparent;
+				FrmMain.chatBoxFocus.DisableMenu();
 			}
 			await SendFile();
 			await SendMessage();
@@ -323,10 +323,10 @@ namespace UI
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				if (Form1.chatBoxFocus != null)
+				if (FrmMain.chatBoxFocus != null)
 				{
-					Form1.chatBoxFocus.BackColor = Color.Transparent;
-					Form1.chatBoxFocus.DisableMenu();
+					FrmMain.chatBoxFocus.BackColor = Color.Transparent;
+					FrmMain.chatBoxFocus.DisableMenu();
 				}
 				await SendFile();
 				await SendMessage();

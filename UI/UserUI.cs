@@ -20,8 +20,8 @@ namespace UI
 
 		public UserForm userForm; // Khung Chat của user
 		public User user;
-		public Form1 mainForm;
-		public Panel panelINTERACTED; 
+		public FrmMain mainForm;
+		public Panel panelINTERACTED;
 		public Panel panelRIGHT;
 
 		public ucUserAll ucUserAll;
@@ -35,7 +35,7 @@ namespace UI
 
 		public ContextMenuStrip cmns;
 		public UserUI() { }
-		public UserUI(User user, Form1 mainForm)
+		public UserUI(User user, FrmMain mainForm)
 		{
 			this.user = user;
 			this.mainForm = mainForm;
@@ -57,12 +57,12 @@ namespace UI
 			ucADD = new ucADD(user);
 		}
 
-        public void InitCmns()
-        {
+		public void InitCmns()
+		{
 			cmns = new ContextMenuStrip();
 			cmns.Width = 100;
 			cmns.RenderMode = ToolStripRenderMode.System;
-			cmns.BackColor = Form1.theme.Menu;
+			cmns.BackColor = FrmMain.theme.Menu;
 			cmns.ShowImageMargin = false;
 			ToolStripButton tsAddFriend = new ToolStripButton("ADD Friend");
 			tsAddFriend.Click += TsAddFriend_Click;
@@ -79,16 +79,16 @@ namespace UI
 			DisableRemove();
 		}
 
-        public void ResetTheme()
+		public void ResetTheme()
 		{
-			this.userForm.BackColor = Form1.theme.BackColor;
+			this.userForm.BackColor = FrmMain.theme.BackColor;
 			this.userForm.InitColor();
 			InitCmns();
 			ucUserAll.ResetTheme();
 			ucUserOnline.ResetTheme();
 			ucFriend.ResetTheme();
 			ucADD.InitControls();
-			if (ucPending!= null)ucPending.ResetTheme();
+			if (ucPending != null) ucPending.ResetTheme();
 		}
 		public void ResetPicture()
 		{
@@ -97,14 +97,14 @@ namespace UI
 		}
 		private void InitUserForm()
 		{
-			userForm = new UserForm(user,this);
+			userForm = new UserForm(user, this);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
 		}
 		private void TsRemoveFriend_Click(object sender, EventArgs e)
 		{
 			this.SendRemoveFriendToServer();
-			Form1.frmFriend.RemoveFriend(this);
+			FrmMain.frmFriend.RemoveFriend(this);
 			DisableRemove();
 			EnableADD();
 			this.user.IsFriend = false;
@@ -138,18 +138,18 @@ namespace UI
 		}
 		public async void SendAddFriendToServer()
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + Form1.me.Id + "%" + user.Id);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("PENDING%" + FrmMain.me.Id + "%" + user.Id);
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 		}
 		public async void SendRemoveFriendToServer()
 		{
 			var temp = MessageBox.Show("Remove Friend", "Remove Friend", MessageBoxButtons.YesNo);
 			if (temp == DialogResult.Yes)
 			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + Form1.me.Id + "%" + user.Id);
+				byte[] tempbuff = Encoding.UTF8.GetBytes("REMOVEFRIEND%" + FrmMain.me.Id + "%" + user.Id);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
 		}
 		public void SetAvatar(string path)
@@ -216,7 +216,7 @@ namespace UI
 			// if (Form1.userFormFocus != null) Form1.userFormFocus.Hide();
 			userForm.Show();
 			userForm.BringToFront();
-			Form1.userFormFocus = this.userForm;
+			FrmMain.userFormFocus = this.userForm;
 		}
 		public void AddUserInteracted()
 		{
@@ -237,13 +237,13 @@ namespace UI
 		{
 			return user.Id.ToString();
 		}
-		public async void AddMessage(string IDMess,string mess)
+		public async void AddMessage(string IDMess, string mess)
 		{
-			userForm.AddItemInToListChat(user,IDMess, mess);
-			this.ucInterac.AddMessage(user.Name+": " + mess);
+			userForm.AddItemInToListChat(user, IDMess, mess);
+			this.ucInterac.AddMessage(user.Name + ": " + mess);
 		}
-		public void AddMessageIntoInteract(string name,string mess)
-        {
+		public void AddMessageIntoInteract(string name, string mess)
+		{
 			this.ucInterac.AddMessage(name + ": " + mess);
 		}
 		public bool GetStatus()
@@ -255,12 +255,23 @@ namespace UI
 			this.user.Status = status;
 		}
 		public void EditMessage(string idmess, string newMess)
-        {
+		{
 			this.userForm.EditMessage(idmess, newMess);
-        }
+		}
 		public void DeleteMessage(string IDMess)
-        {
+		{
 			this.userForm.DeleteMessage(IDMess);
-        }
+		}
+		public void Dispose()
+		{
+			this.ucFriend.Dispose();
+			this.ucInterac.Dispose();
+			this.ucPending.Dispose();
+			this.ucUserAll.Dispose();
+			this.ucADD.Dispose();
+			this.ucFriendOnline.Dispose();
+			this.ucSearch.Dispose();
+			this.userForm.Dispose();
+		}
 	}
 }

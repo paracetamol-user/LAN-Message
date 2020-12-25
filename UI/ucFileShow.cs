@@ -42,7 +42,7 @@ namespace UI
 		}
 		public void InitColor()
 		{
-			this.label1.ForeColor = Form1.theme.TextColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
 		}
 
 		public ucUserINChatBox _panelParent
@@ -87,9 +87,9 @@ namespace UI
 		}
 		private async void pictureBox2_Click(object sender, EventArgs e)
 		{
-			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + ucParent.ID + "%" + this.label1.Text );
+			byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + fileId + "%" + fileName );
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			PictureBox temp = sender as PictureBox;
 			//temp.Image = Image.FromFile(@"..\..\images\check.png");
 			//temp.Enabled = false;
@@ -101,14 +101,14 @@ namespace UI
 
 		private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (Form1.chatBoxFocus != ucParent)
+			if (FrmMain.chatBoxFocus != ucParent)
 			{
-				if (Form1.chatBoxFocus != null)
+				if (FrmMain.chatBoxFocus != null)
 				{
 				
-					Form1.chatBoxFocus.DisableMenu();
+					FrmMain.chatBoxFocus.DisableMenu();
 				}
-				Form1.chatBoxFocus = ucParent;
+				FrmMain.chatBoxFocus = ucParent;
 				this.ucParent.EnableMenu();
 			}
 			else return;
