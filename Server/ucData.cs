@@ -25,7 +25,7 @@ namespace Server
 		}
 		public void AddData()
 		{
-			string query = "Select id,tentk,tinhtrang from users";
+			string query = "Select id,username,status from users";
 			SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString() );
 			connection.Open();
 			SqlCommand command = new SqlCommand(query, connection);

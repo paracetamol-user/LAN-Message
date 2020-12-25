@@ -23,11 +23,11 @@ namespace Communication
 		List<UserClient> clientInvalid;
 		string connString;
 		string queryLogin = "select * from USERS";
-		string queryStatusOnline = "UPDATE USERS SET TINHTRANG = 1 WHERE ID = @id";
-		string queryStatusOffline = "UPDATE USERS SET TINHTRANG = 0 WHERE ID = @id";
-		string queryMessage = "insert into TINNHAN values(@id,@idnguoigui,@idnguoinhan,@tinnhan,@loai,@nhomnhan)";
-		string queryChangePassword = "select ID, MATKHAU from USERS where ID = @id";
-		string queryChangeUsername = "select ID, TENTK from USERS where ID = @id or TENTK = @name";
+		string queryStatusOnline = "UPDATE USERS SET STATUS = 1 WHERE ID = @id";
+		string queryStatusOffline = "UPDATE USERS SET STATUS = 0 WHERE ID = @id";
+		string queryMessage = "insert into MESSAGE values(@id,@idnguoigui,@idnguoinhan,@MESSAGE,@loai,@nhomnhan)";
+		string queryChangePassword = "select ID, PASS from USERS where ID = @id";
+		string queryChangeUsername = "select ID, USERNAME from USERS where ID = @id or USERNAME = @name";
 		SqlConnection connection;
 		SqlCommand command;
 		SqlDataReader reader;
@@ -124,13 +124,13 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("INSERT INTO USERS(ID,TENTK,MATKHAU,TINHTRANG,SOURCEAVATAR,THEME) VALUES (@id , @tendangnhap , @matkhau, @tinhtrang,@source,@theme)", connection);
-					command.Parameters.AddWithValue("@id", idfocus.ToString());
-					command.Parameters.AddWithValue("@tendangnhap", data[1]);
-					command.Parameters.AddWithValue("@matkhau", data[2]);
-					command.Parameters.AddWithValue("@tinhtrang", 0);
-					command.Parameters.AddWithValue("@source", "Default");
-					command.Parameters.AddWithValue("@theme", "White");
+					command = new SqlCommand("INSERT INTO USERS(ID,USERNAME,PASS,STATUS,SOURCEAVATAR,THEME) VALUES (@ID , @USERNAME , @PASS, @STATUS,@SOURCE,@THEME)", connection);
+					command.Parameters.AddWithValue("@ID", idfocus.ToString());
+					command.Parameters.AddWithValue("@USERNAME", data[1]);
+					command.Parameters.AddWithValue("@PASS", data[2]);
+					command.Parameters.AddWithValue("@STATUS", 0);
+					command.Parameters.AddWithValue("@SOURCE", "Default");
+					command.Parameters.AddWithValue("@THEME", "White");
 					command.ExecuteNonQuery();
 					// Thêm người dùng mới vào database
 					byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
@@ -268,11 +268,11 @@ namespace Communication
 				Guid id = Guid.NewGuid();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
-				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NGUOINHAN,NOIDUNGTINNHAN) values(@id,@idnguoigui,@idnguoinhan,@tinnhan)", connection);
+				this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE,SENDER,RECEIVER,MESSAGECONTENT) values(@id,@idnguoigui,@idnguoinhan,@MESSAGE)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
 				this.command.Parameters.Add(new SqlParameter("@idnguoinhan", data[2]));
-				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
+				this.command.Parameters.Add(new SqlParameter("@MESSAGE", data[3]));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
 				// Lưu vào database
@@ -313,17 +313,17 @@ namespace Communication
 			}
 			else if (data[0] == "GSEND")
 			{
-				string query = "select USERS.ID, USERS.TENTK " +
+				string query = "select USERS.ID, USERS.USERNAME " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
 						"and MEMBER.IDNHOM = @id";
 				Guid id = Guid.NewGuid();
 				this.connection.Close();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
-				this.command = new SqlCommand("insert into TINNHAN(MATINNHAN,NGUOIGUI,NOIDUNGTINNHAN,NHOMNHAN) values(@id,@idnguoigui,@tinnhan,@nhomnhan)", connection);
+				this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE,SENDER,MESSAGECONTENT,RECEIVINGGROUP) values(@id,@idnguoigui,@MESSAGE,@nhomnhan)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
-				this.command.Parameters.Add(new SqlParameter("@tinnhan", data[3]));
+				this.command.Parameters.Add(new SqlParameter("@MESSAGE", data[3]));
 				this.command.Parameters.Add(new SqlParameter("@nhomnhan", data[1]));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
@@ -358,7 +358,7 @@ namespace Communication
 			}
 			else if (data[0] == "SENDFILE") // SENDFILE - FILEID - FILENAME - ID THẰNG GỬI LÊN
 			{
-				string queryFINDSOURCE = "SELECT * FROM TINNHAN Where MATINNHAN = @id";
+				string queryFINDSOURCE = "SELECT * FROM MESSAGE Where IDMESSAGE = @id";
 				string FILEID = data[1];
 				string FILENAME = data[2];
 				string path = "";
@@ -410,7 +410,7 @@ namespace Communication
 				connection.Close();
 				if (isFound)
 				{
-					string cmdChange = "update USERS set MATKHAU = @mk where ID = @id";
+					string cmdChange = "update USERS set PASS = @mk where ID = @id";
 					connection.Open();
 					command = new SqlCommand(cmdChange, connection);
 					command.Parameters.AddWithValue("@mk", data[3]);
@@ -449,7 +449,7 @@ namespace Communication
 				connection.Close();
 				if (!isExist)
 				{
-					string cmdChange = "update USERS set TENTK = @name where ID = @id";
+					string cmdChange = "update USERS set USERNAME = @name where ID = @id";
 					connection.Open();
 					command = new SqlCommand(cmdChange, connection);
 					command.Parameters.AddWithValue("@id", data[1]);
@@ -551,7 +551,7 @@ namespace Communication
 			}
 			else if (data[0] == "EDITMESSAGE")
 			{
-				string tempquery = "Select * from tinnhan where MATINNHAN = @id ";
+				string tempquery = "Select * from MESSAGE where IDMESSAGE = @id ";
 				string nguoinhan = "";
 				string nhomnhan = "";
 				connection = new SqlConnection(connString);
@@ -585,9 +585,9 @@ namespace Communication
 				{
 					tempBuff = Encoding.UTF8.GetBytes("EDITGROUPMESSAGE%" + data[1] + "%" + nhomnhan + "%" + data[3]);
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-					string query = "select USERS.ID, USERS.TENTK " +
+					string query = "select USERS.ID, USERS.USERNAME " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
-						"and MEMBER.IDNHOM = @id";
+						"and MEMBER.IDGROUP = @id";
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(query, connection);
@@ -625,7 +625,7 @@ namespace Communication
 			}
 			else if (data[0] == "DELETEMESSAGE")
 			{
-				string tempquery = "Select * from tinnhan where MATINNHAN = @id ";
+				string tempquery = "Select * from MESSAGE where IDMESSAGE = @id ";
 				string nguoinhan = "";
 				string nhomnhan = "";
 				connection = new SqlConnection(connString);
@@ -658,9 +658,9 @@ namespace Communication
 				{
 					tempBuff = Encoding.UTF8.GetBytes("DELETEGROUPMESSAGE%" + data[1] + "%" + nhomnhan);
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-					string query = "select USERS.ID, USERS.TENTK " +
+					string query = "select USERS.ID, USERS.USERNAME " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
-						"and MEMBER.IDNHOM = @id";
+						"and MEMBER.IDGROUP = @id";
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(query, connection);
@@ -690,12 +690,12 @@ namespace Communication
 				// goi ve cho tat ca thanh vien cho mot thang moi them vao
 				try
 				{
-					string query = "select USERS.ID, USERS.TENTK " +
+					string query = "select USERS.ID, USERS.USERNAME " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
-						"and MEMBER.IDNHOM = @id";
+						"and MEMBER.IDGROUP = @id";
 					connection.Close();
 					connection.Open();
-					command = new SqlCommand("select IDADMIN from groups where IDNHOM = @id", connection);
+					command = new SqlCommand("select IDADMIN from groups where IDGROUP = @id", connection);
 					command.Parameters.AddWithValue("@id", data[1]);
 					reader = command.ExecuteReader();
 					string temp = "";
@@ -751,8 +751,8 @@ namespace Communication
 				// Xu li Truong hop day goi tin
 				try
 				{
-					string query = "select GROUPS.IDNHOM, TENNHOM, IDADMIN from MEMBER, GROUPS " +
-									"where MEMBER.IDNHOM = GROUPS.IDNHOM " +
+					string query = "select GROUPS.IDGROUP, TENNHOM, IDADMIN from MEMBER, GROUPS " +
+									"where MEMBER.IDGROUP = GROUPS.IDGROUP " +
 									"and MEMBER.IDUSERS = @id";
 					connection.Close();
 					string message = "LOADGROUPDATA";
@@ -765,7 +765,7 @@ namespace Communication
 					{
 						if (!reader.Read()) break;
 						message += string.Format("%{0}•{1}•{2}", reader.GetString(0), reader.GetString(1),reader.GetString(2));
-						query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
+						query = "select ID, USERNAME from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDGROUP = @id";
 						SqlConnection subConnect = new SqlConnection(connString);
 						subConnect.Open();
 						SqlCommand subCommand = new SqlCommand(query, subConnect);
@@ -799,7 +799,7 @@ namespace Communication
 				string GrName = data[1];
 				string IDhost = data[2];
 				byte[] tempBuffer;
-				string query = "select Count(TENNHOM) from groups where TENNHOM = @tennhom";
+				string query = "select Count(GROUPNAME) from groups where GROUPNAME = @tennhom";
 				connection = new SqlConnection(connString);
 				connection.Open();
 				command = new SqlCommand(query, connection);
@@ -817,7 +817,7 @@ namespace Communication
 					connection.Close();
 					connection = new SqlConnection(connString);
 					connection.Open();
-					command = new SqlCommand("Select IDNHOM from groups order by IDNHOM DESC", connection);
+					command = new SqlCommand("Select IDGROUP from groups order by IDGROUP DESC", connection);
 					reader = command.ExecuteReader();
 					while (reader.HasRows)
 					{
@@ -867,7 +867,7 @@ namespace Communication
 				if (isHost)
 				{
 					string newHost = "";
-					string queryCountMember = "select Count(IDUSERS) from member where IDNHOM = @id";
+					string queryCountMember = "select Count(IDUSERS) from member where IDGROUP = @id";
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(queryCountMember, connection);
@@ -878,7 +878,7 @@ namespace Communication
 
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
-						subcommand = new SqlCommand("select IDUSERS from MEMBER where IDNHOM = @id", subconnection);
+						subcommand = new SqlCommand("select IDUSERS from MEMBER where IDGROUP = @id", subconnection);
 						subcommand.Parameters.AddWithValue("@id", IDGR);
 						subReader = subcommand.ExecuteReader();
 						while (subReader.HasRows)
@@ -895,7 +895,7 @@ namespace Communication
 
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
-						command = new SqlCommand("Update groups set IDADMIN = @id where IDNHOM = @idnhom", subconnection);
+						command = new SqlCommand("Update groups set IDADMIN = @id where IDGROUP = @idnhom", subconnection);
 						command.Parameters.AddWithValue("@id", newHost);
 						command.Parameters.AddWithValue("@idnhom", IDGR);
 						command.ExecuteNonQuery();
@@ -904,7 +904,7 @@ namespace Communication
 
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
-						command = new SqlCommand("select IDUSERS from member where IDNHOM = @id", subconnection);
+						command = new SqlCommand("select IDUSERS from member where IDGROUP = @id", subconnection);
 						command.Parameters.AddWithValue("@id", IDGR);
 						subReader = command.ExecuteReader();
 						while (subReader.HasRows)
@@ -925,13 +925,13 @@ namespace Communication
 
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
-						subcommand = new SqlCommand("delete from member where IDNHOM = @idnhom and IDUSERS = @iduser", subconnection);
+						subcommand = new SqlCommand("delete from member where IDNHOM = @IDGROUP and IDUSERS = @iduser", subconnection);
 						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
 						subcommand.Parameters.AddWithValue("@iduser", IDMember);
 						subcommand.ExecuteNonQuery();
 						subconnection.Close();
 
-						string query = "select IDUSERS from MEMBER where IDNHOM = @id";
+						string query = "select IDUSERS from MEMBER where IDGROUP = @id";
 						SqlConnection subConnect = new SqlConnection(connString);
 						subConnect.Open();
 						SqlCommand subCommand = new SqlCommand(query, subConnect);
@@ -955,7 +955,7 @@ namespace Communication
 					}
 					else
 					{
-						string queryRemoveMember = "delete from member where IDNHOM = @idnhom";
+						string queryRemoveMember = "delete from member where IDGROUP = @idnhom";
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
 						subcommand = new SqlCommand(queryRemoveMember, subconnection);
@@ -963,7 +963,7 @@ namespace Communication
 						subcommand.ExecuteNonQuery();
 						subconnection.Close();
 
-						queryRemoveMember = "delete from tinnhan where nhomnhan = @id";
+						queryRemoveMember = "delete from MESSAGE where RECEIVINGGROUP = @id";
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
 						subcommand = new SqlCommand(queryRemoveMember, subconnection);
@@ -971,7 +971,7 @@ namespace Communication
 						subcommand.ExecuteNonQuery();
 						subconnection.Close();
 
-						queryRemoveMember = "delete from groups where IDNHOM = @idnhom";
+						queryRemoveMember = "delete from groups where IDGROUP = @idnhom";
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
 						subcommand = new SqlCommand(queryRemoveMember, subconnection);
@@ -982,7 +982,7 @@ namespace Communication
 				}
 				else
 				{
-					string queryRemoveMember = "delete from member where IDUSERS = @id and IDNHOM = @idnhom";
+					string queryRemoveMember = "delete from member where IDUSERS = @id and IDGROUP = @idnhom";
 					subconnection = new SqlConnection(connString);
 					subconnection.Open();
 					subcommand = new SqlCommand(queryRemoveMember, subconnection);
@@ -991,7 +991,7 @@ namespace Communication
 					subcommand.ExecuteNonQuery();
 					subconnection.Close();
 
-					string query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
+					string query = "select ID, USERNAME from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDGROUP = @id";
 					SqlConnection subConnect = new SqlConnection(connString);
 					subConnect.Open();
 					SqlCommand subCommand = new SqlCommand(query, subConnect);
@@ -1155,7 +1155,7 @@ namespace Communication
 				SqlConnection subconnection;
 				SqlCommand subcommand;
 				SqlDataReader subReader;
-				string queryRemoveMember = "delete from member where IDUSERS = @id and IDNHOM = @idnhom";
+				string queryRemoveMember = "delete from member where IDUSERS = @id and IDGROUP = @idnhom";
 				subconnection = new SqlConnection(connString);
 				subconnection.Open();
 				subcommand = new SqlCommand(queryRemoveMember, subconnection);
@@ -1164,7 +1164,7 @@ namespace Communication
 				subcommand.ExecuteNonQuery();
 				subconnection.Close();
 
-				string query = "select ID, TENTK from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDNHOM = @id";
+				string query = "select ID, USERNAME from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID and IDGROUP = @id";
 				SqlConnection subConnect = new SqlConnection(connString);
 				subConnect.Open();
 				SqlCommand subCommand = new SqlCommand(query, subConnect);
@@ -1264,20 +1264,20 @@ namespace Communication
 										File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
 										// Lưu file vào trong thư mục của server
 										connection.Close();
-										string tinnhan = @"./filedata/" + IDMessage.ToString() + item.Extension.ToString();
+										string MESSAGE = @"./filedata/" + IDMessage.ToString() + item.Extension.ToString();
 										this.connection = new SqlConnection(this.connString);
 										this.connection.Open();
-										this.command = new SqlCommand("insert into TINNHAN(MATINNHAN," +
-																		" NGUOIGUI,NGUOINHAN, NOIDUNGTINNHAN" +
+										this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
+																		" SENDER,RECEIVER, MESSAGECONTENT" +
 																		") values(@id, @idnguoigui,@idnguoinhan," +
-																		" @tinnhan)", connection);
+																		" @MESSAGE)", connection);
 										this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
 										this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
 										this.command.Parameters.Add(new SqlParameter("@idnguoinhan", item.IDreceive));
-										this.command.Parameters.Add(new SqlParameter("@tinnhan", tinnhan));
+										this.command.Parameters.Add(new SqlParameter("@MESSAGE", MESSAGE));
 										this.command.ExecuteNonQuery();
 										this.connection.Close();
-										// Lưu file dưới dạng là 1 tin nhắn trong Database Table TINNHAN
+										// Lưu file dưới dạng là 1 tin nhắn trong Database Table MESSAGE
 										foreach (var item2 in clientInvalid)
 										{
 											if (item2.id_ == item.IDreceive)
@@ -1311,20 +1311,20 @@ namespace Communication
 										connection.Close();
 										this.connection = new SqlConnection(this.connString);
 										this.connection.Open();
-										this.command = new SqlCommand("insert into TINNHAN(MATINNHAN," +
-																		" NGUOIGUI, NOIDUNGTINNHAN," +
-																		" NHOMNHAN) values(@id, @idnguoigui," +
-																		" @tinnhan,@nhomnhan)", connection);
+										this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
+																		" SENDER, MESSAGECONTENT," +
+																		" RECEIVINGGROUP) values(@id, @idnguoigui," +
+																		" @MESSAGE,@nhomnhan)", connection);
 										this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
 										this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
-										this.command.Parameters.Add(new SqlParameter("@tinnhan", @"./filedata\" + IDMessage.ToString() + item.Extension.ToString()));
+										this.command.Parameters.Add(new SqlParameter("@MESSAGE", @"./filedata\" + IDMessage.ToString() + item.Extension.ToString()));
 										this.command.Parameters.Add(new SqlParameter("@nhomnhan", item.IDreceive));
 										this.command.ExecuteNonQuery();
 										this.connection.Close();
-										// Lưu file dưới dạng là 1 tin nhắn trong Database Table TINNHAN
-										string query = "select USERS.ID, USERS.TENTK " +
+										// Lưu file dưới dạng là 1 tin nhắn trong Database Table MESSAGE
+										string query = "select USERS.ID, USERS.USERNAME " +
 														"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
-														"and MEMBER.IDNHOM = @id";
+														"and MEMBER.IDGROUP = @id";
 										connection = new SqlConnection(connString);
 										connection.Open();
 										command = new SqlCommand(query, connection);
@@ -1434,7 +1434,7 @@ namespace Communication
 										string query = "select USERS.ID " +
 											"from MEMBER, USERS " +
 											"where MEMBER.IDUSERS = USERS.ID " +
-											"and MEMBER.IDNHOM = @id";
+											"and MEMBER.IDGROUP = @id";
 
 										byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
 																						item.IDsend, item.IDreceive, item.Length, IDMessage));
