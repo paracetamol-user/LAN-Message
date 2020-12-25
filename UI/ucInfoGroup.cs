@@ -269,13 +269,17 @@ namespace UI
 
         private void label3_Click(object sender, EventArgs e)
         {
-			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
-			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
-			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			DialogResult rs = MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
+			if (rs == DialogResult.Yes)
+            {
+				byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
-			frmMain.GroupUI.Dispose();
-			mainForm.GroupUIs.Remove(frmMain.GroupUI);
+				frmMain.GroupUI.Dispose();
+				mainForm.GroupUIs.Remove(frmMain.GroupUI);
+			}
+			
 		}
 
     }

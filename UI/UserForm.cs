@@ -57,6 +57,7 @@ namespace UI
 			voicePanel = new ucVoicePanel(user, this);
 			this.Controls.Add(voicePanel);
 			this.SizeChanged += UserForm_SizeChanged;
+			this.panel2.SizeChanged += UserForm_SizeChanged;
 			addpnInfo();
 			ucInfoUser._LoadInfoUser(user, listfileShows);
 			InitColor();
@@ -243,7 +244,7 @@ namespace UI
 		public void AddVoiceMessage(User _user, string path)
 		{
 			Panel tempPanel = new Panel();
-			tempPanel.AutoSize = false;
+			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
 
 			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, this.user.Id);

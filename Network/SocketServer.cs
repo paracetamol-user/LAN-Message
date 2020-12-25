@@ -959,7 +959,7 @@ namespace Communication
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
 						subcommand = new SqlCommand("delete from member where IDGROUP = @IDGROUP and IDUSERS = @iduser", subconnection);
-						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
+						subcommand.Parameters.AddWithValue("@IDGROUP", IDGR);
 						subcommand.Parameters.AddWithValue("@iduser", IDMember);
 						subcommand.ExecuteNonQuery();
 						subconnection.Close();
@@ -1185,6 +1185,7 @@ namespace Communication
             {
 				string IDGR = data[1];
 				string IDMember = data[2];
+
 				SqlConnection subconnection;
 				SqlCommand subcommand;
 				SqlDataReader subReader;
@@ -1208,7 +1209,7 @@ namespace Communication
 					if (!subReader.Read()) break;
 					foreach (var item in clientInvalid)
 					{
-						if (item.id_ == subReader.GetString(0))
+						if (item.id_ == subReader.GetString(0) || IDMember == item.id_)
 						{
 							byte[] tempBuffer = Encoding.UTF8.GetBytes(string.Format("OUTGR%{0}%{1}", IDGR, IDMember));
 							packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
@@ -1448,11 +1449,15 @@ namespace Communication
 									if (item.isPrivate)
 									{
 										Guid IDMessage = Guid.NewGuid();
+										byte[] tempBuff = Encoding.UTF8.GetBytes("IDVOICE%" + IDMessage.ToString());
+										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
+										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+										// Gửi ID của file về cho người gửi
 										foreach (var item2 in clientInvalid)
 										{
 											if(item2.id_ == item.IDreceive)
 											{
-												byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
+												tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
 																										item.IDsend, item.Length, IDMessage));
 												SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
 												item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
@@ -1464,12 +1469,16 @@ namespace Communication
 									else
 									{
 										Guid IDMessage = Guid.NewGuid();
+										byte[] tempBuff = Encoding.UTF8.GetBytes("IDVOICE%" + IDMessage.ToString());
+										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
+										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+
 										string query = "select USERS.ID " +
 											"from MEMBER, USERS " +
 											"where MEMBER.IDUSERS = USERS.ID " +
 											"and MEMBER.IDGROUP = @id";
 
-										byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
+										tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
 																						item.IDsend, item.IDreceive, item.Length, IDMessage));
 										SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
 
@@ -1503,9 +1512,9 @@ namespace Communication
 					System.Diagnostics.Debug.WriteLine("Received message: " + (Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')));
 					OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
-						(package.Style == "M" ? ((Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')).Split('%'))[0] : 
-							(package.Style == "F" ? "File" : 
-							(package.Style == "V" ? "Voice" : "Save Avatar")))
+						"Send " + (package.Style == "M" ? ((Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')).Split('%'))[0] :
+							(package.Style == "F" ? "File" :
+							(package.Style == "V" ? "Voice" : "Save Avatar"))) + " To Server"
 					));
 					Array.Clear(buff, 0, buff.Length);
 				}
@@ -1516,6 +1525,7 @@ namespace Communication
 				string getId = client.id_;
 				SendToAll(client, "OFFLINE%" + getId);
 				clientInvalid.Remove(client);
+				clients.Remove(client);
 				connection = new SqlConnection(connString);
 				connection.Open();
 				SqlCommand commandstatus = new SqlCommand(queryStatusOffline, connection);
@@ -1523,7 +1533,7 @@ namespace Communication
 				commandstatus.ExecuteNonQuery();
 				OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
-						"Offline" + getId ));
+						"Client " + getId + " Disconnect" ));
 			}
 		}
 		public void RemoveClient(UserClient client)

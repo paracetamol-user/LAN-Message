@@ -637,9 +637,14 @@ namespace UI
 								if (IDmember == me.Id)
 								{
 									GroupUIs.Remove(item);
+									listGroup.Remove(item.group);
 									item.Dispose();
 								}
-								else item.group.RemoveMember(IDmember);
+								else
+								{
+									item.group.RemoveMember(IDmember);
+								}
+								break;
 							}
 						}
 					}
@@ -952,17 +957,7 @@ namespace UI
 		{
 			this.AddToGroup.ReLocation();
 		}
-		private void panelRIGHT_MouseMove(object sender, MouseEventArgs e)
-		{
-			try
-			{
-				(sender as Button).BackColor = theme.FocusColor;
-			}
-			catch
-			{
-				btnServer.BackColor = theme.FocusColor;
-			}
-		}
+	
 		private void btnGroup_MouseLeave(object sender, EventArgs e)
 		{
 			try

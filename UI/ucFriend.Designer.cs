@@ -198,7 +198,7 @@
             // 
             // roundPicAvatar
             // 
-            this.roundPicAvatar.BackColor = System.Drawing.Color.White;
+            this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(3, 4);
             this.roundPicAvatar.Name = "roundPicAvatar";

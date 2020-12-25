@@ -39,6 +39,9 @@ namespace UI
 		private void picMenu_Click(object sender, EventArgs e)
 		{
 			Parent.cmns.BackColor = FrmMain.theme.Menu;
+			Parent.cmns.Items[0].ForeColor = FrmMain.theme.TxtForeColor;
+			Parent.cmns.Items[1].ForeColor = FrmMain.theme.TxtForeColor;
+			Parent.cmns.Items[2].ForeColor = FrmMain.theme.TxtForeColor;
 			Parent.cmns.Show(MousePosition);
 
 		}
