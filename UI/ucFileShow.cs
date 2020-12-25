@@ -31,7 +31,8 @@ namespace UI
 			this.user = user;
 			this.fileId = fileId;
 			this.fileName = fileName;
-			this._FileName = fileName;
+
+			this.label1.Text = fileName;
 		}
 		public ucFileShow(string fileId, string fileName)
 		{
@@ -39,10 +40,12 @@ namespace UI
 			this.fileId = fileId;
 			this.fileName = fileName;
 			this._FileName = fileName;
+			this.label1.Text = fileName;
 		}
 		public void InitColor()
 		{
 			this.label1.ForeColor = FrmMain.theme.TextColor;
+			this.label1.Text = fileName;
 		}
 
 		public ucUserINChatBox _panelParent
@@ -67,11 +70,11 @@ namespace UI
 		{
 			get
 			{
-				return this.label1.Text;
+				return fileName;
 			}
 			set
 			{
-				this.label1.Text = value;
+				fileName = value;
 			}
 		}
 		public User _User
@@ -89,6 +92,7 @@ namespace UI
 		{
 			try
 			{
+				if (ucParent != null) fileId = ucParent.ID;
 				byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + fileId + "%" + fileName);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);

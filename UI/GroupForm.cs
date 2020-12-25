@@ -104,6 +104,8 @@ namespace UI
 		}
 		public void AddFileToListChat(User user,string IDMess, string tempName)
 		{
+			GroupUI.ucGroupInteract.AddMessage(user.Name + ": " + "Send a file");
+
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
@@ -111,8 +113,8 @@ namespace UI
 			ucUserINChatBox UserInChatBox = new ucUserINChatBox(user, group.ID);
 			ucFileShow fileShow = new ucFileShow(user, IDMess, tempName,UserInChatBox);
 			UserInChatBox.DisableEdit();
-			if (user == FrmMain.me)
-				fileShow._DisableButDownLoad();
+			//if (user == FrmMain.me)
+			//	fileShow._DisableButDownLoad();
 			fileShow.Dock = DockStyle.Top;
 			UserInChatBox.Dock = DockStyle.Top;
 
@@ -231,6 +233,8 @@ namespace UI
 
 		public void AddVoiceMessage(User _user, string path)
         {
+			GroupUI.ucGroupInteract.AddMessage(_user.Name + ": " + "Send a voice");
+
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;

@@ -124,6 +124,8 @@ namespace UI
 		}
 		public void AddFileToListChat(User _user, string tempID, string tempName)
 		{
+			userUI.ucInterac.AddMessage(user.Name + ": " + "Send a file");
+
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;
@@ -259,6 +261,8 @@ namespace UI
 
 		public void AddVoiceMessage(User _user, string path)
 		{
+			userUI.ucInterac.AddMessage(_user.Name + ": " + "Send a voice");
+
 			Panel tempPanel = new Panel();
 			tempPanel.AutoSize = true;
 			tempPanel.Dock = DockStyle.Top;

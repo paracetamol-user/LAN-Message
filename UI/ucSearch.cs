@@ -97,23 +97,6 @@ namespace UI
 		}
 		private void EnableUser(string text)
 		{
-			if (isGr)// này là dành cho search gr
-			{
-				//foreach (var item in GrUIs)
-				//{
-				//	if (item.user.Name.Contains(text))
-				//	{
-				//		if (!pnContain.Contains(item.ucSearch))
-				//		{
-				//			item.AddGroupIntoPanelListSearch(pnContain); // viết lại cái hàm này
-				//		}
-				//		item.ucSearch.Visible = true;
-				//	}
-				//	else item.ucSearch.Visible = false;
-				//}
-			}
-			else
-			{
 				foreach (var item in UserUIs)
 				{
 					if (item.user.Name.Contains(text))
@@ -131,7 +114,6 @@ namespace UI
 					}
 					else item.ucSearch.Visible = false;
 				}
-			} // Cái này là search người trong server
 		}
 		public static string RemoveUnicode(string text)
 		{

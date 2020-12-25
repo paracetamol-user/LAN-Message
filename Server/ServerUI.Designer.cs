@@ -49,10 +49,10 @@
             this.pnLine = new System.Windows.Forms.Panel();
             this.pnM = new System.Windows.Forms.Panel();
             this.pnM__Contain = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtBoxConsole = new System.Windows.Forms.TextBox();
             this.pnLine2 = new System.Windows.Forms.Panel();
             this.pnM__Header = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnM__Header__Info = new System.Windows.Forms.Panel();
             this.btnInfomation = new System.Windows.Forms.Button();
             this.pnM__Header__Console = new System.Windows.Forms.Panel();
@@ -70,8 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStart)).BeginInit();
             this.pnM.SuspendLayout();
             this.pnM__Contain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnM__Header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnM__Header__Info.SuspendLayout();
             this.pnM__Header__Console.SuspendLayout();
             this.pn1.SuspendLayout();
@@ -315,18 +315,6 @@
             this.pnM__Contain.Size = new System.Drawing.Size(563, 479);
             this.pnM__Contain.TabIndex = 10;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(517, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 33);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 9;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
             // txtBoxConsole
             // 
             this.txtBoxConsole.BackColor = System.Drawing.Color.White;
@@ -362,6 +350,18 @@
             this.pnM__Header.Name = "pnM__Header";
             this.pnM__Header.Size = new System.Drawing.Size(563, 56);
             this.pnM__Header.TabIndex = 7;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(517, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(34, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pnM__Header__Info
             // 
@@ -419,7 +419,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(21, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 45);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -455,8 +455,8 @@
             this.pnM.ResumeLayout(false);
             this.pnM__Contain.ResumeLayout(false);
             this.pnM__Contain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnM__Header.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnM__Header__Info.ResumeLayout(false);
             this.pnM__Header__Console.ResumeLayout(false);
             this.pn1.ResumeLayout(false);
