@@ -331,6 +331,16 @@ namespace UI
             this.ptbavata.TabIndex = 1;
             this.ptbavata.TabStop = false;
             // 
+            // ptbavata
+            // 
+            this.ptbavata.BackColor = System.Drawing.SystemColors.Control;
+            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptbavata.Location = new System.Drawing.Point(0, 0);
+            this.ptbavata.Name = "ptbavata";
+            this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.TabIndex = 1;
+            this.ptbavata.TabStop = false;
+            // 
             // ucInfoUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
