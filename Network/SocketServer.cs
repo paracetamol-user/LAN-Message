@@ -265,6 +265,18 @@ namespace Communication
 			}
 			else if (data[0] == "SEND") //"SEND%" + Form1.me.Id + "%" + user.Id + "%" + this.TextBoxEnterChat.Text;				   // SEND  + Id của thằng gửi + ID thằng nhận + tin nhắn
 			{
+				string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+				string Message = "";
+				int count = 0;
+				for (int j = 0; j < temp.Length; j++)
+                {
+					if (count >= 3)
+                    {
+						Message = Message + temp[j];
+                    }
+					else 
+						if (temp[j] == '%') count++;
+				}
 				Guid id = Guid.NewGuid();
 				this.connection = new SqlConnection(this.connString);
 				this.connection.Open();
@@ -272,7 +284,7 @@ namespace Communication
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
 				this.command.Parameters.Add(new SqlParameter("@idnguoinhan", data[2]));
-				this.command.Parameters.Add(new SqlParameter("@MESSAGE", data[3]));
+				this.command.Parameters.Add(new SqlParameter("@MESSAGE", Message));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
 				// Lưu vào database
@@ -290,7 +302,7 @@ namespace Communication
 						try
 						{
 							buffMessage = new byte[1024];
-							tempBuff = Encoding.UTF8.GetBytes("MESSAGE%" + id.ToString() + "%" + data[3] + "%" + data[1]);
+							tempBuff = Encoding.UTF8.GetBytes("MESSAGE%" + id.ToString() + "%" + data[1] + "%" + Message);
 							packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
 							await item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 						}
@@ -316,6 +328,18 @@ namespace Communication
 				string query = "select USERS.ID, USERS.USERNAME " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
 						"and MEMBER.IDNHOM = @id";
+				string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+				string Message = "";
+				int count = 0;
+				for (int j = 0; j < temp.Length; j++)
+				{
+					if (count >= 2)
+					{
+						Message = Message + temp[j];
+					}
+					else
+						if (temp[j] == '%') count++;
+				}
 				Guid id = Guid.NewGuid();
 				this.connection.Close();
 				this.connection = new SqlConnection(this.connString);
@@ -323,7 +347,7 @@ namespace Communication
 				this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE,SENDER,MESSAGECONTENT,RECEIVINGGROUP) values(@id,@idnguoigui,@MESSAGE,@nhomnhan)", connection);
 				this.command.Parameters.Add(new SqlParameter("@id", id.ToString()));
 				this.command.Parameters.Add(new SqlParameter("@idnguoigui", client.id_));
-				this.command.Parameters.Add(new SqlParameter("@MESSAGE", data[3]));
+				this.command.Parameters.Add(new SqlParameter("@MESSAGE", Message));
 				this.command.Parameters.Add(new SqlParameter("@nhomnhan", data[1]));
 				this.command.ExecuteNonQuery();
 				this.connection.Close();
@@ -341,7 +365,7 @@ namespace Communication
 				{
 					if (!reader.Read()) break;
 					// groupid, userid, message
-					string mess = string.Format("GSEND%{0}%{1}%{2}%{3}", data[1], data[2], data[3], id.ToString());
+					string mess = string.Format("GSEND%{0}%{1}%{2}%{3}", data[1], data[2], id.ToString() , Message);
 					buffMessage = new byte[1024];
 					tempBuff = Encoding.UTF8.GetBytes(mess);
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
