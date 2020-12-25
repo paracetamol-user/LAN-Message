@@ -58,15 +58,12 @@ namespace UI
 			tsAddGroup.ForeColor = FrmMain.theme.TxtForeColor;
 			ToolStripButton tsOutGroup = new ToolStripButton("Out Group");
 			tsOutGroup.ForeColor = FrmMain.theme.TxtForeColor;
-			ToolStripButton tsRemoveGroup = new ToolStripButton("Remove Group");
-			tsRemoveGroup.ForeColor = FrmMain.theme.TxtForeColor;
+
 			tsAddGroup.Click += TsAddGroup_Click;
 			tsOutGroup.Click += TsOutGroup_Click;
-			tsRemoveGroup.Click += TsRemoveGroup_Click;
-			if (group.admin != FrmMain.me) tsRemoveGroup.Visible = false;
+	
 			cmns.Items.Add(tsAddGroup);
 			cmns.Items.Add(tsOutGroup);
-			cmns.Items.Add(tsRemoveGroup);
 		}
 
         public void ResetTheme()
@@ -85,7 +82,6 @@ namespace UI
 			groupForm.TopLevel = false;
 			groupForm.BackColor = FrmMain.theme.BackColor;
 			groupForm.Dock = DockStyle.Fill;
-			groupForm.InitColor();
 			this.panelRIGHT.Controls.Add(groupForm);
 		}
         private void TsRemoveGroup_Click(object sender, EventArgs e)

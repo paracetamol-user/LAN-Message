@@ -30,19 +30,21 @@ namespace UI
 			locationlabel(ref lbName, pnavata_name);
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);
+			this.frmMain.Pncontaininfo.Controls.Add(this);
+			this.Dock = DockStyle.Top;
 			pnaddfile.Visible = false;
 		}
 
 
 		public void InitControls()
 		{
-			this.frmMain.Pncontaininfo.Controls.Add(this);
-			this.Dock = DockStyle.Top;
+			
 			this.lbaddfriend.ForeColor = FrmMain.theme.TextColor;
 			this.lbclearhistory.ForeColor = FrmMain.theme.TextColor;
 			this.lbfilesent.ForeColor = FrmMain.theme.TextColor;
 			this.lbName.ForeColor = FrmMain.theme.TextColor;
 			this.lbID.ForeColor = FrmMain.theme.TextColor;
+			this.lbRemove.ForeColor = FrmMain.theme.TextColor;
 			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.pictureArrow);
 			this.ChangeColorLine();
 		}
@@ -84,7 +86,9 @@ namespace UI
 			if (user.IsFriend)
 			{
 				pnaddfriend.Visible = false;
+				pnRemoveFriend.Visible = true;
 			}
+			else pnRemoveFriend.Visible = false;
 		}
 		public void _addfileinfilesent(List<ucFileShow> listfileShows)
 		{

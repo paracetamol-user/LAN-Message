@@ -335,6 +335,7 @@
             this.txtBoxConsole.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxConsole.Location = new System.Drawing.Point(47, 122);
             this.txtBoxConsole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBoxConsole.MaxLength = 5;
             this.txtBoxConsole.Multiline = true;
             this.txtBoxConsole.Name = "txtBoxConsole";
             this.txtBoxConsole.ReadOnly = true;

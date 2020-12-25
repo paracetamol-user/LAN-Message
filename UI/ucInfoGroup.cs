@@ -48,6 +48,8 @@ namespace UI
 			
 			this.mainForm = this.frmMain.GroupUI.MAINFORM;
 			this.frmADD = new frmADD(mainForm);
+			this.frmMain.Pncontaininfor.Controls.Add(this);
+			this.Dock = DockStyle.Top;
 		}
 		public void locationlabel(ref Label a, Panel b)
 		{
@@ -61,18 +63,14 @@ namespace UI
 		}
 		public void InitControls()
 		{
-
-			this.frmMain.Pncontaininfor.Controls.Add(this);
-			this.Dock = DockStyle.Top;
-		   // this.BackColor = Form1.theme.Menu;
-			//mau chu
-
 			this.lbclearhistory.ForeColor = FrmMain.theme.TextColor;
 			this.lbmember.ForeColor = FrmMain.theme.TextColor;
 			this.lbName.ForeColor = FrmMain.theme.TextColor;
 			this.lbID.ForeColor = FrmMain.theme.TextColor;
 			this.label1.ForeColor = FrmMain.theme.TextColor;
 			this.label2.ForeColor = FrmMain.theme.TextColor;
+			this.label3.ForeColor = FrmMain.theme.TextColor;
+			
 			pictureBoxMenufile.Image = Image.FromFile(FrmMain.theme.pictureArrow);
 			pictureBoxMenumember.Image = Image.FromFile(FrmMain.theme.pictureArrow);
 			//mau line
@@ -86,7 +84,7 @@ namespace UI
 			this.pnLine8.BackColor = FrmMain.theme.LineColor;
 			this.pnLine11.BackColor = FrmMain.theme.LineColor;
 			this.pnLine12.BackColor = FrmMain.theme.LineColor;
-			this.frmMain.PnLine1.BackColor = this.pnLine1.BackColor;
+			this.frmMain.PnLine1.BackColor = FrmMain.theme.LineColor ;
 			this.pnLine3.BackColor = FrmMain.theme.LineColor;
 		}
 		public void _LoadInfoGroup(Group group, List<ucFileShow> listfileShows)
@@ -105,7 +103,7 @@ namespace UI
 
 			listmember = new List<User>(group.GetMembers());
 			_addmember(listmember);
-
+			
 		}
 		public void _addfileinfilesent(List<ucFileShow> listfileShows)
 		{
@@ -151,7 +149,6 @@ namespace UI
 						
 						listuser.Add(tam);
 					}
-					
 				}
 				for (int i = 0; i < listmember.Count; i++)
 				{
@@ -272,13 +269,18 @@ namespace UI
 
         private void label3_Click(object sender, EventArgs e)
         {
-			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
-			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
-			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			DialogResult rs = MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
+			if (rs == DialogResult.Yes)
+            {
+				byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
-			frmMain.GroupUI.Dispose();
-			mainForm.GroupUIs.Remove(frmMain.GroupUI);
+				frmMain.GroupUI.Dispose();
+				mainForm.GroupUIs.Remove(frmMain.GroupUI);
+			}
+			
 		}
+
     }
 }
