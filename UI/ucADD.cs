@@ -28,10 +28,10 @@ namespace UI
 		}
 		public void InitControls()
 		{
-			this.label1.ForeColor = Form1.theme.TextColor;
-			this.label2.ForeColor = Form1.theme.TextColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
+			this.label2.ForeColor = FrmMain.theme.TextColor;
 			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
-			this.button1.ForeColor = Form1.theme.TxtForeColor;
+			this.button1.ForeColor = FrmMain.theme.TxtForeColor;
 		}
 		public void Reset()
         {

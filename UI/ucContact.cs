@@ -17,12 +17,12 @@ namespace UI
 		public ContactBook contactBook { get; set; }
 		public FrmContactBook FrmContactBook { get; set; }
 		public List<ucContact__User> listContact__User;
-		public Form1 mainForm;
+		public FrmMain mainForm;
 		public ucContact()
 		{
 			InitializeComponent();
 		}
-		public ucContact(ContactBook contactBook ,FrmContactBook frmContactBook , Form1 mainForm)
+		public ucContact(ContactBook contactBook ,FrmContactBook frmContactBook , FrmMain mainForm)
 		{
 			this.contactBook = contactBook;
 			this.mainForm = mainForm;
@@ -44,11 +44,11 @@ namespace UI
 		}
 		public void _InitControls()
 		{
-			this.pnHeader.BackColor = Form1.theme.Menu;
-			this.lbNameContact.ForeColor = Form1.theme.TextColor;
-			this.pictureAdd.Image = Image.FromFile(Form1.theme.pictureAdd);
-			this.pictureDelete.Image = Image.FromFile(Form1.theme.PictureMinus);
-			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.pnHeader.BackColor = FrmMain.theme.Menu;
+			this.lbNameContact.ForeColor = FrmMain.theme.TextColor;
+			this.pictureAdd.Image = Image.FromFile(FrmMain.theme.pictureAdd);
+			this.pictureDelete.Image = Image.FromFile(FrmMain.theme.PictureMinus);
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			this.lbNameContact.Text = contactBook.Name;
 			foreach (var item in listContact__User)
 			{
@@ -91,7 +91,7 @@ namespace UI
 			{
 				byte[] buff = Encoding.UTF8.GetBytes("DELETECONTACT%" + this._ID);
 				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "Server");
-				Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
 				_RemoveThis();
 			}

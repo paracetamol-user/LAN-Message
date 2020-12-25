@@ -26,9 +26,9 @@ namespace UI
 		{
 			InitializeComponent();
 			//this.BackColor = Form1.theme.FocusColor;
-			this.textBox1.BackColor = Form1.theme.FocusColor;
-			this.textBox1.ForeColor = Form1.theme.TextColor;
-			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
+			this.textBox1.BackColor = FrmMain.theme.FocusColor;
+			this.textBox1.ForeColor = FrmMain.theme.TextColor;
+			this.picSearch.Image = Image.FromFile(FrmMain.theme.PictureSearch);
 			this.UserUIs = userUIs;
 			this.pnContain = pnContain;
 			this.Dock = DockStyle.Fill;
@@ -43,9 +43,9 @@ namespace UI
         //}
         public void ResetTheme()
 		{
-			this.textBox1.BackColor = Form1.theme.FocusColor;
-			this.textBox1.ForeColor = Form1.theme.TxtForeColor;
-			this.picSearch.Image = Image.FromFile(Form1.theme.PictureSearch);
+			this.textBox1.BackColor = FrmMain.theme.FocusColor;
+			this.textBox1.ForeColor = FrmMain.theme.TxtForeColor;
+			this.picSearch.Image = Image.FromFile(FrmMain.theme.PictureSearch);
 		}
 		public void InitColor()
 		{

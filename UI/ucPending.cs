@@ -33,19 +33,19 @@ namespace UI
 		}
 		public void ResetTheme()
         {
-			this.picCheck.Image = Image.FromFile(Form1.theme.PictureCheck);
-			this.picClose.Image = Image.FromFile(Form1.theme.PictureClose);
+			this.picCheck.Image = Image.FromFile(FrmMain.theme.PictureCheck);
+			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
 		public void InitColor()
 		{
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbId.ForeColor = Form1.theme.TextMenuColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbId.ForeColor = FrmMain.theme.TextMenuColor;
 			//this.BackColor = Form1.theme.BackColor;
 			this.BackColor = Color.Transparent;
 		}
 		private void pnContain_MouseMove(object sender, MouseEventArgs e)
 		{
-			this.BackColor = Form1.theme.FocusColor;
+			this.BackColor = FrmMain.theme.FocusColor;
 		}
 
 		private void pnContain_MouseLeave(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace UI
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-			Form1.frmFriend.AddUserIntoFrmFriend(uiParent);
+			FrmMain.frmFriend.AddUserIntoFrmFriend(uiParent);
 			uiParent.DisableADD();
 			uiParent.EnableRemove();
 			uiParent.user.IsFriend = true;
@@ -70,9 +70,9 @@ namespace UI
 
         private async void SendAcceptFriendToServer()
         {
-			byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + Form1.me.Id + "%" + uiParent.user.Id);
+			byte[] tempbuff = Encoding.UTF8.GetBytes("ACCEPTFRIEND%" + FrmMain.me.Id + "%" + uiParent.user.Id);
 			SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 		}
     }
 }

@@ -15,9 +15,9 @@ namespace UI
 	public partial class AddUserToGroup : Form
 	{
 		User selectedUser;
-		Form1 mainForm;
+		FrmMain mainForm;
 		public List<Group> listAdd;
-		public AddUserToGroup(Form1 mainForm)
+		public AddUserToGroup(FrmMain mainForm)
 		{
 			InitializeComponent();
 			InitControls();
@@ -32,7 +32,7 @@ namespace UI
 
 		public void InitControls()
         {
-			this.BackColor = Form1.theme.BackColor;
+			this.BackColor = FrmMain.theme.BackColor;
 		}
 
         public void InitAddGroupForm(User selectedUser)
@@ -42,7 +42,7 @@ namespace UI
 			this.BringToFront();
 			this.selectedUser = selectedUser;
 			this.pnGroup.Controls.Clear();
-			this.pnLine.BackColor = Form1.theme.LineColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			LoadGroupOption();
 		}
 		public void ReLocation()
@@ -76,7 +76,7 @@ namespace UI
             {
 				byte[] tempbuff = Encoding.UTF8.GetBytes("GPENDING%" + selectedUser.Id + "%" + item.ID + "%" + item.Name + "%" + item.admin.Id);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 			}
 			
 		}

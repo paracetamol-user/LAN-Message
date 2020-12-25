@@ -58,14 +58,14 @@ namespace UI
 		}
 		public void ResetPicture()
         {
-			this.picClose.Image = Image.FromFile(Form1.theme.PictureClose);
+			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
         }
 		public void InitColor()
 		{
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbMess.ForeColor = Form1.theme.TextMenuColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbMess.ForeColor = FrmMain.theme.TextMenuColor;
 			this.BackColor = Color.Transparent;
-			this.picClose.Image = Image.FromFile(Form1.theme.PictureClose);
+			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
 		public void SetAvatar(string path)
 		{
@@ -74,13 +74,13 @@ namespace UI
 		public void Online()
 		{
 			this.Status = true;
-			picStatus.Image = Image.FromFile(Form1.theme.pictureCircleOnline);
+			picStatus.Image = Image.FromFile(FrmMain.theme.pictureCircleOnline);
 			picStatus.Visible = true;
 		}
 		public void Offline()
 		{
 			this.Status = false;
-			picStatus.Image = Image.FromFile(Form1.theme.pictureCircleOffline);
+			picStatus.Image = Image.FromFile(FrmMain.theme.pictureCircleOffline);
 			picStatus.Visible = true;
 		}
 		public void AddMessage(string mess)
@@ -91,7 +91,7 @@ namespace UI
         }
 		public void ChangeColorWhenClick()
 		{
-			this.BackColor = Form1.theme.FocusColor;
+			this.BackColor = FrmMain.theme.FocusColor;
 		}
 		public void ChangeColorWhenNonClick()
 		{
@@ -107,7 +107,7 @@ namespace UI
 			this.isGroup = true;
 			this.GroupUI = groupUI;
 			this.picStatus.Visible = true;
-			picStatus.Image = Image.FromFile(Form1.theme.pictureCircleOnline);
+			picStatus.Image = Image.FromFile(FrmMain.theme.pictureCircleOnline);
 		}
 		private void pnContain_Click(object sender, EventArgs e)
 		{
@@ -119,16 +119,16 @@ namespace UI
             {
 				UserUI.ShowChatForm();
 			}
-			if (Form1.interactFocus != null && Form1.interactFocus != this)
+			if (FrmMain.interactFocus != null && FrmMain.interactFocus != this)
 			{
-				Form1.interactFocus.ChangeColorWhenNonClick();
+				FrmMain.interactFocus.ChangeColorWhenNonClick();
 				this.ChangeColorWhenClick();
-				Form1.interactFocus = this;
+				FrmMain.interactFocus = this;
 			}
-			else if (Form1.interactFocus == null)
+			else if (FrmMain.interactFocus == null)
 			{
 				this.ChangeColorWhenClick();
-				Form1.interactFocus = this;
+				FrmMain.interactFocus = this;
 			}
 		}
         private void picClose_Click(object sender, EventArgs e)

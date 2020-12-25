@@ -14,13 +14,13 @@ namespace UI
 {
 	public partial class FrmContactBook : Form
 	{
-		public Form1 mainForm;
+		public FrmMain mainForm;
 		public List<ucContact> listContact;
 		public FrmContactBook()
 		{
 			InitializeComponent();
 		}
-		public FrmContactBook(Form1 mainForm)
+		public FrmContactBook(FrmMain mainForm)
 		{
 			this.mainForm = mainForm;
 			this.listContact = new List<ucContact>();
@@ -33,12 +33,12 @@ namespace UI
 		}
 		public void _InitControls()
 		{
-			this.BackColor = Form1.theme.BackColor;
-			this.pnLine.BackColor = Form1.theme.LineColor;
-			this.textBox1.BackColor = Form1.theme.FocusColor;
-			this.textBox1.ForeColor = Form1.theme.TextColor;
-			this.btnCreate.ForeColor = Form1.theme.TextColor;
-			this.lbContactBook.ForeColor = Form1.theme.TextColor;
+			this.BackColor = FrmMain.theme.BackColor;
+			this.pnLine.BackColor = FrmMain.theme.LineColor;
+			this.textBox1.BackColor = FrmMain.theme.FocusColor;
+			this.textBox1.ForeColor = FrmMain.theme.TextColor;
+			this.btnCreate.ForeColor = FrmMain.theme.TextColor;
+			this.lbContactBook.ForeColor = FrmMain.theme.TextColor;
 			foreach (var item in listContact)
 			{
 				item._InitControls();
@@ -71,7 +71,7 @@ namespace UI
 		{
 			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}",this.textBox1.Text));
 			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
-			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 			textBox1.Clear();
 		}
 	}

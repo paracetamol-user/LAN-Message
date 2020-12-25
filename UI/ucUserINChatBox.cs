@@ -36,22 +36,22 @@ namespace UI
 			this.User = _User;
 			this.IDParent = idParent;
 			this.labelName.Text = User.Name;
-			if (this.User == Form1.me)
+			if (this.User == FrmMain.me)
 			{
-				roundPicAvatar.Image = Image.FromFile(Form1.me.AvatarPath);
+				roundPicAvatar.Image = Image.FromFile(FrmMain.me.AvatarPath);
 			}
 			else roundPicAvatar.Image = Image.FromFile(User.AvatarPath);
-			this.labelName.ForeColor = Form1.theme.TextColor;
-			this.picEdit.Image = Image.FromFile(Form1.theme.picturePen);
-			this.picDelete.Image = Image.FromFile(Form1.theme.pictureBin);
+			this.labelName.ForeColor = FrmMain.theme.TextColor;
+			this.picEdit.Image = Image.FromFile(FrmMain.theme.picturePen);
+			this.picDelete.Image = Image.FromFile(FrmMain.theme.pictureBin);
 			this.BackColor = Color.Transparent;
 		}
 		public void InitColor()
 		{
-			this.labelName.ForeColor = Form1.theme.TextColor;
+			this.labelName.ForeColor = FrmMain.theme.TextColor;
 			this.BackColor = Color.Transparent;
-			this.picEdit.Image = Image.FromFile(Form1.theme.picturePen);
-			this.picDelete.Image = Image.FromFile(Form1.theme.pictureBin);
+			this.picEdit.Image = Image.FromFile(FrmMain.theme.picturePen);
+			this.picDelete.Image = Image.FromFile(FrmMain.theme.pictureBin);
 		}
 		public void EnableMenu()
         {
@@ -101,7 +101,7 @@ namespace UI
 			DialogResult temp = MessageBox.Show("Are you sure delete this message", "Delete Message", MessageBoxButtons.OKCancel);
 			if (temp == DialogResult.OK)
 			{
-				if (this.User.Id != Form1.me.Id)
+				if (this.User.Id != FrmMain.me.Id)
                 {
 					this.Visible = false;
                 } 
@@ -109,7 +109,7 @@ namespace UI
 				{
 					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
 					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 					this.ucfileshow.DeleteMessage();
 					this.DisableEdit();
 					this.DisableDelete();
@@ -119,7 +119,7 @@ namespace UI
 
 					byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
 					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-					Form1.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 					this.ucmessshow.DeleteMessage();
 					this.DisableEdit();
 					this.DisableDelete();
@@ -141,13 +141,13 @@ namespace UI
 		}
 		private void panel1_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (Form1.chatBoxFocus != this)
+			if (FrmMain.chatBoxFocus != this)
 			{
-				if (Form1.chatBoxFocus != null)
+				if (FrmMain.chatBoxFocus != null)
 				{
-					Form1.chatBoxFocus.DisableMenu();
+					FrmMain.chatBoxFocus.DisableMenu();
 				}
-				Form1.chatBoxFocus = this;
+				FrmMain.chatBoxFocus = this;
 				this.EnableMenu();
 				this.pnMenu.Visible = true;
 			}

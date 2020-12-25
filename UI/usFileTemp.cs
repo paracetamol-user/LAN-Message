@@ -30,10 +30,10 @@ namespace UI
         }
         public void InitColor()
         {
-            this.labelFileName.ForeColor = Form1.theme.TextColor;
+            this.labelFileName.ForeColor = FrmMain.theme.TextColor;
             //this.BackColor = Form1.theme.BackColor;
-            this.BackColor = Form1.theme.FocusColor;
-            this.pictureBoxClose.Image = Image.FromFile(Form1.theme.PictureClose);
+            this.BackColor = FrmMain.theme.FocusColor;
+            this.pictureBoxClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 
         }
         public string _FileName

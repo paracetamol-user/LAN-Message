@@ -158,6 +158,15 @@ namespace Communication
 						if (reader.Read() == false) break;
 						if (data[1] == reader.GetString(1) && data[2] == reader.GetString(2))
 						{
+							if (reader.GetBoolean(3))
+                            {
+								tempBuff = Encoding.UTF8.GetBytes("ERRORLOGINED");
+								SmallPackage smallPackage = new SmallPackage(0, package.Length, package.Style, tempBuff, "0");
+								buffMessage = smallPackage.Packing();
+								client.client_.GetStream().WriteAsync(buffMessage, 0, buffMessage.Length);
+								check = false;
+								break;
+							}
 							tempBuff = Encoding.UTF8.GetBytes("LOGINOKE%" + reader.GetString(0) + "%" + reader.GetString(5));
 							SmallPackage tempPackage = new SmallPackage(0, package.Length, package.Style, tempBuff, "0");
 							buffMessage = tempPackage.Packing();
@@ -327,13 +336,13 @@ namespace Communication
 			{
 				string query = "select USERS.ID, USERS.USERNAME " +
 						"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
-						"and MEMBER.IDNHOM = @id";
+						"and MEMBER.IDGROUP = @id";
 				string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
 				string Message = "";
 				int count = 0;
 				for (int j = 0; j < temp.Length; j++)
 				{
-					if (count >= 2)
+					if (count >= 3)
 					{
 						Message = Message + temp[j];
 					}
@@ -949,7 +958,7 @@ namespace Communication
 
 						subconnection = new SqlConnection(connString);
 						subconnection.Open();
-						subcommand = new SqlCommand("delete from member where IDNHOM = @IDGROUP and IDUSERS = @iduser", subconnection);
+						subcommand = new SqlCommand("delete from member where IDGROUP = @IDGROUP and IDUSERS = @iduser", subconnection);
 						subcommand.Parameters.AddWithValue("@idnhom", IDGR);
 						subcommand.Parameters.AddWithValue("@iduser", IDMember);
 						subcommand.ExecuteNonQuery();
@@ -1601,5 +1610,14 @@ namespace Communication
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
 			}
 		}
+		public async Task NotificationRemoveUser(string ID)
+        {
+            foreach (var item in clientInvalid)
+            {
+				byte[] buffer = Encoding.UTF8.GetBytes(string.Format("REMOVEUSER%{0}",ID));
+				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buffer, "Client");
+				item.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+            }
+        }
 	}
 }

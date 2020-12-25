@@ -19,13 +19,13 @@ namespace UI
 		Button btnFocus;
 		public FileInfo fi;
 		public User me;
-		public Form1 parent;
+		public FrmMain parent;
 		LoginForm loginForm;
 		public SettingForm()
 		{
 			InitializeComponent();
 		}
-		public SettingForm(User me, Form1 parent , LoginForm loginForm)
+		public SettingForm(User me, FrmMain parent , LoginForm loginForm)
 		{
 			InitializeComponent(); 
 			this.me = me;
@@ -49,20 +49,20 @@ namespace UI
 			this.TopLevel = false;
 			this.parent.Controls.Add(this);
 			this.Dock = DockStyle.Fill;
-			this.BackColor = Form1.theme.BackColor;
+			this.BackColor = FrmMain.theme.BackColor;
 			this.ChangeColorPanelControl();
 			this.ChangeColorLine();
         }
 
         public void ChangeColorPanelControl()
 		{
-			this.pnMenu.BackColor = Form1.theme.Menu;
-			this.pnPassword.BackColor = Form1.theme.FocusColor;
-			this.btnEditPassword.BackColor = Form1.theme.BackColor;
-			this.btnSave.BackColor = Form1.theme.FocusColor;
-			this.btnSave.ForeColor = Form1.theme.TxtForeColor;
-			this.btnSavePassword.ForeColor = Form1.theme.TxtForeColor;
-			this.btnSavePassword.BackColor = Form1.theme.BackColor;
+			this.pnMenu.BackColor = FrmMain.theme.Menu;
+			this.pnPassword.BackColor = FrmMain.theme.FocusColor;
+			this.btnEditPassword.BackColor = FrmMain.theme.BackColor;
+			this.btnSave.BackColor = FrmMain.theme.FocusColor;
+			this.btnSave.ForeColor = FrmMain.theme.TxtForeColor;
+			this.btnSavePassword.ForeColor = FrmMain.theme.TxtForeColor;
+			this.btnSavePassword.BackColor = FrmMain.theme.BackColor;
 		}
 		public void ChangeColorAllLabelControl(Control x)
 		{
@@ -70,29 +70,29 @@ namespace UI
 			{
 				if (item.GetType() == typeof(Label))
 				{
-					(item as Label).ForeColor = Form1.theme.TextColor;
+					(item as Label).ForeColor = FrmMain.theme.TextColor;
 
 				}
 				else
 				if (item.GetType() == typeof(Button))
 				{
-					(item as Button).ForeColor = Form1.theme.TextColor;
+					(item as Button).ForeColor = FrmMain.theme.TextColor;
 				}
 				else if (item.GetType() == typeof(RadioButton))
 				{
-					(item as RadioButton).ForeColor = Form1.theme.TextColor;
+					(item as RadioButton).ForeColor = FrmMain.theme.TextColor;
 				}
 				ChangeColorAllLabelControl(item as Control);
 			}
 		}
 		public void ChangeColorLine()
 		{
-			this.pnLine2.BackColor = Form1.theme.LineColor;
-			this.panelLine1.BackColor = Form1.theme.LineColor;
+			this.pnLine2.BackColor = FrmMain.theme.LineColor;
+			this.panelLine1.BackColor = FrmMain.theme.LineColor;
 		}
 		public void ResetPicture()
 		{
-			this.pictureBox2.Image = Image.FromFile(Form1.theme.PictureCancel);
+			this.pictureBox2.Image = Image.FromFile(FrmMain.theme.PictureCancel);
 		}
 		private void InitStartForm()
 		{
@@ -100,7 +100,7 @@ namespace UI
 			this.pnMyAccount.BringToFront();
 			this.pnMyAccount.Dock = DockStyle.Fill;
 			this.pnMyAccount.Visible = true;
-			this.btnMyAccount.BackColor = Form1.theme.FocusColor;
+			this.btnMyAccount.BackColor = FrmMain.theme.FocusColor;
 			this.btnFocus = this.btnMyAccount;
 		}
 
@@ -111,11 +111,11 @@ namespace UI
 			UserVerification verification = new UserVerification();
 
 			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHECKPASS%{0}%{1}%{2}", 
-				Form1.me.Id,																		
+				FrmMain.me.Id,																		
 				verification.GetSHA256(txtOldPassword.Text),																
 				verification.GetSHA256(txtNewPassword.Text)));
 			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
-			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 		}
 		public void RespondToChangePasswordMessage(bool isSuccess)
 		{
@@ -135,25 +135,25 @@ namespace UI
 		private void ChangeUsernameInServer(string newUsername)
 		{
 
-			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHANGENAME%{0}%{1}", Form1.me.Id, newUsername));
+			byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CHANGENAME%{0}%{1}", FrmMain.me.Id, newUsername));
 			SmallPackage packageReceive = new SmallPackage(0,1024, "M", tempBuff, "0");
-			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
 		public async void ChangeAvatar()
 		{
 			Guid id = Guid.NewGuid();
 			byte[] tempBuff = Encoding.UTF8.GetBytes("SAVEAVATAR%" + fi.Length + "%" + fi.Name + "%"  + fi.Extension + "%" + id.ToString());
 			SmallPackage packageReceive = new SmallPackage(0, 1024, "M", tempBuff, "0");
-			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
 			/// Send file
 			byte[] data = File.ReadAllBytes(fi.FullName);
 
-			await Form1.client.SendFileToServer(data , "A" ,id.ToString());
+			await FrmMain.client.SendFileToServer(data , "A" ,id.ToString());
 
 			byte[] tempfile = File.ReadAllBytes(fi.FullName);
 			File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
-			Form1.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
+			FrmMain.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
 			this.parent.LoadUser();
 			}
 
@@ -164,7 +164,7 @@ namespace UI
 			this.pnMyAccount.BringToFront();
 			this.pnMyAccount.Dock = DockStyle.Fill;
 			this.pnMyAccount.Visible = true;
-			this.btnMyAccount.BackColor = Form1.theme.FocusColor;
+			this.btnMyAccount.BackColor = FrmMain.theme.FocusColor;
 			this.btnFocus = this.btnMyAccount;
 		}
 		private void button4_Click(object sender, EventArgs e)
@@ -174,9 +174,9 @@ namespace UI
 			this.pnTheme.BringToFront();
 			this.pnTheme.Dock = DockStyle.Fill;
 			this.pnTheme.Visible = true;
-			this.btnTheme.BackColor = Form1.theme.FocusColor;
+			this.btnTheme.BackColor = FrmMain.theme.FocusColor;
 			this.btnFocus = this.btnTheme;
-			if (Form1.theme.IsWhite) this.radioButton1.Checked = true;
+			if (FrmMain.theme.IsWhite) this.radioButton1.Checked = true;
 			else this.radioButton2.Checked = true;
 		}
 		private void btnLog_Click(object sender, EventArgs e)
@@ -192,7 +192,7 @@ namespace UI
 		}
 		private void btnMyAccount_MouseMove(object sender, MouseEventArgs e)
 		{
-			(sender as Button).BackColor = Form1.theme.FocusColor;
+			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 		}
 		private void btnTheme_MouseLeave(object sender, EventArgs e)
 		{
@@ -200,19 +200,19 @@ namespace UI
 		}
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
-			Form1.theme.White();
+			FrmMain.theme.White();
 			parent.ChangeTheme();
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (Form1.theme.IsWhite == true ? "White" : "Black"));
+			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
 			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
-			Form1.theme.Black();
+			FrmMain.theme.Black();
 			parent.ChangeTheme();
-			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (Form1.theme.IsWhite == true ? "White" : "Black"));
+			byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
 			SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-			Form1.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 		}
 
 

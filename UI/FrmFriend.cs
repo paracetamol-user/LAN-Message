@@ -19,7 +19,7 @@ namespace UI
 		public FrmFriend()
 		{
 			InitializeComponent();
-			this.BackColor = Form1.theme.BackColor;
+			this.BackColor = FrmMain.theme.BackColor;
 			isLoad = false;
 			btnFocus = null;
 			this.pnAll.Dock = DockStyle.Fill;
@@ -31,7 +31,7 @@ namespace UI
         public void InitStart()
         {
 			btnFocus = btnAll;
-			btnAll.BackColor = Form1.theme.FocusColor;
+			btnAll.BackColor = FrmMain.theme.FocusColor;
 			if (!isLoad) LoadpnAll();
 			isLoad = true;
 			this.pnAll.Visible = true;
@@ -59,11 +59,11 @@ namespace UI
 		//}
 		public void ChangeColorLine()
         {
-			this.panelLine.BackColor = Form1.theme.LineColor;
+			this.panelLine.BackColor = FrmMain.theme.LineColor;
         }
 		public void LoadpnAll()
 		{
-			foreach (var item in Form1.UserUIs)
+			foreach (var item in FrmMain.UserUIs)
 			{
 				if (item.user.IsFriend)
 				{
@@ -90,7 +90,7 @@ namespace UI
 		private void btnAll_Click(object sender, EventArgs e)
 		{
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
-			(sender as Button).BackColor = Form1.theme.FocusColor;
+			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 			btnFocus = sender as Button;
 			if (!isLoad) LoadpnAll();
 			isLoad = true;
@@ -103,13 +103,13 @@ namespace UI
 		{
 			friendOnlineCount = 0;
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
-			(sender as Button).BackColor = Form1.theme.FocusColor;
+			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 			btnFocus = sender as Button;
 			pnOnline.Controls.Clear();
 			pnOnline.Show();
 			pnOnline.BringToFront();
 			pnOnline.Visible = true;
-			foreach (var item in Form1.UserUIs)
+			foreach (var item in FrmMain.UserUIs)
 			{
 				if (item.user.Status == true && item.user.IsFriend == true)
 				{
@@ -122,7 +122,7 @@ namespace UI
 		}
         private void btnAll_MouseMove(object sender, MouseEventArgs e)
         {
-			(sender as Button).BackColor = Form1.theme.FocusColor;
+			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 		}
         private void btnAll_MouseLeave(object sender, EventArgs e)
         {

@@ -20,7 +20,7 @@ namespace UI
 		private Group group;
 		List<User> listmember;
 		public frmADD frmADD;
-		Form1 mainForm;
+		FrmMain mainForm;
 		public ucInfoGroup()
 		{
 			InitializeComponent();
@@ -67,27 +67,27 @@ namespace UI
 		   // this.BackColor = Form1.theme.Menu;
 			//mau chu
 
-			this.lbclearhistory.ForeColor = Form1.theme.TextColor;
-			this.lbmember.ForeColor = Form1.theme.TextColor;
-			this.lbName.ForeColor = Form1.theme.TextColor;
-			this.lbID.ForeColor = Form1.theme.TextColor;
-			this.label1.ForeColor = Form1.theme.TextColor;
-			this.label2.ForeColor = Form1.theme.TextColor;
-			pictureBoxMenufile.Image = Image.FromFile(Form1.theme.pictureArrow);
-			pictureBoxMenumember.Image = Image.FromFile(Form1.theme.pictureArrow);
+			this.lbclearhistory.ForeColor = FrmMain.theme.TextColor;
+			this.lbmember.ForeColor = FrmMain.theme.TextColor;
+			this.lbName.ForeColor = FrmMain.theme.TextColor;
+			this.lbID.ForeColor = FrmMain.theme.TextColor;
+			this.label1.ForeColor = FrmMain.theme.TextColor;
+			this.label2.ForeColor = FrmMain.theme.TextColor;
+			pictureBoxMenufile.Image = Image.FromFile(FrmMain.theme.pictureArrow);
+			pictureBoxMenumember.Image = Image.FromFile(FrmMain.theme.pictureArrow);
 			//mau line
 			this.ChangeColorLine();
 		}
 		public void ChangeColorLine()
 		{
-			this.pnLine1.BackColor = Form1.theme.LineColor;
-			this.pnLine2.BackColor = Form1.theme.LineColor;
-			this.pnLine6.BackColor = Form1.theme.LineColor;
-			this.pnLine8.BackColor = Form1.theme.LineColor;
-			this.pnLine11.BackColor = Form1.theme.LineColor;
-			this.pnLine12.BackColor = Form1.theme.LineColor;
+			this.pnLine1.BackColor = FrmMain.theme.LineColor;
+			this.pnLine2.BackColor = FrmMain.theme.LineColor;
+			this.pnLine6.BackColor = FrmMain.theme.LineColor;
+			this.pnLine8.BackColor = FrmMain.theme.LineColor;
+			this.pnLine11.BackColor = FrmMain.theme.LineColor;
+			this.pnLine12.BackColor = FrmMain.theme.LineColor;
 			this.frmMain.PnLine1.BackColor = this.pnLine1.BackColor;
-			this.pnLine3.BackColor = Form1.theme.LineColor;
+			this.pnLine3.BackColor = FrmMain.theme.LineColor;
 		}
 		public void _LoadInfoGroup(Group group, List<ucFileShow> listfileShows)
 		{
@@ -118,7 +118,7 @@ namespace UI
 					ucFileShow tam = new ucFileShow(listfileShows[i]._FileId, listfileShows[i]._FileName);
 
 					tam.Dock = DockStyle.Top;
-					if (listfileShows[i]._User == Form1.me)
+					if (listfileShows[i]._User == FrmMain.me)
 					{
 						tam._DisableButDownLoad();
 					}
@@ -220,7 +220,7 @@ namespace UI
 				pnaddmember.AutoSize = true;
 				
 				
-				Pen pen = new Pen(Form1.theme.TextColor);
+				Pen pen = new Pen(FrmMain.theme.TextColor);
 				g.DrawRectangle(pen, new Rectangle(pictureBoxMenumember.Location.X - 1, pictureBoxMenumember.Location.Y - 1, pictureBoxMenumember.Width + 1, pictureBoxMenumember.Height + 1));
 			}
 			else
@@ -242,7 +242,7 @@ namespace UI
 				pictureBoxMenufile.Image = _xoayanh(pictureBoxMenufile.Image, 90);
 				pnaddfile.Visible = true;
 				pnaddfile.AutoSize = true;
-				Pen pen = new Pen(Form1.theme.TextColor);
+				Pen pen = new Pen(FrmMain.theme.TextColor);
 				g.DrawRectangle(pen, new Rectangle(pictureBoxMenufile.Location.X - 1, pictureBoxMenufile.Location.Y - 1, pictureBoxMenufile.Width + 1, pictureBoxMenufile.Height + 1));
 			}
 			else
@@ -273,9 +273,9 @@ namespace UI
         private void label3_Click(object sender, EventArgs e)
         {
 			MessageBox.Show("Are you sure Out this Group", "Remove Group", MessageBoxButtons.YesNo);
-			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == Form1.me ? "true" : "false") + "%" + Form1.me.Id);
+			byte[] buff = Encoding.UTF8.GetBytes("OUTGR%" + group.ID + "%" + (group.admin == FrmMain.me ? "true" : "false") + "%" + FrmMain.me.Id);
 			SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-			Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+			FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 
 			frmMain.GroupUI.Dispose();
 			mainForm.GroupUIs.Remove(frmMain.GroupUI);

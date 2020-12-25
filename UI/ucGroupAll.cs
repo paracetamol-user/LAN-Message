@@ -20,11 +20,11 @@ namespace UI
         {
             InitializeComponent();
             this.Dock = DockStyle.Top;
-            this.lbId.ForeColor = Form1.theme.TextColor;
-            this.lbName.ForeColor = Form1.theme.TextColor;
-            this.pnLine.BackColor = Form1.theme.LineColor;
-            this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
-            this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
+            this.lbId.ForeColor = FrmMain.theme.TextColor;
+            this.lbName.ForeColor = FrmMain.theme.TextColor;
+            this.pnLine.BackColor = FrmMain.theme.LineColor;
+            this.picAdd.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+            this.picChat.Image = Image.FromFile(FrmMain.theme.PictureMessage);
         }
         public ucGroupAll(Group group, GroupUI groupUI)
         {
@@ -38,11 +38,11 @@ namespace UI
         }
         public void InitControls()
         {
-            this.lbId.ForeColor = Form1.theme.TextColor;
-            this.lbName.ForeColor = Form1.theme.TextColor;
-            this.pnLine.BackColor = Form1.theme.LineColor;
-            this.picAdd.Image = Image.FromFile(Form1.theme.PictureMenu);
-            this.picChat.Image = Image.FromFile(Form1.theme.PictureMessage);
+            this.lbId.ForeColor = FrmMain.theme.TextColor;
+            this.lbName.ForeColor = FrmMain.theme.TextColor;
+            this.pnLine.BackColor = FrmMain.theme.LineColor;
+            this.picAdd.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+            this.picChat.Image = Image.FromFile(FrmMain.theme.PictureMessage);
             
         }
         private void picChat_Click(object sender, EventArgs e)
@@ -59,16 +59,16 @@ namespace UI
         {
             this.Parent.ShowChatForm();
             this.Parent.AddGroupInteracted();
-            if (Form1.interactFocus != null)
+            if (FrmMain.interactFocus != null)
             {
-                Form1.interactFocus.ChangeColorWhenNonClick();
+                FrmMain.interactFocus.ChangeColorWhenNonClick();
             }
             this.Parent.ucGroupInteract.ChangeColorWhenClick();
-            Form1.interactFocus = this.Parent.ucGroupInteract;
+            FrmMain.interactFocus = this.Parent.ucGroupInteract;
         }
         private void picAdd_Click(object sender, EventArgs e)
         {
-            this.Parent.cmns.BackColor = Form1.theme.Menu;
+            this.Parent.cmns.BackColor = FrmMain.theme.Menu;
             this.Parent.cmns.Show(MousePosition);
         }
     }

@@ -49,14 +49,14 @@ namespace UI
             {
                 Hidepaneladmin();
             }
-            if (group.admin != Form1.me) Hidedeletemember();
+            if (group.admin != FrmMain.me) Hidedeletemember();
         }
         public void InitColor()
         {
             this.BackColor = Color.Transparent;
-            label1.ForeColor = Form1.theme.TextColor;
-            labeladdmin.ForeColor = Form1.theme.TextColor;
-            this.pictureBoxdeletemember.Image = Image.FromFile(Form1.theme.PictureClose);
+            label1.ForeColor = FrmMain.theme.TextColor;
+            labeladdmin.ForeColor = FrmMain.theme.TextColor;
+            this.pictureBoxdeletemember.Image = Image.FromFile(FrmMain.theme.PictureClose);
         }
         public Label labeladmin
         {
@@ -72,8 +72,8 @@ namespace UI
 
         public void changecolorline()
         {
-            pnLine1.BackColor = Form1.theme.LineColor;
-            pnLine2.BackColor = Form1.theme.LineColor;
+            pnLine1.BackColor = FrmMain.theme.LineColor;
+            pnLine2.BackColor = FrmMain.theme.LineColor;
         }
         public void locationlabel(ref Label a, Panel b)
         {
@@ -114,7 +114,7 @@ namespace UI
         {
             byte[] buffer = Encoding.UTF8.GetBytes("KICKMEMBER%" + group.ID  + "%" + user.Id);
             SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buffer, "Server");
-            Form1.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+            FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
             group.RemoveMember(user.Id);
             this.Dispose();
         }
