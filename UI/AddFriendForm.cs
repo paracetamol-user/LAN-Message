@@ -34,6 +34,11 @@ namespace UI
 			InitControls();
 			this.mainForm = mainForm;
 		}
+		public void _AddNewUser(UserUI newUser)
+        {
+			newUser.AddUserIntoPanelAll(panelAllUser);
+			countUserAll = Form1.UserUIs.Count;
+        }
 		public void ChangeColorControl()
         {
 			this.ucSearch.ResetTheme();
@@ -82,6 +87,7 @@ namespace UI
         public void InitPanelListSearch()
 		{
 			panelListSearch.Visible = false;
+			pnContainListSearch.Padding = new Padding(30, 20, 20, 0);
 		}
 		public void InitPanelPending()
 		{

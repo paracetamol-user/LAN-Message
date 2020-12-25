@@ -307,7 +307,9 @@ namespace UI
 					else if (action == "ADDUSER")
 					{
 						string path = @"./images/avatarDefault/avatarDefault.png";
-						UserUIs.Add(new UserUI(new User(data[1], data[2], false, path), this));
+						UserUI temp = new UserUI(new User(data[1], data[2], false, path), this);
+						UserUIs.Add(temp);
+						serverUsersForm._AddNewUser(temp);
 					}
 					else if (action == "ONLINE")
 					{
@@ -517,12 +519,12 @@ namespace UI
 									if (arr[j] == item.Id)
 									{
 										listGroup[listGroup.Count - 1].AddMember(item);
-										if (item.Id == arr[3]) listGroup[listGroup.Count - 1].admin = item;
+										if (item.Id == arr[2]) listGroup[listGroup.Count - 1].admin = item;
 										break;
 									}
 								}
 							}
-							if (arr[3] == me.Id) listGroup[listGroup.Count - 1].admin = me;
+							if (arr[2] == me.Id) listGroup[listGroup.Count - 1].admin = me;
 							GroupUIs.Add(new GroupUI(listGroup[listGroup.Count - 1], this));
 						}
 					}
@@ -537,7 +539,7 @@ namespace UI
 					{
 						string[] arr = data[1].Split('•');
 						Group group = new Group(arr[0], arr[1]);
-						string admin = arr[3];
+						string admin = arr[2];
 
 						for (int j = 3; j < arr.Length; j += 2)
 						{
@@ -552,7 +554,7 @@ namespace UI
 							}
 						}
 						group.AddMember(me);
-						if (arr[3] == me.Id) group.admin = me;
+						if (arr[2] == me.Id) group.admin = me;
 						listGroup.Add(group);
 						GroupUIs.Add(new GroupUI(group, this));
 					}

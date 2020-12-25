@@ -144,6 +144,7 @@
             // 
             // pnListGr
             // 
+            this.pnListGr.AutoScroll = true;
             this.pnListGr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnListGr.Location = new System.Drawing.Point(0, 0);
             this.pnListGr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -193,7 +194,7 @@
             this.pnMenu.Location = new System.Drawing.Point(0, 0);
             this.pnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Padding = new System.Windows.Forms.Padding(40, 0, 80, 0);
+            this.pnMenu.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.pnMenu.Size = new System.Drawing.Size(508, 52);
             this.pnMenu.TabIndex = 0;
             // 
@@ -201,22 +202,22 @@
             // 
             this.panel4.Controls.Add(this.txtCreate);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(40, 0);
+            this.panel4.Location = new System.Drawing.Point(20, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(20, 10, 20, 5);
-            this.panel4.Size = new System.Drawing.Size(199, 52);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10, 10, 10, 5);
+            this.panel4.Size = new System.Drawing.Size(303, 52);
             this.panel4.TabIndex = 1;
             // 
             // txtCreate
             // 
             this.txtCreate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCreate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCreate.Font = new System.Drawing.Font("Tahoma", 15.3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreate.Location = new System.Drawing.Point(20, 10);
+            this.txtCreate.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreate.Location = new System.Drawing.Point(10, 10);
             this.txtCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCreate.Name = "txtCreate";
-            this.txtCreate.Size = new System.Drawing.Size(159, 31);
+            this.txtCreate.Size = new System.Drawing.Size(283, 28);
             this.txtCreate.TabIndex = 3;
             // 
             // panel2
@@ -224,24 +225,23 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.btnCreate);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(239, 0);
+            this.panel2.Location = new System.Drawing.Point(323, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-            this.panel2.Size = new System.Drawing.Size(189, 52);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Size = new System.Drawing.Size(165, 52);
             this.panel2.TabIndex = 0;
             // 
             // btnCreate
             // 
             this.btnCreate.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCreate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreate.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.Location = new System.Drawing.Point(20, 10);
+            this.btnCreate.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.Location = new System.Drawing.Point(7, 7);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(149, 32);
+            this.btnCreate.Size = new System.Drawing.Size(150, 35);
             this.btnCreate.TabIndex = 0;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = false;

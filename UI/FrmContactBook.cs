@@ -35,7 +35,7 @@ namespace UI
 		{
 			this.BackColor = Form1.theme.BackColor;
 			this.pnLine.BackColor = Form1.theme.LineColor;
-			this.textBox1.BackColor = Form1.theme.Menu;
+			this.textBox1.BackColor = Form1.theme.FocusColor;
 			this.textBox1.ForeColor = Form1.theme.TextColor;
 			this.btnCreate.ForeColor = Form1.theme.TextColor;
 			this.lbContactBook.ForeColor = Form1.theme.TextColor;

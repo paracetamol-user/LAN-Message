@@ -31,7 +31,7 @@ namespace UserManager
 			this.memberList = null;
 			this.admin = null;
 			memberList = new List<User>();
-			avatarPath = @"..\..\groupDefault.png";
+			avatarPath = @"./images/avatarDefault/groupDefault.png";
 		}
 		public Group(string id, string name)
 		{
@@ -41,7 +41,7 @@ namespace UserManager
 			this.memberList = null;
 			this.admin = null;
 			memberList = new List<User>();
-			avatarPath = @"..\..\groupDefault.png";
+			avatarPath = @"./images/avatarDefault/groupDefault.png";
 		}
 		public Group(string id, string name, string avatarPath)
 		{
