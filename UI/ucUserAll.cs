@@ -23,7 +23,11 @@ namespace UI
 		public ucUserAll(UserUI Parent)
 		{
 			InitializeComponent();
-			this.roundPicAvatar.Image = Image.FromFile(Parent.user.AvatarPath);
+			using (FileStream fs = new FileStream(Parent.user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			isPlus = true;
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;

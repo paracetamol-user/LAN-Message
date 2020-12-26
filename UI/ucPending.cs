@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
 using Network;
+using System.IO;
 
 namespace UI
 {
@@ -27,7 +28,11 @@ namespace UI
 			this.Dock = DockStyle.Top;
 			this.pnParent = pnPending;
 			this.uiParent = userUI;
-			this.roundPicAvatar.Image = Image.FromFile(uiParent.user.AvatarPath);
+			using (FileStream fs = new FileStream(uiParent.user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			this.lbName.Text = userUI.user.Name;
 			this.lbId.Text = "#" + userUI.user.Id;
 			InitColor();

@@ -45,11 +45,11 @@ namespace UI
 			}
 			path = @"./voice";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-			dir = new DirectoryInfo(path);
-			foreach (var item in dir.GetDirectories())
-			{
-				item.Delete(true);
-			}
+			//dir = new DirectoryInfo(path);
+			//foreach (var item in dir.GetDirectories())
+			//{
+			//	item.Delete(true);
+			//}
 		}
 		private async void ConnecToServer()
 		{

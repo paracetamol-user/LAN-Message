@@ -23,7 +23,12 @@ namespace UI
 		{
 			isPlus = true;
 			InitializeComponent();
-			this.roundPicAvatar.Image = Image.FromFile(Parent.user.AvatarPath);
+			
+			using (FileStream fs = new FileStream(Parent.user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			this.Dock = DockStyle.Top;
 			this.Parent = Parent;
 			this.lbName.Text = Parent.user.Name;

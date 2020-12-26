@@ -97,9 +97,6 @@ namespace UI
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 				PictureBox temp = sender as PictureBox;
-				//temp.Image = Image.FromFile(@"..\..\images\check.png");
-				//temp.Enabled = false;
-
 			}
 			catch (Exception ex)
 			{

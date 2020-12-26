@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,8 +78,11 @@ namespace UI
         }
         public void SetAvatar(string path)
         {
-            roundpicturebox1.Image = Image.FromFile(path);
-            roundpicturebox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                roundpicturebox1.Image = Image.FromStream(fs);
+                fs.Dispose();
+            }
         }
         public void Hidepaneladmin()
         {

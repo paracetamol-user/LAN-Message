@@ -57,7 +57,7 @@ namespace UI
         }
         public void SetAvatar(string path)
         {
-            //gunaPic.Image = Image.FromFile(path);
+            
         }
 
         private void gunaPic_MouseClick(object sender, MouseEventArgs e)
