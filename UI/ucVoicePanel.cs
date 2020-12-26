@@ -173,7 +173,7 @@ namespace UI
 					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 					FrmMain.client.SendFileToServer(data, "V", id.ToString());
 
-					userForm.AddVoiceMessage(FrmMain.me, voice.Path);
+					userForm.AddVoiceMessage(FrmMain.me, voice.Path , "-1");
 				}
 				else
 				{
@@ -185,7 +185,7 @@ namespace UI
 					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 					FrmMain.client.SendFileToServer(data, "V", id.ToString());
 
-					groupForm.AddVoiceMessage(FrmMain.me, voice.Path);
+					groupForm.AddVoiceMessage(FrmMain.me, voice.Path , "-1");
 				}
 				// Process when record sent
 				voice.Path = voice.GetNextPath();

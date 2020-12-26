@@ -143,6 +143,7 @@ namespace UI
             {
                 MessageBox.Show("Vui long nhap du lieu day du!");
             }
+            else
             if(kiemtramatkhau()==false)
             {
                 MessageBox.Show("Mat khau khong trung khop!");

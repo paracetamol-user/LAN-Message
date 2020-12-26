@@ -123,6 +123,7 @@ namespace UI
             this.ptbavata.Location = new System.Drawing.Point(0, 0);
             this.ptbavata.Name = "ptbavata";
             this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbavata.TabIndex = 1;
             this.ptbavata.TabStop = false;
             // 

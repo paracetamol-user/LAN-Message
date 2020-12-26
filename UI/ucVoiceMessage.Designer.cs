@@ -34,6 +34,7 @@ namespace UI
             this.picturePause = new System.Windows.Forms.PictureBox();
             this.picturePlay = new System.Windows.Forms.PictureBox();
             this.picturePlayBack = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePlay)).BeginInit();
@@ -96,11 +97,23 @@ namespace UI
             this.picturePlayBack.TabStop = false;
             this.picturePlayBack.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 18);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Deleted Voice";
+            this.label1.Visible = false;
+            // 
             // ucVoiceMessage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.picturePlayBack);
             this.Controls.Add(this.picturePlay);
             this.Controls.Add(this.picturePause);
@@ -114,6 +127,7 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.picturePlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePlayBack)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -123,5 +137,6 @@ namespace UI
         private System.Windows.Forms.PictureBox picturePause;
         private System.Windows.Forms.PictureBox picturePlay;
         private System.Windows.Forms.PictureBox picturePlayBack;
+        private System.Windows.Forms.Label label1;
     }
 }

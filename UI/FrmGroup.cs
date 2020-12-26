@@ -127,6 +127,32 @@ namespace UI
 			listfileShows.Add(fileShow);
 			userINChatBoxes.Add(UserInChatBox);
 		}
+		public void AddVoiceMessage(User _user, string path , string id)
+		{
+			GroupUI.ucGroupInteract.AddMessage(_user.Name + ": " + "Send a voice");
+
+			Panel tempPanel = new Panel();
+			tempPanel.AutoSize = true;
+			tempPanel.Dock = DockStyle.Top;
+
+			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, group.ID);
+			//userINChatBox.DisableDelete();
+			userINChatBox.DisableEdit();
+			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
+			voiceMessage.Path = path;
+			voiceMessage.Dock = DockStyle.Top;
+			userINChatBox.Dock = DockStyle.Top;
+
+			userINChatBox._AddVoiceMessage(voiceMessage);
+			tempPanel.Controls.Add(userINChatBox);
+			this.panelListChat.Controls.Add(tempPanel);
+			userINChatBox.InitColor();
+			// voiceMessage.InitColor();
+			if (id == "-1") FrmMain.listVoiceAwaitID.Add(userINChatBox); // Thêm vào hàng đợi ID ti nhan từ server gửi xuống
+			else userINChatBox.ID = id;
+
+			userINChatBoxes.Add(userINChatBox);
+		}
 		public async Task SendMessage()
 		{
 			try
@@ -231,29 +257,7 @@ namespace UI
 			}
 		}
 
-		public void AddVoiceMessage(User _user, string path)
-        {
-			GroupUI.ucGroupInteract.AddMessage(_user.Name + ": " + "Send a voice");
-
-			Panel tempPanel = new Panel();
-			tempPanel.AutoSize = true;
-			tempPanel.Dock = DockStyle.Top;
-
-			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, group.ID);
-			userINChatBox.DisableDelete();
-			userINChatBox.DisableEdit();
-			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
-			voiceMessage.Path = path;
-			voiceMessage.Dock = DockStyle.Top;
-			userINChatBox.Dock = DockStyle.Top;
-
-			userINChatBox._AddVoiceMessage(voiceMessage);
-			tempPanel.Controls.Add(userINChatBox);
-			this.panelListChat.Controls.Add(tempPanel);
-			userINChatBox.InitColor();
-			// voiceMessage.InitColor();
-			userINChatBoxes.Add(userINChatBox);
-		}
+		
 
 		public bool isVoicePanelShow;
 		private void pictureVoice_Click(object sender, EventArgs e)

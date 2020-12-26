@@ -149,6 +149,32 @@ namespace UI
 			listfileShows.Add(fileshow);
 			userINChatBoxes.Add(UserInChatBox);
 		}
+		public void AddVoiceMessage(User _user, string path, string id)
+		{
+			userUI.ucInterac.AddMessage(_user.Name + ": " + "Send a voice");
+
+			Panel tempPanel = new Panel();
+			tempPanel.AutoSize = true;
+			tempPanel.Dock = DockStyle.Top;
+
+			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, this.user.Id);
+			userINChatBox.DisableEdit();
+			//userINChatBox.DisableDelete();
+			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
+			voiceMessage.Path = path;
+			voiceMessage.Dock = DockStyle.Top;
+			userINChatBox.Dock = DockStyle.Top;
+
+			userINChatBox._AddVoiceMessage(voiceMessage);
+			tempPanel.Controls.Add(userINChatBox);
+			this.panelListChat.Controls.Add(tempPanel);
+			userINChatBox.InitColor();
+			// voiceMessage.InitColor();
+
+			if (id == "-1") FrmMain.listVoiceAwaitID.Add(userINChatBox);// Thêm vào hàng đợi ID file từ server gửi xuống
+			else userINChatBox.ID = id;
+			userINChatBoxes.Add(userINChatBox);
+		}
 		public void EditMessage(string IDMess, string newMess)
 		{
 			foreach (var item in this.panelListChat.Controls)
@@ -257,30 +283,6 @@ namespace UI
 		public void AddFrom(Panel panelRight)
 		{
 			panelRight.Controls.Add(this);
-		}
-
-		public void AddVoiceMessage(User _user, string path)
-		{
-			userUI.ucInterac.AddMessage(_user.Name + ": " + "Send a voice");
-
-			Panel tempPanel = new Panel();
-			tempPanel.AutoSize = true;
-			tempPanel.Dock = DockStyle.Top;
-
-			ucUserINChatBox userINChatBox = new ucUserINChatBox(_user, this.user.Id);
-			userINChatBox.DisableEdit();
-			userINChatBox.DisableDelete();
-			ucVoiceMessage voiceMessage = new ucVoiceMessage(path, userINChatBox);
-			voiceMessage.Path = path;
-			voiceMessage.Dock = DockStyle.Top;
-			userINChatBox.Dock = DockStyle.Top;
-
-			userINChatBox._AddVoiceMessage(voiceMessage);
-			tempPanel.Controls.Add(userINChatBox);
-			this.panelListChat.Controls.Add(tempPanel);
-			userINChatBox.InitColor();
-			// voiceMessage.InitColor();
-			userINChatBoxes.Add(userINChatBox);
 		}
 
 		public bool isVoicePanelShow = false;

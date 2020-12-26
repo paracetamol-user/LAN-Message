@@ -53,6 +53,7 @@ namespace UI
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
 		public static List<ucUserINChatBox> listFileAwaitID;
+		public static List<ucUserINChatBox> listVoiceAwaitID;
 		public static List<Group> listGroup;
 
 		public bool acceptClose;
@@ -106,6 +107,7 @@ namespace UI
 			listUser = new List<User>();
 			listMessAwaitID = new List<ucUserINChatBox>();
 			listFileAwaitID = new List<ucUserINChatBox>();
+			listVoiceAwaitID = new List<ucUserINChatBox>();
 			GroupUIs = new List<GroupUI>();
 			listGroup = new List<Group>();
 			frmContactBook = new FrmContactBook(this);
@@ -747,6 +749,11 @@ namespace UI
 							frmContactBook._RemoveUser(data[1]);
 							listUser.Remove(temp);
 						}
+						else if (action == "IDVOICE")
+                        {
+							listVoiceAwaitID[0].ID = data[1];
+							listVoiceAwaitID.Remove(listVoiceAwaitID[0]);
+						}
 					}
 					else if (package.Style == "F")
 					{
@@ -844,7 +851,7 @@ namespace UI
 													Directory.CreateDirectory(path);
 												path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
 												File.WriteAllBytes(path, item.Data);
-												userUI.userForm.AddVoiceMessage(userUI.user, path);
+												userUI.userForm.AddVoiceMessage(userUI.user, path , item.IDpackage);
 												userUI.BringToTop();
 												break;
 											}
@@ -865,7 +872,7 @@ namespace UI
 												{
 													if (userUI.user.Id == item.IDsend)
 													{
-														groupUI.groupForm.AddVoiceMessage(userUI.user, path);
+                                                        groupUI.groupForm.AddVoiceMessage(userUI.user, path, item.IDpackage);
 														groupUI.BringToTop();
 														break;
 													}

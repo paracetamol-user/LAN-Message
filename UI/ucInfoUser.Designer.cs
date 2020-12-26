@@ -33,7 +33,6 @@ namespace UI
             this.pnLine1 = new System.Windows.Forms.Panel();
             this.pnavata_name = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ptbavata = new UI.roundpicturebox();
             this.lbID = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.pnLine2 = new System.Windows.Forms.Panel();
@@ -55,9 +54,9 @@ namespace UI
             this.pnRemoveFriend = new System.Windows.Forms.Panel();
             this.lbRemove = new System.Windows.Forms.Label();
             this.pnLine3 = new System.Windows.Forms.Panel();
+            this.ptbavata = new UI.roundpicturebox();
             this.pnavata_name.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.pnfuction.SuspendLayout();
             this.pnclearhistory.SuspendLayout();
             this.pnaddfriend.SuspendLayout();
@@ -66,6 +65,7 @@ namespace UI
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).BeginInit();
             this.pnRemoveFriend.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.SuspendLayout();
             // 
             // pnLine1
@@ -98,16 +98,6 @@ namespace UI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(120, 110);
             this.panel1.TabIndex = 5;
-            // 
-            // ptbavata
-            // 
-            this.ptbavata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptbavata.Location = new System.Drawing.Point(0, 0);
-            this.ptbavata.Name = "ptbavata";
-            this.ptbavata.Size = new System.Drawing.Size(120, 110);
-            this.ptbavata.TabIndex = 1;
-            this.ptbavata.TabStop = false;
             // 
             // lbID
             // 
@@ -338,6 +328,17 @@ namespace UI
             this.pnLine3.Size = new System.Drawing.Size(290, 1);
             this.pnLine3.TabIndex = 2;
             // 
+            // ptbavata
+            // 
+            this.ptbavata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptbavata.Location = new System.Drawing.Point(0, 0);
+            this.ptbavata.Name = "ptbavata";
+            this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbavata.TabIndex = 1;
+            this.ptbavata.TabStop = false;
+            // 
             // ucInfoUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -355,7 +356,6 @@ namespace UI
             this.pnavata_name.ResumeLayout(false);
             this.pnavata_name.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.pnfuction.ResumeLayout(false);
             this.pnclearhistory.ResumeLayout(false);
             this.pnclearhistory.PerformLayout();
@@ -368,6 +368,7 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenu)).EndInit();
             this.pnRemoveFriend.ResumeLayout(false);
             this.pnRemoveFriend.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

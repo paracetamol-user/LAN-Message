@@ -707,7 +707,7 @@ namespace Communication
 							// groupid, userid, message
 							foreach (var item in clientInvalid)
 							{
-								if (item.id_ == reader.GetString(0))
+								if (item.id_ == reader.GetString(0) && item.id_ != client.id_)
 								{
 									item.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
@@ -1285,110 +1285,56 @@ namespace Communication
 					}
 					else if (package.Style == "F")
 					{
-						foreach (var item in listAwaitPackage)
-						{
-							if (package.ID == item.IDpackage)
+						try
+                        {
+							foreach (var item in listAwaitPackage)
 							{
-								if (item.Ack + package.Data.Length > item.Length)
+								if (package.ID == item.IDpackage)
 								{
-									byte[] tempBuff = new byte[item.Length - item.Ack];
-									Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
-									package.Data = new byte[item.Length - item.Ack];
-									tempBuff.CopyTo(package.Data, 0);
-								}
-								package.Data.CopyTo(item.Data, item.Ack);
-								item.Ack = item.Ack + package.Data.Length;
-								if (item.Ack == item.Length)
-								{
-									if (item.isPrivate)
+									if (item.Ack + package.Data.Length > item.Length)
 									{
-										Guid IDMessage = Guid.NewGuid();
-										byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
-										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-										// Gửi ID của file về cho người gửi
-										File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
-										// Lưu file vào trong thư mục của server
-										connection.Close();
-										string MESSAGE = @"./filedata/" + IDMessage.ToString() + item.Extension.ToString();
-										this.connection = new SqlConnection(this.connString);
-										this.connection.Open();
-										this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
-																		" SENDER,RECEIVER, MESSAGECONTENT" +
-																		") values(@id, @idnguoigui,@idnguoinhan," +
-																		" @MESSAGE)", connection);
-										this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
-										this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
-										this.command.Parameters.Add(new SqlParameter("@idnguoinhan", item.IDreceive));
-										this.command.Parameters.Add(new SqlParameter("@MESSAGE", MESSAGE));
-										this.command.ExecuteNonQuery();
-										this.connection.Close();
-										// Lưu file dưới dạng là 1 tin nhắn trong Database Table MESSAGE
-										foreach (var item2 in clientInvalid)
-										{
-											if (item2.id_ == item.IDreceive)
-											{
-												try
-												{
-													tempBuff = Encoding.UTF8.GetBytes("TEMPFILE%" + IDMessage.ToString() + "%" + client.id_ + "%" + item.FileName + "%Private");
-
-													packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-													await item2.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-													break;
-												}
-												catch (Exception ex)
-												{
-													Debug.WriteLine(ex.ToString());
-												}
-											}
-										}
-										// Gửi 1 file tạm gồm tên file và id của file về cho người nhận
-										listAwaitPackage.Remove(item);
+										byte[] tempBuff = new byte[item.Length - item.Ack];
+										Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
+										package.Data = new byte[item.Length - item.Ack];
+										tempBuff.CopyTo(package.Data, 0);
 									}
-									else
+									package.Data.CopyTo(item.Data, item.Ack);
+									item.Ack = item.Ack + package.Data.Length;
+									if (item.Ack == item.Length)
 									{
-										Guid IDMessage = Guid.NewGuid();
-										byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
-										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-										// Gửi ID của file về cho người gửi
-										File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
-										// Lưu file vào trong thư mục của server
-										connection.Close();
-										this.connection = new SqlConnection(this.connString);
-										this.connection.Open();
-										this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
-																		" SENDER, MESSAGECONTENT," +
-																		" RECEIVINGGROUP) values(@id, @idnguoigui," +
-																		" @MESSAGE,@nhomnhan)", connection);
-										this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
-										this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
-										this.command.Parameters.Add(new SqlParameter("@MESSAGE", @"./filedata\" + IDMessage.ToString() + item.Extension.ToString()));
-										this.command.Parameters.Add(new SqlParameter("@nhomnhan", item.IDreceive));
-										this.command.ExecuteNonQuery();
-										this.connection.Close();
-										// Lưu file dưới dạng là 1 tin nhắn trong Database Table MESSAGE
-										string query = "select USERS.ID, USERS.USERNAME " +
-														"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
-														"and MEMBER.IDGROUP = @id";
-										connection = new SqlConnection(connString);
-										connection.Open();
-										command = new SqlCommand(query, connection);
-										command.Parameters.AddWithValue("@id", item.IDreceive);
-										reader = command.ExecuteReader();
-
-										tempBuff = Encoding.UTF8.GetBytes("TEMPFILE%" + IDMessage.ToString() + "%" + item.IDsend + "%" + item.FileName + "%Public%" + item.IDreceive);
-										packageReceive = new SmallPackage(1024, 1024, "M", tempBuff, "0");
-
-										while (reader.HasRows)
+										if (item.isPrivate)
 										{
-											if (!reader.Read()) break;
+											Guid IDMessage = Guid.NewGuid();
+											byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
+											SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
+											await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+											// Gửi ID của file về cho người gửi
+											File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
+											// Lưu file vào trong thư mục của server
+											connection.Close();
+											string MESSAGE = @"./filedata/" + IDMessage.ToString() + item.Extension.ToString();
+											this.connection = new SqlConnection(this.connString);
+											this.connection.Open();
+											this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
+																			" SENDER,RECEIVER, MESSAGECONTENT" +
+																			") values(@id, @idnguoigui,@idnguoinhan," +
+																			" @MESSAGE)", connection);
+											this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
+											this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
+											this.command.Parameters.Add(new SqlParameter("@idnguoinhan", item.IDreceive));
+											this.command.Parameters.Add(new SqlParameter("@MESSAGE", MESSAGE));
+											this.command.ExecuteNonQuery();
+											this.connection.Close();
+											// Lưu file dưới dạng là 1 tin nhắn trong Database Table MESSAGE
 											foreach (var item2 in clientInvalid)
 											{
-												if (item2.id_ == reader.GetString(0))
+												if (item2.id_ == item.IDreceive)
 												{
 													try
 													{
+														tempBuff = Encoding.UTF8.GetBytes("TEMPFILE%" + IDMessage.ToString() + "%" + client.id_ + "%" + item.FileName + "%Private");
+
+														packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
 														await item2.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 														break;
 													}
@@ -1398,128 +1344,230 @@ namespace Communication
 													}
 												}
 											}
+											// Gửi 1 file tạm gồm tên file và id của file về cho người nhận
+											listAwaitPackage.Remove(item);
 										}
-										connection.Close();
+										else
+										{
+											Guid IDMessage = Guid.NewGuid();
+											byte[] tempBuff = Encoding.UTF8.GetBytes("IDFILE%" + IDMessage.ToString());
+											SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
+											await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+											// Gửi ID của file về cho người gửi
+											File.WriteAllBytes(@"./filedata/" + IDMessage.ToString() + item.Extension, item.Data);
+											// Lưu file vào trong thư mục của server
+											connection.Close();
+											this.connection = new SqlConnection(this.connString);
+											this.connection.Open();
+											this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
+																			" SENDER, MESSAGECONTENT," +
+																			" RECEIVINGGROUP) values(@id, @idnguoigui," +
+																			" @MESSAGE,@nhomnhan)", connection);
+											this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
+											this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
+											this.command.Parameters.Add(new SqlParameter("@MESSAGE", @"./filedata/" + IDMessage.ToString() + item.Extension.ToString()));
+											this.command.Parameters.Add(new SqlParameter("@nhomnhan", item.IDreceive));
+											this.command.ExecuteNonQuery();
+											this.connection.Close();
+											// Lưu file dưới dạng là 1 tin nhắn trong Database Table MESSAGE
+											string query = "select USERS.ID, USERS.USERNAME " +
+															"from MEMBER, USERS where MEMBER.IDUSERS = USERS.ID " +
+															"and MEMBER.IDGROUP = @id";
+											connection = new SqlConnection(connString);
+											connection.Open();
+											command = new SqlCommand(query, connection);
+											command.Parameters.AddWithValue("@id", item.IDreceive);
+											reader = command.ExecuteReader();
 
-										// Gửi 1 file tạm gồm tên file và id của file về cho người nhận
-										listAwaitPackage.Remove(item);
+											tempBuff = Encoding.UTF8.GetBytes("TEMPFILE%" + IDMessage.ToString() + "%" + item.IDsend + "%" + item.FileName + "%Public%" + item.IDreceive);
+											packageReceive = new SmallPackage(1024, 1024, "M", tempBuff, "0");
+
+											while (reader.HasRows)
+											{
+												if (!reader.Read()) break;
+												foreach (var item2 in clientInvalid)
+												{
+													if (item2.id_ == reader.GetString(0)) //&& item2.id_ != item.IDsend)
+													{
+														try
+														{
+															await item2.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+															break;
+														}
+														catch (Exception ex)
+														{
+															Debug.WriteLine(ex.ToString());
+														}
+													}
+												}
+											}
+											connection.Close();
+
+											// Gửi 1 file tạm gồm tên file và id của file về cho người nhận
+											listAwaitPackage.Remove(item);
+										}
 									}
+									break;
 								}
-								break;
 							}
 						}
+						catch (Exception ex)
+                        {
+
+                        }
+						
 					}
 					else if (package.Style == "A")
 					{
-						foreach (var item in listAwaitPackage)
-						{
-							if (package.ID == item.IDpackage)
+                        try
+                        {
+							foreach (var item in listAwaitPackage)
 							{
-								if (item.Ack + package.Data.Length > item.Length)
+								if (package.ID == item.IDpackage)
 								{
-									byte[] tempBuff = new byte[item.Length - item.Ack];
-									Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
-									package.Data = new byte[item.Length - item.Ack];
-									tempBuff.CopyTo(package.Data, 0);
-								}
-								package.Data.CopyTo(item.Data, item.Ack);
-								item.Ack = item.Ack + package.Data.Length;
-								if (item.Ack == item.Length)
-								{
-									string path = @"./avatar/" + item.IDpackage + item.Extension;
-									File.WriteAllBytes(path, item.Data);
-									// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
-									string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
-									connection = new SqlConnection(connString);
-									connection.Open();
-									command = new SqlCommand(query, connection);
-									command.Parameters.AddWithValue("@SOURCE", path);
-									command.Parameters.AddWithValue("@ID", client.id_);
-									command.ExecuteNonQuery();
-									connection.Close();
-								}
-							}
-						}
-					}
-					else if (package.Style == "V")
-					{
-						foreach (var item in listAwaitPackage)
-						{
-							if (package.ID == item.IDpackage)
-							{
-								if (item.Ack + package.Data.Length > item.Length)
-								{
-									byte[] tempBuff = new byte[item.Length - item.Ack];
-									Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
-									package.Data = new byte[item.Length - item.Ack];
-									tempBuff.CopyTo(package.Data, 0);
-								}
-								package.Data.CopyTo(item.Data, item.Ack);
-								item.Ack = item.Ack + package.Data.Length;
-								if (item.Ack == item.Length)
-								{
-									if (item.isPrivate)
+									if (item.Ack + package.Data.Length > item.Length)
 									{
-										Guid IDMessage = Guid.NewGuid();
-										byte[] tempBuff = Encoding.UTF8.GetBytes("IDVOICE%" + IDMessage.ToString());
-										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-										// Gửi ID của file về cho người gửi
-										foreach (var item2 in clientInvalid)
-										{
-											if(item2.id_ == item.IDreceive)
-											{
-												tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
-																										item.IDsend, item.Length, IDMessage));
-												SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
-												item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-												SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
-												break;
-											}
-										}
+										byte[] tempBuff = new byte[item.Length - item.Ack];
+										Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
+										package.Data = new byte[item.Length - item.Ack];
+										tempBuff.CopyTo(package.Data, 0);
 									}
-									else
+									package.Data.CopyTo(item.Data, item.Ack);
+									item.Ack = item.Ack + package.Data.Length;
+									if (item.Ack == item.Length)
 									{
-										Guid IDMessage = Guid.NewGuid();
-										byte[] tempBuff = Encoding.UTF8.GetBytes("IDVOICE%" + IDMessage.ToString());
-										SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
-										await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-
-										string query = "select USERS.ID " +
-											"from MEMBER, USERS " +
-											"where MEMBER.IDUSERS = USERS.ID " +
-											"and MEMBER.IDGROUP = @id";
-
-										tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
-																						item.IDsend, item.IDreceive, item.Length, IDMessage));
-										SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
-
+										string path = @"./avatar/" + item.IDpackage + item.Extension;
+										File.WriteAllBytes(path, item.Data);
+										// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
+										string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
 										connection = new SqlConnection(connString);
 										connection.Open();
 										command = new SqlCommand(query, connection);
-										command.Parameters.AddWithValue("@id", item.IDreceive);
-										reader = command.ExecuteReader();
+										command.Parameters.AddWithValue("@SOURCE", path);
+										command.Parameters.AddWithValue("@ID", client.id_);
+										command.ExecuteNonQuery();
+										connection.Close();
+									}
+								}
+							}
+						}
+						catch (Exception ex)
+                        {
 
-										while (reader.HasRows)
+                        }
+						
+					}
+					else if (package.Style == "V")
+					{
+						try
+						{
+							foreach (var item in listAwaitPackage)
+							{
+								if (package.ID == item.IDpackage)
+								{
+									if (item.Ack + package.Data.Length > item.Length)
+									{
+										byte[] tempBuff = new byte[item.Length - item.Ack];
+										Buffer.BlockCopy(package.Data, 0, tempBuff, 0, item.Length - item.Ack);
+										package.Data = new byte[item.Length - item.Ack];
+										tempBuff.CopyTo(package.Data, 0);
+									}
+									package.Data.CopyTo(item.Data, item.Ack);
+									item.Ack = item.Ack + package.Data.Length;
+									if (item.Ack == item.Length)
+									{
+										if (item.isPrivate)
 										{
-											if (!reader.Read()) break;
-											if (reader.GetString(0) == item.IDsend) continue;
-											foreach(var item2 in clientInvalid)
+											Guid IDMessage = Guid.NewGuid();
+											byte[] tempBuff = Encoding.UTF8.GetBytes("IDVOICE%" + IDMessage.ToString());
+											SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
+											await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+											// Gửi ID của file về cho người gửi
+											this.connection = new SqlConnection(this.connString);
+											this.connection.Open();
+											this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
+																			" SENDER,RECEIVER, MESSAGECONTENT" +
+																			") values(@id, @idnguoigui,@idnguoinhan," +
+																			" @MESSAGE)", connection);
+											this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
+											this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
+											this.command.Parameters.Add(new SqlParameter("@idnguoinhan", item.IDreceive));
+											this.command.Parameters.Add(new SqlParameter("@MESSAGE", "Voice"));
+											this.command.ExecuteNonQuery();
+											this.connection.Close();
+											foreach (var item2 in clientInvalid)
 											{
-												if(item2.id_ == reader.GetString(0) && item2.id_ != client.id_)
+												if (item2.id_ == item.IDreceive)
 												{
-													await item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+													tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%{1}%{2}",
+																											item.IDsend, item.Length, IDMessage));
+													SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
+													item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 													SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
 													break;
 												}
 											}
 										}
-										connection.Close();
+										else
+										{
+											Guid IDMessage = Guid.NewGuid();
+											byte[] tempBuff = Encoding.UTF8.GetBytes("IDVOICE%" + IDMessage.ToString());
+											SmallPackage packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, "0");
+											await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+
+											connection.Close();
+											this.connection = new SqlConnection(this.connString);
+											this.connection.Open();
+											this.command = new SqlCommand("insert into MESSAGE(IDMESSAGE," +
+																			" SENDER, MESSAGECONTENT," +
+																			" RECEIVINGGROUP) values(@id, @idnguoigui," +
+																			" @MESSAGE,@nhomnhan)", connection);
+											this.command.Parameters.Add(new SqlParameter("@id", IDMessage.ToString()));
+											this.command.Parameters.Add(new SqlParameter("@idnguoigui", item.IDsend));
+											this.command.Parameters.Add(new SqlParameter("@MESSAGE", "Voice"));
+											this.command.Parameters.Add(new SqlParameter("@nhomnhan", item.IDreceive));
+											this.command.ExecuteNonQuery();
+											this.connection.Close();
+
+											string query = "select USERS.ID " +
+												"from MEMBER, USERS " +
+												"where MEMBER.IDUSERS = USERS.ID " +
+												"and MEMBER.IDGROUP = @id";
+
+											tempBuff = Encoding.UTF8.GetBytes(string.Format("VOICE%{0}%G{1}%{2}%{3}",
+																							item.IDsend, item.IDreceive, item.Length, IDMessage));
+											SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, IDMessage.ToString());
+
+											connection = new SqlConnection(connString);
+											connection.Open();
+											command = new SqlCommand(query, connection);
+											command.Parameters.AddWithValue("@id", item.IDreceive);
+											reader = command.ExecuteReader();
+
+											while (reader.HasRows)
+											{
+												if (!reader.Read()) break;
+												if (reader.GetString(0) == item.IDsend) continue;
+												foreach (var item2 in clientInvalid)
+												{
+													if (item2.id_ == reader.GetString(0) && item2.id_ != client.id_)
+													{
+														await item2.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+														SendFileToClient(item.Data, item2, "V", IDMessage.ToString());
+														break;
+													}
+												}
+											}
+											connection.Close();
+										}
 									}
 								}
 							}
 						}
+						catch (Exception ex)
+						{
 
+						}
 					}
 					System.Diagnostics.Debug.WriteLine("Received message: " + (Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')));
 					OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
