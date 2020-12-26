@@ -60,6 +60,11 @@ namespace UI
 
 		public void ChangeColorPanelControl()
 		{
+			using (FileStream fs = new FileStream(FrmMain.theme.PictureCancel, FileMode.Open, FileAccess.Read))
+			{
+				this.pictureBox2.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			this.pnMenu.BackColor = FrmMain.theme.Menu;
 			this.pnPassword.BackColor = FrmMain.theme.FocusColor;
 			this.btnEditPassword.BackColor = FrmMain.theme.BackColor;
@@ -96,7 +101,7 @@ namespace UI
 		}
 		public void ResetPicture()
 		{
-			using (FileStream fs = new FileStream(FrmMain.theme.PictureClose, FileMode.Open, FileAccess.Read))
+			using (FileStream fs = new FileStream(FrmMain.theme.PictureCancel, FileMode.Open, FileAccess.Read))
 			{
 				this.pictureBox2.Image = Image.FromStream(fs);
 				fs.Dispose();

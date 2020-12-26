@@ -889,6 +889,7 @@ namespace UI
 			}
 			catch (Exception ex)
 			{
+				if (acceptClose != false)
 				MessageBox.Show("Server disconnected!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				acceptClose = false;
 				this.Close();
