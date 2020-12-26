@@ -18,8 +18,6 @@ namespace UI
         public ucMember()
         {
             InitializeComponent();
-            locationlabel(ref label1, panel4);
-            locationlabel(ref labeladdmin, pnadmin);
             InitColor();
             SetName(user.Name);
             SetAvatar(user.AvatarPath);
@@ -28,8 +26,6 @@ namespace UI
         public ucMember(Group group, User user)
         {
             InitializeComponent();
-            locationlabel(ref label1, panel4);
-            locationlabel(ref labeladdmin, pnadmin);
             InitColor();
             SetName(user.Name);
             SetAvatar(user.AvatarPath);
@@ -75,13 +71,6 @@ namespace UI
             pnLine1.BackColor = FrmMain.theme.LineColor;
             pnLine2.BackColor = FrmMain.theme.LineColor;
         }
-        public void locationlabel(ref Label a, Panel b)
-        {
-
-            int y = (b.Height - a.Height) / 2;
-            a.Location = new Point(a.Location.X, y);
-
-        }
         public void SetName(string name)
         {
             label1.Text = name;
@@ -93,17 +82,12 @@ namespace UI
         }
         public void Hidepaneladmin()
         {
-            pnadmin.Size = new Size(pnadmin.Width, 0);
             pnadmin.Visible = false;
-            locationlabel(ref label1, panel4);
-            locationlabel(ref labeladdmin, pnadmin);
+
         }
         public void Showpaneladmin()
         {
-            pnadmin.Size = new Size(pnadmin.Width, panel1.Height / 2 - 1);
             pnadmin.Visible = true;
-            locationlabel(ref label1, panel4);
-            locationlabel(ref labeladdmin, pnadmin);
         }
         public void Hidedeletemember()
         {

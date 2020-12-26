@@ -152,10 +152,10 @@ namespace UI
 				byte[] data = File.ReadAllBytes(fi.FullName);
 
 				await FrmMain.client.SendFileToServer(data, "A", id.ToString());
-
 				byte[] tempfile = File.ReadAllBytes(fi.FullName);
-				File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
-				FrmMain.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
+				id = Guid.NewGuid();
+				File.WriteAllBytes(@"./cache/avatar/" + id.ToString() + fi.Extension, tempfile);
+				FrmMain.me.AvatarPath = @"./cache/avatar/" + id.ToString() + fi.Extension;
 				this.parent.LoadUser();
 
 			}

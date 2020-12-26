@@ -16,7 +16,7 @@ namespace UI
 {
 	public partial class ucFileShow : UserControl
 	{
-		private ucUserINChatBox ucParent;
+		public ucUserINChatBox ucParent;
 		private string fileId;
 		private string fileName;
 		public User user;
@@ -132,6 +132,7 @@ namespace UI
         }
 		public void DeleteMessage()
         {
+			this._FileName = "Deleted file";
 			this.label1.Text = "Deleted file";
 			this.label1.Font = new Font("Tahoma", 10, FontStyle.Italic);
 			this.pictureBoxDownLoad.Visible = false;

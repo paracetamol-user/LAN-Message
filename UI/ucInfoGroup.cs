@@ -108,19 +108,12 @@ namespace UI
 		public void _addfileinfilesent(List<ucFileShow> listfileShows)
 		{
 			pnaddfile.Controls.Clear();
-			if (listfileShows != null)
+			if (listfileShows.Count > 0)
 			{
 				for (int i = 0; i < listfileShows.Count; i++)
 				{
-
-					ucFileShow tam = new ucFileShow(listfileShows[i]._FileId, listfileShows[i]._FileName);
-
+					ucFileShow tam = new ucFileShow(listfileShows[i].user,listfileShows[i]._FileId, listfileShows[i]._FileName, listfileShows[i].ucParent);
 					tam.Dock = DockStyle.Top;
-					//if (listfileShows[i]._User == FrmMain.me)
-					//{
-					//	tam._DisableButDownLoad();
-					//}
-
 					if (tam._FileName != "Deleted file")
 					{
 						pnaddfile.Controls.Add(tam);
