@@ -37,9 +37,9 @@ namespace UI
             this.pndeletemember = new System.Windows.Forms.Panel();
             this.pictureBoxdeletemember = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.roundpicturebox1 = new UI.roundpicturebox();
             this.pnLine2 = new System.Windows.Forms.Panel();
             this.pnLine1 = new System.Windows.Forms.Panel();
+            this.roundpicturebox1 = new UI.roundpicturebox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.pnadmin.SuspendLayout();
@@ -58,6 +58,7 @@ namespace UI
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.pnLine2);
             this.panel1.Controls.Add(this.pnLine1);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -67,17 +68,18 @@ namespace UI
             // panel4
             // 
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel4.Location = new System.Drawing.Point(57, 1);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(205, 32);
+            this.panel4.Size = new System.Drawing.Size(66, 26);
             this.panel4.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1, 5);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 21);
             this.label1.TabIndex = 7;
@@ -86,6 +88,7 @@ namespace UI
             // pnadmin
             // 
             this.pnadmin.Controls.Add(this.labeladdmin);
+            this.pnadmin.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnadmin.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnadmin.Location = new System.Drawing.Point(57, 33);
             this.pnadmin.Name = "pnadmin";
@@ -95,8 +98,9 @@ namespace UI
             // labeladdmin
             // 
             this.labeladdmin.AutoSize = true;
+            this.labeladdmin.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.labeladdmin.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labeladdmin.Location = new System.Drawing.Point(1, 0);
+            this.labeladdmin.Location = new System.Drawing.Point(4, -4);
             this.labeladdmin.Name = "labeladdmin";
             this.labeladdmin.Size = new System.Drawing.Size(42, 17);
             this.labeladdmin.TabIndex = 7;
@@ -106,6 +110,7 @@ namespace UI
             // 
             this.pndeletemember.BackColor = System.Drawing.Color.Transparent;
             this.pndeletemember.Controls.Add(this.pictureBoxdeletemember);
+            this.pndeletemember.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pndeletemember.Dock = System.Windows.Forms.DockStyle.Right;
             this.pndeletemember.Location = new System.Drawing.Point(262, 1);
             this.pndeletemember.Margin = new System.Windows.Forms.Padding(4);
@@ -117,7 +122,7 @@ namespace UI
             // pictureBoxdeletemember
             // 
             this.pictureBoxdeletemember.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxdeletemember.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxdeletemember.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBoxdeletemember.Location = new System.Drawing.Point(14, 17);
             this.pictureBoxdeletemember.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxdeletemember.Name = "pictureBoxdeletemember";
@@ -131,6 +136,7 @@ namespace UI
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.roundpicturebox1);
+            this.panel3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(5);
@@ -139,18 +145,9 @@ namespace UI
             this.panel3.Size = new System.Drawing.Size(57, 57);
             this.panel3.TabIndex = 10;
             // 
-            // roundpicturebox1
-            // 
-            this.roundpicturebox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.roundpicturebox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundpicturebox1.Location = new System.Drawing.Point(5, 5);
-            this.roundpicturebox1.Name = "roundpicturebox1";
-            this.roundpicturebox1.Size = new System.Drawing.Size(47, 47);
-            this.roundpicturebox1.TabIndex = 12;
-            this.roundpicturebox1.TabStop = false;
-            // 
             // pnLine2
             // 
+            this.pnLine2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnLine2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnLine2.Location = new System.Drawing.Point(0, 58);
             this.pnLine2.Name = "pnLine2";
@@ -159,11 +156,22 @@ namespace UI
             // 
             // pnLine1
             // 
+            this.pnLine1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnLine1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine1.Location = new System.Drawing.Point(0, 0);
             this.pnLine1.Name = "pnLine1";
             this.pnLine1.Size = new System.Drawing.Size(311, 1);
             this.pnLine1.TabIndex = 8;
+            // 
+            // roundpicturebox1
+            // 
+            this.roundpicturebox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.roundpicturebox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.roundpicturebox1.Location = new System.Drawing.Point(5, 5);
+            this.roundpicturebox1.Name = "roundpicturebox1";
+            this.roundpicturebox1.Size = new System.Drawing.Size(47, 47);
+            this.roundpicturebox1.TabIndex = 12;
+            this.roundpicturebox1.TabStop = false;
             // 
             // ucMember
             // 
@@ -171,6 +179,8 @@ namespace UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
+            this.MaximumSize = new System.Drawing.Size(314, 65);
+            this.MinimumSize = new System.Drawing.Size(314, 65);
             this.Name = "ucMember";
             this.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.Size = new System.Drawing.Size(314, 65);

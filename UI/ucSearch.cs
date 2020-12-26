@@ -71,12 +71,12 @@ namespace UI
 		}
 		private void textBox1_KeyDown(object sender, KeyEventArgs e)
 		{
-			
 			if (e.KeyCode == Keys.Enter)
 			{
 				if (string.IsNullOrEmpty(textBox1.Text))
 				{
 					pnContain.Visible = false;
+					e.SuppressKeyPress = true;
 				}
 				else
                 {
@@ -84,9 +84,10 @@ namespace UI
 					EnableUser(text);
 					pnContain.Show();
 					pnContain.BringToFront();
+					e.SuppressKeyPress = true;
 				}
 			}
-			e.SuppressKeyPress = true;
+			
 		}
 		public void EnableUser(string text)
 		{

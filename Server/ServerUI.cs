@@ -143,7 +143,7 @@ namespace Server
             {
 				try
                 {
-					string[] arr = { "tinnhan", "contactmember", "contactbook", "member", "groups", "friend", "users" };
+					string[] arr = { "message", "contactmember", "contactbook", "member", "groups", "friend", "users" };
 					DialogResult ds = MessageBox.Show("Are you sure reset server? Delete all data in server!", "Reset Server", MessageBoxButtons.YesNo);
 					if (ds == DialogResult.Yes)
 					{
@@ -177,8 +177,9 @@ namespace Server
 							command.ExecuteNonQuery();
 							connection.Close();
 						}
+						txtBoxConsole.AppendText(string.Format("{0}{1}", "Reset Server Successfully!", Environment.NewLine));
 					}
-					txtBoxConsole.AppendText(string.Format("{0}{1}", "Reset Server Successfully!", Environment.NewLine));
+					
 				}
 				catch (Exception ex)
                 {
