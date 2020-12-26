@@ -59,7 +59,7 @@ namespace UI
         private void GroupForm_SizeChanged(object sender, EventArgs e)
         {
 			Point point = panel4.Location;
-			voicePanel.Location = new Point(point.X - voicePanel.Width / 2 + 20,
+			voicePanel.Location = new Point(point.X - voicePanel.Width / 2 + 18,
 											this.Height - 50 - voicePanel.Height);
 		}
 
