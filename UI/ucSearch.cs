@@ -107,6 +107,7 @@ namespace UI
 					{
 						item.ucSearch.Visible = true;
 					}
+					else item.ucSearch.Visible = false;
 				}
 				else item.ucSearch.Visible = false;
 			}
