@@ -873,7 +873,9 @@ namespace UI
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				MessageBox.Show("Server disconnected!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				acceptClose = false;
+				this.Close();
 			}
 		}
 		public void SetAvatar(string path)
@@ -967,7 +969,6 @@ namespace UI
 		{
 			this.AddToGroup.ReLocation();
 		}
-	
 		private void btnGroup_MouseLeave(object sender, EventArgs e)
 		{
 			try
@@ -995,7 +996,6 @@ namespace UI
 				id++;
 			}
 		}
-
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			if (acceptClose == false)
