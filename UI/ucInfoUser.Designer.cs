@@ -164,6 +164,7 @@ namespace UI
             // lbclearhistory
             // 
             this.lbclearhistory.AutoSize = true;
+            this.lbclearhistory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbclearhistory.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbclearhistory.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbclearhistory.Location = new System.Drawing.Point(18, 19);
@@ -197,6 +198,7 @@ namespace UI
             // lbaddfriend
             // 
             this.lbaddfriend.AutoSize = true;
+            this.lbaddfriend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbaddfriend.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbaddfriend.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbaddfriend.Location = new System.Drawing.Point(18, 19);
@@ -285,6 +287,7 @@ namespace UI
             // lbfilesent
             // 
             this.lbfilesent.AutoSize = true;
+            this.lbfilesent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbfilesent.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbfilesent.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbfilesent.Location = new System.Drawing.Point(18, 19);
@@ -316,6 +319,7 @@ namespace UI
             // lbRemove
             // 
             this.lbRemove.AutoSize = true;
+            this.lbRemove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbRemove.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRemove.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbRemove.Location = new System.Drawing.Point(18, 19);

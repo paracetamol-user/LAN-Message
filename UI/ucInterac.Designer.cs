@@ -57,7 +57,7 @@
             this.pnContain.Controls.Add(this.pnContrainName);
             this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.pnContainPicture);
-            this.pnContain.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnContain.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(20, 5);
             this.pnContain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -70,7 +70,7 @@
             // 
             this.pnContainMess.BackColor = System.Drawing.Color.Transparent;
             this.pnContainMess.Controls.Add(this.lbMess);
-            this.pnContainMess.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnContainMess.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContainMess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContainMess.Location = new System.Drawing.Point(56, 23);
             this.pnContainMess.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -84,7 +84,7 @@
             // 
             this.lbMess.AutoEllipsis = true;
             this.lbMess.BackColor = System.Drawing.Color.Transparent;
-            this.lbMess.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbMess.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lbMess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbMess.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMess.ForeColor = System.Drawing.Color.DimGray;
@@ -102,7 +102,7 @@
             this.pnContrainName.BackColor = System.Drawing.Color.Transparent;
             this.pnContrainName.Controls.Add(this.lbStatus);
             this.pnContrainName.Controls.Add(this.lbName);
-            this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContrainName.Location = new System.Drawing.Point(56, 0);
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -116,7 +116,7 @@
             // 
             this.lbStatus.AutoSize = true;
             this.lbStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lbStatus.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbStatus.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStatus.ForeColor = System.Drawing.Color.DimGray;
@@ -133,7 +133,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.BackColor = System.Drawing.Color.Transparent;
-            this.lbName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbName.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbName.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(5, 1);
@@ -147,7 +147,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.picClose);
-            this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(413, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -159,7 +159,7 @@
             // picClose
             // 
             this.picClose.BackColor = System.Drawing.Color.Transparent;
-            this.picClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picClose.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picClose.Image = ((System.Drawing.Image)(resources.GetObject("picClose.Image")));
             this.picClose.Location = new System.Drawing.Point(0, 0);
@@ -176,7 +176,7 @@
             this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
             this.pnContainPicture.Controls.Add(this.picStatus);
             this.pnContainPicture.Controls.Add(this.roundPicAvatar);
-            this.pnContainPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnContainPicture.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(0, 0);
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -191,6 +191,7 @@
             this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.picStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.picStatus.Location = new System.Drawing.Point(38, 32);
             this.picStatus.Name = "picStatus";
             this.picStatus.Size = new System.Drawing.Size(15, 15);
@@ -201,6 +202,7 @@
             // roundPicAvatar
             // 
             this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.roundPicAvatar.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(3, 0);
             this.roundPicAvatar.Name = "roundPicAvatar";

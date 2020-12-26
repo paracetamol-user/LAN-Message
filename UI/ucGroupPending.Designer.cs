@@ -125,6 +125,7 @@ namespace UI
             // 
             // picCheck
             // 
+            this.picCheck.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picCheck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picCheck.Image = ((System.Drawing.Image)(resources.GetObject("picCheck.Image")));
             this.picCheck.Location = new System.Drawing.Point(0, 5);
@@ -149,6 +150,7 @@ namespace UI
             // 
             // picClose
             // 
+            this.picClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picClose.Image = ((System.Drawing.Image)(resources.GetObject("picClose.Image")));
             this.picClose.Location = new System.Drawing.Point(11, 5);

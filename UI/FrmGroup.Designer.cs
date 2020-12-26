@@ -416,7 +416,7 @@ namespace UI
             this.pnLine1.Size = new System.Drawing.Size(1, 551);
             this.pnLine1.TabIndex = 2;
             // 
-            // GroupForm
+            // FrmGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -427,7 +427,7 @@ namespace UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(559, 551);
-            this.Name = "GroupForm";
+            this.Name = "FrmGroup";
             this.Text = "GroupForm";
             this.panelSEND.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSend)).EndInit();

@@ -79,17 +79,17 @@
             this.pnPending.Margin = new System.Windows.Forms.Padding(2);
             this.pnPending.Name = "pnPending";
             this.pnPending.Padding = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            this.pnPending.Size = new System.Drawing.Size(123, 53);
+            this.pnPending.Size = new System.Drawing.Size(133, 53);
             this.pnPending.TabIndex = 4;
             // 
             // picPoint
             // 
             this.picPoint.BackColor = System.Drawing.Color.Transparent;
             this.picPoint.Image = ((System.Drawing.Image)(resources.GetObject("picPoint.Image")));
-            this.picPoint.Location = new System.Drawing.Point(95, 10);
+            this.picPoint.Location = new System.Drawing.Point(100, 15);
             this.picPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picPoint.Name = "picPoint";
-            this.picPoint.Size = new System.Drawing.Size(20, 33);
+            this.picPoint.Size = new System.Drawing.Size(20, 20);
             this.picPoint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPoint.TabIndex = 3;
             this.picPoint.TabStop = false;
@@ -105,7 +105,7 @@
             this.btnPending.Location = new System.Drawing.Point(5, 10);
             this.btnPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPending.Name = "btnPending";
-            this.btnPending.Size = new System.Drawing.Size(113, 33);
+            this.btnPending.Size = new System.Drawing.Size(123, 33);
             this.btnPending.TabIndex = 2;
             this.btnPending.Text = "Pending";
             this.btnPending.UseVisualStyleBackColor = false;

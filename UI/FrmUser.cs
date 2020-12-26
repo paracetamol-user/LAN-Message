@@ -42,7 +42,7 @@ namespace UI
 			InitializeComponent();
 			
 			this.pictureBox1.Image = Image.FromFile(FrmMain.theme.PicturePlus);
-			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+			//this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
 			panelLine.BackColor = FrmMain.theme.LineColor;
 			this.userUI = userUI;
@@ -73,7 +73,7 @@ namespace UI
 		public void ResetPicture()
 		{
 			this.pictureBox1.Image = Image.FromFile(FrmMain.theme.PicturePlus);
-			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+			//this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
 		}
 		public void ChangeColorLine()

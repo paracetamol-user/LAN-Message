@@ -74,7 +74,7 @@ namespace UI
 			this.TextBoxEnterChat.ForeColor = FrmMain.theme.TxtForeColor;
 			this.TextBoxEnterChat.BackColor = FrmMain.theme.Menu;
 			this.pictureBox1.Image = Image.FromFile(FrmMain.theme.PicturePlus);
-			this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
+			//this.pictureBoxMenu.Image = Image.FromFile(FrmMain.theme.PictureMenu);
 			this.pictureVoice.Image = Image.FromFile(FrmMain.theme.pictureVoice);
 			this.panel1.BackColor = FrmMain.theme.Menu;
 			foreach (var item in userINChatBoxes)

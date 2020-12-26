@@ -110,6 +110,13 @@ namespace Server
 							subconnection.Close();
 						}
 						connection.Close();
+						connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
+						connection.Open();
+						query = "delete from contactbook where IDUSER = @ID";
+						command = new SqlCommand(query, connection);
+						command.Parameters.AddWithValue("@ID", ID);
+						command.ExecuteNonQuery();
+						connection.Close();
 
 						connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
 						connection.Open();
@@ -176,7 +183,7 @@ namespace Server
 								subconnection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
 								subconnection.Open();
 								subcommand = new SqlCommand("delete from member where IDGROUP = @IDGROUP and IDUSERS = @iduser", subconnection);
-								subcommand.Parameters.AddWithValue("@idnhom", idGroup);
+								subcommand.Parameters.AddWithValue("@IDGROUP", idGroup);
 								subcommand.Parameters.AddWithValue("@iduser", ID);
 								subcommand.ExecuteNonQuery();
 								subconnection.Close();
@@ -211,6 +218,7 @@ namespace Server
 								subconnection.Close();
 							}
 						}
+
 						connection.Close();
 						connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
 						connection.Open();

@@ -236,6 +236,7 @@
             // btnCreate
             // 
             this.btnCreate.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreate.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

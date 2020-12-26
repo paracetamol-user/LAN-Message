@@ -96,6 +96,7 @@ namespace UI
             // roundPicAvatar
             // 
             this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.roundPicAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(5, 5);
             this.roundPicAvatar.Name = "roundPicAvatar";
@@ -109,6 +110,7 @@ namespace UI
             // 
             this.pnInfo.BackColor = System.Drawing.Color.Transparent;
             this.pnInfo.Controls.Add(this.label1);
+            this.pnInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnInfo.Location = new System.Drawing.Point(51, 6);
             this.pnInfo.Margin = new System.Windows.Forms.Padding(4);
@@ -121,6 +123,7 @@ namespace UI
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

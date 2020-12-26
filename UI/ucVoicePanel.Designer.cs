@@ -36,6 +36,7 @@ namespace UI
             // 
             // PanelSend
             // 
+            this.PanelSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PanelSend.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelSend.Location = new System.Drawing.Point(116, 5);
             this.PanelSend.Name = "PanelSend";
@@ -44,6 +45,7 @@ namespace UI
             // 
             // panelRecord
             // 
+            this.panelRecord.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panelRecord.Location = new System.Drawing.Point(63, 5);
             this.panelRecord.Name = "panelRecord";
             this.panelRecord.Size = new System.Drawing.Size(37, 37);
@@ -51,6 +53,7 @@ namespace UI
             // 
             // PanelDelete
             // 
+            this.PanelDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PanelDelete.Location = new System.Drawing.Point(8, 5);
             this.PanelDelete.Name = "PanelDelete";
             this.PanelDelete.Size = new System.Drawing.Size(37, 37);
