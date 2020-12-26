@@ -80,6 +80,7 @@ namespace UI
             // picSearch
             // 
             this.picSearch.BackColor = System.Drawing.Color.Transparent;
+            this.picSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSearch.Dock = System.Windows.Forms.DockStyle.Right;
             this.picSearch.Image = ((System.Drawing.Image)(resources.GetObject("picSearch.Image")));
             this.picSearch.Location = new System.Drawing.Point(11, 0);

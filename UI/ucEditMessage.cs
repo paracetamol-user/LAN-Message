@@ -39,20 +39,49 @@ namespace UI
 		}
 		private async void lbSave_Click(object sender, EventArgs e)
 		{
-			try
-			{
-				byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%" + pnparent.ID + "%" + pnparent.IDParent + "%" + textBox1.Text);
-				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
-				ucmessshow.Visible = true;
-				ucmessshow.SetText(textBox1.Text);
-				pnparent._RemoveEditControls(this);
-				pnparent.isTurnOnEdit = false;
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			DialogResult ds = MessageBox.Show("Are you sure change this message", "Edit Message", MessageBoxButtons.YesNo);
+			if (ds == DialogResult.Yes)
+            {
+				try
+				{
+					byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%" + pnparent.ID + "%" + pnparent.IDParent + "%" + textBox1.Text);
+					SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+					FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+					ucmessshow.Visible = true;
+					ucmessshow.SetText(textBox1.Text);
+					pnparent._RemoveEditControls(this);
+					pnparent.isTurnOnEdit = false;
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
 			}
 		}
-	}
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+            {
+				DialogResult ds = MessageBox.Show("Are you sure change this message", "Edit Message", MessageBoxButtons.YesNo);
+				if (ds == DialogResult.Yes)
+				{
+					try
+					{
+						byte[] tempbuff = Encoding.UTF8.GetBytes("EDITMESSAGE%" + pnparent.ID + "%" + pnparent.IDParent + "%" + textBox1.Text);
+						SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+						FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+						ucmessshow.Visible = true;
+						ucmessshow.SetText(textBox1.Text);
+						pnparent._RemoveEditControls(this);
+						pnparent.isTurnOnEdit = false;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					}
+				}
+			}
+        }
+    }
 }

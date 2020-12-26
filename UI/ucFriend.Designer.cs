@@ -38,8 +38,8 @@
             this.picmess = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picRemove = new System.Windows.Forms.PictureBox();
-            this.picStatus = new UI.roundpicturebox();
             this.pnContainPicture = new System.Windows.Forms.Panel();
+            this.picStatus = new UI.roundpicturebox();
             this.roundPicAvatar = new UI.roundpicturebox();
             this.pnContain.SuspendLayout();
             this.pnContainId.SuspendLayout();
@@ -48,8 +48,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picmess)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picRemove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).BeginInit();
             this.pnContainPicture.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,18 +184,6 @@
             this.picRemove.TabStop = false;
             this.picRemove.Click += new System.EventHandler(this.picMenu_Click);
             // 
-            // picStatus
-            // 
-            this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.picStatus.Location = new System.Drawing.Point(31, 37);
-            this.picStatus.Name = "picStatus";
-            this.picStatus.Size = new System.Drawing.Size(15, 15);
-            this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picStatus.TabIndex = 6;
-            this.picStatus.TabStop = false;
-            // 
             // pnContainPicture
             // 
             this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
@@ -210,6 +198,18 @@
             this.pnContainPicture.Size = new System.Drawing.Size(50, 56);
             this.pnContainPicture.TabIndex = 0;
             this.pnContainPicture.Click += new System.EventHandler(this.pnContainPicture_Click);
+            // 
+            // picStatus
+            // 
+            this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.picStatus.Location = new System.Drawing.Point(31, 37);
+            this.picStatus.Name = "picStatus";
+            this.picStatus.Size = new System.Drawing.Size(15, 15);
+            this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picStatus.TabIndex = 6;
+            this.picStatus.TabStop = false;
             // 
             // roundPicAvatar
             // 
@@ -240,8 +240,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picmess)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picRemove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             this.pnContainPicture.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).EndInit();
             this.ResumeLayout(false);
 

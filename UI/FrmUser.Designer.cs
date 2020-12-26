@@ -416,7 +416,7 @@ namespace UI
             this.pnLine1.Size = new System.Drawing.Size(1, 554);
             this.pnLine1.TabIndex = 2;
             // 
-            // UserForm
+            // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -425,7 +425,7 @@ namespace UI
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "UserForm";
+            this.Name = "FrmUser";
             this.Text = "UserForm";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

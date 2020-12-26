@@ -93,8 +93,19 @@ namespace UI
 		{
 			panelPending.Dock = DockStyle.Fill;
 			panelPending.Padding = new Padding(30, 20, 20, 0);
+            panelPending.MouseMove += PanelPending_MouseMove;
 		}
-		public void EnablePointPending()
+
+        private void PanelPending_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (panelPending.Controls.Count == 0)
+            {
+				mainForm.DisableNotification();
+				this.picPoint.Visible = false;
+            }
+        }
+
+        public void EnablePointPending()
 		{
 			picPoint.Visible = true;
 		}
@@ -109,13 +120,13 @@ namespace UI
 		public void InitPanelAllUser()
 		{
 			panelAllUser.Dock = DockStyle.Fill;
-			panelAllUser.Padding = new Padding(30, 20, 0, 0);
+			panelAllUser.Padding = new Padding(30, 20, 20, 0);
 			panelAllUser.BringToFront();
 		}
 		public void InitPanelOnlineUser()
 		{
 			panelOnlineUser.Dock = DockStyle.Fill;
-			panelOnlineUser.Padding = new Padding(30, 20, 0, 0);
+			panelOnlineUser.Padding = new Padding(30, 20, 20, 0);
 			panelOnlineUser.BringToFront();
 		}
 		public void btnOnline_Click(object sender, EventArgs e)

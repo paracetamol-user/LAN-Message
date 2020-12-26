@@ -56,6 +56,7 @@ namespace UI
             // picturePause
             // 
             this.picturePause.BackColor = System.Drawing.Color.Transparent;
+            this.picturePause.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picturePause.Dock = System.Windows.Forms.DockStyle.Right;
             this.picturePause.Location = new System.Drawing.Point(237, 2);
             this.picturePause.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -69,6 +70,7 @@ namespace UI
             // picturePlay
             // 
             this.picturePlay.BackColor = System.Drawing.Color.Transparent;
+            this.picturePlay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picturePlay.Dock = System.Windows.Forms.DockStyle.Right;
             this.picturePlay.Location = new System.Drawing.Point(196, 2);
             this.picturePlay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -82,6 +84,7 @@ namespace UI
             // picturePlayBack
             // 
             this.picturePlayBack.BackColor = System.Drawing.Color.Transparent;
+            this.picturePlayBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picturePlayBack.Dock = System.Windows.Forms.DockStyle.Right;
             this.picturePlayBack.Image = ((System.Drawing.Image)(resources.GetObject("picturePlayBack.Image")));
             this.picturePlayBack.Location = new System.Drawing.Point(155, 2);

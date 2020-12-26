@@ -181,6 +181,7 @@ namespace UI
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(18, 17);
@@ -214,6 +215,7 @@ namespace UI
             // lbclearhistory
             // 
             this.lbclearhistory.AutoSize = true;
+            this.lbclearhistory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbclearhistory.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbclearhistory.ForeColor = System.Drawing.Color.Black;
             this.lbclearhistory.Location = new System.Drawing.Point(19, 17);
@@ -294,6 +296,7 @@ namespace UI
             // lbmember
             // 
             this.lbmember.AutoSize = true;
+            this.lbmember.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbmember.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbmember.ForeColor = System.Drawing.Color.Black;
             this.lbmember.Location = new System.Drawing.Point(20, 17);
@@ -371,6 +374,7 @@ namespace UI
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(18, 17);
@@ -402,6 +406,7 @@ namespace UI
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(18, 16);
@@ -434,6 +439,7 @@ namespace UI
             this.Controls.Add(this.pnNULL1);
             this.Controls.Add(this.pnavata_name);
             this.Controls.Add(this.pnLine1);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ucInfoGroup";
             this.Size = new System.Drawing.Size(321, 720);
             this.pnavata_name.ResumeLayout(false);

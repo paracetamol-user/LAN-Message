@@ -382,12 +382,11 @@
             // picNotification
             // 
             this.picNotification.BackColor = System.Drawing.Color.Transparent;
-            this.picNotification.Dock = System.Windows.Forms.DockStyle.Right;
             this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
-            this.picNotification.Location = new System.Drawing.Point(277, 0);
+            this.picNotification.Location = new System.Drawing.Point(272, 18);
             this.picNotification.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picNotification.Name = "picNotification";
-            this.picNotification.Size = new System.Drawing.Size(24, 53);
+            this.picNotification.Size = new System.Drawing.Size(20, 20);
             this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picNotification.TabIndex = 3;
             this.picNotification.TabStop = false;

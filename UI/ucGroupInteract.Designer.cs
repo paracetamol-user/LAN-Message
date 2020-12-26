@@ -56,6 +56,7 @@ namespace UI
             this.pnContain.Controls.Add(this.pnContrainName);
             this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.pnContainPicture);
+            this.pnContain.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(20, 7);
             this.pnContain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -67,6 +68,7 @@ namespace UI
             // pnContainStatus
             // 
             this.pnContainStatus.Controls.Add(this.lbStatus);
+            this.pnContainStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContainStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContainStatus.Location = new System.Drawing.Point(56, 30);
             this.pnContainStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -79,6 +81,7 @@ namespace UI
             // lbStatus
             // 
             this.lbStatus.AutoSize = true;
+            this.lbStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbStatus.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStatus.ForeColor = System.Drawing.Color.DimGray;
@@ -93,6 +96,7 @@ namespace UI
             // pnContrainName
             // 
             this.pnContrainName.Controls.Add(this.lbName);
+            this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContrainName.Location = new System.Drawing.Point(56, 0);
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -105,6 +109,7 @@ namespace UI
             // lbName
             // 
             this.lbName.AutoSize = true;
+            this.lbName.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(5, 1);
@@ -118,6 +123,7 @@ namespace UI
             // 
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.picClose);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(396, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -128,6 +134,7 @@ namespace UI
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -141,6 +148,7 @@ namespace UI
             // 
             // picClose
             // 
+            this.picClose.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picClose.Location = new System.Drawing.Point(0, 0);
             this.picClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -154,6 +162,7 @@ namespace UI
             // pnContainPicture
             // 
             this.pnContainPicture.Controls.Add(this.roundPicAvatar);
+            this.pnContainPicture.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(0, 0);
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -166,6 +175,7 @@ namespace UI
             // roundPicAvatar
             // 
             this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.roundPicAvatar.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(3, 2);
             this.roundPicAvatar.Name = "roundPicAvatar";

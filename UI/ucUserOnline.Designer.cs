@@ -60,24 +60,26 @@
             this.pnContain.Controls.Add(this.panel2);
             this.pnContain.Controls.Add(this.panel1);
             this.pnContain.Controls.Add(this.pnContainPicture);
+            this.pnContain.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContain.Location = new System.Drawing.Point(0, 1);
             this.pnContain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Padding = new System.Windows.Forms.Padding(0, 7, 20, 7);
-            this.pnContain.Size = new System.Drawing.Size(376, 68);
+            this.pnContain.Padding = new System.Windows.Forms.Padding(0, 7, 10, 7);
+            this.pnContain.Size = new System.Drawing.Size(405, 68);
             this.pnContain.TabIndex = 3;
             // 
             // pnContainId
             // 
             this.pnContainId.BackColor = System.Drawing.Color.Transparent;
             this.pnContainId.Controls.Add(this.lbId);
+            this.pnContainId.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainId.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContainId.Location = new System.Drawing.Point(59, 37);
             this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(234, 25);
+            this.pnContainId.Size = new System.Drawing.Size(273, 25);
             this.pnContainId.TabIndex = 9;
             this.pnContainId.Click += new System.EventHandler(this.pnContainId_Click_1);
             // 
@@ -85,6 +87,7 @@
             // 
             this.lbId.AutoSize = true;
             this.lbId.BackColor = System.Drawing.Color.Transparent;
+            this.lbId.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbId.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbId.ForeColor = System.Drawing.Color.DimGray;
@@ -99,12 +102,13 @@
             // 
             this.pnContrainName.BackColor = System.Drawing.Color.Transparent;
             this.pnContrainName.Controls.Add(this.lbName);
+            this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnContrainName.Location = new System.Drawing.Point(59, 7);
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(234, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(273, 30);
             this.pnContrainName.TabIndex = 8;
             this.pnContrainName.Click += new System.EventHandler(this.pnContainId_Click_1);
             // 
@@ -112,6 +116,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.BackColor = System.Drawing.Color.Transparent;
+            this.lbName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(5, 2);
@@ -125,8 +130,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.picChat);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(293, 7);
+            this.panel2.Location = new System.Drawing.Point(332, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
@@ -136,6 +142,7 @@
             // picChat
             // 
             this.picChat.BackColor = System.Drawing.Color.Transparent;
+            this.picChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picChat.Image = ((System.Drawing.Image)(resources.GetObject("picChat.Image")));
             this.picChat.Location = new System.Drawing.Point(0, 0);
@@ -151,8 +158,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.picAdd);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(328, 7);
+            this.panel1.Location = new System.Drawing.Point(367, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
@@ -162,6 +170,7 @@
             // picAdd
             // 
             this.picAdd.BackColor = System.Drawing.Color.Transparent;
+            this.picAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picAdd.Image = ((System.Drawing.Image)(resources.GetObject("picAdd.Image")));
             this.picAdd.Location = new System.Drawing.Point(11, 0);
@@ -178,6 +187,7 @@
             // 
             this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
             this.pnContainPicture.Controls.Add(this.roundPicAvatar);
+            this.pnContainPicture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnContainPicture.Location = new System.Drawing.Point(0, 7);
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -189,6 +199,7 @@
             // roundPicAvatar
             // 
             this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.roundPicAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(3, 2);
             this.roundPicAvatar.Name = "roundPicAvatar";
@@ -200,12 +211,13 @@
             // pnLine
             // 
             this.pnLine.BackColor = System.Drawing.Color.Transparent;
+            this.pnLine.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine.ForeColor = System.Drawing.Color.Black;
             this.pnLine.Location = new System.Drawing.Point(0, 0);
             this.pnLine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLine.Name = "pnLine";
-            this.pnLine.Size = new System.Drawing.Size(376, 1);
+            this.pnLine.Size = new System.Drawing.Size(405, 1);
             this.pnLine.TabIndex = 2;
             // 
             // ucUserOnline
@@ -217,7 +229,6 @@
             this.Controls.Add(this.pnLine);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucUserOnline";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 29, 0);
             this.Size = new System.Drawing.Size(405, 69);
             this.pnContain.ResumeLayout(false);
             this.pnContainId.ResumeLayout(false);
