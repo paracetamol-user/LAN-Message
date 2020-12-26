@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,12 @@ namespace UI
 			this.parent = parent;
 			this.lbName.Text = parent.group.Name;
 			this.lbStatus.Text = parent.group.ID;
-			this.roundPicAvatar.Image = Image.FromFile(parent.group.AvatarPath);
+			using (FileStream fs = new FileStream(parent.group.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
+	
 			this.lbStatus.ForeColor = FrmMain.theme.TextColor;
 			this.lbName.ForeColor = FrmMain.theme.TextColor;
 		}
@@ -34,7 +40,11 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-			this.roundPicAvatar.Image = Image.FromFile(parent.group.AvatarPath);
+			using (FileStream fs = new FileStream(parent.group.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		public void ChangeColorWhenClick()
 		{

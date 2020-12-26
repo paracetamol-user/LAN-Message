@@ -224,7 +224,11 @@ namespace UI
 			//this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
 			this.labelID.Text = "#" + me.Id;
-			this.roundPicAvatar.Image = Image.FromFile(me.AvatarPath);
+			using (FileStream fs = new FileStream(me.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		private void InitServerUsersForm()
 		{
@@ -238,7 +242,11 @@ namespace UI
 		{
 			labelID.Text = "#" + me.Id;
 			labelUSERNAME.Text = me.Name;
-			this.roundPicAvatar.Image = Image.FromFile(me.AvatarPath);
+			using (FileStream fs = new FileStream(me.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		private async Task AwaitReadData()
 		{

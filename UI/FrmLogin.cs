@@ -28,7 +28,11 @@ namespace UI
 			InitializeComponent();
 			InitClient();
 			ConnecToServer();
-			//ClearData();
+			//string path = @"./cache/avatar";
+			//if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+			//path = @"./voice";
+			//if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+			ClearData();
 		}
 		private void ClearData()
 		{

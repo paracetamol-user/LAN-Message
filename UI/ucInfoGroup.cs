@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using UserManager;
 using System.Drawing.Drawing2D;
 using Network;
+using System.IO;
 
 namespace UI
 {
@@ -92,9 +93,11 @@ namespace UI
 			this.group = group;
 			lbName.Text = "Name: " + group.Name;
 			lbID.Text = "#" + group.ID;
-			Image image = Image.FromFile(group.AvatarPath);
-			ptbavata.Image = image;
-			ptbavata.SizeMode = PictureBoxSizeMode.StretchImage;
+			using (FileStream fs = new FileStream(group.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				ptbavata.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			locationlabel(ref lbName, pnavata_name);
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);

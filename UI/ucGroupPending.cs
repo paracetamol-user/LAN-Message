@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,11 @@ namespace UI
             this.Dock = DockStyle.Top;
             this.pnParent = pnPending;
             this.uiParent = groupUI;
-            this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
+            using (FileStream fs = new FileStream(uiParent.group.AvatarPath, FileMode.Open, FileAccess.Read))
+            {
+                this.roundPicAvatar.Image = Image.FromStream(fs);
+                fs.Dispose();
+            }
             this.lbName.Text = uiParent.group.Name;
             this.lbId.Text = "#" +uiParent.group.ID;
             InitColor();
@@ -35,7 +40,11 @@ namespace UI
             InitializeComponent();
             this.Dock = DockStyle.Top;
             this.pnParent = pnPending;
-            this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
+            using (FileStream fs = new FileStream(uiParent.group.AvatarPath, FileMode.Open, FileAccess.Read))
+            {
+                this.roundPicAvatar.Image = Image.FromStream(fs);
+                fs.Dispose();
+            }
             this.lbName.Text = name;
             this.lbId.Text = id;
             this.lbId.ForeColor = FrmMain.theme.TextColor;

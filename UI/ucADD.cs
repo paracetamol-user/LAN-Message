@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,11 @@ namespace UI
 		{
 			this.label1.ForeColor = FrmMain.theme.TextColor;
 			this.label2.ForeColor = FrmMain.theme.TextColor;
-			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
-			this.button1.ForeColor = FrmMain.theme.TxtForeColor;
+			using (FileStream fs = new FileStream(user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		public void Reset()
         {
@@ -40,8 +44,12 @@ namespace UI
 		}
 		public void SetAvatar(string path)
         {
-			this.roundPicAvatar.Image = Image.FromFile(path);
-        }
+			using (FileStream fs = new FileStream(@path, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
+		}
         private void button1_Click(object sender, EventArgs e)
         {
 			if (button1.Text == "ADD")

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
 using Network;
+using System.IO;
 
 namespace UI
 {
@@ -38,9 +39,20 @@ namespace UI
 			this.labelName.Text = User.Name;
 			if (this.User == FrmMain.me)
 			{
-				roundPicAvatar.Image = Image.FromFile(FrmMain.me.AvatarPath);
+				using (FileStream fs = new FileStream(FrmMain.me.AvatarPath, FileMode.Open, FileAccess.Read))
+				{
+					roundPicAvatar.Image = Image.FromStream(fs);
+					fs.Dispose();
+				}
 			}
-			else roundPicAvatar.Image = Image.FromFile(User.AvatarPath);
+			else
+			{
+				using (FileStream fs = new FileStream(User.AvatarPath, FileMode.Open, FileAccess.Read))
+				{
+					roundPicAvatar.Image = Image.FromStream(fs);
+					fs.Dispose();
+				}
+			}
 			this.labelName.ForeColor = FrmMain.theme.TextColor;
 			this.picEdit.Image = Image.FromFile(FrmMain.theme.picturePen);
 			this.picDelete.Image = Image.FromFile(FrmMain.theme.pictureBin);

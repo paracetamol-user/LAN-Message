@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
+using System.IO;
 
 namespace UI
 {
@@ -41,7 +42,11 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-			this.roundPicAvatar.Image = Image.FromFile(path);
+			using (FileStream fs = new FileStream(@path, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 
         private void ucUserAll_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace UI
 {
@@ -25,7 +26,11 @@ namespace UI
 			this.Parent = userUI;
 			this.lbName.Text = userUI.user.Name;
 			this.lbId.Text = "#" + userUI.user.Id;
-			this.roundPicAvatar.Image = Image.FromFile(userUI.user.AvatarPath);
+			using (FileStream fs = new FileStream(userUI.user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			if (Parent.user.Status == true) this.Online();
 			else this.Offline();
 			InitColor();
@@ -80,8 +85,12 @@ namespace UI
 		}
 		public void SetAvatar(string path)
         {
-			this.roundPicAvatar.Image = Image.FromFile(path);
-        }
+			using (FileStream fs = new FileStream(@path, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
+		}
 
         private void roundPicAvatar_Click(object sender, EventArgs e)
         {

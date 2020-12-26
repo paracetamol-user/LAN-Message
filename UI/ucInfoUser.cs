@@ -11,6 +11,8 @@ using System.Drawing.Drawing2D;
 using User = UserManager.User;
 using UserManager;
 using Network;
+using System.IO;
+
 namespace UI
 {
     public partial class ucInfoUser : UserControl
@@ -75,13 +77,14 @@ namespace UI
 			this.user = user;
 			lbName.Text = "Name: " + user.Name;
 			lbID.Text = "#" + user.Id;
-			Image image = Image.FromFile(user.AvatarPath);
-			ptbavata.Image = image;
-			ptbavata.SizeMode = PictureBoxSizeMode.StretchImage;
+			using (FileStream fs = new FileStream(user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				ptbavata.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			locationlabel(ref lbName, pnavata_name);
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);
-
 			_addfileinfilesent(listfileShows);
 			if (user.IsFriend)
 			{

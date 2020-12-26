@@ -41,7 +41,11 @@ namespace UI
 		{
 			this.lblName.Text = me.Name;
 			this.lblID.Text = "#" + me.Id;
-			this.pictureAvatar.Image = Image.FromFile(me.AvatarPath);
+			using (FileStream fs = new FileStream(me.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.pictureAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 
 		private void InitSettingForm()
@@ -92,7 +96,11 @@ namespace UI
 		}
 		public void ResetPicture()
 		{
-			this.pictureBox2.Image = Image.FromFile(FrmMain.theme.PictureCancel);
+			using (FileStream fs = new FileStream(FrmMain.theme.PictureClose, FileMode.Open, FileAccess.Read))
+			{
+				this.pictureBox2.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		private void InitStartForm()
 		{
@@ -153,9 +161,9 @@ namespace UI
 
 				await FrmMain.client.SendFileToServer(data, "A", id.ToString());
 				byte[] tempfile = File.ReadAllBytes(fi.FullName);
-				id = Guid.NewGuid();
-				File.WriteAllBytes(@"./cache/avatar/" + id.ToString() + fi.Extension, tempfile);
-				FrmMain.me.AvatarPath = @"./cache/avatar/" + id.ToString() + fi.Extension;
+				
+				File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
+				FrmMain.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
 				this.parent.LoadUser();
 
 			}
@@ -282,9 +290,11 @@ namespace UI
 			DialogResult result = openFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
-				Image avatar = Image.FromFile(openFileDialog.FileName);
-				this.pictureAvatar.Image = avatar;
-
+				using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+				{
+					this.pictureAvatar.Image = Image.FromStream(fs);
+					fs.Dispose();
+				}
 				// Upload to database and update to all users.
 				fi = new FileInfo(openFileDialog.FileName);
 			}
