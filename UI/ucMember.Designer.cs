@@ -180,8 +180,6 @@ namespace UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
-            this.MaximumSize = new System.Drawing.Size(314, 65);
-            this.MinimumSize = new System.Drawing.Size(314, 65);
             this.Name = "ucMember";
             this.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.Size = new System.Drawing.Size(314, 65);

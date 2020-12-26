@@ -131,8 +131,6 @@ namespace UI
 		public void _addmember(List<User> listmember)
 		{
 			List<ucMember> listuser = new List<ucMember>();
-			
-			
 			if (listmember != null)
 			{
 			  
@@ -142,7 +140,6 @@ namespace UI
 					if(listmember[i] != group.admin)
 					{
 						ucMember tam = new ucMember(group, listmember[i]);
-						
 						listuser.Add(tam);
 					}
 				}
@@ -168,7 +165,6 @@ namespace UI
 					listuser[i].Dock = DockStyle.Top;
 				}
 			}
-			
 		}
 		public Image _xoayanh(Image image, float rotationAngle)
 		{

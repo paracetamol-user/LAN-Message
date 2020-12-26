@@ -1387,7 +1387,7 @@ namespace Communication
 												if (!reader.Read()) break;
 												foreach (var item2 in clientInvalid)
 												{
-													if (item2.id_ == reader.GetString(0)) //&& item2.id_ != item.IDsend)
+													if (item2.id_ == reader.GetString(0) && item2.id_ != client.id_) //&& item2.id_ != item.IDsend)
 													{
 														try
 														{
