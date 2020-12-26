@@ -49,7 +49,6 @@ namespace UI
 		}
 		private async void ConnecToServer()
 		{
-			
 			server = await client.ConnectToServer();
 			if (server != null) this.lnConnect.Text = "Connected";
 			else this.lnConnect.Text = "No connection";
@@ -154,11 +153,12 @@ namespace UI
 			if ((sender as Label).Text == "Connected")
             {
 				(sender as Label).ForeColor = Color.Green;
+				this.pictureBoxReload.Visible = false;
 			}
 			else
             {
 				(sender as Label).ForeColor = Color.Black;
-
+				this.pictureBoxReload.Visible = true;
 			}
         }
 
@@ -166,5 +166,19 @@ namespace UI
         {
 			this.Close();
         }
+
+        private void pictureBoxReload_Click(object sender, EventArgs e)
+        {
+			try
+			{
+				server.Dispose();
+			}
+			catch (Exception ex)
+            {
+
+            }
+			InitClient();
+			ConnecToServer();
+		}
     }
 }

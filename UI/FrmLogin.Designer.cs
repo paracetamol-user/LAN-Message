@@ -42,11 +42,11 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lnConnect = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxReload = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReload)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxAccount
@@ -64,11 +64,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Location = new System.Drawing.Point(104, 128);
+            this.label1.Location = new System.Drawing.Point(117, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 67);
+            this.label1.Size = new System.Drawing.Size(160, 55);
             this.label1.TabIndex = 6;
             this.label1.Text = "LOGIN";
             // 
@@ -111,7 +111,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Myanmar Text", 16.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(49, 396);
+            this.button1.Location = new System.Drawing.Point(49, 375);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 49);
@@ -128,7 +128,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(153, 516);
+            this.button3.Location = new System.Drawing.Point(147, 494);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 36);
@@ -155,7 +155,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Myanmar Text", 16.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(49, 463);
+            this.button2.Location = new System.Drawing.Point(49, 441);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(300, 49);
@@ -190,36 +190,43 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 26);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(393, 126);
+            this.pictureBox1.Size = new System.Drawing.Size(393, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // lnConnect
             // 
+            this.lnConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnConnect.AutoSize = true;
-            this.lnConnect.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnConnect.Location = new System.Drawing.Point(279, 9);
+            this.lnConnect.BackColor = System.Drawing.Color.Transparent;
+            this.lnConnect.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnConnect.Location = new System.Drawing.Point(3, 5);
             this.lnConnect.Name = "lnConnect";
-            this.lnConnect.Size = new System.Drawing.Size(70, 17);
+            this.lnConnect.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lnConnect.Size = new System.Drawing.Size(78, 17);
             this.lnConnect.TabIndex = 16;
             this.lnConnect.Text = "lbConnect";
+            this.lnConnect.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lnConnect.Visible = false;
             this.lnConnect.TextChanged += new System.EventHandler(this.lnConnect_TextChanged);
             // 
-            // pictureBox4
+            // pictureBoxReload
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(351, 9);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox4.TabIndex = 17;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Visible = false;
+            this.pictureBoxReload.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxReload.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxReload.Image")));
+            this.pictureBoxReload.Location = new System.Drawing.Point(124, 1);
+            this.pictureBoxReload.Name = "pictureBoxReload";
+            this.pictureBoxReload.Size = new System.Drawing.Size(26, 24);
+            this.pictureBoxReload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxReload.TabIndex = 17;
+            this.pictureBoxReload.TabStop = false;
+            this.pictureBoxReload.Visible = false;
+            this.pictureBoxReload.Click += new System.EventHandler(this.pictureBoxReload_Click);
             // 
             // FrmLogin
             // 
@@ -227,7 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(393, 563);
-            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBoxReload);
             this.Controls.Add(this.lnConnect);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
@@ -250,7 +257,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +277,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lnConnect;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBoxReload;
     }
 }
