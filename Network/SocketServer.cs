@@ -1436,7 +1436,7 @@ namespace Communication
 									item.Ack = item.Ack + package.Data.Length;
 									if (item.Ack == item.Length)
 									{
-										string path = @"./avatar/" + item.IDpackage + item.Extension;
+										string path = @"./avatar/" + item.IDsend + item.Extension;
 										File.WriteAllBytes(path, item.Data);
 										// Viết database lưu file đó vào bảng USERS tại địa chỉ ID của thằng đó
 										string query = "UPDATE USERS SET SOURCEAVATAR = @SOURCE WHERE ID =@ID";
