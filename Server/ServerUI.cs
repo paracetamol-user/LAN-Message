@@ -49,7 +49,10 @@ namespace Server
 
         private void ClearData()
 		{
-			string path = @"./voice";
+			string path = @"./avatar";
+			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+
+		    path = @"./voice";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 			DirectoryInfo dir = new DirectoryInfo(path);
 			foreach (var item in dir.GetDirectories())
