@@ -146,6 +146,7 @@ namespace UI
             this.lbName.Size = new System.Drawing.Size(69, 27);
             this.lbName.TabIndex = 3;
             this.lbName.Text = "Name";
+            this.lbName.UseMnemonic = false;
             // 
             // pnLine2
             // 

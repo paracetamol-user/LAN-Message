@@ -56,7 +56,7 @@ namespace UI
             this.pnHeader.Controls.Add(this.pnMenu);
             this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.pnHeader.Size = new System.Drawing.Size(615, 37);
@@ -67,7 +67,7 @@ namespace UI
             this.pnInfo.Controls.Add(this.lbNameContact);
             this.pnInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnInfo.Location = new System.Drawing.Point(57, 0);
-            this.pnInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnInfo.Margin = new System.Windows.Forms.Padding(4);
             this.pnInfo.Name = "pnInfo";
             this.pnInfo.Size = new System.Drawing.Size(470, 37);
             this.pnInfo.TabIndex = 5;
@@ -82,13 +82,14 @@ namespace UI
             this.lbNameContact.Size = new System.Drawing.Size(68, 23);
             this.lbNameContact.TabIndex = 0;
             this.lbNameContact.Text = "label1";
+            this.lbNameContact.UseMnemonic = false;
             // 
             // pnPic
             // 
             this.pnPic.Controls.Add(this.pic);
             this.pnPic.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnPic.Location = new System.Drawing.Point(13, 0);
-            this.pnPic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnPic.Margin = new System.Windows.Forms.Padding(4);
             this.pnPic.Name = "pnPic";
             this.pnPic.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
             this.pnPic.Size = new System.Drawing.Size(44, 37);
@@ -99,7 +100,7 @@ namespace UI
             this.pic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pic.Image = ((System.Drawing.Image)(resources.GetObject("pic.Image")));
             this.pic.Location = new System.Drawing.Point(0, 4);
-            this.pic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pic.Margin = new System.Windows.Forms.Padding(4);
             this.pic.Name = "pic";
             this.pic.Size = new System.Drawing.Size(44, 29);
             this.pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -112,7 +113,7 @@ namespace UI
             this.pnMenu.Controls.Add(this.pictureAdd);
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnMenu.Location = new System.Drawing.Point(527, 0);
-            this.pnMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnMenu.Margin = new System.Windows.Forms.Padding(4);
             this.pnMenu.Name = "pnMenu";
             this.pnMenu.Padding = new System.Windows.Forms.Padding(0, 9, 13, 9);
             this.pnMenu.Size = new System.Drawing.Size(88, 37);
@@ -123,7 +124,7 @@ namespace UI
             this.pictureDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureDelete.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureDelete.Location = new System.Drawing.Point(54, 9);
-            this.pictureDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureDelete.Margin = new System.Windows.Forms.Padding(4);
             this.pictureDelete.Name = "pictureDelete";
             this.pictureDelete.Size = new System.Drawing.Size(21, 19);
             this.pictureDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -135,7 +136,7 @@ namespace UI
             // 
             this.pictureAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureAdd.Location = new System.Drawing.Point(13, 9);
-            this.pictureAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureAdd.Margin = new System.Windows.Forms.Padding(4);
             this.pictureAdd.Name = "pictureAdd";
             this.pictureAdd.Size = new System.Drawing.Size(25, 20);
             this.pictureAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -148,7 +149,7 @@ namespace UI
             this.pnLine.BackColor = System.Drawing.Color.Gainsboro;
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine.Location = new System.Drawing.Point(0, 37);
-            this.pnLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnLine.Margin = new System.Windows.Forms.Padding(4);
             this.pnLine.Name = "pnLine";
             this.pnLine.Size = new System.Drawing.Size(615, 1);
             this.pnLine.TabIndex = 7;
@@ -159,7 +160,7 @@ namespace UI
             this.pnList.AutoSize = true;
             this.pnList.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnList.Location = new System.Drawing.Point(0, 38);
-            this.pnList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnList.Margin = new System.Windows.Forms.Padding(4);
             this.pnList.Name = "pnList";
             this.pnList.Padding = new System.Windows.Forms.Padding(27, 6, 27, 0);
             this.pnList.Size = new System.Drawing.Size(615, 6);
@@ -174,7 +175,7 @@ namespace UI
             this.Controls.Add(this.pnList);
             this.Controls.Add(this.pnLine);
             this.Controls.Add(this.pnHeader);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucContact";
             this.Size = new System.Drawing.Size(615, 54);
             this.pnHeader.ResumeLayout(false);

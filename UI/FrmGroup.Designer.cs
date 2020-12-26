@@ -232,6 +232,7 @@ namespace UI
             this.labelName.Size = new System.Drawing.Size(125, 23);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Group Name";
+            this.labelName.UseMnemonic = false;
             // 
             // panel3
             // 

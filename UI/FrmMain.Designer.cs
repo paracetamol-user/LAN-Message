@@ -308,6 +308,7 @@
             this.labelUSERNAME.Size = new System.Drawing.Size(105, 22);
             this.labelUSERNAME.TabIndex = 0;
             this.labelUSERNAME.Text = "User Name";
+            this.labelUSERNAME.UseMnemonic = false;
             // 
             // panel3
             // 

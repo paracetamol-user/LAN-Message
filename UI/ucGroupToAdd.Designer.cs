@@ -132,6 +132,7 @@ namespace UI
             this.label1.Size = new System.Drawing.Size(72, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
+            this.label1.UseMnemonic = false;
             // 
             // pnRight
             // 

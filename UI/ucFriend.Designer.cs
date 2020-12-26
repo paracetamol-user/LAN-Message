@@ -126,6 +126,7 @@
             this.lbName.Size = new System.Drawing.Size(60, 23);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
+            this.lbName.UseMnemonic = false;
             this.lbName.Click += new System.EventHandler(this.pnContainPicture_Click);
             // 
             // panel2

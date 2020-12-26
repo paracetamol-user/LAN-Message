@@ -218,6 +218,7 @@
             this.labelName.Size = new System.Drawing.Size(101, 34);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "label1";
+            this.labelName.UseMnemonic = false;
             this.labelName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // ucUserINChatBox

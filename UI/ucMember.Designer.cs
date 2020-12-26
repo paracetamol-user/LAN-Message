@@ -84,6 +84,7 @@ namespace UI
             this.label1.Size = new System.Drawing.Size(62, 21);
             this.label1.TabIndex = 7;
             this.label1.Text = "label1";
+            this.label1.UseMnemonic = false;
             // 
             // pnadmin
             // 
