@@ -42,14 +42,16 @@ namespace UI
 		}
 		private async void ConnecToServer()
 		{
+			
 			server = await client.ConnectToServer();
+			if (server != null) this.lnConnect.Text = "Connected";
+			else this.lnConnect.Text = "No connection";
 		}
 		public void InitClient()
 		{
 			client = new SocketClient();
 			client.SetServerIPAddress(ipServer);
 			client.SetServerPort(portSever);
-
 		}
 		public async void SendRequest(string account, string pass, string action)
 		{
@@ -89,6 +91,7 @@ namespace UI
 			catch ( Exception ex)
             {
 				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK , MessageBoxIcon.Warning);
+				this.lnConnect.Text = "No connection";
 			}
 		}
 		private void button1_Click(object sender, EventArgs e)
@@ -133,8 +136,23 @@ namespace UI
 		}
 		public void ReConnect()
 		{
+			server.Dispose();
 			InitClient();
 			ConnecToServer();
 		}
-	}
+
+        private void lnConnect_TextChanged(object sender, EventArgs e)
+        {
+			(sender as Label).Visible = true;
+			if ((sender as Label).Text == "Connected")
+            {
+				(sender as Label).ForeColor = Color.Green;
+			}
+			else
+            {
+				(sender as Label).ForeColor = Color.Black;
+
+			}
+        }
+    }
 }
