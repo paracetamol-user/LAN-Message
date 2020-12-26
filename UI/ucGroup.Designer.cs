@@ -219,6 +219,7 @@
             this.txtCreate.Name = "txtCreate";
             this.txtCreate.Size = new System.Drawing.Size(283, 28);
             this.txtCreate.TabIndex = 3;
+            this.txtCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCreate_KeyDown);
             // 
             // panel2
             // 

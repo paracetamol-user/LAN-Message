@@ -38,6 +38,7 @@
             this.picmess = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picRemove = new System.Windows.Forms.PictureBox();
+            this.picStatus = new UI.roundpicturebox();
             this.pnContainPicture = new System.Windows.Forms.Panel();
             this.roundPicAvatar = new UI.roundpicturebox();
             this.pnContain.SuspendLayout();
@@ -47,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picmess)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picRemove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).BeginInit();
             this.pnContainPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +66,7 @@
             this.pnContain.Location = new System.Drawing.Point(0, 0);
             this.pnContain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Padding = new System.Windows.Forms.Padding(11, 3, 20, 3);
+            this.pnContain.Padding = new System.Windows.Forms.Padding(0, 3, 20, 5);
             this.pnContain.Size = new System.Drawing.Size(372, 64);
             this.pnContain.TabIndex = 3;
             this.pnContain.Click += new System.EventHandler(this.pnContainPicture_Click);
@@ -75,11 +77,11 @@
             this.pnContainId.Controls.Add(this.lbId);
             this.pnContainId.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainId.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContainId.Location = new System.Drawing.Point(67, 33);
+            this.pnContainId.Location = new System.Drawing.Point(50, 33);
             this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(221, 25);
+            this.pnContainId.Size = new System.Drawing.Size(238, 25);
             this.pnContainId.TabIndex = 6;
             this.pnContainId.Click += new System.EventHandler(this.pnContainPicture_Click);
             // 
@@ -104,11 +106,11 @@
             this.pnContrainName.Controls.Add(this.lbName);
             this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContrainName.Location = new System.Drawing.Point(67, 3);
+            this.pnContrainName.Location = new System.Drawing.Point(50, 3);
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(221, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(238, 30);
             this.pnContrainName.TabIndex = 5;
             this.pnContrainName.Click += new System.EventHandler(this.pnContainPicture_Click);
             // 
@@ -136,7 +138,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 5, 11, 5);
-            this.panel2.Size = new System.Drawing.Size(35, 58);
+            this.panel2.Size = new System.Drawing.Size(35, 56);
             this.panel2.TabIndex = 4;
             // 
             // picmess
@@ -148,7 +150,7 @@
             this.picmess.Location = new System.Drawing.Point(0, 5);
             this.picmess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picmess.Name = "picmess";
-            this.picmess.Size = new System.Drawing.Size(24, 48);
+            this.picmess.Size = new System.Drawing.Size(24, 46);
             this.picmess.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picmess.TabIndex = 0;
             this.picmess.TabStop = false;
@@ -164,7 +166,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(11, 5, 0, 5);
-            this.panel1.Size = new System.Drawing.Size(29, 58);
+            this.panel1.Size = new System.Drawing.Size(29, 56);
             this.panel1.TabIndex = 1;
             // 
             // picRemove
@@ -176,36 +178,49 @@
             this.picRemove.Location = new System.Drawing.Point(11, 5);
             this.picRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picRemove.Name = "picRemove";
-            this.picRemove.Size = new System.Drawing.Size(18, 48);
+            this.picRemove.Size = new System.Drawing.Size(18, 46);
             this.picRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRemove.TabIndex = 0;
             this.picRemove.TabStop = false;
             this.picRemove.Click += new System.EventHandler(this.picMenu_Click);
             // 
+            // picStatus
+            // 
+            this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.picStatus.Location = new System.Drawing.Point(31, 37);
+            this.picStatus.Name = "picStatus";
+            this.picStatus.Size = new System.Drawing.Size(15, 15);
+            this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picStatus.TabIndex = 6;
+            this.picStatus.TabStop = false;
+            // 
             // pnContainPicture
             // 
             this.pnContainPicture.BackColor = System.Drawing.Color.Transparent;
+            this.pnContainPicture.Controls.Add(this.picStatus);
             this.pnContainPicture.Controls.Add(this.roundPicAvatar);
             this.pnContainPicture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainPicture.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnContainPicture.Location = new System.Drawing.Point(11, 3);
+            this.pnContainPicture.Location = new System.Drawing.Point(0, 3);
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainPicture.Name = "pnContainPicture";
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pnContainPicture.Size = new System.Drawing.Size(56, 58);
+            this.pnContainPicture.Size = new System.Drawing.Size(50, 56);
             this.pnContainPicture.TabIndex = 0;
             this.pnContainPicture.Click += new System.EventHandler(this.pnContainPicture_Click);
             // 
             // roundPicAvatar
             // 
             this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundPicAvatar.Location = new System.Drawing.Point(3, 4);
+            this.roundPicAvatar.Location = new System.Drawing.Point(-1, 3);
             this.roundPicAvatar.Name = "roundPicAvatar";
             this.roundPicAvatar.Size = new System.Drawing.Size(50, 50);
             this.roundPicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.roundPicAvatar.TabIndex = 1;
             this.roundPicAvatar.TabStop = false;
+            this.roundPicAvatar.Click += new System.EventHandler(this.roundPicAvatar_Click);
             // 
             // ucFriend
             // 
@@ -225,6 +240,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picmess)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picRemove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             this.pnContainPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).EndInit();
             this.ResumeLayout(false);
@@ -243,6 +259,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox picRemove;
         private System.Windows.Forms.Panel pnContainPicture;
-		private roundpicturebox roundPicAvatar;
-	}
+        private roundpicturebox picStatus;
+        private roundpicturebox roundPicAvatar;
+    }
 }

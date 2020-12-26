@@ -17,7 +17,7 @@ using Network;
 
 namespace UI
 {
-	public partial class UserForm : Form
+	public partial class FrmUser : Form
 	{
 		public User user;
 		private List<Panel> BoxChats;
@@ -30,14 +30,14 @@ namespace UI
 		public ucInfoUser ucInfoUser;
 		public List<ucFileShow> listfileShows = new List<ucFileShow>();
 		public List<ucUserINChatBox> userINChatBoxes;
-		public UserForm()
+		public FrmUser()
 		{
 			InitializeComponent();
 			this.Visible = false;
 			addpnInfo();
 			ucInfoUser._LoadInfoUser(user, listfileShows);
 		}
-		public UserForm(UserManager.User user, UserUI userUI)
+		public FrmUser(UserManager.User user, UserUI userUI)
 		{
 			InitializeComponent();
 			
@@ -99,7 +99,7 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-
+			
 		}
 		public void AddItemInToListChat(User user, string IDMess, string str)
 		{
@@ -288,8 +288,8 @@ namespace UI
 		{
 			if (!isVoicePanelShow)
 			{
-				
 				voicePanel.Visible = true;
+				voicePanel.InitControls();
 				voicePanel.Show();
 				voicePanel.BringToFront();
 				isVoicePanelShow = true;
@@ -319,7 +319,7 @@ namespace UI
 					{
 						FileInfo temp = new FileInfo(item);
 						files.Add(temp);
-						usFileTemp x = new usFileTemp(panelListFile, files, temp);
+						ucFileTemp x = new ucFileTemp(panelListFile, files, temp);
 						this.panelListFile.Controls.Add(x);
 						x.Dock = DockStyle.Left;
 						x._FileName = temp.Name;

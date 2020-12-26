@@ -16,10 +16,10 @@ namespace UI
 	public partial class ucInfoGroup : UserControl
 	{
 		
-		GroupForm frmMain;
+		FrmGroup frmMain;
 		private Group group;
 		List<User> listmember;
-		public frmADD frmADD;
+		public FrmADD frmADD;
 		FrmMain mainForm;
 		public ucInfoGroup()
 		{
@@ -30,9 +30,9 @@ namespace UI
 			pnfile.AutoSize = true;
 			pnmember.AutoSize = true;
 			this.mainForm = this.frmMain.GroupUI.MAINFORM;
-			this.frmADD = new frmADD(mainForm);
+			this.frmADD = new FrmADD(mainForm);
 		}
-		public ucInfoGroup(GroupForm frmMain)
+		public ucInfoGroup(FrmGroup frmMain)
 		{
 			this.frmMain = frmMain;
 			InitializeComponent();
@@ -47,7 +47,7 @@ namespace UI
 			pnmember.AutoSize = true;
 			
 			this.mainForm = this.frmMain.GroupUI.MAINFORM;
-			this.frmADD = new frmADD(mainForm);
+			this.frmADD = new FrmADD(mainForm);
 			this.frmMain.Pncontaininfor.Controls.Add(this);
 			this.Dock = DockStyle.Top;
 		}

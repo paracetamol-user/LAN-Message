@@ -27,7 +27,7 @@ namespace UI
             this.uiParent = groupUI;
             this.roundPicAvatar.Image = Image.FromFile(uiParent.group.AvatarPath);
             this.lbName.Text = uiParent.group.Name;
-            this.lbId.Text = uiParent.group.ID;
+            this.lbId.Text = "#" +uiParent.group.ID;
             InitColor();
         }
         public ucGroupPending(string id , string name, Panel pnPending)

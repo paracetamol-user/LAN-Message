@@ -25,7 +25,6 @@ namespace UI
 		public ucSearch(List<UserUI> userUIs , Panel pnContain,bool isOnline, bool isFriend)
 		{
 			InitializeComponent();
-			//this.BackColor = Form1.theme.FocusColor;
 			this.textBox1.BackColor = FrmMain.theme.FocusColor;
 			this.textBox1.ForeColor = FrmMain.theme.TextColor;
 			this.picSearch.Image = Image.FromFile(FrmMain.theme.PictureSearch);
@@ -36,33 +35,12 @@ namespace UI
 			this.isFriend = isFriend;
 			this.isGr = false;
 		}
-        //public void ChangeColorText()
-        //{
-        //    this.textBox1.BackColor = Form1.theme.TxtBackColor;
-        //    this.textBox1.ForeColor = Form1.theme.TxtForeColor;
-        //}
         public void ResetTheme()
 		{
 			this.textBox1.BackColor = FrmMain.theme.FocusColor;
 			this.textBox1.ForeColor = FrmMain.theme.TxtForeColor;
 			this.picSearch.Image = Image.FromFile(FrmMain.theme.PictureSearch);
 		}
-		public void InitColor()
-		{
-			//this.BackColor = Form1.theme.BackColor;
-			this.BackColor = Color.Transparent;
-		}
-		/// <summary>
-		/// Contructor Search dành cho Group
-		/// </summary>
-		//public ucSearch(List<GrUI> GrUIs, Panel pnContain, isGroup)
-		//{
-		//	InitializeComponent();
-		//	this.GrUIs = GrUIs;
-		//	this.pnContain = pnContain;
-		//	this.Dock = DockStyle.Fill;
-		//	this.isGr = isGr;
-		//}
 		public bool IsFriend
 		{
 			set
@@ -79,41 +57,58 @@ namespace UI
 		}
 		private void picSearch_Click(object sender, EventArgs e)
 		{
-			string text = RemoveUnicode(textBox1.Text);
-			EnableUser(text);
-			pnContain.Show();
-			pnContain.BringToFront();
-		}
-		private void textBox1_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter && textBox1.Text != "")
+			if (string.IsNullOrEmpty(textBox1.Text))
+			{
+				pnContain.Visible = false;
+			}
+			else
 			{
 				string text = RemoveUnicode(textBox1.Text);
 				EnableUser(text);
 				pnContain.Show();
 				pnContain.BringToFront();
-				e.SuppressKeyPress = true;
 			}
 		}
-		private void EnableUser(string text)
+		private void textBox1_KeyDown(object sender, KeyEventArgs e)
 		{
-				foreach (var item in UserUIs)
+			
+			if (e.KeyCode == Keys.Enter)
+			{
+				if (string.IsNullOrEmpty(textBox1.Text))
 				{
-					if (item.user.Name.Contains(text))
-					{
-						if (!pnContain.Contains(item.ucSearch))
-						{
-							item.AddUserIntoPanelListSearch(pnContain);
-						}
-						if (isOnline && isFriend && item.user.Status)
-							item.ucSearch.Visible = true;
-						else item.ucSearch.Visible = false;
-						if (!isOnline && !isFriend)
-							item.ucSearch.Visible = true;
-						else item.ucSearch.Visible = false;
-					}
-					else item.ucSearch.Visible = false;
+					pnContain.Visible = false;
 				}
+				else
+                {
+					string text = RemoveUnicode(textBox1.Text);
+					EnableUser(text);
+					pnContain.Show();
+					pnContain.BringToFront();
+				}
+			}
+			e.SuppressKeyPress = true;
+		}
+		public void EnableUser(string text)
+		{
+			foreach (var item in UserUIs)
+			{
+				if (!pnContain.Contains(item.ucSearch))
+				{
+					item.AddUserIntoPanelListSearch(pnContain);
+				}
+				if (item.user.Name.Contains(text))
+				{
+					if (isOnline && item.user.Status)
+					{
+						item.ucSearch.Visible = true;
+					}
+					else if (!isOnline)
+					{
+						item.ucSearch.Visible = true;
+					}
+				}
+				else item.ucSearch.Visible = false;
+			}
 		}
 		public static string RemoveUnicode(string text)
 		{

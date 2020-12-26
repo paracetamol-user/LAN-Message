@@ -61,7 +61,7 @@
             this.pnLine.Location = new System.Drawing.Point(0, 0);
             this.pnLine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLine.Name = "pnLine";
-            this.pnLine.Size = new System.Drawing.Size(380, 1);
+            this.pnLine.Size = new System.Drawing.Size(400, 1);
             this.pnLine.TabIndex = 0;
             this.pnLine.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -78,8 +78,8 @@
             this.pnContain.Location = new System.Drawing.Point(0, 1);
             this.pnContain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContain.Name = "pnContain";
-            this.pnContain.Padding = new System.Windows.Forms.Padding(0, 7, 20, 7);
-            this.pnContain.Size = new System.Drawing.Size(380, 68);
+            this.pnContain.Padding = new System.Windows.Forms.Padding(0, 7, 10, 7);
+            this.pnContain.Size = new System.Drawing.Size(400, 68);
             this.pnContain.TabIndex = 1;
             this.pnContain.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -93,7 +93,7 @@
             this.pnContainId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContainId.Name = "pnContainId";
             this.pnContainId.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContainId.Size = new System.Drawing.Size(238, 25);
+            this.pnContainId.Size = new System.Drawing.Size(268, 25);
             this.pnContainId.TabIndex = 6;
             this.pnContainId.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -122,7 +122,7 @@
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 2, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(238, 30);
+            this.pnContrainName.Size = new System.Drawing.Size(268, 30);
             this.pnContrainName.TabIndex = 5;
             this.pnContrainName.Click += new System.EventHandler(this.ucUserAll_Click);
             // 
@@ -146,7 +146,7 @@
             this.panel2.Controls.Add(this.picChat);
             this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(297, 7);
+            this.panel2.Location = new System.Drawing.Point(327, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
@@ -175,7 +175,7 @@
             this.panel1.Controls.Add(this.picMenu);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(332, 7);
+            this.panel1.Location = new System.Drawing.Point(362, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
@@ -233,7 +233,6 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucUserAll";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.Size = new System.Drawing.Size(400, 69);
             this.Click += new System.EventHandler(this.ucUserAll_Click);
             this.pnContain.ResumeLayout(false);

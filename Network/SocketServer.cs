@@ -252,7 +252,7 @@ namespace Communication
 						while (reader.HasRows)
 						{
 							if (reader.Read() == false) break;
-							string path = (reader.GetString(4) != "Default") ? reader.GetString(5) : "";
+							string path = (reader.GetString(4) != "Default") ? reader.GetString(4) : "";
 							if (path != "")
 							{
 								FileInfo fi = new FileInfo(path);

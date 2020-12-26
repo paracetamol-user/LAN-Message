@@ -29,7 +29,7 @@ namespace UI
 			this.uiParent = userUI;
 			this.roundPicAvatar.Image = Image.FromFile(uiParent.user.AvatarPath);
 			this.lbName.Text = userUI.user.Name;
-			this.lbId.Text = userUI.user.Name;
+			this.lbId.Text = "#" + userUI.user.Id;
 			InitColor();
 		}
 		public void InitColor()

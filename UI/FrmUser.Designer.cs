@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-	partial class UserForm
+	partial class FrmUser
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@ namespace UI
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUser));
             this.panelListChat = new System.Windows.Forms.Panel();
             this.panelListFile = new System.Windows.Forms.Panel();
             this.panelLine = new System.Windows.Forms.Panel();

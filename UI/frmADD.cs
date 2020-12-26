@@ -12,13 +12,13 @@ using UserManager;
 
 namespace UI
 {
-    public partial class frmADD : Form
+    public partial class FrmADD : Form
     {
 		Group selectedGroup;
 		FrmMain mainForm;
-		GroupForm groupForm;
+		FrmGroup groupForm;
 		public List<User> listAdd;
-		public frmADD(FrmMain mainForm)
+		public FrmADD(FrmMain mainForm)
 		{
 			InitializeComponent();
 			InitControls();

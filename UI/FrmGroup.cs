@@ -13,7 +13,7 @@ using UserManager;
 
 namespace UI
 {
-	public partial class GroupForm : Form
+	public partial class FrmGroup : Form
 	{
 		private Group group;
 		private List<Panel> BoxChats;
@@ -25,14 +25,14 @@ namespace UI
 		public ucInfoGroup ucInfoGroup;
 		public List<ucFileShow> listfileShows = new List<ucFileShow>();
 		public List<ucUserINChatBox> userINChatBoxes;
-		public GroupForm()
+		public FrmGroup()
 		{
 			InitializeComponent();
 			this.Visible = false;
 			addpnInfo();
 			this.ucInfoGroup._LoadInfoGroup(group, listfileShows);
 		}
-		public GroupForm(Group group , GroupUI grUI)
+		public FrmGroup(Group group , GroupUI grUI)
 		{
 			InitializeComponent();
 	
@@ -296,7 +296,7 @@ namespace UI
 					{
 						FileInfo temp = new FileInfo(item);
 						files.Add(temp);
-						usFileTemp x = new usFileTemp(panelListFile, files, temp);
+						ucFileTemp x = new ucFileTemp(panelListFile, files, temp);
 						this.panelListFile.Controls.Add(x);
 						x.Dock = DockStyle.Left;
 						x._FileName = temp.Name;

@@ -13,13 +13,13 @@ namespace UI
 {
     public partial class Sign_up : Form
     {
-        LoginForm login;
+        FrmLogin login;
         public Sign_up()
         {
             InitializeComponent();
             
         }
-        public Sign_up(LoginForm login)
+        public Sign_up(FrmLogin login)
         {
             InitializeComponent();
             this.login = login;
@@ -159,10 +159,10 @@ namespace UI
 
                     byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass);
                     SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
-                    await LoginForm.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+                    await FrmLogin.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 
                     byte[] buffReceive = new byte[1024];
-                    await LoginForm.server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
+                    await FrmLogin.server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
                     SmallPackage packageReceive = new SmallPackage();
                     packageReceive.DividePackage(buffReceive);
 

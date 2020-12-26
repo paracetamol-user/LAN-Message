@@ -58,28 +58,28 @@ namespace UI
 				this.pnListGr.Controls.Add(item.ucGroupAll);
 			}
 		}
-		public void _AddGr(ucGroupAll Group)
-		{
-			
-		}
-
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				if (txtCreate.Text != "" && txtCreate.Text != null)
+				if (string.IsNullOrEmpty(txtCreate.Text))
+                {
+					MessageBox.Show("Please enter group name!", "Error create group", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+				else
 				{
 					if (txtCreate.Text.Length > 32)
 					{
 						MessageBox.Show("Name is shorter than 32", "Name is not invalid", MessageBoxButtons.OK);
 						return;
 					}
-					byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}", txtCreate.Text, FrmMain.me.Id));
-					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
-					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-
-					this.txtCreate.Text = "";
-					//btnCreate.Enabled = false;
+					else
+                    {
+						byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}", txtCreate.Text, FrmMain.me.Id));
+						SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+						FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+						this.txtCreate.Text = "";
+					}
 				}
 			}
 			catch (Exception ex)
@@ -88,5 +88,39 @@ namespace UI
 			}
 			
 		}
-	}
+
+        private void txtCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+            {
+				try
+				{
+					if (string.IsNullOrEmpty(txtCreate.Text))
+					{
+						MessageBox.Show("Please enter group name!", "Error create group", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					}
+					else
+					{
+						if (txtCreate.Text.Length > 32)
+						{
+							MessageBox.Show("Name is shorter than 32", "Name is not invalid", MessageBoxButtons.OK);
+							return;
+						}
+						else
+						{
+							byte[] buff = Encoding.UTF8.GetBytes(string.Format("CREATEGR%{0}%{1}", txtCreate.Text, FrmMain.me.Id));
+							SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buff, "0");
+							FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+							this.txtCreate.Text = "";
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+			}
+
+		}
+    }
 }

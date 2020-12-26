@@ -18,7 +18,7 @@ namespace UI
 	public partial class UserUI
 	{
 
-		public UserForm userForm; // Khung Chat của user
+		public FrmUser userForm; // Khung Chat của user
 		public User user;
 		public FrmMain mainForm;
 		public Panel panelINTERACTED;
@@ -95,7 +95,7 @@ namespace UI
 		}
 		private void InitUserForm()
 		{
-			userForm = new UserForm(user, this);
+			userForm = new FrmUser(user, this);
 			userForm.TopLevel = false;
 			userForm.Dock = DockStyle.Fill;
 		}
@@ -169,19 +169,26 @@ namespace UI
 		public void SetAvatar(string path)
 		{
 			this.user.AvatarPath = path;
-			this.userForm.SetAvatar(path);
+			//this.userForm.SetAvatar(path);
 			this.ucInterac.SetAvatar(path);
 			this.ucUserAll.SetAvatar(path);
 			this.ucUserOnline.SetAvatar(path);
+			this.ucFriend.SetAvatar(path);
+			this.ucFriendOnline.SetAvatar(path);
 			this.ucSearch.SetAvatar(path);
+			this.ucADD.SetAvatar(path);
 		}
 		public void ChangeStatusOnline()
 		{
 			ucInterac.Online();
+			ucFriend.Online();
+			ucFriendOnline.Online();
 		}
 		public void ChangeStatusOffline()
 		{
 			ucInterac.Offline();
+			ucFriend.Offline();
+			ucFriendOnline.Offline();
 		}
 		public void AddPanelFile(string tempId, string tempName)
 		{

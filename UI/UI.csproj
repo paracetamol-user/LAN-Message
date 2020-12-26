@@ -53,17 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddFriendForm.cs">
+    <Compile Include="FrmServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddFriendForm.Designer.cs">
-      <DependentUpon>AddFriendForm.cs</DependentUpon>
+    <Compile Include="FrmServer.Designer.cs">
+      <DependentUpon>FrmServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddUserToGroup.cs">
+    <Compile Include="FrmADDMemberToGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddUserToGroup.Designer.cs">
-      <DependentUpon>AddUserToGroup.cs</DependentUpon>
+    <Compile Include="FrmADDMemberToGroup.Designer.cs">
+      <DependentUpon>FrmADDMemberToGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -71,11 +71,11 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmADD.cs">
+    <Compile Include="FrmADD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmADD.Designer.cs">
-      <DependentUpon>frmADD.cs</DependentUpon>
+    <Compile Include="FrmADD.Designer.cs">
+      <DependentUpon>FrmADD.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmADDMemberToContact.cs">
       <SubType>Form</SubType>
@@ -101,33 +101,33 @@
     <Compile Include="FrmLoading.Designer.cs">
       <DependentUpon>FrmLoading.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupForm.cs">
+    <Compile Include="FrmGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GroupForm.Designer.cs">
-      <DependentUpon>GroupForm.cs</DependentUpon>
+    <Compile Include="FrmGroup.Designer.cs">
+      <DependentUpon>FrmGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="GroupUI.cs" />
-    <Compile Include="LoginForm.cs">
+    <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="roundpicturebox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sign up.cs">
+    <Compile Include="FrmSignUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sign up.Designer.cs">
-      <DependentUpon>Sign up.cs</DependentUpon>
+    <Compile Include="FrmSignUp.Designer.cs">
+      <DependentUpon>FrmSignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingForm.cs">
+    <Compile Include="FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingForm.Designer.cs">
-      <DependentUpon>SettingForm.cs</DependentUpon>
+    <Compile Include="FrmSetting.Designer.cs">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Theme.cs" />
     <Compile Include="ucADD.cs">
@@ -262,17 +262,17 @@
     <Compile Include="ucVoicePanel.Designer.cs">
       <DependentUpon>ucVoicePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserForm.cs">
+    <Compile Include="FrmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserForm.Designer.cs">
-      <DependentUpon>UserForm.cs</DependentUpon>
+    <Compile Include="FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="usFileTemp.cs">
+    <Compile Include="ucFileTemp.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="usFileTemp.Designer.cs">
-      <DependentUpon>usFileTemp.cs</DependentUpon>
+    <Compile Include="ucFileTemp.Designer.cs">
+      <DependentUpon>ucFileTemp.cs</DependentUpon>
     </Compile>
     <Compile Include="ucFileShow.cs">
       <SubType>UserControl</SubType>
@@ -289,17 +289,17 @@
     </Compile>
     <Compile Include="UserUI.cs" />
     <Compile Include="VoiceControl.cs" />
-    <EmbeddedResource Include="AddFriendForm.resx">
-      <DependentUpon>AddFriendForm.cs</DependentUpon>
+    <EmbeddedResource Include="FrmServer.resx">
+      <DependentUpon>FrmServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddUserToGroup.resx">
-      <DependentUpon>AddUserToGroup.cs</DependentUpon>
+    <EmbeddedResource Include="FrmADDMemberToGroup.resx">
+      <DependentUpon>FrmADDMemberToGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmADD.resx">
-      <DependentUpon>frmADD.cs</DependentUpon>
+    <EmbeddedResource Include="FrmADD.resx">
+      <DependentUpon>FrmADD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmADDMemberToContact.resx">
       <DependentUpon>FrmADDMemberToContact.cs</DependentUpon>
@@ -313,17 +313,17 @@
     <EmbeddedResource Include="FrmLoading.resx">
       <DependentUpon>FrmLoading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupForm.resx">
-      <DependentUpon>GroupForm.cs</DependentUpon>
+    <EmbeddedResource Include="FrmGroup.resx">
+      <DependentUpon>FrmGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sign up.resx">
-      <DependentUpon>Sign up.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSignUp.resx">
+      <DependentUpon>FrmSignUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingForm.resx">
-      <DependentUpon>SettingForm.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSetting.resx">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucADD.resx">
       <DependentUpon>ucADD.cs</DependentUpon>
@@ -391,11 +391,11 @@
     <EmbeddedResource Include="ucVoicePanel.resx">
       <DependentUpon>ucVoicePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserForm.resx">
-      <DependentUpon>UserForm.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="usFileTemp.resx">
-      <DependentUpon>usFileTemp.cs</DependentUpon>
+    <EmbeddedResource Include="ucFileTemp.resx">
+      <DependentUpon>ucFileTemp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucFileShow.resx">
       <DependentUpon>ucFileShow.cs</DependentUpon>

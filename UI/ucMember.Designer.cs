@@ -61,7 +61,6 @@ namespace UI
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.panel1.Size = new System.Drawing.Size(311, 55);
             this.panel1.TabIndex = 1;
             // 
@@ -69,9 +68,9 @@ namespace UI
             // 
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(74, 1);
+            this.panel4.Location = new System.Drawing.Point(54, 1);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(188, 28);
+            this.panel4.Size = new System.Drawing.Size(208, 28);
             this.panel4.TabIndex = 13;
             // 
             // label1
@@ -88,9 +87,9 @@ namespace UI
             // 
             this.pnadmin.Controls.Add(this.labeladdmin);
             this.pnadmin.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnadmin.Location = new System.Drawing.Point(74, 29);
+            this.pnadmin.Location = new System.Drawing.Point(54, 29);
             this.pnadmin.Name = "pnadmin";
-            this.pnadmin.Size = new System.Drawing.Size(188, 25);
+            this.pnadmin.Size = new System.Drawing.Size(208, 25);
             this.pnadmin.TabIndex = 12;
             // 
             // labeladdmin
@@ -122,7 +121,7 @@ namespace UI
             this.pictureBoxdeletemember.Location = new System.Drawing.Point(14, 17);
             this.pictureBoxdeletemember.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxdeletemember.Name = "pictureBoxdeletemember";
-            this.pictureBoxdeletemember.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxdeletemember.Size = new System.Drawing.Size(15, 15);
             this.pictureBoxdeletemember.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxdeletemember.TabIndex = 0;
             this.pictureBoxdeletemember.TabStop = false;
@@ -133,7 +132,7 @@ namespace UI
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.roundpicturebox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(20, 1);
+            this.panel3.Location = new System.Drawing.Point(0, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(5);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
@@ -142,7 +141,7 @@ namespace UI
             // 
             // roundpicturebox1
             // 
-            this.roundpicturebox1.BackColor = System.Drawing.SystemColors.Control;
+            this.roundpicturebox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.roundpicturebox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundpicturebox1.Location = new System.Drawing.Point(5, 5);
             this.roundpicturebox1.Name = "roundpicturebox1";
@@ -153,17 +152,17 @@ namespace UI
             // pnLine2
             // 
             this.pnLine2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnLine2.Location = new System.Drawing.Point(20, 54);
+            this.pnLine2.Location = new System.Drawing.Point(0, 54);
             this.pnLine2.Name = "pnLine2";
-            this.pnLine2.Size = new System.Drawing.Size(291, 1);
+            this.pnLine2.Size = new System.Drawing.Size(311, 1);
             this.pnLine2.TabIndex = 9;
             // 
             // pnLine1
             // 
             this.pnLine1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnLine1.Location = new System.Drawing.Point(20, 0);
+            this.pnLine1.Location = new System.Drawing.Point(0, 0);
             this.pnLine1.Name = "pnLine1";
-            this.pnLine1.Size = new System.Drawing.Size(291, 1);
+            this.pnLine1.Size = new System.Drawing.Size(311, 1);
             this.pnLine1.TabIndex = 8;
             // 
             // ucMember

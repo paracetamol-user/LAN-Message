@@ -18,10 +18,10 @@ namespace UI
 		VoiceControl voice;
 		// User not null if send to user
 		User user;
-		UserForm userForm;
+		FrmUser userForm;
 		// Group not null if send to group
 		Group group;
-		GroupForm groupForm;
+		FrmGroup groupForm;
 		// Check valid for send (>= 1s)
 		private Timer timer;
 		private bool isValidForSend;
@@ -31,7 +31,7 @@ namespace UI
 			InitializeComponent();
 			voice = new VoiceControl();
 		}
-		public ucVoicePanel(User user, UserForm userForm)
+		public ucVoicePanel(User user, FrmUser userForm)
 		{
 			InitializeComponent();
 			InitPictureBox();
@@ -44,7 +44,7 @@ namespace UI
 			timer.Interval = 1000;
 			this.panelRecord.Controls.Add(pctRecord);
 		}
-		public ucVoicePanel(Group group, GroupForm groupForm)
+		public ucVoicePanel(Group group, FrmGroup groupForm)
 		{
 			InitializeComponent();
 			InitPictureBox();
@@ -121,6 +121,7 @@ namespace UI
 			this.PanelSend.Controls.Remove(pctSend);
 			isValidForSend = false;	
         }
+
         private void PctSend_Click(object sender, EventArgs e)
         {
 			// Send voice to server

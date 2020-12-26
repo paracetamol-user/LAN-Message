@@ -121,7 +121,6 @@ namespace UI
 		public void btnOnline_Click(object sender, EventArgs e)
 		{
 			this.pnContainSearch.Visible = true;
-			this.ucSearch.IsFriend = true;
 			this.ucSearch.IsOnline = true;
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;
@@ -144,7 +143,6 @@ namespace UI
 		public void btnPeople_Click(object sender, EventArgs e)
 		{
 			this.pnContainSearch.Visible = true;
-			this.ucSearch.IsFriend = false;
 			this.ucSearch.IsOnline = false;
 			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;

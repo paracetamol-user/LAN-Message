@@ -24,8 +24,10 @@ namespace UI
 			this.Dock = DockStyle.Top;
 			this.Parent = userUI;
 			this.lbName.Text = userUI.user.Name;
-			this.lbId.Text = userUI.user.Id;
+			this.lbId.Text = "#" + userUI.user.Id;
 			this.roundPicAvatar.Image = Image.FromFile(userUI.user.AvatarPath);
+			if (Parent.user.Status == true) this.Online();
+			else this.Offline();
 			InitColor();
 		}
 		public void InitColor()
@@ -35,7 +37,16 @@ namespace UI
 			this.lbName.ForeColor = FrmMain.theme.TextColor;
 			this.lbId.ForeColor = FrmMain.theme.TextColor;
 		}
-
+		public void Online()
+		{
+			picStatus.Image = Image.FromFile(FrmMain.theme.pictureCircleOnline);
+			picStatus.Visible = true;
+		}
+		public void Offline()
+		{
+			picStatus.Image = Image.FromFile(FrmMain.theme.pictureCircleOffline);
+			picStatus.Visible = true;
+		}
 		private void picMenu_Click(object sender, EventArgs e)
 		{
 			Parent.cmns.BackColor = FrmMain.theme.Menu;
@@ -57,6 +68,22 @@ namespace UI
 			FrmMain.interactFocus = this.Parent.ucInterac;
 		}
         private void pnContainPicture_Click(object sender, EventArgs e)
+        {
+			this.Parent.ShowChatForm();
+			this.Parent.AddUserInteracted();
+			if (FrmMain.interactFocus != null)
+			{
+				FrmMain.interactFocus.ChangeColorWhenNonClick();
+			}
+			this.Parent.ucInterac.ChangeColorWhenClick();
+			FrmMain.interactFocus = this.Parent.ucInterac;
+		}
+		public void SetAvatar(string path)
+        {
+			this.roundPicAvatar.Image = Image.FromFile(path);
+        }
+
+        private void roundPicAvatar_Click(object sender, EventArgs e)
         {
 			this.Parent.ShowChatForm();
 			this.Parent.AddUserInteracted();
