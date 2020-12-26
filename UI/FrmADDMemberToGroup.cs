@@ -12,12 +12,12 @@ using UserManager;
 
 namespace UI
 {
-	public partial class AddUserToGroup : Form
+	public partial class FrmADDMemberToGroup : Form
 	{
 		User selectedUser;
 		FrmMain mainForm;
 		public List<Group> listAdd;
-		public AddUserToGroup(FrmMain mainForm)
+		public FrmADDMemberToGroup(FrmMain mainForm)
 		{
 			InitializeComponent();
 			InitControls();

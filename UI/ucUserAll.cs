@@ -41,7 +41,7 @@ namespace UI
 		}
 		public void SetAvatar(string path)
 		{
-			//gunaPic.Image = Image.FromFile(path);
+			this.roundPicAvatar.Image = Image.FromFile(path);
 		}
 
         private void ucUserAll_Click(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-    partial class AddUserToGroup
+    partial class FrmADDMemberToGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserToGroup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmADDMemberToGroup));
             this.pnContainAll = new System.Windows.Forms.Panel();
             this.pnGroup = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();

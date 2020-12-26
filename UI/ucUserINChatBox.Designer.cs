@@ -70,11 +70,10 @@
             // 
             // roundPicAvatar
             // 
-            this.roundPicAvatar.BackColor = System.Drawing.SystemColors.Control;
-            this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.roundPicAvatar.Location = new System.Drawing.Point(5, 0);
             this.roundPicAvatar.Name = "roundPicAvatar";
-            this.roundPicAvatar.Size = new System.Drawing.Size(53, 51);
+            this.roundPicAvatar.Size = new System.Drawing.Size(50, 50);
             this.roundPicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.roundPicAvatar.TabIndex = 1;
             this.roundPicAvatar.TabStop = false;

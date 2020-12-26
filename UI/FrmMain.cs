@@ -23,29 +23,29 @@ namespace UI
 		///QUY ĐỊNH NGƯỜI SỬ DỤNG CHƯƠNG TRÌNH CÓ BIẾN LÀ <ME>
 		///NGƯỜI SỬ DỤNG SERVER LÀ USER
 		/// </summary>
-		public LoginForm loginForm;
+		public FrmLogin loginForm;
 		public static List<UserUI> UserUIs; // List form giao diện chat cho từng user
 		public List<GroupUI> GroupUIs { get; set; } // List form giao diện chat cho từng group
 		public static User me; // Nguoi su dung chuong trinh
 
 		public static UserUI userRightForcus = null;
 		public static UserUI userUIForcus = null;
-		public static UserForm userFormFocus = null;
-		public static GroupForm groupFormFocus = null;
+		public static FrmUser userFormFocus = null;
+		public static FrmGroup groupFormFocus = null;
 		public static ucUserINChatBox chatBoxFocus = null;
 		public static ucInterac interactFocus = null;
 
 		public static SocketClient client;
 		public static TcpClient server;
-		public static SettingForm settingForm;
+		public static FrmSetting settingForm;
 		public static FrmFriend frmFriend;
 		public static List<string> listFile;
 
 		public ServerForm serverUsersForm;
 		public NetworkStream stream;
 		public ucGroup UcGroup;
-		public AddUserToGroup AddToGroup;
-		public frmADD frmADD;
+		public FrmADDMemberToGroup AddToGroup;
+		public FrmADD frmADD;
 		public FrmContactBook frmContactBook;
 		public FrmADDMemberToContact frmADDMemberToContact;
 		public FrmLoading frmLoading;
@@ -64,7 +64,7 @@ namespace UI
 		{
 			InitializeComponent();
 		}
-		public FrmMain(LoginForm loginform, User user, SocketClient client, TcpClient server, string Theme)
+		public FrmMain(FrmLogin loginform, User user, SocketClient client, TcpClient server, string Theme)
 		{
 			acceptClose = true;
 			frmLoading = new FrmLoading();
@@ -110,8 +110,8 @@ namespace UI
 			listGroup = new List<Group>();
 			frmContactBook = new FrmContactBook(this);
 			UcGroup = new ucGroup(this, GroupUIs);
-			AddToGroup = new AddUserToGroup(this);
-			frmADD = new frmADD(this);
+			AddToGroup = new FrmADDMemberToGroup(this);
+			frmADD = new FrmADD(this);
 			frmADDMemberToContact = new FrmADDMemberToContact(this);
 
 			me.AvatarPath = @"./images/avatarDefault/avatarDefault.png";
@@ -129,7 +129,7 @@ namespace UI
 		}
 		public void InitSettingForm()
 		{
-			settingForm = new SettingForm(me, this ,loginForm);
+			settingForm = new FrmSetting(me, this ,loginForm);
 			settingForm.TopLevel = false;
 			settingForm.Dock = DockStyle.Fill;
 			this.Controls.Add(settingForm);
@@ -794,6 +794,7 @@ namespace UI
 										if (item2.user.Id == item.FileName)
 										{
 											item2.SetAvatar(path);
+											
 											break;
 										}
 										if (item.FileName == me.Id)
@@ -915,7 +916,7 @@ namespace UI
 		/// </summary>
 		private void pictureBoxSetting_Click(object sender, EventArgs e)
 		{
-			settingForm = new SettingForm(me, this, loginForm);
+			settingForm = new FrmSetting(me, this, loginForm);
 			settingForm.Show();
 			settingForm.BringToFront();
 		}
@@ -968,6 +969,7 @@ namespace UI
 		private void Form1_SizeChanged(object sender, EventArgs e)
 		{
 			this.AddToGroup.ReLocation();
+			this.frmADD.ReLocation();
 		}
 		private void btnGroup_MouseLeave(object sender, EventArgs e)
 		{

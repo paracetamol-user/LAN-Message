@@ -49,9 +49,16 @@ namespace Server
 
         private void ClearData()
 		{
-			string path = @"./filedata";
+			string path = @"./voice";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 			DirectoryInfo dir = new DirectoryInfo(path);
+			foreach (var item in dir.GetDirectories())
+			{
+				item.Delete(true);
+			}
+			path = @"./filedata";
+			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+			dir = new DirectoryInfo(path);
 			foreach (var item in dir.GetFiles())
 			{
 				item.Delete();
@@ -98,54 +105,86 @@ namespace Server
 		}
         private void pictureBoxStop_Click(object sender, EventArgs e)
         {
-			DialogResult ds = MessageBox.Show("Are you sure clean data?", "Clean Data", MessageBoxButtons.YesNo);
-			if (ds == DialogResult.Yes)
-            {
-				string path = @"./filedata";
-				if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-				DirectoryInfo dir = new DirectoryInfo(path);
-				foreach (var item in dir.GetFiles())
-				{
-					item.Delete();
-				}
-				string query = "delete from message";
-				SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
-				connection.Open();
-				SqlCommand command = new SqlCommand(query, connection);
-				command.ExecuteNonQuery();
-				connection.Close();
-			}
 			
+			if (pnStartServer.Enabled == false)
+			{
+				MessageBox.Show("Please stop server before cleaning", "Reset server", MessageBoxButtons.OK);
+			}
+            else
+            {
+				try
+                {
+					DialogResult ds = MessageBox.Show("Are you sure clean data?", "Clean Data", MessageBoxButtons.YesNo);
+					if (ds == DialogResult.Yes)
+					{
+						ClearData();
+						string query = "delete from message";
+						SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
+						connection.Open();
+						SqlCommand command = new SqlCommand(query, connection);
+						command.ExecuteNonQuery();
+						connection.Close();
+					}
+					txtBoxConsole.AppendText(string.Format("{0}{1}", "Clean Server Successfully!", Environment.NewLine));
+				}
+				catch (Exception ex)
+                {
+					txtBoxConsole.AppendText(string.Format("{0}{1}", "Clean Error, Please try again!", Environment.NewLine));
+				}
+			}
 		}
         private void pnReset_Click(object sender, EventArgs e)
         {
-			string[] arr = { "tinnhan", "contactmember", "contactbook" ,"member" , "groups" , "friend" , "users"};
-			DialogResult ds = MessageBox.Show("Are you sure reset server? Delete all data in server !", "Reset Server", MessageBoxButtons.YesNo);
-			if (ds == DialogResult.Yes)
-			{
-				string path = @"./filedata";
-				if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-				DirectoryInfo dir = new DirectoryInfo(path);
-				foreach (var item in dir.GetFiles())
-				{
-					item.Delete();
-				}
-				path = @"./avatar";
-				if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-				dir = new DirectoryInfo(path);
-				foreach (var item in dir.GetFiles())
-				{
-					item.Delete();
-				}
-				for (int i = 0; i < 7; i++)
+			if (pnStartServer.Enabled == false)
+            {
+				MessageBox.Show("Please stop server before reseting", "Reset server", MessageBoxButtons.OK);
+            }
+			else
+            {
+				try
                 {
-					string query = "delete from " + arr[i];
-					SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
-					connection.Open();
-					SqlCommand command = new SqlCommand(query, connection);
-					command.ExecuteNonQuery();
-					connection.Close();
+					string[] arr = { "tinnhan", "contactmember", "contactbook", "member", "groups", "friend", "users" };
+					DialogResult ds = MessageBox.Show("Are you sure reset server? Delete all data in server!", "Reset Server", MessageBoxButtons.YesNo);
+					if (ds == DialogResult.Yes)
+					{
+						string path = @"./voice";
+						if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+						DirectoryInfo dir = new DirectoryInfo(path);
+						foreach (var item in dir.GetDirectories())
+						{
+							item.Delete(true);
+						}
+						path = @"./filedata";
+						if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+						dir = new DirectoryInfo(path);
+						foreach (var item in dir.GetFiles())
+						{
+							item.Delete();
+						}
+						path = @"./avatar";
+						if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+						dir = new DirectoryInfo(path);
+						foreach (var item in dir.GetFiles())
+						{
+							item.Delete();
+						}
+						for (int i = 0; i < 7; i++)
+						{
+							string query = "delete from " + arr[i];
+							SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["Data Source"].ToString());
+							connection.Open();
+							SqlCommand command = new SqlCommand(query, connection);
+							command.ExecuteNonQuery();
+							connection.Close();
+						}
+					}
+					txtBoxConsole.AppendText(string.Format("{0}{1}", "Reset Server Successfully!", Environment.NewLine));
 				}
+				catch (Exception ex)
+                {
+					txtBoxConsole.AppendText(string.Format("{0}{1}", "Reset Error, Please try again!", Environment.NewLine));
+				}
+				
 			}
 		}
         private void pnStop_Click(object sender, EventArgs e)

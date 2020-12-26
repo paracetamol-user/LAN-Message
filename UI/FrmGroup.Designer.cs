@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-    partial class GroupForm
+    partial class FrmGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGroup));
             this.panelSEND = new System.Windows.Forms.Panel();
             this.pictureBoxSend = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();

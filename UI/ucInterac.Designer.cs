@@ -72,11 +72,11 @@
             this.pnContainMess.Controls.Add(this.lbMess);
             this.pnContainMess.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContainMess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContainMess.Location = new System.Drawing.Point(59, 23);
+            this.pnContainMess.Location = new System.Drawing.Point(56, 23);
             this.pnContainMess.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContainMess.Name = "pnContainMess";
             this.pnContainMess.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.pnContainMess.Size = new System.Drawing.Size(354, 27);
+            this.pnContainMess.Size = new System.Drawing.Size(357, 27);
             this.pnContainMess.TabIndex = 3;
             this.pnContainMess.Click += new System.EventHandler(this.pnContain_Click);
             // 
@@ -91,7 +91,7 @@
             this.lbMess.Location = new System.Drawing.Point(5, 0);
             this.lbMess.Name = "lbMess";
             this.lbMess.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lbMess.Size = new System.Drawing.Size(349, 27);
+            this.lbMess.Size = new System.Drawing.Size(352, 27);
             this.lbMess.TabIndex = 0;
             this.lbMess.Text = "mess";
             this.lbMess.Visible = false;
@@ -104,11 +104,11 @@
             this.pnContrainName.Controls.Add(this.lbName);
             this.pnContrainName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnContrainName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnContrainName.Location = new System.Drawing.Point(59, 0);
+            this.pnContrainName.Location = new System.Drawing.Point(56, 0);
             this.pnContrainName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContrainName.Name = "pnContrainName";
             this.pnContrainName.Padding = new System.Windows.Forms.Padding(5, 1, 0, 0);
-            this.pnContrainName.Size = new System.Drawing.Size(354, 23);
+            this.pnContrainName.Size = new System.Drawing.Size(357, 23);
             this.pnContrainName.TabIndex = 2;
             this.pnContrainName.Click += new System.EventHandler(this.pnContain_Click);
             // 
@@ -182,7 +182,7 @@
             this.pnContainPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnContainPicture.Name = "pnContainPicture";
             this.pnContainPicture.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.pnContainPicture.Size = new System.Drawing.Size(59, 50);
+            this.pnContainPicture.Size = new System.Drawing.Size(56, 50);
             this.pnContainPicture.TabIndex = 0;
             this.pnContainPicture.Click += new System.EventHandler(this.pnContain_Click);
             // 
@@ -190,8 +190,8 @@
             // 
             this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
-            this.picStatus.Location = new System.Drawing.Point(43, 35);
+            this.picStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.picStatus.Location = new System.Drawing.Point(38, 32);
             this.picStatus.Name = "picStatus";
             this.picStatus.Size = new System.Drawing.Size(15, 15);
             this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -200,11 +200,11 @@
             // 
             // roundPicAvatar
             // 
-            this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
+            this.roundPicAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundPicAvatar.Location = new System.Drawing.Point(3, 0);
             this.roundPicAvatar.Name = "roundPicAvatar";
-            this.roundPicAvatar.Size = new System.Drawing.Size(53, 50);
+            this.roundPicAvatar.Size = new System.Drawing.Size(50, 50);
             this.roundPicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.roundPicAvatar.TabIndex = 3;
             this.roundPicAvatar.TabStop = false;

@@ -1,7 +1,7 @@
 ﻿
 namespace UI
 {
-    partial class SettingForm
+    partial class FrmSetting
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetting));
 			this.pnMenu = new System.Windows.Forms.Panel();
 			this.btnTheme = new System.Windows.Forms.Button();
 			this.pnLine2 = new System.Windows.Forms.Panel();

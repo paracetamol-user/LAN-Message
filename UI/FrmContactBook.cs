@@ -26,7 +26,6 @@ namespace UI
 			this.listContact = new List<ucContact>();
 			InitializeComponent();
 			_InitControls();
-
 			this.Dock = DockStyle.Fill;
 			this.TopLevel = false;
 			this.mainForm.PnRight.Controls.Add(this);
@@ -50,8 +49,8 @@ namespace UI
 		{
 			this.BackColor = FrmMain.theme.BackColor;
 			this.pnLine.BackColor = FrmMain.theme.LineColor;
-			this.textBox1.BackColor = FrmMain.theme.FocusColor;
-			this.textBox1.ForeColor = FrmMain.theme.TextColor;
+			this.txtCreate.BackColor = FrmMain.theme.FocusColor;
+			this.txtCreate.ForeColor = FrmMain.theme.TextColor;
 			this.btnCreate.ForeColor = FrmMain.theme.TextColor;
 			this.lbContactBook.ForeColor = FrmMain.theme.TextColor;
 			foreach (var item in listContact)
@@ -81,21 +80,53 @@ namespace UI
 			this.pnListContact.Controls.Remove(ucContact);
 			this.listContact.Remove(ucContact);
 		}
-
 		private async void btnCreate_Click(object sender, EventArgs e)
 		{
-			try
+			if (string.IsNullOrEmpty(this.txtCreate.Text))
             {
-				byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}", this.textBox1.Text));
-				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
-				FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-				textBox1.Clear();
+				MessageBox.Show("Please enter contact name!", "Error create contact", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
-			catch
+			else
             {
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+				try
+				{
+					byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}", this.txtCreate.Text));
+					SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
+					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+					txtCreate.Clear();
+				}
+				catch
+				{
+					MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
 			}
-			
 		}
-	}
+        private void txtCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+            {
+				if (string.IsNullOrEmpty(this.txtCreate.Text))
+
+				{
+					MessageBox.Show("Please enter contact name!", "Error create contact", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+				else
+				{
+
+					try
+					{
+						byte[] tempBuff = Encoding.UTF8.GetBytes(string.Format("CREATECB%{0}", this.txtCreate.Text));
+						SmallPackage smallPackage = new SmallPackage(0, 1024, "M", tempBuff, "Server");
+						FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
+						txtCreate.Clear();
+					}
+					catch
+					{
+						MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					}
+				}
+			}
+		}
+    }
 }

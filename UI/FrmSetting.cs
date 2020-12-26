@@ -13,19 +13,19 @@ using UserManager;
 
 namespace UI
 {
-	public partial class SettingForm : Form
+	public partial class FrmSetting : Form
 	{
 		string oldUsername;
 		Button btnFocus;
 		public FileInfo fi;
 		public User me;
 		public FrmMain parent;
-		LoginForm loginForm;
-		public SettingForm()
+		FrmLogin loginForm;
+		public FrmSetting()
 		{
 			InitializeComponent();
 		}
-		public SettingForm(User me, FrmMain parent, LoginForm loginForm)
+		public FrmSetting(User me, FrmMain parent, FrmLogin loginForm)
 		{
 			InitializeComponent();
 			this.me = me;

@@ -16,14 +16,14 @@ using System.Windows.Forms;
 using User = UserManager.User;
 namespace UI
 {
-	public partial class LoginForm : Form
+	public partial class FrmLogin : Form
 	{
 		//Info Server
 		private string ipServer = ConfigurationManager.AppSettings["IP server"].ToString();
 		private string portSever = "5000";
 		static public SocketClient client;
 		static public TcpClient server;
-		public LoginForm()
+		public FrmLogin()
 		{
 			InitializeComponent();
 			InitClient();
@@ -38,6 +38,13 @@ namespace UI
 			foreach (var item in dir.GetFiles())
 			{
 				item.Delete();
+			}
+			path = @"./voice";
+			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+			dir = new DirectoryInfo(path);
+			foreach (var item in dir.GetDirectories())
+			{
+				item.Delete(true);
 			}
 		}
 		private async void ConnecToServer()

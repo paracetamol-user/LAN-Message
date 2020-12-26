@@ -15,14 +15,14 @@ namespace UI
 {
     public partial class ucInfoUser : UserControl
     {
-        UserForm frmMain;
+        FrmUser frmMain;
         User user;
         public ucInfoUser()
         {
             InitializeComponent();
 			InitControls();
 		}
-		public ucInfoUser(UserForm frmMain)
+		public ucInfoUser(FrmUser frmMain)
 		{
 			this.frmMain = frmMain;
 			InitializeComponent();

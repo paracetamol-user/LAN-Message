@@ -21,7 +21,7 @@ namespace UI
 			InitializeComponent();
 			this.user = user;
 			this.label1.Text = user.Name;
-			this.label2.Text = user.Id;
+			this.label2.Text = "#" + user.Id;
 			
 			this.Dock = DockStyle.Top;
 			InitControls();
@@ -38,7 +38,10 @@ namespace UI
 			button1.Text = "ADD";
 			isAdd = false;
 		}
-
+		public void SetAvatar(string path)
+        {
+			this.roundPicAvatar.Image = Image.FromFile(path);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
 			if (button1.Text == "ADD")

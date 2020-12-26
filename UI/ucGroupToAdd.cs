@@ -24,7 +24,7 @@ namespace UI
 			InitializeComponent();
 			this.Dock = DockStyle.Top;
 			this.label1.Text = group.Name;
-			this.label2.Text = group.ID;
+			this.label2.Text = "#" + group.ID;
 			this.group = group;
 			this.label1.ForeColor = FrmMain.theme.TextColor;
 			this.label2.ForeColor = FrmMain.theme.TextColor;

@@ -13,7 +13,7 @@ namespace UI
 	public class GroupUI
 	{
 		public Group group;
-		public GroupForm groupForm; // Khung chat của Group
+		public FrmGroup groupForm; // Khung chat của Group
 		FrmMain mainForm;
 		public Panel panelINTERACTED;
 		public Panel panelRIGHT;
@@ -78,7 +78,7 @@ namespace UI
 		}
 		public void InitGroupForm()
 		{
-			groupForm = new GroupForm(group,this);
+			groupForm = new FrmGroup(group,this);
 			groupForm.TopLevel = false;
 			groupForm.BackColor = FrmMain.theme.BackColor;
 			groupForm.Dock = DockStyle.Fill;
