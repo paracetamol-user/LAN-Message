@@ -202,6 +202,17 @@ namespace UI
 		}
 		private void btnLog_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
+				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+
 			parent.acceptClose = false;
 			this.Close();
 			parent.Close();
@@ -209,6 +220,16 @@ namespace UI
 		}
 		private void pictureBox2_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
+				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 			this.Hide();
 		}
 		private void btnMyAccount_MouseMove(object sender, MouseEventArgs e)
@@ -221,35 +242,13 @@ namespace UI
 		}
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
-			try
-			{
-				FrmMain.theme.White();
-				parent.ChangeTheme();
-				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
-				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
-			
+			FrmMain.theme.White();
+			parent.ChangeTheme();
 		}
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
-			try
-			{
-				FrmMain.theme.Black();
-				parent.ChangeTheme();
-				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
-				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
-			
+			FrmMain.theme.Black();
+			parent.ChangeTheme();
 		}
 
 

@@ -214,5 +214,22 @@ namespace UI
 			panelAllUser.Show();
 			panelAllUser.BringToFront();
 		}
+        private void picPoint_Click(object sender, EventArgs e)
+        {
+			this.pnContainSearch.Visible = false;
+			if (btnFocus != null) btnFocus.BackColor = Color.Transparent;
+			(sender as Button).BackColor = FrmMain.theme.FocusColor;
+			btnFocus = sender as Button;
+			panelPending.Show();
+			panelPending.BringToFront();
+			labelCOUNT.Text = "Pending - " + countPending.ToString();
+			picPoint.Visible = false;
+			mainForm.DisableNotification();
+		}
+
+        private void picPoint_MouseMove(object sender, MouseEventArgs e)
+        {
+			btnPending.BackColor = FrmMain.theme.FocusColor;
+		}
     }
 }

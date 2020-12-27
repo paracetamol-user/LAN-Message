@@ -48,13 +48,13 @@
             this.labelID = new System.Windows.Forms.Label();
             this.labelUSERNAME = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.roundPicAvatar = new UI.roundpicturebox();
             this.panelPICTUREOPTION = new System.Windows.Forms.Panel();
             this.pictureBoxSetting = new System.Windows.Forms.PictureBox();
             this.pnLine = new System.Windows.Forms.Panel();
             this.panelServer = new System.Windows.Forms.Panel();
-            this.picNotification = new System.Windows.Forms.PictureBox();
             this.btnServer = new System.Windows.Forms.Button();
+            this.roundPicAvatar = new UI.roundpicturebox();
+            this.picNotification = new UI.roundpicturebox();
             this.pnContainAll.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -63,10 +63,10 @@
             this.panelOPTION.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).BeginInit();
             this.panelPICTUREOPTION.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).BeginInit();
             this.panelServer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).BeginInit();
             this.SuspendLayout();
             // 
@@ -320,17 +320,6 @@
             this.panel3.Size = new System.Drawing.Size(56, 56);
             this.panel3.TabIndex = 2;
             // 
-            // roundPicAvatar
-            // 
-            this.roundPicAvatar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundPicAvatar.Location = new System.Drawing.Point(0, 0);
-            this.roundPicAvatar.Name = "roundPicAvatar";
-            this.roundPicAvatar.Size = new System.Drawing.Size(56, 56);
-            this.roundPicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.roundPicAvatar.TabIndex = 0;
-            this.roundPicAvatar.TabStop = false;
-            // 
             // panelPICTUREOPTION
             // 
             this.panelPICTUREOPTION.BackColor = System.Drawing.Color.Transparent;
@@ -380,21 +369,6 @@
             this.panelServer.Size = new System.Drawing.Size(301, 53);
             this.panelServer.TabIndex = 0;
             // 
-            // picNotification
-            // 
-            this.picNotification.BackColor = System.Drawing.Color.Transparent;
-            this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
-            this.picNotification.Location = new System.Drawing.Point(272, 18);
-            this.picNotification.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.picNotification.Name = "picNotification";
-            this.picNotification.Size = new System.Drawing.Size(20, 20);
-            this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picNotification.TabIndex = 3;
-            this.picNotification.TabStop = false;
-            this.picNotification.Visible = false;
-            this.picNotification.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
-            this.picNotification.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
-            // 
             // btnServer
             // 
             this.btnServer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -411,6 +385,32 @@
             this.btnServer.Click += new System.EventHandler(this.btnServer_Click);
             this.btnServer.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
             this.btnServer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
+            // 
+            // roundPicAvatar
+            // 
+            this.roundPicAvatar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.roundPicAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roundPicAvatar.Location = new System.Drawing.Point(0, 0);
+            this.roundPicAvatar.Name = "roundPicAvatar";
+            this.roundPicAvatar.Size = new System.Drawing.Size(56, 56);
+            this.roundPicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundPicAvatar.TabIndex = 0;
+            this.roundPicAvatar.TabStop = false;
+            // 
+            // picNotification
+            // 
+            this.picNotification.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.picNotification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
+            this.picNotification.Location = new System.Drawing.Point(274, 21);
+            this.picNotification.Name = "picNotification";
+            this.picNotification.Size = new System.Drawing.Size(15, 15);
+            this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picNotification.TabIndex = 3;
+            this.picNotification.TabStop = false;
+            this.picNotification.Visible = false;
+            this.picNotification.Click += new System.EventHandler(this.picNotification_Click);
+            this.picNotification.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picNotification_MouseMove);
             // 
             // FrmMain
             // 
@@ -433,10 +433,10 @@
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).EndInit();
             this.panelPICTUREOPTION.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).EndInit();
             this.panelServer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.roundPicAvatar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).EndInit();
             this.ResumeLayout(false);
 
@@ -456,7 +456,6 @@
         private System.Windows.Forms.Panel panelServer;
         private System.Windows.Forms.Panel panelRIGHT;
         private System.Windows.Forms.Button btnServer;
-        private System.Windows.Forms.PictureBox picNotification;
         private System.Windows.Forms.Panel pnLine3;
         private System.Windows.Forms.Panel panelINTERACTED;
         private System.Windows.Forms.Panel panel4;
@@ -470,6 +469,7 @@
 		private System.Windows.Forms.Label labelUSERNAME;
 		private System.Windows.Forms.Panel panel3;
 		private roundpicturebox roundPicAvatar;
-	}
+        private roundpicturebox picNotification;
+    }
 }
 

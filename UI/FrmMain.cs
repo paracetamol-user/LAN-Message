@@ -950,7 +950,6 @@ namespace UI
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
-
 			picNotification.Visible = false;
 			if (FrmMain.userFormFocus != null) FrmMain.userFormFocus.Hide();
 			if (FrmMain.userUIForcus != null)
@@ -1040,6 +1039,23 @@ namespace UI
 			{
 				btnServer.BackColor = Color.Transparent;
 			}
+		}
+        private void picNotification_MouseMove(object sender, MouseEventArgs e)
+        {
+			btnServer.BackColor = theme.FocusColor;
+		}
+        private void picNotification_Click(object sender, EventArgs e)
+        {
+			picNotification.Visible = false;
+			if (FrmMain.userFormFocus != null) FrmMain.userFormFocus.Hide();
+			if (FrmMain.userUIForcus != null)
+			{
+				FrmMain.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				FrmMain.userUIForcus = null;
+			}
+			serverUsersForm.Show();
+			serverUsersForm.BringToFront();
+			serverUsersForm.InitStart();
 		}
     }
 }

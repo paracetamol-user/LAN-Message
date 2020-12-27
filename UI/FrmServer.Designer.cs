@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnPending = new System.Windows.Forms.Panel();
-            this.picPoint = new System.Windows.Forms.PictureBox();
             this.btnPending = new System.Windows.Forms.Button();
             this.panelAll = new System.Windows.Forms.Panel();
             this.btnPeople = new System.Windows.Forms.Button();
@@ -45,14 +44,15 @@
             this.labelCOUNT = new System.Windows.Forms.Label();
             this.pnContainSearch = new System.Windows.Forms.Panel();
             this.pnContainListSearch = new System.Windows.Forms.Panel();
+            this.picPoint = new UI.roundpicturebox();
             this.panel1.SuspendLayout();
             this.pnPending.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPoint)).BeginInit();
             this.panelAll.SuspendLayout();
             this.panelOnline.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnContainCount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPoint)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -81,18 +81,6 @@
             this.pnPending.Padding = new System.Windows.Forms.Padding(5, 10, 5, 10);
             this.pnPending.Size = new System.Drawing.Size(133, 53);
             this.pnPending.TabIndex = 4;
-            // 
-            // picPoint
-            // 
-            this.picPoint.BackColor = System.Drawing.Color.Transparent;
-            this.picPoint.Image = ((System.Drawing.Image)(resources.GetObject("picPoint.Image")));
-            this.picPoint.Location = new System.Drawing.Point(100, 15);
-            this.picPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.picPoint.Name = "picPoint";
-            this.picPoint.Size = new System.Drawing.Size(20, 20);
-            this.picPoint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPoint.TabIndex = 3;
-            this.picPoint.TabStop = false;
             // 
             // btnPending
             // 
@@ -266,6 +254,20 @@
             this.pnContainListSearch.Size = new System.Drawing.Size(781, 328);
             this.pnContainListSearch.TabIndex = 5;
             // 
+            // picPoint
+            // 
+            this.picPoint.BackColor = System.Drawing.Color.White;
+            this.picPoint.Image = ((System.Drawing.Image)(resources.GetObject("picPoint.Image")));
+            this.picPoint.Location = new System.Drawing.Point(101, 19);
+            this.picPoint.Name = "picPoint";
+            this.picPoint.Size = new System.Drawing.Size(15, 15);
+            this.picPoint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPoint.TabIndex = 5;
+            this.picPoint.TabStop = false;
+            this.picPoint.Visible = false;
+            this.picPoint.Click += new System.EventHandler(this.picPoint_Click);
+            this.picPoint.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picPoint_MouseMove);
+            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -283,7 +285,6 @@
             this.Text = "AddFriendForm";
             this.panel1.ResumeLayout(false);
             this.pnPending.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picPoint)).EndInit();
             this.panelAll.ResumeLayout(false);
             this.panelOnline.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -291,6 +292,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnContainCount.ResumeLayout(false);
             this.pnContainCount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPoint)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,9 +310,9 @@
         private System.Windows.Forms.Button btnOnline;
         private System.Windows.Forms.Panel pnPending;
         private System.Windows.Forms.Button btnPending;
-        private System.Windows.Forms.PictureBox picPoint;
         private System.Windows.Forms.Panel pnContainSearch;
         private System.Windows.Forms.Panel pnContainListSearch;
 		private System.Windows.Forms.Label lbHeaderName;
-	}
+        private roundpicturebox picPoint;
+    }
 }
