@@ -20,7 +20,7 @@ namespace Server
 			mServer = new SocketServer(ConfigurationManager.AppSettings["Data Source"].ToString());
 			mServer.RaiseClientConnectedEvent += HandleClientConnected;
 			mServer.RaiseTextReceivedEvent += HandleTextReceived;
-            ClearData();
+           // ClearData();
 			SetOff();
             ucData = new ucData(pnM__Contain , this);
             this.txtBoxConsole.BringToFront();
@@ -51,17 +51,9 @@ namespace Server
 		{
 			string path = @"./avatar";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-
-		    path = @"./voice";
-			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-			DirectoryInfo dir = new DirectoryInfo(path);
-			foreach (var item in dir.GetDirectories())
-			{
-				item.Delete(true);
-			}
 			path = @"./filedata";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-			dir = new DirectoryInfo(path);
+			DirectoryInfo dir = new DirectoryInfo(path);
 			foreach (var item in dir.GetFiles())
 			{
 				item.Delete();

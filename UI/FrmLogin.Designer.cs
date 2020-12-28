@@ -249,11 +249,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBoxAccount);
             this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximumSize = new System.Drawing.Size(411, 610);
             this.MinimumSize = new System.Drawing.Size(411, 610);
             this.Name = "FrmLogin";
-            this.Text = "LoginForm";
+            this.Text = "LAN Message";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

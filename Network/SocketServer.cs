@@ -419,9 +419,8 @@ namespace Communication
 																	 fileData.Length.ToString(), FILENAME,
 																	fileInfo.Extension.ToString(), id.ToString()));
 					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, FILEID);
-					client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-
-					SendFileToClient(fileData, client, "F", id.ToString());
+					await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+					await SendFileToClient(fileData, client, "F", id.ToString());
 				}
 				else if (data[0] == "CHECKPASS")
 				{
@@ -1247,7 +1246,7 @@ namespace Communication
 
 				packageSend = new SmallPackage(byteSent, package.Length,Style, tempBuff, IDpackage.ToString());
 
-				client.client_.GetStream().WriteAsync(packageSend.Packing(), 0, packageSend.Packing().Length);
+				await client.client_.GetStream().WriteAsync(packageSend.Packing(), 0, packageSend.Packing().Length);
 				byteSent += nextPackageSize;
 				byteLeft -= nextPackageSize;
 			}
@@ -1262,7 +1261,7 @@ namespace Communication
 				{
 					byte[] buff = new byte[1024];
 					int nReturn = await client.client_.GetStream().ReadAsync(buff, 0, buff.Length);
-
+					
 					package = new SmallPackage();
 					package.DividePackage(buff);
 
@@ -1413,8 +1412,8 @@ namespace Communication
 						}
 						catch (Exception ex)
                         {
-
-                        }
+							int A = 0;
+						}
 						
 					}
 					else if (package.Style == "A")
@@ -1577,7 +1576,9 @@ namespace Communication
 							(package.Style == "V" ? "Voice" : "Save Avatar"))) + " To Server"
 					));
 					Array.Clear(buff, 0, buff.Length);
+					connection.Close();
 				}
+
 			}
 			catch (Exception ex)
 			{
@@ -1594,6 +1595,7 @@ namespace Communication
 				OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
 						"Client " + getId + " Disconnect" ));
+				connection.Close();
 			}
 		}
 		public void RemoveClient(UserClient client)

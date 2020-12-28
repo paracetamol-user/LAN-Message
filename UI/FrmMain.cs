@@ -233,8 +233,7 @@ namespace UI
 			}
 		}
 		private void InitServerUsersForm()
-		{
-			this.Text = "LM";
+		{ 
 			serverUsersForm = new ServerForm(this);
 			serverUsersForm.TopLevel = false;
 			serverUsersForm.Dock = DockStyle.Fill;
@@ -252,9 +251,9 @@ namespace UI
 		}
 		private async Task AwaitReadData()
 		{
-			try
-			{
-				byte[] tempBuff;
+            try
+            {
+                byte[] tempBuff;
 				SmallPackage package;
 				List<Package> listAwaitPackage = new List<Package>();
 				while (true)
@@ -772,8 +771,21 @@ namespace UI
 								item.Ack = item.Ack + package.Data.Length;
 								if (item.Ack == item.Length)
 								{
-									_FileDialog fd = new _FileDialog();
-									fd.SaveFile(item.Data, item.FileName);
+									System.IO.Stream fs = new MemoryStream();
+
+									SaveFileDialog saveFileDialog = new SaveFileDialog();
+									saveFileDialog.Filter = "Images (*.BMP;*.JPG;*.PNG) | *.BMP;*.JPG;*.PNG |" + "All files (*.*)|*.*";
+									saveFileDialog.Title = "Save File";
+									saveFileDialog.InitialDirectory = @"C:\";
+									saveFileDialog.RestoreDirectory = true;
+									saveFileDialog.FileName = item.FileName;
+
+									if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
+									{
+										fs = (Stream)saveFileDialog.OpenFile();
+										fs.Write(item.Data, 0, item.Data.Length);
+										fs.Close();
+									}
 								}
 							}
 						}

@@ -50,7 +50,7 @@ namespace UI
 			this.mainForm = this.frmMain.GroupUI.MAINFORM;
 			this.frmADD = new FrmADD(mainForm);
 			this.frmMain.Pncontaininfor.Controls.Add(this);
-			this.Dock = DockStyle.Top;
+			this.Dock = DockStyle.Fill;
 		}
 		public void locationlabel(ref Label a, Panel b)
 		{

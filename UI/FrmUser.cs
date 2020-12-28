@@ -242,7 +242,7 @@ namespace UI
 					{
 						if (item.Length > 3000000)
 						{
-							MessageBox.Show("Size file small than 4 Mb", "Error", MessageBoxButtons.OK);
+							MessageBox.Show("Size file small than 3 Mb", "Error", MessageBoxButtons.OK);
 							return;
 						}
 					}

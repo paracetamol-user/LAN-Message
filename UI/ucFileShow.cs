@@ -91,9 +91,8 @@ namespace UI
 		private async void pictureBox2_Click(object sender, EventArgs e)
 		{
 			try
-			{
-				if (ucParent != null) fileId = ucParent.ID;
-				byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + fileId + "%" + fileName);
+			{	
+				byte[] tempbuff = Encoding.UTF8.GetBytes("SENDFILE%" + ucParent.ID + "%" + fileName);
 				SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
 				FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
 				PictureBox temp = sender as PictureBox;

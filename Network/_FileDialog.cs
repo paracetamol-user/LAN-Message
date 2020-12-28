@@ -20,9 +20,8 @@ namespace Network
 			saveFileDialog.InitialDirectory = @"C:\";
 			saveFileDialog.RestoreDirectory = true;
 			saveFileDialog.FileName = fileName;
-			saveFileDialog.ShowDialog();
 			
-			if (saveFileDialog.FileName != "")
+			if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
 			{
 				fs = (Stream)saveFileDialog.OpenFile();
 				fs.Write(buffer, 0, buffer.Length);

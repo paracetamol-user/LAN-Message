@@ -34,7 +34,6 @@ namespace UI
             this.pnNULL1 = new System.Windows.Forms.Panel();
             this.pnavata_name = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ptbavata = new UI.roundpicturebox();
             this.lbID = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.pnLine2 = new System.Windows.Forms.Panel();
@@ -62,9 +61,9 @@ namespace UI
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.pnLine3 = new System.Windows.Forms.Panel();
+            this.ptbavata = new UI.roundpicturebox();
             this.pnavata_name.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.pnfuction.SuspendLayout();
             this.pnthemthanhvien.SuspendLayout();
             this.pnclearhistory.SuspendLayout();
@@ -77,6 +76,7 @@ namespace UI
             this.panelMenufile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenufile)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).BeginInit();
             this.SuspendLayout();
             // 
             // pnLine1
@@ -85,7 +85,7 @@ namespace UI
             this.pnLine1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLine1.Location = new System.Drawing.Point(0, 0);
             this.pnLine1.Name = "pnLine1";
-            this.pnLine1.Size = new System.Drawing.Size(1, 720);
+            this.pnLine1.Size = new System.Drawing.Size(1, 662);
             this.pnLine1.TabIndex = 3;
             // 
             // pnNULL1
@@ -115,17 +115,6 @@ namespace UI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(120, 110);
             this.panel1.TabIndex = 5;
-            // 
-            // ptbavata
-            // 
-            this.ptbavata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptbavata.Location = new System.Drawing.Point(0, 0);
-            this.ptbavata.Name = "ptbavata";
-            this.ptbavata.Size = new System.Drawing.Size(120, 110);
-            this.ptbavata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbavata.TabIndex = 1;
-            this.ptbavata.TabStop = false;
             // 
             // lbID
             // 
@@ -248,7 +237,6 @@ namespace UI
             // 
             // pnaddmember
             // 
-            this.pnaddmember.AutoScroll = true;
             this.pnaddmember.AutoSize = true;
             this.pnaddmember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnaddmember.Location = new System.Drawing.Point(0, 42);
@@ -427,12 +415,22 @@ namespace UI
             this.pnLine3.Size = new System.Drawing.Size(290, 1);
             this.pnLine3.TabIndex = 2;
             // 
+            // ptbavata
+            // 
+            this.ptbavata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ptbavata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptbavata.Location = new System.Drawing.Point(0, 0);
+            this.ptbavata.Name = "ptbavata";
+            this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbavata.TabIndex = 1;
+            this.ptbavata.TabStop = false;
+            // 
             // ucInfoGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnfile);
@@ -443,11 +441,10 @@ namespace UI
             this.Controls.Add(this.pnLine1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ucInfoGroup";
-            this.Size = new System.Drawing.Size(321, 720);
+            this.Size = new System.Drawing.Size(321, 662);
             this.pnavata_name.ResumeLayout(false);
             this.pnavata_name.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.pnfuction.ResumeLayout(false);
             this.pnthemthanhvien.ResumeLayout(false);
             this.pnthemthanhvien.PerformLayout();
@@ -466,6 +463,7 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenufile)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbavata)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
