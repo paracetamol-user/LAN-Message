@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C059A202-49E7-4564-8579-97226DC93908}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UI</RootNamespace>
+    <AssemblyName>UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\LAN_Message\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmServer.Designer.cs">
+      <DependentUpon>FrmServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmADDMemberToGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmADDMemberToGroup.Designer.cs">
+      <DependentUpon>FrmADDMemberToGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmADD.Designer.cs">
+      <DependentUpon>FrmADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmADDMemberToContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmADDMemberToContact.Designer.cs">
+      <DependentUpon>FrmADDMemberToContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmContactBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmContactBook.Designer.cs">
+      <DependentUpon>FrmContactBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFriend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFriend.Designer.cs">
+      <DependentUpon>FrmFriend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLoading.Designer.cs">
+      <DependentUpon>FrmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGroup.Designer.cs">
+      <DependentUpon>FrmGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupUI.cs" />
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="roundpicturebox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FrmSignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSignUp.Designer.cs">
+      <DependentUpon>FrmSignUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSetting.Designer.cs">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme.cs" />
+    <Compile Include="ucADD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucADD.Designer.cs">
+      <DependentUpon>ucADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucContact__User.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucContact__User.Designer.cs">
+      <DependentUpon>ucContact__User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucContact.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucContact.Designer.cs">
+      <DependentUpon>ucContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucEditMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucEditMessage.Designer.cs">
+      <DependentUpon>ucEditMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucFriend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucFriend.Designer.cs">
+      <DependentUpon>ucFriend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroup.Designer.cs">
+      <DependentUpon>ucGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroupAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupAll.Designer.cs">
+      <DependentUpon>ucGroupAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroupInteract.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupInteract.Designer.cs">
+      <DependentUpon>ucGroupInteract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroupPending.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupPending.Designer.cs">
+      <DependentUpon>ucGroupPending.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGroupToAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGroupToAdd.Designer.cs">
+      <DependentUpon>ucGroupToAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucInfoGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInfoGroup.Designer.cs">
+      <DependentUpon>ucInfoGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucInfoUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInfoUser.Designer.cs">
+      <DependentUpon>ucInfoUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucInterac.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInterac.Designer.cs">
+      <DependentUpon>ucInterac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucMember.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucMember.Designer.cs">
+      <DependentUpon>ucMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucMessShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucMessShow.Designer.cs">
+      <DependentUpon>ucMessShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPending.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPending.Designer.cs">
+      <DependentUpon>ucPending.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucSearch.Designer.cs">
+      <DependentUpon>ucSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucUserAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUserAll.Designer.cs">
+      <DependentUpon>ucUserAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucUserINChatBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUserINChatBox.Designer.cs">
+      <DependentUpon>ucUserINChatBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucUserOnline.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUserOnline.Designer.cs">
+      <DependentUpon>ucUserOnline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucVoiceMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucVoiceMessage.Designer.cs">
+      <DependentUpon>ucVoiceMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucVoicePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucVoicePanel.Designer.cs">
+      <DependentUpon>ucVoicePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucFileTemp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucFileTemp.Designer.cs">
+      <DependentUpon>ucFileTemp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucFileShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucFileShow.Designer.cs">
+      <DependentUpon>ucFileShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserUI.cs" />
+    <Compile Include="VoiceControl.cs" />
+    <EmbeddedResource Include="FrmServer.resx">
+      <DependentUpon>FrmServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmADDMemberToGroup.resx">
+      <DependentUpon>FrmADDMemberToGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmADD.resx">
+      <DependentUpon>FrmADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmADDMemberToContact.resx">
+      <DependentUpon>FrmADDMemberToContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmContactBook.resx">
+      <DependentUpon>FrmContactBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFriend.resx">
+      <DependentUpon>FrmFriend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLoading.resx">
+      <DependentUpon>FrmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGroup.resx">
+      <DependentUpon>FrmGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSignUp.resx">
+      <DependentUpon>FrmSignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSetting.resx">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucADD.resx">
+      <DependentUpon>ucADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucContact.resx">
+      <DependentUpon>ucContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucContact__User.resx">
+      <DependentUpon>ucContact__User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucEditMessage.resx">
+      <DependentUpon>ucEditMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucFriend.resx">
+      <DependentUpon>ucFriend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroup.resx">
+      <DependentUpon>ucGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupAll.resx">
+      <DependentUpon>ucGroupAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupInteract.resx">
+      <DependentUpon>ucGroupInteract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupPending.resx">
+      <DependentUpon>ucGroupPending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGroupToAdd.resx">
+      <DependentUpon>ucGroupToAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucInfoGroup.resx">
+      <DependentUpon>ucInfoGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucInfoUser.resx">
+      <DependentUpon>ucInfoUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucInterac.resx">
+      <DependentUpon>ucInterac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucMember.resx">
+      <DependentUpon>ucMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucMessShow.resx">
+      <DependentUpon>ucMessShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucPending.resx">
+      <DependentUpon>ucPending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucSearch.resx">
+      <DependentUpon>ucSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUserAll.resx">
+      <DependentUpon>ucUserAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUserINChatBox.resx">
+      <DependentUpon>ucUserINChatBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUserOnline.resx">
+      <DependentUpon>ucUserOnline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucVoiceMessage.resx">
+      <DependentUpon>ucVoiceMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucVoicePanel.resx">
+      <DependentUpon>ucVoicePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucFileTemp.resx">
+      <DependentUpon>ucFileTemp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucFileShow.resx">
+      <DependentUpon>ucFileShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Network\Communication.csproj">
+      <Project>{41D27A4E-3E52-4654-B9F0-DBF092D1920C}</Project>
+      <Name>Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManager\UserManager.csproj">
+      <Project>{EED86743-70BF-4BF3-BF29-DE19BFA673F9}</Project>
+      <Name>UserManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\gear-option.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\pikachu-200.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\menu %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\internet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\images\avatarDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\avatarDefault2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\menu %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\download.png" />
+    <Content Include="images\file %281%29.png" />
+    <Content Include="images\file_3.png" />
+    <Content Include="images\plus.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
