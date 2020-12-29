@@ -57,7 +57,6 @@ namespace UI
 				}
 			}
 		}
-
 		public void ChangeColorLine()
         {
 			this.panelLine.BackColor = FrmMain.theme.LineColor;
@@ -95,7 +94,17 @@ namespace UI
 			panelPending.Padding = new Padding(30, 20, 20, 0);
             panelPending.MouseMove += PanelPending_MouseMove;
 		}
-
+		public bool ExistsPending(string id)
+        {
+            foreach (var item in panelPending.Controls)
+            {
+				if (item.GetType() == typeof(ucPending))
+                {
+					if ((item as ucPending).GetID() == id) return true;
+                }
+            }
+			return false;
+        }
         private void PanelPending_MouseMove(object sender, MouseEventArgs e)
         {
             if (panelPending.Controls.Count == 0)
@@ -104,7 +113,6 @@ namespace UI
 				this.picPoint.Visible = false;
             }
         }
-
         public void EnablePointPending()
 		{
 			picPoint.Visible = true;
@@ -190,12 +198,10 @@ namespace UI
 			picPoint.Visible = false;
 			mainForm.DisableNotification();
 		}
-
         public void btnPending_MouseMove(object sender, MouseEventArgs e)
         {
 			(sender as Button).BackColor = FrmMain.theme.FocusColor;
 		}
-
         public void btnPending_MouseLeave(object sender, EventArgs e)
         {
 			(sender as Button).BackColor = Color.Transparent;
@@ -226,7 +232,6 @@ namespace UI
 			picPoint.Visible = false;
 			mainForm.DisableNotification();
 		}
-
         private void picPoint_MouseMove(object sender, MouseEventArgs e)
         {
 			btnPending.BackColor = FrmMain.theme.FocusColor;

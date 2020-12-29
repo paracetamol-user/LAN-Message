@@ -220,6 +220,12 @@
     <Compile Include="ucMessShow.Designer.cs">
       <DependentUpon>ucMessShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucNotification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucNotification.Designer.cs">
+      <DependentUpon>ucNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucPending.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -369,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucMessShow.resx">
       <DependentUpon>ucMessShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucNotification.resx">
+      <DependentUpon>ucNotification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucPending.resx">
       <DependentUpon>ucPending.cs</DependentUpon>

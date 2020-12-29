@@ -55,12 +55,14 @@ namespace UI
 		public static List<ucUserINChatBox> listFileAwaitID;
 		public static List<ucUserINChatBox> listVoiceAwaitID;
 		public static List<Group> listGroup;
+		public List<ucNotification> notifications;
 
 		public bool acceptClose;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mỗi class.
 		public Timer timer;
 		public bool time;
 		public int tick;
+		public Point currentLocationNotification;
 		public FrmMain()
 		{
 			InitializeComponent();
@@ -79,7 +81,7 @@ namespace UI
 			frmLoading.Show();
 			this.Controls.Add(frmLoading);
 			timer.Interval = 1000;
-			timer.Tick += (timersender, timerEvent) => { tick++; if (time == true && tick > 1)
+			timer.Tick += (timersender, timerEvent) => { tick++; if (time == true || tick > 1)
 				{
 					timer.Stop();
 					this.Controls.Remove(frmLoading);
@@ -115,7 +117,7 @@ namespace UI
 			AddToGroup = new FrmADDMemberToGroup(this);
 			frmADD = new FrmADD(this);
 			frmADDMemberToContact = new FrmADDMemberToContact(this);
-
+			notifications = new List<ucNotification>();
 			me.AvatarPath = @"./images/avatarDefault/avatarDefault.png";
 			
 			LoadDataUser();
@@ -249,6 +251,47 @@ namespace UI
 				fs.Dispose();
 			}
 		}
+		public async Task AddNewNotification(string text)
+        {
+			ucNotification newNotification = new ucNotification(text);
+			Point defaultLocation = new Point(this.panelRIGHT.Width / 2 + this.panelMenu.Width - newNotification.Width / 2 + 5 , 5);
+			newNotification.Location = defaultLocation;
+			notifications.Add(newNotification);
+            //Create Notification
+            Timer waitForTurn = new Timer();
+            waitForTurn.Interval = 100;	
+            waitForTurn.Tick += async (timeSender, timerEvent) =>
+            {
+				if (notifications.Count == 1)
+                {
+					currentLocationNotification = defaultLocation;
+					waitForTurn.Stop();
+					this.Controls.Add(newNotification);
+					newNotification.BringToFront();
+					newNotification.Show();
+					await Task.Delay(2000);
+					notifications.Remove(newNotification);
+					this.Controls.Remove(newNotification);
+					newNotification.Dispose();
+				}
+                else if (notifications.Count == 2)
+				{
+					if (currentLocationNotification == defaultLocation)
+						newNotification.Location = new Point(newNotification.Location.X, newNotification.Location.Y + newNotification.Height + 2);
+					currentLocationNotification = newNotification.Location;
+					waitForTurn.Stop();
+					this.Controls.Add(newNotification);
+					
+					newNotification.BringToFront();
+					newNotification.Show();
+					await Task.Delay(2000);
+					notifications.Remove(newNotification);
+					this.Controls.Remove(newNotification);
+					newNotification.Dispose();
+				}
+			};
+			waitForTurn.Start();
+		}
 		private async Task AwaitReadData()
 		{
             try
@@ -334,6 +377,7 @@ namespace UI
 						}
 						else if (action == "ADDUSER")
 						{
+							AddNewNotification(data[2] + "Join the server.");
 							string path = @"./images/avatarDefault/avatarDefault.png";
 							User tempUser = (new User(data[1], data[2], false, path));
 							UserUI temp = new UserUI(tempUser, this);
@@ -423,14 +467,18 @@ namespace UI
 						}
 						else if (action == "PENDING")
 						{
-							foreach (var item in UserUIs)
-							{
-								if (item.user.Id == data[1])
+							if (!serverUsersForm.ExistsPending(data[1]))
+                            {
+								foreach (var item in UserUIs)
 								{
-									serverUsersForm.AddPending(item);
-									serverUsersForm.EnablePointPending();
-									picNotification.Visible = true;
-									break;
+									if (item.user.Id == data[1])
+									{
+										AddNewNotification("Friend request from " + item.user.Name + ".");
+										serverUsersForm.AddPending(item);
+										serverUsersForm.EnablePointPending();
+										picNotification.Visible = true;
+										break;
+									}
 								}
 							}
 						}
@@ -443,6 +491,7 @@ namespace UI
 								{
 									if (item.user.Id == data[i])
 									{
+										
 										item.user.IsFriend = true;
 										item.EnableRemove();
 										item.DisableADD();
@@ -456,6 +505,7 @@ namespace UI
 							{
 								if (item.user.Id == data[1])
 								{
+									AddNewNotification(item.user.Name + "and you became friend.");
 									AddUserIntoFrmFriend(item);
 									item.user.IsFriend = true;
 									item.DisableADD();
@@ -560,10 +610,14 @@ namespace UI
 						}
 						else if (action == "GPENDING")
 						{
-							GroupUI temp = new GroupUI(new Group(data[1], data[2]), this);
-							serverUsersForm.AddGroupPending(temp);
-							serverUsersForm.EnablePointPending();
-							picNotification.Visible = true;
+							if (!serverUsersForm.ExistsPending(data[1]))
+                            {
+								AddNewNotification("Group request from " + data[1] +".");
+								GroupUI temp = new GroupUI(new Group(data[1], data[2]), this);
+								serverUsersForm.AddGroupPending(temp);
+								serverUsersForm.EnablePointPending();
+								picNotification.Visible = true;
+							}
 						}
 						else if (action == "GROUPDATA")
 						{
@@ -652,6 +706,15 @@ namespace UI
 									}
 									else
 									{
+                                        foreach (var item2 in item.group.GetMembers())
+                                        {
+											if (item2.Id == IDmember)
+                                            {
+												AddNewNotification(item2.Name + " has left the group.");
+												break;
+											}
+                                        }
+										
 										item.group.RemoveMember(IDmember);
 									}
 									break;

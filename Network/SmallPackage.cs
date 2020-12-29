@@ -42,16 +42,17 @@ namespace Network
 		}
 		public void DividePackage(byte[] package)
 		{
-				this.Seq = int.Parse(Encoding.UTF8.GetString(package, 0, 8).Trim('\0', '\t', '\r', '\n'));
-			try
-			{
-				this.Length = int.Parse(Encoding.UTF8.GetString(package, 8, 8).Trim('\0', '\t', '\r', '\n'));
-			}
-			catch
-			{
+			string package__Message = string.Empty;
 
-			}
+			this.Seq = int.Parse(Encoding.UTF8.GetString(package, 0, 8).Trim('\0', '\t', '\r', '\n'));
+			package__Message = Encoding.UTF8.GetString(package, 0, 8);
+
+			this.Length = int.Parse(Encoding.UTF8.GetString(package, 8, 8).Trim('\0', '\t', '\r', '\n'));
+			package__Message = Encoding.UTF8.GetString(package, 8, 8);
+
 			this.Style = Encoding.UTF8.GetString(package, 16, 8).Trim('\0', '\t', '\r', '\n');
+			package__Message = Encoding.UTF8.GetString(package, 16, 8);
+
 			this.ID = Encoding.UTF8.GetString(package, 24, 36).Trim('\0', '\t', '\r', '\n');
 			Buffer.BlockCopy(package, 60, Data, 0, 964);
 		}

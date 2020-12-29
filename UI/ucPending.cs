@@ -46,13 +46,10 @@ namespace UI
 			this.picCheck.Image = Image.FromFile(FrmMain.theme.PictureCheck);
 			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
-	
-
 		private void picMenu_Click(object sender, EventArgs e)
 		{
 			pnParent.Controls.Remove(this);
 		}
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 			FrmMain.frmFriend.AddUserIntoFrmFriend(uiParent);
@@ -62,7 +59,6 @@ namespace UI
 			SendAcceptFriendToServer();
 			pnParent.Controls.Remove(this);
 		}
-
         private async void SendAcceptFriendToServer()
         {
 			try
@@ -77,5 +73,9 @@ namespace UI
 			}
 			
 		}
+		public string GetID()
+        {
+			return uiParent.user.Id;
+        }
     }
 }

@@ -415,10 +415,10 @@ namespace Communication
 					Guid id = Guid.NewGuid();
 					FileInfo fileInfo = new FileInfo(path);
 					byte[] fileData = File.ReadAllBytes(fileInfo.FullName);
-					tempBuff = Encoding.UTF8.GetBytes(string.Format("FILE%{0}%{1}%{2}%{3}%{4}", " ",
+					tempBuff = Encoding.UTF8.GetBytes(string.Format("FILE%{0}%{1}%{2}%{3}%{4}", "Server",
 																	 fileData.Length.ToString(), FILENAME,
 																	fileInfo.Extension.ToString(), id.ToString()));
-					packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuff, FILEID);
+					packageReceive = new SmallPackage(0, 1024, "M", tempBuff, FILEID);
 					await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 					await SendFileToClient(fileData, client, "F", id.ToString());
 				}
