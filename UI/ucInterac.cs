@@ -116,6 +116,8 @@ namespace UI
 		}
 		private void pnContain_Click(object sender, EventArgs e)
 		{
+			this.lbMess.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbMess.ForeColor = FrmMain.theme.TextMenuColor;
 			if (isGroup)
 			{
 				GroupUI.ShowChatForm();
@@ -143,6 +145,11 @@ namespace UI
 				GroupUI.panelINTERACTED.Controls.Remove(this);
             }
 			else UserUI.panelINTERACTED.Controls.Remove(this);
+		}
+		public void BoldMessage()
+        {
+			this.lbMess.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbMess.ForeColor = FrmMain.theme.TxtForeColor;
 		}
     }
 }

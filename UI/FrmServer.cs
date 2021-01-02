@@ -98,11 +98,18 @@ namespace UI
         {
             foreach (var item in panelPending.Controls)
             {
-				if (item.GetType() == typeof(ucPending))
+				if (item.GetType() == typeof(ucGroupPending))
                 {
-					if ((item as ucPending).GetID() == id) return true;
+					if ((item as ucGroupPending).GetID() == id) return true;
                 }
             }
+			foreach (var item in panelPending.Controls)
+			{
+				if (item.GetType() == typeof(ucPending))
+				{
+					if ((item as ucPending).GetID() == id) return true;
+				}
+			}
 			return false;
         }
         private void PanelPending_MouseMove(object sender, MouseEventArgs e)

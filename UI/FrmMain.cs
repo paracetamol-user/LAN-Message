@@ -353,7 +353,7 @@ namespace UI
 						}
 						else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 						{
-							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0');
 							string Message = "";
 							int count = 0;
 							for (int j = 0; j < temp.Length; j++)
@@ -580,6 +580,7 @@ namespace UI
 						else if (action == "IDFILE")
 						{
 							listFileAwaitID[0].ID = data[1];
+							listFileAwaitID[0].AddID();
 							listFileAwaitID.Remove(listFileAwaitID[0]);
 						}
 						else if (action == "LOADGROUPDATA")
@@ -653,6 +654,7 @@ namespace UI
 										if (data[2] == item2.Id)
 										{
 											item.group.AddMember(item2);
+											item.groupForm.AddNotification(item2.Name, "has been added to the group");
 											break;
 										}
 									}
@@ -661,7 +663,7 @@ namespace UI
 						}
 						else if (action == "GSEND")
 						{
-							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0');
 							string Message = "";
 							int count = 0;
 							for (int j = 0; j < temp.Length; j++)
@@ -700,6 +702,7 @@ namespace UI
 								{
 									if (IDmember == me.Id)
 									{
+										AddNewNotification(string.Format("You have been kicked out of the {0}.",item.group.Name));
 										GroupUIs.Remove(item);
 										listGroup.Remove(item.group);
 										item.Dispose();
@@ -710,7 +713,8 @@ namespace UI
                                         {
 											if (item2.Id == IDmember)
                                             {
-												AddNewNotification(item2.Name + " has left the group.");
+												//AddNewNotification(item2.Name + " has left the group.");
+												item.groupForm.AddNotification(item2.Name, "has left the group.");
 												break;
 											}
                                         }
@@ -746,6 +750,14 @@ namespace UI
 									{
 										item.group.ChangeHost(newHost);
 									}
+                                    foreach (var item3 in item.group.GetMembers())
+                                    {
+										if (item3.Id == newHost)
+                                        {
+											item.groupForm.AddNotification(item3.Name, "has become the host.");
+											break;
+										}
+                                    }
 									break;
 								}
 							}

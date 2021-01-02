@@ -1,6 +1,6 @@
 README.TXT
 ------------------
-File config: UI.exe.config
+File config: LAN Message.exe.config
 ------------------
 Hướng dẫn: Sửa file config tại trường value thành IP của server
 ------------------

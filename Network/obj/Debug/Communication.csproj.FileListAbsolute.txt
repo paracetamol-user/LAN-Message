@@ -19,15 +19,7 @@ C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Communication.cspr
 C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Communication.csproj.CopyComplete
 C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Network.dll
 C:\Users\admin\Documents\GitHub\LAN-Message\Network\obj\Debug\Network.pdb
-D:\LAN-Message\Network\bin\Debug\Network.dll
-D:\LAN-Message\Network\bin\Debug\Network.pdb
-D:\LAN-Message\Network\bin\Debug\Guna.UI2.dll
-D:\LAN-Message\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
-D:\LAN-Message\Network\obj\Debug\Communication.csproj.CopyComplete
-D:\LAN-Message\Network\obj\Debug\Network.dll
-D:\LAN-Message\Network\obj\Debug\Network.pdb
 Z:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache
-D:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache
 C:\Users\Dat\Desktop\LastPackage\LAN-Message\Network\bin\Debug\Network.dll
 C:\Users\Dat\Desktop\LastPackage\LAN-Message\Network\bin\Debug\Network.pdb
 C:\Users\Dat\Desktop\LastPackage\LAN-Message\Network\bin\Debug\Guna.UI2.dll
@@ -44,3 +36,9 @@ C:\Users\Dat\Desktop\LastPackage\LAN-Message\LAN-Message\Network\obj\Debug\Commu
 C:\Users\Dat\Desktop\LastPackage\LAN-Message\LAN-Message\Network\obj\Debug\Communication.csproj.CopyComplete
 C:\Users\Dat\Desktop\LastPackage\LAN-Message\LAN-Message\Network\obj\Debug\Network.dll
 C:\Users\Dat\Desktop\LastPackage\LAN-Message\LAN-Message\Network\obj\Debug\Network.pdb
+D:\LAN-Message\Network\bin\Debug\Network.dll
+D:\LAN-Message\Network\bin\Debug\Network.pdb
+D:\LAN-Message\Network\obj\Debug\Communication.csproj.CoreCompileInputs.cache
+D:\LAN-Message\Network\obj\Debug\Network.dll
+D:\LAN-Message\Network\obj\Debug\Network.pdb
+D:\LAN-Message\Network\obj\Debug\Communication.csprojAssemblyReference.cache

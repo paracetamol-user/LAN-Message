@@ -28,6 +28,10 @@ namespace Communication
 		string queryMessage = "insert into MESSAGE values(@id,@idnguoigui,@idnguoinhan,@MESSAGE,@loai,@nhomnhan)";
 		string queryChangePassword = "select ID, PASS from USERS where ID = @id";
 		string queryChangeUsername = "select ID, USERNAME from USERS where ID = @id or USERNAME = @name";
+
+		int LASTIDUSER;
+		int LASTIDGROUP;
+		int LASTIDCB;
 		SqlConnection connection;
 		SqlCommand command;
 		SqlDataReader reader;
@@ -52,9 +56,63 @@ namespace Communication
 			clientInvalid = new List<UserClient>();
 			connString = DataSource;
 		}
+		public int FindLastIDUser()
+		{
+			string query = "Select ID from users";
+			int LastID = 0;
+			connection = new SqlConnection(connString);
+			command = new SqlCommand(query, connection);
+			connection.Open();
+			reader = command.ExecuteReader();
+			while (reader.HasRows)
+			{
+				if (!reader.Read()) break;
+				int temp = int.Parse(reader.GetString(0));
+				if (LastID < temp) LastID = temp;
+			}
+			connection.Close();
+			return LastID;
+		}
+		public int FindLastIDGroup()
+		{
+			string query = "Select IDGROUP from groups";
+			int LastID = 0;
+			connection = new SqlConnection(connString);
+			command = new SqlCommand(query, connection);
+			connection.Open();
+			reader = command.ExecuteReader();
+			while (reader.HasRows)
+			{
+				if (!reader.Read()) break;
+				string temp = reader.GetString(0).Substring(1);
+				if (LastID < int.Parse(temp)) LastID = int.Parse(temp);
+			}
+			connection.Close();
+			return LastID;
+		}
+		public int FindLastIDCB()
+		{
+			string query = "Select ID from contactbook";
+			int LastID = 0;
+			connection = new SqlConnection(connString);
+			command = new SqlCommand(query, connection);
+			connection.Open();
+			reader = command.ExecuteReader();
+			while (reader.HasRows)
+			{
+				if (!reader.Read()) break;
+				string temp = reader.GetString(0).Substring(1);
+				if (LastID < int.Parse(temp)) LastID = int.Parse(temp);
+			}
+			connection.Close();
+			return LastID;
+		}
 		public int idfocus = 0;
 		public async Task StartForIncommingConnection(IPAddress addr = null, int port = 5000)
 		{
+			LASTIDUSER = FindLastIDUser();
+			LASTIDGROUP = FindLastIDGroup();
+			LASTIDCB = FindLastIDCB();
 			if (addr == null)
 				addr = IPAddress.Any;
 
@@ -92,7 +150,7 @@ namespace Communication
 		private async Task ProcessStyleMessage(UserClient client, SmallPackage package, List<Package> listAwaitPackage)
 		{
 			try
-            {
+			{
 				string[] data = (Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')).Split('%');
 				byte[] buffMessage = new byte[1024];
 				byte[] tempBuff;
@@ -102,7 +160,7 @@ namespace Communication
 				{
 					try
 					{
-						string idEnd = "";
+
 						// Lấy id cuối cùng để tăng id lên 1 và thêm người dùng vào khi SIGNUP thành công
 						connection = new SqlConnection(connString);
 						connection.Open();
@@ -118,16 +176,15 @@ namespace Communication
 								await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 								return;
 							}
-							idEnd = reader.GetString(0);
+							
 						}
 						// Tìm xem người dùng đã tồn tại trong server chưa
-						int.TryParse(idEnd, out idfocus);
-						idfocus++;
+						LASTIDUSER++;
 						connection.Close();
 						connection = new SqlConnection(connString);
 						connection.Open();
 						command = new SqlCommand("INSERT INTO USERS(ID,USERNAME,PASS,STATUS,SOURCEAVATAR,THEME) VALUES (@ID , @USERNAME , @PASS, @STATUS,@SOURCE,@THEME)", connection);
-						command.Parameters.AddWithValue("@ID", idfocus.ToString());
+						command.Parameters.AddWithValue("@ID", LASTIDUSER.ToString());
 						command.Parameters.AddWithValue("@USERNAME", data[1]);
 						command.Parameters.AddWithValue("@PASS", data[2]);
 						command.Parameters.AddWithValue("@STATUS", 0);
@@ -136,9 +193,9 @@ namespace Communication
 						command.ExecuteNonQuery();
 						// Thêm người dùng mới vào database
 						byte[] tempBuffer = Encoding.UTF8.GetBytes("SIGNUPOKE");
-						packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
+						packageReceive = new SmallPackage(0, 1024, "M", tempBuffer, "0");
 						client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-						SendToAll(client, "ADDUSER%" + idfocus.ToString() + "%" + data[1]);
+						SendToAll(client, "ADDUSER%" + LASTIDUSER.ToString() + "%" + data[1]);
 						connection.Close();
 					}
 					catch (Exception ex)
@@ -421,6 +478,7 @@ namespace Communication
 					packageReceive = new SmallPackage(0, 1024, "M", tempBuff, FILEID);
 					await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 					await SendFileToClient(fileData, client, "F", id.ToString());
+					
 				}
 				else if (data[0] == "CHECKPASS")
 				{
@@ -833,11 +891,12 @@ namespace Communication
 					string GrName = data[1];
 					string IDhost = data[2];
 					byte[] tempBuffer;
-					string query = "select Count(GROUPNAME) from groups where GROUPNAME = @tennhom";
+					string query = "select Count(GROUPNAME) from groups where GROUPNAME = @tennhom and IDADMIN = @idhost ";
 					connection = new SqlConnection(connString);
 					connection.Open();
 					command = new SqlCommand(query, connection);
 					command.Parameters.AddWithValue("@tennhom", GrName);
+					command.Parameters.AddWithValue("@idhost", IDhost);
 					var count = (int)command.ExecuteScalar();
 					if (count > 0)
 					{
@@ -847,24 +906,11 @@ namespace Communication
 					}
 					else
 					{
-						string getID = "G0";
-						connection.Close();
-						connection = new SqlConnection(connString);
-						connection.Open();
-						command = new SqlCommand("Select IDGROUP from groups order by IDGROUP DESC", connection);
-						reader = command.ExecuteReader();
-						while (reader.HasRows)
-						{
-							if (!reader.Read()) break;
-							getID = reader.GetString(0);
-							break;
-						}
-						connection.Close();
-						string temp = getID.Substring(1, getID.Length - 1);
+						LASTIDGROUP++;
 						connection = new SqlConnection(connString);
 						connection.Open();
 						command = new SqlCommand("insert into groups values (@idnhom, @tennhom, @idadmin, @sourceavatar)", connection);
-						command.Parameters.AddWithValue("@idnhom", "G" + (int.Parse(temp) + 1).ToString());
+						command.Parameters.AddWithValue("@idnhom", "G" + LASTIDGROUP.ToString());
 						command.Parameters.AddWithValue("@tennhom", GrName);
 						command.Parameters.AddWithValue("@idadmin", client.id_);
 						command.Parameters.AddWithValue("@sourceavatar", "Default");
@@ -874,7 +920,7 @@ namespace Communication
 						connection = new SqlConnection(connString);
 						connection.Open();
 						command = new SqlCommand("insert into member values (@idnhom, @idthanhvien)", connection);
-						command.Parameters.AddWithValue("@idnhom", "G" + (int.Parse(temp) + 1).ToString());
+						command.Parameters.AddWithValue("@idnhom", "G" + LASTIDGROUP.ToString());
 						command.Parameters.AddWithValue("@idthanhvien", client.id_);
 						command.ExecuteNonQuery();
 						connection.Close();
@@ -883,7 +929,7 @@ namespace Communication
 						packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 						await client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
 
-						tempBuffer = Encoding.UTF8.GetBytes(string.Format("GROUPDATA%{0}•{1}•{2}•{3}", "G" + (int.Parse(temp) + 1).ToString(), GrName, client.id_, client.id_));
+						tempBuffer = Encoding.UTF8.GetBytes(string.Format("GROUPDATA%{0}•{1}•{2}•{3}", "G" + LASTIDGROUP.ToString(), GrName, client.id_, client.id_));
 
 						packageReceive = new SmallPackage(package.Seq, package.Length, "M", tempBuffer, "0");
 						client.client_.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
@@ -1129,21 +1175,8 @@ namespace Communication
 						return;
 					}
 					connection.Close();
-					string ID = "C0";
-					query = "Select ID from contactbook order by ID DESC";
-					connection = new SqlConnection(connString);
-					connection.Open();
-					command = new SqlCommand(query, connection);
-					reader = command.ExecuteReader();
-					while (reader.HasRows)
-					{
-						if (!reader.Read()) break;
-						ID = reader.GetString(0);
-						break;
-					}
-					connection.Close();
-					string temp = ID.Substring(1, ID.Length - 1);
-					ID = "C" + (int.Parse(temp) + 1).ToString();
+					LASTIDCB++;
+					string ID = "C"+ LASTIDCB.ToString();
 					query = "insert into contactbook values(@id,@name,@iduser)";
 					connection = new SqlConnection(connString);
 					connection.Open();
@@ -1220,9 +1253,9 @@ namespace Communication
 					}
 					subConnect.Close();
 				}
-            }
-            catch (Exception ex)
-            {
+			}
+			catch (Exception ex)
+			{
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
 				OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
@@ -1285,7 +1318,7 @@ namespace Communication
 					else if (package.Style == "F")
 					{
 						try
-                        {
+						{
 							foreach (var item in listAwaitPackage)
 							{
 								if (package.ID == item.IDpackage)
@@ -1411,15 +1444,15 @@ namespace Communication
 							}
 						}
 						catch (Exception ex)
-                        {
+						{
 							int A = 0;
 						}
 						
 					}
 					else if (package.Style == "A")
 					{
-                        try
-                        {
+						try
+						{
 							foreach (var item in listAwaitPackage)
 							{
 								if (package.ID == item.IDpackage)
@@ -1451,9 +1484,9 @@ namespace Communication
 							}
 						}
 						catch (Exception ex)
-                        {
+						{
 
-                        }
+						}
 						
 					}
 					else if (package.Style == "V")
@@ -1571,9 +1604,10 @@ namespace Communication
 					System.Diagnostics.Debug.WriteLine("Received message: " + (Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')));
 					OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
-						"Send " + (package.Style == "M" ? ((Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')).Split('%'))[0] :
+						"Send a package: " + (package.Style == "M" ? ((Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n')).Split('%'))[0] :
 							(package.Style == "F" ? "File" :
-							(package.Style == "V" ? "Voice" : "Save Avatar"))) + " To Server"
+							(package.Style == "V" ? "Voice " :
+							(package.Style == "A" ? "Save Avatar" : "Unknown"))))
 					));
 					Array.Clear(buff, 0, buff.Length);
 					connection.Close();
@@ -1594,7 +1628,7 @@ namespace Communication
 				commandstatus.ExecuteNonQuery();
 				OnRaiseTextREceivedEvent(new TextReceivedEventArgs(
 						client.client_.Client.RemoteEndPoint.ToString(),
-						"Client " + getId + " Disconnect" ));
+						"Client has an ID - " + getId + " Disconnect" ));
 				connection.Close();
 			}
 		}
@@ -1683,13 +1717,13 @@ namespace Communication
 			}
 		}
 		public async Task NotificationRemoveUser(string ID)
-        {
-            foreach (var item in clientInvalid)
-            {
+		{
+			foreach (var item in clientInvalid)
+			{
 				byte[] buffer = Encoding.UTF8.GetBytes(string.Format("REMOVEUSER%{0}",ID));
 				SmallPackage smallPackage = new SmallPackage(0, 1024, "M", buffer, "Client");
 				item.client_.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
-            }
-        }
+			}
+		}
 	}
 }

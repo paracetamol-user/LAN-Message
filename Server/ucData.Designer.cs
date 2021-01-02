@@ -94,6 +94,7 @@
             // 
             // pnBody
             // 
+            this.pnBody.AutoScroll = true;
             this.pnBody.Controls.Add(this.dgv);
             this.pnBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnBody.Location = new System.Drawing.Point(0, 26);
@@ -136,7 +137,7 @@
             this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(970, 413);
             this.dgv.TabIndex = 1;

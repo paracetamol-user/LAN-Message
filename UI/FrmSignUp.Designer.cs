@@ -73,6 +73,7 @@
             this.txtNhaplaimatkhau.TabIndex = 2;
             this.txtNhaplaimatkhau.Text = "Nhap lai mat khau";
             this.txtNhaplaimatkhau.Enter += new System.EventHandler(this.txtNhaplaimatkhau_Enter);
+            this.txtNhaplaimatkhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhaplaimatkhau_KeyDown);
             this.txtNhaplaimatkhau.Leave += new System.EventHandler(this.txtNhaplaimatkhau_Leave);
             // 
             // button1

@@ -83,5 +83,9 @@ namespace UI
             }
             
         }
+        public string GetID()
+        {
+            return uiParent.group.ID;
+        }
     }
 }

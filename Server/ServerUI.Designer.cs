@@ -88,7 +88,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(182, 536);
+            this.panel1.Size = new System.Drawing.Size(182, 461);
             this.panel1.TabIndex = 8;
             // 
             // pnReset
@@ -195,7 +195,7 @@
             this.pnStop.Controls.Add(this.pictureBoxStop);
             this.pnStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnStop.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnStop.Location = new System.Drawing.Point(0, 480);
+            this.pnStop.Location = new System.Drawing.Point(0, 405);
             this.pnStop.Name = "pnStop";
             this.pnStop.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pnStop.Size = new System.Drawing.Size(182, 56);
@@ -291,7 +291,7 @@
             this.pnLine.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLine.Location = new System.Drawing.Point(182, 0);
             this.pnLine.Name = "pnLine";
-            this.pnLine.Size = new System.Drawing.Size(1, 536);
+            this.pnLine.Size = new System.Drawing.Size(1, 461);
             this.pnLine.TabIndex = 9;
             // 
             // pnM
@@ -302,7 +302,7 @@
             this.pnM.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnM.Location = new System.Drawing.Point(183, 0);
             this.pnM.Name = "pnM";
-            this.pnM.Size = new System.Drawing.Size(563, 536);
+            this.pnM.Size = new System.Drawing.Size(422, 461);
             this.pnM.TabIndex = 10;
             // 
             // pnM__Contain
@@ -312,7 +312,7 @@
             this.pnM__Contain.Location = new System.Drawing.Point(0, 57);
             this.pnM__Contain.Name = "pnM__Contain";
             this.pnM__Contain.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.pnM__Contain.Size = new System.Drawing.Size(563, 479);
+            this.pnM__Contain.Size = new System.Drawing.Size(422, 404);
             this.pnM__Contain.TabIndex = 10;
             // 
             // txtBoxConsole
@@ -322,7 +322,7 @@
             this.txtBoxConsole.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxConsole.Location = new System.Drawing.Point(47, 66);
             this.txtBoxConsole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBoxConsole.MaxLength = 5;
+            this.txtBoxConsole.MaxLength = 500500;
             this.txtBoxConsole.Multiline = true;
             this.txtBoxConsole.Name = "txtBoxConsole";
             this.txtBoxConsole.ReadOnly = true;
@@ -336,7 +336,7 @@
             this.pnLine2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLine2.Location = new System.Drawing.Point(0, 56);
             this.pnLine2.Name = "pnLine2";
-            this.pnLine2.Size = new System.Drawing.Size(563, 1);
+            this.pnLine2.Size = new System.Drawing.Size(422, 1);
             this.pnLine2.TabIndex = 9;
             // 
             // pnM__Header
@@ -348,14 +348,14 @@
             this.pnM__Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnM__Header.Location = new System.Drawing.Point(0, 0);
             this.pnM__Header.Name = "pnM__Header";
-            this.pnM__Header.Size = new System.Drawing.Size(563, 56);
+            this.pnM__Header.Size = new System.Drawing.Size(422, 56);
             this.pnM__Header.TabIndex = 7;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(517, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(376, 12);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 33);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -431,11 +431,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(746, 536);
+            this.ClientSize = new System.Drawing.Size(605, 461);
             this.Controls.Add(this.pnM);
             this.Controls.Add(this.pnLine);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(623, 312);
             this.Name = "ServerUI";
             this.Text = "LAN Message Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerUI_FormClosing);

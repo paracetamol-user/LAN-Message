@@ -1,4 +1,5 @@
-﻿using Network;
+﻿using Microsoft.VisualBasic.Devices;
+using Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -378,5 +379,13 @@ namespace UI
 				e.SuppressKeyPress = true;
 			}
 		}
+		public void AddNotification(string Name, string text)
+        {
+			ucNotification notification = new ucNotification(string.Format("{0} {1}",Name,text));
+			notification.BorderStyle = BorderStyle.None;
+			notification.Dock = DockStyle.Top;
+			notification.ItalicText();
+			this.panelListChat.Controls.Add(notification);
+        }
 	}
 }

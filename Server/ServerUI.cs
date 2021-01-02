@@ -20,7 +20,7 @@ namespace Server
 			mServer = new SocketServer(ConfigurationManager.AppSettings["Data Source"].ToString());
 			mServer.RaiseClientConnectedEvent += HandleClientConnected;
 			mServer.RaiseTextReceivedEvent += HandleTextReceived;
-           // ClearData();
+            ClearData();
 			SetOff();
             ucData = new ucData(pnM__Contain , this);
             this.txtBoxConsole.BringToFront();
@@ -34,7 +34,7 @@ namespace Server
 
         private void textChange(object sender, EventArgs e)
         {
-			if (txtBoxConsole.TextLength > 10000) txtBoxConsole.Clear();
+			if (txtBoxConsole.TextLength > 500000) txtBoxConsole.Clear();
         }
 
         private void SetOff()

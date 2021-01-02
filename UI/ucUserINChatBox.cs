@@ -194,5 +194,9 @@ namespace UI
         {
 			this.picDelete.Visible = false;
         }
+		public void AddID()
+        {
+			this.ucfileshow.ucParent.ID = ID;
+        }
 	}
 }

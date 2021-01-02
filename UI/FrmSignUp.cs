@@ -232,5 +232,58 @@ namespace UI
             this.login.Show();
             this.Close();
         }
+
+        private async  void txtNhaplaimatkhau_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (kiemtradulieu() == false)
+                {
+                    MessageBox.Show("Vui long nhap du lieu day du!");
+                }
+                else
+                if (kiemtramatkhau() == false)
+                {
+                    MessageBox.Show("Mat khau khong trung khop!");
+                    txtNhaplaimatkhau.PasswordChar = '\0';
+                    txtNhaplaimatkhau.Text = "Nhap lai mat khau";
+                }
+                else
+                {
+
+                    try
+                    {
+                        UserManager.UserVerification userVerification = new UserManager.UserVerification();
+                        string pass = userVerification.GetSHA256(txtMatkhau.Text);
+
+                        byte[] tempbuff = Encoding.UTF8.GetBytes("SIGNUP%" + this.txtTendangnhap.Text + "%" + pass);
+                        SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+                        await FrmLogin.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+
+                        byte[] buffReceive = new byte[1024];
+                        await FrmLogin.server.GetStream().ReadAsync(buffReceive, 0, buffReceive.Length);
+                        SmallPackage packageReceive = new SmallPackage();
+                        packageReceive.DividePackage(buffReceive);
+
+                        string[] data = (Encoding.UTF8.GetString(packageReceive.Data).Trim('\0', '\t', '\n')).Split('%');
+                        if (data[0].Trim('\0', '\r', '\n') == "SIGNUPOKE")
+                        {
+                            MessageBox.Show("SIGN UP successfully");
+                            this.login.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tai khoan da ton tai");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+            }
+        }
     }
 }

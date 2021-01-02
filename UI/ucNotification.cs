@@ -25,5 +25,9 @@ namespace UI
 			this.label1.ForeColor = FrmMain.theme.TxtForeColor;
 			this.BackColor = FrmMain.theme.BackColor;
 		}
+		public void ItalicText()
+        {
+			this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+		}
 	}
 }
