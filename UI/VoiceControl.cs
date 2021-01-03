@@ -15,7 +15,7 @@ namespace UI
 		WaveIn wave;
 		private int deviceNumber;
 		public string Path = @"./voice/";
-
+		public string DefaultPath;
 		public VoiceControl()
 		{
 			deviceNumber = 0;
@@ -28,6 +28,7 @@ namespace UI
 			Path += string.Format(@"{0}/", user.Id);
 			if (!Directory.Exists(Path))
 				Directory.CreateDirectory(Path);
+			DefaultPath = Path;
 		}
 		public VoiceControl(Group group)
 		{
@@ -36,12 +37,14 @@ namespace UI
 				Directory.CreateDirectory(Path);
 			Path += string.Format(@"G{0}/", group.ID);
 			if (!Directory.Exists(Path))
-				Directory.CreateDirectory(Path);
+				Directory.CreateDirectory(Path); 
+			DefaultPath = Path;
 		}
 
 		public WaveIn GetWave() => wave;
 		public void StartRecording()
 		{
+			Path = GetNextPath();
 			DisposeAll();
 			wave = new WaveIn();
 
@@ -98,7 +101,7 @@ namespace UI
 			int id = 0;
 			while (true)
 			{
-				string temp = string.Format(@"{0}{1}.wav", Path, id);
+				string temp = string.Format(@"{0}{1}.wav", DefaultPath, id);
 				if (!File.Exists(temp))
 					return temp;
 				id++;
