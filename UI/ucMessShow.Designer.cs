@@ -59,6 +59,7 @@
             this.label1.Size = new System.Drawing.Size(342, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "label 1";
+            this.label1.UseMnemonic = false;
             this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // ucMessShow

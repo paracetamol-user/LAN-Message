@@ -176,8 +176,9 @@ namespace UI
             this.TextBoxEnterChat.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxEnterChat.Location = new System.Drawing.Point(7, 6);
             this.TextBoxEnterChat.Margin = new System.Windows.Forms.Padding(4);
+            this.TextBoxEnterChat.Multiline = true;
             this.TextBoxEnterChat.Name = "TextBoxEnterChat";
-            this.TextBoxEnterChat.Size = new System.Drawing.Size(361, 37);
+            this.TextBoxEnterChat.Size = new System.Drawing.Size(361, 39);
             this.TextBoxEnterChat.TabIndex = 0;
             this.TextBoxEnterChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxEnterChat_KeyDown);
             // 
@@ -232,6 +233,7 @@ namespace UI
             this.labelName.Size = new System.Drawing.Size(125, 23);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Group Name";
+            this.labelName.UseMnemonic = false;
             // 
             // panel3
             // 

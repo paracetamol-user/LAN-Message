@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Network
 {
 	public partial class SmallPackage
-    {
+	{
 		public int Seq { get; set; }
 		public int Length { get; set; }
 		public string Style { get; set; }
@@ -42,11 +43,32 @@ namespace Network
 		}
 		public void DividePackage(byte[] package)
 		{
-			this.Seq = int.Parse(Encoding.UTF8.GetString(package, 0, 8).Trim('\0', '\t', '\r', '\n'));
-			this.Length = int.Parse(Encoding.UTF8.GetString(package, 8, 8).Trim('\0', '\t', '\r', '\n'));
-			this.Style = Encoding.UTF8.GetString(package, 16, 8).Trim('\0', '\t', '\r', '\n');
-			this.ID = Encoding.UTF8.GetString(package, 24, 36).Trim('\0', '\t', '\r', '\n');
-			Buffer.BlockCopy(package, 60, Data, 0, 964);
+			string package__Message = string.Empty;
+			try
+			{
+				string temp = Encoding.UTF8.GetString(package, 0, 8);
+				this.Seq = int.Parse(Encoding.UTF8.GetString(package, 0, 8).Trim('\0', '\t'));
+
+				package__Message = Encoding.UTF8.GetString(package, 0, 8);
+				this.Length = int.Parse(Encoding.UTF8.GetString(package, 8, 8).Trim('\0', '\t'));
+				package__Message = Encoding.UTF8.GetString(package, 8, 8);
+
+				this.Style = Encoding.UTF8.GetString(package, 16, 8).Trim('\0', '\t', '\r', '\n');
+				package__Message = Encoding.UTF8.GetString(package, 16, 8);
+
+				this.ID = Encoding.UTF8.GetString(package, 24, 36).Trim('\0', '\t', '\r', '\n');
+				Buffer.BlockCopy(package, 60, Data, 0, 964);
+			}
+            catch (Exception ex)
+			{
+
+            }
+			//catch (Exception ex)
+   //         {
+			//	string temp = Encoding.UTF8.GetString(package, 0, 8);
+			//	MessageBox.Show(ex.ToString());
+   //         }
+			
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,11 @@ namespace UI
 			this.label1.ForeColor = FrmMain.theme.TxtForeColor;
 			this.pnLine.BackColor = FrmMain.theme.LineColor;
 			this.picRemove.Image = Image.FromFile(FrmMain.theme.PictureClose);
-			this.roundPicAvatar.Image = Image.FromFile(user.AvatarPath);
+			using (FileStream fs = new FileStream(user.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		public void _RemoveThis()
 		{

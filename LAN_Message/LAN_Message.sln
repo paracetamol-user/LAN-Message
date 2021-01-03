@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "..\UI\UI.csproj", "{C059A202-49E7-4564-8579-97226DC93908}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAN Message", "..\UI\LAN Message.csproj", "{C059A202-49E7-4564-8579-97226DC93908}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "..\Network\Communication.csproj", "{41D27A4E-3E52-4654-B9F0-DBF092D1920C}"
 EndProject

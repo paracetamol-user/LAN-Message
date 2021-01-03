@@ -18,7 +18,7 @@ namespace UI
 		private NAudio.Wave.WaveFileReader wave;
 
 		private ucUserINChatBox userINChatBox;
-
+		
 		public string Path { get; set; }
 		VoiceControl voice;
 
@@ -69,7 +69,14 @@ namespace UI
 				player.Dispose();
 			if (wave != null)
 				wave.Dispose();
-
         }
-    }
+		public void DeleteMessage()
+		{
+			pictureBox1.Visible = false;
+			picturePause.Visible = false;
+			picturePlay.Visible = false;
+			picturePlayBack.Visible = false;
+			label1.Visible = true;
+		}
+	}
 }

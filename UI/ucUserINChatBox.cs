@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserManager;
 using Network;
+using System.IO;
 
 namespace UI
 {
@@ -23,6 +24,8 @@ namespace UI
 		public bool isTurnOnEdit;
 		public bool acceptFocus;
 		public bool isFile;
+		public bool isMessage;
+		public bool isVoice;
 		public ucUserINChatBox()
 		{
 			InitializeComponent();
@@ -33,14 +36,27 @@ namespace UI
 			acceptFocus = true;
 			isTurnOnEdit = false;
 			isFile = false;
+			isMessage = false;
+			isVoice = false;
 			this.User = _User;
 			this.IDParent = idParent;
 			this.labelName.Text = User.Name;
 			if (this.User == FrmMain.me)
 			{
-				roundPicAvatar.Image = Image.FromFile(FrmMain.me.AvatarPath);
+				using (FileStream fs = new FileStream(FrmMain.me.AvatarPath, FileMode.Open, FileAccess.Read))
+				{
+					roundPicAvatar.Image = Image.FromStream(fs);
+					fs.Dispose();
+				}
 			}
-			else roundPicAvatar.Image = Image.FromFile(User.AvatarPath);
+			else
+			{
+				using (FileStream fs = new FileStream(User.AvatarPath, FileMode.Open, FileAccess.Read))
+				{
+					roundPicAvatar.Image = Image.FromStream(fs);
+					fs.Dispose();
+				}
+			}
 			this.labelName.ForeColor = FrmMain.theme.TextColor;
 			this.picEdit.Image = Image.FromFile(FrmMain.theme.picturePen);
 			this.picDelete.Image = Image.FromFile(FrmMain.theme.pictureBin);
@@ -69,13 +85,13 @@ namespace UI
 		}
 		public void _AddMessControl(ucMessShow messcontrol)
 		{
-			isFile = false;
+			isMessage = true;
 			this.panelAddMessage.Controls.Add(messcontrol);
 			this.ucmessshow = messcontrol;
 		}
 		public void _AddVoiceMessage(ucVoiceMessage voiceMessage)
 		{
-			isFile = false;
+			isVoice = true;
 			this.panelAddMessage.Controls.Add(voiceMessage);
 			this.ucVoiceMessage = voiceMessage;
 		}
@@ -89,12 +105,13 @@ namespace UI
 		}
 		public void DeleteMessage(string IDMess)
 		{
-			if (ucmessshow != null)
+			if (isMessage)
 			{
 				ucmessshow.DeleteMessage();
 			}
-			else
+			else if (isFile)
 				ucfileshow.DeleteMessage();
+			else if (isVoice) ucVoiceMessage.DeleteMessage();
 		}
 		private void picDelete_Click(object sender, EventArgs e)
 		{
@@ -116,7 +133,7 @@ namespace UI
 						this.DisableEdit();
 						this.DisableDelete();
 					}
-					else
+					else if (isMessage)
 					{
 
 						byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
@@ -126,7 +143,15 @@ namespace UI
 						this.DisableEdit();
 						this.DisableDelete();
 					}
-
+					else if (isVoice)
+                    {
+						byte[] tempbuff = Encoding.UTF8.GetBytes("DELETEMESSAGE%" + this.ID + "%" + IDParent);
+						SmallPackage package = new SmallPackage(0, 1024, "M", tempbuff, "0");
+						FrmMain.server.GetStream().WriteAsync(package.Packing(), 0, package.Packing().Length);
+						this.ucVoiceMessage.DeleteMessage();
+						this.DisableEdit();
+						this.DisableDelete();
+					}
 					acceptFocus = false;
 				}
 			
@@ -168,6 +193,10 @@ namespace UI
 		public void DisableDelete()
         {
 			this.picDelete.Visible = false;
+        }
+		public void AddID()
+        {
+			this.ucfileshow.ucParent.ID = ID;
         }
 	}
 }

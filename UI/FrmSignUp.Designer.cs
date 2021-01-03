@@ -73,6 +73,7 @@
             this.txtNhaplaimatkhau.TabIndex = 2;
             this.txtNhaplaimatkhau.Text = "Nhap lai mat khau";
             this.txtNhaplaimatkhau.Enter += new System.EventHandler(this.txtNhaplaimatkhau_Enter);
+            this.txtNhaplaimatkhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhaplaimatkhau_KeyDown);
             this.txtNhaplaimatkhau.Leave += new System.EventHandler(this.txtNhaplaimatkhau_Leave);
             // 
             // button1
@@ -144,10 +145,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(359, 550);
             this.MinimumSize = new System.Drawing.Size(359, 550);
             this.Name = "Sign_up";
-            this.Text = "Sign_up";
+            this.Text = "Sign Up";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Sign_up_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

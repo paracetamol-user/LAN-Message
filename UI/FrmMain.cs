@@ -53,13 +53,16 @@ namespace UI
 		public static Theme theme;
 		public static List<ucUserINChatBox> listMessAwaitID;
 		public static List<ucUserINChatBox> listFileAwaitID;
+		public static List<ucUserINChatBox> listVoiceAwaitID;
 		public static List<Group> listGroup;
+		public List<ucNotification> notifications;
 
 		public bool acceptClose;
 		// Tất cả các khai báo trên đều là biến tĩnh, được quyền sử dụng trọng mỗi class.
 		public Timer timer;
 		public bool time;
 		public int tick;
+		public Point currentLocationNotification;
 		public FrmMain()
 		{
 			InitializeComponent();
@@ -78,7 +81,7 @@ namespace UI
 			frmLoading.Show();
 			this.Controls.Add(frmLoading);
 			timer.Interval = 1000;
-			timer.Tick += (timersender, timerEvent) => { tick++; if (time == true && tick > 1)
+			timer.Tick += (timersender, timerEvent) => { tick++; if (time == true || tick > 1)
 				{
 					timer.Stop();
 					this.Controls.Remove(frmLoading);
@@ -106,6 +109,7 @@ namespace UI
 			listUser = new List<User>();
 			listMessAwaitID = new List<ucUserINChatBox>();
 			listFileAwaitID = new List<ucUserINChatBox>();
+			listVoiceAwaitID = new List<ucUserINChatBox>();
 			GroupUIs = new List<GroupUI>();
 			listGroup = new List<Group>();
 			frmContactBook = new FrmContactBook(this);
@@ -113,7 +117,7 @@ namespace UI
 			AddToGroup = new FrmADDMemberToGroup(this);
 			frmADD = new FrmADD(this);
 			frmADDMemberToContact = new FrmADDMemberToContact(this);
-
+			notifications = new List<ucNotification>();
 			me.AvatarPath = @"./images/avatarDefault/avatarDefault.png";
 			
 			LoadDataUser();
@@ -224,11 +228,14 @@ namespace UI
 			//this.Avatar.Image = Image.FromFile(me.AvatarPath);
 			this.labelUSERNAME.Text = me.Name;
 			this.labelID.Text = "#" + me.Id;
-			this.roundPicAvatar.Image = Image.FromFile(me.AvatarPath);
+			using (FileStream fs = new FileStream(me.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		private void InitServerUsersForm()
-		{
-			this.Text = "LM";
+		{ 
 			serverUsersForm = new ServerForm(this);
 			serverUsersForm.TopLevel = false;
 			serverUsersForm.Dock = DockStyle.Fill;
@@ -238,13 +245,58 @@ namespace UI
 		{
 			labelID.Text = "#" + me.Id;
 			labelUSERNAME.Text = me.Name;
-			this.roundPicAvatar.Image = Image.FromFile(me.AvatarPath);
+			using (FileStream fs = new FileStream(me.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
+		}
+		public async Task AddNewNotification(string text)
+        {
+			ucNotification newNotification = new ucNotification(text);
+			Point defaultLocation = new Point(this.panelRIGHT.Width / 2 + this.panelMenu.Width - newNotification.Width / 2 + 5 , 5);
+			newNotification.Location = defaultLocation;
+			notifications.Add(newNotification);
+            //Create Notification
+            Timer waitForTurn = new Timer();
+            waitForTurn.Interval = 100;	
+            waitForTurn.Tick += async (timeSender, timerEvent) =>
+            {
+				if (notifications.Count == 1)
+                {
+					currentLocationNotification = defaultLocation;
+					waitForTurn.Stop();
+					this.Controls.Add(newNotification);
+					newNotification.BringToFront();
+					newNotification.Show();
+					await Task.Delay(2000);
+					notifications.Remove(newNotification);
+					this.Controls.Remove(newNotification);
+					newNotification.Dispose();
+				}
+                else if (notifications.Count == 2)
+				{
+					if (currentLocationNotification == defaultLocation)
+						newNotification.Location = new Point(newNotification.Location.X, newNotification.Location.Y + newNotification.Height + 2);
+					currentLocationNotification = newNotification.Location;
+					waitForTurn.Stop();
+					this.Controls.Add(newNotification);
+					
+					newNotification.BringToFront();
+					newNotification.Show();
+					await Task.Delay(2000);
+					notifications.Remove(newNotification);
+					this.Controls.Remove(newNotification);
+					newNotification.Dispose();
+				}
+			};
+			waitForTurn.Start();
 		}
 		private async Task AwaitReadData()
 		{
-			try
-			{
-				byte[] tempBuff;
+            try
+            {
+                byte[] tempBuff;
 				SmallPackage package;
 				List<Package> listAwaitPackage = new List<Package>();
 				while (true)
@@ -301,7 +353,7 @@ namespace UI
 						}
 						else if (action == "MESSAGE") // MESSAGE +id tin nhan+ tin nhắn + Id người gửi
 						{
-							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0');
 							string Message = "";
 							int count = 0;
 							for (int j = 0; j < temp.Length; j++)
@@ -325,6 +377,7 @@ namespace UI
 						}
 						else if (action == "ADDUSER")
 						{
+							AddNewNotification(data[2] + "Join the server.");
 							string path = @"./images/avatarDefault/avatarDefault.png";
 							User tempUser = (new User(data[1], data[2], false, path));
 							UserUI temp = new UserUI(tempUser, this);
@@ -414,14 +467,18 @@ namespace UI
 						}
 						else if (action == "PENDING")
 						{
-							foreach (var item in UserUIs)
-							{
-								if (item.user.Id == data[1])
+							if (!serverUsersForm.ExistsPending(data[1]))
+                            {
+								foreach (var item in UserUIs)
 								{
-									serverUsersForm.AddPending(item);
-									serverUsersForm.EnablePointPending();
-									picNotification.Visible = true;
-									break;
+									if (item.user.Id == data[1])
+									{
+										AddNewNotification("Friend request from " + item.user.Name + ".");
+										serverUsersForm.AddPending(item);
+										serverUsersForm.EnablePointPending();
+										picNotification.Visible = true;
+										break;
+									}
 								}
 							}
 						}
@@ -434,6 +491,7 @@ namespace UI
 								{
 									if (item.user.Id == data[i])
 									{
+										
 										item.user.IsFriend = true;
 										item.EnableRemove();
 										item.DisableADD();
@@ -447,6 +505,7 @@ namespace UI
 							{
 								if (item.user.Id == data[1])
 								{
+									AddNewNotification(item.user.Name + "and you became friend.");
 									AddUserIntoFrmFriend(item);
 									item.user.IsFriend = true;
 									item.DisableADD();
@@ -521,6 +580,7 @@ namespace UI
 						else if (action == "IDFILE")
 						{
 							listFileAwaitID[0].ID = data[1];
+							listFileAwaitID[0].AddID();
 							listFileAwaitID.Remove(listFileAwaitID[0]);
 						}
 						else if (action == "LOADGROUPDATA")
@@ -551,10 +611,14 @@ namespace UI
 						}
 						else if (action == "GPENDING")
 						{
-							GroupUI temp = new GroupUI(new Group(data[1], data[2]), this);
-							serverUsersForm.AddGroupPending(temp);
-							serverUsersForm.EnablePointPending();
-							picNotification.Visible = true;
+							if (!serverUsersForm.ExistsPending(data[1]))
+                            {
+								AddNewNotification("Group request from " + data[1] +".");
+								GroupUI temp = new GroupUI(new Group(data[1], data[2]), this);
+								serverUsersForm.AddGroupPending(temp);
+								serverUsersForm.EnablePointPending();
+								picNotification.Visible = true;
+							}
 						}
 						else if (action == "GROUPDATA")
 						{
@@ -590,6 +654,7 @@ namespace UI
 										if (data[2] == item2.Id)
 										{
 											item.group.AddMember(item2);
+											item.groupForm.AddNotification(item2.Name, "has been added to the group");
 											break;
 										}
 									}
@@ -598,7 +663,7 @@ namespace UI
 						}
 						else if (action == "GSEND")
 						{
-							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0', '\t', '\n');
+							string temp = Encoding.UTF8.GetString(package.Data).Trim('\0');
 							string Message = "";
 							int count = 0;
 							for (int j = 0; j < temp.Length; j++)
@@ -637,12 +702,23 @@ namespace UI
 								{
 									if (IDmember == me.Id)
 									{
+										AddNewNotification(string.Format("You have been kicked out of the {0}.",item.group.Name));
 										GroupUIs.Remove(item);
 										listGroup.Remove(item.group);
 										item.Dispose();
 									}
 									else
 									{
+                                        foreach (var item2 in item.group.GetMembers())
+                                        {
+											if (item2.Id == IDmember)
+                                            {
+												//AddNewNotification(item2.Name + " has left the group.");
+												item.groupForm.AddNotification(item2.Name, "has left the group.");
+												break;
+											}
+                                        }
+										
 										item.group.RemoveMember(IDmember);
 									}
 									break;
@@ -674,6 +750,14 @@ namespace UI
 									{
 										item.group.ChangeHost(newHost);
 									}
+                                    foreach (var item3 in item.group.GetMembers())
+                                    {
+										if (item3.Id == newHost)
+                                        {
+											item.groupForm.AddNotification(item3.Name, "has become the host.");
+											break;
+										}
+                                    }
 									break;
 								}
 							}
@@ -739,6 +823,11 @@ namespace UI
 							frmContactBook._RemoveUser(data[1]);
 							listUser.Remove(temp);
 						}
+						else if (action == "IDVOICE")
+                        {
+							listVoiceAwaitID[0].ID = data[1];
+							listVoiceAwaitID.Remove(listVoiceAwaitID[0]);
+						}
 					}
 					else if (package.Style == "F")
 					{
@@ -757,8 +846,21 @@ namespace UI
 								item.Ack = item.Ack + package.Data.Length;
 								if (item.Ack == item.Length)
 								{
-									_FileDialog fd = new _FileDialog();
-									fd.SaveFile(item.Data, item.FileName);
+									System.IO.Stream fs = new MemoryStream();
+
+									SaveFileDialog saveFileDialog = new SaveFileDialog();
+									saveFileDialog.Filter = "Images (*.BMP;*.JPG;*.PNG) | *.BMP;*.JPG;*.PNG |" + "All files (*.*)|*.*";
+									saveFileDialog.Title = "Save File";
+									saveFileDialog.InitialDirectory = @"C:\";
+									saveFileDialog.RestoreDirectory = true;
+									saveFileDialog.FileName = item.FileName;
+
+									if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
+									{
+										fs = (Stream)saveFileDialog.OpenFile();
+										fs.Write(item.Data, 0, item.Data.Length);
+										fs.Close();
+									}
 								}
 							}
 						}
@@ -836,7 +938,7 @@ namespace UI
 													Directory.CreateDirectory(path);
 												path += string.Format("{0}.wav", GetIDForIncomingVoice(path));
 												File.WriteAllBytes(path, item.Data);
-												userUI.userForm.AddVoiceMessage(userUI.user, path);
+												userUI.userForm.AddVoiceMessage(userUI.user, path , item.IDpackage);
 												userUI.BringToTop();
 												break;
 											}
@@ -857,7 +959,7 @@ namespace UI
 												{
 													if (userUI.user.Id == item.IDsend)
 													{
-														groupUI.groupForm.AddVoiceMessage(userUI.user, path);
+                                                        groupUI.groupForm.AddVoiceMessage(userUI.user, path, item.IDpackage);
 														groupUI.BringToTop();
 														break;
 													}
@@ -874,6 +976,7 @@ namespace UI
 			}
 			catch (Exception ex)
 			{
+				if (acceptClose != false)
 				MessageBox.Show("Server disconnected!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				acceptClose = false;
 				this.Close();
@@ -934,7 +1037,6 @@ namespace UI
 		}
 		private void btnServer_Click(object sender, EventArgs e)
 		{
-
 			picNotification.Visible = false;
 			if (FrmMain.userFormFocus != null) FrmMain.userFormFocus.Hide();
 			if (FrmMain.userUIForcus != null)
@@ -1024,6 +1126,23 @@ namespace UI
 			{
 				btnServer.BackColor = Color.Transparent;
 			}
+		}
+        private void picNotification_MouseMove(object sender, MouseEventArgs e)
+        {
+			btnServer.BackColor = theme.FocusColor;
+		}
+        private void picNotification_Click(object sender, EventArgs e)
+        {
+			picNotification.Visible = false;
+			if (FrmMain.userFormFocus != null) FrmMain.userFormFocus.Hide();
+			if (FrmMain.userUIForcus != null)
+			{
+				FrmMain.userUIForcus.ucInterac.ChangeColorWhenNonClick();
+				FrmMain.userUIForcus = null;
+			}
+			serverUsersForm.Show();
+			serverUsersForm.BringToFront();
+			serverUsersForm.InitStart();
 		}
     }
 }

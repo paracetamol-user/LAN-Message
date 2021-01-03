@@ -151,7 +151,7 @@ namespace Communication
                 if (byteLeft >= 964) Buffer.BlockCopy(package, byteSent, tempBuff, 0, 964);
                 else Buffer.BlockCopy(package, byteSent, tempBuff, 0, byteLeft);
 
-                packageSend = new SmallPackage(byteSent, package.Length, Style, tempBuff, IDpackage.ToString());
+                packageSend = new SmallPackage(byteSent, 1024, Style, tempBuff, IDpackage.ToString());
 
                 mClient.GetStream().WriteAsync(packageSend.Packing(), 0, packageSend.Packing().Length);
                 byteSent += nextPackageSize;

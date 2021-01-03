@@ -82,6 +82,7 @@
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             this.labelFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelFileName.UseMnemonic = false;
             // 
             // pictureBoxClose
             // 
@@ -111,14 +112,14 @@
             this.pictureBoxPictureFile.TabIndex = 3;
             this.pictureBoxPictureFile.TabStop = false;
             // 
-            // usFileTemp
+            // ucFileTemp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panelForm);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "usFileTemp";
+            this.Name = "ucFileTemp";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.Size = new System.Drawing.Size(180, 41);
             this.panelForm.ResumeLayout(false);

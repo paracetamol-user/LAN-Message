@@ -53,7 +53,7 @@
             this.pictureBoxSetting = new System.Windows.Forms.PictureBox();
             this.pnLine = new System.Windows.Forms.Panel();
             this.panelServer = new System.Windows.Forms.Panel();
-            this.picNotification = new System.Windows.Forms.PictureBox();
+            this.picNotification = new UI.roundpicturebox();
             this.btnServer = new System.Windows.Forms.Button();
             this.pnContainAll.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -308,6 +308,7 @@
             this.labelUSERNAME.Size = new System.Drawing.Size(105, 22);
             this.labelUSERNAME.TabIndex = 0;
             this.labelUSERNAME.Text = "User Name";
+            this.labelUSERNAME.UseMnemonic = false;
             // 
             // panel3
             // 
@@ -381,18 +382,18 @@
             // 
             // picNotification
             // 
-            this.picNotification.BackColor = System.Drawing.Color.Transparent;
+            this.picNotification.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.picNotification.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
-            this.picNotification.Location = new System.Drawing.Point(272, 18);
-            this.picNotification.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.picNotification.Location = new System.Drawing.Point(274, 21);
             this.picNotification.Name = "picNotification";
-            this.picNotification.Size = new System.Drawing.Size(20, 20);
-            this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picNotification.Size = new System.Drawing.Size(15, 15);
+            this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picNotification.TabIndex = 3;
             this.picNotification.TabStop = false;
             this.picNotification.Visible = false;
-            this.picNotification.MouseLeave += new System.EventHandler(this.btnGroup_MouseLeave);
-            this.picNotification.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPhoneBook_MouseMove);
+            this.picNotification.Click += new System.EventHandler(this.picNotification_Click);
+            this.picNotification.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picNotification_MouseMove);
             // 
             // btnServer
             // 
@@ -418,10 +419,11 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(962, 646);
             this.Controls.Add(this.pnContainAll);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(980, 693);
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "LAN Message";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.pnContainAll.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
@@ -455,7 +457,6 @@
         private System.Windows.Forms.Panel panelServer;
         private System.Windows.Forms.Panel panelRIGHT;
         private System.Windows.Forms.Button btnServer;
-        private System.Windows.Forms.PictureBox picNotification;
         private System.Windows.Forms.Panel pnLine3;
         private System.Windows.Forms.Panel panelINTERACTED;
         private System.Windows.Forms.Panel panel4;
@@ -469,6 +470,7 @@
 		private System.Windows.Forms.Label labelUSERNAME;
 		private System.Windows.Forms.Panel panel3;
 		private roundpicturebox roundPicAvatar;
-	}
+        private roundpicturebox picNotification;
+    }
 }
 

@@ -111,6 +111,7 @@ namespace UI
             this.lbName.Size = new System.Drawing.Size(72, 24);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
+            this.lbName.UseMnemonic = false;
             // 
             // panel2
             // 

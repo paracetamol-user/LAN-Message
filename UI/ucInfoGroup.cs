@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using UserManager;
 using System.Drawing.Drawing2D;
 using Network;
+using System.IO;
 
 namespace UI
 {
@@ -49,7 +50,7 @@ namespace UI
 			this.mainForm = this.frmMain.GroupUI.MAINFORM;
 			this.frmADD = new FrmADD(mainForm);
 			this.frmMain.Pncontaininfor.Controls.Add(this);
-			this.Dock = DockStyle.Top;
+			this.Dock = DockStyle.Fill;
 		}
 		public void locationlabel(ref Label a, Panel b)
 		{
@@ -92,9 +93,11 @@ namespace UI
 			this.group = group;
 			lbName.Text = "Name: " + group.Name;
 			lbID.Text = "#" + group.ID;
-			Image image = Image.FromFile(group.AvatarPath);
-			ptbavata.Image = image;
-			ptbavata.SizeMode = PictureBoxSizeMode.StretchImage;
+			using (FileStream fs = new FileStream(group.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				ptbavata.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			locationlabel(ref lbName, pnavata_name);
 			locationlabel(ref lbID, pnavata_name);
 			locationpanel(ref panel1, pnavata_name);
@@ -128,8 +131,6 @@ namespace UI
 		public void _addmember(List<User> listmember)
 		{
 			List<ucMember> listuser = new List<ucMember>();
-			
-			
 			if (listmember != null)
 			{
 			  
@@ -139,7 +140,6 @@ namespace UI
 					if(listmember[i] != group.admin)
 					{
 						ucMember tam = new ucMember(group, listmember[i]);
-						
 						listuser.Add(tam);
 					}
 				}
@@ -165,7 +165,6 @@ namespace UI
 					listuser[i].Dock = DockStyle.Top;
 				}
 			}
-			
 		}
 		public Image _xoayanh(Image image, float rotationAngle)
 		{

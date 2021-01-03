@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,11 @@ namespace UI
             this.Parent = groupUI;
             this.lbName.Text = group.Name;
             this.lbId.Text = "#" + group.ID;
-            this.roundPicAvatar.Image = Image.FromFile(group.AvatarPath);
+            using (FileStream fs = new FileStream(group.AvatarPath, FileMode.Open, FileAccess.Read))
+            {
+                this.roundPicAvatar.Image = Image.FromStream(fs);
+                fs.Dispose();
+            }
             InitControls();
         }
         public void InitControls()
@@ -52,7 +57,7 @@ namespace UI
         }
         public void SetAvatar(string path)
         {
-            //gunaPic.Image = Image.FromFile(path);
+            
         }
 
         private void gunaPic_MouseClick(object sender, MouseEventArgs e)

@@ -87,7 +87,7 @@
             this.lbMess.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lbMess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbMess.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMess.ForeColor = System.Drawing.Color.DimGray;
+            this.lbMess.ForeColor = System.Drawing.Color.Black;
             this.lbMess.Location = new System.Drawing.Point(5, 0);
             this.lbMess.Name = "lbMess";
             this.lbMess.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
@@ -141,6 +141,7 @@
             this.lbName.Size = new System.Drawing.Size(68, 23);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "label1";
+            this.lbName.UseMnemonic = false;
             this.lbName.Click += new System.EventHandler(this.pnContain_Click);
             // 
             // panel2

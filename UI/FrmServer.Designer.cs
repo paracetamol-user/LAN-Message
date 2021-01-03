@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnPending = new System.Windows.Forms.Panel();
-            this.picPoint = new System.Windows.Forms.PictureBox();
+            this.picPoint = new UI.roundpicturebox();
             this.btnPending = new System.Windows.Forms.Button();
             this.panelAll = new System.Windows.Forms.Panel();
             this.btnPeople = new System.Windows.Forms.Button();
@@ -84,15 +84,17 @@
             // 
             // picPoint
             // 
-            this.picPoint.BackColor = System.Drawing.Color.Transparent;
+            this.picPoint.BackColor = System.Drawing.Color.White;
             this.picPoint.Image = ((System.Drawing.Image)(resources.GetObject("picPoint.Image")));
-            this.picPoint.Location = new System.Drawing.Point(100, 15);
-            this.picPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.picPoint.Location = new System.Drawing.Point(101, 19);
             this.picPoint.Name = "picPoint";
-            this.picPoint.Size = new System.Drawing.Size(20, 20);
-            this.picPoint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPoint.TabIndex = 3;
+            this.picPoint.Size = new System.Drawing.Size(15, 15);
+            this.picPoint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPoint.TabIndex = 5;
             this.picPoint.TabStop = false;
+            this.picPoint.Visible = false;
+            this.picPoint.Click += new System.EventHandler(this.picPoint_Click);
+            this.picPoint.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picPoint_MouseMove);
             // 
             // btnPending
             // 
@@ -308,9 +310,9 @@
         private System.Windows.Forms.Button btnOnline;
         private System.Windows.Forms.Panel pnPending;
         private System.Windows.Forms.Button btnPending;
-        private System.Windows.Forms.PictureBox picPoint;
         private System.Windows.Forms.Panel pnContainSearch;
         private System.Windows.Forms.Panel pnContainListSearch;
 		private System.Windows.Forms.Label lbHeaderName;
-	}
+        private roundpicturebox picPoint;
+    }
 }

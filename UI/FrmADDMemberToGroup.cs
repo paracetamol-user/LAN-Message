@@ -33,6 +33,7 @@ namespace UI
 		public void InitControls()
         {
 			this.BackColor = FrmMain.theme.BackColor;
+			this.picClose.Image = Image.FromFile(FrmMain.theme.PictureClose);
 		}
 
         public void InitAddGroupForm(User selectedUser)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,11 @@ namespace UI
 			this.label1.ForeColor = FrmMain.theme.TextColor;
 			this.label2.ForeColor = FrmMain.theme.TextColor;
 			this.button1.ForeColor = FrmMain.theme.TextColor;
-			this.roundPicAvatar.Image = Image.FromFile(group.AvatarPath);
+			using (FileStream fs = new FileStream(group.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.roundPicAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		public void InitColor()
 		{

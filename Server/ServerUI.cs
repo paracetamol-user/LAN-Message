@@ -34,7 +34,7 @@ namespace Server
 
         private void textChange(object sender, EventArgs e)
         {
-			if (txtBoxConsole.TextLength > 10000) txtBoxConsole.Clear();
+			if (txtBoxConsole.TextLength > 500000) txtBoxConsole.Clear();
         }
 
         private void SetOff()
@@ -49,16 +49,11 @@ namespace Server
 
         private void ClearData()
 		{
-			string path = @"./voice";
+			string path = @"./avatar";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-			DirectoryInfo dir = new DirectoryInfo(path);
-			foreach (var item in dir.GetDirectories())
-			{
-				item.Delete(true);
-			}
 			path = @"./filedata";
 			if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-			dir = new DirectoryInfo(path);
+			DirectoryInfo dir = new DirectoryInfo(path);
 			foreach (var item in dir.GetFiles())
 			{
 				item.Delete();

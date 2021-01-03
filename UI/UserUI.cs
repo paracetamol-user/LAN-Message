@@ -201,6 +201,7 @@ namespace UI
 				this.panelINTERACTED.Controls.Remove(ucInterac);
 			}
 			this.AddUserInteracted();
+			this.ucInterac.BoldMessage();
 		}
 		/// <summary>
 		///  Các Hàm ADD vào các Panel

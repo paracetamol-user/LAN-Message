@@ -106,6 +106,7 @@ namespace UI
             this.ptbavata.Location = new System.Drawing.Point(0, 0);
             this.ptbavata.Name = "ptbavata";
             this.ptbavata.Size = new System.Drawing.Size(120, 110);
+            this.ptbavata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbavata.TabIndex = 1;
             this.ptbavata.TabStop = false;
             // 
@@ -128,6 +129,7 @@ namespace UI
             this.lbName.Size = new System.Drawing.Size(62, 24);
             this.lbName.TabIndex = 3;
             this.lbName.Text = "Name";
+            this.lbName.UseMnemonic = false;
             // 
             // pnLine2
             // 

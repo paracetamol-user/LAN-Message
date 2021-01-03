@@ -41,7 +41,11 @@ namespace UI
 		{
 			this.lblName.Text = me.Name;
 			this.lblID.Text = "#" + me.Id;
-			this.pictureAvatar.Image = Image.FromFile(me.AvatarPath);
+			using (FileStream fs = new FileStream(me.AvatarPath, FileMode.Open, FileAccess.Read))
+			{
+				this.pictureAvatar.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 
 		private void InitSettingForm()
@@ -56,6 +60,11 @@ namespace UI
 
 		public void ChangeColorPanelControl()
 		{
+			using (FileStream fs = new FileStream(FrmMain.theme.PictureCancel, FileMode.Open, FileAccess.Read))
+			{
+				this.pictureBox2.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 			this.pnMenu.BackColor = FrmMain.theme.Menu;
 			this.pnPassword.BackColor = FrmMain.theme.FocusColor;
 			this.btnEditPassword.BackColor = FrmMain.theme.BackColor;
@@ -92,7 +101,11 @@ namespace UI
 		}
 		public void ResetPicture()
 		{
-			this.pictureBox2.Image = Image.FromFile(FrmMain.theme.PictureCancel);
+			using (FileStream fs = new FileStream(FrmMain.theme.PictureCancel, FileMode.Open, FileAccess.Read))
+			{
+				this.pictureBox2.Image = Image.FromStream(fs);
+				fs.Dispose();
+			}
 		}
 		private void InitStartForm()
 		{
@@ -153,9 +166,9 @@ namespace UI
 
 				await FrmMain.client.SendFileToServer(data, "A", id.ToString());
 				byte[] tempfile = File.ReadAllBytes(fi.FullName);
-				id = Guid.NewGuid();
-				File.WriteAllBytes(@"./cache/avatar/" + id.ToString() + fi.Extension, tempfile);
-				FrmMain.me.AvatarPath = @"./cache/avatar/" + id.ToString() + fi.Extension;
+				
+				File.WriteAllBytes(@"./cache/avatar/" + me.Id + fi.Extension, tempfile);
+				FrmMain.me.AvatarPath = @"./cache/avatar/" + me.Id + fi.Extension;
 				this.parent.LoadUser();
 
 			}
@@ -189,6 +202,17 @@ namespace UI
 		}
 		private void btnLog_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
+				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+
 			parent.acceptClose = false;
 			this.Close();
 			parent.Close();
@@ -196,6 +220,16 @@ namespace UI
 		}
 		private void pictureBox2_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
+				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
+				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 			this.Hide();
 		}
 		private void btnMyAccount_MouseMove(object sender, MouseEventArgs e)
@@ -208,35 +242,13 @@ namespace UI
 		}
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
-			try
-			{
-				FrmMain.theme.White();
-				parent.ChangeTheme();
-				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
-				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
-			
+			FrmMain.theme.White();
+			parent.ChangeTheme();
 		}
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
-			try
-			{
-				FrmMain.theme.Black();
-				parent.ChangeTheme();
-				byte[] tempbuff = Encoding.UTF8.GetBytes("THEME%" + (FrmMain.theme.IsWhite == true ? "White" : "Black"));
-				SmallPackage packageReceive = new SmallPackage(1024, tempbuff.Length, "M", tempbuff, "0");
-				FrmMain.server.GetStream().WriteAsync(packageReceive.Packing(), 0, packageReceive.Packing().Length);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Please check the connection again or the server could not be found!", "Error Connected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
-			
+			FrmMain.theme.Black();
+			parent.ChangeTheme();
 		}
 
 
@@ -282,9 +294,11 @@ namespace UI
 			DialogResult result = openFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
-				Image avatar = Image.FromFile(openFileDialog.FileName);
-				this.pictureAvatar.Image = avatar;
-
+				using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+				{
+					this.pictureAvatar.Image = Image.FromStream(fs);
+					fs.Dispose();
+				}
 				// Upload to database and update to all users.
 				fi = new FileInfo(openFileDialog.FileName);
 			}

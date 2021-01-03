@@ -38,7 +38,7 @@ namespace UI
 			this.user = user;
 			this.userForm = userForm;
 			voice = new VoiceControl(user);
-			voice.Path = voice.GetNextPath();
+			//voice.Path = voice.GetNextPath();
 			timer = new Timer();
 			timer.Tick += Timer_Tick;
 			timer.Interval = 1000;
@@ -51,7 +51,7 @@ namespace UI
 			this.group = group;
 			this.groupForm = groupForm;
 			voice = new VoiceControl(group);
-			voice.Path = voice.GetNextPath();
+			//voice.Path = voice.GetNextPath();
 			timer = new Timer();
             timer.Tick += Timer_Tick;
 			timer.Interval = 1000;
@@ -173,7 +173,7 @@ namespace UI
 					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 					FrmMain.client.SendFileToServer(data, "V", id.ToString());
 
-					userForm.AddVoiceMessage(FrmMain.me, voice.Path);
+					userForm.AddVoiceMessage(FrmMain.me, voice.Path , "-1");
 				}
 				else
 				{
@@ -185,10 +185,10 @@ namespace UI
 					FrmMain.server.GetStream().WriteAsync(smallPackage.Packing(), 0, smallPackage.Packing().Length);
 					FrmMain.client.SendFileToServer(data, "V", id.ToString());
 
-					groupForm.AddVoiceMessage(FrmMain.me, voice.Path);
+					groupForm.AddVoiceMessage(FrmMain.me, voice.Path , "-1");
 				}
 				// Process when record sent
-				voice.Path = voice.GetNextPath();
+				//voice.Path = voice.GetNextPath();
 			}
 			catch (Exception ex)
 			{

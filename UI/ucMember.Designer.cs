@@ -37,9 +37,9 @@ namespace UI
             this.pndeletemember = new System.Windows.Forms.Panel();
             this.pictureBoxdeletemember = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.roundpicturebox1 = new UI.roundpicturebox();
             this.pnLine2 = new System.Windows.Forms.Panel();
             this.pnLine1 = new System.Windows.Forms.Panel();
-            this.roundpicturebox1 = new UI.roundpicturebox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.pnadmin.SuspendLayout();
@@ -84,6 +84,7 @@ namespace UI
             this.label1.Size = new System.Drawing.Size(62, 21);
             this.label1.TabIndex = 7;
             this.label1.Text = "label1";
+            this.label1.UseMnemonic = false;
             // 
             // pnadmin
             // 
@@ -145,6 +146,17 @@ namespace UI
             this.panel3.Size = new System.Drawing.Size(57, 57);
             this.panel3.TabIndex = 10;
             // 
+            // roundpicturebox1
+            // 
+            this.roundpicturebox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.roundpicturebox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.roundpicturebox1.Location = new System.Drawing.Point(5, 5);
+            this.roundpicturebox1.Name = "roundpicturebox1";
+            this.roundpicturebox1.Size = new System.Drawing.Size(47, 47);
+            this.roundpicturebox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundpicturebox1.TabIndex = 12;
+            this.roundpicturebox1.TabStop = false;
+            // 
             // pnLine2
             // 
             this.pnLine2.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -163,24 +175,12 @@ namespace UI
             this.pnLine1.Size = new System.Drawing.Size(311, 1);
             this.pnLine1.TabIndex = 8;
             // 
-            // roundpicturebox1
-            // 
-            this.roundpicturebox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.roundpicturebox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.roundpicturebox1.Location = new System.Drawing.Point(5, 5);
-            this.roundpicturebox1.Name = "roundpicturebox1";
-            this.roundpicturebox1.Size = new System.Drawing.Size(47, 47);
-            this.roundpicturebox1.TabIndex = 12;
-            this.roundpicturebox1.TabStop = false;
-            // 
             // ucMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
-            this.MaximumSize = new System.Drawing.Size(314, 65);
-            this.MinimumSize = new System.Drawing.Size(314, 65);
             this.Name = "ucMember";
             this.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.Size = new System.Drawing.Size(314, 65);
